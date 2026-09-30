@@ -1,18 +1,14 @@
 ---
-import { POINTS_DE_VENTE } from "../lib/leadSchema";
+import { NOMBRE_RESTAURANTS } from "../lib/leadSchema";
 import { SITE } from "../lib/site";
+import { CONTENU } from "../content/contenu";
 
 interface Props {
   titre?: string;
 }
-const { titre = "Voyez vos deux plateformes sur un seul écran, en 15 min" } = Astro.props;
-
-const etapes = [
-  { titre: "Vous remplissez le formulaire", texte: "Cinq informations, moins d’une minute." },
-  { titre: "Tom vous rappelle sous 24 h", texte: "Le fondateur de Deliview, pas un centre d’appels." },
-  { titre: "Démo de 15 min sur vos plateformes", texte: "Vous voyez Deliview avec votre cas : vos plateformes, votre nombre d’établissements." },
-  { titre: "Mise en place faite avec vous", texte: "On connecte vos comptes ensemble. Vous n’avez rien à configurer seul." },
-];
+const { titre = CONTENU.demo.titre } = Astro.props;
+const { etapes } = CONTENU.demo;
+const { libelleEnseigne, libelleNombre } = CONTENU.formulaire;
 
 const champ = "mt-2 block min-h-[52px] w-full rounded-xl border border-grey-2/40 bg-white px-4 text-base text-grey-2 aria-[invalid=true]:border-2 aria-[invalid=true]:border-grey-2";
 const libelle = "block text-base font-semibold";
@@ -53,17 +49,10 @@ const erreur = "mt-1.5 text-[15px] font-semibold empty:hidden";
             <p id="nom-erreur" class={erreur} data-erreur="nom"></p>
           </div>
 
-          <div class="grid gap-5 sm:grid-cols-[1.4fr_1fr]">
-            <div>
-              <label for="restaurant" class={libelle}>Nom du restaurant</label>
-              <input id="restaurant" name="restaurant" type="text" autocomplete="organization" required maxlength="160" class={champ} aria-describedby="restaurant-erreur" />
-              <p id="restaurant-erreur" class={erreur} data-erreur="restaurant"></p>
-            </div>
-            <div>
-              <label for="ville" class={libelle}>Ville</label>
-              <input id="ville" name="ville" type="text" autocomplete="address-level2" required maxlength="120" class={champ} aria-describedby="ville-erreur" />
-              <p id="ville-erreur" class={erreur} data-erreur="ville"></p>
-            </div>
+          <div>
+            <label for="enseigne" class={libelle}>{libelleEnseigne}</label>
+            <input id="enseigne" name="enseigne" type="text" autocomplete="organization" required maxlength="160" class={champ} aria-describedby="enseigne-erreur" />
+            <p id="enseigne-erreur" class={erreur} data-erreur="enseigne"></p>
           </div>
 
           <div>
@@ -74,26 +63,26 @@ const erreur = "mt-1.5 text-[15px] font-semibold empty:hidden";
           </div>
 
           <div>
-            <label for="email" class={libelle}>Email</label>
+            <label for="email" class={libelle}>Email professionnel</label>
             <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" class={champ} aria-describedby="email-erreur" />
             <p id="email-erreur" class={erreur} data-erreur="email"></p>
           </div>
 
-          <fieldset aria-describedby="points_de_vente-erreur">
-            <legend class={libelle}>Nombre de points de vente</legend>
+          <fieldset aria-describedby="nombre_restaurants-erreur">
+            <legend class={libelle}>{libelleNombre}</legend>
             <div class="mt-2 grid grid-cols-5 gap-2">
               {
-                POINTS_DE_VENTE.map((v) => (
+                NOMBRE_RESTAURANTS.map((v) => (
                   <label class="relative">
-                    <input type="radio" name="points_de_vente" value={v} required class="peer absolute inset-0 opacity-0" />
-                    <span class="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border border-grey-2/40 bg-white text-base font-semibold peer-checked:border-2 peer-checked:border-blue peer-checked:bg-blue/10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
+                    <input type="radio" name="nombre_restaurants" value={v} required class="peer absolute inset-0 opacity-0" />
+                    <span class="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border border-grey-2/40 bg-white text-[15px] font-semibold sm:text-base peer-checked:border-2 peer-checked:border-blue peer-checked:bg-blue/10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
                       {v}
                     </span>
                   </label>
                 ))
               }
             </div>
-            <p id="points_de_vente-erreur" class={erreur} data-erreur="points_de_vente"></p>
+            <p id="nombre_restaurants-erreur" class={erreur} data-erreur="nombre_restaurants"></p>
           </fieldset>
         </div>
 
@@ -172,7 +161,7 @@ const erreur = "mt-1.5 text-[15px] font-semibold empty:hidden";
     });
     form.addEventListener("change", (e) => {
       const cible = e.target as HTMLInputElement;
-      if (cible.name === "points_de_vente") {
+      if (cible.name === "nombre_restaurants") {
         touches.add(cible.name);
         const res = validerLead(donnees());
         afficher(res.ok ? {} : res.erreurs, touches);

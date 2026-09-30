@@ -52,13 +52,13 @@ function supabase(chemin: string, init: RequestInit = {}) {
   });
 }
 
-/** Un double envoi (même email et même restaurant en moins de 10 minutes) ne crée pas de second lead. */
+/** Un double envoi (même email et même enseigne en moins de 10 minutes) ne crée pas de second lead. */
 async function dejaRecu(lead: Lead) {
   const depuis = new Date(Date.now() - 10 * 60_000).toISOString();
   const params = new URLSearchParams({
     select: "id",
     email: `eq.${lead.email}`,
-    restaurant: `eq.${lead.restaurant}`,
+    enseigne: `eq.${lead.enseigne}`,
     created_at: `gte.${depuis}`,
     limit: "1",
   });
@@ -90,15 +90,15 @@ async function envoyerEmail(to: string, sujet: string, texte: string, replyTo?: 
 async function notifier(lead: Lead) {
   const lignes = [
     `Nom : ${lead.nom}`,
-    `Restaurant : ${lead.restaurant} (${lead.ville})`,
+    `Enseigne : ${lead.enseigne}`,
     `Téléphone : ${lead.telephone}`,
     `Email : ${lead.email}`,
-    `Points de vente : ${lead.points_de_vente}`,
+    `Nombre de restaurants : ${lead.nombre_restaurants}`,
     `Page : ${lead.page_origine ?? "-"} · Bouton : ${lead.section_cta ?? "-"}`,
     `UTM : ${[lead.utm_source, lead.utm_medium, lead.utm_campaign, lead.utm_content].map((v) => v ?? "-").join(" / ")}`,
   ];
   const envois = await Promise.allSettled([
-    envoyerEmail(env("LEAD_NOTIFICATION_EMAIL"), `Nouvelle demande de démo : ${lead.restaurant}`, lignes.join("\n"), lead.email),
+    envoyerEmail(env("LEAD_NOTIFICATION_EMAIL"), `Nouvelle demande de démo : ${lead.enseigne} (${lead.nombre_restaurants})`, lignes.join("\n"), lead.email),
     envoyerEmail(
       lead.email,
       "Votre demande de démo Deliview",

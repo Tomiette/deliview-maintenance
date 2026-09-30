@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-export const POINTS_DE_VENTE = ["1", "2-5", "6-10", "11-19", "20+"] as const;
+/** Tranches de nombre de restaurants, du franchisé mono-site au grand réseau. Doivent rester alignées avec la contrainte SQL. */
+export const NOMBRE_RESTAURANTS = ["1", "2-5", "6-20", "21-100", "100+"] as const;
 
 const espaces = (v: string) => v.replace(/\s+/g, " ").trim();
 
@@ -30,8 +31,7 @@ const optionnel = z
 
 export const leadSchema = z.object({
   nom: texte(2, 120, "Indiquez votre prénom et votre nom.", "Indiquez votre prénom et votre nom."),
-  restaurant: texte(2, 160, "Indiquez le nom de votre restaurant.", "Le nom du restaurant semble trop court."),
-  ville: texte(2, 120, "Indiquez la ville de votre restaurant.", "Le nom de la ville semble trop court."),
+  enseigne: texte(2, 160, "Indiquez le nom de votre enseigne.", "Le nom de l’enseigne semble trop court."),
   telephone: z
     .string({ error: "Indiquez votre numéro pour que Tom vous rappelle." })
     .transform((v, ctx) => {
@@ -50,17 +50,17 @@ export const leadSchema = z.object({
       return e164;
     }),
   email: z
-    .string({ error: "Indiquez votre adresse email." })
+    .string({ error: "Indiquez votre adresse email professionnelle." })
     .transform((v) => v.trim().toLowerCase())
     .pipe(
       z
         .string()
-        .min(1, "Indiquez votre adresse email.")
+        .min(1, "Indiquez votre adresse email professionnelle.")
         .max(254)
         .pipe(z.email("Cette adresse email semble incomplète. Vérifiez qu’elle contient un @ et un domaine.")),
     ),
-  points_de_vente: z.enum(POINTS_DE_VENTE, {
-    error: "Choisissez votre nombre de points de vente.",
+  nombre_restaurants: z.enum(NOMBRE_RESTAURANTS, {
+    error: "Choisissez votre nombre de restaurants.",
   }),
   utm_source: optionnel,
   utm_medium: optionnel,

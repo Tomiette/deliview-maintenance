@@ -1,6 +1,7 @@
 ---
 import Base from "../layouts/Base.astro";
 import SectionDemo from "../components/SectionDemo.astro";
+import { CONTENU } from "../content/contenu";
 
 // [À REMPLACER] Noms, prix HT par établissement et contenu de chaque offre. Aucun prix n'est affiché tant qu'il n'est pas décidé.
 const offres = [
@@ -9,28 +10,7 @@ const offres = [
   { nom: "[À REMPLACER] Offre 3", prix: null, pour: "[À REMPLACER] Pour qui", inclus: ["[À REMPLACER]"] },
 ] as { nom: string; prix: string | null; pour: string; inclus: string[] }[];
 
-const faq = [
-  {
-    q: "Y a-t-il un engagement ?",
-    r: "Non. Deliview est sans engagement : vous arrêtez quand vous voulez.",
-  },
-  {
-    q: "Y a-t-il des frais de mise en place ?",
-    r: "Non. La mise en place est faite avec vous, sans frais : on connecte ensemble vos comptes Uber Eats et Deliveroo.",
-  },
-  {
-    q: "Comment le prix est-il calculé ?",
-    r: "Le prix est fixé par établissement et par mois, hors taxes. Si vous avez plusieurs établissements, chacun a son abonnement.",
-  },
-  {
-    q: "Quelles plateformes sont prises en charge ?",
-    r: "Uber Eats et Deliveroo aujourd’hui. Uber Direct arrive bientôt.",
-  },
-  {
-    q: "Que se passe-t-il pendant la démo ?",
-    r: "Tom vous montre Deliview pendant 15 min, avec vos plateformes et votre nombre d’établissements. Vous posez vos questions, sans engagement.",
-  },
-];
+const { h1, sousTitre, metaTitle, metaDescription, faq } = CONTENU.tarifs;
 
 const faqJson = {
   "@context": "https://schema.org",
@@ -40,15 +20,15 @@ const faqJson = {
 ---
 
 <Base
-  title="Tarifs Deliview : prix par établissement, sans engagement"
-  description="Les tarifs de Deliview pour centraliser Uber Eats et Deliveroo : prix HT par établissement, sans engagement et sans frais de mise en place."
+  title={metaTitle}
+  description={metaDescription}
   ariane={[{ nom: "Tarifs", chemin: "/tarifs" }]}
   jsonld={[faqJson]}
 >
   <section class="container-dv pt-8 pb-16 md:pt-12 md:pb-24" aria-labelledby="titre-hero">
     <p class="surtitre text-blue">Tarifs</p>
-    <h1 id="titre-hero" class="texte mt-3">Un prix par établissement, sans engagement</h1>
-    <p class="texte mt-6 text-lg md:text-xl">Sans engagement · Sans frais de mise en place · Prix hors taxes, par établissement et par mois</p>
+    <h1 id="titre-hero" class="texte mt-3">{h1}</h1>
+    <p class="texte mt-6 text-lg md:text-xl">{sousTitre}</p>
 
     <ul class="mt-12 grid gap-6 md:grid-cols-3">
       {
@@ -60,10 +40,10 @@ const faqJson = {
               {o.prix ? (
                 <>
                   <span class="font-accent text-[36px] font-bold md:text-5xl">{o.prix}</span>
-                  <span class="texte-secondaire"> HT / établissement / mois</span>
+                  <span class="texte-secondaire"> HT / mois</span>
                 </>
               ) : (
-                <span class="a-remplacer inline-block">[À REMPLACER] Prix HT / établissement / mois</span>
+                <span class="a-remplacer inline-block">[À REMPLACER] Prix HT par mois</span>
               )}
             </p>
             <ul class="mt-6 flex-1 space-y-2">

@@ -1,6 +1,6 @@
 ---
 import Logo from "./Logo.astro";
-import { PILIERS } from "../content/piliers";
+import { PILIERS, PROFILS } from "../content/contenu";
 import { SITE } from "../lib/site";
 
 const annee = new Date().getFullYear();
@@ -16,7 +16,8 @@ const annee = new Date().getFullYear();
       <h2 class="surtitre">Solution</h2>
       <ul class="mt-4 space-y-2 text-base">
         {PILIERS.map((p) => <li><a href={`/solution/${p.slug}`} class="no-underline hover:underline">{p.surtitre}</a></li>)}
-        <li><a href="/integrations" class="no-underline hover:underline">Intégrations</a></li>
+        {PROFILS.map((p) => <li><a href={`/pour/${p.slug}`} class="no-underline hover:underline">{p.nomMenu}</a></li>)}
+        <li><a href="/donnees" class="no-underline hover:underline">Nos données</a></li>
         <li><a href="/tarifs" class="no-underline hover:underline">Tarifs</a></li>
       </ul>
     </div>
@@ -41,6 +42,6 @@ const annee = new Date().getFullYear();
     </div>
   </div>
   <div class="container-dv border-t border-grey-2/15 py-6 text-sm texte-secondaire">
-    © {annee} Deliview. Uber Eats, Deliveroo et Uber Direct sont des marques de leurs propriétaires respectifs.
+    © {annee} Deliview. Uber Eats et Deliveroo sont des marques de leurs propriétaires respectifs. Deliview n’est affilié à aucune de ces plateformes.
   </div>
 </footer>

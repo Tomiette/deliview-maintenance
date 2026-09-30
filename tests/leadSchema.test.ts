@@ -3,11 +3,10 @@ import { normaliserTelephone, validerLead } from "../src/lib/leadSchema";
 
 const valide = {
   nom: "  Camille   Martin ",
-  restaurant: "Chez Camille",
-  ville: "Lyon",
+  enseigne: "Burger & Co",
   telephone: "06 12 34 56 78",
   email: " Camille@Exemple.FR ",
-  points_de_vente: "2-5",
+  nombre_restaurants: "21-100",
 };
 
 describe("normaliserTelephone", () => {
@@ -35,12 +34,12 @@ describe("validerLead", () => {
   });
 
   it("renvoie un message par champ en erreur", () => {
-    const res = validerLead({ ...valide, telephone: "0612", email: "pas-un-email", points_de_vente: "3" });
+    const res = validerLead({ ...valide, telephone: "0612", email: "pas-un-email", nombre_restaurants: "3" });
     expect(res.ok).toBe(false);
     if (res.ok) return;
     expect(res.erreurs.telephone).toContain("10 chiffres");
     expect(res.erreurs.email).toContain("@");
-    expect(res.erreurs.points_de_vente).toBeDefined();
+    expect(res.erreurs.nombre_restaurants).toBeDefined();
     expect(res.erreurs.nom).toBeUndefined();
   });
 
@@ -49,7 +48,7 @@ describe("validerLead", () => {
     expect(res.ok).toBe(false);
     if (res.ok) return;
     expect(Object.keys(res.erreurs).sort()).toEqual(
-      ["email", "nom", "points_de_vente", "restaurant", "telephone", "ville"].sort(),
+      ["email", "enseigne", "nom", "nombre_restaurants", "telephone"].sort(),
     );
   });
 

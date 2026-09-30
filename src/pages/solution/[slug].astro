@@ -3,7 +3,7 @@ import Base from "../../layouts/Base.astro";
 import Capture from "../../components/Capture.astro";
 import BandeauPlateformes from "../../components/BandeauPlateformes.astro";
 import SectionDemo from "../../components/SectionDemo.astro";
-import { PILIERS, type Pilier } from "../../content/piliers";
+import { PILIERS, type Pilier } from "../../content/contenu";
 import { SITE } from "../../lib/site";
 
 export function getStaticPaths() {
@@ -39,7 +39,7 @@ const logiciel = {
         <a href="#demo" class="btn btn-plein mt-6 md:mt-8" data-cta={`pilier-${pilier.slug}-hero`}>Demander une démo</a>
         <p class="mt-3 text-[15px] font-semibold texte-secondaire md:text-base" data-repere-barre>15 min · Sans engagement · Mise en place faite avec vous</p>
       </div>
-      <Capture src={`/captures/${pilier.slug}-hero.webp`} alt={pilier.capture} prioritaire />
+      <Capture src={`/captures/${pilier.slug}-hero.webp`} alt={pilier.captureAlt} prioritaire />
     </div>
   </section>
 
@@ -54,7 +54,7 @@ const logiciel = {
             </h2>
             <p class="texte mt-4">{f.texte}</p>
           </div>
-          <Capture src={`/captures/${pilier.slug}-${i + 1}.webp`} alt={f.capture} />
+          <Capture src={`/captures/${pilier.slug}-${i + 1}.webp`} alt={f.captureAlt} />
         </div>
       </section>
     ))
@@ -64,7 +64,7 @@ const logiciel = {
 
   <section class="section" aria-labelledby="titre-autres">
     <div class="container-dv">
-      <h2 id="titre-autres">Le reste de Deliview</h2>
+      <h2 id="titre-autres">Les autres fonctionnalités de Deliview</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-3">
         {
           autres.map((p) => (

@@ -4,11 +4,10 @@ import type { Context } from "@netlify/functions";
 
 const lead = {
   nom: "Camille Martin",
-  restaurant: "Chez Camille",
-  ville: "Lyon",
+  enseigne: "Burger & Co",
   telephone: "06 12 34 56 78",
   email: "camille@exemple.fr",
-  points_de_vente: "1",
+  nombre_restaurants: "21-100",
 };
 
 let appels: string[];

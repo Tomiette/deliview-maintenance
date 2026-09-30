@@ -1,11 +1,13 @@
+import { CONTENU } from "../content/contenu";
+
 /**
  * Réglages du site. Une valeur `null` masque l'élément concerné au lieu d'afficher une info inventée.
  */
 export const SITE = {
   nom: "Deliview",
   url: "https://deliview.fr",
-  definition:
-    "Deliview est un logiciel français qui centralise Uber Eats et Deliveroo sur un seul écran pour les restaurateurs.",
+  /** Définition unique de Deliview, reprise telle quelle partout (accueil, JSON-LD, pied de page). */
+  definition: CONTENU.definition,
   email: "tom@deliview.fr",
   /** Numéro commercial, format affiché et format E.164. Masqué tant qu'il est null. */
   telephone: null as { affiche: string; e164: string } | null,
@@ -19,9 +21,3 @@ export const SITE = {
     tom: null as string | null,
   },
 };
-
-export const PLATEFORMES = [
-  { nom: "Uber Eats", statut: "Disponible" },
-  { nom: "Deliveroo", statut: "Disponible" },
-  { nom: "Uber Direct", statut: "Bientôt" },
-] as const;

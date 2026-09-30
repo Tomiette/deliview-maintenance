@@ -1,21 +1,14 @@
 ---
-import { PLATEFORMES } from "../lib/site";
+import { CONTENU } from "../content/contenu";
+
+const { libelle, plateformes } = CONTENU.bandeau;
 ---
 
-<section class="border-y border-grey-2/15 bg-grey py-8" aria-label="Plateformes connectées">
+<section class="border-y border-grey-2/15 bg-grey py-8" aria-label={libelle}>
   <div class="container-dv flex flex-col items-center gap-4 text-center md:flex-row md:justify-center md:gap-10">
-    <p class="surtitre texte-secondaire">Fonctionne avec</p>
+    <p class="surtitre texte-secondaire">{libelle}</p>
     <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-      {
-        PLATEFORMES.map((p) => (
-          <li class="flex items-center gap-2 text-xl font-bold md:text-2xl">
-            {p.nom}
-            {p.statut === "Bientôt" && (
-              <span class="rounded-full border border-grey-2/40 px-2.5 py-0.5 text-sm font-semibold">Bientôt</span>
-            )}
-          </li>
-        ))
-      }
+      {plateformes.map((p) => <li class="text-xl font-bold md:text-2xl">{p}</li>)}
     </ul>
   </div>
 </section>

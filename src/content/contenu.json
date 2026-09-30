@@ -1,0 +1,271 @@
+{
+  "definition": "[À REMPLACER]",
+  "annonce": "Programme pilote ouvert, prix bloqué 12 mois.",
+  "homeMeta": {
+    "metaTitle": "[À REMPLACER] | Deliview",
+    "metaDescription": "[À REMPLACER]"
+  },
+  "hero": {
+    "h1": "[À REMPLACER]",
+    "sousTitre": "[À REMPLACER]",
+    "reassurance": "15 min · Sans engagement",
+    "captureAlt": "[À REMPLACER]"
+  },
+  "bandeau": {
+    "libelle": "Couvre",
+    "plateformes": [
+      "Uber Eats",
+      "Deliveroo"
+    ]
+  },
+  "probleme": {
+    "surtitre": "[À REMPLACER]",
+    "titre": "[À REMPLACER]",
+    "cartes": [
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      }
+    ]
+  },
+  "etapes": {
+    "surtitre": "[À REMPLACER]",
+    "titre": "[À REMPLACER]",
+    "items": [
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      }
+    ]
+  },
+  "piliersSection": {
+    "surtitre": "[À REMPLACER]",
+    "titre": "[À REMPLACER]"
+  },
+  "piliers": [
+    {
+      "slug": "pilier-1",
+      "surtitre": "[À REMPLACER]",
+      "complement": "[À REMPLACER]",
+      "titre": "[À REMPLACER]",
+      "phrase": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "captureAlt": "[À REMPLACER]",
+      "fonctionnalites": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]",
+          "captureAlt": "[À REMPLACER]"
+        }
+      ]
+    },
+    {
+      "slug": "pilier-2",
+      "surtitre": "[À REMPLACER]",
+      "complement": "[À REMPLACER]",
+      "titre": "[À REMPLACER]",
+      "phrase": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "captureAlt": "[À REMPLACER]",
+      "fonctionnalites": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]",
+          "captureAlt": "[À REMPLACER]"
+        }
+      ]
+    },
+    {
+      "slug": "pilier-3",
+      "surtitre": "[À REMPLACER]",
+      "complement": "[À REMPLACER]",
+      "titre": "[À REMPLACER]",
+      "phrase": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "captureAlt": "[À REMPLACER]",
+      "fonctionnalites": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]",
+          "captureAlt": "[À REMPLACER]"
+        }
+      ]
+    },
+    {
+      "slug": "pilier-4",
+      "surtitre": "[À REMPLACER]",
+      "complement": "[À REMPLACER]",
+      "titre": "[À REMPLACER]",
+      "phrase": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "captureAlt": "[À REMPLACER]",
+      "fonctionnalites": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]",
+          "captureAlt": "[À REMPLACER]"
+        }
+      ]
+    }
+  ],
+  "benefices": {
+    "titre": "[À REMPLACER]",
+    "items": [
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      }
+    ]
+  },
+  "fondateur": {
+    "surtitre": "[À REMPLACER]",
+    "titre": "[À REMPLACER]",
+    "paragraphes": [
+      "[À REMPLACER]"
+    ]
+  },
+  "demo": {
+    "titre": "[À REMPLACER]",
+    "etapes": [
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      }
+    ]
+  },
+  "formulaire": {
+    "libelleEnseigne": "Enseigne",
+    "libelleNombre": "Nombre de restaurants"
+  },
+  "profils": [
+    {
+      "slug": "franchiseurs",
+      "nomMenu": "Franchiseurs",
+      "ligneMenu": "[À REMPLACER]",
+      "surtitre": "[À REMPLACER]",
+      "h1": "[À REMPLACER]",
+      "sousTitre": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "blocs": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        },
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        },
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        }
+      ]
+    },
+    {
+      "slug": "franchises",
+      "nomMenu": "Franchisés",
+      "ligneMenu": "[À REMPLACER]",
+      "surtitre": "[À REMPLACER]",
+      "h1": "[À REMPLACER]",
+      "sousTitre": "[À REMPLACER]",
+      "metaTitle": "[À REMPLACER] | Deliview",
+      "metaDescription": "[À REMPLACER]",
+      "blocs": [
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        },
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        },
+        {
+          "titre": "[À REMPLACER]",
+          "texte": "[À REMPLACER]"
+        }
+      ]
+    }
+  ],
+  "donnees": {
+    "surtitre": "[À REMPLACER]",
+    "h1": "[À REMPLACER]",
+    "sousTitre": "[À REMPLACER]",
+    "metaTitle": "[À REMPLACER] | Deliview",
+    "metaDescription": "[À REMPLACER]",
+    "blocs": [
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      },
+      {
+        "titre": "[À REMPLACER]",
+        "texte": "[À REMPLACER]"
+      }
+    ]
+  },
+  "tarifs": {
+    "h1": "[À REMPLACER]",
+    "sousTitre": "[À REMPLACER]",
+    "metaTitle": "[À REMPLACER] | Deliview",
+    "metaDescription": "[À REMPLACER]",
+    "faq": [
+      {
+        "q": "[À REMPLACER]",
+        "r": "[À REMPLACER]"
+      }
+    ]
+  }
+}
