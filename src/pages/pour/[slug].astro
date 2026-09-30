@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import Capture from "../../components/Capture.astro";
 import SectionDemo from "../../components/SectionDemo.astro";
-import { PILIERS, PROFILS, type Profil } from "../../content/contenu";
+import { CONTENU, PILIERS, PROFILS, type Profil } from "../../content/contenu";
 
 export function getStaticPaths() {
   return PROFILS.map((profil) => ({ params: { slug: profil.slug }, props: { profil } }));
@@ -20,9 +20,9 @@ const { profil } = Astro.props as { profil: Profil };
         <h1 id="titre-hero" class="mt-3">{profil.h1}</h1>
         <p class="texte mt-4 text-lg md:mt-6 md:text-xl">{profil.sousTitre}</p>
         <a href="#demo" class="btn btn-plein mt-6 md:mt-8" data-cta={`profil-${profil.slug}-hero`}>Demander une démo</a>
-        <p class="mt-3 text-[15px] font-semibold texte-secondaire md:text-base" data-repere-barre>15 min · Sans engagement</p>
+        <p class="mt-3 text-[15px] font-semibold texte-secondaire md:text-base" data-repere-barre>{CONTENU.hero.reassurance}</p>
       </div>
-      <Capture src={`/captures/pour-${profil.slug}.webp`} alt={`Recommandations Deliview vues par les ${profil.nomMenu.toLowerCase()}`} prioritaire />
+      <Capture src={`/captures/pour-${profil.slug}.webp`} alt="Exemple fictif d’écran Deliview : recommandations pour un restaurant face à ses concurrents de la zone" prioritaire />
     </div>
   </section>
 
@@ -44,7 +44,7 @@ const { profil } = Astro.props as { profil: Profil };
 
   <section class="section" aria-labelledby="titre-fonctionnalites">
     <div class="container-dv">
-      <h2 id="titre-fonctionnalites">Ce que Deliview vous apporte</h2>
+      <h2 id="titre-fonctionnalites">{CONTENU.piliersSection.titre}</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {
           PILIERS.map((p) => (

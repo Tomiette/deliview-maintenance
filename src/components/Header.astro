@@ -10,7 +10,7 @@ const courant = (href: string) => (chemin === href || chemin.startsWith(`${href}
 <div class="bg-blue text-white">
   <p class="container-dv py-2.5 text-center text-[19px] leading-snug font-bold">
     <a href="/#demo" data-cta="barre-annonce" class="underline-offset-4 hover:underline">
-      {CONTENU.annonce}{SITE.placesPilote !== null && <> ({SITE.placesPilote} places)</>}{" "}
+      {CONTENU.annonce}{SITE.placesPilote !== null && <> · {SITE.placesPilote} places</>}<span aria-hidden="true"> · </span>
       <span class="whitespace-nowrap">Candidater <span aria-hidden="true">→</span></span>
     </a>
   </p>
@@ -31,8 +31,8 @@ const courant = (href: string) => (chemin === href || chemin.startsWith(`${href}
             data-menu-bouton
           >
             Notre solution
-            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" class="transition-transform" data-menu-fleche>
-              <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" overflow="visible" class="transition-transform" data-menu-fleche>
+              <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
           <div id="menu-solution" hidden class="absolute top-full left-0 mt-2 grid w-[760px] grid-cols-[1.6fr_1fr] gap-2 rounded-2xl border border-grey-2/15 bg-white p-3 shadow-card" data-menu-panneau>
@@ -75,7 +75,7 @@ const courant = (href: string) => (chemin === href || chemin.startsWith(`${href}
 
     <div class="hidden items-center gap-4 lg:flex">
       {SITE.telephone && <a href={`tel:${SITE.telephone.e164}`} class="font-semibold">{SITE.telephone.affiche}</a>}
-      <a href={SITE.appUrl} class="flex min-h-11 items-center px-2 text-[17px] font-semibold">Se connecter</a>
+      {SITE.appUrl && <a href={SITE.appUrl} class="flex min-h-11 items-center px-2 text-[17px] font-semibold">Espace pilote</a>}
       <a href="/#demo" class="btn btn-plein" data-cta="header">Demander une démo</a>
     </div>
 
@@ -124,7 +124,7 @@ const courant = (href: string) => (chemin === href || chemin.startsWith(`${href}
       <ul class="mt-2 border-t border-grey-2/15 pt-2 font-bold">
         <li><a href="/donnees" class="block py-3">Nos données</a></li>
         <li><a href="/tarifs" class="block py-3">Tarifs</a></li>
-        <li><a href={SITE.appUrl} class="block py-3">Se connecter</a></li>
+        {SITE.appUrl && <li><a href={SITE.appUrl} class="block py-3">Espace pilote</a></li>}
         {SITE.telephone && <li><a href={`tel:${SITE.telephone.e164}`} class="block py-3">{SITE.telephone.affiche}</a></li>}
       </ul>
       <a href="/#demo" class="btn btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>

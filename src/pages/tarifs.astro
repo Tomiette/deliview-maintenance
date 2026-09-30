@@ -10,6 +10,9 @@ const offres = [
   { nom: "[À REMPLACER] Offre 3", prix: null, pour: "[À REMPLACER] Pour qui", inclus: ["[À REMPLACER]"] },
 ] as { nom: string; prix: string | null; pour: string; inclus: string[] }[];
 
+// La grille d'offres ne s'affiche qu'une fois au moins un prix décidé : pas de cases vides sur la page de prix.
+const prixDecides = offres.some((o) => o.prix);
+
 const { h1, sousTitre, metaTitle, metaDescription, faq } = CONTENU.tarifs;
 
 const faqJson = {
@@ -30,31 +33,42 @@ const faqJson = {
     <h1 id="titre-hero" class="texte mt-3">{h1}</h1>
     <p class="texte mt-6 text-lg md:text-xl">{sousTitre}</p>
 
-    <ul class="mt-12 grid gap-6 md:grid-cols-3">
-      {
-        offres.map((o) => (
-          <li class="carte flex flex-col">
-            <h2 class="text-2xl">{o.nom}</h2>
-            <p class="mt-2 texte-secondaire">{o.pour}</p>
-            <p class="mt-6">
-              {o.prix ? (
-                <>
-                  <span class="font-accent text-[36px] font-bold md:text-5xl">{o.prix}</span>
-                  <span class="texte-secondaire"> HT / mois</span>
-                </>
-              ) : (
-                <span class="a-remplacer inline-block">[À REMPLACER] Prix HT par mois</span>
-              )}
-            </p>
-            <ul class="mt-6 flex-1 space-y-2">
-              {o.inclus.map((i) => <li>{i}</li>)}
-            </ul>
-            <a href="#demo" class="btn btn-contour mt-8" data-cta="tarifs-offre">Demander une démo</a>
-          </li>
-        ))
-      }
-    </ul>
-    <p class="a-remplacer mt-8">[À REMPLACER] Sélecteur mensuel / annuel et tableau comparatif des offres, à ajouter quand les prix sont fixés.</p>
+    {
+      prixDecides ? (
+        <>
+          <ul class="mt-12 grid gap-6 md:grid-cols-3">
+            {
+              offres.map((o) => (
+                <li class="carte flex flex-col">
+                  <h2 class="text-2xl">{o.nom}</h2>
+                  <p class="mt-2 texte-secondaire">{o.pour}</p>
+                  <p class="mt-6">
+                    {o.prix ? (
+                      <>
+                        <span class="font-accent text-[36px] font-bold md:text-5xl">{o.prix}</span>
+                        <span class="texte-secondaire"> HT / mois</span>
+                      </>
+                    ) : (
+                      <span class="a-remplacer inline-block">[À REMPLACER] Prix HT par mois</span>
+                    )}
+                  </p>
+                  <ul class="mt-6 flex-1 space-y-2">
+                    {o.inclus.map((i) => <li>{i}</li>)}
+                  </ul>
+                  <a href="#demo" class="btn btn-contour mt-8" data-cta="tarifs-offre">Demander une démo</a>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="a-remplacer mt-8">[À REMPLACER] Sélecteur mensuel / annuel et tableau comparatif des offres, à ajouter quand les prix sont fixés.</p>
+        </>
+      ) : (
+        <div class="mt-10 flex flex-col items-start gap-6">
+          <p class="texte text-lg md:text-xl">Tom vous donne le prix pour votre nombre de restaurants pendant la démo.</p>
+          <a href="#demo" class="btn btn-plein" data-cta="tarifs-hero">Demander une démo</a>
+        </div>
+      )
+    }
   </section>
 
   <section class="section bg-grey" aria-labelledby="titre-faq">

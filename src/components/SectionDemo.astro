@@ -8,7 +8,9 @@ interface Props {
 }
 const { titre = CONTENU.demo.titre } = Astro.props;
 const { etapes } = CONTENU.demo;
-const { libelleEnseigne, libelleNombre } = CONTENU.formulaire;
+const { libelleEnseigne, libelleNombre, choixNombre = [] } = CONTENU.formulaire;
+// Libellé affiché (« 2 à 5 ») découplé de la valeur stockée (« 2-5 »), alignée avec la contrainte SQL.
+const choix = NOMBRE_RESTAURANTS.map((valeur, i) => ({ valeur, libelle: choixNombre[i] ?? valeur }));
 
 const champ = "mt-2 block min-h-[52px] w-full rounded-xl border border-grey-2/40 bg-white px-4 text-base text-grey-2 aria-[invalid=true]:border-2 aria-[invalid=true]:border-grey-2";
 const libelle = "block text-base font-semibold";
@@ -70,13 +72,13 @@ const erreur = "mt-1.5 text-[15px] font-semibold empty:hidden";
 
           <fieldset aria-describedby="nombre_restaurants-erreur">
             <legend class={libelle}>{libelleNombre}</legend>
-            <div class="mt-2 grid grid-cols-5 gap-2">
+            <div class="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-5">
               {
-                NOMBRE_RESTAURANTS.map((v) => (
+                choix.map(({ valeur, libelle }) => (
                   <label class="relative">
-                    <input type="radio" name="nombre_restaurants" value={v} required class="peer absolute inset-0 opacity-0" />
-                    <span class="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border border-grey-2/40 bg-white text-[15px] font-semibold sm:text-base peer-checked:border-2 peer-checked:border-blue peer-checked:bg-blue/10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
-                      {v}
+                    <input type="radio" name="nombre_restaurants" value={valeur} required class="peer absolute inset-0 opacity-0" />
+                    <span class="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border border-grey-2/40 bg-white px-1 text-center text-[15px] leading-tight font-semibold sm:text-base peer-checked:border-2 peer-checked:border-blue peer-checked:bg-blue/10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
+                      {libelle}
                     </span>
                   </label>
                 ))

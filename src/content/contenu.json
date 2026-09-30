@@ -1,270 +1,351 @@
 {
-  "definition": "[À REMPLACER]",
-  "annonce": "Programme pilote ouvert, prix bloqué 12 mois.",
+  "definition": "Deliview est un logiciel qui compare chaque restaurant à ses concurrents sur Uber Eats et Deliveroo en France, puis indique comment protéger ses marges.",
+  "annonce": "Programme pilote ouvert : votre prix bloqué 12 mois",
   "homeMeta": {
-    "metaTitle": "[À REMPLACER] | Deliview",
-    "metaDescription": "[À REMPLACER]"
+    "metaTitle": "Protégez vos marges sur Uber Eats et Deliveroo | Deliview",
+    "metaDescription": "Deliview relève les prix et les promos de vos concurrents sur Uber Eats et Deliveroo, puis vous dit quoi ajuster. Demandez une démo de 15 min."
   },
   "hero": {
-    "h1": "[À REMPLACER]",
-    "sousTitre": "[À REMPLACER]",
-    "reassurance": "15 min · Sans engagement",
-    "captureAlt": "[À REMPLACER]"
+    "surtitre": "Pour les réseaux de franchise et leurs franchisés",
+    "h1": "Protégez vos marges sur Uber Eats et Deliveroo",
+    "sousTitre": "Deliview relève les prix et les promos des concurrents de même cuisine dans la zone de chaque restaurant, puis vous dit quoi ajuster.",
+    "reassurance": "15 min · Sans engagement · Aucun accès à vos comptes",
+    "captureAlt": "Exemple fictif d’écran Deliview : les prix et les promos des concurrents d’un restaurant de burgers dans sa zone, avec les ajustements recommandés"
   },
   "bandeau": {
-    "libelle": "Couvre",
+    "libelle": "Plateformes couvertes",
     "plateformes": [
       "Uber Eats",
       "Deliveroo"
     ]
   },
   "probleme": {
-    "surtitre": "[À REMPLACER]",
-    "titre": "[À REMPLACER]",
+    "surtitre": "Le problème",
+    "titre": "Ce qui pèse sur vos marges en livraison",
     "cartes": [
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des prix en livraison fixés sans voir la zone",
+        "texte": "Un prix conseillé au niveau national ne tient pas toujours compte de chaque zone. Si un restaurant monte ses prix pour couvrir la commission sans voir ceux de sa zone, le client peut commander chez le burger d’en face."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des promos lancées sans voir celles d’en face",
+        "texte": "Si vous payez vos promos, chaque livraison offerte ou 1 acheté = 1 offert réduit votre marge. Sans voir les promos de vos concurrents, vous ne savez pas si la vôtre est de trop."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des concurrents invisibles sans ouvrir chaque plateforme",
+        "texte": "Imaginez : le burger à 300 m affiche la livraison offerte, celui de la gare une note de 4,6. Pour le voir, il faut tout relever à la main sur Uber Eats et Deliveroo, et personne n’a ce temps entre deux services. Au siège, il faudrait le refaire pour chaque restaurant du réseau."
       }
     ]
   },
   "etapes": {
-    "surtitre": "[À REMPLACER]",
-    "titre": "[À REMPLACER]",
+    "surtitre": "Comment ça marche",
+    "titre": "Des recommandations pour chaque restaurant, sans rien connecter",
     "items": [
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Deliview retrouve votre restaurant",
+        "texte": "Deliview identifie votre restaurant sur Uber Eats et Deliveroo, ou chacun de vos restaurants si vous en avez plusieurs. Il part de ce que les plateformes affichent au public. Vous ne donnez ni identifiant ni chiffre de vente."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Deliview repère vos concurrents directs",
+        "texte": "Pour chaque restaurant, Deliview retient les concurrents de même cuisine dans la même zone. Il relève leurs prix, menus, promotions, notes, avis, frais et délais de livraison, et leur position dans les résultats."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Vous savez quoi ajuster",
+        "texte": "Deliview vous dit quels prix revoir, quelles promos lancer, arrêter ou éviter, quoi corriger sur votre fiche et sur quelle plateforme porter vos efforts. Vous décidez et vous gardez la main sur vos comptes."
       }
     ]
   },
   "piliersSection": {
-    "surtitre": "[À REMPLACER]",
-    "titre": "[À REMPLACER]"
+    "surtitre": "Ce que Deliview recommande",
+    "titre": "Quatre façons de protéger vos marges sur les plateformes"
   },
   "piliers": [
     {
-      "slug": "pilier-1",
-      "surtitre": "[À REMPLACER]",
-      "complement": "[À REMPLACER]",
-      "titre": "[À REMPLACER]",
-      "phrase": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
-      "captureAlt": "[À REMPLACER]",
+      "slug": "prix",
+      "surtitre": "Prix",
+      "complement": "les recommandations de prix",
+      "titre": "Ajustez vos prix en connaissant ceux de votre zone",
+      "phrase": "Deliview relève les prix de vos concurrents de même cuisine dans votre zone, puis vous dit quels prix ajuster.",
+      "metaTitle": "Vos prix Uber Eats et Deliveroo face à votre zone | Deliview",
+      "metaDescription": "Voyez les prix de vos concurrents de même cuisine sur Uber Eats et Deliveroo, et sachez quels prix ajuster dans votre zone. Demandez une démo de 15 min.",
+      "captureAlt": "Exemple fictif d’écran Deliview : les prix relevés chez les restaurants de burgers d’une même zone, avec les prix à ajuster",
       "fonctionnalites": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]",
-          "captureAlt": "[À REMPLACER]"
+          "titre": "Voyez où se situent vos prix dans votre zone",
+          "texte": "Deliview relève les prix affichés par les restaurants de même cuisine de votre zone, sur Uber Eats et sur Deliveroo. Vous voyez où se situent vos prix face à ceux de vos concurrents.",
+          "captureAlt": "Exemple fictif : les prix relevés chez les concurrents de la zone, sur Uber Eats et sur Deliveroo"
+        },
+        {
+          "titre": "Sachez quels prix ajuster face à vos concurrents",
+          "texte": "Deliview vous recommande les prix à ajuster, à partir des prix relevés chez vos concurrents. Vous décidez, puis vous modifiez vos prix vous-même sur vos comptes.",
+          "captureAlt": "Exemple fictif : liste des prix à ajuster recommandés par Deliview, avec les prix relevés chez les concurrents"
         }
       ]
     },
     {
-      "slug": "pilier-2",
-      "surtitre": "[À REMPLACER]",
-      "complement": "[À REMPLACER]",
-      "titre": "[À REMPLACER]",
-      "phrase": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
-      "captureAlt": "[À REMPLACER]",
+      "slug": "promotions",
+      "surtitre": "Promotions",
+      "complement": "les recommandations de promotions",
+      "titre": "Choisissez vos promos en voyant celles d’en face",
+      "phrase": "Deliview relève les promos en cours chez vos concurrents et vous dit laquelle lancer, arrêter ou éviter.",
+      "metaTitle": "Promos Uber Eats et Deliveroo : lesquelles lancer | Deliview",
+      "metaDescription": "Voyez les promos de vos concurrents sur Uber Eats et Deliveroo, et sachez laquelle lancer dans votre zone pour protéger votre marge. Demandez une démo.",
+      "captureAlt": "Exemple fictif d’écran Deliview : les promos en cours chez les concurrents d’une pizzeria, avec les promos recommandées",
       "fonctionnalites": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]",
-          "captureAlt": "[À REMPLACER]"
+          "titre": "Sachez quelles promos tournent dans votre zone",
+          "texte": "Deliview relève les promos affichées par vos concurrents sur Uber Eats et Deliveroo : -20 % sur la commande, livraison offerte, 1 acheté = 1 offert. Vous voyez les promos que le client trouve à côté de la vôtre.",
+          "captureAlt": "Exemple fictif : liste des promos en cours chez les concurrents de la zone, plateforme par plateforme"
+        },
+        {
+          "titre": "Lancez, arrêtez ou évitez une promo face à vos concurrents",
+          "texte": "Deliview vous recommande, restaurant par restaurant, la promo à tenter et celle à laisser de côté. Par exemple, vous évitez un -30 % quand tout le quartier reste à -10 %. Vous choisissez vos promos en voyant celles de vos concurrents, puis vous jugez leur coût avec vos propres chiffres.",
+          "captureAlt": "Exemple fictif : les promos recommandées pour un restaurant, avec les promos de ses concurrents en regard"
+        },
+        {
+          "titre": "Adaptez chaque promo à sa zone",
+          "texte": "Chaque restaurant a ses propres recommandations de promos. Une même promo nationale ne pèse pas pareil dans une zone sans promo et dans une zone où tout le monde fait -20 %. Siège ou franchisé multi-sites, vous évitez de plaquer la même promo sur tous vos restaurants.",
+          "captureAlt": "Exemple fictif : la promo recommandée pour un restaurant dont les concurrents de la zone font tous -20 %"
         }
       ]
     },
     {
-      "slug": "pilier-3",
-      "surtitre": "[À REMPLACER]",
-      "complement": "[À REMPLACER]",
-      "titre": "[À REMPLACER]",
-      "phrase": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
-      "captureAlt": "[À REMPLACER]",
+      "slug": "plateformes",
+      "surtitre": "Choix de la plateforme",
+      "complement": "le choix de la plateforme",
+      "titre": "Choisissez où porter vos efforts : Uber Eats ou Deliveroo",
+      "phrase": "Deliview relève ce que font vos concurrents sur Uber Eats et sur Deliveroo, puis vous dit sur laquelle porter vos efforts.",
+      "metaTitle": "Uber Eats ou Deliveroo : où porter vos efforts | Deliview",
+      "metaDescription": "Voyez la position, la note, les frais et les délais de vos concurrents sur Uber Eats et Deliveroo, et sachez où porter vos efforts. Demandez une démo.",
+      "captureAlt": "Exemple fictif d’écran Deliview : position, note, frais et délais des concurrents d’un restaurant sur Uber Eats et sur Deliveroo",
       "fonctionnalites": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]",
-          "captureAlt": "[À REMPLACER]"
+          "titre": "Voyez quels concurrents ressortent sur chaque plateforme",
+          "texte": "Deliview relève la note de vos concurrents et leur position dans les résultats, sur Uber Eats et sur Deliveroo. Vous voyez qui ressort en tête sur chaque plateforme.",
+          "captureAlt": "Exemple fictif : position et note des concurrents d’un restaurant, sur Uber Eats et sur Deliveroo"
+        },
+        {
+          "titre": "Voyez les frais et les délais affichés chez vos concurrents",
+          "texte": "Les frais de livraison et le délai sont affichés au client avant sa commande. Deliview relève ceux de vos concurrents sur chaque plateforme. Vous les comparez aux vôtres, plateforme par plateforme.",
+          "captureAlt": "Exemple fictif : frais et délais de livraison affichés pour les concurrents d’un restaurant, sur Uber Eats et sur Deliveroo"
+        },
+        {
+          "titre": "Sachez où porter vos efforts, restaurant par restaurant",
+          "texte": "Deliview vous recommande, pour chaque restaurant, la plateforme où porter vos efforts, d’après ce que font vos concurrents sur chacune. Deux de vos restaurants peuvent avoir deux réponses différentes.",
+          "captureAlt": "Exemple fictif : la plateforme à privilégier pour un restaurant, d’après la position, la note, les frais et les délais de ses concurrents"
         }
       ]
     },
     {
-      "slug": "pilier-4",
-      "surtitre": "[À REMPLACER]",
-      "complement": "[À REMPLACER]",
-      "titre": "[À REMPLACER]",
-      "phrase": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
-      "captureAlt": "[À REMPLACER]",
+      "slug": "fiche",
+      "surtitre": "Menu et fiche",
+      "complement": "les recommandations de fiche",
+      "titre": "Complétez votre fiche face à celles de vos concurrents",
+      "phrase": "Deliview relève les fiches de vos concurrents et vous dit quels plats, photos, descriptions et catégories revoir sur la vôtre.",
+      "metaTitle": "Fiche Uber Eats et Deliveroo : plats et photos | Deliview",
+      "metaDescription": "Voyez les fiches de vos concurrents sur Uber Eats et Deliveroo, et sachez quoi revoir : plats manquants, photos, descriptions. Demandez une démo de 15 min.",
+      "captureAlt": "Exemple fictif d’écran Deliview : les fiches des concurrents d’un restaurant de sushis, avec les corrections recommandées pour la sienne",
       "fonctionnalites": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]",
-          "captureAlt": "[À REMPLACER]"
+          "titre": "Repérez les plats que vos concurrents proposent et pas vous",
+          "texte": "Deliview relève les menus des restaurants de même cuisine de votre zone. Vous voyez les plats qu’ils proposent et qui manquent à votre menu.",
+          "captureAlt": "Exemple fictif : plats présents chez les concurrents de la zone et absents du menu du restaurant"
+        },
+        {
+          "titre": "Complétez les photos et les descriptions qui manquent",
+          "texte": "Deliview repère les plats sans photo ou sans description, et les catégories à revoir face aux fiches de vos concurrents. Vous savez quoi compléter sur votre fiche Uber Eats et sur votre fiche Deliveroo.",
+          "captureAlt": "Exemple fictif : plats sans photo, descriptions manquantes et catégories à réorganiser sur la fiche d’un restaurant"
+        },
+        {
+          "titre": "Situez votre note face à celles de votre zone",
+          "texte": "Deliview relève les notes et les avis des restaurants de même cuisine de votre zone. Par exemple, avec une note de 4,2, vous voyez si le japonais d’à côté fait mieux, et ce que disent ses clients.",
+          "captureAlt": "Exemple fictif : notes et avis des concurrents de même cuisine d’un restaurant de sushis"
         }
       ]
     }
   ],
   "benefices": {
-    "titre": "[À REMPLACER]",
+    "titre": "Ce que vous gagnez à connaître vos concurrents",
     "items": [
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des prix mieux placés",
+        "texte": "Vous ajustez vos prix en connaissant ceux de votre zone."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des promos mieux choisies",
+        "texte": "Vous lancez, arrêtez ou évitez une promo en voyant celles d’en face."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Chaque restaurant face à sa zone",
+        "texte": "Un restaurant ou plusieurs : Deliview compare chacun à ses propres concurrents."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Aucun compte à connecter",
+        "texte": "Deliview part de ce que vos clients voient sur Uber Eats et Deliveroo."
       }
     ]
   },
   "fondateur": {
-    "surtitre": "[À REMPLACER]",
-    "titre": "[À REMPLACER]",
+    "surtitre": "Le fondateur",
+    "titre": "Rejoignez le programme pilote et gardez votre prix 12 mois",
     "paragraphes": [
-      "[À REMPLACER]"
+      "Tom a fondé Deliview avec le soutien de PEPITE [À REMPLACER : nom du pôle]. Il construit Deliview pour les réseaux de franchise et leurs franchisés présents sur Uber Eats et Deliveroo.",
+      "Deliview est en prélancement et ouvre son programme pilote aux réseaux de franchise et aux franchisés, qu’ils aient un restaurant ou plusieurs. Si vous le rejoignez, votre prix reste bloqué 12 mois.",
+      "Vous pouvez écrire directement à Tom à tom@deliview.fr."
     ]
   },
   "demo": {
-    "titre": "[À REMPLACER]",
+    "titre": "Voyez Deliview en 15 min",
     "etapes": [
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Vous remplissez le formulaire",
+        "texte": "Cinq champs : vos prénom et nom, votre enseigne, votre téléphone, votre email et votre nombre de restaurants."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Tom vous rappelle sous 24 h",
+        "texte": "Il fixe avec vous le créneau de la démo."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Tom vous présente Deliview en 15 min",
+        "texte": "Tom vous montre comment Deliview compare un restaurant à ses concurrents sur Uber Eats et Deliveroo, et le type de recommandations qu’il donne."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Vous rejoignez le programme pilote",
+        "texte": "Si Deliview vous convient, votre prix reste bloqué 12 mois. Vous n’avez rien à connecter et vous gardez la main sur vos comptes."
       }
     ]
   },
   "formulaire": {
     "libelleEnseigne": "Enseigne",
-    "libelleNombre": "Nombre de restaurants"
+    "libelleNombre": "Nombre de restaurants",
+    "choixNombre": [
+      "1",
+      "2 à 5",
+      "6 à 20",
+      "21 à 100",
+      "Plus de 100"
+    ]
   },
   "profils": [
     {
       "slug": "franchiseurs",
-      "nomMenu": "Franchiseurs",
-      "ligneMenu": "[À REMPLACER]",
-      "surtitre": "[À REMPLACER]",
-      "h1": "[À REMPLACER]",
-      "sousTitre": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
+      "nomMenu": "Réseaux de franchise",
+      "ligneMenu": "Pour l’équipe marketing du siège",
+      "surtitre": "Pour les sièges de réseaux de franchise",
+      "h1": "Aidez vos franchisés à protéger leurs marges en livraison",
+      "sousTitre": "Deliview compare vos restaurants aux concurrents de leur zone sur Uber Eats et Deliveroo, puis vous donne des recommandations à partager avec vos franchisés.",
+      "metaTitle": "Franchiseurs : vos restaurants face à leur zone | Deliview",
+      "metaDescription": "Pour le siège d’un réseau : vos restaurants face à leurs concurrents sur Uber Eats et Deliveroo, avec les prix et promos à conseiller. Demandez une démo.",
       "blocs": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Des prix conseillés qui tiennent face à chaque zone",
+          "texte": "Si vous conseillez des prix en livraison à vos franchisés, Deliview relève ceux des concurrents de même cuisine dans la zone de chaque restaurant. Vos prix conseillés s’appuient alors sur le terrain, zone par zone."
         },
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Aucun identifiant à demander aux franchisés",
+          "texte": "Deliview part des informations publiques d’Uber Eats et de Deliveroo. Il compare chacun de vos restaurants à ses concurrents, sans demander à aucun franchisé ses accès ni ses chiffres de vente."
         },
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Arbitrez les promos sans brader l’enseigne",
+          "texte": "Par exemple, une promo nationale à -20 % n’a pas le même poids face à trois concurrents sans promo ou à cinq qui en font. Deliview relève les promos dans la zone de chaque restaurant et recommande celles à lancer, arrêter ou éviter. Vous défendez l’image de l’enseigne, et la marge de vos franchisés quand les promos sont à leur charge."
+        },
+        {
+          "titre": "Des fiches dignes de l’enseigne, restaurant par restaurant",
+          "texte": "Chaque restaurant a sa propre fiche, sa note et ses photos sur Uber Eats et Deliveroo. Deliview repère les plats manquants, les photos, les descriptions et les catégories à revoir face aux concurrents de chaque zone. Vous savez quoi demander à chaque franchisé."
         }
       ]
     },
     {
       "slug": "franchises",
       "nomMenu": "Franchisés",
-      "ligneMenu": "[À REMPLACER]",
-      "surtitre": "[À REMPLACER]",
-      "h1": "[À REMPLACER]",
-      "sousTitre": "[À REMPLACER]",
-      "metaTitle": "[À REMPLACER] | Deliview",
-      "metaDescription": "[À REMPLACER]",
+      "ligneMenu": "Pour un restaurant ou plusieurs, sous enseigne",
+      "surtitre": "Pour les franchisés mono-site ou multi-sites",
+      "h1": "Protégez vos marges face aux concurrents de votre zone",
+      "sousTitre": "Que vous ayez un restaurant ou plusieurs, Deliview compare chacun à ses concurrents sur Uber Eats et Deliveroo et vous dit quoi ajuster.",
+      "metaTitle": "Franchisés : protégez vos marges en livraison | Deliview",
+      "metaDescription": "Franchisé mono-site ou multi-sites : comparez chaque restaurant à ses concurrents sur Uber Eats et Deliveroo et sachez quoi ajuster. Demandez une démo.",
       "blocs": [
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Un seul restaurant : sachez quoi revoir sans tout relever",
+          "texte": "Avec un seul restaurant, vous gérez l’équipe et les coups de feu, pas le relevé de chaque concurrent sur deux plateformes. Deliview vous dit quoi revoir : un prix, une promo, une photo. Si le siège fixe la carte ou une promo nationale, vous lui montrez les exemples de votre zone."
         },
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Plusieurs restaurants : chacun face à ses propres concurrents",
+          "texte": "Votre restaurant du centre-ville et celui de la zone commerciale n’ont pas les mêmes concurrents. Deliview compare chacun de vos restaurants aux concurrents de même cuisine de sa zone, sur Uber Eats et sur Deliveroo. Vous savez quoi revoir dans chaque restaurant, et quoi remonter au siège."
         },
         {
-          "titre": "[À REMPLACER]",
-          "texte": "[À REMPLACER]"
+          "titre": "Placez vos prix face aux concurrents de votre zone",
+          "texte": "Quand vous fixez vos prix sur Uber Eats et Deliveroo, Deliview vous dit lesquels ajuster face aux restaurants de même cuisine de votre zone. Vous décidez, en tenant compte des prix conseillés par le siège, sans donner accès à vos comptes."
+        },
+        {
+          "titre": "Choisissez vos promos en voyant celles d’en face",
+          "texte": "Quand la promo est à votre charge, chaque -20 % se paie sur votre marge. Deliview relève les promos de vos concurrents et vous dit laquelle lancer, arrêter ou éviter. Vous choisissez vos promos en voyant celles de vos concurrents, puis vous jugez leur coût avec vos propres chiffres."
         }
       ]
     }
   ],
   "donnees": {
-    "surtitre": "[À REMPLACER]",
-    "h1": "[À REMPLACER]",
-    "sousTitre": "[À REMPLACER]",
-    "metaTitle": "[À REMPLACER] | Deliview",
-    "metaDescription": "[À REMPLACER]",
+    "surtitre": "Nos données",
+    "h1": "Vos recommandations sans donner accès à vos comptes",
+    "sousTitre": "Deliview s’appuie sur les informations publiques d’Uber Eats et de Deliveroo : vous ne connectez rien et vous ne transmettez aucun chiffre.",
+    "metaTitle": "Données publiques, aucun accès à vos comptes | Deliview",
+    "metaDescription": "Deliview s’appuie sur les informations publiques d’Uber Eats et Deliveroo : aucun identifiant, aucun chiffre à fournir. Voyez ce qui est suivi en démo.",
     "blocs": [
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Rien à connecter, vos comptes restent à vous",
+        "texte": "Deliview part des informations publiques d’Uber Eats et de Deliveroo, celles que voit un client avant de commander. Vous ne donnez ni identifiant ni accès à vos comptes."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Les informations que votre client voit sur les plateformes",
+        "texte": "Pour chaque concurrent, Deliview relève les prix et les menus, les promotions, les notes et les avis, les frais et délais de livraison. Il relève aussi sa position dans les résultats de la plateforme."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Des concurrents choisis par zone et par cuisine",
+        "texte": "Deliview retrouve votre restaurant sur chaque plateforme, puis retient les restaurants de même cuisine dans votre zone. Par exemple, il compare votre pizzeria aux pizzerias de votre zone. Si vous avez plusieurs restaurants, il compare chacun à ses propres concurrents."
       },
       {
-        "titre": "[À REMPLACER]",
-        "texte": "[À REMPLACER]"
+        "titre": "Vos chiffres restent chez vous",
+        "texte": "Deliview ne voit ni vos ventes, ni vos commissions, ni vos commandes. Il ne calcule donc pas votre marge, n’annonce aucun gain chiffré et ne touche ni à vos commandes ni à votre menu. Il vous dit quoi ajuster face à vos concurrents, et vous jugez avec vos propres chiffres."
+      },
+      {
+        "titre": "Uber Eats et Deliveroo couverts, en toute indépendance",
+        "texte": "Deliview couvre Uber Eats et Deliveroo pour les restaurants en France. C’est un logiciel indépendant des deux plateformes, qui s’appuie sur ce qu’elles affichent publiquement."
       }
     ]
   },
   "tarifs": {
-    "h1": "[À REMPLACER]",
-    "sousTitre": "[À REMPLACER]",
-    "metaTitle": "[À REMPLACER] | Deliview",
-    "metaDescription": "[À REMPLACER]",
+    "h1": "Votre prix bloqué 12 mois avec le programme pilote",
+    "sousTitre": "Nous finalisons nos prix : en rejoignant le programme pilote, vous gardez le prix convenu pendant 12 mois.",
+    "metaTitle": "Tarifs : votre prix bloqué 12 mois en pilote | Deliview",
+    "metaDescription": "Tarifs Deliview : votre prix bloqué 12 mois dans le programme pilote, aucun compte à connecter, démo de 15 min sans engagement. Demandez votre démo.",
     "faq": [
       {
-        "q": "[À REMPLACER]",
-        "r": "[À REMPLACER]"
+        "q": "Combien coûte Deliview ?",
+        "r": "Nous finalisons nos prix. Dans le programme pilote, votre prix reste bloqué 12 mois. Tom vous le précise pendant la démo."
+      },
+      {
+        "q": "Qu’est-ce que le programme pilote ?",
+        "r": "Le programme pilote est ouvert aux réseaux de franchise et aux franchisés, mono-site ou multi-sites. Si vous le rejoignez, votre prix reste bloqué 12 mois. Tom vous présente le programme pendant la démo."
+      },
+      {
+        "q": "La démo m’engage-t-elle ?",
+        "r": "Non. La démo dure 15 min et ne vous engage à rien. Tom vous montre comment Deliview compare un restaurant à ses concurrents sur Uber Eats et Deliveroo."
+      },
+      {
+        "q": "Faut-il connecter mes comptes Uber Eats ou Deliveroo ?",
+        "r": "Non. Deliview s’appuie sur les informations publiques d’Uber Eats et de Deliveroo. Vous ne donnez ni identifiant, ni accès à vos comptes, ni chiffre de vente."
+      },
+      {
+        "q": "Deliview calcule-t-il ma marge ?",
+        "r": "Non. Sans accès à vos comptes, Deliview ne voit ni vos ventes ni vos commissions. Il vous dit quels prix, promos et éléments de fiche ajuster face à vos concurrents, et vous jugez avec vos propres chiffres."
+      },
+      {
+        "q": "Deliview convient-il à un franchisé mono-site ou multi-sites ?",
+        "r": "Oui, dans les deux cas. Avec un seul restaurant, Deliview le compare à ses concurrents de même cuisine dans sa zone. Avec plusieurs, il compare chacun à ses propres concurrents."
+      },
+      {
+        "q": "Deliview est-il lié à Uber Eats ou à Deliveroo ?",
+        "r": "Non. Deliview est un logiciel indépendant des deux plateformes. Il couvre Uber Eats et Deliveroo à partir des informations qu’elles affichent publiquement."
       }
     ]
   }

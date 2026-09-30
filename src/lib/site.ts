@@ -15,7 +15,8 @@ export const SITE = {
   placesPilote: null as number | null,
   /** Lien Cal.com de la démo (ex. "deliview/demo"). La réservation en ligne s'affiche quand il est renseigné. */
   calLink: null as string | null,
-  appUrl: "https://app.deliview.fr",
+  /** Lien « Espace pilote » vers l'application (ex. "https://app.deliview.fr"). Masqué tant qu'aucun pilote n'a de compte. */
+  appUrl: null as string | null,
   linkedin: {
     deliview: null as string | null,
     tom: null as string | null,
