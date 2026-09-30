@@ -1,0 +1,100 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionDemo from "../components/SectionDemo.astro";
+
+// [À REMPLACER] Noms, prix HT par établissement et contenu de chaque offre. Aucun prix n'est affiché tant qu'il n'est pas décidé.
+const offres = [
+  { nom: "[À REMPLACER] Offre 1", prix: null, pour: "[À REMPLACER] Pour qui", inclus: ["[À REMPLACER]"] },
+  { nom: "[À REMPLACER] Offre 2", prix: null, pour: "[À REMPLACER] Pour qui", inclus: ["[À REMPLACER]"] },
+  { nom: "[À REMPLACER] Offre 3", prix: null, pour: "[À REMPLACER] Pour qui", inclus: ["[À REMPLACER]"] },
+] as { nom: string; prix: string | null; pour: string; inclus: string[] }[];
+
+const faq = [
+  {
+    q: "Y a-t-il un engagement ?",
+    r: "Non. Deliview est sans engagement : vous arrêtez quand vous voulez.",
+  },
+  {
+    q: "Y a-t-il des frais de mise en place ?",
+    r: "Non. La mise en place est faite avec vous, sans frais : on connecte ensemble vos comptes Uber Eats et Deliveroo.",
+  },
+  {
+    q: "Comment le prix est-il calculé ?",
+    r: "Le prix est fixé par établissement et par mois, hors taxes. Si vous avez plusieurs établissements, chacun a son abonnement.",
+  },
+  {
+    q: "Quelles plateformes sont prises en charge ?",
+    r: "Uber Eats et Deliveroo aujourd’hui. Uber Direct arrive bientôt.",
+  },
+  {
+    q: "Que se passe-t-il pendant la démo ?",
+    r: "Tom vous montre Deliview pendant 15 min, avec vos plateformes et votre nombre d’établissements. Vous posez vos questions, sans engagement.",
+  },
+];
+
+const faqJson = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.r } })),
+};
+---
+
+<Base
+  title="Tarifs Deliview : prix par établissement, sans engagement"
+  description="Les tarifs de Deliview pour centraliser Uber Eats et Deliveroo : prix HT par établissement, sans engagement et sans frais de mise en place."
+  ariane={[{ nom: "Tarifs", chemin: "/tarifs" }]}
+  jsonld={[faqJson]}
+>
+  <section class="container-dv pt-8 pb-16 md:pt-12 md:pb-24" aria-labelledby="titre-hero">
+    <p class="surtitre text-blue">Tarifs</p>
+    <h1 id="titre-hero" class="texte mt-3">Un prix par établissement, sans engagement</h1>
+    <p class="texte mt-6 text-lg md:text-xl">Sans engagement · Sans frais de mise en place · Prix hors taxes, par établissement et par mois</p>
+
+    <ul class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        offres.map((o) => (
+          <li class="carte flex flex-col">
+            <h2 class="text-2xl">{o.nom}</h2>
+            <p class="mt-2 texte-secondaire">{o.pour}</p>
+            <p class="mt-6">
+              {o.prix ? (
+                <>
+                  <span class="font-accent text-[36px] font-bold md:text-5xl">{o.prix}</span>
+                  <span class="texte-secondaire"> HT / établissement / mois</span>
+                </>
+              ) : (
+                <span class="a-remplacer inline-block">[À REMPLACER] Prix HT / établissement / mois</span>
+              )}
+            </p>
+            <ul class="mt-6 flex-1 space-y-2">
+              {o.inclus.map((i) => <li>{i}</li>)}
+            </ul>
+            <a href="#demo" class="btn btn-contour mt-8" data-cta="tarifs-offre">Demander une démo</a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="a-remplacer mt-8">[À REMPLACER] Sélecteur mensuel / annuel et tableau comparatif des offres, à ajouter quand les prix sont fixés.</p>
+  </section>
+
+  <section class="section bg-grey" aria-labelledby="titre-faq">
+    <div class="container-dv">
+      <h2 id="titre-faq">Questions fréquentes sur les tarifs</h2>
+      <div class="mt-10 max-w-[70ch] divide-y divide-grey-2/15 border-y border-grey-2/15">
+        {
+          faq.map((f) => (
+            <details class="group py-2">
+              <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3 text-lg font-semibold md:text-xl">
+                {f.q}
+                <span aria-hidden="true" class="text-2xl text-blue transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p class="pb-4 texte-secondaire">{f.r}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <SectionDemo />
+</Base>

@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../lib/site";
+---
+
+<Base title="Demande envoyée | Deliview" description="Votre demande de démo Deliview est bien reçue." noindex>
+  <section class="container-dv py-24">
+    <p class="surtitre text-blue">Demande reçue</p>
+    <h1 class="texte mt-3">C’est noté.</h1>
+    <p class="texte mt-6 text-lg md:text-xl">Tom vous rappelle sous 24 h pour fixer votre démo. Un email de confirmation vient de partir.</p>
+    {SITE.calLink && <a href={`https://cal.com/${SITE.calLink}`} class="btn btn-plein mt-8">Réserver ma démo maintenant</a>}
+    <p class="mt-8"><a href="/" class="font-semibold underline underline-offset-2">Retour à l’accueil</a></p>
+  </section>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Base from "./Base.astro";
+
+interface Props {
+  titre: string;
+  description: string;
+  chemin: string;
+}
+const { titre, description, chemin } = Astro.props;
+---
+
+<Base title={`${titre} | Deliview`} description={description} ariane={[{ nom: titre, chemin }]}>
+  <article class="container-dv pt-8 pb-24 md:pt-12">
+    <h1 class="texte">{titre}</h1>
+    <div class="texte mt-8 space-y-4">
+      <slot />
+    </div>
+  </article>
+</Base>

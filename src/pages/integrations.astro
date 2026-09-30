@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionDemo from "../components/SectionDemo.astro";
+import { PLATEFORMES } from "../lib/site";
+
+const details: Record<string, string> = {
+  "Uber Eats": "Commandes, menus, ruptures, avis et chiffres de vos établissements Uber Eats.",
+  Deliveroo: "Commandes, menus, ruptures, avis et chiffres de vos établissements Deliveroo.",
+  "Uber Direct": "La livraison par les coursiers Uber pour les commandes passées sur votre propre site.",
+};
+---
+
+<Base
+  title="Intégrations Uber Eats, Deliveroo et Uber Direct | Deliview"
+  description="Deliview se connecte à Uber Eats et Deliveroo, Uber Direct arrive bientôt. Voyez ce que Deliview récupère de chaque plateforme et demandez une démo."
+  ariane={[{ nom: "Intégrations", chemin: "/integrations" }]}
+>
+  <section class="container-dv pt-8 pb-16 md:pt-12 md:pb-24" aria-labelledby="titre-hero">
+    <p class="surtitre text-blue">Intégrations</p>
+    <h1 id="titre-hero" class="texte mt-3">Les plateformes que Deliview réunit</h1>
+    <p class="texte mt-6 text-lg md:text-xl">
+      Deliview se connecte à vos comptes Uber Eats et Deliveroo. La connexion se fait avec vous, pendant la mise en place.
+    </p>
+
+    <h2 class="mt-16 text-2xl md:text-[28px]">Plateformes de livraison</h2>
+    <ul class="mt-6 grid gap-6 md:grid-cols-3">
+      {
+        PLATEFORMES.map((p) => (
+          <li class="flex flex-col rounded-2xl border border-grey-2/15 bg-grey p-6 md:p-8">
+            <div class="flex items-center justify-between gap-4">
+              <h3>{p.nom}</h3>
+              <span class:list={["rounded-full px-3 py-1 text-sm font-semibold", p.statut === "Disponible" ? "bg-white" : "border border-grey-2/40"]}>
+                {p.statut}
+              </span>
+            </div>
+            <p class="mt-4 texte-secondaire">{details[p.nom]}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="section border-t border-grey-2/15" aria-labelledby="titre-manque">
+    <div class="container-dv grid gap-10 md:grid-cols-2">
+      <div>
+        <h2 id="titre-manque">Votre outil manque ?</h2>
+        <p class="texte mt-4">Caisse, logiciel de comptabilité, autre plateforme : dites-nous ce que vous utilisez. Cela nous aide à choisir les prochaines intégrations.</p>
+      </div>
+      <div class="a-remplacer self-start">
+        [À REMPLACER] Formulaire « Votre outil manque ? » (prénom, email, logiciel). Il nécessite une route serveur et une table dédiées : non branché pour l’instant.
+      </div>
+    </div>
+  </section>
+
+  <SectionDemo />
+</Base>

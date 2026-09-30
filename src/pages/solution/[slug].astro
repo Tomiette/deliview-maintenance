@@ -1,0 +1,85 @@
+---
+import Base from "../../layouts/Base.astro";
+import Capture from "../../components/Capture.astro";
+import BandeauPlateformes from "../../components/BandeauPlateformes.astro";
+import SectionDemo from "../../components/SectionDemo.astro";
+import { PILIERS, type Pilier } from "../../content/piliers";
+import { SITE } from "../../lib/site";
+
+export function getStaticPaths() {
+  return PILIERS.map((pilier) => ({ params: { slug: pilier.slug }, props: { pilier } }));
+}
+
+const { pilier } = Astro.props as { pilier: Pilier };
+const autres = PILIERS.filter((p) => p.slug !== pilier.slug);
+const logiciel = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Deliview",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description: SITE.definition,
+  url: SITE.url,
+};
+---
+
+<Base
+  title={pilier.meta.title}
+  description={pilier.meta.description}
+  ariane={[{ nom: pilier.surtitre, chemin: `/solution/${pilier.slug}` }]}
+  jsonld={[logiciel]}
+>
+  <section class="relative overflow-hidden" aria-labelledby="titre-hero">
+    <div aria-hidden="true" class="absolute -top-40 -right-40 size-[560px] rounded-full bg-blue-2/12"></div>
+    <div class="container-dv relative grid items-center gap-8 pt-8 pb-16 md:pt-12 md:pb-24 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+      <div>
+        <p class="surtitre text-blue">{pilier.surtitre}</p>
+        <h1 id="titre-hero" class="mt-3">{pilier.titre}</h1>
+        <p class="texte mt-4 text-lg md:mt-6 md:text-xl">{pilier.phrase}</p>
+        <a href="#demo" class="btn btn-plein mt-6 md:mt-8" data-cta={`pilier-${pilier.slug}-hero`}>Demander une démo</a>
+        <p class="mt-3 text-[15px] font-semibold texte-secondaire md:text-base" data-repere-barre>15 min · Sans engagement · Mise en place faite avec vous</p>
+      </div>
+      <Capture src={`/captures/${pilier.slug}-hero.webp`} alt={pilier.capture} prioritaire />
+    </div>
+  </section>
+
+  {
+    pilier.fonctionnalites.map((f, i) => (
+      <section class:list={["section", i % 2 === 0 ? "bg-grey" : "bg-white"]}>
+        <div class="container-dv grid items-center gap-8 md:grid-cols-2 md:gap-16">
+          <div class:list={[i % 2 === 1 && "md:order-2"]}>
+            <h2 class="flex flex-wrap items-center gap-3">
+              {f.titre}
+              {f.bientot && <span class="rounded-full border border-grey-2/40 px-3 py-1 text-sm font-semibold">Bientôt</span>}
+            </h2>
+            <p class="texte mt-4">{f.texte}</p>
+          </div>
+          <Capture src={`/captures/${pilier.slug}-${i + 1}.webp`} alt={f.capture} />
+        </div>
+      </section>
+    ))
+  }
+
+  <BandeauPlateformes />
+
+  <section class="section" aria-labelledby="titre-autres">
+    <div class="container-dv">
+      <h2 id="titre-autres">Le reste de Deliview</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          autres.map((p) => (
+            <li class="carte flex flex-col">
+              <p class="surtitre text-blue">{p.surtitre}</p>
+              <h3 class="mt-3 flex-1">{p.titre}</h3>
+              <a href={`/solution/${p.slug}`} class="mt-6 inline-flex min-h-11 items-center font-semibold underline underline-offset-2">
+                Découvrir {p.complement}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <SectionDemo />
+</Base>

@@ -1,0 +1,234 @@
+---
+import { POINTS_DE_VENTE } from "../lib/leadSchema";
+import { SITE } from "../lib/site";
+
+interface Props {
+  titre?: string;
+}
+const { titre = "Voyez vos deux plateformes sur un seul écran, en 15 min" } = Astro.props;
+
+const etapes = [
+  { titre: "Vous remplissez le formulaire", texte: "Cinq informations, moins d’une minute." },
+  { titre: "Tom vous rappelle sous 24 h", texte: "Le fondateur de Deliview, pas un centre d’appels." },
+  { titre: "Démo de 15 min sur vos plateformes", texte: "Vous voyez Deliview avec votre cas : vos plateformes, votre nombre d’établissements." },
+  { titre: "Mise en place faite avec vous", texte: "On connecte vos comptes ensemble. Vous n’avez rien à configurer seul." },
+];
+
+const champ = "mt-2 block min-h-[52px] w-full rounded-xl border border-grey-2/40 bg-white px-4 text-base text-grey-2 aria-[invalid=true]:border-2 aria-[invalid=true]:border-grey-2";
+const libelle = "block text-base font-semibold";
+const erreur = "mt-1.5 text-[15px] font-semibold empty:hidden";
+---
+
+<section id="demo" class="section bg-grey" aria-labelledby="titre-demo">
+  <div class="container-dv grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+    <div>
+      <p class="surtitre text-blue">Démo</p>
+      <h2 id="titre-demo" class="mt-3">{titre}</h2>
+      <ol class="mt-10 space-y-8">
+        {
+          etapes.map((e, i) => (
+            <li class="flex gap-5">
+              <span class="font-accent text-4xl leading-none font-bold text-blue" aria-hidden="true">
+                {i + 1}
+              </span>
+              <div>
+                <h3 class="text-xl">{e.titre}</h3>
+                <p class="mt-1 texte-secondaire">{e.texte}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+
+    <div class="carte" data-bloc-formulaire>
+      <form method="post" action="/api/lead" novalidate data-formulaire-demo>
+        <h3 class="text-2xl">Demander une démo</h3>
+        <p class="mt-1 text-base texte-secondaire">Tous les champs sont obligatoires.</p>
+
+        <div class="mt-6 space-y-5">
+          <div>
+            <label for="nom" class={libelle}>Prénom et nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required maxlength="120" class={champ} aria-describedby="nom-erreur" />
+            <p id="nom-erreur" class={erreur} data-erreur="nom"></p>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-[1.4fr_1fr]">
+            <div>
+              <label for="restaurant" class={libelle}>Nom du restaurant</label>
+              <input id="restaurant" name="restaurant" type="text" autocomplete="organization" required maxlength="160" class={champ} aria-describedby="restaurant-erreur" />
+              <p id="restaurant-erreur" class={erreur} data-erreur="restaurant"></p>
+            </div>
+            <div>
+              <label for="ville" class={libelle}>Ville</label>
+              <input id="ville" name="ville" type="text" autocomplete="address-level2" required maxlength="120" class={champ} aria-describedby="ville-erreur" />
+              <p id="ville-erreur" class={erreur} data-erreur="ville"></p>
+            </div>
+          </div>
+
+          <div>
+            <label for="telephone" class={libelle}>Téléphone</label>
+            <input id="telephone" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required class={champ} aria-describedby="telephone-aide telephone-erreur" />
+            <p id="telephone-aide" class="mt-1.5 text-[15px] texte-secondaire">Pour que Tom vous rappelle.</p>
+            <p id="telephone-erreur" class={erreur} data-erreur="telephone"></p>
+          </div>
+
+          <div>
+            <label for="email" class={libelle}>Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" class={champ} aria-describedby="email-erreur" />
+            <p id="email-erreur" class={erreur} data-erreur="email"></p>
+          </div>
+
+          <fieldset aria-describedby="points_de_vente-erreur">
+            <legend class={libelle}>Nombre de points de vente</legend>
+            <div class="mt-2 grid grid-cols-5 gap-2">
+              {
+                POINTS_DE_VENTE.map((v) => (
+                  <label class="relative">
+                    <input type="radio" name="points_de_vente" value={v} required class="peer absolute inset-0 opacity-0" />
+                    <span class="flex min-h-[52px] cursor-pointer items-center justify-center rounded-xl border border-grey-2/40 bg-white text-base font-semibold peer-checked:border-2 peer-checked:border-blue peer-checked:bg-blue/10 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue">
+                      {v}
+                    </span>
+                  </label>
+                ))
+              }
+            </div>
+            <p id="points_de_vente-erreur" class={erreur} data-erreur="points_de_vente"></p>
+          </fieldset>
+        </div>
+
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label for="site_web">Ne pas remplir ce champ</label>
+          <input id="site_web" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        {["utm_source", "utm_medium", "utm_campaign", "utm_content", "page_origine", "section_cta"].map((n) => <input type="hidden" name={n} />)}
+
+        <p class="mt-6 text-[15px] font-semibold empty:hidden" role="alert" data-erreur-globale></p>
+        <button type="submit" class="btn btn-plein mt-6 w-full disabled:cursor-wait disabled:opacity-80" data-bouton-envoi>
+          Demander une démo
+        </button>
+        <p class="mt-4 text-sm texte-secondaire">
+          15 min · Sans engagement · Vos coordonnées servent uniquement à vous recontacter au sujet de Deliview. <a href="/confidentialite">Politique de confidentialité</a>
+        </p>
+      </form>
+
+      <div hidden tabindex="-1" data-confirmation class="outline-none">
+        <p class="surtitre text-blue">Demande reçue</p>
+        <h3 class="mt-3 text-2xl">C’est noté.</h3>
+        <p class="mt-3">Tom vous rappelle sous 24 h pour fixer votre démo. Un email de confirmation vient de partir.</p>
+        {
+          SITE.calLink && (
+            <a href={`https://cal.com/${SITE.calLink}`} class="btn btn-contour mt-6" data-lien-cal>
+              Réserver ma démo maintenant
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { validerLead, type ChampLead } from "../lib/leadSchema";
+  import { suivre } from "../lib/client/analytics";
+  import { remplirChampsCaches } from "../lib/client/utm";
+
+  const form = document.querySelector<HTMLFormElement>("[data-formulaire-demo]");
+  if (form) {
+    const bouton = form.querySelector<HTMLButtonElement>("[data-bouton-envoi]")!;
+    const globale = form.querySelector<HTMLElement>("[data-erreur-globale]")!;
+    const confirmation = document.querySelector<HTMLElement>("[data-confirmation]")!;
+    const touches = new Set<string>();
+    let demarre = false;
+
+    const donnees = () => Object.fromEntries(new FormData(form)) as Record<string, string>;
+
+    function afficher(erreurs: Partial<Record<ChampLead, string>>, seulement?: Set<string>) {
+      form!.querySelectorAll<HTMLElement>("[data-erreur]").forEach((el) => {
+        const nom = el.dataset.erreur as ChampLead;
+        if (seulement && !seulement.has(nom)) return;
+        const message = erreurs[nom] ?? "";
+        el.textContent = message;
+        form!.querySelectorAll<HTMLInputElement>(`[name="${nom}"]`).forEach((c) => {
+          if (message) c.setAttribute("aria-invalid", "true");
+          else c.removeAttribute("aria-invalid");
+        });
+      });
+    }
+
+    form.addEventListener("focusin", () => {
+      if (demarre) return;
+      demarre = true;
+      suivre("formulaire_demarre");
+    });
+
+    // Validation à la sortie du champ, uniquement sur les champs déjà visités.
+    form.addEventListener("focusout", (e) => {
+      const cible = e.target as HTMLInputElement;
+      if (!cible.name || cible.type === "hidden" || cible.name === "site_web") return;
+      touches.add(cible.name);
+      const res = validerLead(donnees());
+      afficher(res.ok ? {} : res.erreurs, touches);
+    });
+    form.addEventListener("change", (e) => {
+      const cible = e.target as HTMLInputElement;
+      if (cible.name === "points_de_vente") {
+        touches.add(cible.name);
+        const res = validerLead(donnees());
+        afficher(res.ok ? {} : res.erreurs, touches);
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (bouton.disabled) return;
+      globale.textContent = "";
+      remplirChampsCaches(form);
+
+      const valeurs = donnees();
+      const res = validerLead(valeurs);
+      if (!res.ok) {
+        afficher(res.erreurs);
+        const premier = Object.keys(res.erreurs)[0];
+        form.querySelector<HTMLInputElement>(`[name="${premier}"]`)?.focus();
+        suivre("formulaire_erreur", { champ: premier });
+        return;
+      }
+      afficher({});
+
+      bouton.disabled = true;
+      bouton.textContent = "Envoi en cours…";
+      try {
+        const reponse = await fetch(form.action, {
+          method: "POST",
+          headers: { "content-type": "application/json", accept: "application/json" },
+          body: JSON.stringify(valeurs),
+        });
+        if (reponse.status === 422) {
+          const corps = (await reponse.json()) as { erreurs?: Partial<Record<ChampLead, string>> };
+          afficher(corps.erreurs ?? {});
+          throw new Error("validation");
+        }
+        if (!reponse.ok) throw new Error(String(reponse.status));
+        suivre("formulaire_envoye", { section: valeurs.section_cta || "inconnue" });
+        const cal = confirmation.querySelector<HTMLAnchorElement>("[data-lien-cal]");
+        if (cal) {
+          const url = new URL(cal.href);
+          url.searchParams.set("name", valeurs.nom);
+          url.searchParams.set("email", valeurs.email);
+          cal.href = url.href;
+        }
+        form.hidden = true;
+        confirmation.hidden = false;
+        confirmation.focus();
+      } catch (err) {
+        if ((err as Error).message !== "validation") {
+          globale.textContent =
+            "Votre demande n’est pas partie. Vérifiez votre connexion et réessayez, ou écrivez à tom@deliview.fr.";
+        }
+        bouton.disabled = false;
+        bouton.textContent = "Demander une démo";
+      }
+    });
+  }
+</script>

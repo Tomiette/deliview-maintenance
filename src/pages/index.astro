@@ -1,0 +1,185 @@
+---
+import Base from "../layouts/Base.astro";
+import Capture from "../components/Capture.astro";
+import BandeauPlateformes from "../components/BandeauPlateformes.astro";
+import SectionDemo from "../components/SectionDemo.astro";
+import { PILIERS } from "../content/piliers";
+import { SITE } from "../lib/site";
+
+const douleurs = [
+  {
+    titre: "Deux tablettes qui sonnent en plein rush",
+    texte: "Vendredi soir, les commandes arrivent sur Uber Eats et sur Deliveroo en même temps. Vous jonglez entre deux écrans et une commande finit par attendre.",
+  },
+  {
+    titre: "Chaque changement de menu fait deux fois",
+    texte: "Un prix qui bouge, un plat en rupture : il faut le saisir sur chaque plateforme. Un oubli, et vous vendez un produit que vous n’avez plus.",
+  },
+  {
+    titre: "Une marge par plateforme impossible à lire",
+    texte: "Commissions, promotions, remboursements : chaque plateforme présente ses chiffres à sa façon. Difficile de savoir laquelle vous rapporte vraiment.",
+  },
+];
+
+const etapes = [
+  { titre: "Vous connectez vos comptes", texte: "Uber Eats et Deliveroo, avec nous au téléphone. Vos plateformes continuent de tourner normalement." },
+  { titre: "Tout arrive sur un seul écran", texte: "Commandes, menus, avis et chiffres des deux plateformes, réunis au même endroit." },
+  { titre: "Vous pilotez depuis Deliview", texte: "Une modification faite une fois s’applique aux deux plateformes." },
+];
+
+const benefices = [
+  { titre: "Un seul écran en cuisine", texte: "Moins de tablettes à surveiller pendant le service.", icone: "M4 5h16v11H4zM9 20h6M12 16v4" },
+  { titre: "Plus de double saisie", texte: "Menus, prix et ruptures mis à jour une fois.", icone: "M4 12l5 5L20 6" },
+  { titre: "Des chiffres comparables", texte: "Uber Eats et Deliveroo lus de la même façon.", icone: "M5 20V10M12 20V4M19 20v-7" },
+  { titre: "Chaque avis traité", texte: "Une réponse proposée, que vous relisez avant l’envoi.", icone: "M4 5h16v11H9l-5 4z" },
+];
+
+const logiciel = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Deliview",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description: SITE.definition,
+  url: SITE.url,
+};
+const siteWeb = { "@context": "https://schema.org", "@type": "WebSite", name: "Deliview", url: SITE.url, inLanguage: "fr-FR" };
+---
+
+<Base
+  title="Uber Eats et Deliveroo sur un seul écran | Deliview"
+  description="Deliview réunit les commandes, menus, avis et chiffres Uber Eats et Deliveroo sur un seul écran pour les restaurateurs. Demandez une démo de 15 min."
+  jsonld={[siteWeb, logiciel]}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden" aria-labelledby="titre-hero">
+    <div aria-hidden="true" class="absolute -top-40 -right-40 size-[640px] rounded-full bg-blue-2/12"></div>
+    <div class="container-dv relative grid items-center gap-6 pt-5 pb-16 md:pt-16 md:pb-24 lg:grid-cols-[1fr_1.15fr] lg:gap-12">
+      <div>
+        <h1 id="titre-hero">Uber Eats et Deliveroo sur un seul écran</h1>
+        <p class="texte mt-4 text-lg md:mt-6 md:text-xl">
+          Commandes, menus, avis et chiffres des deux plateformes, réunis au même endroit.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3 md:mt-8">
+          <a href="#demo" class="btn btn-plein" data-cta="hero">Demander une démo</a>
+          <a href="#comment-ca-marche" class="btn btn-contour hidden sm:inline-flex">Voir comment ça marche</a>
+        </div>
+        <p class="mt-3 text-[15px] font-semibold texte-secondaire md:mt-4 md:text-base" data-repere-barre>
+          15 min · Sans engagement · Mise en place faite avec vous
+        </p>
+      </div>
+      <div>
+        <Capture src="/captures/accueil-hero.webp" alt="Écran Deliview avec les commandes Uber Eats et Deliveroo dans une seule liste" prioritaire />
+        <a href="#comment-ca-marche" class="mt-4 inline-flex min-h-11 items-center font-semibold underline underline-offset-2 sm:hidden">Voir comment ça marche</a>
+      </div>
+    </div>
+  </section>
+
+  <BandeauPlateformes />
+
+  <!-- Le problème -->
+  <section class="section" aria-labelledby="titre-probleme">
+    <div class="container-dv">
+      <p class="surtitre text-blue">Le problème</p>
+      <h2 id="titre-probleme" class="texte mt-3">Deux plateformes, c’est deux fois plus de travail</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          douleurs.map((d) => (
+            <li class="carte">
+              <h3>{d.titre}</h3>
+              <p class="mt-3 texte-secondaire">{d.texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Comment ça marche -->
+  <section id="comment-ca-marche" class="section bg-grey" aria-labelledby="titre-marche">
+    <div class="container-dv">
+      <p class="surtitre text-blue">Comment ça marche</p>
+      <h2 id="titre-marche" class="texte mt-3">Opérationnel sans changer vos habitudes</h2>
+      <ol class="mt-10 grid gap-10 md:grid-cols-3 md:gap-8">
+        {
+          etapes.map((e, i) => (
+            <li>
+              <span class="font-accent text-[36px] leading-none font-bold text-blue md:text-5xl" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 class="mt-4">{e.titre}</h3>
+              <p class="mt-2 texte-secondaire">{e.texte}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-10">
+        <a href="/integrations" class="inline-flex min-h-11 items-center font-semibold">Voir les plateformes connectées</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Les 4 piliers -->
+  <section class="section" aria-labelledby="titre-piliers">
+    <div class="container-dv">
+      <p class="surtitre text-blue">Notre solution</p>
+      <h2 id="titre-piliers" class="texte mt-3">Tout ce que vous faites sur deux plateformes, fait une fois</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          PILIERS.map((p) => (
+            <li class="carte flex flex-col">
+              <p class="surtitre text-blue">{p.surtitre}</p>
+              <h3 class="mt-3">{p.titre}</h3>
+              <p class="mt-3 flex-1 texte-secondaire">{p.phrase}</p>
+              <a href={`/solution/${p.slug}`} class="mt-6 inline-flex min-h-11 items-center font-semibold underline underline-offset-2">
+                Découvrir {p.complement}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Bénéfices : seul aplat Blue 1 de la page -->
+  <section class="section bg-blue text-white" aria-labelledby="titre-benefices">
+    <div class="container-dv">
+      <h2 id="titre-benefices" class="texte">Moins de temps sur les tablettes, plus en cuisine</h2>
+      <ul class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          benefices.map((b) => (
+            <li>
+              <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d={b.icone} />
+              </svg>
+              <h3 class="mt-4 text-2xl font-bold">{b.titre}</h3>
+              <p class="mt-2 text-2xl leading-snug">{b.texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="#demo" class="btn btn-blanc mt-12" data-cta="benefices">Demander une démo</a>
+    </div>
+  </section>
+
+  <!-- Preuve humaine (Lot 1 : fondateur) -->
+  <section id="fondateur" class="section" aria-labelledby="titre-fondateur">
+    <div class="container-dv grid items-center gap-10 md:grid-cols-[280px_1fr] md:gap-16">
+      <div class="a-remplacer flex aspect-square items-center justify-center text-center">[À REMPLACER] Photo de Tom<br />public/tom.webp</div>
+      <div>
+        <p class="surtitre text-blue">Qui est derrière Deliview</p>
+        <h2 id="titre-fondateur" class="texte mt-3">Un fondateur qui répond lui-même au téléphone</h2>
+        <p class="texte mt-6">
+          Je m’appelle Tom. Je construis Deliview avec des restaurateurs qui vivent chaque soir le va-et-vient entre Uber Eats et Deliveroo.
+          Deliview est accompagné par le réseau PEPITE.
+        </p>
+        <p class="texte mt-4">
+          Le programme pilote est ouvert : vous utilisez Deliview, vous nous dites ce qui manque, et votre prix reste bloqué 12 mois.
+        </p>
+        <a href="#demo" class="btn btn-contour mt-8" data-cta="fondateur">Candidater au programme pilote</a>
+      </div>
+    </div>
+  </section>
+
+  <SectionDemo />
+</Base>

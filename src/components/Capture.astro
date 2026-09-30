@@ -1,0 +1,42 @@
+---
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
+interface Props {
+  /** Chemin dans public/, ex. "/captures/hero.webp" (1600 × 1000). */
+  src: string;
+  alt: string;
+  prioritaire?: boolean;
+  class?: string;
+}
+
+const { src, alt, prioritaire = false, class: classe = "" } = Astro.props;
+// Tant que la vraie capture n'est pas déposée dans public/, un bloc [À REMPLACER] visible prend sa place.
+const disponible = existsSync(join(process.cwd(), "public", src));
+---
+
+{
+  disponible ? (
+    <img
+      src={src}
+      alt={alt}
+      width="1600"
+      height="1000"
+      loading={prioritaire ? "eager" : "lazy"}
+      fetchpriority={prioritaire ? "high" : "auto"}
+      decoding="async"
+      class:list={["h-auto w-full rounded-2xl border border-grey-2/15 shadow-card", classe]}
+    />
+  ) : (
+    <div
+      class:list={[
+        "flex aspect-[16/10] w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-grey-2/40 bg-grey p-6 text-center",
+        classe,
+      ]}
+    >
+      <span class="text-sm font-bold">[À REMPLACER] Capture réelle de l’interface</span>
+      <span class="max-w-[40ch] text-sm texte-secondaire">{alt}</span>
+      <code class="text-xs texte-secondaire">public{src}</code>
+    </div>
+  )
+}

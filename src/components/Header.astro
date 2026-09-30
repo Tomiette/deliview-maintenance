@@ -1,0 +1,149 @@
+---
+import Logo from "./Logo.astro";
+import { PILIERS } from "../content/piliers";
+import { SITE } from "../lib/site";
+
+const chemin = Astro.url.pathname;
+const courant = (href: string) => (chemin === href || chemin.startsWith(`${href}/`) ? "page" : undefined);
+---
+
+<div class="bg-blue text-white">
+  <p class="container-dv py-2.5 text-center text-[19px] leading-snug font-bold">
+    <a href="/#demo" data-cta="barre-annonce" class="underline-offset-4 hover:underline">
+      Programme pilote{SITE.placesPilote !== null && <> : {SITE.placesPilote} places</>}, prix bloqué 12 mois.{" "}
+      <span class="whitespace-nowrap">Candidater <span aria-hidden="true">→</span></span>
+    </a>
+  </p>
+</div>
+
+<header class="sticky top-0 z-40 border-b border-grey-2/15 bg-white/95 backdrop-blur" data-header>
+  <div class="container-dv flex h-16 items-center justify-between gap-4 md:h-20">
+    <a href="/" aria-label="Deliview, accueil" class="flex min-h-11 items-center"><Logo /></a>
+
+    <nav aria-label="Navigation principale" class="hidden lg:block">
+      <ul class="flex items-center gap-1 text-[17px] font-semibold">
+        <li class="relative" data-menu>
+          <button
+            type="button"
+            class="flex min-h-11 items-center gap-1.5 rounded-lg px-3 hover:bg-grey"
+            aria-expanded="false"
+            aria-controls="menu-solution"
+            data-menu-bouton
+          >
+            Notre solution
+            <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" class="transition-transform" data-menu-fleche>
+              <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"></path>
+            </svg>
+          </button>
+          <div id="menu-solution" hidden class="absolute top-full left-0 mt-2 w-[640px] rounded-2xl border border-grey-2/15 bg-white p-3 shadow-card" data-menu-panneau>
+            <ul class="grid grid-cols-2 gap-1">
+              {
+                PILIERS.map((p) => (
+                  <li>
+                    <a href={`/solution/${p.slug}`} class="block rounded-xl p-4 hover:bg-grey" aria-current={courant(`/solution/${p.slug}`)}>
+                      <span class="block font-bold">{p.surtitre}</span>
+                      <span class="mt-1 block text-[15px] leading-snug font-normal texte-secondaire">{p.titre}</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </li>
+        <li><a href="/integrations" class="flex min-h-11 items-center rounded-lg px-3 hover:bg-grey" aria-current={courant("/integrations")}>Intégrations</a></li>
+        <li><a href="/tarifs" class="flex min-h-11 items-center rounded-lg px-3 hover:bg-grey" aria-current={courant("/tarifs")}>Tarifs</a></li>
+      </ul>
+    </nav>
+
+    <div class="hidden items-center gap-4 lg:flex">
+      {SITE.telephone && <a href={`tel:${SITE.telephone.e164}`} class="font-semibold">{SITE.telephone.affiche}</a>}
+      <a href={SITE.appUrl} class="flex min-h-11 items-center px-2 text-[17px] font-semibold">Se connecter</a>
+      <a href="/#demo" class="btn btn-plein" data-cta="header">Demander une démo</a>
+    </div>
+
+    <button
+      type="button"
+      class="flex size-11 items-center justify-center rounded-lg lg:hidden"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+      aria-label="Ouvrir le menu"
+      data-burger
+    >
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 7h16M4 12h16M4 17h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav id="menu-mobile" aria-label="Navigation principale" hidden class="border-t border-grey-2/15 bg-white lg:hidden" data-menu-mobile>
+    <div class="container-dv max-h-[calc(100dvh-7rem)] overflow-y-auto py-4">
+      <p class="surtitre texte-secondaire">Notre solution</p>
+      <ul class="mt-2">
+        {
+          PILIERS.map((p) => (
+            <li>
+              <a href={`/solution/${p.slug}`} class="block rounded-xl py-3">
+                <span class="block font-bold">{p.surtitre}</span>
+                <span class="block text-[15px] texte-secondaire">{p.titre}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="mt-2 border-t border-grey-2/15 pt-2 font-bold">
+        <li><a href="/integrations" class="block py-3">Intégrations</a></li>
+        <li><a href="/tarifs" class="block py-3">Tarifs</a></li>
+        <li><a href={SITE.appUrl} class="block py-3">Se connecter</a></li>
+        {SITE.telephone && <li><a href={`tel:${SITE.telephone.e164}`} class="block py-3">{SITE.telephone.affiche}</a></li>}
+      </ul>
+      <a href="/#demo" class="btn btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+  const bouton = menu?.querySelector<HTMLButtonElement>("[data-menu-bouton]");
+  const panneau = menu?.querySelector<HTMLElement>("[data-menu-panneau]");
+  const fleche = menu?.querySelector<SVGElement>("[data-menu-fleche]");
+
+  function basculer(ouvrir: boolean) {
+    if (!bouton || !panneau) return;
+    bouton.setAttribute("aria-expanded", String(ouvrir));
+    panneau.hidden = !ouvrir;
+    fleche?.classList.toggle("rotate-180", ouvrir);
+  }
+
+  bouton?.addEventListener("click", () => basculer(bouton.getAttribute("aria-expanded") !== "true"));
+  menu?.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && bouton?.getAttribute("aria-expanded") === "true") {
+      basculer(false);
+      bouton.focus();
+    }
+  });
+  menu?.addEventListener("focusout", (e) => {
+    if (!menu.contains(e.relatedTarget as Node | null)) basculer(false);
+  });
+  document.addEventListener("click", (e) => {
+    if (menu && !menu.contains(e.target as Node)) basculer(false);
+  });
+
+  const burger = document.querySelector<HTMLButtonElement>("[data-burger]");
+  const mobile = document.querySelector<HTMLElement>("[data-menu-mobile]");
+  function basculerMobile(ouvrir: boolean) {
+    if (!burger || !mobile) return;
+    burger.setAttribute("aria-expanded", String(ouvrir));
+    burger.setAttribute("aria-label", ouvrir ? "Fermer le menu" : "Ouvrir le menu");
+    mobile.hidden = !ouvrir;
+  }
+  burger?.addEventListener("click", () => basculerMobile(burger.getAttribute("aria-expanded") !== "true"));
+  mobile?.addEventListener("click", (e) => {
+    if ((e.target as Element).closest("a")) basculerMobile(false);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && burger?.getAttribute("aria-expanded") === "true") {
+      basculerMobile(false);
+      burger.focus();
+    }
+  });
+</script>

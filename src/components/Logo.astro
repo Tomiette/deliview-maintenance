@@ -1,0 +1,12 @@
+---
+// [À REMPLACER] par le fichier SVG officiel du logo (version bleue, version blanche sur aplat bleu).
+interface Props {
+  blanc?: boolean;
+  class?: string;
+}
+const { blanc = false, class: classe = "" } = Astro.props;
+---
+
+<span class:list={["font-accent text-[22px] font-bold tracking-tight md:text-2xl", blanc ? "text-white" : "text-blue", classe]}>
+  Deliview
+</span>

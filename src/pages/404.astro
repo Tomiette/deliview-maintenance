@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import { PILIERS } from "../content/piliers";
+---
+
+<Base title="Page introuvable | Deliview" description="Cette page n’existe pas ou a changé d’adresse." noindex>
+  <section class="container-dv py-24">
+    <h1 class="texte">Cette page n’existe pas</h1>
+    <p class="texte mt-6 text-lg">Elle a peut-être changé d’adresse. Voici les pages les plus utiles.</p>
+    <ul class="mt-8 space-y-3 font-semibold">
+      {PILIERS.map((p) => <li><a href={`/solution/${p.slug}`} class="underline underline-offset-2">{p.titre}</a></li>)}
+      <li><a href="/tarifs" class="underline underline-offset-2">Voir les tarifs</a></li>
+    </ul>
+    <a href="/#demo" class="btn btn-plein mt-10" data-cta="404">Demander une démo</a>
+  </section>
+</Base>

@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BarreDemo from "../components/BarreDemo.astro";
+import { SITE } from "../lib/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Fil d'Ariane (hors accueil) : dernier élément = page courante. */
+  ariane?: { nom: string; chemin: string }[];
+  jsonld?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const { title, description, ariane = [], jsonld = [], noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(/\/$/, "") || "/", SITE.url).href;
+const imageOg = new URL("/og.png", SITE.url).href;
+
+const organisation = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.nom,
+  url: SITE.url,
+  logo: new URL("/favicon.svg", SITE.url).href,
+  description: SITE.definition,
+  email: SITE.email,
+  sameAs: [SITE.linkedin.deliview].filter(Boolean),
+};
+const fil =
+  ariane.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [{ nom: "Accueil", chemin: "/" }, ...ariane].map((e, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: e.nom,
+          item: new URL(e.chemin, SITE.url).href,
+        })),
+      }
+    : null;
+const donnees = [organisation, ...(fil ? [fil] : []), ...jsonld];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/Aspekta-700.woff2" as="font" type="font/woff2" crossorigin />
+    <meta name="theme-color" content="#5282FF" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Deliview" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={imageOg} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {donnees.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#contenu" class="sr-only z-50 rounded-xl bg-white px-4 py-3 font-bold focus:not-sr-only focus:fixed focus:top-2 focus:left-2">
+      Aller au contenu
+    </a>
+    <Header />
+    <main id="contenu" class="flex-1">
+      {
+        ariane.length > 0 && (
+          <nav aria-label="Fil d’Ariane" class="container-dv pt-6 text-sm">
+            <ol class="flex flex-wrap gap-2 texte-secondaire">
+              <li>
+                <a href="/" class="underline underline-offset-2">Accueil</a>
+              </li>
+              {ariane.map((e, i) => (
+                <li class="flex gap-2">
+                  <span aria-hidden="true">/</span>
+                  {i === ariane.length - 1 ? (
+                    <span aria-current="page">{e.nom}</span>
+                  ) : (
+                    <a href={e.chemin} class="underline underline-offset-2">{e.nom}</a>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+      <slot />
+    </main>
+    <Footer />
+    <BarreDemo />
+    <script>
+      import "../lib/client/global";
+    </script>
+  </body>
+</html>

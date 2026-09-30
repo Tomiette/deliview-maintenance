@@ -1,0 +1,113 @@
+@import "@fontsource-variable/inter";
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aspekta";
+  src: url("/fonts/Aspekta-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Charte Deliview : 5 couleurs, pas une de plus. */
+@theme {
+  --color-*: initial;
+  --color-blue: #5282ff;
+  --color-blue-2: #5a8bf9;
+  --color-grey: #f5f5f7;
+  --color-white: #ffffff;
+  --color-grey-2: #4c4c4c;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-accent: "Aspekta", "Inter Variable", system-ui, sans-serif;
+
+  --shadow-card: 0 4px 16px rgb(76 76 76 / 0.06);
+}
+
+@layer base {
+  :root {
+    --dv-blue: var(--color-blue);
+    --dv-blue-2: var(--color-blue-2);
+    --dv-grey: var(--color-grey);
+    --dv-white: var(--color-white);
+    --dv-grey-2: var(--color-grey-2);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+  }
+  body {
+    @apply bg-white font-sans text-base leading-[1.6] text-grey-2 antialiased md:text-lg;
+  }
+  h1 {
+    @apply text-[36px] leading-[1.1] font-bold md:text-[56px];
+  }
+  h2 {
+    @apply text-[28px] leading-[1.15] font-bold md:text-[40px];
+  }
+  h3 {
+    @apply text-xl font-semibold md:text-2xl;
+  }
+  main p a {
+    @apply underline underline-offset-2;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer components {
+  .container-dv {
+    @apply mx-auto w-full max-w-[1200px] px-4 md:px-6;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .surtitre {
+    @apply font-accent text-[13px] font-semibold tracking-[0.08em] uppercase md:text-sm;
+  }
+  .texte {
+    @apply max-w-[70ch];
+  }
+  .texte-secondaire {
+    @apply text-grey-2/80;
+  }
+  /* Boutons : 19 px gras minimum, White sur Blue 1 (contraste 3,5:1, grand texte). */
+  .btn {
+    @apply inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl px-6 text-[19px] leading-tight font-bold transition-colors;
+  }
+  .btn-plein {
+    @apply bg-blue text-white hover:bg-blue-2;
+  }
+  .btn-contour {
+    @apply border-2 border-blue text-blue hover:border-blue-2 hover:text-blue-2;
+  }
+  .btn-blanc {
+    @apply bg-white text-blue hover:bg-grey;
+  }
+  .carte {
+    @apply rounded-2xl border border-grey-2/15 bg-white p-6 shadow-card md:p-8;
+  }
+  .a-remplacer {
+    @apply rounded-xl border-2 border-dashed border-grey-2/40 bg-grey p-4 text-sm font-semibold text-grey-2;
+  }
+}

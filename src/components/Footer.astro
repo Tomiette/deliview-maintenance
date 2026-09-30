@@ -1,0 +1,46 @@
+---
+import Logo from "./Logo.astro";
+import { PILIERS } from "../content/piliers";
+import { SITE } from "../lib/site";
+
+const annee = new Date().getFullYear();
+---
+
+<footer class="border-t border-grey-2/15 bg-white pb-24 lg:pb-0">
+  <div class="container-dv grid gap-10 py-16 md:grid-cols-4">
+    <div>
+      <Logo />
+      <p class="mt-3 max-w-[32ch] text-base texte-secondaire">{SITE.definition}</p>
+    </div>
+    <div>
+      <h2 class="surtitre">Solution</h2>
+      <ul class="mt-4 space-y-2 text-base">
+        {PILIERS.map((p) => <li><a href={`/solution/${p.slug}`} class="no-underline hover:underline">{p.surtitre}</a></li>)}
+        <li><a href="/integrations" class="no-underline hover:underline">Intégrations</a></li>
+        <li><a href="/tarifs" class="no-underline hover:underline">Tarifs</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="surtitre">Société</h2>
+      <ul class="mt-4 space-y-2 text-base">
+        <li><a href="/#fondateur" class="no-underline hover:underline">Qui sommes-nous</a></li>
+        <li><a href={`mailto:${SITE.email}`} class="no-underline hover:underline">{SITE.email}</a></li>
+        {SITE.telephone && <li><a href={`tel:${SITE.telephone.e164}`} class="no-underline hover:underline">{SITE.telephone.affiche}</a></li>}
+        {SITE.linkedin.deliview && <li><a href={SITE.linkedin.deliview} class="no-underline hover:underline">LinkedIn Deliview</a></li>}
+        {SITE.linkedin.tom && <li><a href={SITE.linkedin.tom} class="no-underline hover:underline">LinkedIn de Tom</a></li>}
+      </ul>
+    </div>
+    <div>
+      <h2 class="surtitre">Ressources</h2>
+      <ul class="mt-4 space-y-2 text-base">
+        <li><a href="/mentions-legales" class="no-underline hover:underline">Mentions légales</a></li>
+        <li><a href="/cgv" class="no-underline hover:underline">CGV</a></li>
+        <li><a href="/confidentialite" class="no-underline hover:underline">Politique de confidentialité</a></li>
+        <li><a href="/cookies" class="no-underline hover:underline">Cookies</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-dv border-t border-grey-2/15 py-6 text-sm texte-secondaire">
+    © {annee} Deliview. Uber Eats, Deliveroo et Uber Direct sont des marques de leurs propriétaires respectifs.
+  </div>
+</footer>
