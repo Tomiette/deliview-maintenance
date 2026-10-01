@@ -14,7 +14,7 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 
 ## Où changer quoi
 
-- Coordonnées, slogan, piliers, fonctionnalités et leur statut (« Bientôt »), plateformes : `src/lib/site.ts`
+- Coordonnées, slogan, définition, piliers, fonctionnalités, plateformes, offres : `src/lib/site.ts`. Le site ne présente que ce que Deliview fait aujourd'hui (décision de Tom, 2 octobre 2026) : pas d'étiquette « Bientôt », pas d'Uber Direct.
 - Slogan définitif : « Le partenaire des restaurants en livraison » (`SITE.slogan`) : hero, pied de page, Qui sommes-nous, données structurées
 - Offres et prix (Essentiel, Pro, Premium) : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, le hero, le simulateur et les données structurées suivent
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
@@ -28,7 +28,7 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Illustrations générées par IA (Canva) : `public/images/ia/<nom>-<largeur>.webp`, déclarées dans `IMAGES_IA` (`src/lib/site.ts`),
   affichées par `PhotoIA.astro` avec la mention visible « Illustration générée par IA ». Jamais présentées comme des clients.
   Versions HD exportées du design Canva « Deliview site – images IA (export) » (800 et 1536 px, livreur 960 et 1680 px).
-- Logos Uber Eats, Deliveroo, Uber Direct : déposer les fichiers officiels dans `src/assets/logos/` (voir le LISEZMOI du dossier).
+- Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés à côté du nom dans le bandeau « Fonctionne avec » et sur la page Intégrations.
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.
 - Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`).
   Les blocs `<script>`, `<style>`, `<pre>` et `<code>` sont mis de côté avant : le CSS minifié peut contenir `<` (`@media (width<=767px)`).
