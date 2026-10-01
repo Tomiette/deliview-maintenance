@@ -26,7 +26,9 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Captures : `public/images/capture-*.webp` (données de démonstration, noms de restaurants modifiés).
   `capture-tableau-*` : tableau de bord (Uber Eats et Deliveroo côte à côte), affiché dans un cadre de tablette (`CaptureTablette.astro`)
 - Illustrations générées par IA (Canva) : `public/images/ia/<nom>-<largeur>.webp`, déclarées dans `IMAGES_IA` (`src/lib/site.ts`),
-  affichées par `PhotoIA.astro` avec la mention visible « Illustration générée par IA ». Jamais présentées comme des clients.
+  affichées par `PhotoIA.astro` sans mention sur l'image (choix de Tom, 2 octobre 2026) ; leur origine est indiquée dans les mentions légales. Jamais présentées comme des clients.
+- Sous les vidéos et les images : aucun micro-texte (légendes, « données de démonstration », mention IA). Les précisions utiles
+  passent dans le texte alternatif ou dans un bloc réservé aux lecteurs d'écran (contenu de la vidéo).
   Versions HD exportées du design Canva « Deliview site – images IA (export) » (800 et 1536 px, livreur 960 et 1680 px).
 - Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés à côté du nom dans le bandeau « Fonctionne avec » et sur la page Intégrations.
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.

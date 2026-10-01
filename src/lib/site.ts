@@ -28,8 +28,8 @@ export function lien(chemin: string): string {
   return base + (chemin.startsWith('/') ? chemin : '/' + chemin);
 }
 
-// Illustrations générées par IA (Canva). Toujours affichées avec la mention « Illustration générée par IA » :
-// elles montrent des situations de restaurateurs, jamais des clients de Deliview.
+// Illustrations générées par IA (Canva), sans mention sur l'image depuis le 2 octobre 2026 (choix de Tom) ;
+// leur origine est indiquée dans les mentions légales. Elles montrent des situations de restaurateurs, jamais des clients de Deliview.
 // `largeurs` : fichiers présents dans public/images/ia/<nom>-<largeur>.webp.
 export const IMAGES_IA = {
   'rush-tablettes': { largeurs: [800, 1536], largeur: 1536, hauteur: 1024 },

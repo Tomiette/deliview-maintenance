@@ -1,5 +1,6 @@
 ---
-// Illustration générée par IA, toujours avec sa mention visible « Illustration générée par IA ».
+// Illustration générée par IA (Canva), affichée sans mention sur l'image (choix de Tom, 2 octobre 2026) :
+// leur origine est indiquée dans les mentions légales.
 // Elle montre une situation de restaurateur, jamais un client de Deliview ni une capture de l'app.
 import { IMAGES_IA, lien, type ImageIA } from '../lib/site';
 
@@ -37,7 +38,6 @@ const defaut = `${base}-${largeurs[largeurs.length - 1]}.webp`;
     decoding="async"
     style={ratio ? `aspect-ratio: ${ratio}` : undefined}
   />
-  <figcaption class="dv-photo-ia-mention">Illustration générée par IA</figcaption>
 </figure>
 
 <style>
@@ -56,18 +56,5 @@ const defaut = `${base}-${largeurs[largeurs.length - 1]}.webp`;
     width: 100%;
     height: auto;
     object-fit: cover;
-  }
-  /* Mention lisible sur n'importe quelle photo : Grey 2 sur pastille blanche (8,6:1). */
-  .dv-photo-ia-mention {
-    position: absolute;
-    left: 12px;
-    bottom: 12px;
-    padding: 2px 10px;
-    border-radius: 999px;
-    background: var(--color-white);
-    color: var(--color-grey-2);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.6;
   }
 </style>

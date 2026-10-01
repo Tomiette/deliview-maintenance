@@ -1,9 +1,10 @@
 ---
 // Hero de l'accueil : vidéo de présentation en paysage (16:9), à droite du texte (comme Flynt).
-// 1 min 10, sans voix off, avec musique. Seul l'aperçu (45 Ko) se charge avec la page ; la vidéo
+// 1 min 10, sans voix off, avec musique. Seule la couverture fournie par Tom (52 Ko) se charge avec la page ; la vidéo
 // (5 à 7 Mo) ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
 // Toute l'image est cliquable ; la pastille blanche « Voir la vidéo » laisse au hero un seul bouton plein.
-// Sans JavaScript, les contrôles natifs restent affichés. Le texte de la vidéo est repris dessous.
+// Sans JavaScript, les contrôles natifs restent affichés. Aucun texte sous la vidéo : son contenu
+// reste disponible pour les lecteurs d'écran (bloc masqué à l'écran, relié par aria-describedby).
 import { lien } from '../lib/site';
 
 interface Props {
@@ -36,7 +37,7 @@ const texte = [
         preload="none"
         width="1920"
         height="1080"
-        poster={lien('/video/deliview-video-hero-16x9.webp')}
+        poster={lien('/video/deliview-video-couverture-16x9.webp')}
         aria-label="Vidéo de présentation de Deliview, 1 minute 10, sans voix off"
         aria-describedby="hv-legende"
       >
@@ -53,14 +54,14 @@ const texte = [
         </span>
       </button>
     </div>
-    <figcaption id="hv-legende" class="hv-legende">1&nbsp;min&nbsp;10 · Restaurants et chiffres d’exemple</figcaption>
   </figure>
-  <details class="hv-texte">
-    <summary>Lire le contenu de la vidéo</summary>
+  <!-- Contenu de la vidéo pour les lecteurs d'écran uniquement : rien n'est affiché sous la vidéo. -->
+  <div id="hv-legende" class="sr-only">
+    <p>Restaurants et chiffres d’exemple. Contenu de la vidéo&nbsp;:</p>
     <ol>
       {texte.map((t) => <li>{t}</li>)}
     </ol>
-  </details>
+  </div>
 </div>
 
 <script>
@@ -122,11 +123,11 @@ const texte = [
   .hv-lire[hidden] {
     display: none;
   }
-  /* Pastille placée dans la colonne gauche de l'aperçu, sous « 12 concurrents détectés » ; elle suit la taille de la vidéo. */
+  /* Pastille placée dans la colonne gauche de la couverture, sous « pour vous convaincre » ; elle suit la taille de la vidéo. */
   .hv-pastille {
     position: absolute;
     left: 22.9%;
-    top: 68%;
+    top: 79.5%;
     transform: translateX(-50%);
     display: inline-flex;
     align-items: center;
@@ -175,35 +176,6 @@ const texte = [
   .hv-icone svg {
     width: 55%;
     height: 55%;
-  }
-  .hv-legende {
-    margin-top: 12px;
-    text-align: center;
-    font-size: 14px;
-    color: color-mix(in srgb, var(--color-grey-2) 82%, transparent);
-  }
-  .hv-texte {
-    margin-top: 6px;
-    text-align: center;
-    font-size: 14px;
-  }
-  .hv-texte summary {
-    display: inline-block;
-    cursor: pointer;
-    font-weight: 600;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .hv-texte ol {
-    margin: 12px auto 0;
-    max-width: 60ch;
-    padding-left: 1.25em;
-    list-style: decimal;
-    text-align: left;
-    color: color-mix(in srgb, var(--color-grey-2) 82%, transparent);
-  }
-  .hv-texte li + li {
-    margin-top: 6px;
   }
   @media (max-width: 767px) {
     .hv-cadre {

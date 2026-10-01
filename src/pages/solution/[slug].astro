@@ -8,7 +8,7 @@ import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Icone from '../../components/Icone.astro';
-import { PILIERS, SITE, dateFr, jsonldLogiciel, lien, type Pilier } from '../../lib/site';
+import { PILIERS, SITE, jsonldLogiciel, lien, type Pilier } from '../../lib/site';
 
 export function getStaticPaths() {
   return PILIERS.map((p) => ({ params: { slug: p.slug }, props: { pilier: p } }));
@@ -195,7 +195,6 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
                   </a>
                 </h3>
                 <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
-                <p class="mt-4 text-[14px] dv-muted">Mis à jour le {dateFr(a.data.misAJourLe)}</p>
               </li>
             ))}
           </ul>

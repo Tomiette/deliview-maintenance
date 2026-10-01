@@ -36,8 +36,7 @@ const champ = 'block w-full rounded-[12px] border border-grey-2/30 bg-white px-4
 
     <div>
       <label for="dv-telephone" class="block font-semibold text-[16px]">Téléphone</label>
-      <p id="dv-telephone-aide" class="mt-1 text-[15px] dv-muted">Pour que Tom vous rappelle sous 24&nbsp;h.</p>
-      <input id="dv-telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\(\)\.\-]{10,20}" maxlength="40" class={champ + ' mt-2'} aria-describedby="dv-telephone-aide dv-telephone-erreur" />
+      <input id="dv-telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\(\)\.\-]{10,20}" maxlength="40" class={champ + ' mt-2'} aria-describedby="dv-telephone-erreur" />
       <p id="dv-telephone-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Ce numéro semble incomplet. Vérifiez qu’il a bien 10 chiffres."></p>
     </div>
 

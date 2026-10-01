@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import { PILIERS, PLATEFORMES, SITE } from '../lib/site';
 
 // Date de la dernière modification des pages fixes (à changer quand leur contenu change).
-const PAGES_MAJ = '2026-10-01';
+const PAGES_MAJ = '2026-10-02';
 
 export const GET: APIRoute = async () => {
   const articles = await getCollection('ressources', (a) => !a.data.brouillon);

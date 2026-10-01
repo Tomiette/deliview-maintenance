@@ -8,7 +8,7 @@ import BandeauPlateformes from '../components/BandeauPlateformes.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Icone from '../components/Icone.astro';
-import { PILIERS, PRIX_ENTREE, SITE, THEMES, dateFr, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
+import { PILIERS, PRIX_ENTREE, SITE, THEMES, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
   .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
@@ -77,7 +77,7 @@ const video = {
   '@type': 'VideoObject',
   name: 'Deliview en 1 minute',
   description: 'Présentation de Deliview : vos fiches Uber Eats et Deliveroo réunies, la veille de vos concurrents, un prix suggéré pour chaque plat et les alertes.',
-  thumbnailUrl: SITE.url + '/video/deliview-video-hero-16x9.webp',
+  thumbnailUrl: SITE.url + '/video/deliview-video-couverture-16x9.webp',
   uploadDate: '2026-10-01',
   duration: 'PT1M10S',
   contentUrl: SITE.url + '/video/deliview-video-16x9.mp4',
@@ -91,7 +91,7 @@ const video = {
   title="Logiciel restaurant Uber Eats et Deliveroo | Deliview"
   description={description}
   jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
-  precharger="/video/deliview-video-hero-16x9.webp"
+  precharger="/video/deliview-video-couverture-16x9.webp"
 >
   <!-- Hero : promesse de rentabilité, deux boutons, réducteur de risque, vidéo de présentation à droite. -->
   <section class="relative overflow-hidden bg-white">
@@ -222,7 +222,6 @@ const video = {
             Simulez votre gain en moins d’une minute <Icone nom="fleche" taille={20} />
           </a>
         </p>
-        <p class="mt-2 text-[15px] italic dv-muted">Faites le test&nbsp;: Deliview est sans engagement.</p>
       </div>
       <ul class="grid gap-x-10 sm:grid-cols-2">
         {
@@ -238,7 +237,7 @@ const video = {
     </div>
   </section>
 
-  <!-- Pour qui : les trois profils de la cible, illustrés (IA, mention visible). -->
+  <!-- Pour qui : les trois profils de la cible, illustrés (images IA, origine indiquée dans les mentions légales). -->
   <section id="pour-qui" class="dv-section bg-white" aria-labelledby="cibles-titre">
     <div class="dv-container">
       <p class="dv-overline dv-muted">Pour qui</p>
@@ -289,7 +288,6 @@ const video = {
                   </a>
                 </h3>
                 <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
-                <p class="mt-4 text-[14px] dv-muted">Mis à jour le {dateFr(a.data.misAJourLe)}</p>
               </li>
             ))}
           </ul>

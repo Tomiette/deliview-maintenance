@@ -3,7 +3,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
-import { THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+import { PILIERS, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
 const parTheme = Object.entries(THEMES)
@@ -53,9 +53,16 @@ const description =
         <div class="dv-container">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <h2 id={`theme-${t.slug}`} class="dv-h2">{t.nom}</h2>
-            <a href={lien(`/solution/${t.slug}/`)} class="font-bold underline underline-offset-4">
-              Voir {t.nom.toLowerCase()} dans Deliview
-            </a>
+            {/* Thème sans page pilier (« Commandes et opérations ») : Deliview ne gère pas les commandes, le lien mène à la vue d'ensemble. */}
+            {PILIERS.some((p) => p.slug === t.slug) ? (
+              <a href={lien(`/solution/${t.slug}/`)} class="font-bold underline underline-offset-4">
+                Voir {t.nom.toLowerCase()} dans Deliview
+              </a>
+            ) : (
+              <a href={lien('/solution/')} class="font-bold underline underline-offset-4">
+                Voir ce que fait Deliview
+              </a>
+            )}
           </div>
           <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {t.articles.map((a) => (

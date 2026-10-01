@@ -1,5 +1,6 @@
 ---
-// Capture réelle de l'app Deliview présentée sur une tablette (paysage, 16:10), avec la mention « données de démonstration ».
+// Capture réelle de l'app Deliview présentée sur une tablette (paysage, 16:10), sans légende sous l'image :
+// le texte alternatif précise qu'il s'agit de données de démonstration.
 // Le cadre est dessiné en CSS (Grey 2) : aucune photo d'appareil, aucune marque.
 import { lien } from '../lib/site';
 
@@ -37,7 +38,7 @@ const srcset = largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
         src={`${base}-${largeurs[largeurs.length - 1]}.webp`}
         srcset={srcset}
         sizes={sizes}
-        alt={alt}
+        alt={`${alt} (données de démonstration)`}
         width={largeur}
         height={hauteur}
         loading={priorite ? 'eager' : 'lazy'}
@@ -46,7 +47,6 @@ const srcset = largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
       />
     </div>
   </div>
-  <figcaption class="dv-tablette-legende">Capture de l’app Deliview · données de démonstration</figcaption>
 </figure>
 
 <style>
@@ -80,11 +80,5 @@ const srcset = largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
     display: block;
     width: 100%;
     height: auto;
-  }
-  .dv-tablette-legende {
-    margin-top: 12px;
-    text-align: center;
-    font-size: 14px;
-    color: color-mix(in srgb, var(--color-grey-2) 82%, transparent);
   }
 </style>
