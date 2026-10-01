@@ -19,18 +19,18 @@ export function typo(t) {
 }
 
 export function typoHtml(html) {
-  let dans = null;
-  return html
-    .split(/(<[^>]+>)/)
-    .map((morceau) => {
-      if (morceau.startsWith('<')) {
-        const m = /^<(\/?)(script|style|pre|code|textarea)\b/i.exec(morceau);
-        if (m) dans = m[1] ? null : m[2].toLowerCase();
-        return morceau;
-      }
-      return dans ? morceau : typo(morceau);
-    })
-    .join('');
+  // Les blocs <script>, <style>, <pre>, <code> et <textarea> sont mis de côté en entier avant le découpage :
+  // le CSS minifié peut contenir « < » (@media (width<=767px)), qui fausserait le repérage des balises.
+  const proteges = [];
+  const masque = html.replace(/<(script|style|pre|code|textarea)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, (bloc) => {
+    proteges.push(bloc);
+    return `\u0000${proteges.length - 1}\u0000`;
+  });
+  return masque
+    .split(/(<[^>]*>)/)
+    .map((morceau) => (morceau.startsWith('<') ? morceau : typo(morceau)))
+    .join('')
+    .replace(/\u0000(\d+)\u0000/g, (_, i) => proteges[Number(i)]);
 }
 
 export function typoDossier(dossier) {

@@ -1,7 +1,9 @@
 ---
 // Icônes au trait, dessinées pour le site (pas de bibliothèque) ; toujours décoratives (aria-hidden).
+import type { NomIcone } from '../lib/site';
+
 interface Props {
-  nom: 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge' | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe' | 'tablette';
+  nom: NomIcone;
   taille?: number;
   class?: string;
 }
@@ -24,6 +26,9 @@ const traces: Record<Props['nom'], string> = {
   plateformes: '<rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/>',
   europe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
   tablette: '<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M11 16h2"/>',
+  oeil: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  courbe: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+  calcul: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01"/>',
 };
 ---
 

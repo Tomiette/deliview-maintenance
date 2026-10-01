@@ -14,17 +14,24 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 
 ## Où changer quoi
 
-- Coordonnées, piliers, fonctionnalités et leur statut (« Bientôt »), plateformes : `src/lib/site.ts`
+- Coordonnées, slogan, piliers, fonctionnalités et leur statut (« Bientôt »), plateformes : `src/lib/site.ts`
+- Slogan définitif : « Le partenaire des restaurants en livraison » (`SITE.slogan`) : hero, pied de page, Qui sommes-nous, données structurées
+- Offres et prix (Essentiel, Pro, Premium) : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, le hero, le simulateur et les données structurées suivent
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
+- Polices : titres en Aspekta (police du logo), texte, boutons et menus en Inter
+- Hero de l'accueil : vidéo 16:9 (`HeroVideo.astro`, fichiers dans `public/video/`), chargée au clic seulement
+- Simulateur de rentabilité : `src/pages/simulateur.astro` (calcul dans le navigateur, rien n'est envoyé)
+- Pied de page : bandeau photo « Prêt à… » puis colonnes Solution / Pour qui / Ressources (`Footer.astro`)
 - Articles : un fichier Markdown par article dans `src/content/ressources/` (format dans `src/content.config.ts`)
 - Captures : `public/images/capture-*.webp` (données de démonstration, noms de restaurants modifiés).
   `capture-tableau-*` : tableau de bord (Uber Eats et Deliveroo côte à côte), affiché dans un cadre de tablette (`CaptureTablette.astro`)
 - Illustrations générées par IA (Canva) : `public/images/ia/<nom>-<largeur>.webp`, déclarées dans `IMAGES_IA` (`src/lib/site.ts`),
   affichées par `PhotoIA.astro` avec la mention visible « Illustration générée par IA ». Jamais présentées comme des clients.
-  Versions actuelles en 533 à 600 px : pour passer en HD, déposer les fichiers `-800` et `-1600` et mettre à jour `largeurs`.
+  Versions HD exportées du design Canva « Deliview site – images IA (export) » (800 et 1536 px, livreur 960 et 1680 px).
 - Logos Uber Eats, Deliveroo, Uber Direct : déposer les fichiers officiels dans `src/assets/logos/` (voir le LISEZMOI du dossier).
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.
-- Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`)
+- Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`).
+  Les blocs `<script>`, `<style>`, `<pre>` et `<code>` sont mis de côté avant : le CSS minifié peut contenir `<` (`@media (width<=767px)`).
 
 ## Formulaire de démo
 

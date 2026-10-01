@@ -3,55 +3,65 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import CaptureTablette from '../components/CaptureTablette.astro';
 import PhotoIA from '../components/PhotoIA.astro';
-import DeliviewVideo from '../components/DeliviewVideo.astro';
+import HeroVideo from '../components/HeroVideo.astro';
 import BandeauPlateformes from '../components/BandeauPlateformes.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Icone from '../components/Icone.astro';
-import { PILIERS, SITE, THEMES, dateFr, jsonldLogiciel, libelleStatut, lien, type ImageIA } from '../lib/site';
+import { PILIERS, PRIX_ENTREE, SITE, THEMES, dateFr, jsonldLogiciel, libelleStatut, lien, type ImageIA, type NomIcone } from '../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
   .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
   .slice(0, 3);
 
-const douleurs = [
+const douleurs: { icone: NomIcone; titre: string; texte: string }[] = [
   {
-    icone: 'tablette' as const,
+    icone: 'tablette',
     titre: 'Deux tablettes, deux cartes',
     texte: 'Deux grilles de prix à tenir à jour, et des écarts entre vos deux fiches qui passent inaperçus.',
   },
   {
-    icone: 'prix' as const,
+    icone: 'prix',
     titre: 'Des prix fixés à l’instinct',
     texte: 'Relever les prix des voisins, vérifier les tailles, recommencer sur l’autre plateforme : personne n’a le temps entre deux services.',
   },
   {
-    icone: 'promo' as const,
+    icone: 'promo',
     titre: 'Des promos repérées après coup',
     texte: 'Un voisin lance une offre le vendredi soir. Vous la découvrez souvent la semaine suivante, en regardant vos ventes.',
   },
 ];
 
 const etapes = [
-  { titre: 'Donnez le nom et la ville de votre restaurant', texte: 'Deliview retrouve vos fiches Uber Eats et Deliveroo.' },
-  { titre: 'Deliview réunit vos deux fiches et lit votre zone', texte: 'Vos prix, votre note et vos offres, face à jusqu’à 10 restaurants de votre secteur, sur les deux plateformes.' },
-  { titre: 'Vous ajustez, plat par plat', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez.' },
+  { titre: 'Récupération de vos données', texte: 'Le nom et la ville de votre restaurant suffisent : Deliview retrouve vos fiches Uber Eats et Deliveroo.' },
+  { titre: 'Comparaison avec votre zone', texte: 'Vos prix, votre note et vos offres face à jusqu’à 10 restaurants de votre secteur, sur les deux plateformes.' },
+  { titre: 'Les bons prix, plat par plat', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez.' },
 ];
 
-const cibles: { nom: ImageIA; titre: string; texte: string; alt: string }[] = [
+const benefices: { icone: NomIcone; titre: string; texte: string }[] = [
+  { icone: 'oeil', titre: 'Voyez votre zone comme vos clients', texte: 'Vos prix, vos notes et vos promos face à ceux des restaurants qui livrent les mêmes rues.' },
+  { icone: 'courbe', titre: 'Vendez chaque plat au bon prix', texte: 'Les plats vendus trop bas repérés, un prix proposé avec ses sources et ce qu’il rapporte pour 100 ventes.' },
+  { icone: 'alerte', titre: 'Réagissez dès qu’un voisin bouge', texte: 'Nouvelle promo, prix changé, nouveau concurrent : vous le voyez à chaque analyse.' },
+  { icone: 'horloge', titre: 'Arrêtez les relevés à la main', texte: 'Plus besoin d’ouvrir les fiches une par une, sur deux applications, entre deux services.' },
+];
+
+const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: string }[] = [
   {
+    id: 'pizzerias',
     nom: 'pizzeria',
     titre: 'Pizzerias',
     texte: 'Chaque pizza comparée aux pizzas de même taille autour de vous, sur Uber Eats comme sur Deliveroo.',
     alt: 'Pizzaiolo qui enfourne une pizza dans un four à bois, une tablette de commande posée sur le comptoir',
   },
   {
+    id: 'burgers-snacks',
     nom: 'burger',
     titre: 'Burgers et snacks',
     texte: 'Burgers, menus, boissons : chaque article comparé au même article chez les restaurants de votre zone.',
     alt: 'Employée qui ferme un sac de livraison au comptoir d’un restaurant de burgers, à côté d’une tablette de commande',
   },
   {
+    id: 'dark-kitchens',
     nom: 'dark-kitchen',
     titre: 'Dark kitchens',
     texte: 'Sans salle ni vitrine, tout se joue sur la fiche : vos prix et votre note face à vos voisins, sur les deux plateformes.',
@@ -59,58 +69,46 @@ const cibles: { nom: ImageIA; titre: string; texte: string; alt: string }[] = [
   },
 ];
 
-const benefices = [
-  'Vos deux fiches réunies au même endroit',
-  'Les plats vendus trop bas repérés',
-  'Un prix proposé, avec ses sources',
-  'Plus de relevés de prix à la main',
-];
-
-const description =
-  'Vos données Uber Eats et Deliveroo sur une seule tablette : vos prix face à votre zone, plat par plat, pour une livraison plus rentable. Démo de 15 min.';
+const description = `Augmentez votre rentabilité sur Uber Eats et Deliveroo : vos données sur une seule tablette, vos prix face à vos concurrents. Dès ${PRIX_ENTREE} € HT par mois.`;
 
 const video = {
   '@context': 'https://schema.org',
   '@type': 'VideoObject',
   name: 'Deliview en 1 minute',
   description: 'Présentation de Deliview : vos fiches Uber Eats et Deliveroo réunies, la veille de vos concurrents, un prix suggéré pour chaque plat et les alertes.',
-  thumbnailUrl: SITE.url + '/video/deliview-video-apercu.webp',
+  thumbnailUrl: SITE.url + '/video/deliview-video-hero-16x9.webp',
   uploadDate: '2026-10-01',
   duration: 'PT1M10S',
-  contentUrl: SITE.url + '/video/deliview-video.mp4',
+  contentUrl: SITE.url + '/video/deliview-video-16x9.mp4',
+  width: 1920,
+  height: 1080,
   inLanguage: 'fr-FR',
 };
 ---
 
-<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}>
-  <!-- Hero : promesse, deux boutons, réducteur de risque, capture réelle présentée sur une tablette. -->
+<Base
+  title="Logiciel restaurant Uber Eats et Deliveroo | Deliview"
+  description={description}
+  jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
+  precharger="/video/deliview-video-hero-16x9.webp"
+>
+  <!-- Hero : promesse de rentabilité, deux boutons, réducteur de risque, vidéo de présentation à droite. -->
   <section class="relative overflow-hidden bg-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[560px] w-[560px] rounded-full bg-blue-2/12 md:block"></div>
-    <div class="dv-container relative grid gap-x-12 gap-y-5 pb-14 pt-6 md:pb-20 md:pt-14 lg:grid-cols-[minmax(0,540px)_1fr] [grid-template-areas:'titre'_'actions'_'capture'] lg:[grid-template-areas:'titre_capture'_'actions_capture']">
-      <div class="[grid-area:titre] lg:self-end">
-        <p class="dv-overline dv-muted hidden md:block">Pour les restaurants sur Uber Eats et Deliveroo</p>
-        <h1 class="dv-h1 md:mt-4 max-w-[17ch]">Vos données Uber Eats et Deliveroo sur une seule tablette</h1>
-        <p class="dv-lead mt-4 max-w-[46ch]">Vos prix, vos notes et ceux de vos concurrents au même endroit, pour améliorer la rentabilité de votre activité livraison. Bientôt, vos commandes aussi.</p>
-      </div>
-      <div class="[grid-area:capture] mt-3 lg:mt-0 lg:self-center">
-        <CaptureTablette
-          src="/images/capture-tableau"
-          largeurs={[800, 1300]}
-          largeur={1300}
-          hauteur={812}
-          alt="Tableau de bord Deliview sur une tablette : vos fiches Uber Eats et Deliveroo côte à côte, avec votre note, votre prix médian et votre rang dans la zone, puis les actions à fort impact plat par plat"
-          priorite
-        />
-      </div>
-      <div class="[grid-area:actions] lg:self-start">
-        <div class="flex flex-col gap-3 sm:flex-row">
+    <div class="dv-container relative grid items-center gap-x-12 gap-y-10 pb-14 pt-8 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+      <div>
+        <p class="dv-overline dv-muted">{SITE.slogan}</p>
+        <h1 class="dv-h1 mt-3 md:mt-4 max-w-[15ch]">Augmentez votre rentabilité sur Uber Eats et Deliveroo</h1>
+        <p class="dv-lead mt-5 max-w-[48ch]">Deliview réunit vos données livraison sur une seule tablette, compare vos prix à ceux de vos concurrents plat par plat et vous dit quoi ajuster.</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta="hero" data-cta-principal>Demander une démo</a>
-          <a href="#comment-ca-marche" class="dv-btn dv-btn-contour hidden sm:inline-flex sm:whitespace-nowrap">Voir comment ça marche</a>
+          <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Simuler ma rentabilité</a>
         </div>
         <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-semibold">
-          <span>15&nbsp;min</span><span aria-hidden="true">·</span><span>Sans engagement</span><span aria-hidden="true">·</span><span>Mise en place faite avec vous</span>
+          <span>Sans engagement</span><span aria-hidden="true">·</span><span>Mise en place offerte</span><span aria-hidden="true">·</span><span>Dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</span>
         </p>
       </div>
+      <HeroVideo />
     </div>
   </section>
 
@@ -148,7 +146,7 @@ const video = {
     </div>
   </section>
 
-  <!-- Comment ça marche : trois étapes numérotées + vidéo de présentation. -->
+  <!-- Comment ça marche : trois étapes numérotées + vraie capture du tableau de bord sur tablette. -->
   <section id="comment-ca-marche" class="dv-section bg-grey" aria-labelledby="etapes-titre">
     <div class="dv-container grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
       <div>
@@ -174,47 +172,34 @@ const video = {
           </a>
         </p>
       </div>
-      <DeliviewVideo />
-    </div>
-  </section>
-
-  <!-- Pour qui : les trois profils de la cible, illustrés (IA, mention visible). -->
-  <section class="dv-section bg-white" aria-labelledby="cibles-titre">
-    <div class="dv-container">
-      <p class="dv-overline dv-muted">Pour qui</p>
-      <h2 id="cibles-titre" class="dv-h2 mt-3 max-w-[24ch]">Pour les restaurants qui comptent sur Uber Eats et Deliveroo</h2>
-      <p class="dv-lead mt-4 max-w-[60ch]">Indépendants, dark kitchens ou petites chaînes&nbsp;: chaque plat est comparé au même plat chez les restaurants de votre zone.</p>
-      <ul class="mt-10 grid gap-6 md:grid-cols-3">
-        {
-          cibles.map((c) => (
-            <li class="dv-card flex flex-col overflow-hidden">
-              <PhotoIA nom={c.nom} alt={c.alt} sizes="(min-width: 1200px) 370px, (min-width: 768px) 31vw, 100vw" ratio="4 / 3" cadre="carte" />
-              <div class="p-6">
-                <h3 class="dv-h3">{c.titre}</h3>
-                <p class="mt-2 dv-muted">{c.texte}</p>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="mt-8 font-semibold">Plusieurs établissements&nbsp;? Chacun est comparé aux restaurants de sa propre zone.</p>
+      <CaptureTablette
+        src="/images/capture-tableau"
+        largeurs={[800, 1300]}
+        largeur={1300}
+        hauteur={812}
+        alt="Tableau de bord Deliview sur une tablette : vos fiches Uber Eats et Deliveroo côte à côte, avec votre note, votre prix médian et votre rang dans la zone, puis les actions à fort impact plat par plat"
+        sizes="(min-width: 1200px) 620px, (min-width: 1024px) 50vw, 100vw"
+      />
     </div>
   </section>
 
   <!-- Les 4 piliers, chacun avec sa page. -->
-  <section class="dv-section bg-grey" aria-labelledby="piliers-titre">
+  <section class="dv-section bg-white" aria-labelledby="piliers-titre">
     <div class="dv-container">
-      <p class="dv-overline dv-muted">Ce que fait Deliview</p>
+      <p class="dv-overline dv-muted">Nos fonctionnalités</p>
       <h2 id="piliers-titre" class="dv-h2 mt-3 max-w-[24ch]">Vos prix, votre carte, votre note, et bientôt vos commandes</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-2">
         {
           PILIERS.map((p) => (
             <li class="dv-card flex flex-col p-6 md:p-8">
               <div class="flex flex-wrap items-center gap-3">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
+                  <Icone nom={p.icone} taille={22} />
+                </span>
                 <p class="dv-overline">{p.surtitre}</p>
                 <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(p.statut)}</span>
               </div>
-              <h3 class="dv-h3 mt-3">{p.titre}</h3>
+              <h3 class="dv-h3 mt-4">{p.titre}</h3>
               <p class="mt-2 flex-1 dv-muted">{p.phrase}</p>
               <a href={lien(`/solution/${p.slug}/`)} class="mt-5 inline-flex items-center gap-2 font-bold underline underline-offset-4">
                 Voir {p.surtitre.toLowerCase()} <Icone nom="fleche" taille={18} />
@@ -226,31 +211,56 @@ const video = {
     </div>
   </section>
 
-  <!-- Aplat Blue 1 (un seul par page) : texte en grand uniquement (contraste 3,5:1). -->
-  <section class="bg-blue text-white" aria-labelledby="benefices-titre">
-    <div class="dv-container dv-section grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+  <!-- Bénéfices + simulateur (motif Flynt) : à gauche l'appel au simulateur, à droite 4 bénéfices sans chiffre inventé. -->
+  <section class="dv-section bg-grey" aria-labelledby="benefices-titre">
+    <div class="dv-container grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
-        <h2 id="benefices-titre" class="dv-h2 max-w-[20ch]">Une livraison plus rentable, plat par plat</h2>
-        <ul class="mt-10 space-y-6">
-          {
-            benefices.map((b) => (
-              <li class="flex items-start gap-4 text-[24px] font-semibold leading-snug">
-                <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-blue">
-                  <Icone nom="check" taille={22} />
-                </span>
-                {b}
-              </li>
-            ))
-          }
-        </ul>
-        <a href="#demo" class="dv-btn dv-btn-blanc mt-10" data-cta="bandeau">Demander une démo</a>
+        <p class="inline-flex rounded-[10px] border-2 border-blue px-4 py-1.5 dv-overline">Simulateur de rentabilité</p>
+        <h2 id="benefices-titre" class="dv-h2 mt-5 max-w-[16ch]">Vos prix, votre premier levier de rentabilité</h2>
+        <p class="mt-8">
+          <a href={lien('/simulateur/')} class="inline-flex items-center gap-2 text-[19px] font-bold text-blue underline-offset-4 hover:underline">
+            Simulez votre gain en moins d’une minute <Icone nom="fleche" taille={20} />
+          </a>
+        </p>
+        <p class="mt-2 text-[15px] italic dv-muted">Faites le test&nbsp;: Deliview est sans engagement.</p>
       </div>
-      <PhotoIA
-        nom="une-tablette"
-        alt="Chef en tablier qui consulte une tablette dans sa cuisine, à côté de sacs de livraison isothermes"
-        sizes="(min-width: 1200px) 500px, (min-width: 1024px) 42vw, 100vw"
-        ratio="3 / 2"
-      />
+      <ul class="grid gap-x-10 sm:grid-cols-2">
+        {
+          benefices.map((b, i) => (
+            <li class={`border-grey-2/20 py-6 ${i === 1 ? 'border-t sm:border-t-0' : i >= 2 ? 'border-t' : ''}`}>
+              <span class="text-blue"><Icone nom={b.icone} taille={26} /></span>
+              <h3 class="dv-h3 mt-3">{b.titre}</h3>
+              <p class="mt-2 text-[16px] dv-muted">{b.texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Pour qui : les trois profils de la cible, illustrés (IA, mention visible). -->
+  <section id="pour-qui" class="dv-section bg-white" aria-labelledby="cibles-titre">
+    <div class="dv-container">
+      <p class="dv-overline dv-muted">Pour qui</p>
+      <h2 id="cibles-titre" class="dv-h2 mt-3 max-w-[24ch]">Pour les restaurants qui comptent sur Uber Eats et Deliveroo</h2>
+      <p class="dv-lead mt-4 max-w-[60ch]">Indépendants, dark kitchens ou petites chaînes&nbsp;: chaque plat est comparé au même plat chez les restaurants de votre zone.</p>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          cibles.map((c) => (
+            <li id={c.id} class="dv-card flex flex-col overflow-hidden scroll-mt-28">
+              <PhotoIA nom={c.nom} alt={c.alt} sizes="(min-width: 1200px) 370px, (min-width: 768px) 31vw, 100vw" ratio="4 / 3" cadre="carte" />
+              <div class="p-6">
+                <h3 class="dv-h3">{c.titre}</h3>
+                <p class="mt-2 dv-muted">{c.texte}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p id="chaines" class="mt-8 scroll-mt-28 font-semibold">
+        Plusieurs établissements&nbsp;? Chacun est comparé aux restaurants de sa propre zone, et les offres
+        <a href={lien('/tarifs/')} class="underline underline-offset-2">Pro et Premium</a> couvrent jusqu’à 10&nbsp;restaurants.
+      </p>
     </div>
   </section>
 

@@ -1,0 +1,183 @@
+---
+// Simulateur de rentabilité (motif Flynt « Simuler ma rentabilité ») : calcul transparent, fait dans le navigateur,
+// rien n'est envoyé. Sans JavaScript, l'exemple par défaut reste affiché avec sa méthode.
+import Base from '../layouts/Base.astro';
+import PhotoIA from '../components/PhotoIA.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import Icone from '../components/Icone.astro';
+import { PRIX_ENTREE, SITE, lien } from '../lib/site';
+
+// Valeurs d'exemple (modifiables par le visiteur).
+const defaut = { commandes: 1000, plats: 2, part: 20, hausse: 1, commission: 30 };
+const TVA = 0.1;
+
+function calcul(v: typeof defaut) {
+  const concernes = v.commandes * v.plats * (v.part / 100);
+  const ventes = concernes * v.hausse;
+  const marge = Math.max(0, ventes / (1 + TVA) - ventes * (v.commission / 100));
+  return { concernes, ventes, marge, an: marge * 12, fois: marge / PRIX_ENTREE };
+}
+const r = calcul(defaut);
+const euros = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
+const nombre = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+
+const champs = [
+  { id: 'commandes', libelle: 'Commandes livraison par mois', aide: 'Uber Eats et Deliveroo réunis.', min: 0, max: 100000, pas: 10, unite: 'commandes' },
+  { id: 'plats', libelle: 'Plats par commande, en moyenne', aide: 'Boissons et desserts compris.', min: 1, max: 10, pas: 0.1, unite: 'plats' },
+  { id: 'part', libelle: 'Part de vos plats vendus sous le prix de votre zone', aide: 'Exemple à ajuster : Deliview vous donne ce chiffre pour votre restaurant.', min: 0, max: 100, pas: 1, unite: '%' },
+  { id: 'hausse', libelle: 'Hausse moyenne sur ces plats', aide: 'Prix payé par le client, TTC.', min: 0, max: 10, pas: 0.1, unite: '€' },
+  { id: 'commission', libelle: 'Commission moyenne de vos plateformes', aide: 'Votre taux, à vérifier sur vos relevés Uber Eats et Deliveroo.', min: 0, max: 60, pas: 1, unite: '%' },
+] as const;
+
+const description =
+  'Calculez ce que vous rapporte un prix mieux placé sur Uber Eats et Deliveroo : commandes, hausse, commission. Résultat immédiat, rien n’est envoyé.';
+const outil = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'Simulateur de rentabilité Deliview',
+  url: SITE.url + '/simulateur/',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  inLanguage: 'fr-FR',
+  isAccessibleForFree: true,
+  description,
+  publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+};
+---
+
+<Base title="Simulateur de rentabilité Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Simulateur de rentabilité', chemin: '/simulateur/' }]} jsonld={[outil]}>
+  <section class="relative overflow-hidden bg-white">
+    <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[520px] w-[520px] rounded-full bg-blue-2/12 md:block"></div>
+    <div class="dv-container relative grid items-center gap-10 pb-12 pt-8 md:pb-16 md:pt-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <p class="inline-flex rounded-[10px] border-2 border-blue px-4 py-1.5 dv-overline">Simulateur de rentabilité</p>
+        <h1 class="dv-h1 mt-5 max-w-[18ch]">Combien vous rapporte un prix mieux placé&nbsp;?</h1>
+        <p class="dv-lead mt-5 max-w-[54ch]">Entrez vos chiffres&nbsp;: le simulateur calcule ce que gagne votre marge quand vos plats vendus trop bas rejoignent le prix de votre zone. Le calcul se fait dans votre navigateur, rien n’est envoyé.</p>
+      </div>
+      <PhotoIA
+        nom="une-tablette"
+        alt="Chef en tablier qui consulte une tablette dans sa cuisine, à côté de sacs de livraison isothermes"
+        sizes="(min-width: 1200px) 480px, (min-width: 1024px) 40vw, 100vw"
+        ratio="3 / 2"
+        priorite
+      />
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey !pt-12" aria-labelledby="calcul-titre">
+    <div class="dv-container grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+      <form id="simulateur" class="dv-card p-6 md:p-8" aria-labelledby="calcul-titre" novalidate>
+        <h2 id="calcul-titre" class="dv-h3">Vos chiffres</h2>
+        <div class="mt-6 space-y-6">
+          {
+            champs.map((c) => (
+              <div>
+                <label for={`sim-${c.id}`} class="block font-semibold">{c.libelle}</label>
+                <p id={`sim-${c.id}-aide`} class="mt-1 text-[15px] dv-muted">{c.aide}</p>
+                <div class="mt-2 flex items-center gap-3">
+                  <input
+                    id={`sim-${c.id}`}
+                    name={c.id}
+                    type="number"
+                    inputmode="decimal"
+                    min={c.min}
+                    max={c.max}
+                    step={c.pas}
+                    value={String(defaut[c.id])}
+                    aria-describedby={`sim-${c.id}-aide`}
+                    class="h-12 w-40 rounded-[12px] border border-grey-2/30 bg-white px-4 text-[18px] font-semibold"
+                  />
+                  <span class="font-semibold">{c.unite}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </form>
+
+      <div class="lg:sticky lg:top-28">
+        <div class="rounded-[16px] bg-blue p-6 text-white md:p-8" aria-live="polite">
+          <p class="text-[19px] font-bold">Votre marge en plus, chaque mois</p>
+          <p class="mt-2 dv-figure !text-[56px] !leading-none" data-sim="marge">{euros(r.marge)}</p>
+          <p class="mt-3 text-[19px] font-bold">soit <span data-sim="an">{euros(r.an)}</span> par an</p>
+        </div>
+        <dl class="mt-4 dv-card divide-y divide-grey-2/15 px-6">
+          <div class="flex items-baseline justify-between gap-4 py-4">
+            <dt>Plats concernés par mois</dt>
+            <dd class="font-semibold" data-sim="concernes">{nombre(r.concernes)}</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-4">
+            <dt>Ventes en plus par mois (TTC)</dt>
+            <dd class="font-semibold" data-sim="ventes">{euros(r.ventes)}</dd>
+          </div>
+          <div class="flex items-baseline justify-between gap-4 py-4">
+            <dt>Abonnement Essentiel ({PRIX_ENTREE}&nbsp;€ HT par mois)</dt>
+            <dd class="font-semibold" data-sim="fois">{r.fois >= 1 ? `remboursé ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(r.fois)} fois` : 'non remboursé'}</dd>
+          </div>
+        </dl>
+        <a href="#demo" class="dv-btn dv-btn-plein mt-6 w-full" data-cta="simulateur" data-cta-principal>Trouver mes plats vendus trop bas</a>
+        <p class="mt-3 text-center text-[15px] dv-muted">Démo de 15&nbsp;minutes sur vos propres fiches · Sans engagement</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-section bg-white" aria-labelledby="methode-titre">
+    <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="dv-overline dv-muted">La méthode</p>
+        <h2 id="methode-titre" class="dv-h2 mt-3 max-w-[20ch]">Comment le calcul est fait</h2>
+        <p class="mt-5 dv-texte">Le simulateur multiplie vos plats vendus sous le prix de votre zone par la hausse que vous indiquez. Il retire ensuite la TVA et la commission des plateformes, pour ne garder que ce qui reste dans votre marge.</p>
+      </div>
+      <ul class="space-y-4 self-center">
+        <li class="flex gap-3">
+          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="calcul" taille={18} /></span>
+          <span>Plats concernés = commandes × plats par commande × part de plats vendus trop bas.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="calcul" taille={18} /></span>
+          <span>Marge en plus = ventes en plus hors TVA (10&nbsp;%, le taux de la plupart des plats livrés) − commission calculée sur le prix payé par le client.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="check" taille={18} /></span>
+          <span>À ventes égales&nbsp;: si un plat augmenté se vend moins, le gain baisse. Deliview propose une hausse en deux temps quand l’écart avec votre zone est grand.</span>
+        </li>
+        <li class="flex gap-3">
+          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="source" taille={18} /></span>
+          <span>Pour la TVA de vos ventes en livraison, lisez notre <a href={lien('/ressources/tva-ventes-livraison-restaurant/')} class="underline underline-offset-2">guide sur la TVA des ventes en livraison</a>.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <SectionDemo section="simulateur-formulaire" titre="Trouvez vos plats vendus trop bas" sousTitre="Une démo de 15 minutes sur vos propres fiches Uber Eats et Deliveroo : Tom vous montre, plat par plat, ce que vous pouvez ajuster." />
+</Base>
+
+<script define:vars={{ tva: 0.1, prixEntree: PRIX_ENTREE }}>
+  // Recalcul à chaque saisie ; un champ vide ou hors limites compte pour 0.
+  const form = document.getElementById('simulateur');
+  const sortie = (cle) => document.querySelector(`[data-sim="${cle}"]`);
+  const euros = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
+  const nombre = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+  const lire = (nom) => {
+    const champ = form.elements.namedItem(nom);
+    const v = parseFloat(String(champ.value).replace(',', '.'));
+    if (!Number.isFinite(v)) return 0;
+    return Math.min(Math.max(v, Number(champ.min)), Number(champ.max));
+  };
+  const maj = () => {
+    const concernes = lire('commandes') * lire('plats') * (lire('part') / 100);
+    const ventes = concernes * lire('hausse');
+    const marge = Math.max(0, ventes / (1 + tva) - ventes * (lire('commission') / 100));
+    const fois = marge / prixEntree;
+    sortie('concernes').textContent = nombre(concernes);
+    sortie('ventes').textContent = euros(ventes);
+    sortie('marge').textContent = euros(marge);
+    sortie('an').textContent = euros(marge * 12);
+    sortie('fois').textContent = fois >= 1 ? `remboursé ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(fois)} fois` : 'non remboursé';
+  };
+  if (form) {
+    form.addEventListener('input', maj);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    maj();
+  }
+</script>

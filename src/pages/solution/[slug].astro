@@ -111,7 +111,7 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
   commandes: {
     methodeTitre: 'Pourquoi ce n’est pas encore disponible',
     reponse:
-      'Recevoir vos commandes et modifier vos menus demande un accès officiel à Uber Eats et à Deliveroo. Deliview prépare ces connexions. Les restaurants du programme pilote seront les premiers connectés.',
+      'Recevoir vos commandes et modifier vos menus demande un accès officiel à Uber Eats et à Deliveroo. Deliview prépare ces connexions. Les restaurants abonnés seront les premiers connectés.',
     points: [
       'Les commandes des deux plateformes sur une seule tablette',
       'Un prix ou un plat changé une fois, partout',
@@ -128,8 +128,8 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
         r: 'Le service de livraison d’Uber pour les commandes reçues par votre site, votre application ou par téléphone. D’après Uber, le commerçant paie un montant fixe par livraison, à partir de 5,90&nbsp;€ HT, au lieu d’une commission sur la commande (<a href="https://merchants.ubereats.com/fr/fr/services/uber-direct/" rel="noopener">page Uber Direct</a>, consultée le 1er&nbsp;octobre 2026).',
       },
       {
-        q: 'Puis-je rejoindre le pilote dès maintenant ?',
-        r: 'Oui. Le volet prix et concurrence est disponible aujourd’hui. Les commandes s’ajouteront à votre compte dès qu’elles seront prêtes.',
+        q: 'Puis-je m’abonner dès maintenant ?',
+        r: 'Oui. Le volet prix et concurrence est disponible aujourd’hui, dès l’offre Essentiel. Les commandes s’ajouteront aux offres Pro et Premium dès qu’elles seront prêtes, sans supplément.',
       },
     ],
   },
@@ -164,7 +164,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
         <p class="dv-lead mt-5 max-w-[56ch]">{pilier.description}</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta={`pilier-${pilier.slug}`} data-cta-principal>
-            {pilier.statut === 'bientot' ? 'Candidater au programme pilote' : 'Demander une démo'}
+            Demander une démo
           </a>
           <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Voir les tarifs</a>
         </div>

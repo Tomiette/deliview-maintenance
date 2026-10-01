@@ -87,7 +87,7 @@ const CONTENU: Record<string, { title: string; description: string; h1: string; 
       },
       {
         q: 'Quand Uber Direct arrive-t-il dans Deliview ?',
-        r: 'Après les commandes Uber Eats et Deliveroo. Les restaurants du programme pilote seront prévenus en premier.',
+        r: 'Après les commandes Uber Eats et Deliveroo. Les restaurants abonnés seront prévenus en premier.',
       },
     ],
   },
@@ -114,7 +114,7 @@ const c = CONTENU[slug];
       <p class="dv-lead mt-5 max-w-[60ch]">{c.lead}</p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#demo" class="dv-btn dv-btn-plein" data-cta={`integration-${p.slug}`} data-cta-principal>
-          {p.statut === 'bientot' ? 'Candidater au programme pilote' : 'Demander une démo'}
+          Demander une démo
         </a>
         <a href={lien('/integrations/')} class="dv-btn dv-btn-contour">Toutes les intégrations</a>
       </div>

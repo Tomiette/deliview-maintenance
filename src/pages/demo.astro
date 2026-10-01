@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
-import { SITE, lien } from '../lib/site';
+import { PRIX_ENTREE, SITE, lien } from '../lib/site';
 
 const description =
   'Une démo de 15 minutes sur votre propre restaurant : vos fiches Uber Eats et Deliveroo, vos concurrents, vos prix. Tom vous rappelle sous 24 h.';
@@ -23,7 +23,7 @@ const faq = [
   },
   {
     q: 'Combien coûte Deliview ?',
-    r: `Les deux offres sont décrites sur la page <a href="${lien('/tarifs/')}">Tarifs</a>. Tom vous donne les prix et les conditions du programme pilote pendant la démo.`,
+    r: `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE}&nbsp;€ HT par mois, sans engagement et avec la mise en place offerte. Le détail est sur la page <a href="${lien('/tarifs/')}">Tarifs</a>.`,
   },
 ];
 const erreurs = [

@@ -1,15 +1,17 @@
 ---
-// En-tête collant : barre d'annonce, logo, navigation (méga-menu Solution), connexion, bouton démo.
+// En-tête collant : barre d'annonce (simulateur), logo, navigation (méga-menu « Notre solution » avec icônes),
+// connexion en bouton contour, bouton démo plein.
 // Menus en <details> : utilisables sans JavaScript et au clavier ; Échap les ferme (script ci-dessous).
+import Icone from './Icone.astro';
 import { NAV, PILIERS, SITE, lien } from '../lib/site';
 ---
 
-<aside class="bg-grey text-[15px]" aria-label="Programme pilote">
+<aside class="bg-grey text-[15px]" aria-label="Simulateur de rentabilité">
   <div class="dv-container flex items-center justify-center gap-3 py-2 text-center">
     <p>
-      <strong>Programme pilote ouvert</strong><span class="hidden md:inline">&nbsp;: mise en place faite avec vous, ligne directe avec le fondateur.</span>
-      <span class="md:hidden" aria-hidden="true">·</span>
-      <a href={lien('/tarifs/#pilote')} class="font-semibold underline underline-offset-2 whitespace-nowrap">Candidater</a>
+      <strong class="hidden md:inline">Combien vous rapporte un prix mieux placé&nbsp;?</strong><span class="hidden md:inline"> Faites le calcul en moins d’une minute.</span>
+      <strong class="md:hidden">Calculez votre gain en 1&nbsp;minute</strong>
+      <a href={lien('/simulateur/')} class="ml-1 font-semibold underline underline-offset-2 whitespace-nowrap">Simuler</a>
     </p>
   </div>
 </aside>
@@ -31,23 +33,29 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                     {item.libelle}
                     <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
                   </summary>
-                  <div class="absolute left-0 top-full mt-2 w-[640px] rounded-[16px] border border-grey-2/15 bg-white p-4 shadow-[0_4px_16px_rgba(76,76,76,0.06)]">
-                    <ul class="grid grid-cols-2 gap-1">
+                  <div class="absolute left-0 top-full mt-2 w-[400px] rounded-[16px] border border-grey-2/15 bg-white p-3 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
+                    <ul class="space-y-1">
                       {PILIERS.map((p) => (
                         <li>
-                          <a href={lien(`/solution/${p.slug}/`)} class="block rounded-xl p-3 hover:bg-grey">
-                            <span class="flex items-center gap-2">
-                              <span class="font-semibold">{p.surtitre}</span>
-                              {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
+                          <a href={lien(`/solution/${p.slug}/`)} class="flex gap-3 rounded-xl p-3 hover:bg-grey">
+                            <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
+                              <Icone nom={p.icone} taille={18} />
                             </span>
-                            <span class="mt-1 block text-[15px] font-normal leading-snug dv-muted">{p.phrase}</span>
+                            <span class="whitespace-normal">
+                              <span class="flex items-center gap-2">
+                                <span class="font-semibold">{p.surtitre}</span>
+                                {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
+                              </span>
+                              <span class="mt-0.5 block text-[15px] font-normal leading-snug dv-muted">{p.phrase}</span>
+                            </span>
                           </a>
                         </li>
                       ))}
                     </ul>
-                    <a href={lien('/solution/')} class="mt-2 block rounded-xl p-3 text-[15px] underline underline-offset-2 hover:bg-grey">
-                      Voir toute la solution
-                    </a>
+                    <p class="mt-1 flex flex-wrap gap-x-4 border-t border-grey-2/10 px-3 pt-3 pb-1 text-[15px]">
+                      <a href={lien('/solution/')} class="underline underline-offset-2">Voir toute la solution</a>
+                      <a href={lien('/simulateur/')} class="underline underline-offset-2">Simuler ma rentabilité</a>
+                    </p>
                   </div>
                 </details>
               </li>
@@ -64,8 +72,8 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href={`tel:${SITE.telephoneLien}`} class="hidden md:inline-flex lg:hidden xl:inline-flex items-center px-2 text-[16px] font-semibold whitespace-nowrap">{SITE.telephone}</a>
-      <a href={SITE.app} class="hidden sm:inline-flex items-center whitespace-nowrap rounded-lg px-3 py-2 text-[16px] font-semibold hover:bg-grey">Se connecter</a>
+      <a href={`tel:${SITE.telephoneLien}`} class="hidden xl:inline-flex items-center px-2 text-[16px] font-semibold whitespace-nowrap">{SITE.telephone}</a>
+      <a href={SITE.app} class="dv-btn dv-btn-contour !min-h-[44px] !px-4 !py-2 !text-[16px] hidden whitespace-nowrap sm:inline-flex">Se connecter</a>
       <a href={lien('/demo/')} class="dv-btn dv-btn-plein !min-h-[44px] !px-4 !py-2 hidden whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
 
       <details class="dv-menu lg:hidden">
@@ -73,18 +81,22 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
         </summary>
         <div class="fixed inset-x-0 top-[72px] max-h-[calc(100dvh-72px)] overflow-y-auto border-b border-grey-2/15 bg-white px-4 pb-6 pt-2">
-          <p class="dv-overline pt-2 pb-1">Solution</p>
+          <p class="dv-overline pt-2 pb-1">Notre solution</p>
           <ul>
             {
               PILIERS.map((p) => (
                 <li>
-                  <a href={lien(`/solution/${p.slug}/`)} class="flex items-center gap-2 py-3 font-semibold border-b border-grey-2/10">
+                  <a href={lien(`/solution/${p.slug}/`)} class="flex items-center gap-3 py-3 font-semibold border-b border-grey-2/10">
+                    <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
+                      <Icone nom={p.icone} taille={18} />
+                    </span>
                     {p.surtitre}
                     {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
                   </a>
                 </li>
               ))
             }
+            <li><a href={lien('/simulateur/')} class="block py-3 font-semibold border-b border-grey-2/10">Simulateur de rentabilité</a></li>
             {
               NAV.filter((x) => !x.menu).map((item) => (
                 <li>

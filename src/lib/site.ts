@@ -4,6 +4,8 @@
 export const SITE = {
   nom: 'Deliview',
   url: 'https://www.deliview.fr',
+  // Slogan définitif (décision de Tom, 1er octobre 2026) : hero, pied de page, Qui sommes-nous, données structurées.
+  slogan: 'Le partenaire des restaurants en livraison',
   // Même phrase partout (accueil, Qui sommes-nous, données structurées, LinkedIn).
   definition:
     'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette pour rendre votre livraison plus rentable.',
@@ -29,11 +31,12 @@ export function lien(chemin: string): string {
 // elles montrent des situations de restaurateurs, jamais des clients de Deliview.
 // `largeurs` : fichiers présents dans public/images/ia/<nom>-<largeur>.webp.
 export const IMAGES_IA = {
-  'rush-tablettes': { largeurs: [600], largeur: 600, hauteur: 400 },
-  'une-tablette': { largeurs: [600], largeur: 600, hauteur: 400 },
-  pizzeria: { largeurs: [533], largeur: 533, hauteur: 400 },
-  burger: { largeurs: [533], largeur: 533, hauteur: 400 },
-  'dark-kitchen': { largeurs: [600], largeur: 600, hauteur: 450 },
+  'rush-tablettes': { largeurs: [800, 1536], largeur: 1536, hauteur: 1024 },
+  'une-tablette': { largeurs: [800, 1536], largeur: 1536, hauteur: 1024 },
+  pizzeria: { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
+  burger: { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
+  'dark-kitchen': { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
+  livreur: { largeurs: [960, 1680], largeur: 1680, hauteur: 944 },
 } as const;
 export type ImageIA = keyof typeof IMAGES_IA;
 
@@ -45,8 +48,14 @@ export interface Fonctionnalite {
   statut: Statut;
 }
 
+export type NomIcone =
+  | 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge'
+  | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe' | 'tablette' | 'oeil' | 'courbe' | 'calcul';
+
 export interface Pilier {
   slug: string;
+  // Icône du méga-menu et des cartes.
+  icone: NomIcone;
   surtitre: string;
   titre: string;
   phrase: string;
@@ -63,6 +72,7 @@ export interface Pilier {
 export const PILIERS: Pilier[] = [
   {
     slug: 'prix-et-concurrence',
+    icone: 'prix',
     surtitre: 'Prix et concurrence',
     titre: 'Vos prix face à ceux de votre quartier, plat par plat',
     phrase: 'Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.',
@@ -85,6 +95,7 @@ export const PILIERS: Pilier[] = [
   },
   {
     slug: 'carte-et-marge',
+    icone: 'carte',
     surtitre: 'Carte et marge',
     titre: 'Sachez quels plats vous pouvez vendre plus cher',
     phrase: 'Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.',
@@ -107,6 +118,7 @@ export const PILIERS: Pilier[] = [
   },
   {
     slug: 'reputation',
+    icone: 'note',
     surtitre: 'Réputation',
     titre: 'Votre note face à celles de votre zone',
     phrase: 'Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.',
@@ -129,6 +141,7 @@ export const PILIERS: Pilier[] = [
   },
   {
     slug: 'commandes',
+    icone: 'tablette',
     surtitre: 'Commandes et opérations',
     titre: 'Vos commandes Uber Eats et Deliveroo sur la même tablette',
     phrase: 'Les commandes des deux plateformes sur la même tablette, et votre menu modifié une seule fois.',
@@ -138,7 +151,7 @@ export const PILIERS: Pilier[] = [
     meta: {
       title: 'Commandes Uber Eats et Deliveroo sur une tablette | Deliview',
       description:
-        'Bientôt dans Deliview : les commandes Uber Eats et Deliveroo sur une seule tablette, un menu modifié une fois, la TVA par plateforme. Rejoignez le pilote.',
+        'Bientôt dans Deliview : les commandes Uber Eats et Deliveroo sur une seule tablette, un menu modifié une fois, la TVA par plateforme. Demandez une démo.',
     },
     illustration: {
       nom: 'rush-tablettes',
@@ -155,7 +168,7 @@ export const PILIERS: Pilier[] = [
 ];
 
 export const NAV = [
-  { libelle: 'Solution', href: '/solution/', menu: true },
+  { libelle: 'Notre solution', href: '/solution/', menu: true },
   { libelle: 'Intégrations', href: '/integrations/' },
   { libelle: 'Tarifs', href: '/tarifs/' },
   { libelle: 'Ressources', href: '/ressources/' },
@@ -187,6 +200,82 @@ export const PLATEFORMES = [
     bientot: ['Commandes passées sur votre site, livrées par Uber Direct', 'Suivi des livraisons au même endroit que vos commandes Uber Eats et Deliveroo', 'Coût de livraison par commande, comparé aux commissions des plateformes'],
   },
 ];
+
+// Les 3 abonnements, selon le nombre de restaurants. Prix HT par mois, sans engagement, mise en place offerte.
+// Benchmark (1er octobre 2026) : Otter 34/49/89 €, Fooderise 49/99 €, HubRise 35 €, Deliverect 79/119/199 € par établissement.
+// `bientot` : inclus dans l'offre, ajouté sans supplément dès que c'est prêt (étiquette « Bientôt »).
+export interface Offre {
+  slug: string;
+  nom: string;
+  prix: number;
+  restaurants: string;
+  pour: string;
+  recommandee?: boolean;
+  base?: string;
+  inclus: string[];
+  bientot: string[];
+}
+
+export const OFFRES: Offre[] = [
+  {
+    slug: 'essentiel',
+    nom: 'Essentiel',
+    prix: 59,
+    restaurants: '1 restaurant',
+    pour: 'Pour vendre chaque plat au bon prix',
+    inclus: [
+      'Vos fiches Uber Eats et Deliveroo réunies sur un seul écran',
+      'Jusqu’à 10 concurrents de votre zone analysés',
+      'Chaque plat comparé, prix proposé avec ses sources',
+      'Promos des concurrents et classement des notes',
+      'Ce qui a changé depuis la dernière analyse',
+      '1 analyse complète par semaine',
+      '2 accès : vous et votre gérant',
+    ],
+    bientot: [],
+  },
+  {
+    slug: 'pro',
+    nom: 'Pro',
+    prix: 149,
+    restaurants: 'Jusqu’à 5 restaurants',
+    pour: 'Pour piloter la rentabilité de plusieurs restaurants',
+    recommandee: true,
+    base: 'Tout Essentiel, plus :',
+    inclus: [
+      'Analyses à la demande, sans limite',
+      '3 concurrents de votre choix suivis par restaurant',
+      'Assistant Deliview : vos questions sur votre zone',
+      'Historique de vos décisions de prix',
+      'Jusqu’à 10 accès pour vos équipes',
+    ],
+    bientot: [
+      'Vos commandes Uber Eats et Deliveroo sur une seule tablette',
+      'Menu, prix et ruptures modifiés une fois, partout',
+      'Vos avis au même endroit, avec réponses proposées',
+    ],
+  },
+  {
+    slug: 'premium',
+    nom: 'Premium',
+    prix: 349,
+    restaurants: 'Jusqu’à 10 restaurants',
+    pour: 'Toutes vos données livraison sur une seule tablette',
+    base: 'Tout Pro, plus :',
+    inclus: ['Accès illimités pour vos équipes', 'Un point chaque mois avec Tom sur vos prix'],
+    bientot: [
+      'Chiffre d’affaires, commissions et TVA par plateforme',
+      'Marge réelle par plateforme',
+      'Vue d’ensemble de tous vos restaurants',
+      'Surveillance quotidienne et alertes par e-mail',
+      'Réclamations suivies',
+      'Uber Direct : livraison des commandes de votre site',
+    ],
+  },
+];
+
+// Prix d'entrée, repris dans le hero, le simulateur et les métas.
+export const PRIX_ENTREE = OFFRES[0].prix;
 
 // Étiquette affichée pour le statut d'un pilier ou d'une fonctionnalité.
 export function libelleStatut(s: Statut | 'partiel'): string {

@@ -1,48 +1,101 @@
 ---
-import { PILIERS, SITE, lien } from '../lib/site';
+// Pied de page (modèle demandé par Tom) : bandeau photo « Prêt à… » avec deux boutons, puis colonnes
+// Solution / Pour qui / Ressources sur fond blanc, slogan sous le logo.
+// La photo du bandeau est une illustration générée par IA : mention visible dans le coin.
+import { IMAGES_IA, PILIERS, SITE, lien } from '../lib/site';
+
+const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const surTarifs = chemin.startsWith('/tarifs');
 const annee = new Date().getFullYear();
+const photo = IMAGES_IA.livreur;
+const basePhoto = lien('/images/ia/livreur');
+
+const solution = [
+  ...PILIERS.map((p) => ({ libelle: p.surtitre, href: `/solution/${p.slug}/` })),
+  { libelle: 'Intégrations', href: '/integrations/' },
+  { libelle: 'Simulateur de rentabilité', href: '/simulateur/' },
+  { libelle: 'Tarifs', href: '/tarifs/' },
+];
+const pourQui = [
+  { libelle: 'Restaurants et snacks', href: '/#burgers-snacks' },
+  { libelle: 'Pizzerias', href: '/#pizzerias' },
+  { libelle: 'Dark kitchens', href: '/#dark-kitchens' },
+  { libelle: 'Chaînes de restaurants', href: '/#chaines' },
+];
+const ressources = [
+  { libelle: 'Articles et guides', href: lien('/ressources/') },
+  { libelle: 'Uber Eats et Deliveroo ensemble', href: lien('/integrations/uber-eats-et-deliveroo/') },
+  { libelle: 'Qui sommes-nous', href: lien('/qui-sommes-nous/') },
+  { libelle: 'Demander une démo', href: lien('/demo/') },
+  { libelle: 'Se connecter', href: SITE.app },
+];
 ---
 
-<footer class="bg-grey-2 text-white">
+<section class="dv-bandeau-photo relative isolate overflow-hidden bg-grey-2" aria-labelledby="bandeau-photo-titre">
+  <img
+    src={`${basePhoto}-${photo.largeurs[photo.largeurs.length - 1]}.webp`}
+    srcset={photo.largeurs.map((w) => `${basePhoto}-${w}.webp ${w}w`).join(', ')}
+    sizes="100vw"
+    alt=""
+    width={photo.largeur}
+    height={photo.hauteur}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-[65%_center]"
+  />
+  <div class="absolute inset-0 -z-10 bg-grey-2/60" aria-hidden="true"></div>
+  <div class="dv-container flex min-h-[380px] flex-col items-center justify-center py-20 text-center md:min-h-[440px]">
+    <h2 id="bandeau-photo-titre" class="dv-h2 max-w-[20ch] text-white md:!text-[48px]">Prêt à rendre votre activité livraison plus rentable&nbsp;?</h2>
+    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+      <a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="bandeau-photo">Demander une démo</a>
+      {
+        surTarifs ? (
+          <a href={lien('/simulateur/')} class="dv-btn dv-btn-blanc">Simuler ma rentabilité</a>
+        ) : (
+          <a href={lien('/tarifs/')} class="dv-btn dv-btn-blanc">Voir les tarifs</a>
+        )
+      }
+    </div>
+  </div>
+  <p class="absolute bottom-3 left-3 rounded-full bg-white px-2.5 py-0.5 text-[13px] font-semibold text-grey-2">Illustration générée par IA</p>
+</section>
+
+<footer class="bg-white">
   <div class="dv-container py-14">
-    <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
       <div>
-        <img src={lien('/images/logo-deliview-blanc.png')} alt="Deliview" width="128" height="27" loading="lazy" />
-        <p class="mt-4 max-w-[34ch] text-[16px] leading-relaxed">{SITE.definition}</p>
-        <p class="mt-4 text-[16px]">
+        <img src={lien('/images/logo-deliview.png')} alt="Deliview" width="128" height="27" loading="lazy" />
+        <p class="mt-4 dv-titre text-[18px] leading-snug">{SITE.slogan}.</p>
+        <p class="mt-2 max-w-[36ch] text-[15px] leading-relaxed dv-muted">{SITE.definition}</p>
+        <p class="mt-4 text-[15px]">
           <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a><br />
           <a href={`mailto:${SITE.email}`} class="underline underline-offset-2">{SITE.email}</a>
         </p>
       </div>
-      <div>
-        <p class="font-semibold">Solution</p>
-        <ul class="mt-3 space-y-2 text-[16px]">
-          {PILIERS.map((p) => <li><a href={lien(`/solution/${p.slug}/`)} class="hover:underline">{p.surtitre}</a></li>)}
-          <li><a href={lien('/integrations/')} class="hover:underline">Intégrations</a></li>
-          <li><a href={lien('/tarifs/')} class="hover:underline">Tarifs et programme pilote</a></li>
+      <nav aria-labelledby="pied-solution">
+        <p id="pied-solution" class="font-semibold">Solution</p>
+        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
+          {solution.map((x) => <li><a href={lien(x.href)} class="hover:underline">{x.libelle}</a></li>)}
         </ul>
-      </div>
-      <div>
-        <p class="font-semibold">Société</p>
-        <ul class="mt-3 space-y-2 text-[16px]">
-          <li><a href={lien('/qui-sommes-nous/')} class="hover:underline">Qui sommes-nous</a></li>
-          <li><a href={lien('/demo/')} class="hover:underline">Demander une démo</a></li>
+      </nav>
+      <nav aria-labelledby="pied-pour-qui">
+        <p id="pied-pour-qui" class="font-semibold">Pour qui</p>
+        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
+          {pourQui.map((x) => <li><a href={lien(x.href)} class="hover:underline">{x.libelle}</a></li>)}
+        </ul>
+      </nav>
+      <nav aria-labelledby="pied-ressources">
+        <p id="pied-ressources" class="font-semibold">Ressources</p>
+        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
+          {ressources.map((x) => <li><a href={x.href} class="hover:underline">{x.libelle}</a></li>)}
           <li><a href={SITE.linkedinTom} class="hover:underline" rel="noopener">Tom sur LinkedIn</a></li>
-          <li><a href={SITE.app} class="hover:underline">Se connecter</a></li>
         </ul>
-      </div>
-      <div>
-        <p class="font-semibold">Ressources</p>
-        <ul class="mt-3 space-y-2 text-[16px]">
-          <li><a href={lien('/ressources/')} class="hover:underline">Articles et guides</a></li>
-          <li><a href={lien('/integrations/uber-eats-et-deliveroo/')} class="hover:underline">Uber Eats et Deliveroo ensemble</a></li>
-        </ul>
-      </div>
+      </nav>
     </div>
-    <div class="mt-12 flex flex-col gap-3 border-t border-white/20 pt-6 text-[15px] md:flex-row md:items-center md:justify-between">
+    <div class="mt-12 flex flex-col gap-3 border-t border-grey-2/15 pt-6 text-[14px] dv-muted md:flex-row md:items-center md:justify-between">
       <div class="space-y-1">
-        <p>© {annee} Deliview. Logiciel français pour les restaurateurs.</p>
-        <p class="text-[14px]">Uber Eats, Uber Direct et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant.</p>
+        <p>© {annee} Deliview. {SITE.slogan}.</p>
+        <p>Uber Eats, Uber Direct et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant.</p>
       </div>
       <ul class="flex flex-wrap gap-x-5 gap-y-2">
         <li><a href={lien('/mentions-legales/')} class="underline underline-offset-2">Mentions légales</a></li>
@@ -59,8 +112,8 @@ const annee = new Date().getFullYear();
 <script>
   // Téléphone : bouton démo collé en bas d'écran, seulement quand aucun autre bouton démo n'est visible.
   const barre = document.getElementById('dv-barre-demo');
-  // La barre se cache aussi devant la vidéo, pour ne pas couvrir son bouton et ses contrôles.
-  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .dv-video-cadre'));
+  // La barre se cache aussi devant la vidéo et le bandeau photo, pour ne pas couvrir leurs boutons.
+  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .hv-cadre, .dv-bandeau-photo'));
   if (barre && 'IntersectionObserver' in window) {
     const visibles = new Set<Element>();
     const maj = () => {

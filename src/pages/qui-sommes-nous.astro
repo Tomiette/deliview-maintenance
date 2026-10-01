@@ -32,7 +32,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
   <section class="bg-white">
     <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
       <p class="dv-overline dv-muted">Qui sommes-nous</p>
-      <h1 class="dv-h1 mt-4 max-w-[20ch]">Un logiciel français pour les restaurants en livraison</h1>
+      <h1 class="dv-h1 mt-4 max-w-[20ch]">{SITE.slogan}</h1>
       <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition}</p>
     </div>
   </section>
@@ -60,7 +60,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
           <p>Je m’appelle Tom et j’ai fondé Deliview.</p>
           <p>L’idée vient d’un constat&nbsp;: un restaurateur présent sur Uber Eats et Deliveroo jongle avec deux tablettes, deux cartes et deux grilles de prix, sans voir ce que font les restaurants autour de lui. Ses clients, eux, comparent tout en quelques secondes.</p>
           <p>J’ai commencé par ce qui manque le plus&nbsp;: savoir si vos prix tiennent face à ceux de votre zone. Deliview lit les fiches publiques, compare chaque plat au même plat chez les voisins et cite ses sources.</p>
-          <p>Je construis la suite avec les restaurants du programme pilote. Je fais la mise en place avec chacun, et c’est moi qui décroche quand vous appelez.</p>
+          <p>Je fais la mise en place avec chaque restaurant, et c’est moi qui décroche quand vous appelez.</p>
         </div>
         <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
           <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a>
