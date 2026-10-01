@@ -1,0 +1,217 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Capture from '../components/Capture.astro';
+import BandeauPlateformes from '../components/BandeauPlateformes.astro';
+import BlocFondateur from '../components/BlocFondateur.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import Icone from '../components/Icone.astro';
+import { PILIERS, SITE, THEMES, dateFr, jsonldLogiciel, libelleStatut, lien } from '../lib/site';
+
+const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
+  .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
+  .slice(0, 3);
+
+const douleurs = [
+  {
+    icone: 'prix' as const,
+    titre: 'Des prix fixés à l’instinct',
+    texte: 'Relever les prix des voisins, vérifier les tailles, recommencer sur l’autre plateforme : personne n’a le temps entre deux services.',
+  },
+  {
+    icone: 'promo' as const,
+    titre: 'Des promos repérées après coup',
+    texte: 'Un voisin lance une offre le vendredi soir. Vous la découvrez souvent la semaine suivante, en regardant vos ventes.',
+  },
+  {
+    icone: 'note' as const,
+    titre: 'Une note sans point de repère',
+    texte: '4,5 sur Uber Eats, c’est bien ou pas ? Tout dépend des restaurants autour de vous.',
+  },
+];
+
+const etapes = [
+  { titre: 'Donnez le nom et la ville de votre restaurant', texte: 'Deliview retrouve vos fiches Uber Eats et Deliveroo.' },
+  { titre: 'Deliview lit votre zone', texte: 'Il choisit jusqu’à 10 restaurants de votre secteur autour de vous et lit leurs cartes, sur les deux plateformes.' },
+  { titre: 'Vous ajustez, plat par plat', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez.' },
+];
+
+const benefices = [
+  'Des prix décidés chiffres en main',
+  'Plus de relevés de prix à la main',
+  'Les promos et les prix des voisins repérés',
+  'Les écarts entre vos deux fiches mis en évidence',
+];
+
+const description =
+  'Deliview compare vos prix Uber Eats et Deliveroo à ceux des restaurants autour de vous, plat par plat, et vous dit quoi ajuster. Démo de 15 min.';
+---
+
+<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/')]}>
+  <!-- Hero : promesse, deux boutons, réducteur de risque, capture réelle. -->
+  <section class="relative overflow-hidden bg-white">
+    <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[560px] w-[560px] rounded-full bg-blue-2/12 md:block"></div>
+    <div class="dv-container relative grid gap-x-12 gap-y-5 pb-14 pt-6 md:pb-20 md:pt-14 lg:grid-cols-[minmax(0,560px)_1fr] [grid-template-areas:'titre'_'actions'_'capture'] lg:[grid-template-areas:'titre_capture'_'actions_capture']">
+      <div class="[grid-area:titre] lg:self-end">
+        <p class="dv-overline dv-muted hidden md:block">Pour les restaurants sur Uber Eats et Deliveroo</p>
+        <h1 class="dv-h1 md:mt-4 max-w-[16ch]">Vos prix Uber Eats et Deliveroo face à vos concurrents</h1>
+        <p class="dv-lead mt-4 max-w-[46ch]">Deliview lit vos fiches et celles des restaurants autour de vous, compare chaque plat à taille égale et vous dit quoi ajuster.</p>
+      </div>
+      <div class="[grid-area:capture] lg:self-center">
+        <Capture
+          src="/images/capture-hero"
+          srcMobile={{ src: '/images/capture-carte-mobile', largeur: 1200, hauteur: 750 }}
+          alt="Optimiseur de carte Deliview : pour chaque plat, votre prix, la médiane de la zone, l’écart en pourcentage, un statut et le prix proposé"
+          priorite
+        />
+      </div>
+      <div class="[grid-area:actions] lg:self-start">
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta="hero" data-cta-principal>Demander une démo</a>
+          <a href="#comment-ca-marche" class="dv-btn dv-btn-contour hidden sm:inline-flex sm:whitespace-nowrap">Voir comment ça marche</a>
+        </div>
+        <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-semibold">
+          <span>15&nbsp;min</span><span aria-hidden="true">·</span><span>Sans engagement</span><span aria-hidden="true">·</span><span>Mise en place faite avec vous</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <BandeauPlateformes fond="gris" />
+
+  <!-- Le problème : trois situations vécues. -->
+  <section class="dv-section bg-white" aria-labelledby="probleme-titre">
+    <div class="dv-container">
+      <p class="dv-overline dv-muted">Le problème</p>
+      <h2 id="probleme-titre" class="dv-h2 mt-3 max-w-[22ch]">Votre carte est à un clic de celle du voisin</h2>
+      <p class="dv-lead mt-4 max-w-[60ch]">Sur Uber Eats et Deliveroo, le client compare en quelques secondes. Pour faire pareil, il vous faudrait ouvrir les fiches une par une, sur deux applications.</p>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        {
+          douleurs.map((d) => (
+            <li class="dv-card p-6">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
+                <Icone nom={d.icone} />
+              </span>
+              <h3 class="dv-h3 mt-4">{d.titre}</h3>
+              <p class="mt-2 dv-muted">{d.texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Comment ça marche : trois étapes numérotées + capture du classement de la zone. -->
+  <section id="comment-ca-marche" class="dv-section bg-grey" aria-labelledby="etapes-titre">
+    <div class="dv-container grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <p class="dv-overline dv-muted">Comment ça marche</p>
+        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[18ch]">Votre zone analysée en quelques minutes</h2>
+        <p class="dv-lead mt-4 max-w-[52ch]">Pas de tablette à brancher, pas d’identifiant à donner&nbsp;: Deliview part des informations publiques de vos fiches.</p>
+        <ol class="mt-8 space-y-6">
+          {
+            etapes.map((e, i) => (
+              <li class="flex gap-4">
+                <span class="dv-figure w-12 shrink-0 text-blue" aria-hidden="true">{i + 1}</span>
+                <span>
+                  <span class="block dv-h3">{e.titre}</span>
+                  <span class="mt-1 block dv-muted">{e.texte}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="mt-8">
+          <a href={lien('/integrations/')} class="inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
+            Voir les plateformes compatibles <Icone nom="fleche" taille={20} />
+          </a>
+        </p>
+      </div>
+      <Capture
+        src="/images/capture-concurrence"
+        alt="Classement des concurrents de la zone dans Deliview : note, nombre d’avis, prix repère et distance de chaque restaurant"
+      />
+    </div>
+  </section>
+
+  <!-- Les 4 piliers, chacun avec sa page. -->
+  <section class="dv-section bg-white" aria-labelledby="piliers-titre">
+    <div class="dv-container">
+      <p class="dv-overline dv-muted">Ce que fait Deliview</p>
+      <h2 id="piliers-titre" class="dv-h2 mt-3 max-w-[24ch]">Vos prix, votre carte, votre note, et bientôt vos commandes</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          PILIERS.map((p) => (
+            <li class="dv-card flex flex-col p-6 md:p-8">
+              <div class="flex flex-wrap items-center gap-3">
+                <p class="dv-overline">{p.surtitre}</p>
+                <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(p.statut)}</span>
+              </div>
+              <h3 class="dv-h3 mt-3">{p.titre}</h3>
+              <p class="mt-2 flex-1 dv-muted">{p.phrase}</p>
+              <a href={lien(`/solution/${p.slug}/`)} class="mt-5 inline-flex items-center gap-2 font-bold underline underline-offset-4">
+                Voir {p.surtitre.toLowerCase()} <Icone nom="fleche" taille={18} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Aplat Blue 1 (un seul par page) : texte en grand uniquement (contraste 3,5:1). -->
+  <section class="bg-blue text-white" aria-labelledby="benefices-titre">
+    <div class="dv-container dv-section">
+      <h2 id="benefices-titre" class="dv-h2 max-w-[22ch]">Ce qui change dès la première analyse</h2>
+      <ul class="mt-10 grid gap-x-10 gap-y-6 md:grid-cols-2">
+        {
+          benefices.map((b) => (
+            <li class="flex items-start gap-4 text-[24px] font-semibold leading-snug">
+              <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-blue">
+                <Icone nom="check" taille={22} />
+              </span>
+              {b}
+            </li>
+          ))
+        }
+      </ul>
+      <a href="#demo" class="dv-btn dv-btn-blanc mt-10" data-cta="bandeau">Demander une démo</a>
+    </div>
+  </section>
+
+  <BlocFondateur fond="gris" />
+
+  {
+    articles.length > 0 && (
+      <section class="dv-section bg-white" aria-labelledby="ressources-titre">
+        <div class="dv-container">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="dv-overline dv-muted">Ressources</p>
+              <h2 id="ressources-titre" class="dv-h2 mt-3">Guides pour vendre mieux en livraison</h2>
+            </div>
+            <a href={lien('/ressources/')} class="font-bold underline underline-offset-4">
+              Toutes les ressources
+            </a>
+          </div>
+          <ul class="mt-10 grid gap-6 md:grid-cols-3">
+            {articles.map((a) => (
+              <li class="dv-card flex flex-col p-6">
+                <p class="dv-overline dv-muted">{THEMES[a.data.theme]}</p>
+                <h3 class="dv-h3 mt-3">
+                  <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
+                    {a.data.titre}
+                  </a>
+                </h3>
+                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
+                <p class="mt-4 text-[14px] dv-muted">Mis à jour le {dateFr(a.data.misAJourLe)}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <SectionDemo section="accueil-formulaire" />
+</Base>

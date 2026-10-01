@@ -1,0 +1,60 @@
+---
+// Politique de confidentialité et cookies (RGPD) : site, formulaire de démo, app.
+import Base from '../layouts/Base.astro';
+import { SITE, lien } from '../lib/site';
+---
+
+<Base
+  title="Politique de confidentialité et cookies | Deliview"
+  description="Quelles données Deliview collecte sur deliview.fr et dans l’app, pourquoi, combien de temps, chez qui elles sont hébergées, et comment exercer vos droits."
+  ariane={[{ nom: 'Confidentialité et cookies', chemin: '/confidentialite/' }]}
+>
+  <article class="dv-section bg-white !pt-8">
+    <div class="dv-container max-w-[820px] prose-dv">
+      <h1 class="dv-h1">Politique de confidentialité et cookies</h1>
+      <p class="dv-muted">Mise à jour le 1er&nbsp;octobre 2026.</p>
+      <p>En bref&nbsp;: le site ne dépose aucun cookie publicitaire ni de mesure d’audience. Les informations du formulaire de démo servent uniquement à vous recontacter. Elles sont hébergées dans l’Union européenne et vous pouvez demander leur suppression à tout moment.</p>
+
+      <h2>Responsable du traitement</h2>
+      <p><span class="dv-a-remplacer">[À REMPLACER : dénomination de l’entreprise]</span>, représentée par Tom Voisin. Contact pour toute question sur vos données&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>Formulaire de démo</h2>
+      <table>
+        <thead>
+          <tr><th scope="col">Ce qui est collecté</th><th scope="col">Pourquoi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Prénom et nom, nom du restaurant et ville, téléphone, e-mail, nombre d’établissements</td><td>Vous rappeler, organiser la démo et vous présenter Deliview</td></tr>
+          <tr><td>Page d’où part la demande, bouton cliqué, paramètres de campagne de l’adresse (utm_source, utm_medium, utm_campaign, utm_content)</td><td>Savoir quelles pages et quelles campagnes amènent des demandes</td></tr>
+          <tr><td>Empreinte chiffrée de votre adresse IP, jamais l’adresse elle-même</td><td>Limiter les envois abusifs (5 par heure et par connexion). Effacée chaque nuit pour les demandes de plus d’un jour</td></tr>
+        </tbody>
+      </table>
+      <p>Base légale&nbsp;: les mesures précontractuelles prises à votre demande (article 6.1.b du RGPD), puis notre intérêt légitime à vous présenter Deliview (article 6.1.f).</p>
+      <p>Durée de conservation&nbsp;: 3 ans après notre dernier échange, sauf si vous devenez client. Vous pouvez demander la suppression de votre demande à tout moment.</p>
+
+      <h2>Qui a accès à vos données</h2>
+      <ul>
+        <li>Tom Voisin, fondateur de Deliview.</li>
+        <li>Supabase, qui héberge la base de données de Deliview dans l’Union européenne (Irlande).</li>
+        <li>Brevo (France), pour l’envoi des e-mails de confirmation. <span class="dv-a-remplacer">[À REMPLACER : retirer cette ligne si Brevo n’est pas utilisé]</span></li>
+        <li>GitHub (États-Unis), qui héberge les pages du site et peut enregistrer votre adresse IP dans ses journaux techniques.</li>
+      </ul>
+      <p>Aucune donnée n’est vendue ni louée. Transferts hors de l’Union européenne (GitHub, et Firecrawl pour l’app)&nbsp;: <span class="dv-a-remplacer">[À REMPLACER : garanties applicables, à valider avec votre avocat]</span>.</p>
+
+      <h2>Cookies et stockage dans votre navigateur</h2>
+      <p>Le site ne dépose aucun cookie. Il n’utilise ni Google Analytics, ni pixel publicitaire, ni police chargée depuis un service tiers.</p>
+      <p>Pendant votre visite, le stockage de session de votre navigateur retient la provenance de la visite (paramètres utm_ de l’adresse) et le dernier bouton «&nbsp;Demander une démo&nbsp;» cliqué. Ces informations sont envoyées avec votre demande si vous en faites une, et s’effacent à la fermeture de l’onglet.</p>
+      <p>L’app Deliview (<a href={SITE.app}>deliview.fr/app</a>) garde votre session de connexion dans le stockage local du navigateur&nbsp;: c’est indispensable pour rester connecté.</p>
+
+      <h2>L’app Deliview</h2>
+      <p>Pour les restaurants qui utilisent l’app, Deliview traite&nbsp;: l’e-mail du compte, le nom, la ville et l’adresse du restaurant, les membres de l’équipe invités, et les analyses réalisées. Ces données sont hébergées par Supabase dans l’Union européenne (Irlande).</p>
+      <p>Les analyses lisent des pages publiques Uber Eats et Deliveroo par l’intermédiaire de Firecrawl (États-Unis). Les distances sont calculées avec le service de géocodage de l’IGN (Géoplateforme, France). Deliview n’enregistre ni le nom des auteurs d’avis, ni leurs photos.</p>
+
+      <h2>Vos droits</h2>
+      <p>Vous pouvez accéder à vos données, les faire corriger ou supprimer, vous opposer à leur utilisation, en demander la limitation ou la portabilité. Écrivez à <a href={`mailto:${SITE.email}`}>{SITE.email}</a>&nbsp;: nous répondons sous un mois au plus.</p>
+      <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL (<a href="https://www.cnil.fr/fr/plaintes" rel="noopener">cnil.fr</a>).</p>
+
+      <p class="dv-muted">Voir aussi les <a href={lien('/mentions-legales/')}>mentions légales</a>.</p>
+    </div>
+  </article>
+</Base>

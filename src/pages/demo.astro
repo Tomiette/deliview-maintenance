@@ -1,0 +1,47 @@
+---
+// Page Démo : cible de tous les boutons hors accueil. Messages d'erreur sans JavaScript via #erreur-… (:target).
+import Base from '../layouts/Base.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import Faq from '../components/Faq.astro';
+import { SITE, lien } from '../lib/site';
+
+const description =
+  'Une démo de 15 minutes sur votre propre restaurant : vos fiches Uber Eats et Deliveroo, vos concurrents, vos prix. Tom vous rappelle sous 24 h.';
+
+const faq = [
+  {
+    q: 'La démo est-elle vraiment faite sur mon restaurant ?',
+    r: 'Oui. Tom lance une analyse sur vos fiches Uber Eats et Deliveroo avant l’appel&nbsp;: vous voyez vos prix face à ceux de votre zone, pas un exemple générique.',
+  },
+  {
+    q: 'Dois-je préparer quelque chose ?',
+    r: 'Non. Le nom et la ville de votre restaurant suffisent. Aucun identifiant Uber Eats ou Deliveroo n’est demandé.',
+  },
+  {
+    q: 'Combien coûte Deliview ?',
+    r: `Les conditions du programme pilote et les deux offres sont sur la page <a href="${lien('/tarifs/')}">Tarifs</a>. Tom vous les détaille pendant la démo.`,
+  },
+];
+const erreurs = [
+  { id: 'erreur-champs', texte: 'Un champ est incomplet. Vérifiez vos informations, puis renvoyez le formulaire.' },
+  { id: 'erreur-limite', texte: `Trop de demandes sont parties de cette connexion. Appelez Tom au ${SITE.telephone}.` },
+  { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Appelez Tom au ${SITE.telephone} ou écrivez à ${SITE.email}.` },
+];
+---
+
+<Base title="Demander une démo gratuite de 15 minutes | Deliview" description={description} ariane={[{ nom: 'Demander une démo', chemin: '/demo/' }]}>
+  {
+    erreurs.map((e) => (
+      <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
+        <p class="dv-erreur rounded-[12px] border-2 border-grey-2 bg-grey p-4 !pl-11 font-semibold [background-position:16px_18px]">{e.texte}</p>
+      </div>
+    ))
+  }
+  <SectionDemo
+    section="page-demo"
+    niveau="h1"
+    titre="Demander une démo de Deliview"
+    sousTitre="15 minutes sur votre propre restaurant : vos fiches Uber Eats et Deliveroo, vos concurrents, vos prix. Tom vous rappelle sous 24 h."
+  />
+  <Faq questions={faq} titre="Avant la démo" />
+</Base>

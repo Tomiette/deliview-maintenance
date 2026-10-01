@@ -1,0 +1,118 @@
+---
+// Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble.
+import Base from '../../layouts/Base.astro';
+import Capture from '../../components/Capture.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
+import Faq from '../../components/Faq.astro';
+import Icone from '../../components/Icone.astro';
+import { SITE, jsonldLogiciel, lien } from '../../lib/site';
+
+const description =
+  'Vos fiches Uber Eats et Deliveroo côte à côte : écarts de prix entre elles, concurrents et note sur chaque plateforme. Bientôt, vos commandes sur un écran.';
+
+const aujourdhui = [
+  { titre: 'Les écarts de prix entre vos deux fiches', texte: 'Chaque plat vendu à un prix différent sur Uber Eats et sur Deliveroo, avec les deux prix.' },
+  { titre: 'Vos concurrents sur chaque plateforme', texte: 'Un restaurant absent de Deliveroo peut être votre premier rival sur Uber Eats. Deliview regarde les deux.' },
+  { titre: 'Votre note ici et là', texte: 'Votre place au classement des notes de votre zone, plateforme par plateforme.' },
+  { titre: 'Une seule analyse pour les deux', texte: 'Un nom, une ville, et Deliview lit vos deux fiches dans la même analyse.' },
+];
+const ensuite = [
+  'Les commandes des deux plateformes sur un seul écran',
+  'Un prix ou un plat changé une fois, partout',
+  'Les ruptures retirées des deux plateformes d’un geste',
+  'Le chiffre d’affaires et la TVA par plateforme',
+];
+const faq = [
+  {
+    q: 'Faut-il vendre au même prix sur Uber Eats et sur Deliveroo ?',
+    r: 'Deliview ne choisit pas à votre place. Il vous montre, plat par plat, les écarts de prix entre vos deux fiches. Vous voyez d’un coup d’œil ceux que vous avez voulus et ceux qui datent d’un oubli.',
+  },
+  {
+    q: 'Deliview remplace-t-il les tablettes Uber Eats et Deliveroo ?',
+    r: 'Pas encore. Les commandes sur un seul écran arriveront avec les accès officiels des deux plateformes. Aujourd’hui, Deliview vous aide sur vos prix, votre carte et votre note.',
+  },
+  {
+    q: 'Et si je ne suis que sur une des deux plateformes ?',
+    r: 'Deliview fonctionne aussi avec une seule plateforme. Si vous ouvrez l’autre plus tard, la prochaine analyse la prendra en compte.',
+  },
+];
+---
+
+<Base
+  title="Gérer Uber Eats et Deliveroo ensemble | Deliview"
+  description={description}
+  ariane={[
+    { nom: 'Intégrations', chemin: '/integrations/' },
+    { nom: 'Uber Eats et Deliveroo', chemin: '/integrations/uber-eats-et-deliveroo/' },
+  ]}
+  jsonld={[jsonldLogiciel(description, `${SITE.url}/integrations/uber-eats-et-deliveroo/`)]}
+>
+  <section class="bg-white">
+    <div class="dv-container grid items-center gap-12 pb-12 pt-8 md:pb-16 md:pt-12 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <p class="dv-overline dv-muted">Intégration</p>
+        <h1 class="dv-h1 mt-4 max-w-[16ch]">Gérer Uber Eats et Deliveroo ensemble</h1>
+        <p class="dv-lead mt-5 max-w-[56ch]">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents sur chaque plateforme et votre note ici et là. Les commandes sur un seul écran arrivent ensuite.</p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="#demo" class="dv-btn dv-btn-plein" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
+          <a href={lien('/solution/')} class="dv-btn dv-btn-contour">Voir toute la solution</a>
+        </div>
+      </div>
+      <Capture src="/images/capture-concurrence" alt="Concurrents de la zone sur Uber Eats et Deliveroo dans Deliview, avec note, avis, prix repère et distance" priorite />
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey" aria-labelledby="aujourdhui-titre">
+    <div class="dv-container">
+      <div class="flex flex-wrap items-center gap-3">
+        <h2 id="aujourdhui-titre" class="dv-h2">Ce que vous avez dès aujourd’hui</h2>
+        <span class="dv-badge dv-badge-dispo">Disponible</span>
+      </div>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          aujourdhui.map((x) => (
+            <li class="dv-card p-6">
+              <h3 class="dv-h3">{x.titre}</h3>
+              <p class="mt-2 dv-muted">{x.texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="dv-section bg-white" aria-labelledby="ensuite-titre">
+    <div class="dv-container grid gap-10 lg:grid-cols-2">
+      <div>
+        <div class="flex flex-wrap items-center gap-3">
+          <h2 id="ensuite-titre" class="dv-h2">Ce qui arrive ensuite</h2>
+          <span class="dv-badge dv-badge-bientot">Bientôt</span>
+        </div>
+        <p class="mt-4 dv-texte">Avec les accès officiels d’Uber Eats et de Deliveroo, Deliview réunira vos opérations au même endroit. Les restaurants du programme pilote seront les premiers connectés.</p>
+        <a href={lien('/solution/commandes/')} class="mt-6 inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
+          Voir commandes et opérations <Icone nom="fleche" taille={20} />
+        </a>
+      </div>
+      <ul class="space-y-4 self-center">
+        {
+          ensuite.map((x) => (
+            <li class="flex gap-3">
+              <span class="mt-1 dv-muted"><Icone nom="horloge" taille={20} /></span>
+              {x}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Faq questions={faq} />
+
+  <section class="bg-white pb-12" aria-label="Marques">
+    <div class="dv-container">
+      <p class="text-[15px] dv-muted">Uber Eats et Deliveroo sont des marques de leurs propriétaires respectifs. Deliview est un logiciel indépendant, ni affilié ni approuvé par ces sociétés.</p>
+    </div>
+  </section>
+
+  <SectionDemo section="integration-combinee-formulaire" />
+</Base>

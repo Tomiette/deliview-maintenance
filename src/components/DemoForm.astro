@@ -1,0 +1,239 @@
+---
+// Formulaire de démo : 5 champs, envoyé à la fonction Supabase « lead » (validation côté serveur).
+// Sans JavaScript : envoi classique, la fonction redirige vers /merci/ ou vers /demo/#erreur-….
+// Avec JavaScript : validation à la sortie de chaque champ, envoi sans rechargement, confirmation sur place.
+import { SITE, lien } from '../lib/site';
+
+interface Props {
+  // Section d'origine par défaut (si le visiteur n'a cliqué sur aucun bouton démo avant).
+  section: string;
+}
+const { section } = Astro.props;
+const retour = new URL(import.meta.env.BASE_URL, SITE.url).href;
+const champ = 'block w-full rounded-[12px] border border-grey-2/30 bg-white px-4 py-3 text-[16px] text-grey-2 placeholder:text-grey-2/60 focus:border-blue';
+---
+
+<div class="dv-form" data-section={section}>
+  <form
+    action={SITE.formulaire}
+    method="post"
+    class="space-y-5"
+    aria-describedby="dv-form-rgpd"
+    data-formulaire-demo
+    data-endpoint={SITE.formulaire}
+  >
+    <div>
+      <label for="dv-nom" class="block font-semibold text-[16px]">Prénom et nom</label>
+      <input id="dv-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="120" class={champ + ' mt-2'} aria-describedby="dv-nom-erreur" />
+      <p id="dv-nom-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Indiquez votre prénom et votre nom."></p>
+    </div>
+
+    <div>
+      <label for="dv-restaurant" class="block font-semibold text-[16px]">Nom du restaurant et ville</label>
+      <input id="dv-restaurant" name="restaurant" type="text" autocomplete="organization" required minlength="2" maxlength="200" placeholder="Exemple : Pizzeria Roma, Lyon 6e" class={champ + ' mt-2'} aria-describedby="dv-restaurant-erreur" />
+      <p id="dv-restaurant-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Indiquez le nom de votre restaurant et sa ville."></p>
+    </div>
+
+    <div>
+      <label for="dv-telephone" class="block font-semibold text-[16px]">Téléphone</label>
+      <p id="dv-telephone-aide" class="mt-1 text-[15px] dv-muted">Pour que Tom vous rappelle sous 24&nbsp;h.</p>
+      <input id="dv-telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\(\)\.\-]{10,20}" maxlength="40" class={champ + ' mt-2'} aria-describedby="dv-telephone-aide dv-telephone-erreur" />
+      <p id="dv-telephone-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Ce numéro semble incomplet. Vérifiez qu’il a bien 10 chiffres."></p>
+    </div>
+
+    <div>
+      <label for="dv-email" class="block font-semibold text-[16px]">E-mail</label>
+      <input id="dv-email" name="email" type="email" autocomplete="email" required maxlength="200" class={champ + ' mt-2'} aria-describedby="dv-email-erreur" />
+      <p id="dv-email-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Cette adresse e-mail semble incomplète. Vérifiez-la."></p>
+    </div>
+
+    <div>
+      <label for="dv-points" class="block font-semibold text-[16px]">Nombre d’établissements</label>
+      <select id="dv-points" name="points_de_vente" required class={champ + ' mt-2 appearance-none bg-[length:16px] bg-[right_16px_center] bg-no-repeat pr-12'} style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234c4c4c' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;)" aria-describedby="dv-points-erreur">
+        <option value="" selected disabled>Choisir</option>
+        <option value="1">1</option>
+        <option value="2-5">2 à 5</option>
+        <option value="6-10">6 à 10</option>
+        <option value="11-19">11 à 19</option>
+        <option value="20+">20 et plus</option>
+      </select>
+      <p id="dv-points-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Choisissez votre nombre d’établissements."></p>
+    </div>
+
+    <!-- Champ piège : invisible pour les visiteurs, rempli par les robots. -->
+    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+      <label for="dv-site-web">Ne remplissez pas ce champ</label>
+      <input id="dv-site-web" name="site_web" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <input type="hidden" name="utm_source" />
+    <input type="hidden" name="utm_medium" />
+    <input type="hidden" name="utm_campaign" />
+    <input type="hidden" name="utm_content" />
+    <input type="hidden" name="page_origine" />
+    <input type="hidden" name="section_cta" value={section} />
+    <input type="hidden" name="retour" value={retour} />
+
+    <p class="dv-erreur-generale hidden rounded-[12px] border-2 border-grey-2 bg-white p-4 text-[16px] font-semibold" role="alert"></p>
+
+    <button type="submit" class="dv-btn dv-btn-plein w-full">Demander ma démo</button>
+
+    <p class="text-center text-[15px] dv-muted">Gratuit · 15&nbsp;min · Sans engagement</p>
+    <p id="dv-form-rgpd" class="text-[14px] leading-snug dv-muted">
+      Vos informations servent uniquement à vous recontacter pour la démo. Détails dans notre <a href={lien('/confidentialite/')}>politique de confidentialité</a>.
+    </p>
+  </form>
+
+  <div class="dv-form-ok hidden" role="status" tabindex="-1">
+    <p class="dv-h3">C’est noté<span data-prenom></span>.</p>
+    <p class="mt-3">Tom vous rappelle sous 24&nbsp;h au <strong data-tel></strong> pour fixer votre démo de 15&nbsp;minutes.</p>
+    <p class="mt-3">Besoin d’aller plus vite&nbsp;? Appelez-le au <a href={`tel:${SITE.telephoneLien}`} class="font-semibold">{SITE.telephone}</a>.</p>
+    {
+      SITE.rendezVous && (
+        <a href={SITE.rendezVous} class="dv-btn dv-btn-contour mt-5 w-full" rel="noopener">
+          Choisir mon créneau maintenant
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  // Validation, provenance (UTM, page, bouton cliqué) et envoi sans rechargement.
+  type Champ = HTMLInputElement | HTMLSelectElement;
+  const UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+
+  function lireStockage(cle: string): string | null {
+    try {
+      return sessionStorage.getItem(cle);
+    } catch {
+      return null;
+    }
+  }
+  function ecrireStockage(cle: string, valeur: string) {
+    try {
+      sessionStorage.setItem(cle, valeur);
+    } catch {
+      /* stockage indisponible : on garde seulement la page en cours */
+    }
+  }
+
+  // UTM de la page d'arrivée, gardés le temps de la visite (pas de cookie).
+  const params = new URLSearchParams(location.search);
+  if (UTM.some((k) => params.get(k))) {
+    ecrireStockage('dv_utm', JSON.stringify(Object.fromEntries(UTM.map((k) => [k, (params.get(k) || '').slice(0, 100)]))));
+  }
+
+  function telephoneValide(v: string): boolean {
+    let t = v.replace(/[\s.\-()]/g, '');
+    if (t.startsWith('00')) t = '+' + t.slice(2);
+    return /^0[1-9]\d{8}$/.test(t) || /^\+33[1-9]\d{8}$/.test(t) || /^\+[1-9]\d{7,14}$/.test(t);
+  }
+
+  function valide(c: Champ): boolean {
+    const v = c.value.trim();
+    if (c.name === 'telephone') return telephoneValide(v);
+    if (c.name === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    if (c.name === 'nom' || c.name === 'restaurant') return v.length >= 2;
+    if (c.name === 'points_de_vente') return v !== '';
+    return true;
+  }
+
+  function afficher(c: Champ, message: string | null) {
+    const p = document.getElementById(c.id + '-erreur');
+    if (!p) return;
+    if (message) {
+      p.textContent = message;
+      p.classList.remove('hidden');
+      c.setAttribute('aria-invalid', 'true');
+    } else {
+      p.textContent = '';
+      p.classList.add('hidden');
+      c.removeAttribute('aria-invalid');
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('.dv-form').forEach((bloc) => {
+    const form = bloc.querySelector<HTMLFormElement>('form[data-formulaire-demo]');
+    const ok = bloc.querySelector<HTMLElement>('.dv-form-ok');
+    if (!form || !ok) return;
+    form.noValidate = true;
+    const champs = Array.from(form.querySelectorAll<Champ>('input[required], select[required]'));
+    const bouton = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const generale = form.querySelector<HTMLElement>('.dv-erreur-generale')!;
+    const message = (c: Champ) => document.getElementById(c.id + '-erreur')?.dataset.message || 'Vérifiez ce champ.';
+
+    // Provenance : UTM de la visite, page, dernier bouton démo cliqué.
+    try {
+      const utm = JSON.parse(lireStockage('dv_utm') || '{}') as Record<string, string>;
+      UTM.forEach((k) => {
+        const h = form.elements.namedItem(k) as HTMLInputElement | null;
+        if (h && utm[k]) h.value = utm[k];
+      });
+    } catch {
+      /* valeur illisible : ignorée */
+    }
+    (form.elements.namedItem('page_origine') as HTMLInputElement).value = location.pathname.slice(0, 200);
+    const sectionCta = form.elements.namedItem('section_cta') as HTMLInputElement;
+    const sectionParDefaut = sectionCta.value;
+
+    champs.forEach((c) => {
+      c.addEventListener('blur', () => {
+        if (c.value.trim() === '' && !c.getAttribute('aria-invalid')) return;
+        afficher(c, valide(c) ? null : message(c));
+      });
+      c.addEventListener('input', () => {
+        if (c.getAttribute('aria-invalid') && valide(c)) afficher(c, null);
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      generale.classList.add('hidden');
+      const fautifs = champs.filter((c) => !valide(c));
+      champs.forEach((c) => afficher(c, fautifs.includes(c) ? message(c) : null));
+      if (fautifs.length) {
+        fautifs[0].focus();
+        return;
+      }
+      // Dernier bouton « Demander une démo » cliqué pendant la visite, lu au moment de l'envoi.
+      sectionCta.value = (lireStockage('dv_section_cta') || sectionParDefaut).slice(0, 60);
+      bouton.disabled = true;
+      const texte = bouton.textContent;
+      bouton.textContent = 'Envoi en cours…';
+      const donnees = Object.fromEntries(new FormData(form).entries());
+      try {
+        const r = await fetch(form.dataset.endpoint || form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(donnees),
+        });
+        const corps = (await r.json().catch(() => ({}))) as { ok?: boolean; message?: string; erreurs?: Record<string, string> };
+        if (r.ok && corps.ok) {
+          const prenom = String(donnees.nom || '').trim().split(/\s+/)[0];
+          const span = ok.querySelector('[data-prenom]');
+          if (span && prenom) span.textContent = ', ' + prenom;
+          const tel = ok.querySelector('[data-tel]');
+          if (tel) tel.textContent = String(donnees.telephone || '');
+          form.classList.add('hidden');
+          ok.classList.remove('hidden');
+          ok.focus();
+          return;
+        }
+        if (r.status === 422 && corps.erreurs) {
+          const avecErreur = champs.filter((c) => corps.erreurs![c.name]);
+          avecErreur.forEach((c) => afficher(c, corps.erreurs![c.name]));
+          avecErreur[0]?.focus();
+        } else {
+          generale.textContent = corps.message || 'Votre demande n’a pas pu partir. Réessayez, ou appelez Tom au 06 32 37 79 88.';
+          generale.classList.remove('hidden');
+        }
+      } catch {
+        generale.textContent = 'La connexion a été coupée. Réessayez, ou appelez Tom au 06 32 37 79 88.';
+        generale.classList.remove('hidden');
+      }
+      bouton.disabled = false;
+      bouton.textContent = texte;
+    });
+  });
+</script>

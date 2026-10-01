@@ -1,0 +1,21 @@
+---
+// Page introuvable : liens utiles vers les piliers et la démo.
+import Base from '../layouts/Base.astro';
+import { PILIERS, lien } from '../lib/site';
+---
+
+<Base title="Page introuvable | Deliview" description="Cette page n’existe pas ou plus. Retrouvez les fonctionnalités de Deliview ou demandez une démo de 15 minutes." noindex>
+  <section class="dv-section bg-white">
+    <div class="dv-container max-w-[760px]">
+      <p class="dv-overline dv-muted">Erreur 404</p>
+      <h1 class="dv-h1 mt-4">Cette page n’existe pas</h1>
+      <p class="dv-lead mt-5">Le lien est peut-être ancien ou mal recopié. Voici où aller.</p>
+      <ul class="mt-8 space-y-3">
+        {PILIERS.map((p) => <li><a href={lien(`/solution/${p.slug}/`)} class="font-semibold underline underline-offset-2">{p.surtitre}</a></li>)}
+        <li><a href={lien('/ressources/')} class="font-semibold underline underline-offset-2">Ressources</a></li>
+        <li><a href={lien('/')} class="font-semibold underline underline-offset-2">Accueil</a></li>
+      </ul>
+      <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-10" data-cta="404" data-cta-principal>Demander une démo</a>
+    </div>
+  </section>
+</Base>

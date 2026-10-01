@@ -1,0 +1,30 @@
+---
+// Questions fréquentes : texte présent dans le HTML (lisible sans JavaScript), ouvert d'un clic.
+interface Props {
+  titre?: string;
+  questions: { q: string; r: string }[];
+  id?: string;
+}
+const { titre = 'Questions fréquentes', questions, id = 'faq' } = Astro.props;
+---
+
+<section id={id} class="dv-section bg-white" aria-labelledby={`${id}-titre`}>
+  <div class="dv-container max-w-[880px]">
+    <h2 id={`${id}-titre`} class="dv-h2">{titre}</h2>
+    <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
+      {
+        questions.map((x) => (
+          <details class="group py-2">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3 text-[18px] font-semibold md:text-[20px] [&::-webkit-details-marker]:hidden">
+              <h3 class="font-semibold">{x.q}</h3>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 transition-transform group-open:rotate-45">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </summary>
+            <p class="pb-4 dv-texte" set:html={x.r} />
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

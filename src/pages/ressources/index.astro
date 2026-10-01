@@ -1,0 +1,81 @@
+---
+// Ressources : articles classés par thème (les 4 piliers), du plus récent au plus ancien.
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
+import { THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+
+const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
+const parTheme = Object.entries(THEMES)
+  .map(([slug, nom]) => ({ slug, nom, articles: articles.filter((a) => a.data.theme === slug) }))
+  .filter((t) => t.articles.length);
+const description =
+  'Guides pratiques pour les restaurateurs sur Uber Eats et Deliveroo : prix, commissions, promotions, avis. Chaque chiffre est sourcé et daté.';
+---
+
+<Base title="Ressources pour restaurateurs en livraison | Deliview" description={description} ariane={[{ nom: 'Ressources', chemin: '/ressources/' }]}>
+  <section class="bg-white">
+    <div class="dv-container pb-10 pt-8 md:pb-14 md:pt-12">
+      <p class="dv-overline dv-muted">Ressources</p>
+      <h1 class="dv-h1 mt-4 max-w-[20ch]">Ressources pour les restaurants sur Uber Eats et Deliveroo</h1>
+      <p class="dv-lead mt-5 max-w-[60ch]">Des guides pratiques sur les prix, les commissions, les promotions et les avis en livraison. Chaque chiffre est sourcé et daté.</p>
+      {
+        parTheme.length > 1 && (
+          <nav aria-label="Thèmes" class="mt-8">
+            <ul class="flex flex-wrap gap-2">
+              {parTheme.map((t) => (
+                <li>
+                  <a href={`#${t.slug}`} class="inline-flex min-h-[44px] items-center rounded-full border border-grey-2/20 px-4 text-[16px] font-semibold hover:bg-grey">
+                    {t.nom}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    parTheme.length === 0 && (
+      <section class="dv-section bg-grey">
+        <div class="dv-container">
+          <p class="dv-lead">Les premiers guides arrivent très vite.</p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    parTheme.map((t, i) => (
+      <section id={t.slug} class={`dv-section ${i % 2 === 0 ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`theme-${t.slug}`}>
+        <div class="dv-container">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <h2 id={`theme-${t.slug}`} class="dv-h2">{t.nom}</h2>
+            <a href={lien(`/solution/${t.slug}/`)} class="font-bold underline underline-offset-4">
+              Voir {t.nom.toLowerCase()} dans Deliview
+            </a>
+          </div>
+          <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {t.articles.map((a) => (
+              <li class="dv-card flex flex-col p-6">
+                <h3 class="dv-h3">
+                  <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
+                    {a.data.titre}
+                  </a>
+                </h3>
+                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
+                <p class="mt-4 text-[14px] dv-muted">
+                  Mis à jour le {dateFr(a.data.misAJourLe)} · {tempsLecture(a.body || '')}&nbsp;min de lecture
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    ))
+  }
+
+  <SectionDemo section="ressources-formulaire" />
+</Base>

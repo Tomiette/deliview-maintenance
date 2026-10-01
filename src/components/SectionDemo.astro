@@ -1,0 +1,62 @@
+---
+// Section démo (dernier écran de chaque page) : les 4 étapes à gauche, le formulaire à droite.
+import DemoForm from './DemoForm.astro';
+import Icone from './Icone.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  // Section d'origine envoyée avec la demande (mesure des boutons).
+  section: string;
+  titre?: string;
+  sousTitre?: string;
+  // Niveau du titre : h2 sur les pages, h1 sur la page Démo.
+  niveau?: 'h1' | 'h2';
+  id?: string;
+}
+const {
+  section,
+  titre = 'Voyez votre restaurant face à sa zone',
+  sousTitre = 'Une démo de 15 minutes sur vos propres fiches Uber Eats et Deliveroo : vos prix, vos concurrents, votre note.',
+  niveau = 'h2',
+  id = 'demo',
+} = Astro.props;
+const Titre = niveau;
+const etapes = [
+  { titre: 'Vous remplissez le formulaire', texte: 'Cinq champs, une minute.' },
+  { titre: 'Tom vous rappelle sous 24 h', texte: 'Pour caler un créneau en dehors de vos services.' },
+  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos fiches, vos concurrents et vos prix.' },
+  { titre: 'La mise en place, avec vous', texte: 'Si vous continuez, Tom configure votre compte avec vous.' },
+];
+---
+
+<section id={id} class="bg-grey dv-section" aria-labelledby={`${id}-titre`}>
+  <div class="dv-container grid gap-10 lg:grid-cols-[1fr_480px] lg:gap-16">
+    <div>
+      <p class="dv-overline dv-muted">Démo gratuite</p>
+      <Titre id={`${id}-titre`} class={`${niveau === 'h1' ? 'dv-h1' : 'dv-h2'} mt-3 max-w-[18ch]`}>{titre}</Titre>
+      <p class="dv-lead mt-4 max-w-[52ch]">{sousTitre}</p>
+      <ol class="mt-8 space-y-6">
+        {
+          etapes.map((e, i) => (
+            <li class="flex gap-4">
+              <span class="dv-figure !text-[32px] w-10 shrink-0 text-blue" aria-hidden="true">{i + 1}</span>
+              <span>
+                <span class="block font-semibold">{e.titre.replace(' 24 h', ' 24 h')}</span>
+                <span class="block dv-muted">{e.texte}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="mt-8 flex items-center gap-3">
+        <Icone nom="telephone" class="shrink-0" />
+        <span>
+          Vous préférez appeler&nbsp;? <a href={`tel:${SITE.telephoneLien}`} class="font-semibold whitespace-nowrap">{SITE.telephone}</a>
+        </span>
+      </p>
+    </div>
+    <div id={`${id}-formulaire`} class="dv-card p-6 md:p-8">
+      <DemoForm section={section} />
+    </div>
+  </div>
+</section>

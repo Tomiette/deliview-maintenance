@@ -1,0 +1,211 @@
+---
+// Tarifs : programme pilote + 2 offres (prix à fixer par Tom), tableau comparatif, FAQ (FAQPage).
+import Base from '../layouts/Base.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import Faq from '../components/Faq.astro';
+import Icone from '../components/Icone.astro';
+import { SITE, jsonldLogiciel, lien } from '../lib/site';
+
+const description =
+  'Programme pilote ouvert : mise en place faite avec Tom, ligne directe avec le fondateur. Deux offres, Analyse dès aujourd’hui et Pilotage bientôt.';
+
+const pilote = [
+  { titre: 'La mise en place faite avec Tom', texte: 'Compte, première analyse, lecture des résultats&nbsp;: vous n’êtes pas seul face à l’écran.' },
+  { titre: 'Une ligne directe avec le fondateur', texte: `Une question, un bug, une idée&nbsp;: <a href="tel:${SITE.telephoneLien}">${SITE.telephone}</a>.` },
+  { titre: 'Vos retours décident de la suite', texte: 'Les prochaines fonctionnalités se choisissent avec les restaurants pilotes.' },
+  { titre: 'Les nouveautés en premier', texte: 'Dont les commandes Uber Eats et Deliveroo sur un seul écran, dès qu’elles sont prêtes.' },
+];
+
+const offres = [
+  {
+    nom: 'Analyse',
+    statut: 'disponible',
+    pour: 'Pour fixer vos prix avec des chiffres',
+    inclus: [
+      'Vos fiches Uber Eats et Deliveroo analysées',
+      'Jusqu’à 10 concurrents, dont 3 que vous choisissez',
+      'Chaque plat comparé, prix proposés avec leurs sources',
+      'Promos de la zone et changements repérés à chaque analyse',
+      'Votre place au classement des notes',
+      'Un accès pour votre gérant et votre équipe',
+    ],
+  },
+  {
+    nom: 'Pilotage',
+    statut: 'bientot',
+    pour: 'Pour tout gérer au même endroit',
+    inclus: [
+      'Tout ce que contient Analyse',
+      'Les commandes des deux plateformes sur un seul écran',
+      'Un menu modifié une fois, partout',
+      'Vos avis et des réponses proposées',
+      'Chiffre d’affaires et TVA par plateforme',
+      'Uber Direct pour les commandes de votre site',
+    ],
+  },
+];
+
+type Case = 'oui' | 'bientot' | 'non';
+const comparatif: { libelle: string; analyse: Case; pilotage: Case }[] = [
+  { libelle: 'Prix de chaque plat face à votre zone', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Prix proposés avec leurs sources', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Concurrents suivis à la main (jusqu’à 3)', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Promos de la zone', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Changements repérés entre deux analyses', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Classement des notes de la zone', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Accès équipe (gérant, équipe)', analyse: 'oui', pilotage: 'oui' },
+  { libelle: 'Commandes sur un seul écran', analyse: 'non', pilotage: 'bientot' },
+  { libelle: 'Menu, prix et ruptures modifiés partout', analyse: 'non', pilotage: 'bientot' },
+  { libelle: 'Avis et réponses proposées', analyse: 'non', pilotage: 'bientot' },
+  { libelle: 'Chiffre d’affaires et TVA par plateforme', analyse: 'non', pilotage: 'bientot' },
+  { libelle: 'Uber Direct', analyse: 'non', pilotage: 'bientot' },
+];
+
+const faq = [
+  {
+    q: 'Faut-il donner mes identifiants Uber Eats ou Deliveroo ?',
+    r: 'Non. Deliview lit les informations publiques de vos fiches&nbsp;: prix, notes, offres. Aucun accès à votre espace restaurant n’est demandé.',
+  },
+  {
+    q: 'Combien de concurrents sont comparés ?',
+    r: 'Jusqu’à 10 restaurants de votre zone. Vous pouvez en imposer jusqu’à 3, même plus loin ou d’une autre cuisine.',
+  },
+  {
+    q: 'Puis-je inviter mon équipe ?',
+    r: 'Oui. Depuis les réglages, invitez un gérant ou un membre de votre équipe&nbsp;: chacun a son propre accès, limité à votre restaurant.',
+  },
+  {
+    q: 'Comment se passe la mise en place ?',
+    r: 'Tom crée votre compte avec vous, lance la première analyse et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans votre navigateur, sur ordinateur comme sur téléphone.',
+  },
+  {
+    q: 'Où sont hébergées mes données ?',
+    r: 'Dans l’Union européenne&nbsp;: la base de données de Deliview est hébergée en Irlande. Le détail est dans notre <a href="' + lien('/confidentialite/') + '">politique de confidentialité</a>.',
+  },
+  {
+    q: 'Deliview fonctionne-t-il si je ne suis que sur une plateforme ?',
+    r: 'Oui. L’analyse porte alors sur la plateforme où vous êtes présent.',
+  },
+];
+
+const texteBrut = (h: string) => h.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
+};
+---
+
+<Base
+  title="Tarifs et programme pilote | Deliview"
+  description={description}
+  ariane={[{ nom: 'Tarifs', chemin: '/tarifs/' }]}
+  jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/'), faqPage]}
+>
+  <section class="bg-white">
+    <div class="dv-container pb-10 pt-8 md:pb-12 md:pt-12">
+      <p class="dv-overline dv-muted">Tarifs</p>
+      <h1 class="dv-h1 mt-4 max-w-[18ch]">Tarifs et programme pilote</h1>
+      <p class="dv-lead mt-5 max-w-[60ch]">Deliview démarre avec un programme pilote&nbsp;: une mise en place faite avec Tom, une ligne directe avec lui, et deux offres selon ce dont vous avez besoin.</p>
+    </div>
+  </section>
+
+  <section id="pilote" class="dv-section bg-grey !pt-12" aria-labelledby="pilote-titre">
+    <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <p class="dv-overline dv-muted">Programme pilote</p>
+        <h2 id="pilote-titre" class="dv-h2 mt-3 max-w-[20ch]">Ce que vous obtenez en rejoignant le pilote</h2>
+        <p class="mt-5 dv-texte">
+          Conditions du pilote&nbsp;: <span class="dv-a-remplacer">[À REMPLACER : nombre de places, durée, prix pendant le pilote, engagement]</span>
+        </p>
+        <a href="#demo" class="dv-btn dv-btn-plein mt-8" data-cta="tarifs-pilote" data-cta-principal>Candidater au programme pilote</a>
+      </div>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          pilote.map((x) => (
+            <li class="dv-card p-5">
+              <h3 class="font-semibold leading-snug">{x.titre}</h3>
+              <p class="mt-2 text-[16px] dv-muted" set:html={x.texte} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="dv-section bg-white" aria-labelledby="offres-titre">
+    <div class="dv-container">
+      <h2 id="offres-titre" class="dv-h2">Deux offres</h2>
+      <p class="mt-4 dv-muted dv-texte">Prix hors taxes, par établissement. <span class="dv-a-remplacer">[À REMPLACER : engagement, frais de mise en place, nombre d’analyses par mois]</span></p>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          offres.map((o) => (
+            <li class={`dv-card flex flex-col p-6 md:p-8 ${o.statut === 'disponible' ? 'border-2 !border-blue' : ''}`}>
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-[28px] font-bold">{o.nom}</h3>
+                <span class={`dv-badge ${o.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{o.statut === 'bientot' ? 'Bientôt' : 'Disponible'}</span>
+              </div>
+              <p class="mt-2 dv-muted">{o.pour}</p>
+              <p class="mt-6">
+                <span class="dv-a-remplacer">[À REMPLACER : prix]</span>
+                <span class="ml-1 text-[16px] dv-muted">€&nbsp;HT par mois et par établissement</span>
+              </p>
+              <ul class="mt-6 flex-1 space-y-3">
+                {o.inclus.map((x) => (
+                  <li class="flex gap-3">
+                    <span class={`mt-1 ${o.statut === 'bientot' ? 'dv-muted' : 'text-blue'}`}>
+                      <Icone nom={o.statut === 'bientot' && !x.startsWith('Tout ce') ? 'horloge' : 'check'} taille={20} />
+                    </span>
+                    {x}
+                  </li>
+                ))}
+              </ul>
+              <a href="#demo" class="dv-btn dv-btn-contour mt-8 w-full" data-cta={`tarifs-${o.nom.toLowerCase()}`}>
+                {o.statut === 'bientot' ? 'Candidater au programme pilote' : 'Demander une démo'}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2 class="dv-h2 mt-20" id="comparatif-titre">Comparer les offres</h2>
+      <div class="mt-8 overflow-x-auto rounded-[16px] border border-grey-2/15" tabindex="0" role="region" aria-label="Comparatif des offres, défile horizontalement">
+        <table class="w-full min-w-[560px] border-collapse text-left text-[16px]" aria-labelledby="comparatif-titre">
+          <thead class="bg-grey">
+            <tr>
+              <th scope="col" class="p-4 font-semibold">Fonctionnalité</th>
+              <th scope="col" class="p-4 font-semibold">Analyse</th>
+              <th scope="col" class="p-4 font-semibold">Pilotage</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              comparatif.map((l) => (
+                <tr class="border-t border-grey-2/15">
+                  <th scope="row" class="p-4 font-normal">{l.libelle}</th>
+                  {[l.analyse, l.pilotage].map((c) => (
+                    <td class="p-4">
+                      {c === 'oui' ? (
+                        <span class="inline-flex items-center gap-2 font-semibold">
+                          <span class="text-blue"><Icone nom="check" taille={20} /></span>Inclus
+                        </span>
+                      ) : c === 'bientot' ? (
+                        <span class="dv-badge dv-badge-bientot">Bientôt</span>
+                      ) : (
+                        <span class="dv-muted">Non inclus</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <Faq questions={faq} />
+
+  <SectionDemo section="tarifs-formulaire" />
+</Base>

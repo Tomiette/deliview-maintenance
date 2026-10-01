@@ -1,0 +1,46 @@
+---
+// Capture réelle de l'app Deliview, dans un cadre de fenêtre, avec la mention « Données de démonstration ».
+// `src` : chemin sans extension ; les fichiers -800.webp et -1600.webp existent dans public/images.
+// `srcMobile` (facultatif) : recadrage plus lisible sur téléphone (fichiers -mobile-800.webp, -mobile-1200.webp).
+import { lien } from '../lib/site';
+
+interface Props {
+  src: string;
+  alt: string;
+  largeur?: number;
+  hauteur?: number;
+  srcMobile?: { src: string; largeur: number; hauteur: number };
+  // Image principale de la page (hero) : chargée en priorité.
+  priorite?: boolean;
+  class?: string;
+}
+const { src, alt, largeur = 1600, hauteur = 1000, srcMobile, priorite = false, class: classe = '' } = Astro.props;
+const base = lien(src);
+const baseMobile = srcMobile ? lien(srcMobile.src) : null;
+---
+
+<figure class={`relative ${classe}`}>
+  <div class="overflow-hidden rounded-[16px] border border-grey-2/15 bg-white shadow-[0_4px_16px_rgba(76,76,76,0.06)]">
+    <figcaption class="flex items-center gap-1.5 border-b border-grey-2/10 bg-grey px-3 py-1.5">
+      <span class="h-2.5 w-2.5 rounded-full bg-grey-2/20" aria-hidden="true"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-grey-2/20" aria-hidden="true"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-grey-2/20" aria-hidden="true"></span>
+      <span class="ml-auto text-[13px] font-semibold">Données de démonstration</span>
+    </figcaption>
+    <picture>
+      {baseMobile && srcMobile && <source media="(max-width: 767px)" srcset={`${baseMobile}-800.webp 800w, ${baseMobile}-1200.webp 1200w`} sizes="100vw" width={srcMobile.largeur} height={srcMobile.hauteur} />}
+      <img
+        src={`${base}-1600.webp`}
+        srcset={`${base}-800.webp 800w, ${base}-1600.webp 1600w`}
+        sizes="(min-width: 1200px) 640px, (min-width: 768px) 55vw, 100vw"
+        alt={alt}
+        width={largeur}
+        height={hauteur}
+        loading={priorite ? 'eager' : 'lazy'}
+        fetchpriority={priorite ? 'high' : 'auto'}
+        decoding="async"
+        class="block h-auto w-full"
+      />
+    </picture>
+  </div>
+</figure>

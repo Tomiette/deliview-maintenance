@@ -1,0 +1,156 @@
+---
+// Article : réponse directe en tête, sommaire, contenu, sources datées, liens vers le pilier et la démo.
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
+import Icone from '../../components/Icone.astro';
+import { PILIERS, SITE, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('ressources', (a) => !a.data.brouillon);
+  return articles.map((a) => ({ params: { slug: a.id }, props: { article: a } }));
+}
+
+const { article } = Astro.props as { article: CollectionEntry<'ressources'> };
+const { Content, headings } = await render(article);
+const d = article.data;
+const pilier = PILIERS.find((p) => p.slug === d.theme)!;
+const sommaire = headings.filter((h) => h.depth === 2);
+const autres = (await getCollection('ressources', (a) => !a.data.brouillon && a.id !== article.id))
+  .sort((a, b) => Number(b.data.theme === d.theme) - Number(a.data.theme === d.theme) || b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime())
+  .slice(0, 3);
+const url = `${SITE.url}/ressources/${article.id}/`;
+const iso = (x: Date) => x.toISOString().slice(0, 10);
+
+const jsonArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.titre,
+  description: d.description,
+  inLanguage: 'fr-FR',
+  datePublished: iso(d.publieLe),
+  dateModified: iso(d.misAJourLe),
+  mainEntityOfPage: url,
+  image: SITE.url + '/images/partage.png',
+  author: { '@type': 'Person', name: d.auteur, url: SITE.url + '/qui-sommes-nous/#tom', sameAs: [SITE.linkedinTom] },
+  publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url, logo: { '@type': 'ImageObject', url: SITE.url + '/images/logo-deliview.png' } },
+  citation: d.sources.map((s) => s.url),
+};
+---
+
+<Base
+  title={`${d.titreSeo} | Deliview`}
+  description={d.description}
+  ogType="article"
+  ariane={[
+    { nom: 'Ressources', chemin: '/ressources/' },
+    { nom: d.titre, chemin: `/ressources/${article.id}/` },
+  ]}
+  jsonld={[jsonArticle]}
+>
+  <article>
+    <header class="bg-white">
+      <div class="dv-container max-w-[820px] pb-8 pt-8 md:pt-12">
+        <p class="dv-overline dv-muted">
+          <a href={lien(`/ressources/#${d.theme}`)} class="hover:underline">{THEMES[d.theme]}</a>
+        </p>
+        <h1 class="dv-h1 mt-4 !text-[34px] md:!text-[48px]">{d.titre}</h1>
+        <p class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] dv-muted">
+          <span>Par <a href={lien('/qui-sommes-nous/#tom')} class="font-semibold underline underline-offset-2">{d.auteur}</a>, fondateur de Deliview</span>
+          <span aria-hidden="true">·</span>
+          <span>Publié le <time datetime={iso(d.publieLe)}>{dateFr(d.publieLe)}</time></span>
+          {
+            iso(d.misAJourLe) !== iso(d.publieLe) && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>
+                  Mis à jour le <time datetime={iso(d.misAJourLe)}>{dateFr(d.misAJourLe)}</time>
+                </span>
+              </>
+            )
+          }
+          <span aria-hidden="true">·</span>
+          <span>{tempsLecture(article.body || '')}&nbsp;min de lecture</span>
+        </p>
+      </div>
+    </header>
+
+    <div class="dv-container max-w-[820px] pb-16">
+      <aside class="rounded-[16px] border-l-4 border-blue bg-grey p-6" aria-label="En bref">
+        <p class="dv-overline">En bref</p>
+        <p class="mt-2">{d.enBref}</p>
+      </aside>
+
+      {
+        sommaire.length >= 3 && (
+          <nav aria-labelledby="sommaire-titre" class="mt-10 rounded-[16px] border border-grey-2/15 p-6">
+            <p id="sommaire-titre" class="font-semibold">Sommaire</p>
+            <ol class="mt-3 list-decimal space-y-2 pl-5 text-[16px]">
+              {sommaire.map((h) => (
+                <li>
+                  <a href={`#${h.slug}`} class="underline underline-offset-2">
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+
+      <div class="prose-dv mt-4">
+        <Content />
+      </div>
+
+      <section class="mt-14 dv-card bg-grey p-6 md:p-8" aria-labelledby="pilier-titre">
+        <p class="dv-overline dv-muted">Dans Deliview</p>
+        <h2 id="pilier-titre" class="dv-h3 mt-2">{pilier.titre}</h2>
+        <p class="mt-2 dv-muted">{pilier.phrase}</p>
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+          <a href={lien(`/solution/${pilier.slug}/`)} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
+          <a href="#demo" class="inline-flex min-h-[52px] items-center gap-2 px-2 text-[19px] font-bold underline underline-offset-4" data-cta={`article-${article.id}`}>
+            Demander une démo <Icone nom="fleche" taille={20} />
+          </a>
+        </div>
+      </section>
+
+      <section class="mt-14" aria-labelledby="sources-titre">
+        <h2 id="sources-titre" class="dv-h3">Sources</h2>
+        <ol class="mt-4 list-decimal space-y-2 pl-5 text-[15px]">
+          {
+            d.sources.map((s) => (
+              <li>
+                <a href={s.url} rel="noopener" class="underline underline-offset-2">{s.titre}</a>, {s.editeur}, consulté le {s.consulteLe}.
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+    </div>
+  </article>
+
+  {
+    autres.length > 0 && (
+      <section class="dv-section bg-white !pt-0" aria-labelledby="autres-articles">
+        <div class="dv-container">
+          <h2 id="autres-articles" class="dv-h2">À lire aussi</h2>
+          <ul class="mt-8 grid gap-6 md:grid-cols-3">
+            {autres.map((a) => (
+              <li class="dv-card flex flex-col p-6">
+                <p class="dv-overline dv-muted">{THEMES[a.data.theme]}</p>
+                <h3 class="dv-h3 mt-3">
+                  <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
+                    {a.data.titre}
+                  </a>
+                </h3>
+                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <SectionDemo section={`article-${article.id}-formulaire`} />
+</Base>

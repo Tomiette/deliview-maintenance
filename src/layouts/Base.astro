@@ -1,0 +1,112 @@
+---
+// Gabarit commun : balises, données structurées, en-tête, pied de page.
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, lien } from '../lib/site';
+import inter400 from '../fonts/inter-latin-400-normal.woff2?url';
+import inter700 from '../fonts/inter-latin-700-normal.woff2?url';
+
+interface Props {
+  title: string;
+  description: string;
+  // Fil d'Ariane (toutes les pages sauf l'accueil) : [{ nom, chemin }]
+  ariane?: { nom: string; chemin: string }[];
+  jsonld?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  // Pages sans intérêt dans les moteurs (merci, 404).
+  noindex?: boolean;
+}
+
+const { title, description, ariane = [], jsonld = [], ogType = 'website', noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/', SITE.url).href;
+// Aperçu (SITE_BASE ≠ /) : jamais indexé.
+const apercu = import.meta.env.BASE_URL !== '/';
+const robots = apercu ? 'noindex, nofollow' : noindex ? 'noindex, follow' : null;
+const ogImage = new URL(lien('/images/partage.png'), Astro.site).href;
+
+const organisation = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.nom,
+  url: SITE.url,
+  logo: SITE.url + '/images/logo-deliview.png',
+  description: SITE.definition,
+  email: SITE.email,
+  telephone: SITE.telephoneLien,
+  founder: { '@type': 'Person', name: 'Tom Voisin', sameAs: [SITE.linkedinTom] },
+};
+const siteWeb = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.nom, url: SITE.url, inLanguage: 'fr-FR' };
+const fil = ariane.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ nom: 'Accueil', chemin: '/' }, ...ariane].map((x, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: x.nom,
+        item: new URL(x.chemin, SITE.url).href,
+      })),
+    }
+  : null;
+const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {robots && <meta name="robots" content={robots} />}
+    <meta name="theme-color" content="#5282ff" />
+    <link rel="icon" type="image/svg+xml" href={lien('/favicon.svg')} />
+    <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Deliview" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    {donnees.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 dv-btn dv-btn-plein">Aller au contenu</a>
+    <Header />
+    <main id="contenu" class="flex-1">
+      {
+        ariane.length > 0 && (
+          <nav aria-label="Fil d’Ariane" class="dv-container pt-6 text-[15px] dv-muted">
+            <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+              <li>
+                <a href={lien('/')} class="underline underline-offset-2">Accueil</a>
+              </li>
+              {ariane.map((x, i) => (
+                <li class="flex items-center gap-2">
+                  <span aria-hidden="true">›</span>
+                  {i === ariane.length - 1 ? (
+                    <span aria-current="page">{x.nom}</span>
+                  ) : (
+                    <a href={lien(x.chemin)} class="underline underline-offset-2">{x.nom}</a>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )
+      }
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

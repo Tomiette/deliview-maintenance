@@ -1,0 +1,128 @@
+---
+// En-tête collant : barre d'annonce, logo, navigation (méga-menu Solution), connexion, bouton démo.
+// Menus en <details> : utilisables sans JavaScript et au clavier ; Échap les ferme (script ci-dessous).
+import { NAV, PILIERS, SITE, lien } from '../lib/site';
+---
+
+<aside class="bg-grey text-[15px]" aria-label="Programme pilote">
+  <div class="dv-container flex items-center justify-center gap-3 py-2 text-center">
+    <p>
+      <strong>Programme pilote ouvert</strong><span class="hidden md:inline">&nbsp;: <span class="dv-a-remplacer">[À REMPLACER : nombre de places]</span>, mise en place faite avec vous.</span>
+      <span class="md:hidden" aria-hidden="true">·</span>
+      <a href={lien('/tarifs/#pilote')} class="font-semibold underline underline-offset-2 whitespace-nowrap">Candidater</a>
+    </p>
+  </div>
+</aside>
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-grey-2/15">
+  <div class="dv-container flex h-[72px] items-center justify-between gap-4">
+    <a href={lien('/')} class="shrink-0" aria-label="Deliview, accueil">
+      <img src={lien('/images/logo-deliview.png')} alt="Deliview" width="128" height="27" />
+    </a>
+
+    <nav aria-label="Navigation principale" class="hidden lg:block">
+      <ul class="flex items-center gap-1 whitespace-nowrap text-[16px] font-semibold">
+        {
+          NAV.map((item) =>
+            item.menu ? (
+              <li class="relative">
+                <details class="dv-menu group">
+                  <summary class="flex cursor-pointer list-none items-center gap-1 rounded-lg px-3 py-2 hover:bg-grey [&::-webkit-details-marker]:hidden">
+                    {item.libelle}
+                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+                  </summary>
+                  <div class="absolute left-0 top-full mt-2 w-[640px] rounded-[16px] border border-grey-2/15 bg-white p-4 shadow-[0_4px_16px_rgba(76,76,76,0.06)]">
+                    <ul class="grid grid-cols-2 gap-1">
+                      {PILIERS.map((p) => (
+                        <li>
+                          <a href={lien(`/solution/${p.slug}/`)} class="block rounded-xl p-3 hover:bg-grey">
+                            <span class="flex items-center gap-2">
+                              <span class="font-semibold">{p.surtitre}</span>
+                              {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
+                            </span>
+                            <span class="mt-1 block text-[15px] font-normal leading-snug dv-muted">{p.phrase}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href={lien('/solution/')} class="mt-2 block rounded-xl p-3 text-[15px] underline underline-offset-2 hover:bg-grey">
+                      Voir toute la solution
+                    </a>
+                  </div>
+                </details>
+              </li>
+            ) : (
+              <li>
+                <a href={lien(item.href)} class="block rounded-lg px-3 py-2 hover:bg-grey">
+                  {item.libelle}
+                </a>
+              </li>
+            ),
+          )
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={`tel:${SITE.telephoneLien}`} class="hidden md:inline-flex lg:hidden xl:inline-flex items-center px-2 text-[16px] font-semibold whitespace-nowrap">{SITE.telephone}</a>
+      <a href={SITE.app} class="hidden sm:inline-flex items-center whitespace-nowrap rounded-lg px-3 py-2 text-[16px] font-semibold hover:bg-grey">Se connecter</a>
+      <a href={lien('/demo/')} class="dv-btn dv-btn-plein !min-h-[44px] !px-4 !py-2 hidden whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
+
+      <details class="dv-menu lg:hidden">
+        <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-grey-2/20 [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </summary>
+        <div class="fixed inset-x-0 top-[72px] max-h-[calc(100dvh-72px)] overflow-y-auto border-b border-grey-2/15 bg-white px-4 pb-6 pt-2">
+          <p class="dv-overline pt-2 pb-1">Solution</p>
+          <ul>
+            {
+              PILIERS.map((p) => (
+                <li>
+                  <a href={lien(`/solution/${p.slug}/`)} class="flex items-center gap-2 py-3 font-semibold border-b border-grey-2/10">
+                    {p.surtitre}
+                    {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
+                  </a>
+                </li>
+              ))
+            }
+            {
+              NAV.filter((x) => !x.menu).map((item) => (
+                <li>
+                  <a href={lien(item.href)} class="block py-3 font-semibold border-b border-grey-2/10">{item.libelle}</a>
+                </li>
+              ))
+            }
+            <li><a href={lien('/qui-sommes-nous/')} class="block py-3 font-semibold border-b border-grey-2/10">Qui sommes-nous</a></li>
+            <li><a href={SITE.app} class="block py-3 font-semibold border-b border-grey-2/10">Se connecter</a></li>
+            <li><a href={`tel:${SITE.telephoneLien}`} class="block py-3 font-semibold">Appeler Tom : {SITE.telephone}</a></li>
+          </ul>
+          <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme.
+  const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.dv-menu'));
+  menus.forEach((m) =>
+    m.addEventListener('toggle', () => {
+      if (m.open) menus.filter((x) => x !== m).forEach((x) => (x.open = false));
+    }),
+  );
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    menus.forEach((m) => {
+      if (m.open) {
+        m.open = false;
+        m.querySelector('summary')?.focus();
+      }
+    });
+  });
+  document.addEventListener('click', (e) => {
+    menus.forEach((m) => {
+      if (m.open && !m.contains(e.target as Node)) m.open = false;
+    });
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+// « Fonctionne avec » : les plateformes réellement prises en charge, statut affiché (motif Zapier/HubSpot).
+// Noms en texte (pas les logos des plateformes, qui sont leurs marques).
+import { PLATEFORMES, lien } from '../lib/site';
+
+interface Props {
+  fond?: 'blanc' | 'gris';
+}
+const { fond = 'blanc' } = Astro.props;
+---
+
+<section aria-label="Plateformes compatibles" class={fond === 'gris' ? 'bg-grey' : 'bg-white'}>
+  <div class="dv-container flex flex-col items-center gap-4 py-8 text-center md:flex-row md:justify-center md:gap-8">
+    <p class="dv-overline dv-muted">Fonctionne avec</p>
+    <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+      {
+        PLATEFORMES.map((p) => (
+          <li>
+            <a href={lien(`/integrations/${p.slug}/`)} class="flex items-center gap-2 text-[20px] font-bold tracking-tight md:text-[22px]">
+              {p.nom}
+              {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

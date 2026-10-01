@@ -1,0 +1,27 @@
+---
+// Confirmation après l'envoi du formulaire sans JavaScript (la fonction « lead » redirige ici).
+import Base from '../layouts/Base.astro';
+import { SITE, lien } from '../lib/site';
+---
+
+<Base
+  title="Demande reçue | Deliview"
+  description="Votre demande de démo Deliview est bien arrivée. Tom vous rappelle sous 24 h pour fixer un créneau de 15 minutes, sur votre propre restaurant."
+  noindex
+>
+  <section class="dv-section bg-white">
+    <div class="dv-container max-w-[760px]">
+      <p class="dv-overline dv-muted">Demande reçue</p>
+      <h1 class="dv-h1 mt-4">C’est noté. Tom vous rappelle sous 24&nbsp;h.</h1>
+      <p class="dv-lead mt-5">Il vous appelle pour fixer votre démo de 15&nbsp;minutes, faite sur votre propre restaurant.</p>
+      <p class="mt-4">Besoin d’aller plus vite&nbsp;? Appelez-le au <a href={`tel:${SITE.telephoneLien}`} class="font-semibold">{SITE.telephone}</a>.</p>
+      {SITE.rendezVous && <a href={SITE.rendezVous} class="dv-btn dv-btn-plein mt-8" rel="noopener">Choisir mon créneau maintenant</a>}
+      <h2 class="dv-h3 mt-12">En attendant</h2>
+      <ul class="mt-4 space-y-3">
+        <li><a href={lien('/solution/prix-et-concurrence/')} class="font-semibold underline underline-offset-2">Voir comment Deliview compare vos prix</a></li>
+        <li><a href={lien('/ressources/')} class="font-semibold underline underline-offset-2">Lire nos guides sur la livraison</a></li>
+        <li><a href={lien('/')} class="font-semibold underline underline-offset-2">Revenir à l’accueil</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>

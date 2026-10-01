@@ -1,0 +1,36 @@
+---
+// Mentions légales (LCEN, article 6). Les informations de l'entreprise sont à compléter par Tom.
+import Base from '../layouts/Base.astro';
+import { SITE, lien } from '../lib/site';
+---
+
+<Base
+  title="Mentions légales | Deliview"
+  description="Mentions légales du site deliview.fr : éditeur, directeur de la publication, hébergeur, propriété intellectuelle et crédits."
+  ariane={[{ nom: 'Mentions légales', chemin: '/mentions-legales/' }]}
+>
+  <article class="dv-section bg-white !pt-8">
+    <div class="dv-container max-w-[820px] prose-dv">
+      <h1 class="dv-h1">Mentions légales</h1>
+      <p class="dv-muted">Mises à jour le 1er&nbsp;octobre 2026.</p>
+
+      <h2>Éditeur du site</h2>
+      <p>Le site deliview.fr est édité par <span class="dv-a-remplacer">[À REMPLACER : dénomination sociale ou nom de l’entrepreneur, forme juridique, capital social]</span>, dont le siège est situé <span class="dv-a-remplacer">[À REMPLACER : adresse du siège]</span>, immatriculée sous le numéro <span class="dv-a-remplacer">[À REMPLACER : SIREN et RCS ou RNE]</span>. Numéro de TVA intracommunautaire&nbsp;: <span class="dv-a-remplacer">[À REMPLACER]</span>.</p>
+      <p>Contact&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={`tel:${SITE.telephoneLien}`}>{SITE.telephone}</a></p>
+
+      <h2>Directeur de la publication</h2>
+      <p>Tom Voisin, fondateur de Deliview.</p>
+
+      <h2>Hébergement</h2>
+      <p>Les pages du site sont hébergées par GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis (service GitHub Pages). Téléphone&nbsp;: <span class="dv-a-remplacer">[À REMPLACER : téléphone de l’hébergeur]</span>.</p>
+      <p>Les demandes de démo et les données de l’app Deliview sont hébergées par Supabase dans l’Union européenne (Irlande). Le détail figure dans la <a href={lien('/confidentialite/')}>politique de confidentialité</a>.</p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>Les textes, captures, logos et éléments graphiques du site sont la propriété de l’éditeur, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite.</p>
+      <p>Uber Eats, Uber Direct et Deliveroo sont des marques de leurs propriétaires respectifs. Deliview est un logiciel indépendant, ni affilié ni approuvé par ces sociétés. Les captures du site montrent des données de démonstration&nbsp;: les noms des restaurants ont été modifiés.</p>
+
+      <h2>Crédits</h2>
+      <p>Polices Inter et Aspekta, sous licence SIL Open Font License 1.1 (<a href={lien('/fonts/Inter-OFL.txt')}>licence d’Inter</a>, <a href={lien('/fonts/Aspekta-OFL.txt')}>licence d’Aspekta</a>). Photo du fondateur&nbsp;: Tom Voisin.</p>
+    </div>
+  </article>
+</Base>

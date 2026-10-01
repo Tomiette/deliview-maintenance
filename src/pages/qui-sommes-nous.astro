@@ -1,0 +1,130 @@
+---
+// Qui sommes-nous : mission, fondateur (page auteur des articles, ancre #tom), engagements, fiche d'identité.
+import Base from '../layouts/Base.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import Icone from '../components/Icone.astro';
+import { SITE, lien } from '../lib/site';
+
+const description =
+  'Deliview est un logiciel français fondé par Tom Voisin pour aider les restaurants sur Uber Eats et Deliveroo à fixer leurs prix face à leur zone.';
+
+const engagements = [
+  { icone: 'source' as const, titre: 'Des chiffres sourcés', texte: 'Chaque prix comparé renvoie à la fiche d’où il vient. Quand les données ne suffisent pas, Deliview le dit.' },
+  { icone: 'bouclier' as const, titre: 'Aucun identifiant demandé', texte: 'Deliview lit les informations publiques de vos fiches. Vos accès Uber Eats et Deliveroo restent à vous.' },
+  { icone: 'europe' as const, titre: 'Vos données en Europe', texte: 'Comptes et analyses hébergés dans l’Union européenne, en Irlande.' },
+  { icone: 'horloge' as const, titre: 'Pas de promesse en l’air', texte: 'Une fonctionnalité qui n’existe pas encore porte l’étiquette «&nbsp;Bientôt&nbsp;». Partout sur ce site.' },
+];
+
+const personne = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Tom Voisin',
+  jobTitle: 'Fondateur de Deliview',
+  url: SITE.url + '/qui-sommes-nous/#tom',
+  image: SITE.url + '/images/tom-voisin.jpg',
+  sameAs: [SITE.linkedinTom],
+  worksFor: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+};
+const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui sommes-nous', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR' };
+---
+
+<Base title="Qui sommes-nous | Deliview" description={description} ariane={[{ nom: 'Qui sommes-nous', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
+  <section class="bg-white">
+    <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
+      <p class="dv-overline dv-muted">Qui sommes-nous</p>
+      <h1 class="dv-h1 mt-4 max-w-[20ch]">Un logiciel français pour les restaurants en livraison</h1>
+      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition}</p>
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey" aria-labelledby="mission-titre">
+    <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.2fr]">
+      <div>
+        <p class="dv-overline dv-muted">Notre mission</p>
+        <h2 id="mission-titre" class="dv-h2 mt-3 max-w-[18ch]">Donner à chaque restaurant la vue de sa zone</h2>
+      </div>
+      <div class="space-y-4 dv-texte">
+        <p>Sur Uber Eats et Deliveroo, un restaurant se joue face à ses voisins, sur un écran de téléphone. Le client compare en quelques secondes. Le restaurateur, lui, n’a ni le temps ni les outils pour faire pareil.</p>
+        <p>Deliview lui donne cette vue&nbsp;: les prix de sa zone plat par plat, sa place au classement des notes, et bientôt ses commandes sur un seul écran.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tom" class="dv-section bg-white" aria-labelledby="tom-titre">
+    <div class="dv-container grid gap-10 md:grid-cols-[200px_1fr]">
+      <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="200" height="200" loading="lazy" class="h-40 w-40 rounded-full object-cover md:h-[200px] md:w-[200px]" />
+      <div>
+        <p class="dv-overline dv-muted">Le fondateur</p>
+        <h2 id="tom-titre" class="dv-h2 mt-3">Tom Voisin</h2>
+        <div class="mt-5 max-w-[64ch] space-y-4">
+          <p>Je m’appelle Tom et j’ai fondé Deliview.</p>
+          <p>L’idée vient d’un constat&nbsp;: un restaurateur présent sur Uber Eats et Deliveroo jongle avec deux tablettes, deux cartes et deux grilles de prix, sans voir ce que font les restaurants autour de lui. Ses clients, eux, comparent tout en quelques secondes.</p>
+          <p>J’ai commencé par ce qui manque le plus&nbsp;: savoir si vos prix tiennent face à ceux de votre zone. Deliview lit les fiches publiques, compare chaque plat au même plat chez les voisins et cite ses sources.</p>
+          <p>Je construis la suite avec les restaurants du programme pilote. Je fais la mise en place avec chacun, et c’est moi qui décroche quand vous appelez.</p>
+        </div>
+        <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+          <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a>
+          <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
+          <a href={SITE.linkedinTom} class="font-semibold underline underline-offset-2" rel="noopener">Tom sur LinkedIn</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey" aria-labelledby="engagements-titre">
+    <div class="dv-container">
+      <h2 id="engagements-titre" class="dv-h2">Nos engagements</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {
+          engagements.map((e) => (
+            <li class="dv-card p-6">
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
+                <Icone nom={e.icone} />
+              </span>
+              <h3 class="dv-h3 mt-4">{e.titre}</h3>
+              <p class="mt-2 text-[16px] dv-muted" set:html={e.texte} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="dv-section bg-white" aria-labelledby="fiche-titre">
+    <div class="dv-container max-w-[880px]">
+      <h2 id="fiche-titre" class="dv-h2">Deliview en bref</h2>
+      <dl class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Ce que fait Deliview</dt>
+          <dd>Compare vos prix Uber Eats et Deliveroo à ceux de votre zone, plat par plat.</dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Fondateur</dt>
+          <dd>Tom Voisin, étudiant-entrepreneur (réseau PEPITE)</dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Équipe</dt>
+          <dd><span class="dv-a-remplacer">[À REMPLACER : équipe technique à présenter, ou ligne à retirer]</span></dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Création</dt>
+          <dd><span class="dv-a-remplacer">[À REMPLACER : année de création]</span></dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Ville</dt>
+          <dd><span class="dv-a-remplacer">[À REMPLACER : ville du siège]</span></dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Plateformes</dt>
+          <dd>Uber Eats et Deliveroo, Uber Direct bientôt. France uniquement.</dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Hébergement des données</dt>
+          <dd>Union européenne (Irlande)</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <SectionDemo section="qui-sommes-nous-formulaire" titre="Parlons de votre restaurant" />
+</Base>
