@@ -40,9 +40,9 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientô
       <h2 id="plateformes-titre" class="dv-h2">Les plateformes prises en charge</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-2">
         {
-          PLATEFORMES.map((p) => (
+          PLATEFORMES.map((p) => ({ ...p, logo: logoPlateforme(p.slug) })).map((p) => (
             <li class="dv-card flex flex-col p-6 md:p-8">
-              {logoPlateforme(p.slug) && <img src={logoPlateforme(p.slug)} alt="" width="132" height="32" class="mb-4 h-8 w-[132px] object-contain object-left" loading="lazy" />}
+              {p.logo && <img src={p.logo.src} alt="" width={p.logo.largeur} height={p.logo.hauteur} class="mb-4 h-14 w-auto self-start rounded-[12px]" loading="lazy" decoding="async" />}
               <div class="flex items-center justify-between gap-3">
                 <h3 class="text-[26px] font-bold tracking-tight">{p.nom}</h3>
                 <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{p.statut === 'bientot' ? 'Bientôt' : 'Disponible'}</span>

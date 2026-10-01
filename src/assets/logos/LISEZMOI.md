@@ -1,13 +1,13 @@
 # Logos des plateformes
 
-Déposez ici les fichiers **officiels** fournis par les plateformes (kit presse ou espace partenaire), sans les modifier :
+Fichiers officiels fournis par Tom le 2 octobre 2026, convertis en WebP sans perte (112 px de haut), sans autre modification :
 
-- `uber-eats.svg` (ou `.png`, `.webp`)
-- `deliveroo.svg` (ou `.png`, `.webp`)
-- `uber-direct.svg` (ou `.png`, `.webp`)
+- `uber-eats.webp` : logo Uber Eats (mot-symbole noir sur fond vert)
+- `deliveroo.webp` : logo Deliveroo (kangourou blanc sur fond turquoise)
 
-Au prochain build, le logo remplace le nom écrit dans le bandeau « Fonctionne avec » et sur la page Intégrations.
-Sans fichier, le nom de la plateforme reste affiché en texte.
+Pour Uber Direct, déposer `uber-direct.webp` (ou `.png`, `.jpg`, `.svg`) : sans fichier, le nom reste affiché seul.
 
-Avant de les déposer, vérifiez les conditions d'usage de chaque marque : Deliview n'est pas partenaire officiel.
+Ils s'affichent à côté du nom dans le bandeau « Fonctionne avec » (accueil, pages piliers) et sur la page Intégrations.
+
+Avant tout autre usage, vérifier les conditions d'usage de chaque marque : Deliview n'est pas partenaire officiel.
 La mention « marques de leurs propriétaires, logiciel indépendant » reste affichée en pied de page.
