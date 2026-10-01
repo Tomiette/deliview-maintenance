@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Capture from '../components/Capture.astro';
+import DeliviewVideo from '../components/DeliviewVideo.astro';
 import BandeauPlateformes from '../components/BandeauPlateformes.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import SectionDemo from '../components/SectionDemo.astro';
@@ -45,9 +46,21 @@ const benefices = [
 
 const description =
   'Deliview compare vos prix Uber Eats et Deliveroo à ceux des restaurants autour de vous, plat par plat, et vous dit quoi ajuster. Démo de 15 min.';
+
+const video = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Deliview en 1 minute',
+  description: 'Présentation de Deliview : vos fiches Uber Eats et Deliveroo réunies, la veille de vos concurrents, un prix suggéré pour chaque plat et les alertes.',
+  thumbnailUrl: SITE.url + '/video/deliview-video-apercu.webp',
+  uploadDate: '2026-10-01',
+  duration: 'PT1M10S',
+  contentUrl: SITE.url + '/video/deliview-video.mp4',
+  inLanguage: 'fr-FR',
+};
 ---
 
-<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/')]}>
+<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}>
   <!-- Hero : promesse, deux boutons, réducteur de risque, capture réelle. -->
   <section class="relative overflow-hidden bg-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[560px] w-[560px] rounded-full bg-blue-2/12 md:block"></div>
@@ -127,10 +140,7 @@ const description =
           </a>
         </p>
       </div>
-      <Capture
-        src="/images/capture-concurrence"
-        alt="Classement des concurrents de la zone dans Deliview : note, nombre d’avis, prix repère et distance de chaque restaurant"
-      />
+      <DeliviewVideo />
     </div>
   </section>
 

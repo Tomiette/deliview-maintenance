@@ -59,7 +59,8 @@ const annee = new Date().getFullYear();
 <script>
   // Téléphone : bouton démo collé en bas d'écran, seulement quand aucun autre bouton démo n'est visible.
   const barre = document.getElementById('dv-barre-demo');
-  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo'));
+  // La barre se cache aussi devant la vidéo, pour ne pas couvrir son bouton et ses contrôles.
+  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .dv-video-cadre'));
   if (barre && 'IntersectionObserver' in window) {
     const visibles = new Set<Element>();
     const maj = () => {
