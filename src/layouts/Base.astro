@@ -38,6 +38,8 @@ const organisation = {
   slogan: SITE.slogan,
   email: SITE.email,
   telephone: SITE.telephoneLien,
+  areaServed: 'FR',
+  sameAs: [SITE.linkedinEntreprise],
   founder: { '@type': 'Person', name: 'Tom Voisin', sameAs: [SITE.linkedinTom] },
 };
 const siteWeb = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.nom, url: SITE.url, inLanguage: 'fr-FR' };
@@ -66,6 +68,7 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <link rel="canonical" href={canonical} />
     {robots && <meta name="robots" content={robots} />}
     <meta name="theme-color" content="#5282ff" />
+    <link rel="icon" href={lien('/favicon.ico')} sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href={lien('/favicon.svg')} />
     <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />

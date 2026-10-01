@@ -16,9 +16,11 @@ export function getStaticPaths() {
 
 const { pilier } = Astro.props as { pilier: Pilier };
 const autres = PILIERS.filter((p) => p.slug !== pilier.slug);
-const articles = (await getCollection('ressources', (a) => !a.data.brouillon && a.data.theme === pilier.slug)).sort(
-  (a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime(),
-);
+// Articles d'un autre thème qui servent aussi ce pilier (ex. la méthode pour fixer ses prix sous Carte et marge).
+const ARTICLES_LIES: Record<string, string[]> = { 'carte-et-marge': ['fixer-prix-uber-eats-deliveroo'] };
+const articles = (
+  await getCollection('ressources', (a) => !a.data.brouillon && (a.data.theme === pilier.slug || (ARTICLES_LIES[pilier.slug] ?? []).includes(a.id)))
+).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
 
 type Icon = 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'source' | 'equipe' | 'promo' | 'plateformes';
 const ICONES: Record<string, Icon[]> = {

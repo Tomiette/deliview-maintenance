@@ -14,6 +14,7 @@ export const SITE = {
   telephone: '06 32 37 79 88',
   telephoneLien: '+33632377988',
   linkedinTom: 'https://www.linkedin.com/in/tomvoisin/',
+  linkedinEntreprise: 'https://www.linkedin.com/company/deliview/',
   app: '/app/',
   // Fonction Supabase qui enregistre les demandes de démo (validation côté serveur).
   formulaire: 'https://osczxtxtxrjbjnozreun.supabase.co/functions/v1/lead',
