@@ -1,12 +1,14 @@
 ---
 // « Fonctionne avec » : les plateformes réellement prises en charge, statut affiché (motif Zapier/HubSpot).
-// Noms en texte (pas les logos des plateformes, qui sont leurs marques).
+// Logo officiel si son fichier est déposé dans src/assets/logos/, sinon le nom en texte (jamais un logo redessiné).
 import { PLATEFORMES, lien } from '../lib/site';
+import { logoPlateforme } from '../lib/logos';
 
 interface Props {
   fond?: 'blanc' | 'gris';
 }
 const { fond = 'blanc' } = Astro.props;
+const plateformes = PLATEFORMES.map((p) => ({ ...p, logo: logoPlateforme(p.slug) }));
 ---
 
 <section aria-label="Plateformes compatibles" class={fond === 'gris' ? 'bg-grey' : 'bg-white'}>
@@ -14,10 +16,10 @@ const { fond = 'blanc' } = Astro.props;
     <p class="dv-overline dv-muted">Fonctionne avec</p>
     <ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
       {
-        PLATEFORMES.map((p) => (
+        plateformes.map((p) => (
           <li>
-            <a href={lien(`/integrations/${p.slug}/`)} class="flex items-center gap-2 text-[20px] font-bold tracking-tight md:text-[22px]">
-              {p.nom}
+            <a href={lien(`/integrations/${p.slug}/`)} class="flex min-h-[44px] items-center gap-2 text-[20px] font-bold tracking-tight md:text-[22px]">
+              {p.logo ? <img src={p.logo} alt={p.nom} width="132" height="32" class="h-8 w-[132px] object-contain" loading="lazy" /> : p.nom}
               {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
             </a>
           </li>

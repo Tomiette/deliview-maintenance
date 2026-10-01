@@ -3,6 +3,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Capture from '../../components/Capture.astro';
+import PhotoIA from '../../components/PhotoIA.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -112,7 +113,7 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
     reponse:
       'Recevoir vos commandes et modifier vos menus demande un accès officiel à Uber Eats et à Deliveroo. Deliview prépare ces connexions. Les restaurants du programme pilote seront les premiers connectés.',
     points: [
-      'Les commandes des deux plateformes sur un seul écran',
+      'Les commandes des deux plateformes sur une seule tablette',
       'Un prix ou un plat changé une fois, partout',
       'Les ruptures retirées des deux plateformes d’un geste',
       'Le chiffre d’affaires et la TVA par plateforme',
@@ -153,7 +154,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
 >
   <section class="relative overflow-hidden bg-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-24 h-[480px] w-[480px] rounded-full bg-blue-2/12"></div>
-    <div class={`dv-container relative grid items-center gap-12 pb-16 pt-8 md:pb-20 md:pt-12 ${pilier.capture ? 'lg:grid-cols-[1fr_1.1fr]' : ''}`}>
+    <div class={`dv-container relative grid items-center gap-12 pb-16 pt-8 md:pb-20 md:pt-12 ${pilier.capture || pilier.illustration ? 'lg:grid-cols-[1fr_1.1fr]' : ''}`}>
       <div>
         <div class="flex flex-wrap items-center gap-3">
           <p class="dv-overline dv-muted">{pilier.surtitre}</p>
@@ -161,14 +162,17 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
         </div>
         <h1 class="dv-h1 mt-4 max-w-[18ch]">{pilier.titre}</h1>
         <p class="dv-lead mt-5 max-w-[56ch]">{pilier.description}</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#demo" class="dv-btn dv-btn-plein" data-cta={`pilier-${pilier.slug}`} data-cta-principal>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta={`pilier-${pilier.slug}`} data-cta-principal>
             {pilier.statut === 'bientot' ? 'Candidater au programme pilote' : 'Demander une démo'}
           </a>
-          <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour">Voir les tarifs</a>
+          <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Voir les tarifs</a>
         </div>
       </div>
       {pilier.capture && <Capture src={pilier.capture.src} alt={pilier.capture.alt} largeur={pilier.capture.largeur} hauteur={pilier.capture.hauteur} priorite />}
+      {!pilier.capture && pilier.illustration && (
+        <PhotoIA nom={pilier.illustration.nom} alt={pilier.illustration.alt} sizes="(min-width: 1200px) 600px, (min-width: 1024px) 50vw, 100vw" ratio="3 / 2" priorite />
+      )}
     </div>
   </section>
 

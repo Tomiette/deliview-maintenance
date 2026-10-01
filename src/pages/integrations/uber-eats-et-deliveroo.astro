@@ -1,14 +1,14 @@
 ---
 // Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble.
 import Base from '../../layouts/Base.astro';
-import Capture from '../../components/Capture.astro';
+import CaptureTablette from '../../components/CaptureTablette.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Icone from '../../components/Icone.astro';
 import { SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
-  'Vos fiches Uber Eats et Deliveroo côte à côte : écarts de prix entre elles, concurrents et note sur chaque plateforme. Bientôt, vos commandes sur un écran.';
+  'Vos fiches Uber Eats et Deliveroo côte à côte : écarts de prix, concurrents et note sur chaque plateforme. Bientôt, vos commandes sur la même tablette.';
 
 const aujourdhui = [
   { titre: 'Les écarts de prix entre vos deux fiches', texte: 'Chaque plat vendu à un prix différent sur Uber Eats et sur Deliveroo, avec les deux prix.' },
@@ -17,7 +17,7 @@ const aujourdhui = [
   { titre: 'Une seule analyse pour les deux', texte: 'Un nom, une ville, et Deliview lit vos deux fiches dans la même analyse.' },
 ];
 const ensuite = [
-  'Les commandes des deux plateformes sur un seul écran',
+  'Les commandes des deux plateformes sur une seule tablette',
   'Un prix ou un plat changé une fois, partout',
   'Les ruptures retirées des deux plateformes d’un geste',
   'Le chiffre d’affaires et la TVA par plateforme',
@@ -29,7 +29,7 @@ const faq = [
   },
   {
     q: 'Deliview remplace-t-il les tablettes Uber Eats et Deliveroo ?',
-    r: 'Pas encore. Les commandes sur un seul écran arriveront avec les accès officiels des deux plateformes. Aujourd’hui, Deliview vous aide sur vos prix, votre carte et votre note.',
+    r: 'Pas encore. Les commandes sur une seule tablette arriveront avec les accès officiels des deux plateformes. Aujourd’hui, Deliview réunit vos prix, votre carte et votre note.',
   },
   {
     q: 'Et si je ne suis que sur une des deux plateformes ?',
@@ -52,13 +52,20 @@ const faq = [
       <div>
         <p class="dv-overline dv-muted">Intégration</p>
         <h1 class="dv-h1 mt-4 max-w-[16ch]">Gérer Uber Eats et Deliveroo ensemble</h1>
-        <p class="dv-lead mt-5 max-w-[56ch]">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents sur chaque plateforme et votre note ici et là. Les commandes sur un seul écran arrivent ensuite.</p>
+        <p class="dv-lead mt-5 max-w-[56ch]">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents sur chaque plateforme et votre note ici et là. Les commandes sur la même tablette arrivent ensuite.</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#demo" class="dv-btn dv-btn-plein" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
           <a href={lien('/solution/')} class="dv-btn dv-btn-contour">Voir toute la solution</a>
         </div>
       </div>
-      <Capture src="/images/capture-concurrence" alt="Concurrents de la zone sur Uber Eats et Deliveroo dans Deliview, avec note, avis, prix repère et distance" priorite />
+      <CaptureTablette
+        src="/images/capture-tableau"
+        largeurs={[800, 1300]}
+        largeur={1300}
+        hauteur={812}
+        alt="Tableau de bord Deliview : vos fiches Uber Eats et Deliveroo côte à côte, avec votre note, votre prix médian, votre nombre d’avis et votre rang dans chaque zone"
+        priorite
+      />
     </div>
   </section>
 

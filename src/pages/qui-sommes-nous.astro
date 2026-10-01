@@ -6,7 +6,7 @@ import Icone from '../components/Icone.astro';
 import { SITE, lien } from '../lib/site';
 
 const description =
-  'Deliview est un logiciel français fondé par Tom Voisin pour aider les restaurants sur Uber Eats et Deliveroo à fixer leurs prix face à leur zone.';
+  'Deliview est un logiciel français fondé par Tom Voisin pour aider les restaurants sur Uber Eats et Deliveroo à rendre leur livraison plus rentable.';
 
 const engagements = [
   { icone: 'source' as const, titre: 'Des chiffres sourcés', texte: 'Chaque prix comparé renvoie à la fiche d’où il vient. Quand les données ne suffisent pas, Deliview le dit.' },
@@ -41,11 +41,11 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.2fr]">
       <div>
         <p class="dv-overline dv-muted">Notre mission</p>
-        <h2 id="mission-titre" class="dv-h2 mt-3 max-w-[18ch]">Donner à chaque restaurant la vue de sa zone</h2>
+        <h2 id="mission-titre" class="dv-h2 mt-3 max-w-[18ch]">Rendre la livraison plus rentable pour chaque restaurant</h2>
       </div>
       <div class="space-y-4 dv-texte">
-        <p>Sur Uber Eats et Deliveroo, un restaurant se joue face à ses voisins, sur un écran de téléphone. Le client compare en quelques secondes. Le restaurateur, lui, n’a ni le temps ni les outils pour faire pareil.</p>
-        <p>Deliview lui donne cette vue&nbsp;: les prix de sa zone plat par plat, sa place au classement des notes, et bientôt ses commandes sur un seul écran.</p>
+        <p>Sur Uber Eats et Deliveroo, un restaurant se joue face à ses voisins, sur un écran de téléphone. Le client compare en quelques secondes. Le restaurateur, lui, jongle avec deux tablettes et n’a pas le temps de faire pareil.</p>
+        <p>Deliview réunit ses données livraison au même endroit&nbsp;: les prix de sa zone plat par plat, sa place au classement des notes. Bientôt, ses commandes et son chiffre d’affaires par plateforme, sur la même tablette.</p>
       </div>
     </div>
   </section>
@@ -96,7 +96,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
       <dl class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Ce que fait Deliview</dt>
-          <dd>Compare vos prix Uber Eats et Deliveroo à ceux de votre zone, plat par plat.</dd>
+          <dd>Réunit vos données Uber Eats et Deliveroo sur une seule tablette&nbsp;: vos prix face à votre zone, plat par plat, et votre note face à vos voisins.</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Fondateur</dt>

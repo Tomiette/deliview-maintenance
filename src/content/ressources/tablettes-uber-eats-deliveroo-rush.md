@@ -121,7 +121,7 @@ Lancez chaque commande dès qu’elle arrive, comme le recommande Deliveroo, san
 
 Avant de fermer le sac, comparez-le au ticket : plats, sauces, boissons, couverts. Fixez le ticket portant le numéro de commande à l’extérieur du sac, avec du ruban adhésif, comme le demande Deliveroo. Quand le livreur arrive, vérifiez sur la tablette la commande qu’il vient chercher : Uber Eats affiche son nom à droite de l’écran.
 
-Deux tablettes, ce sont deux sonneries et deux menus à tenir à jour. Bientôt, Deliview affichera les commandes Uber Eats et Deliveroo sur un seul écran, et un plat épuisé sera retiré des deux plateformes d’un geste. Voyez [ce qui arrive côté commandes](/solution/commandes/) et [comment Deliview se connecte à Uber Eats et Deliveroo](/integrations/uber-eats-et-deliveroo/).
+Deux tablettes, ce sont deux sonneries et deux menus à tenir à jour. Bientôt, Deliview affichera les commandes Uber Eats et Deliveroo sur une seule tablette, et un plat épuisé sera retiré des deux plateformes d’un geste. Voyez [ce qui arrive côté commandes](/solution/commandes/) et [comment Deliview se connecte à Uber Eats et Deliveroo](/integrations/uber-eats-et-deliveroo/).
 
 ## Comment préparer le rush avant le service ?
 

@@ -1,0 +1,90 @@
+---
+// Capture réelle de l'app Deliview présentée sur une tablette (paysage, 16:10), avec la mention « données de démonstration ».
+// Le cadre est dessiné en CSS (Grey 2) : aucune photo d'appareil, aucune marque.
+import { lien } from '../lib/site';
+
+interface Props {
+  // Chemin sans extension : fichiers <src>-<largeur>.webp.
+  src: string;
+  largeurs: number[];
+  largeur: number;
+  hauteur: number;
+  alt: string;
+  sizes?: string;
+  // Image principale de la page (hero) : chargée en priorité.
+  priorite?: boolean;
+  class?: string;
+}
+const {
+  src,
+  largeurs,
+  largeur,
+  hauteur,
+  alt,
+  sizes = '(min-width: 1200px) 600px, (min-width: 1024px) 48vw, 100vw',
+  priorite = false,
+  class: classe = '',
+} = Astro.props;
+const base = lien(src);
+const srcset = largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
+---
+
+<figure class={`dv-tablette ${classe}`}>
+  <div class="dv-tablette-cadre">
+    <span class="dv-tablette-camera" aria-hidden="true"></span>
+    <div class="dv-tablette-ecran">
+      <img
+        src={`${base}-${largeurs[largeurs.length - 1]}.webp`}
+        srcset={srcset}
+        sizes={sizes}
+        alt={alt}
+        width={largeur}
+        height={hauteur}
+        loading={priorite ? 'eager' : 'lazy'}
+        fetchpriority={priorite ? 'high' : 'auto'}
+        decoding="async"
+      />
+    </div>
+  </div>
+  <figcaption class="dv-tablette-legende">Capture de l’app Deliview · données de démonstration</figcaption>
+</figure>
+
+<style>
+  .dv-tablette {
+    margin: 0;
+  }
+  .dv-tablette-cadre {
+    --bord: clamp(8px, 1.3vw, 14px);
+    position: relative;
+    padding: var(--bord);
+    border-radius: calc(var(--bord) * 2.2);
+    background: var(--color-grey-2);
+    box-shadow: var(--shadow-card);
+  }
+  .dv-tablette-camera {
+    position: absolute;
+    top: calc(var(--bord) / 2 - 2.5px);
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-white) 30%, transparent);
+  }
+  .dv-tablette-ecran {
+    overflow: hidden;
+    border-radius: calc(var(--bord) * 0.9);
+    background: var(--color-white);
+  }
+  .dv-tablette-ecran img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .dv-tablette-legende {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--color-grey-2) 82%, transparent);
+  }
+</style>

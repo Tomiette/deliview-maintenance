@@ -13,7 +13,7 @@ const pilote = [
   { titre: 'La mise en place faite avec Tom', texte: 'Compte, première analyse, lecture des résultats&nbsp;: vous n’êtes pas seul face à l’écran.' },
   { titre: 'Une ligne directe avec le fondateur', texte: `Une question, un bug, une idée&nbsp;: <a href="tel:${SITE.telephoneLien}">${SITE.telephone}</a>.` },
   { titre: 'Vos retours décident de la suite', texte: 'Les prochaines fonctionnalités se choisissent avec les restaurants pilotes.' },
-  { titre: 'Les nouveautés en premier', texte: 'Dont les commandes Uber Eats et Deliveroo sur un seul écran, dès qu’elles sont prêtes.' },
+  { titre: 'Les nouveautés en premier', texte: 'Dont les commandes Uber Eats et Deliveroo sur une seule tablette, dès qu’elles sont prêtes.' },
 ];
 
 const offres = [
@@ -33,10 +33,10 @@ const offres = [
   {
     nom: 'Pilotage',
     statut: 'bientot',
-    pour: 'Pour tout gérer au même endroit',
+    pour: 'Toutes vos données livraison sur une seule tablette',
     inclus: [
       'Tout ce que contient Analyse',
-      'Les commandes des deux plateformes sur un seul écran',
+      'Les commandes des deux plateformes sur une seule tablette',
       'Un menu modifié une fois, partout',
       'Vos avis et des réponses proposées',
       'Chiffre d’affaires et TVA par plateforme',
@@ -54,7 +54,7 @@ const comparatif: { libelle: string; analyse: Case; pilotage: Case }[] = [
   { libelle: 'Changements repérés entre deux analyses', analyse: 'oui', pilotage: 'oui' },
   { libelle: 'Classement des notes de la zone', analyse: 'oui', pilotage: 'oui' },
   { libelle: 'Accès équipe (gérant, équipe)', analyse: 'oui', pilotage: 'oui' },
-  { libelle: 'Commandes sur un seul écran', analyse: 'non', pilotage: 'bientot' },
+  { libelle: 'Commandes sur une seule tablette', analyse: 'non', pilotage: 'bientot' },
   { libelle: 'Menu, prix et ruptures modifiés partout', analyse: 'non', pilotage: 'bientot' },
   { libelle: 'Avis et réponses proposées', analyse: 'non', pilotage: 'bientot' },
   { libelle: 'Chiffre d’affaires et TVA par plateforme', analyse: 'non', pilotage: 'bientot' },
@@ -76,7 +76,15 @@ const faq = [
   },
   {
     q: 'Comment se passe la mise en place ?',
-    r: 'Tom crée votre compte avec vous, lance la première analyse et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans votre navigateur, sur ordinateur comme sur téléphone.',
+    r: 'Tom crée votre compte avec vous, lance la première analyse et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans votre navigateur, sur tablette, ordinateur ou téléphone.',
+  },
+  {
+    q: 'Deliview remplace-t-il mes tablettes Uber Eats et Deliveroo ?',
+    r: 'Pas encore. Aujourd’hui, Deliview réunit vos prix, vos notes et ceux de vos concurrents. Les commandes arriveront avec les accès officiels d’Uber Eats et de Deliveroo&nbsp;: vous les suivrez alors sur la même tablette.',
+  },
+  {
+    q: 'Faut-il acheter une tablette ?',
+    r: 'Non. Deliview s’ouvre dans le navigateur de la tablette, de l’ordinateur ou du téléphone que vous avez déjà.',
   },
   {
     q: 'Où sont hébergées mes données ?',

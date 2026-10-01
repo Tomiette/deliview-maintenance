@@ -1,7 +1,7 @@
 ---
 // Icônes au trait, dessinées pour le site (pas de bibliothèque) ; toujours décoratives (aria-hidden).
 interface Props {
-  nom: 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge' | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe';
+  nom: 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge' | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe' | 'tablette';
   taille?: number;
   class?: string;
 }
@@ -23,6 +23,7 @@ const traces: Record<Props['nom'], string> = {
   promo: '<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
   plateformes: '<rect x="3" y="4" width="8" height="16" rx="2"/><rect x="13" y="4" width="8" height="16" rx="2"/>',
   europe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  tablette: '<rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M11 16h2"/>',
 };
 ---
 

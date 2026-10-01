@@ -6,7 +6,7 @@ export const SITE = {
   url: 'https://www.deliview.fr',
   // Même phrase partout (accueil, Qui sommes-nous, données structurées, LinkedIn).
   definition:
-    'Deliview est un logiciel français qui réunit vos fiches Uber Eats et Deliveroo sur un seul écran pour comparer vos prix à ceux de vos concurrents.',
+    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette pour rendre votre livraison plus rentable.',
   email: 'tom@deliview.fr',
   telephone: '06 32 37 79 88',
   telephoneLien: '+33632377988',
@@ -24,6 +24,18 @@ export function lien(chemin: string): string {
   if (/^(https?:|mailto:|tel:|#)/.test(chemin)) return chemin;
   return base + (chemin.startsWith('/') ? chemin : '/' + chemin);
 }
+
+// Illustrations générées par IA (Canva). Toujours affichées avec la mention « Illustration générée par IA » :
+// elles montrent des situations de restaurateurs, jamais des clients de Deliview.
+// `largeurs` : fichiers présents dans public/images/ia/<nom>-<largeur>.webp.
+export const IMAGES_IA = {
+  'rush-tablettes': { largeurs: [600], largeur: 600, hauteur: 400 },
+  'une-tablette': { largeurs: [600], largeur: 600, hauteur: 400 },
+  pizzeria: { largeurs: [533], largeur: 533, hauteur: 400 },
+  burger: { largeurs: [533], largeur: 533, hauteur: 400 },
+  'dark-kitchen': { largeurs: [600], largeur: 600, hauteur: 450 },
+} as const;
+export type ImageIA = keyof typeof IMAGES_IA;
 
 export type Statut = 'disponible' | 'bientot';
 
@@ -43,6 +55,8 @@ export interface Pilier {
   meta: { title: string; description: string };
   // `src` : chemin sans extension (fichiers -800.webp et -1600.webp).
   capture?: { src: string; alt: string; largeur: number; hauteur: number };
+  // Pilier sans écran à montrer (bientôt) : illustration IA de la situation qu'il règle.
+  illustration?: { nom: ImageIA; alt: string };
   fonctionnalites: Fonctionnalite[];
 }
 
@@ -116,18 +130,22 @@ export const PILIERS: Pilier[] = [
   {
     slug: 'commandes',
     surtitre: 'Commandes et opérations',
-    titre: 'Uber Eats et Deliveroo sur un seul écran',
-    phrase: 'Les commandes des deux plateformes au même endroit, et votre menu modifié une seule fois.',
+    titre: 'Vos commandes Uber Eats et Deliveroo sur la même tablette',
+    phrase: 'Les commandes des deux plateformes sur la même tablette, et votre menu modifié une seule fois.',
     statut: 'bientot',
     description:
-      'C’est la suite de Deliview : les commandes des deux plateformes sur un seul écran, le menu et les ruptures gérés une fois pour toutes, le chiffre d’affaires et la TVA par plateforme. Elle arrive avec les accès officiels d’Uber Eats et de Deliveroo.',
+      'C’est la suite de Deliview : toutes vos données livraison sur une seule tablette. Les commandes des deux plateformes, le menu et les ruptures gérés une fois pour toutes, le chiffre d’affaires et la TVA par plateforme. Elle arrive avec les accès officiels d’Uber Eats et de Deliveroo.',
     meta: {
-      title: 'Commandes Uber Eats et Deliveroo sur un écran | Deliview',
+      title: 'Commandes Uber Eats et Deliveroo sur une tablette | Deliview',
       description:
-        'Bientôt dans Deliview : les commandes Uber Eats et Deliveroo sur un seul écran, un menu modifié une fois, la TVA par plateforme. Rejoignez le pilote.',
+        'Bientôt dans Deliview : les commandes Uber Eats et Deliveroo sur une seule tablette, un menu modifié une fois, la TVA par plateforme. Rejoignez le pilote.',
+    },
+    illustration: {
+      nom: 'rush-tablettes',
+      alt: 'Comptoir de pizzeria en plein service : trois tablettes de commande côte à côte, des tickets et des sacs de livraison',
     },
     fonctionnalites: [
-      { titre: 'Les commandes des deux plateformes sur un seul écran', texte: 'Fini les tablettes qui sonnent chacune de leur côté en plein rush.', statut: 'bientot' },
+      { titre: 'Les commandes des deux plateformes sur une seule tablette', texte: 'Fini les tablettes qui sonnent chacune de leur côté en plein rush.', statut: 'bientot' },
       { titre: 'Un menu modifié une fois, partout', texte: 'Un prix ou un plat changé dans Deliview change sur Uber Eats et sur Deliveroo.', statut: 'bientot' },
       { titre: 'Ruptures et horaires en un geste', texte: 'Un plat en rupture retiré des deux plateformes d’un coup.', statut: 'bientot' },
       { titre: 'Chiffre d’affaires et TVA par plateforme', texte: 'Ce que chaque plateforme vous rapporte vraiment, et le rapport de TVA prêt pour votre comptable.', statut: 'bientot' },
@@ -197,9 +215,10 @@ export function jsonldLogiciel(description: string, url: string): Record<string,
   };
 }
 
-// Date en toutes lettres : « 1 octobre 2026 ».
+// Date en toutes lettres : « 1er octobre 2026 », « 12 octobre 2026 ».
 export function dateFr(d: Date): string {
-  return new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' }).format(d);
+  const date = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' }).format(d);
+  return date.replace(/^1 /, '1er ');
 }
 
 // Temps de lecture (230 mots par minute), arrondi à la minute supérieure.
