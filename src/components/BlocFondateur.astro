@@ -1,12 +1,14 @@
 ---
-// Preuve humaine avant les premiers témoignages : le fondateur, son visage, sa ligne directe (aucun faux témoignage).
+// Preuve humaine avant les premiers témoignages : le fondateur, son parcours terrain, sa ligne directe (aucun faux témoignage).
+// Texte validé dans sa direction par Tom le 2 octobre 2026 : il a lui-même été sur Uber Eats et Deliveroo,
+// et Deliview est le résultat d'un an d'analyse terrain.
 import { SITE, lien } from '../lib/site';
 
 interface Props {
   titre?: string;
   fond?: 'blanc' | 'gris';
 }
-const { titre = 'Vous parlez directement au fondateur', fond = 'blanc' } = Astro.props;
+const { titre = 'Deliview est né d’un\u00a0an sur le terrain', fond = 'blanc' } = Astro.props;
 ---
 
 <section class={`dv-section ${fond === 'gris' ? 'bg-grey' : 'bg-white'}`} aria-labelledby="fondateur-titre">
@@ -23,16 +25,17 @@ const { titre = 'Vous parlez directement au fondateur', fond = 'blanc' } = Astro
       <div>
         <p class="dv-overline dv-muted">Le fondateur</p>
         <h2 id="fondateur-titre" class="dv-h2 mt-3">{titre}</h2>
-        <div class="mt-5 max-w-[62ch] space-y-3">
-          <p>Je m’appelle Tom. J’ai créé Deliview après avoir vu des restaurateurs jongler entre leurs tablettes Uber Eats et Deliveroo. Faute de temps, ils fixaient leurs prix à l’instinct, sans regarder ceux des voisins.</p>
-          <p>Je fais la mise en place avec vous, et vos retours décident des prochaines fonctionnalités.</p>
-          <p>Quand vous appelez, c’est moi qui décroche.</p>
+        <div class="mt-5 max-w-[62ch] space-y-3 [text-wrap:pretty]">
+          <p>Je m’appelle Tom. J’ai moi-même été sur Uber Eats et Deliveroo. J’ai passé un&nbsp;an sur le terrain à analyser comment travaillent les restaurants qui livrent.</p>
+          <p>Partout, la même scène&nbsp;: deux tablettes qui sonnent en plein rush, des prix fixés à l’instinct, et personne pour regarder ce que fait le voisin.</p>
+          <p>Deliview, c’est le résultat de cette année&nbsp;: vos données Uber Eats et Deliveroo sur une seule tablette, et vos prix face à votre zone.</p>
+          <p>Je fais la mise en place avec vous, et vos retours décident de la suite. Quand vous appelez, c’est moi qui décroche.</p>
         </div>
         <p class="mt-5 font-semibold">Tom Voisin, fondateur de Deliview · étudiant-entrepreneur (réseau PEPITE)</p>
         <p class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
           <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a>
           <a href={SITE.linkedinTom} class="font-semibold underline underline-offset-2" rel="noopener">Tom sur LinkedIn</a>
-          <a href={lien('/qui-sommes-nous/')} class="font-semibold underline underline-offset-2">Qui sommes-nous</a>
+          <a href={lien('/qui-sommes-nous/#tom')} class="font-semibold underline underline-offset-2">Mon parcours</a>
         </p>
       </div>
     </div>

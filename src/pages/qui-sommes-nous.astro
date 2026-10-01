@@ -6,7 +6,7 @@ import Icone from '../components/Icone.astro';
 import { SITE, lien } from '../lib/site';
 
 const description =
-  'Deliview est un logiciel français fondé par Tom Voisin pour aider les restaurants sur Uber Eats et Deliveroo à rendre leur livraison plus rentable.';
+  'Deliview est né d’un an sur le terrain : un logiciel français, fondé par Tom Voisin, pour rendre la livraison plus rentable sur Uber Eats et Deliveroo.';
 
 const engagements = [
   { icone: 'source' as const, titre: 'Des chiffres sourcés', texte: 'Chaque prix comparé renvoie à la fiche d’où il vient. Quand les données ne suffisent pas, Deliview le dit.' },
@@ -20,6 +20,9 @@ const personne = {
   '@type': 'Person',
   name: 'Tom Voisin',
   jobTitle: 'Fondateur de Deliview',
+  description:
+    'Fondateur de Deliview. A lui-même été sur Uber Eats et Deliveroo, et a passé un an sur le terrain à analyser comment travaillent les restaurants qui livrent.',
+  knowsAbout: ['Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison'],
   url: SITE.url + '/qui-sommes-nous/#tom',
   image: SITE.url + '/images/tom-voisin.jpg',
   sameAs: [SITE.linkedinTom],
@@ -56,11 +59,11 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
       <div>
         <p class="dv-overline dv-muted">Le fondateur</p>
         <h2 id="tom-titre" class="dv-h2 mt-3">Tom Voisin</h2>
-        <div class="mt-5 max-w-[64ch] space-y-4">
-          <p>Je m’appelle Tom et j’ai fondé Deliview.</p>
-          <p>L’idée vient d’un constat&nbsp;: un restaurateur présent sur Uber Eats et Deliveroo jongle avec deux tablettes, deux cartes et deux grilles de prix, sans voir ce que font les restaurants autour de lui. Ses clients, eux, comparent tout en quelques secondes.</p>
-          <p>J’ai commencé par ce qui manque le plus&nbsp;: savoir si vos prix tiennent face à ceux de votre zone. Deliview lit les fiches publiques, compare chaque plat au même plat chez les voisins et cite ses sources.</p>
-          <p>Je fais la mise en place avec chaque restaurant, et c’est moi qui décroche quand vous appelez.</p>
+        <div class="mt-5 max-w-[64ch] space-y-4 [text-wrap:pretty]">
+          <p>Je m’appelle Tom et j’ai fondé Deliview. J’ai moi-même été sur Uber Eats et Deliveroo, et j’ai passé un&nbsp;an sur le terrain à analyser comment travaillent les restaurants qui livrent.</p>
+          <p>D’un restaurant à l’autre, j’ai vu la même chose. Deux tablettes qui sonnent en plein rush. Deux cartes et deux grilles de prix à tenir à jour. Des prix fixés à l’instinct, sans savoir ce que fait le restaurant d’à côté. Pendant ce temps, les clients comparent tout en quelques secondes.</p>
+          <p>Deliview est le résultat de cette année d’analyse. J’ai commencé par ce qui manquait le plus&nbsp;: savoir si vos prix tiennent face à ceux de votre zone. Deliview lit les fiches publiques, compare chaque plat au même plat chez les voisins et cite ses sources.</p>
+          <p>Je fais la mise en place avec chaque restaurant. Quand vous appelez, c’est moi qui décroche.</p>
         </div>
         <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
           <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a>
@@ -101,6 +104,10 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Fondateur</dt>
           <dd>Tom Voisin, étudiant-entrepreneur (réseau PEPITE)</dd>
+        </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Origine</dt>
+          <dd>Un&nbsp;an d’analyse sur le terrain, auprès des restaurants qui livrent sur Uber Eats et Deliveroo</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Plateformes</dt>
