@@ -1,0 +1,37 @@
+# Deliview
+
+> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.
+
+Le partenaire des restaurants en livraison. Logiciel français, pour les restaurants en France présents sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens, petites chaînes. Deliview lit les informations publiques des fiches Uber Eats et Deliveroo, sans identifiant à donner. Chaque prix comparé renvoie à la fiche d’où il vient.
+
+## Ce que fait Deliview
+
+- [Prix et concurrence](https://www.deliview.fr/solution/prix-et-concurrence/) : Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.
+- [Carte et marge](https://www.deliview.fr/solution/carte-et-marge/) : Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.
+- [Réputation](https://www.deliview.fr/solution/reputation/) : Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.
+- [Simulateur de rentabilité](https://www.deliview.fr/simulateur/) : ce que rapporte un prix mieux placé, calculé dans le navigateur.
+- [Intégrations](https://www.deliview.fr/integrations/) : Uber Eats et Deliveroo, plateformes analysées en France.
+
+## Tarifs
+
+- Essentiel : 59 € HT par mois, 1 restaurant. Pour vendre chaque plat au bon prix.
+- Pro : 149 € HT par mois, jusqu’à 5 restaurants. Pour piloter la rentabilité de plusieurs restaurants.
+- Premium : 349 € HT par mois, jusqu’à 10 restaurants. Pour un groupe de restaurants, avec un suivi chaque mois.
+- Sans engagement, mise en place offerte. Détail : https://www.deliview.fr/tarifs/
+
+## Guides pour les restaurateurs
+
+- [Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger](https://www.deliview.fr/ressources/ameliorer-note-uber-eats-deliveroo/) : Comment Uber Eats et Deliveroo calculent la note de votre restaurant, ce qui la fait baisser, comment répondre aux avis et ce qu’il ne faut jamais faire.
+- [Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo](https://www.deliview.fr/ressources/analyser-prix-concurrents-livraison/) : Choisissez les bons concurrents, comparez le même plat à taille égale et lisez l’écart avec la médiane de votre zone. Méthode, tableau et exemple chiffré.
+- [Commission Deliveroo pour un restaurant : trouver votre taux et calculer votre marge](https://www.deliview.fr/ressources/commission-deliveroo-restaurant/) : Commission Deliveroo : aucun taux public. Où trouver le vôtre, quels coûts s’y ajoutent et comment calculer votre marge, avec un exemple chiffré.
+- [Commission Uber Eats pour un restaurant : ce qu’Uber Eats prend et ce qu’il vous reste](https://www.deliview.fr/ressources/commission-uber-eats-restaurant/) : Commission Uber Eats : taux affichés, base de calcul, TVA, offres et annonces. Calculez ce qu’il vous reste sur chaque commande, avec un exemple chiffré.
+- [Comment fixer ses prix sur Uber Eats et Deliveroo sans perdre d’argent ni de clients](https://www.deliview.fr/ressources/fixer-prix-uber-eats-deliveroo/) : Calculez le prix plancher de chaque plat, situez-vous face aux prix de votre zone et ajustez sans faire fuir vos clients. Méthode et exemple chiffré.
+- [Comment gérer les tablettes Uber Eats et Deliveroo en plein rush sans rater de commandes ?](https://www.deliview.fr/ressources/tablettes-uber-eats-deliveroo-rush/) : Mode Occupé, pause, ruptures, impression : les réglages d’Uber Eats et de Deliveroo pour les soirs chargés, et l’organisation du poste pour tenir le rush.
+- [TVA des ventes en livraison et à emporter : quel taux appliquer à vos plats et boissons ?](https://www.deliview.fr/ressources/tva-ventes-livraison-restaurant/) : Plats, boissons, menus : le taux de TVA en livraison et à emporter, un exemple de ventilation chiffré et la TVA sur les commissions des plateformes.
+- [Comment savoir si une promo Uber Eats ou Deliveroo est rentable pour votre restaurant](https://www.deliview.fr/ressources/promotion-uber-eats-deliveroo-rentable/) : Types d’offres, qui paie la remise, commission sur le prix remisé : un calcul pas à pas pour savoir si votre promo Uber Eats ou Deliveroo vous rapporte.
+
+## Contact
+
+- [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : Tom Voisin, fondateur, un an d’analyse sur le terrain auprès des restaurants qui livrent.
+- [Demander une démo](https://www.deliview.fr/demo/) : 15 minutes sur les fiches du restaurant.
+- E-mail : tom@deliview.fr
