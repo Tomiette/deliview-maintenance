@@ -33,9 +33,10 @@ Le formulaire envoie à la fonction Supabase `lead` (projet osczxtxtxrjbjnozreun
 (lisible seulement avec la clé de service, depuis le tableau de bord Supabase). E-mails envoyés seulement
 quand le secret `BREVO_API_KEY` est réglé sur la fonction. L'empreinte IP est effacée chaque nuit (pg_cron).
 
-## Avant la mise en ligne à la racine
+## Publication (en ligne à la racine de www.deliview.fr depuis le 1er octobre 2026)
 
-1. Remplacer tous les blocs `[À REMPLACER : …]` (recherche : `À REMPLACER`).
-2. Faire valider mentions légales, confidentialité et conditions du pilote par un avocat.
-3. `npm run build` sans SITE_BASE, puis publier `dist/` à la racine du dépôt de publication
-   en gardant `app/`, `analyse/` et `CNAME`.
+1. `npm run build` sans SITE_BASE, puis copier le contenu de `dist/` à la racine du dépôt de publication
+   (Tomiette/deliview-maintenance, branche `main`) en gardant `app/`, `analyse/`, `apercu/` et `CNAME`.
+2. Aperçu non indexé : `SITE_BASE=/apercu/ npm run build`, puis remplacer le dossier `apercu/` du dépôt.
+3. Restent à compléter : blocs `[À REMPLACER : …]` des mentions légales et de la confidentialité
+   (identité de l'éditeur, garanties des transferts hors UE), puis validation par un avocat.

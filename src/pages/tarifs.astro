@@ -124,7 +124,7 @@ const faqPage = {
         <p class="dv-overline dv-muted">Programme pilote</p>
         <h2 id="pilote-titre" class="dv-h2 mt-3 max-w-[20ch]">Ce que vous obtenez en rejoignant le pilote</h2>
         <p class="mt-5 dv-texte">
-          Conditions du pilote&nbsp;: <span class="dv-a-remplacer">[À REMPLACER : nombre de places, durée, prix pendant le pilote, engagement]</span>
+          Durée, prix et engagement du pilote&nbsp;: Tom vous les présente pendant la démo, avant toute décision de votre part.
         </p>
         <a href="#demo" class="dv-btn dv-btn-plein mt-8" data-cta="tarifs-pilote" data-cta-principal>Candidater au programme pilote</a>
       </div>
@@ -144,7 +144,7 @@ const faqPage = {
   <section class="dv-section bg-white" aria-labelledby="offres-titre">
     <div class="dv-container">
       <h2 id="offres-titre" class="dv-h2">Deux offres</h2>
-      <p class="mt-4 dv-muted dv-texte">Prix hors taxes, par établissement. <span class="dv-a-remplacer">[À REMPLACER : engagement, frais de mise en place, nombre d’analyses par mois]</span></p>
+      <p class="mt-4 dv-muted dv-texte">Prix hors taxes, par établissement, communiqués pendant la démo avec l’engagement et les frais de mise en place.</p>
       <ul class="mt-10 grid gap-6 md:grid-cols-2">
         {
           offres.map((o) => (
@@ -154,9 +154,9 @@ const faqPage = {
                 <span class={`dv-badge ${o.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{o.statut === 'bientot' ? 'Bientôt' : 'Disponible'}</span>
               </div>
               <p class="mt-2 dv-muted">{o.pour}</p>
-              <p class="mt-6">
-                <span class="dv-a-remplacer">[À REMPLACER : prix]</span>
-                <span class="ml-1 text-[16px] dv-muted">€&nbsp;HT par mois et par établissement</span>
+              <p class="mt-6 text-[20px] font-bold">
+                Prix communiqué pendant la démo
+                <span class="block text-[16px] font-normal dv-muted">Abonnement mensuel, par établissement, hors taxes</span>
               </p>
               <ul class="mt-6 flex-1 space-y-3">
                 {o.inclus.map((x) => (
