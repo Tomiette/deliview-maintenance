@@ -32,17 +32,18 @@ const douleurs: { icone: NomIcone; titre: string; texte: string }[] = [
   },
 ];
 
+// Les trois temps de la promesse : vos données réunies, vos concurrents visibles, vos prix et vos promos ajustés.
 const etapes = [
-  { titre: 'Récupération de vos données', texte: 'Le nom et la ville de votre restaurant suffisent : Deliview retrouve vos fiches Uber Eats et Deliveroo.' },
-  { titre: 'Comparaison avec votre zone', texte: 'Vos prix, votre note et vos offres face à jusqu’à 10 restaurants de votre secteur, sur les deux plateformes.' },
-  { titre: 'Les bons prix, plat par plat', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez.' },
+  { titre: 'Vos données sur une seule tablette', texte: 'Le nom et la ville de votre restaurant suffisent : Deliview retrouve vos fiches Uber Eats et Deliveroo et les réunit au même endroit.' },
+  { titre: 'Vous voyez ce que font vos concurrents', texte: 'Leurs prix plat par plat, leurs notes et leurs promos, chez jusqu’à 10 restaurants de votre secteur, sur les deux plateformes.' },
+  { titre: 'Vous ajustez vos prix et vos promos', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez, plat par plat.' },
 ];
 
 const benefices: { icone: NomIcone; titre: string; texte: string }[] = [
-  { icone: 'oeil', titre: 'Voyez votre zone comme vos clients', texte: 'Vos prix, vos notes et vos promos face à ceux des restaurants qui livrent les mêmes rues.' },
-  { icone: 'courbe', titre: 'Vendez chaque plat au bon prix', texte: 'Les plats vendus trop bas repérés, un prix proposé avec ses sources et ce qu’il rapporte pour 100 ventes.' },
-  { icone: 'alerte', titre: 'Réagissez dès qu’un voisin bouge', texte: 'Nouvelle promo, prix changé, nouveau concurrent : vous le voyez à chaque analyse.' },
-  { icone: 'horloge', titre: 'Arrêtez les relevés à la main', texte: 'Plus besoin d’ouvrir les fiches une par une, sur deux applications, entre deux services.' },
+  { icone: 'oeil', titre: 'Voyez ce que font vos concurrents', texte: 'Leurs prix, leurs notes et leurs promos face aux vôtres, chez les restaurants qui livrent les mêmes rues.' },
+  { icone: 'courbe', titre: 'Ajustez vos prix plat par plat', texte: 'Les plats vendus trop bas repérés, un prix proposé avec ses sources et ce qu’il rapporte pour 100 ventes.' },
+  { icone: 'alerte', titre: 'Ajustez vos promos à temps', texte: 'Nouvelle promo, prix changé, nouveau concurrent : vous le voyez à chaque analyse, avant de décider des vôtres.' },
+  { icone: 'tablette', titre: 'Tout sur une seule tablette', texte: 'Vos données Uber Eats et Deliveroo au même endroit, sans ouvrir les fiches une par une entre deux services.' },
 ];
 
 const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: string }[] = [
@@ -69,7 +70,7 @@ const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: str
   },
 ];
 
-const description = `Augmentez votre rentabilité sur Uber Eats et Deliveroo : vos données sur une seule tablette, vos prix face à vos concurrents. Dès ${PRIX_ENTREE} € HT par mois.`;
+const description = `Vos données Uber Eats et Deliveroo sur une seule tablette : voyez vos concurrents, ajustez vos prix et vos promos. Dès ${PRIX_ENTREE} € HT par mois.`;
 
 const video = {
   '@context': 'https://schema.org',
@@ -99,7 +100,7 @@ const video = {
       <div>
         <p class="dv-overline dv-muted">{SITE.slogan}</p>
         <h1 class="dv-h1 mt-3 md:mt-4 max-w-[15ch]">Augmentez votre rentabilité sur Uber Eats et Deliveroo</h1>
-        <p class="dv-lead mt-5 max-w-[48ch]">Deliview réunit vos données livraison sur une seule tablette, compare vos prix à ceux de vos concurrents plat par plat et vous dit quoi ajuster.</p>
+        <p class="dv-lead mt-5 max-w-[54ch]">{SITE.definition}</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta="hero" data-cta-principal>Demander une démo</a>
           <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Simuler ma rentabilité</a>
@@ -151,7 +152,7 @@ const video = {
     <div class="dv-container grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
       <div>
         <p class="dv-overline dv-muted">Comment ça marche</p>
-        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[18ch]">Vos données réunies en quelques minutes</h2>
+        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[18ch]">De vos données à une livraison plus rentable</h2>
         <p class="dv-lead mt-4 max-w-[52ch]">Rien à installer, aucun identifiant à donner&nbsp;: Deliview part des informations publiques de vos fiches. Il s’ouvre sur votre tablette, votre ordinateur ou votre téléphone.</p>
         <ol class="mt-8 space-y-6">
           {

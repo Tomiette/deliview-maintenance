@@ -6,9 +6,10 @@ export const SITE = {
   url: 'https://www.deliview.fr',
   // Slogan définitif (décision de Tom, 1er octobre 2026) : hero, pied de page, Qui sommes-nous, données structurées.
   slogan: 'Le partenaire des restaurants en livraison',
-  // Même phrase partout (accueil, Qui sommes-nous, données structurées, LinkedIn).
+  // Même texte partout (hero de l'accueil, Qui sommes-nous, pied de page, données structurées, LinkedIn).
+  // Direction de copywriting fixée par Tom le 1er octobre 2026.
   definition:
-    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette pour rendre votre livraison plus rentable.',
+    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.',
   email: 'tom@deliview.fr',
   telephone: '06 32 37 79 88',
   telephoneLien: '+33632377988',

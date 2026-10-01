@@ -72,7 +72,6 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
     </nav>
 
     <div class="flex items-center gap-2">
-      <a href={`tel:${SITE.telephoneLien}`} class="hidden xl:inline-flex items-center px-2 text-[16px] font-semibold whitespace-nowrap">{SITE.telephone}</a>
       <a href={SITE.app} class="dv-btn dv-btn-contour !min-h-[44px] !px-4 !py-2 !text-[16px] hidden whitespace-nowrap sm:inline-flex">Se connecter</a>
       <a href={lien('/demo/')} class="dv-btn dv-btn-plein !min-h-[44px] !px-4 !py-2 hidden whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
 
@@ -105,8 +104,7 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
               ))
             }
             <li><a href={lien('/qui-sommes-nous/')} class="block py-3 font-semibold border-b border-grey-2/10">Qui sommes-nous</a></li>
-            <li><a href={SITE.app} class="block py-3 font-semibold border-b border-grey-2/10">Se connecter</a></li>
-            <li><a href={`tel:${SITE.telephoneLien}`} class="block py-3 font-semibold">Appeler Tom : {SITE.telephone}</a></li>
+            <li><a href={SITE.app} class="block py-3 font-semibold">Se connecter</a></li>
           </ul>
           <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>
         </div>
