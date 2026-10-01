@@ -5,7 +5,7 @@ description: "Commission Deliveroo : aucun taux public. Où trouver le vôtre, 
 theme: carte-et-marge
 enBref: "Deliveroo ne publie pas de taux de commission pour les restaurants en France. Le vôtre figure dans votre contrat et sur vos factures hebdomadaires. Deliveroo déduit sa commission et la TVA éventuelle sur celle-ci, puis les offres, la publicité, les annulations et certains remboursements. Calculez votre marge en hors taxes, plat par plat."
 publieLe: 2026-10-01
-misAJourLe: 2026-10-01
+misAJourLe: 2026-10-02
 sources:
   - titre: "Foire aux questions"
     url: "https://merchants.deliveroo.com/fr-FR/faqs"
@@ -173,4 +173,4 @@ Quand il le peut, Deliveroo mesure l’écart entre vos prix sur l’application
 
 Pour choisir le bon niveau de prix, lisez notre guide pour [fixer vos prix sur Uber Eats et Deliveroo](/ressources/fixer-prix-uber-eats-deliveroo/).
 
-Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 10 restaurants voisins. Il liste aussi les plats vendus à un prix différent sur Deliveroo et sur Uber Eats. La marge réelle par plateforme arrive bientôt : voyez ce que Deliview fait déjà pour [votre carte et votre marge](/solution/carte-et-marge/).
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il liste aussi les plats vendus à un prix différent sur Deliveroo et sur Uber Eats : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).

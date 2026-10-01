@@ -5,7 +5,7 @@ description: "Comment Uber Eats et Deliveroo calculent la note de votre restaura
 theme: reputation
 enBref: "Sur Uber Eats comme sur Deliveroo, la note est une moyenne d’étoiles de 1 à 5 qui privilégie les notes récentes. Pour la faire monter, traitez d’abord ce qui la fait baisser : plats manquants, erreurs, retards et emballage. Répondez aux avis, comparez-vous aux restaurants de votre zone, et ne publiez ni n’achetez jamais de faux avis : c’est un délit."
 publieLe: 2026-10-01
-misAJourLe: 2026-10-01
+misAJourLe: 2026-10-02
 sources:
   - titre: "Les notes et évaluations sur Uber Eats"
     url: "https://www.uber.com/fr/fr/legal/ratings-and-reviews-on-uber-eats/"
@@ -141,7 +141,7 @@ Deliveroo met en avant ceux qui ont reçu « les meilleurs avis des utilisateur
 
 Regardez aussi le nombre de notes : une moyenne établie sur 15 notes bouge bien plus vite qu’une moyenne sur 500. Et gardez un œil sur les seuils propres aux plateformes, comme le score de réussite d’Uber Eats ou le Score Confiance de Deliveroo.
 
-Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme. La lecture des avis et des réponses proposées arrive bientôt : voir [votre note face à celles de votre zone](/solution/reputation/).
+Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme : voir [votre note face à celles de votre zone](/solution/reputation/).
 
 ## Par où commencer cette semaine ?
 

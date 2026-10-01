@@ -1,5 +1,5 @@
 ---
-// Page pilier (gabarit unique pour les 4 piliers) : hero, fonctionnalités, méthode, FAQ, autres piliers, démo.
+// Page pilier (gabarit unique pour les 3 piliers) : hero, fonctionnalités, méthode, FAQ, autres piliers, démo.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Capture from '../../components/Capture.astro';
@@ -8,7 +8,7 @@ import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Icone from '../../components/Icone.astro';
-import { PILIERS, SITE, dateFr, jsonldLogiciel, libelleStatut, lien, type Pilier } from '../../lib/site';
+import { PILIERS, SITE, dateFr, jsonldLogiciel, lien, type Pilier } from '../../lib/site';
 
 export function getStaticPaths() {
   return PILIERS.map((p) => ({ params: { slug: p.slug }, props: { pilier: p } }));
@@ -25,7 +25,6 @@ const ICONES: Record<string, Icon[]> = {
   'prix-et-concurrence': ['prix', 'zone', 'check', 'promo', 'alerte'],
   'carte-et-marge': ['carte', 'source', 'prix', 'check', 'equipe'],
   reputation: ['note', 'equipe', 'note', 'source', 'alerte'],
-  commandes: ['commandes', 'carte', 'check', 'prix', 'plateformes'],
 };
 
 // Méthode (réponse directe d'abord) et questions propres à chaque pilier.
@@ -43,7 +42,7 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
     faq: [
       {
         q: 'Comment Deliview choisit-il mes concurrents ?',
-        r: 'Il cherche sur Uber Eats et Deliveroo les restaurants de votre secteur, vérifie leur adresse et garde les plus proches et les plus complets, jusqu’à 10. Vous pouvez aussi imposer jusqu’à 3 restaurants à suivre, même plus loin.',
+        r: 'Il cherche sur Uber Eats et Deliveroo les restaurants de votre secteur, vérifie leur adresse et garde les plus proches et les plus complets, jusqu’à 20. Vous pouvez aussi imposer jusqu’à 3 restaurants à suivre, même plus loin.',
       },
       {
         q: 'D’où viennent les prix ?',
@@ -72,11 +71,7 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
     faq: [
       {
         q: 'Deliview modifie-t-il mes prix sur Uber Eats ou Deliveroo ?',
-        r: 'Non. Vous décidez, puis vous reportez le nouveau prix dans votre espace Uber Eats ou Deliveroo. La modification depuis Deliview arrivera avec les accès officiels des plateformes.',
-      },
-      {
-        q: 'Deliview calcule-t-il ma marge réelle ?',
-        r: 'Pas encore. Le calcul de la marge par plateforme, commissions, remises et frais déduits, arrive avec la connexion de vos comptes. Aujourd’hui, Deliview travaille sur vos prix de vente.',
+        r: 'Non. Vous décidez, puis vous reportez le nouveau prix dans votre espace Uber Eats ou Deliveroo.',
       },
       {
         q: 'Que faire d’un plat que personne d’autre ne vend ?',
@@ -96,40 +91,11 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
     faq: [
       {
         q: 'Deliview lit-il mes avis clients ?',
-        r: 'Pas encore. Aujourd’hui, Deliview compare votre note et votre nombre d’avis à ceux de votre zone. La lecture des avis et les réponses arriveront avec la connexion de vos comptes.',
+        r: 'Non. Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme.',
       },
       {
         q: 'Pourquoi comparer ma note à celle des voisins ?',
         r: 'Parce que le client choisit parmi les restaurants qu’il voit dans l’appli. Une note de 4,5 n’a pas le même poids dans une zone où la plupart des restaurants sont à 4,7.',
-      },
-      {
-        q: 'Les réponses aux avis partiront-elles sans moi ?',
-        r: 'Non. Deliview proposera une réponse pour chaque avis&nbsp;: vous la relirez et la validerez avant l’envoi.',
-      },
-    ],
-  },
-  commandes: {
-    methodeTitre: 'Pourquoi ce n’est pas encore disponible',
-    reponse:
-      'Recevoir vos commandes et modifier vos menus demande un accès officiel à Uber Eats et à Deliveroo. Deliview prépare ces connexions. Les restaurants abonnés seront les premiers connectés.',
-    points: [
-      'Les commandes des deux plateformes sur une seule tablette',
-      'Un prix ou un plat changé une fois, partout',
-      'Les ruptures retirées des deux plateformes d’un geste',
-      'Le chiffre d’affaires et la TVA par plateforme',
-    ],
-    faq: [
-      {
-        q: 'Quand les commandes arriveront-elles dans Deliview ?',
-        r: 'Dès que les accès officiels d’Uber Eats et de Deliveroo seront ouverts à Deliview. Nous n’annoncerons une date que lorsqu’elle sera sûre.',
-      },
-      {
-        q: 'Qu’est-ce qu’Uber Direct ?',
-        r: 'Le service de livraison d’Uber pour les commandes reçues par votre site, votre application ou par téléphone. D’après Uber, le commerçant paie un montant fixe par livraison, à partir de 5,90&nbsp;€ HT, au lieu d’une commission sur la commande (<a href="https://merchants.ubereats.com/fr/fr/services/uber-direct/" rel="noopener">page Uber Direct</a>, consultée le 1er&nbsp;octobre 2026).',
-      },
-      {
-        q: 'Puis-je m’abonner dès maintenant ?',
-        r: 'Oui. Le volet prix et concurrence est disponible aujourd’hui, dès l’offre Essentiel. Les commandes s’ajouteront aux offres Pro et Premium dès qu’elles seront prêtes, sans supplément.',
       },
     ],
   },
@@ -137,9 +103,6 @@ const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: s
 
 const c = CONTENU[pilier.slug];
 const icones = ICONES[pilier.slug];
-const dispo = pilier.fonctionnalites.filter((f) => f.statut === 'disponible');
-const bientot = pilier.fonctionnalites.filter((f) => f.statut === 'bientot');
-const ordre = [...dispo, ...bientot];
 const url = `${SITE.url}/solution/${pilier.slug}/`;
 ---
 
@@ -156,10 +119,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-24 h-[480px] w-[480px] rounded-full bg-blue-2/12"></div>
     <div class={`dv-container relative grid items-center gap-12 pb-16 pt-8 md:pb-20 md:pt-12 ${pilier.capture || pilier.illustration ? 'lg:grid-cols-[1fr_1.1fr]' : ''}`}>
       <div>
-        <div class="flex flex-wrap items-center gap-3">
-          <p class="dv-overline dv-muted">{pilier.surtitre}</p>
-          <span class={`dv-badge ${pilier.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(pilier.statut)}</span>
-        </div>
+        <p class="dv-overline dv-muted">{pilier.surtitre}</p>
         <h1 class="dv-h1 mt-4 max-w-[18ch]">{pilier.titre}</h1>
         <p class="dv-lead mt-5 max-w-[56ch]">{pilier.description}</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -178,17 +138,14 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
 
   <section class="dv-section bg-grey" aria-labelledby="fonctions-titre">
     <div class="dv-container">
-      <h2 id="fonctions-titre" class="dv-h2 max-w-[24ch]">{pilier.statut === 'bientot' ? 'Ce qui arrive dans Deliview' : 'Ce que vous pouvez faire avec Deliview'}</h2>
+      <h2 id="fonctions-titre" class="dv-h2 max-w-[24ch]">Ce que vous pouvez faire avec Deliview</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
-          ordre.map((f) => (
+          pilier.fonctionnalites.map((f, i) => (
             <li class="dv-card flex flex-col p-6">
-              <div class="flex items-start justify-between gap-3">
-                <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
-                  <Icone nom={icones[pilier.fonctionnalites.indexOf(f)] || 'check'} />
-                </span>
-                <span class={`dv-badge ${f.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(f.statut)}</span>
-              </div>
+              <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
+                <Icone nom={icones[i] || 'check'} />
+              </span>
               <h3 class="dv-h3 mt-4">{f.titre}</h3>
               <p class="mt-2 dv-muted">{f.texte}</p>
             </li>
@@ -201,7 +158,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
   <section class="dv-section bg-white" aria-labelledby="methode-titre">
     <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1fr]">
       <div>
-        <p class="dv-overline dv-muted">{pilier.statut === 'bientot' ? 'Où en est-on' : 'La méthode'}</p>
+        <p class="dv-overline dv-muted">La méthode</p>
         <h2 id="methode-titre" class="dv-h2 mt-3 max-w-[20ch]">{c.methodeTitre}</h2>
         <p class="mt-5 dv-texte" set:html={c.reponse} />
       </div>
@@ -254,10 +211,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
         {
           autres.map((p) => (
             <li class="dv-card flex flex-col p-6">
-              <div class="flex flex-wrap items-center gap-3">
-                <p class="dv-overline">{p.surtitre}</p>
-                {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
-              </div>
+              <p class="dv-overline">{p.surtitre}</p>
               <p class="mt-3 flex-1 dv-muted">{p.phrase}</p>
               <a href={lien(`/solution/${p.slug}/`)} class="mt-4 inline-flex items-center gap-2 font-bold underline underline-offset-4">
                 Voir {p.surtitre.toLowerCase()} <Icone nom="fleche" taille={18} />

@@ -5,7 +5,7 @@ description: "Commission Uber Eats : taux affichés, base de calcul, TVA, offre
 theme: carte-et-marge
 enBref: "Uber Eats prélève un pourcentage du prix TTC de vos plats, plus la TVA éventuelle sur ces frais. Votre taux figure sur votre bon de commande. Sa page tarifs affiche 15 %, 30 % ou 33 %, avec une note qui les réserve au Japon. Exemple : à 30 %, une pizza à 14 € vous laisse 8,53 € HT avant matière."
 publieLe: 2026-10-01
-misAJourLe: 2026-10-01
+misAJourLe: 2026-10-02
 sources:
   - titre: "Une tarification adaptée à votre entreprise"
     url: "https://merchants.ubereats.com/fr/fr/pricing/"
@@ -67,8 +67,6 @@ Il peut changer. Le [contrat Uber Eats](https://www.uber.com/legal/en/document/?
 - le retrait au restaurant par le client, ou « Méthode sans livraison »
 
 La page tarifs ne publie aucun taux pour la livraison par votre équipe. Demandez-le à Uber Eats avant de choisir ce mode.
-
-Pour les commandes passées sur votre propre site, Uber Direct facture la livraison au lieu d’un pourcentage. Uber annonce une « tarification à partir de 5,90 € HT par livraison », sans frais de service selon sa [page restaurants](https://merchants.ubereats.com/fr/fr/business/restaurants/).
 
 ## Comment calculer ce qu’il vous reste sur une commande ?
 
@@ -136,4 +134,4 @@ Le contrat vous laisse la main : il « incombe au Partenaire de déterminer et
 
 Faites ensuite le même exercice sur Deliveroo, qui ne publie pas ses taux. Notre article sur [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/) explique où trouver le vôtre.
 
-Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 10 restaurants voisins. Il signale les plats trop chers ou sous-évalués, et ceux vendus à des prix différents sur Uber Eats et Deliveroo. Le calcul de votre marge réelle par plateforme arrive bientôt : voyez ce que Deliview fait déjà pour [votre carte et votre marge](/solution/carte-et-marge/).
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il signale les plats trop chers ou sous-évalués, et ceux vendus à des prix différents sur Uber Eats et Deliveroo : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).

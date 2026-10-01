@@ -4,23 +4,16 @@ import Base from '../../layouts/Base.astro';
 import CaptureTablette from '../../components/CaptureTablette.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
-import Icone from '../../components/Icone.astro';
 import { SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
-  'Vos fiches Uber Eats et Deliveroo côte à côte : écarts de prix, concurrents et note sur chaque plateforme. Bientôt, vos commandes sur la même tablette.';
+  'Vos fiches Uber Eats et Deliveroo côte à côte : écarts de prix, concurrents et note sur chaque plateforme, dans une seule analyse.';
 
 const aujourdhui = [
   { titre: 'Les écarts de prix entre vos deux fiches', texte: 'Chaque plat vendu à un prix différent sur Uber Eats et sur Deliveroo, avec les deux prix.' },
   { titre: 'Vos concurrents sur chaque plateforme', texte: 'Un restaurant absent de Deliveroo peut être votre premier rival sur Uber Eats. Deliview regarde les deux.' },
   { titre: 'Votre note ici et là', texte: 'Votre place au classement des notes de votre zone, plateforme par plateforme.' },
   { titre: 'Une seule analyse pour les deux', texte: 'Un nom, une ville, et Deliview lit vos deux fiches dans la même analyse.' },
-];
-const ensuite = [
-  'Les commandes des deux plateformes sur une seule tablette',
-  'Un prix ou un plat changé une fois, partout',
-  'Les ruptures retirées des deux plateformes d’un geste',
-  'Le chiffre d’affaires et la TVA par plateforme',
 ];
 const faq = [
   {
@@ -29,7 +22,7 @@ const faq = [
   },
   {
     q: 'Deliview remplace-t-il les tablettes Uber Eats et Deliveroo ?',
-    r: 'Pas encore. Les commandes sur une seule tablette arriveront avec les accès officiels des deux plateformes. Aujourd’hui, Deliview réunit vos prix, votre carte et votre note.',
+    r: 'Non. Deliview réunit vos prix, votre carte et votre note sur un seul écran. Vos tablettes Uber Eats et Deliveroo restent là pour recevoir les commandes.',
   },
   {
     q: 'Et si je ne suis que sur une des deux plateformes ?',
@@ -52,7 +45,7 @@ const faq = [
       <div>
         <p class="dv-overline dv-muted">Intégration</p>
         <h1 class="dv-h1 mt-4 max-w-[16ch]">Gérer Uber Eats et Deliveroo ensemble</h1>
-        <p class="dv-lead mt-5 max-w-[56ch]">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents sur chaque plateforme et votre note ici et là. Les commandes sur la même tablette arrivent ensuite.</p>
+        <p class="dv-lead mt-5 max-w-[56ch]">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents sur chaque plateforme et votre note ici et là.</p>
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="#demo" class="dv-btn dv-btn-plein" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
           <a href={lien('/solution/')} class="dv-btn dv-btn-contour">Voir toute la solution</a>
@@ -81,31 +74,6 @@ const faq = [
             <li class="dv-card p-6">
               <h3 class="dv-h3">{x.titre}</h3>
               <p class="mt-2 dv-muted">{x.texte}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <section class="dv-section bg-white" aria-labelledby="ensuite-titre">
-    <div class="dv-container grid gap-10 lg:grid-cols-2">
-      <div>
-        <div class="flex flex-wrap items-center gap-3">
-          <h2 id="ensuite-titre" class="dv-h2">Ce qui arrive ensuite</h2>
-          <span class="dv-badge dv-badge-bientot">Bientôt</span>
-        </div>
-        <p class="mt-4 dv-texte">Avec les accès officiels d’Uber Eats et de Deliveroo, Deliview réunira vos opérations au même endroit. Les restaurants abonnés seront les premiers connectés.</p>
-        <a href={lien('/solution/commandes/')} class="mt-6 inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
-          Voir commandes et opérations <Icone nom="fleche" taille={20} />
-        </a>
-      </div>
-      <ul class="space-y-4 self-center">
-        {
-          ensuite.map((x) => (
-            <li class="flex gap-3">
-              <span class="mt-1 dv-muted"><Icone nom="horloge" taille={20} /></span>
-              {x}
             </li>
           ))
         }

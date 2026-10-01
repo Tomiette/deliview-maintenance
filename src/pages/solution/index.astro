@@ -1,13 +1,13 @@
 ---
-// Vue d'ensemble : les 4 piliers et toutes leurs fonctionnalités, avec leur statut réel.
+// Vue d'ensemble : les 3 piliers et toutes leurs fonctionnalités, disponibles aujourd'hui.
 import Base from '../../layouts/Base.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Icone from '../../components/Icone.astro';
-import { PILIERS, SITE, jsonldLogiciel, libelleStatut, lien } from '../../lib/site';
+import { PILIERS, SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
-  'Prix et concurrence, carte et marge, réputation, et bientôt commandes : tout ce que Deliview fait pour votre restaurant sur Uber Eats et Deliveroo.';
+  'Prix et concurrence, carte et marge, réputation : tout ce que Deliview fait pour votre restaurant sur Uber Eats et Deliveroo, plat par plat.';
 ---
 
 <Base
@@ -20,7 +20,7 @@ const description =
     <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
       <p class="dv-overline dv-muted">Solution</p>
       <h1 class="dv-h1 mt-4 max-w-[20ch]">Ce que Deliview fait pour votre restaurant</h1>
-      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition} Chaque fonctionnalité porte son statut&nbsp;: disponible aujourd’hui, ou bientôt.</p>
+      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition}</p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#demo" class="dv-btn dv-btn-plein" data-cta="solution" data-cta-principal>Demander une démo</a>
         <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour">Voir les tarifs</a>
@@ -33,10 +33,7 @@ const description =
       <section class={`dv-section ${i % 2 === 0 ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`pilier-${p.slug}`}>
         <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.4fr]">
           <div>
-            <div class="flex flex-wrap items-center gap-3">
-              <p class="dv-overline">{p.surtitre}</p>
-              <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(p.statut)}</span>
-            </div>
+            <p class="dv-overline">{p.surtitre}</p>
             <h2 id={`pilier-${p.slug}`} class="dv-h2 mt-3">{p.titre}</h2>
             <p class="mt-4 dv-muted dv-texte">{p.description}</p>
             <a href={lien(`/solution/${p.slug}/`)} class="mt-6 inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
@@ -46,10 +43,7 @@ const description =
           <ul class="grid gap-4 sm:grid-cols-2">
             {p.fonctionnalites.map((f) => (
               <li class="dv-card p-5">
-                <div class="flex items-start justify-between gap-3">
-                  <h3 class="font-semibold leading-snug">{f.titre}</h3>
-                  {f.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
-                </div>
+                <h3 class="font-semibold leading-snug">{f.titre}</h3>
                 <p class="mt-2 text-[16px] dv-muted">{f.texte}</p>
               </li>
             ))}

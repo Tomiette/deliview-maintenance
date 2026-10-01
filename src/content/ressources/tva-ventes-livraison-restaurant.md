@@ -5,7 +5,7 @@ description: "Plats, boissons, menus : le taux de TVA en livraison et à emport
 theme: commandes
 enBref: "En livraison et à emporter, la nourriture préparée pour être mangée tout de suite relève du taux de 10 %. Les boissons sans alcool en bouteille ou en canette, les pâtisseries sucrées, les chips et les yaourts relèvent de 5,5 %. L’alcool relève toujours de 20 %. Sur une commande mixte, appliquez à chaque produit son taux."
 publieLe: 2026-10-01
-misAJourLe: 2026-10-01
+misAJourLe: 2026-10-02
 sources:
   - titre: "ANNEXE - TVA - Tableau récapitulatif des taux applicables pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d’une consommation immédiate, en fonction des produits et des situations"
     url: "https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821"
@@ -118,8 +118,6 @@ Le [BOFiP](https://bofip.impots.gouv.fr/bofip/1461-PGP.html/identifiant=BOI-TVA-
 Deliveroo détaille la TVA sur sa commission dans le rapport « Commandes » du Hub : sous-total, commission et « TVA sur la commission Deliveroo », commande par commande. Sur Uber Eats, vos factures et documents fiscaux se téléchargent dans Uber Eats Manager, rubrique Paiements. Pour le détail des frais, lisez nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
 
 Le [ministère de l’Économie](https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/autres-impots-et-taxes/entreprises-ce-que-vous-devez-savoir-sur-la-tva) le rappelle : « vous pouvez déduire la TVA que vous payez sur vos achats professionnels ». Le montant doit figurer sur un justificatif, comme une facture. Vous reversez ensuite la différence entre la TVA collectée et la TVA déductible.
-
-Bientôt, Deliview calculera le chiffre d’affaires et la TVA de chaque plateforme, avec un rapport prêt pour votre comptable. Voyez [ce qui arrive côté commandes](/solution/commandes/).
 
 ## Ce que vous pouvez faire cette semaine
 

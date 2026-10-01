@@ -1,5 +1,5 @@
 // Données du site Deliview : coordonnées, navigation, piliers et fonctionnalités.
-// Une fonctionnalité non livrée porte le statut « bientot » : l'étiquette « Bientôt » s'affiche partout.
+// Le site ne présente que ce que Deliview fait aujourd'hui (décision de Tom, 2 octobre 2026).
 
 export const SITE = {
   nom: 'Deliview',
@@ -79,7 +79,7 @@ export const PILIERS: Pilier[] = [
     phrase: 'Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.',
     statut: 'disponible',
     description:
-      'Deliview retrouve vos fiches Uber Eats et Deliveroo, choisit jusqu’à 10 restaurants de votre secteur autour de vous et compare chaque plat au même plat chez eux.',
+      'Deliview retrouve vos fiches Uber Eats et Deliveroo, choisit jusqu’à 20 restaurants de votre secteur autour de vous et compare chaque plat au même plat chez eux.',
     meta: {
       title: 'Prix des concurrents Uber Eats et Deliveroo | Deliview',
       description:
@@ -88,7 +88,7 @@ export const PILIERS: Pilier[] = [
     capture: { src: '/images/capture-concurrence', alt: 'Classement des restaurants de la zone dans Deliview : note, prix médian, avis et distance de chaque concurrent', largeur: 1600, hauteur: 1000 },
     fonctionnalites: [
       { titre: 'Chaque plat comparé au même plat', texte: 'Même type, même taille : une pizza 33 cm face à des pizzas 33 cm. Vous voyez la médiane, la fourchette, l’écart et la fiche d’où vient chaque prix.', statut: 'disponible' },
-      { titre: 'Jusqu’à 10 concurrents autour de vous', texte: 'Deliview repère les restaurants de votre secteur sur les deux plateformes, vérifie leur adresse et calcule leur distance.', statut: 'disponible' },
+      { titre: 'Jusqu’à 20 concurrents autour de vous', texte: 'Deliview repère les restaurants de votre secteur sur les deux plateformes, vérifie leur adresse et calcule leur distance.', statut: 'disponible' },
       { titre: 'Les concurrents que vous voulez suivre', texte: 'Ajoutez jusqu’à 3 fiches à surveiller à coup sûr, même plus loin ou d’une autre cuisine.', statut: 'disponible' },
       { titre: 'Les promos de la zone', texte: 'Les offres affichées par vos concurrents, avec le prix réellement payé quand la remise est chiffrée sur la fiche.', statut: 'disponible' },
       { titre: 'Une alerte quand ça bouge', texte: 'Nouvelle promo, prix changé, note qui bouge, nouveau concurrent : chaque analyse vous montre ce qui a changé depuis la précédente.', statut: 'disponible' },
@@ -100,21 +100,21 @@ export const PILIERS: Pilier[] = [
     surtitre: 'Carte et marge',
     titre: 'Sachez quels plats vous pouvez vendre plus cher',
     phrase: 'Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.',
-    statut: 'partiel',
+    statut: 'disponible',
     description:
-      'L’optimiseur de carte passe toute votre carte en revue. Quand au moins 2 concurrents vendent le même plat, il propose un prix et montre ce que le changement rapporte pour 100 ventes.',
+      'Pricing Menu passe toute votre carte en revue. Quand au moins 2 concurrents vendent le même plat, il propose un prix et montre ce que le changement rapporte pour 100 ventes.',
     meta: {
       title: 'Optimiser vos prix sur Uber Eats et Deliveroo | Deliview',
       description:
         'Chaque plat de votre carte face aux prix de votre zone : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources. Demandez une démo.',
     },
-    capture: { src: '/images/capture-carte', alt: 'Optimiseur de carte Deliview : chaque plat avec votre prix, la médiane de la zone, l’écart, un statut et le prix proposé', largeur: 1600, hauteur: 1000 },
+    capture: { src: '/images/capture-carte', alt: 'Pricing Menu de Deliview : chaque plat avec votre prix, la médiane de la zone, l’écart, un statut et le prix proposé', largeur: 1600, hauteur: 1000 },
     fonctionnalites: [
       { titre: 'Toute votre carte passée en revue', texte: 'Chaque plat reçoit un statut. Une recette unique est située parmi les plats de sa famille chez vos concurrents : pizzas, pâtes, desserts, boissons.', statut: 'disponible' },
       { titre: 'Un prix proposé, avec ses sources', texte: 'Quand au moins 2 concurrents vendent le même plat, Deliview propose un prix et cite chaque plat comparé.', statut: 'disponible' },
       { titre: 'L’impact pour 100 ventes', texte: 'Ce que change un nouveau prix pour 100 ventes du plat. Pas d’estimation de vos volumes : vous les connaissez mieux que nous.', statut: 'disponible' },
       { titre: 'Vos décisions gardées', texte: 'Vous validez un prix, Deliview le note avec la raison, pour le reporter dans votre back-office.', statut: 'disponible' },
-      { titre: 'Votre marge réelle par plateforme', texte: 'Commissions, remises et frais déduits, plateforme par plateforme, avec la connexion de vos comptes.', statut: 'bientot' },
+      { titre: 'Optimiseur menu : des fiches qui donnent envie', texte: 'Photo manquante, description absente ou qui répète le nom du plat : chaque plat passé en revue, comparé aux fiches de votre zone, avec les mieux présentées comme exemples.', statut: 'disponible' },
     ],
   },
   {
@@ -123,47 +123,18 @@ export const PILIERS: Pilier[] = [
     surtitre: 'Réputation',
     titre: 'Votre note face à celles de votre zone',
     phrase: 'Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.',
-    statut: 'partiel',
+    statut: 'disponible',
     description:
-      'Deliview compare votre note et votre nombre d’avis à ceux des restaurants autour de vous, plateforme par plateforme. La lecture et la réponse aux avis arriveront avec la connexion de vos comptes.',
+      'Deliview compare votre note et votre nombre d’avis à ceux des restaurants autour de vous, plateforme par plateforme.',
     meta: {
       title: 'Note Uber Eats et Deliveroo face à votre zone | Deliview',
       description:
-        'Votre note et votre nombre d’avis comparés aux restaurants de votre zone, sur Uber Eats et Deliveroo. Bientôt : vos avis et vos réponses au même endroit.',
+        'Votre note et votre nombre d’avis comparés aux restaurants de votre zone, sur Uber Eats et Deliveroo. Demandez une démo.',
     },
     capture: { src: '/images/capture-avis', alt: 'Classement des notes de la zone dans Deliview : votre note, la moyenne de la zone et l’écart', largeur: 1600, hauteur: 1000 },
     fonctionnalites: [
       { titre: 'Votre place au classement des notes', texte: 'Votre note face à celles des restaurants de votre zone, sur chaque plateforme, avec le meilleur et le plus faible.', statut: 'disponible' },
       { titre: 'Le nombre d’avis comparé', texte: 'Combien d’avis vous avez face à vos voisins : un critère que les clients regardent avant de commander.', statut: 'disponible' },
-      { titre: 'Vos avis Uber Eats et Deliveroo au même endroit', texte: 'Tous les avis réunis, les avis sans réponse mis en avant.', statut: 'bientot' },
-      { titre: 'Des réponses proposées, validées par vous', texte: 'Une réponse rédigée pour chaque avis, que vous relisez avant envoi.', statut: 'bientot' },
-      { titre: 'Les réclamations suivies', texte: 'Commande en retard, plat manquant : chaque réclamation et sa réponse au même endroit.', statut: 'bientot' },
-    ],
-  },
-  {
-    slug: 'commandes',
-    icone: 'tablette',
-    surtitre: 'Commandes et opérations',
-    titre: 'Vos commandes Uber Eats et Deliveroo sur la même tablette',
-    phrase: 'Les commandes des deux plateformes sur la même tablette, et votre menu modifié une seule fois.',
-    statut: 'bientot',
-    description:
-      'C’est la suite de Deliview : toutes vos données livraison sur une seule tablette. Les commandes des deux plateformes, le menu et les ruptures gérés une fois pour toutes, le chiffre d’affaires et la TVA par plateforme. Elle arrive avec les accès officiels d’Uber Eats et de Deliveroo.',
-    meta: {
-      title: 'Commandes Uber Eats et Deliveroo sur une tablette | Deliview',
-      description:
-        'Bientôt dans Deliview : les commandes Uber Eats et Deliveroo sur une seule tablette, un menu modifié une fois, la TVA par plateforme. Demandez une démo.',
-    },
-    illustration: {
-      nom: 'rush-tablettes',
-      alt: 'Comptoir de pizzeria en plein service : trois tablettes de commande côte à côte, des tickets et des sacs de livraison',
-    },
-    fonctionnalites: [
-      { titre: 'Les commandes des deux plateformes sur une seule tablette', texte: 'Fini les tablettes qui sonnent chacune de leur côté en plein rush.', statut: 'bientot' },
-      { titre: 'Un menu modifié une fois, partout', texte: 'Un prix ou un plat changé dans Deliview change sur Uber Eats et sur Deliveroo.', statut: 'bientot' },
-      { titre: 'Ruptures et horaires en un geste', texte: 'Un plat en rupture retiré des deux plateformes d’un coup.', statut: 'bientot' },
-      { titre: 'Chiffre d’affaires et TVA par plateforme', texte: 'Ce que chaque plateforme vous rapporte vraiment, et le rapport de TVA prêt pour votre comptable.', statut: 'bientot' },
-      { titre: 'Uber Direct : livrer depuis votre propre site', texte: 'Vos clients commandent sur votre site, un livreur Uber Direct livre : vous payez la course, pas la commission de la marketplace.', statut: 'bientot' },
     ],
   },
 ];
@@ -182,7 +153,6 @@ export const PLATEFORMES = [
     statut: 'disponible' as Statut,
     resume: 'Votre fiche et celles de vos concurrents analysées : prix, notes, avis, offres.',
     disponible: ['Votre fiche retrouvée à partir du nom et de la ville', 'Prix de toute la carte, notes, nombre d’avis, offres affichées', 'Fiches des concurrents de votre zone, avec leur distance'],
-    bientot: ['Commandes en temps réel', 'Menu, prix et ruptures modifiés depuis Deliview', 'Avis et réponses', 'Chiffre d’affaires et commissions'],
   },
   {
     slug: 'deliveroo',
@@ -190,21 +160,11 @@ export const PLATEFORMES = [
     statut: 'disponible' as Statut,
     resume: 'Les mêmes analyses que sur Uber Eats, et les écarts entre vos deux fiches.',
     disponible: ['Votre fiche retrouvée à partir du nom et de la ville', 'Prix de toute la carte, notes, nombre d’avis, offres affichées', 'Écarts de prix entre votre fiche Deliveroo et votre fiche Uber Eats'],
-    bientot: ['Commandes en temps réel', 'Menu, prix et ruptures modifiés depuis Deliview', 'Avis et réponses', 'Chiffre d’affaires et commissions'],
-  },
-  {
-    slug: 'uber-direct',
-    nom: 'Uber Direct',
-    statut: 'bientot' as Statut,
-    resume: 'Livrer les commandes de votre propre site avec les livreurs Uber : vous payez la course, pas la commission de la marketplace.',
-    disponible: [],
-    bientot: ['Commandes passées sur votre site, livrées par Uber Direct', 'Suivi des livraisons au même endroit que vos commandes Uber Eats et Deliveroo', 'Coût de livraison par commande, comparé aux commissions des plateformes'],
   },
 ];
 
 // Les 3 abonnements, selon le nombre de restaurants. Prix HT par mois, sans engagement, mise en place offerte.
 // Benchmark (1er octobre 2026) : Otter 34/49/89 €, Fooderise 49/99 €, HubRise 35 €, Deliverect 79/119/199 € par établissement.
-// `bientot` : inclus dans l'offre, ajouté sans supplément dès que c'est prêt (étiquette « Bientôt »).
 export interface Offre {
   slug: string;
   nom: string;
@@ -214,7 +174,6 @@ export interface Offre {
   recommandee?: boolean;
   base?: string;
   inclus: string[];
-  bientot: string[];
 }
 
 export const OFFRES: Offre[] = [
@@ -226,14 +185,14 @@ export const OFFRES: Offre[] = [
     pour: 'Pour vendre chaque plat au bon prix',
     inclus: [
       'Vos fiches Uber Eats et Deliveroo réunies sur un seul écran',
-      'Jusqu’à 10 concurrents de votre zone analysés',
-      'Chaque plat comparé, prix proposé avec ses sources',
+      'Jusqu’à 20 concurrents de votre zone analysés',
+      'Pricing Menu : chaque plat comparé, prix proposé avec ses sources',
+      'Optimiseur menu : photos et descriptions de vos plats passées en revue',
       'Promos des concurrents et classement des notes',
       'Ce qui a changé depuis la dernière analyse',
       '1 analyse complète par semaine',
       '2 accès : vous et votre gérant',
     ],
-    bientot: [],
   },
   {
     slug: 'pro',
@@ -250,28 +209,15 @@ export const OFFRES: Offre[] = [
       'Historique de vos décisions de prix',
       'Jusqu’à 10 accès pour vos équipes',
     ],
-    bientot: [
-      'Vos commandes Uber Eats et Deliveroo sur une seule tablette',
-      'Menu, prix et ruptures modifiés une fois, partout',
-      'Vos avis au même endroit, avec réponses proposées',
-    ],
   },
   {
     slug: 'premium',
     nom: 'Premium',
     prix: 349,
     restaurants: 'Jusqu’à 10 restaurants',
-    pour: 'Toutes vos données livraison sur une seule tablette',
+    pour: 'Pour un groupe de restaurants, avec un suivi chaque mois',
     base: 'Tout Pro, plus :',
     inclus: ['Accès illimités pour vos équipes', 'Un point chaque mois avec Tom sur vos prix'],
-    bientot: [
-      'Chiffre d’affaires, commissions et TVA par plateforme',
-      'Marge réelle par plateforme',
-      'Vue d’ensemble de tous vos restaurants',
-      'Surveillance quotidienne et alertes par e-mail',
-      'Réclamations suivies',
-      'Uber Direct : livraison des commandes de votre site',
-    ],
   },
 ];
 

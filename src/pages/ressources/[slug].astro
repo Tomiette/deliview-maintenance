@@ -14,7 +14,13 @@ export async function getStaticPaths() {
 const { article } = Astro.props as { article: CollectionEntry<'ressources'> };
 const { Content, headings } = await render(article);
 const d = article.data;
-const pilier = PILIERS.find((p) => p.slug === d.theme)!;
+// Thème sans pilier (« Commandes et opérations ») : l'encadré présente Deliview dans son ensemble.
+const pilier: { slug: string; titre: string; phrase: string; surtitre: string } = PILIERS.find((p) => p.slug === d.theme) ?? {
+  slug: '',
+  titre: 'Vos données Uber Eats et Deliveroo sur une seule tablette',
+  phrase: 'Vos prix face à ceux de votre zone, la présentation de chaque plat et votre note, sur un seul écran.',
+  surtitre: 'La solution',
+};
 const sommaire = headings.filter((h) => h.depth === 2);
 const autres = (await getCollection('ressources', (a) => !a.data.brouillon && a.id !== article.id))
   .sort((a, b) => Number(b.data.theme === d.theme) - Number(a.data.theme === d.theme) || b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime())
@@ -107,7 +113,7 @@ const jsonArticle = {
         <h2 id="pilier-titre" class="dv-h3 mt-2">{pilier.titre}</h2>
         <p class="mt-2 dv-muted">{pilier.phrase}</p>
         <div class="mt-5 flex flex-col gap-3 sm:flex-row">
-          <a href={lien(`/solution/${pilier.slug}/`)} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
+          <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
           <a href="#demo" class="inline-flex min-h-[52px] items-center gap-2 px-2 text-[19px] font-bold underline underline-offset-4" data-cta={`article-${article.id}`}>
             Demander une démo <Icone nom="fleche" taille={20} />
           </a>

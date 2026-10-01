@@ -1,5 +1,5 @@
 ---
-// Intégrations : grille des plateformes avec leur statut réel, tableau de ce que Deliview récupère.
+// Intégrations : Uber Eats et Deliveroo, tableau de ce que Deliview récupère sur chacune.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Icone from '../../components/Icone.astro';
@@ -7,28 +7,25 @@ import { PLATEFORMES, SITE, lien } from '../../lib/site';
 import { logoPlateforme } from '../../lib/logos';
 
 const description =
-  'Uber Eats et Deliveroo disponibles, Uber Direct bientôt : ce que Deliview lit sur chaque plateforme aujourd’hui, et ce qui arrive avec les accès officiels.';
+  'Uber Eats et Deliveroo : ce que Deliview lit sur chaque plateforme, vos prix, vos notes, vos offres et les fiches de vos concurrents. Sans identifiant à donner.';
 
-type Etat = 'oui' | 'bientot' | 'non';
-const lignes: { libelle: string; etats: [Etat, Etat, Etat] }[] = [
-  { libelle: 'Prix de toute votre carte', etats: ['oui', 'oui', 'non'] },
-  { libelle: 'Note et nombre d’avis', etats: ['oui', 'oui', 'non'] },
-  { libelle: 'Offres affichées sur les fiches', etats: ['oui', 'oui', 'non'] },
-  { libelle: 'Fiches des concurrents de votre zone', etats: ['oui', 'oui', 'non'] },
-  { libelle: 'Commandes en temps réel', etats: ['bientot', 'bientot', 'bientot'] },
-  { libelle: 'Menu, prix et ruptures modifiés depuis Deliview', etats: ['bientot', 'bientot', 'non'] },
-  { libelle: 'Avis et réponses', etats: ['bientot', 'bientot', 'non'] },
-  { libelle: 'Chiffre d’affaires et coûts par plateforme', etats: ['bientot', 'bientot', 'bientot'] },
+type Etat = 'oui' | 'non';
+const lignes: { libelle: string; etats: [Etat, Etat] }[] = [
+  { libelle: 'Prix de toute votre carte', etats: ['oui', 'oui'] },
+  { libelle: 'Note et nombre d’avis', etats: ['oui', 'oui'] },
+  { libelle: 'Offres affichées sur les fiches', etats: ['oui', 'oui'] },
+  { libelle: 'Fiches des concurrents de votre zone', etats: ['oui', 'oui'] },
+  { libelle: 'Écarts de prix entre vos deux fiches', etats: ['oui', 'oui'] },
 ];
-const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientôt', non: 'Sans objet' };
+const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
 ---
 
-<Base title="Intégrations Uber Eats, Deliveroo et Uber Direct | Deliview" description={description} ariane={[{ nom: 'Intégrations', chemin: '/integrations/' }]}>
+<Base title="Intégrations Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Intégrations', chemin: '/integrations/' }]}>
   <section class="bg-white">
     <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
       <p class="dv-overline dv-muted">Intégrations</p>
-      <h1 class="dv-h1 mt-4 max-w-[18ch]">Uber Eats, Deliveroo et bientôt Uber Direct</h1>
-      <p class="dv-lead mt-5 max-w-[60ch]">Deliview lit vos fiches publiques sur les deux plateformes, sans identifiant à donner. Les commandes et les menus arriveront avec les accès officiels.</p>
+      <h1 class="dv-h1 mt-4 max-w-[18ch]">Uber Eats et Deliveroo, réunis sur un seul écran</h1>
+      <p class="dv-lead mt-5 max-w-[60ch]">Deliview lit vos fiches publiques sur les deux plateformes, sans identifiant à donner&nbsp;: vos prix, vos notes, vos offres et celles des restaurants autour de vous.</p>
       <div class="mt-8">
         <a href="#demo" class="dv-btn dv-btn-plein" data-cta="integrations" data-cta-principal>Demander une démo</a>
       </div>
@@ -38,15 +35,12 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientô
   <section class="dv-section bg-grey" aria-labelledby="plateformes-titre">
     <div class="dv-container">
       <h2 id="plateformes-titre" class="dv-h2">Les plateformes prises en charge</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           PLATEFORMES.map((p) => ({ ...p, logo: logoPlateforme(p.slug) })).map((p) => (
             <li class="dv-card flex flex-col p-6 md:p-8">
               {p.logo && <img src={p.logo.src} alt="" width={p.logo.largeur} height={p.logo.hauteur} class="mb-4 h-14 w-auto self-start rounded-[12px]" loading="lazy" decoding="async" />}
-              <div class="flex items-center justify-between gap-3">
-                <h3 class="text-[26px] font-bold tracking-tight">{p.nom}</h3>
-                <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{p.statut === 'bientot' ? 'Bientôt' : 'Disponible'}</span>
-              </div>
+              <h3 class="text-[26px] font-bold tracking-tight">{p.nom}</h3>
               <p class="mt-3 flex-1 dv-muted">{p.resume}</p>
               <a href={lien(`/integrations/${p.slug}/`)} class="mt-5 inline-flex items-center gap-2 font-bold underline underline-offset-4">
                 Voir l’intégration {p.nom} <Icone nom="fleche" taille={18} />
@@ -72,7 +66,7 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientô
       <h2 id="tableau-titre" class="dv-h2 max-w-[24ch]">Ce que Deliview récupère, plateforme par plateforme</h2>
       <div class="mt-8 overflow-x-auto rounded-[16px] border border-grey-2/15" tabindex="0" role="region" aria-label="Tableau des données récupérées, défile horizontalement">
         <table class="w-full min-w-[640px] border-collapse text-left text-[16px]">
-          <caption class="sr-only">Données récupérées par Deliview sur Uber Eats, Deliveroo et Uber Direct</caption>
+          <caption class="sr-only">Données récupérées par Deliview sur Uber Eats et Deliveroo</caption>
           <thead class="bg-grey">
             <tr>
               <th scope="col" class="p-4 font-semibold">Donnée</th>
@@ -91,8 +85,6 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientô
                           <span class="text-blue"><Icone nom="check" taille={20} /></span>
                           {libelleEtat[e]}
                         </span>
-                      ) : e === 'bientot' ? (
-                        <span class="dv-badge dv-badge-bientot">Bientôt</span>
                       ) : (
                         <span class="dv-muted">{libelleEtat[e]}</span>
                       )}
@@ -112,7 +104,7 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', bientot: 'Bientô
           <a href={`mailto:${SITE.email}?subject=${encodeURIComponent('Intégration à prévoir')}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
         </p>
       </div>
-      <p class="mt-8 text-[15px] dv-muted">Uber Eats, Uber Direct et Deliveroo sont des marques de leurs propriétaires respectifs. Deliview est un logiciel indépendant, ni affilié ni approuvé par ces sociétés.</p>
+      <p class="mt-8 text-[15px] dv-muted">Uber Eats et Deliveroo sont des marques de leurs propriétaires respectifs. Deliview est un logiciel indépendant, ni affilié ni approuvé par ces sociétés.</p>
     </div>
   </section>
 

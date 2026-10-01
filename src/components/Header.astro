@@ -44,7 +44,6 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                             <span class="whitespace-normal">
                               <span class="flex items-center gap-2">
                                 <span class="font-semibold">{p.surtitre}</span>
-                                {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
                               </span>
                               <span class="mt-0.5 block text-[15px] font-normal leading-snug dv-muted">{p.phrase}</span>
                             </span>
@@ -90,7 +89,6 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                       <Icone nom={p.icone} taille={18} />
                     </span>
                     {p.surtitre}
-                    {p.statut === 'bientot' && <span class="dv-badge dv-badge-bientot">Bientôt</span>}
                   </a>
                 </li>
               ))

@@ -5,7 +5,7 @@ description: "Calculez le prix plancher de chaque plat, situez-vous face aux pri
 theme: prix-et-concurrence
 enBref: "Partez de vos coûts : matière, emballage, TVA et commission. Calculez le prix sous lequel vous perdez de l’argent, puis comparez-le au prix médian du même plat dans votre zone. Les prix sont libres, mais Uber Eats peut tenir compte des vôtres pour votre mise en avant. Changez quelques plats à la fois et mesurez."
 publieLe: 2026-10-01
-misAJourLe: 2026-10-01
+misAJourLe: 2026-10-02
 sources:
   - titre: "Code de commerce, titre Ier : dispositions générales (articles L410-1 à L410-6)"
     url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000005634379/LEGISCTA000006133183/"
@@ -93,7 +93,7 @@ Si votre prix s’écarte de plus de 10 % de la médiane, sur au moins deux com
 
 Mettez ensuite la médiane face à votre prix plancher. Si elle passe sous votre plancher, ne vous alignez pas : revoyez plutôt la recette, la portion ou l’emballage. Si elle dépasse nettement votre prix, vous avez de la place pour monter.
 
-Deliview fait ce relevé pour vous : il retient jusqu’à 10 restaurants de votre secteur et compare chaque plat au même plat chez eux. Quand un plat est trop cher ou sous-évalué, il propose un prix, cite les plats comparés et montre l’impact pour 100 ventes. Voir [vos prix face à ceux de votre quartier](/solution/prix-et-concurrence/) et [le prix proposé pour chaque plat de votre carte](/solution/carte-et-marge/).
+Deliview fait ce relevé pour vous : il retient jusqu’à 20 restaurants de votre secteur et compare chaque plat au même plat chez eux. Quand un plat est trop cher ou sous-évalué, il propose un prix, cite les plats comparés et montre l’impact pour 100 ventes. Voir [vos prix face à ceux de votre quartier](/solution/prix-et-concurrence/) et [le prix proposé pour chaque plat de votre carte](/solution/carte-et-marge/).
 
 ## Avez-vous le droit de vendre plus cher en livraison qu’en salle ?
 

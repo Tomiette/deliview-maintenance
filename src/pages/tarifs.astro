@@ -1,6 +1,6 @@
 ---
 // Tarifs : 3 abonnements selon le nombre de restaurants (OFFRES dans src/lib/site.ts), tableau comparatif, FAQ (FAQPage).
-// Ce qui n'est pas encore livré porte l'étiquette « Bientôt » et s'ajoute sans supplément quand c'est prêt.
+// Uniquement ce que Deliview fait aujourd'hui.
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
@@ -9,13 +9,14 @@ import { OFFRES, PRIX_ENTREE, SITE, jsonldLogiciel, lien } from '../lib/site';
 
 const description = `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE} € HT par mois : sans engagement, mise en place offerte. Comparez Essentiel, Pro et Premium.`;
 
-type Case = 'oui' | 'non' | 'bientot' | string;
+type Case = 'oui' | 'non' | string;
 const comparatif: { libelle: string; valeurs: [Case, Case, Case] }[] = [
   { libelle: 'Restaurants inclus', valeurs: ['1', 'Jusqu’à 5', 'Jusqu’à 10'] },
   { libelle: 'Vos fiches Uber Eats et Deliveroo sur un seul écran', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Concurrents analysés par restaurant', valeurs: ['Jusqu’à 10', 'Jusqu’à 10', 'Jusqu’à 10'] },
+  { libelle: 'Concurrents analysés par restaurant', valeurs: ['Jusqu’à 20', 'Jusqu’à 20', 'Jusqu’à 20'] },
   { libelle: 'Concurrents de votre choix suivis', valeurs: ['non', '3 par restaurant', '3 par restaurant'] },
-  { libelle: 'Chaque plat comparé, prix proposé avec ses sources', valeurs: ['oui', 'oui', 'oui'] },
+  { libelle: 'Pricing Menu : chaque plat comparé, prix proposé avec ses sources', valeurs: ['oui', 'oui', 'oui'] },
+  { libelle: 'Optimiseur menu : photos et descriptions passées en revue', valeurs: ['oui', 'oui', 'oui'] },
   { libelle: 'Promos des concurrents et classement des notes', valeurs: ['oui', 'oui', 'oui'] },
   { libelle: 'Changements depuis la dernière analyse', valeurs: ['oui', 'oui', 'oui'] },
   { libelle: 'Analyses', valeurs: ['1 par semaine', 'À la demande', 'À la demande'] },
@@ -23,15 +24,6 @@ const comparatif: { libelle: string; valeurs: [Case, Case, Case] }[] = [
   { libelle: 'Historique des décisions de prix', valeurs: ['non', 'oui', 'oui'] },
   { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
   { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
-  { libelle: 'Commandes Uber Eats et Deliveroo sur une seule tablette', valeurs: ['non', 'bientot', 'bientot'] },
-  { libelle: 'Menu, prix et ruptures modifiés une fois, partout', valeurs: ['non', 'bientot', 'bientot'] },
-  { libelle: 'Avis au même endroit, réponses proposées', valeurs: ['non', 'bientot', 'bientot'] },
-  { libelle: 'Chiffre d’affaires, commissions et TVA par plateforme', valeurs: ['non', 'non', 'bientot'] },
-  { libelle: 'Marge réelle par plateforme', valeurs: ['non', 'non', 'bientot'] },
-  { libelle: 'Vue d’ensemble de tous vos restaurants', valeurs: ['non', 'non', 'bientot'] },
-  { libelle: 'Surveillance quotidienne et alertes par e-mail', valeurs: ['non', 'non', 'bientot'] },
-  { libelle: 'Réclamations suivies', valeurs: ['non', 'non', 'bientot'] },
-  { libelle: 'Uber Direct : livraison des commandes de votre site', valeurs: ['non', 'non', 'bientot'] },
   { libelle: 'Mise en place avec Tom', valeurs: ['Offerte', 'Offerte', 'Offerte'] },
   { libelle: 'Engagement', valeurs: ['Aucun', 'Aucun', 'Aucun'] },
 ];
@@ -50,12 +42,8 @@ const faq = [
     r: 'Oui. Le nombre de restaurants de chaque offre est un maximum, pas un minimum. Vous pouvez changer d’offre à tout moment.',
   },
   {
-    q: 'Les fonctionnalités « Bientôt » sont-elles comprises dans le prix ?',
-    r: 'Oui. Elles s’ajoutent à votre offre sans supplément dès qu’elles sont prêtes. Les commandes et les menus arriveront avec les accès officiels d’Uber Eats et de Deliveroo.',
-  },
-  {
     q: 'Deliview remplace-t-il mes tablettes Uber Eats et Deliveroo ?',
-    r: 'Pas encore. Aujourd’hui, Deliview réunit vos prix, vos notes et ceux de vos concurrents. Les commandes arriveront avec les accès officiels d’Uber Eats et de Deliveroo&nbsp;: vous les suivrez alors sur la même tablette.',
+    r: 'Non. Deliview réunit vos prix, vos notes et ceux de vos concurrents. Vos tablettes Uber Eats et Deliveroo restent là pour recevoir les commandes.',
   },
   {
     q: 'Faut-il donner mes identifiants Uber Eats ou Deliveroo ?',
@@ -145,14 +133,6 @@ const logiciel = {
                     {x}
                   </li>
                 ))}
-                {o.bientot.map((x) => (
-                  <li class="flex gap-3">
-                    <span class="mt-0.5 shrink-0 dv-muted"><Icone nom="horloge" taille={20} /></span>
-                    <span>
-                      {x} <span class="dv-badge dv-badge-bientot ml-1 align-middle">Bientôt</span>
-                    </span>
-                  </li>
-                ))}
               </ul>
             </li>
           ))
@@ -161,9 +141,8 @@ const logiciel = {
       <p class="mt-8 text-center dv-texte mx-auto">
         Plus de 10&nbsp;restaurants&nbsp;? Tom vous fait une offre sur mesure&nbsp;: <a href={`tel:${SITE.telephoneLien}`} class="font-semibold">{SITE.telephone}</a>.
       </p>
-      <p class="mt-2 text-center text-[15px] dv-muted">
-        «&nbsp;Bientôt&nbsp;»&nbsp;: inclus dans l’offre, ajouté sans supplément dès que c’est prêt.
-        <a href={lien('/simulateur/')} class="ml-1 font-semibold">Combien vous rapporte un prix mieux placé&nbsp;?</a>
+      <p class="mt-2 text-center text-[15px]">
+        <a href={lien('/simulateur/')} class="font-semibold">Combien vous rapporte un prix mieux placé&nbsp;?</a>
       </p>
     </div>
   </section>
@@ -195,8 +174,6 @@ const logiciel = {
                         <span class="inline-flex items-center gap-2 font-semibold">
                           <span class="text-blue"><Icone nom="check" taille={20} /></span>Inclus
                         </span>
-                      ) : c === 'bientot' ? (
-                        <span class="dv-badge dv-badge-bientot">Bientôt</span>
                       ) : c === 'non' ? (
                         <span class="dv-muted">Non inclus</span>
                       ) : (

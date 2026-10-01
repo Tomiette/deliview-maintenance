@@ -8,7 +8,7 @@ import BandeauPlateformes from '../components/BandeauPlateformes.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Icone from '../components/Icone.astro';
-import { PILIERS, PRIX_ENTREE, SITE, THEMES, dateFr, jsonldLogiciel, libelleStatut, lien, type ImageIA, type NomIcone } from '../lib/site';
+import { PILIERS, PRIX_ENTREE, SITE, THEMES, dateFr, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
   .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
@@ -35,7 +35,7 @@ const douleurs: { icone: NomIcone; titre: string; texte: string }[] = [
 // Les trois temps de la promesse : vos données réunies, vos concurrents visibles, vos prix et vos promos ajustés.
 const etapes = [
   { titre: 'Vos données sur une seule tablette', texte: 'Le nom et la ville de votre restaurant suffisent : Deliview retrouve vos fiches Uber Eats et Deliveroo et les réunit au même endroit.' },
-  { titre: 'Vous voyez ce que font vos concurrents', texte: 'Leurs prix plat par plat, leurs notes et leurs promos, chez jusqu’à 10 restaurants de votre secteur, sur les deux plateformes.' },
+  { titre: 'Vous voyez ce que font vos concurrents', texte: 'Leurs prix plat par plat, leurs notes et leurs promos, chez jusqu’à 20 restaurants de votre secteur, sur les deux plateformes.' },
   { titre: 'Vous ajustez vos prix et vos promos', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez, plat par plat.' },
 ];
 
@@ -188,8 +188,8 @@ const video = {
   <section class="dv-section bg-white" aria-labelledby="piliers-titre">
     <div class="dv-container">
       <p class="dv-overline dv-muted">Nos fonctionnalités</p>
-      <h2 id="piliers-titre" class="dv-h2 mt-3 max-w-[24ch]">Vos prix, votre carte, votre note, et bientôt vos commandes</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-2">
+      <h2 id="piliers-titre" class="dv-h2 mt-3 max-w-[24ch]">Vos prix, votre carte et votre note face à votre zone</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {
           PILIERS.map((p) => (
             <li class="dv-card flex flex-col p-6 md:p-8">
@@ -198,7 +198,6 @@ const video = {
                   <Icone nom={p.icone} taille={22} />
                 </span>
                 <p class="dv-overline">{p.surtitre}</p>
-                <span class={`dv-badge ${p.statut === 'bientot' ? 'dv-badge-bientot' : 'dv-badge-dispo'}`}>{libelleStatut(p.statut)}</span>
               </div>
               <h3 class="dv-h3 mt-4">{p.titre}</h3>
               <p class="mt-2 flex-1 dv-muted">{p.phrase}</p>
