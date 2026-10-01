@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /api/
+Disallow: /analyse/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /app/
+Disallow: /analyse/
+
+Sitemap: https://www.deliview.fr/sitemap.xml
