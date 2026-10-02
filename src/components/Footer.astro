@@ -50,13 +50,7 @@ const ressources = [
     <h2 id="bandeau-photo-titre" class="dv-h2 max-w-[20ch] text-white md:!text-[48px]">Prêt à rendre votre activité livraison plus rentable&nbsp;?</h2>
     <div class="mt-8 flex flex-col gap-3 sm:flex-row">
       <a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="bandeau-photo">Demander une démo</a>
-      {
-        surTarifs ? (
-          <a href={lien('/simulateur/')} class="dv-btn dv-btn-blanc">Simuler ma rentabilité</a>
-        ) : (
-          <a href={lien('/tarifs/')} class="dv-btn dv-btn-blanc">Voir les tarifs</a>
-        )
-      }
+      {!surTarifs && <a href={lien('/tarifs/')} class="dv-btn dv-btn-blanc">Voir les tarifs</a>}
     </div>
   </div>
 </section>
