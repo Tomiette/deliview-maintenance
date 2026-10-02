@@ -60,3 +60,22 @@ jobs:
           mirror --reverse --delete --parallel=4 --verbose=1 --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ ./ $DOSSIER/
           quit
           FIN
+
+      # Contrôle direct sur le serveur OVH, même si le DNS public pointe encore ailleurs.
+      # 51.91.236.255 : adresse du cluster129 donnée par OVH le 2 octobre 2026 (hébergement hfuucvo).
+      - name: Vérifier que l'hébergement OVH sert le site
+        if: steps.acces.outputs.pret == 'oui'
+        run: |
+          entetes=$(curl -s -o /dev/null -D - --max-time 20 --resolve www.deliview.fr:80:51.91.236.255 http://www.deliview.fr/ || true)
+          echo "$entetes"
+          if echo "$entetes" | grep -qi '^location: https://www.deliview.fr/'; then
+            echo "OK : OVH sert les fichiers du site (redirection HTTPS du .htaccess)."
+          else
+            echo "OVH ne sert pas encore le site : www.deliview.fr est-il rattaché à l'hébergement (Multisite) ?"
+            exit 1
+          fi
+          if curl -sk --max-time 20 --resolve www.deliview.fr:443:51.91.236.255 https://www.deliview.fr/ | grep -q 'Le partenaire des restaurants en livraison'; then
+            echo "OK : page d'accueil servie en HTTPS par OVH."
+          else
+            echo "HTTPS pas encore prêt chez OVH : normal avant la bascule DNS et le certificat."
+          fi
