@@ -113,7 +113,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
     benefice: 'Des fiches de plats qui donnent envie de commander.',
     points: [
       'Photos et descriptions passées en revue, plat par plat',
-      'Comparées aux fiches des restaurants de votre zone',
+      'Comparées aux restaurants de votre zone',
       'Un modèle de description à suivre pour chaque plat',
     ],
     capture: { src: '/images/capture-optimiseur', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Optimiseur menu dans Deliview : plats à retravailler, part des plats avec photo et avec une vraie description face à la zone, puis la liste des plats à reprendre' },
@@ -260,7 +260,7 @@ export const OFFRES: Offre[] = [
     restaurants: '1 restaurant',
     pour: 'Pour vendre chaque plat au bon prix',
     inclus: [
-      'Vos fiches Uber Eats et Deliveroo réunies sur un seul écran',
+      'Vos données Uber Eats et Deliveroo réunies sur un seul écran',
       'Jusqu’à 20 concurrents de votre zone analysés',
       'Pricing Menu : chaque plat comparé, prix proposé avec ses sources',
       'Optimiseur menu : photos et descriptions de vos plats passées en revue',
