@@ -8,7 +8,7 @@ import TicketComparaison from '../components/TicketComparaison.astro';
 import Ticket from '../components/Ticket.astro';
 import Marqueur from '../components/Marqueur.astro';
 import Reassurance from '../components/Reassurance.astro';
-import IllustrationTablettes from '../components/IllustrationTablettes.astro';
+import TablettesPlateformes from '../components/TablettesPlateformes.astro';
 import HeroVideo from '../components/HeroVideo.astro';
 import CarteFonctionnalite from '../components/CarteFonctionnalite.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
@@ -62,7 +62,7 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 <Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]} precharger="/video/deliview-video-couverture-16x9.webp">
   <!-- Haut de page : slogan, promesse de rentabilité, définition, un seul bouton plein, réassurance ;
        la vidéo de présentation dans le cadre tablette (chargée au clic), le bouton « Voir Deliview en action » dessous,
-       le ticket Margherita épinglé au coin de la vidéo (il s'écarte pendant la lecture), l'écart entouré au marqueur. -->
+       sans texte autour (demande de Tom, 2 octobre 2026 : plus de ticket à côté de la vidéo). -->
   <section class="overflow-hidden bg-grey pb-14 pt-7 md:pb-[104px] md:pt-[72px]" aria-labelledby="hero-titre" data-haut-de-page>
     <div class="dv-container grid items-center gap-x-14 gap-y-9 lg:grid-cols-2">
       <div>
@@ -80,7 +80,6 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
           <button type="button" class="dv-btn dv-btn-bleu dv-hero-voir" data-video-lire data-cta="video-haut-de-page" aria-controls="video-deliview">
             <Lecture taille={24} />Voir Deliview en action
           </button>
-          <TicketComparaison exemple={ex} format="haut-de-page" apparition="arrivee" class="dv-hero-ticket" />
         </div>
       </div>
     </div>
@@ -95,7 +94,7 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
         <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Vous êtes en plein service. Pendant ce temps, trois choses vous échappent.</p>
       </div>
       <figure class="dv-quotidien-dessin m-0">
-        <IllustrationTablettes />
+        <TablettesPlateformes />
       </figure>
       <div class="dv-quotidien-bons">
         <div class="dv-barre" aria-hidden="true"></div>
