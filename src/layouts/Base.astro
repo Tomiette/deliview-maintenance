@@ -25,7 +25,8 @@ const { title, description, ariane = [], jsonld = [], ogType = 'website', noinde
 const canonical = new URL(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/', SITE.url).href;
 // Aperçu (SITE_BASE ≠ /) : jamais indexé.
 const apercu = import.meta.env.BASE_URL !== '/';
-const robots = apercu ? 'noindex, nofollow' : noindex ? 'noindex, follow' : null;
+// Pages indexables : extraits et aperçus d'images sans limite (résultats enrichis, réponses des moteurs IA).
+const robots = apercu ? 'noindex, nofollow' : noindex ? 'noindex, follow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
 const ogImage = new URL(lien('/images/partage.png'), Astro.site).href;
 
 const organisation = {

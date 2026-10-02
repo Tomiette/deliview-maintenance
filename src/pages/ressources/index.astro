@@ -53,7 +53,7 @@ const description =
         <div class="dv-container">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <h2 id={`theme-${t.slug}`} class="dv-h2">{t.nom}</h2>
-            {/* Thème sans page pilier (« Commandes et opérations ») : Deliview ne gère pas les commandes, le lien mène à la vue d'ensemble. */}
+            {/* Thème sans page pilier (« Gestion au quotidien », identifiant commandes) : Deliview ne gère pas les commandes, le lien mène à la vue d'ensemble. */}
             {PILIERS.some((p) => p.slug === t.slug) ? (
               <a href={lien(`/solution/${t.slug}/`)} class="font-bold underline underline-offset-4">
                 Voir {t.nom.toLowerCase()} dans Deliview

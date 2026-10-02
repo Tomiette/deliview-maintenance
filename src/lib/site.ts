@@ -240,7 +240,8 @@ export const THEMES: Record<string, string> = {
   'prix-et-concurrence': 'Prix et concurrence',
   'carte-et-marge': 'Carte et marge',
   reputation: 'Réputation',
-  commandes: 'Commandes et opérations',
+  // Thème d'articles (service, tablettes, TVA) : ce n'est pas une fonctionnalité de Deliview.
+  commandes: 'Gestion au quotidien',
 };
 
 // Données structurées du logiciel, avec la fourchette des offres publiques (la page Tarifs détaille chaque offre).

@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { article } = Astro.props as { article: CollectionEntry<'ressources'> };
 const { Content, headings } = await render(article);
 const d = article.data;
-// Thème sans pilier (« Commandes et opérations ») : l'encadré présente Deliview dans son ensemble.
+// Thème sans pilier (« Gestion au quotidien », identifiant commandes) : l'encadré présente Deliview dans son ensemble.
 const pilier: { slug: string; titre: string; phrase: string; surtitre: string } = PILIERS.find((p) => p.slug === d.theme) ?? {
   slug: '',
   titre: 'Vos données Uber Eats et Deliveroo sur une seule tablette',
