@@ -103,7 +103,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Comment vérifier le sérieux de Deliview avant de s’abonner ?',
-        r: 'Tout se vérifie avant de payer&nbsp;: la démo se fait sur vos propres fiches, chaque prix comparé renvoie à sa source, les prix sont publics et l’abonnement est sans engagement. Vous parlez directement au fondateur, par téléphone ou sur LinkedIn.',
+        r: `Tout se vérifie avant de payer&nbsp;: la démo se fait sur vos propres fiches, chaque prix comparé renvoie à sa source, les prix sont publics et l’abonnement est sans engagement. Deliview est éditée par DELIVIEW, société par actions simplifiée immatriculée en France (SIREN 102&nbsp;681&nbsp;509), dont l’identité figure dans les <a href="${lien('/mentions-legales/')}">mentions légales</a>. Vous parlez directement au fondateur, par téléphone ou sur LinkedIn.`,
       },
       {
         q: 'Où sont hébergées les données ?',
