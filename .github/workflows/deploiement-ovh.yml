@@ -52,6 +52,10 @@ jobs:
       - name: Envoyer le site chez OVH
         if: steps.acces.outputs.pret == 'oui'
         run: |
+          # Un copier-coller depuis un e-mail peut ajouter une tabulation ou une espace : on les retire.
+          SERVEUR="$(printf '%s' "$SERVEUR" | tr -d '[:space:]')"
+          UTILISATEUR="$(printf '%s' "$UTILISATEUR" | tr -d '[:space:]')"
+          MOT_DE_PASSE="$(printf '%s' "$MOT_DE_PASSE" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
           lftp -u "$UTILISATEUR","$MOT_DE_PASSE" "$SERVEUR" <<FIN
           set ftp:ssl-allow yes
           set ftp:ssl-protect-data yes
