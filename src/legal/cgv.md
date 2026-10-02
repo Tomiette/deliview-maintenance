@@ -74,7 +74,7 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 
 6.3. La personne qui commande garantit qu’elle est habilitée à engager l’entreprise qui exploite les Établissements.
 
-6.4. La création d’un compte depuis le formulaire d’inscription de l’app ne vaut pas souscription d’un Abonnement. L’accès gratuit éventuellement ouvert est régi par les seules CGU et peut être limité ou fermé à tout moment.
+6.4. Il n’existe pas d’inscription libre au Service. Le Compte est créé par Deliview après la formation du Contrat.
 
 6.5. Lors d’un paiement en ligne, le Client accepte les CGV en cochant une case prévue à cet effet ; Deliview conserve la version acceptée et la date d’acceptation. Le Contrat étant conclu entre professionnels, les parties dérogent aux articles 1127-1 et 1127-2 du Code civil dans la mesure permise par l’article 1127-3 du même code.
 

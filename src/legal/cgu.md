@@ -1,18 +1,18 @@
 Version du 2 octobre 2026.
 
-Les présentes conditions générales d’utilisation (CGU) s’appliquent à toute personne qui utilise l’app Deliview (www.deliview.fr/app) ou l’outil d’analyse sans compte (www.deliview.fr/analyse). Ces services sont édités par DELIVIEW, SAS au capital de 500 euros, 9 rue Maurice Hubert, 61340 Berd’Huis, RCS Alençon 102 681 509 (ci-après « Deliview »).
+Les présentes conditions générales d’utilisation (CGU) s’appliquent à toute personne qui utilise l’app Deliview (www.deliview.fr/app). L’app est éditée par DELIVIEW, SAS au capital de 500 euros, 9 rue Maurice Hubert, 61340 Berd’Huis, RCS Alençon 102 681 509 (ci-après « Deliview »).
 
 ## Article 1. Objet et acceptation
 
-1.1. Les CGU fixent les règles d’accès et d’usage de l’app et de l’outil d’analyse.
+1.1. Les CGU fixent les règles d’accès et d’usage de l’app.
 
-1.2. Elles sont acceptées lors de la création d’un compte, lors de la première connexion d’un utilisateur invité, ou par l’utilisation de l’outil d’analyse.
+1.2. Elles sont acceptées lors de la création d’un compte et lors de la première connexion d’un utilisateur invité.
 
 1.3. La relation commerciale entre Deliview et l’entreprise abonnée relève des conditions générales de vente, publiées à l’adresse www.deliview.fr/cgv/. En cas de contradiction, les CGV prévalent pour l’entreprise abonnée.
 
 ## Article 2. Comptes et accès
 
-2.1. Le compte d’une entreprise est créé par Deliview avec elle, ou depuis le formulaire d’inscription de l’app. La personne qui le crée en est le propriétaire.
+2.1. Le compte d’une entreprise est créé par Deliview avec elle, après la souscription de son abonnement. La personne désignée par l’entreprise en est le propriétaire.
 
 2.2. Le propriétaire peut inviter d’autres utilisateurs par un lien personnel, valable 14 jours et réservé à l’adresse e-mail invitée. Il choisit leur rôle et les restaurants auxquels ils accèdent, et peut retirer un accès à tout moment.
 
@@ -27,7 +27,7 @@ Les présentes conditions générales d’utilisation (CGU) s’appliquent à to
 3.2. Il est interdit :
 
 - de partager un compte entre plusieurs personnes ;
-- d’accéder à l’app ou à l’outil d’analyse par des moyens automatisés, ou de contourner leurs limites ;
+- d’accéder à l’app par des moyens automatisés, ou de contourner ses limites ;
 - de copier, extraire, publier ou revendre les données des restaurants concurrents, ou de s’en servir pour constituer une base de données ;
 - de décompiler l’app ou de tenter d’accéder aux données d’autres entreprises ;
 - d’utiliser l’app ou la messagerie pour diffuser des contenus illicites, injurieux ou portant atteinte aux droits de tiers.
@@ -42,13 +42,9 @@ Les présentes conditions générales d’utilisation (CGU) s’appliquent à to
 
 4.3. L’utilisateur n’y transmet ni données sensibles, ni informations de paiement.
 
-## Article 5. Outil d’analyse sans compte
+## Article 5. Article supprimé
 
-5.1. L’outil d’analyse de www.deliview.fr/analyse est réservé aux professionnels. Il est mis à disposition gratuitement, à titre de démonstration.
-
-5.2. Il est limité à 5 analyses par heure et à 20 par jour pour une même connexion. Un rapport reste consultable 30 jours par son lien.
-
-5.3. Deliview peut modifier, limiter ou arrêter l’outil à tout moment. Son usage ne crée aucun contrat d’abonnement.
+L’outil d’analyse sans compte n’est plus proposé depuis le 2 octobre 2026. Les analyses se lancent depuis l’app, avec un compte.
 
 ## Article 6. Informations affichées
 
@@ -60,7 +56,7 @@ Les présentes conditions générales d’utilisation (CGU) s’appliquent à to
 
 ## Article 7. Propriété intellectuelle
 
-L’app, l’outil d’analyse, leurs textes, interfaces, méthodes et marques appartiennent à Deliview. Les CGU ne confèrent qu’un droit d’usage personnel, pour la durée de l’accès.
+L’app, ses textes, interfaces, méthodes et marques appartiennent à Deliview. Les CGU ne confèrent qu’un droit d’usage personnel, pour la durée de l’accès.
 
 ## Article 8. Données personnelles
 
@@ -68,9 +64,9 @@ Les données personnelles des utilisateurs sont traitées selon la politique de 
 
 ## Article 9. Responsabilité
 
-9.1. Deliview s’efforce d’assurer l’accès à l’app et à l’outil d’analyse, sans garantir leur disponibilité continue.
+9.1. Deliview s’efforce d’assurer l’accès à l’app, sans garantir sa disponibilité continue.
 
-9.2. L’outil d’analyse sans compte est fourni en l’état. Pour les entreprises abonnées, la responsabilité de Deliview est régie par les CGV.
+9.2. La responsabilité de Deliview envers les entreprises abonnées est régie par les CGV.
 
 ## Article 10. Modification et durée
 
