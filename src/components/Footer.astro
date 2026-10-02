@@ -26,8 +26,9 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
   {
     id: 'pied-pour-qui',
     titre: 'Pour qui',
-    // Une seule phrase « Pour qui » sur l'accueil (section Le quotidien) : tous les profils y mènent.
-    liens: ['Pizzerias', 'Burgers et snacks', 'Dark kitchens', 'Chaînes de restaurants'].map((libelle) => ({ libelle, href: lien('/#pour-qui') })),
+    // Tous les profils mènent à la réponse « À qui s'adresse Deliview ? » des questions fréquentes
+    // (la phrase « Pour qui » de l'accueil a été retirée le 3 octobre 2026, à la demande de Tom).
+    liens: ['Pizzerias', 'Burgers et snacks', 'Dark kitchens', 'Chaînes de restaurants'].map((libelle) => ({ libelle, href: lien('/questions-frequentes/#pour-qui') })),
   },
   {
     id: 'pied-ressources',

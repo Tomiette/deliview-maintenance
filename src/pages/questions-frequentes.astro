@@ -61,7 +61,7 @@ const faqPage = {
           </h2>
           <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
             {r.questions.map((x) => (
-              <div class="py-6">
+              <div id={x.id} class="scroll-mt-24 py-6">
                 <h3 class="font-accent text-[19px] font-bold leading-[1.35] md:text-[21px]">{x.q}</h3>
                 <p class="mt-2 dv-texte text-[17px] leading-[1.6] [text-wrap:pretty] md:text-[18px]" set:html={x.r} />
               </div>

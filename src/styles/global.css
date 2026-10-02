@@ -958,10 +958,10 @@
     }
   }
 
-  /* Le quotidien : texte et dessin côte à côte, la barre à bons dessous, la phrase « Pour qui » sous le texte. */
+  /* Le quotidien : texte et dessin côte à côte, la barre à bons dessous. */
   .dv-quotidien {
     display: grid;
-    grid-template-areas: "intro" "dessin" "bons" "cible";
+    grid-template-areas: "intro" "dessin" "bons";
     row-gap: 28px;
   }
   .dv-quotidien-intro {
@@ -974,24 +974,13 @@
     grid-area: bons;
     margin-top: 12px;
   }
-  .dv-quotidien-cible {
-    grid-area: cible;
-    margin-top: 12px;
-  }
   @media (min-width: 1024px) {
     .dv-quotidien {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      grid-template-areas: "intro dessin" "cible dessin" "bons bons";
+      grid-template-areas: "intro dessin" "bons bons";
       column-gap: 56px;
       row-gap: 0;
       align-items: center;
-    }
-    .dv-quotidien-intro {
-      align-self: end;
-    }
-    .dv-quotidien-cible {
-      align-self: start;
-      margin-top: 28px;
     }
     .dv-quotidien-bons {
       margin-top: 72px;

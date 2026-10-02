@@ -8,6 +8,8 @@ import { OFFRES, SITE, lien } from './site';
 export interface QuestionFaq {
   q: string;
   r: string;
+  // Ancre sur la page des questions fréquentes (liens du pied de page « Pour qui »).
+  id?: string;
 }
 export interface RubriqueFaq {
   id: string;
@@ -29,6 +31,7 @@ export const FAQ: RubriqueFaq[] = [
         r: `${SITE.definition} Deliview est conçu pour les restaurants en France présents sur Uber&nbsp;Eats et Deliveroo.`,
       },
       {
+        id: 'pour-qui',
         q: 'À qui s’adresse Deliview ?',
         r: 'Aux restaurants qui vendent sur Uber&nbsp;Eats et Deliveroo, de 1 à 10&nbsp;restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.',
       },

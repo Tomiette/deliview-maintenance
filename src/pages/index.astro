@@ -16,7 +16,7 @@ import Faq from '../components/Faq.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
 import Ardoise from '../icons/ardoise.astro';
-import Etoile from '../icons/etoile.astro';
+import LoupeZone from '../icons/loupe-zone.astro';
 import Enveloppe from '../icons/enveloppe.astro';
 import Toque from '../icons/toque.astro';
 import Fleche from '../icons/fleche.astro';
@@ -24,11 +24,11 @@ import Lecture from '../icons/lecture.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { EXEMPLE_MARGHERITA as ex, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien } from '../lib/site';
 
-// Le quotidien : trois constats courts, accrochés à la barre du passe.
+// Le quotidien : trois constats du terrain, accrochés à la barre du passe (textes de Tom, 3 octobre 2026).
 const constats = [
-  { icone: EtiquettePrix, titre: 'Des prix fixés au feeling', texte: 'Votre voisin vend la même pizza plus cher. Vous ne le voyez pas.', inclinaison: -1.4 },
-  { icone: Ardoise, titre: 'Une carte montée à la va-vite', texte: 'Des photos manquent, des descriptions sont vides. Personne n’a eu le temps d’y revenir.', inclinaison: 0.9 },
-  { icone: Etoile, titre: 'Une note qui bouge', texte: 'Elle perd un dixième. Vous ne savez pas si c’est vous ou toute la zone.', inclinaison: -0.6 },
+  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent direct vend la même pizza plus cher. Vous ne le voyez pas. Vous pourriez monter votre prix juste sous le sien et rester moins cher que lui.', inclinaison: -1.4 },
+  { icone: Ardoise, titre: 'Un menu construit trop vite', texte: 'Des photos manquent, des descriptions sont vides. Personne n’a eu le temps d’y revenir. Et votre restaurant ressort moins bien sur les plateformes.', inclinaison: 0.9 },
+  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Votre classement sur les plateformes était déjà correct. La promo, elle, se paie sur chaque commande.', inclinaison: -0.6 },
 ];
 
 const etapes = [
@@ -91,11 +91,7 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
       <div class="dv-quotidien-intro">
         <p class="dv-overline">Le quotidien</p>
         <h2 id="quotidien-titre" class="dv-h2 mt-2.5 max-w-[16ch] md:mt-3">Deux tablettes. Des chiffres éparpillés partout.</h2>
-        <div class="dv-lead mt-3.5 max-w-[46ch] space-y-2 md:mt-5">
-          <p>Le rapport de vos ventes livraison arrive à la fin du mois.</p>
-          <p>Vous avez eu beaucoup de commandes. Et pourtant, la rentabilité n’est pas au rendez-vous.</p>
-          <p>Pendant le service, trois choses vous échappent.</p>
-        </div>
+        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Le rapport de vos ventes livraison arrive. Vous avez des commandes. Et pourtant, la rentabilité n’est pas au <span class="whitespace-nowrap">rendez-vous…</span></p>
       </div>
       <figure class="dv-quotidien-dessin m-0">
         <TablettesPlateformes />
@@ -110,16 +106,13 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
                   <span class="font-accent text-[12px] font-semibold uppercase leading-none tracking-[0.08em] dv-muted md:text-[13px]">Bon n°&nbsp;0{i + 1}</span>
                   <c.icone taille={32} />
                 </p>
-                <h3 class="mt-3 font-accent text-[20px] font-bold leading-[1.25] md:mt-[18px] md:text-[23px]">{c.titre}</h3>
+                <h3 class="mt-3 font-accent text-[20px] font-bold leading-[1.25] [text-wrap:balance] md:mt-[18px] md:text-[23px]">{c.titre}</h3>
                 <p class="mt-1.5 text-[16px] leading-[1.5] dv-muted md:mt-2.5 md:text-[17px] md:leading-[1.55]">{c.texte}</p>
               </Ticket>
             ))
           }
         </ul>
       </div>
-      <p id="pour-qui" class="dv-quotidien-cible max-w-[46ch] scroll-mt-28 border-t border-grey-2/15 pt-5 text-[16px] font-semibold leading-[1.5] md:text-[17px]">
-        Pizzerias, burgers, kebabs, snacks, dark kitchens&nbsp;: de 1 à 10&nbsp;restaurants.
-      </p>
     </div>
   </section>
 
