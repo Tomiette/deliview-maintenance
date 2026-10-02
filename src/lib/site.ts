@@ -15,6 +15,12 @@ export const SITE = {
   telephoneLien: '+33632377988',
   linkedinTom: 'https://www.linkedin.com/in/tomvoisin/',
   linkedinEntreprise: 'https://www.linkedin.com/company/deliview/',
+  // Vérification de propriété : coller ici le code donné par Google Search Console (balise « google-site-verification »)
+  // et par Bing Webmaster Tools (balise « msvalidate.01 »). Vide = balise absente.
+  verificationGoogle: '',
+  verificationBing: '',
+  // Clé IndexNow (Bing, Yandex, Seznam, Naver…) : publiée dans public/<clé>.txt, utilisée par scripts/indexnow.mjs.
+  indexNowCle: '74123aaa61c2c6e91a57994f5aed762b',
   app: '/app/',
   // Fonction Supabase qui enregistre les demandes de démo (validation côté serveur).
   formulaire: 'https://osczxtxtxrjbjnozreun.supabase.co/functions/v1/lead',
@@ -237,18 +243,29 @@ export const THEMES: Record<string, string> = {
   commandes: 'Commandes et opérations',
 };
 
-// Données structurées du logiciel (sans prix tant qu'aucun tarif n'est publié).
+// Données structurées du logiciel, avec la fourchette des offres publiques (la page Tarifs détaille chaque offre).
 export function jsonldLogiciel(description: string, url: string): Record<string, unknown> {
+  const prix = OFFRES.map((o) => o.prix);
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     name: 'Deliview',
     applicationCategory: 'BusinessApplication',
+    applicationSubCategory: 'Logiciel pour restaurants sur Uber Eats et Deliveroo',
     operatingSystem: 'Web',
     inLanguage: 'fr-FR',
+    countriesSupported: 'FR',
     description,
     url,
     publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'EUR',
+      lowPrice: Math.min(...prix),
+      highPrice: Math.max(...prix),
+      offerCount: OFFRES.length,
+      url: SITE.url + '/tarifs/',
+    },
   };
 }
 

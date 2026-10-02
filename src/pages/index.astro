@@ -7,7 +7,9 @@ import HeroVideo from '../components/HeroVideo.astro';
 import BandeauPlateformes from '../components/BandeauPlateformes.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import SectionDemo from '../components/SectionDemo.astro';
+import Faq from '../components/Faq.astro';
 import Icone from '../components/Icone.astro';
+import { FAQ_ACCUEIL } from '../lib/faq';
 import { PILIERS, PRIX_ENTREE, SITE, THEMES, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
@@ -295,6 +297,8 @@ const video = {
       </section>
     )
   }
+
+  <Faq questions={FAQ_ACCUEIL} filet lien={{ href: lien('/questions-frequentes/'), libelle: 'Toutes les questions fréquentes' }} />
 
   <SectionDemo section="accueil-formulaire" />
 </Base>

@@ -1,6 +1,6 @@
 ---
 titre: "Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger"
-titreSeo: "Note Uber Eats restaurant : comment la faire monter"
+titreSeo: "Note Uber Eats restaurant : la faire monter"
 description: "Comment Uber Eats et Deliveroo calculent la note de votre restaurant, ce qui la fait baisser, comment répondre aux avis et ce qu’il ne faut jamais faire."
 theme: reputation
 enBref: "Sur Uber Eats comme sur Deliveroo, la note est une moyenne d’étoiles de 1 à 5 qui privilégie les notes récentes. Pour la faire monter, traitez d’abord ce qui la fait baisser : plats manquants, erreurs, retards et emballage. Répondez aux avis, comparez-vous aux restaurants de votre zone, et ne publiez ni n’achetez jamais de faux avis : c’est un délit."

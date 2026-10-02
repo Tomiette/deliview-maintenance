@@ -1,6 +1,6 @@
 ---
 titre: "Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo"
-titreSeo: "Analyser les prix de vos concurrents sur Uber Eats"
+titreSeo: "Analyser les prix de vos concurrents Uber Eats"
 description: "Choisissez les bons concurrents, comparez le même plat à taille égale et lisez l’écart avec la médiane de votre zone. Méthode, tableau et exemple chiffré."
 theme: prix-et-concurrence
 enBref: "Choisissez cinq à dix restaurants de votre cuisine qui livrent vos clients. Comparez le même plat à taille égale et notez prix et promos dans un tableau daté. Calculez la médiane plutôt que la moyenne. Un écart de plus de 10 %, sur au moins deux comparaisons, est un signal. Refaites l’exercice chaque mois."

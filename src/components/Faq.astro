@@ -4,11 +4,15 @@ interface Props {
   titre?: string;
   questions: { q: string; r: string }[];
   id?: string;
+  // Lien optionnel sous la liste (ex. vers la page complète des questions fréquentes).
+  lien?: { href: string; libelle: string };
+  // Filet en haut de section, quand la section précédente a le même fond blanc.
+  filet?: boolean;
 }
-const { titre = 'Questions fréquentes', questions, id = 'faq' } = Astro.props;
+const { titre = 'Questions fréquentes', questions, id = 'faq', lien, filet = false } = Astro.props;
 ---
 
-<section id={id} class="dv-section bg-white" aria-labelledby={`${id}-titre`}>
+<section id={id} class={`dv-section bg-white ${filet ? 'border-t border-grey-2/10' : ''}`} aria-labelledby={`${id}-titre`}>
   <div class="dv-container max-w-[880px]">
     <h2 id={`${id}-titre`} class="dv-h2">{titre}</h2>
     <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
@@ -26,5 +30,10 @@ const { titre = 'Questions fréquentes', questions, id = 'faq' } = Astro.props;
         ))
       }
     </div>
+    {lien && (
+      <p class="mt-6">
+        <a href={lien.href} class="font-semibold underline underline-offset-4">{lien.libelle}</a>
+      </p>
+    )}
   </div>
 </section>

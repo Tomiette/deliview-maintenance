@@ -9,7 +9,7 @@ const ressources = defineCollection({
     // H1 de l'article.
     titre: z.string().min(10).max(110),
     // Balise <title>, sans « | Deliview » (ajouté automatiquement) : 60 caractères au plus en tout.
-    titreSeo: z.string().min(10).max(52),
+    titreSeo: z.string().min(10).max(49),
     description: z.string().min(110).max(160),
     theme: z.enum(['prix-et-concurrence', 'carte-et-marge', 'reputation', 'commandes']),
     // Réponse directe en tête d'article (40 à 60 mots).

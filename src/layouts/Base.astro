@@ -40,9 +40,26 @@ const organisation = {
   telephone: SITE.telephoneLien,
   areaServed: 'FR',
   sameAs: [SITE.linkedinEntreprise],
-  founder: { '@type': 'Person', name: 'Tom Voisin', sameAs: [SITE.linkedinTom] },
+  knowsAbout: ['Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison', 'Analyse de la concurrence des restaurants'],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: SITE.telephoneLien,
+    email: SITE.email,
+    areaServed: 'FR',
+    availableLanguage: 'French',
+  },
+  founder: { '@type': 'Person', name: 'Tom Voisin', url: SITE.url + '/qui-sommes-nous/#tom', sameAs: [SITE.linkedinTom] },
 };
-const siteWeb = { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.nom, url: SITE.url, inLanguage: 'fr-FR' };
+const siteWeb = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.nom,
+  url: SITE.url,
+  inLanguage: 'fr-FR',
+  description: SITE.definition,
+  publisher: { '@type': 'Organization', name: SITE.nom, url: SITE.url },
+};
 const fil = ariane.length
   ? {
       '@context': 'https://schema.org',
@@ -67,6 +84,8 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {robots && <meta name="robots" content={robots} />}
+    {!apercu && SITE.verificationGoogle && <meta name="google-site-verification" content={SITE.verificationGoogle} />}
+    {!apercu && SITE.verificationBing && <meta name="msvalidate.01" content={SITE.verificationBing} />}
     <meta name="theme-color" content="#5282ff" />
     <link rel="icon" href={lien('/favicon.ico')} sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href={lien('/favicon.svg')} />

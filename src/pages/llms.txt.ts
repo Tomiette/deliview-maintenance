@@ -33,9 +33,14 @@ export const GET: APIRoute = async () => {
     '',
     '## Contact',
     '',
+    `- [Questions fréquentes](${u('/questions-frequentes/')}) : ce que fait Deliview, pour qui, prix, origine des données, fondateur.`,
     `- [Qui sommes-nous](${u('/qui-sommes-nous/')}) : Tom Voisin, fondateur, un an d’analyse sur le terrain auprès des restaurants qui livrent.`,
     `- [Demander une démo](${u('/demo/')}) : 15 minutes sur les fiches du restaurant.`,
     `- E-mail : ${SITE.email}`,
+    '',
+    '## Optional',
+    '',
+    `- [Version complète en texte brut](${u('/llms-full.txt')}) : questions fréquentes et guides en entier, avec leurs sources.`,
     '',
   ];
   return new Response(lignes.join('\n'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
