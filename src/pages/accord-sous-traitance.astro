@@ -1,0 +1,21 @@
+---
+// Texte contractuel publié le 2 octobre 2026 (version 1, avant relecture par un avocat).
+// Source : src/legal/sous-traitance.md, issu du doc « Conditions de Deliview ».
+import Base from '../layouts/Base.astro';
+import { lien } from '../lib/site';
+import { Content } from '../legal/sous-traitance.md';
+---
+
+<Base
+  title="Accord de sous-traitance des données personnelles | Deliview"
+  description="Accord de sous-traitance des données personnelles (article 28 du RGPD) entre Deliview et ses clients, annexé aux CGV."
+  ariane={[{ nom: 'Accord de sous-traitance des données personnelles', chemin: '/accord-sous-traitance/' }]}
+>
+  <article class="dv-section bg-white !pt-8">
+    <div class="dv-container max-w-[820px] prose-dv">
+      <h1 class="dv-h1">Accord de sous-traitance des données personnelles</h1>
+      <p class="dv-muted">Voir aussi : <a href={lien('/cgv/')}>Conditions générales de vente</a> · <a href={lien('/conditions-utilisation/')}>Conditions générales d’utilisation</a>.</p>
+      <Content />
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,21 @@
+---
+// Texte contractuel publié le 2 octobre 2026 (version 1, avant relecture par un avocat).
+// Source : src/legal/cgv.md, issu du doc « Conditions de Deliview ».
+import Base from '../layouts/Base.astro';
+import { lien } from '../lib/site';
+import { Content } from '../legal/cgv.md';
+---
+
+<Base
+  title="Conditions générales de vente | Deliview"
+  description="Conditions générales de vente de Deliview : abonnements, prix, paiement, résiliation, responsabilité et droit de rétractation des petits professionnels."
+  ariane={[{ nom: 'Conditions générales de vente', chemin: '/cgv/' }]}
+>
+  <article class="dv-section bg-white !pt-8">
+    <div class="dv-container max-w-[820px] prose-dv">
+      <h1 class="dv-h1">Conditions générales de vente</h1>
+      <p class="dv-muted">Voir aussi : <a href={lien('/conditions-utilisation/')}>Conditions générales d’utilisation</a> · <a href={lien('/accord-sous-traitance/')}>Accord de sous-traitance des données personnelles</a>.</p>
+      <Content />
+    </div>
+  </article>
+</Base>

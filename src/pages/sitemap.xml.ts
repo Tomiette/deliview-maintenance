@@ -8,7 +8,7 @@ const PAGES_MAJ = '2026-10-02';
 
 export const GET: APIRoute = async () => {
   const articles = await getCollection('ressources', (a) => !a.data.brouillon);
-  const fixes = ['/', '/solution/', '/integrations/', '/integrations/uber-eats-et-deliveroo/', '/tarifs/', '/simulateur/', '/ressources/', '/qui-sommes-nous/', '/questions-frequentes/', '/demo/', '/mentions-legales/', '/confidentialite/'];
+  const fixes = ['/', '/solution/', '/integrations/', '/integrations/uber-eats-et-deliveroo/', '/tarifs/', '/simulateur/', '/ressources/', '/qui-sommes-nous/', '/questions-frequentes/', '/demo/', '/mentions-legales/', '/confidentialite/', '/cgv/', '/conditions-utilisation/', '/accord-sous-traitance/'];
   const urls = [
     ...fixes.map((c) => ({ loc: c, lastmod: PAGES_MAJ })),
     ...PILIERS.map((p) => ({ loc: `/solution/${p.slug}/`, lastmod: PAGES_MAJ })),

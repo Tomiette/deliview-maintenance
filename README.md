@@ -30,7 +30,7 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Sous les vidéos et les images : aucun micro-texte (légendes, « données de démonstration », mention IA). Les précisions utiles
   passent dans le texte alternatif ou dans un bloc réservé aux lecteurs d'écran (contenu de la vidéo).
   Versions HD exportées du design Canva « Deliview site – images IA (export) » (800 et 1536 px, livreur 960 et 1680 px).
-- Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés à côté du nom dans le bandeau « Fonctionne avec » et sur la page Intégrations.
+- Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés seuls dans le bandeau « Fonctionne avec » (nom en texte alternatif, choix de Tom du 2 octobre 2026) et à côté du nom sur la page Intégrations.
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.
 - Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`).
 - robots.txt, sitemap.xml et llms.txt (résumé du site pour les moteurs IA) : générés au build à partir des données du site (`src/pages/robots.txt.ts`, `sitemap.xml.ts`, `llms.txt.ts`, `llms-full.txt.ts`). Favicons : `public/favicon.svg` et `public/favicon.ico` (16, 32 et 48 px).
@@ -51,5 +51,6 @@ quand le secret `BREVO_API_KEY` est réglé sur la fonction. L'empreinte IP est 
 1. `npm run build` sans SITE_BASE, puis copier le contenu de `dist/` à la racine du dépôt de publication
    (Tomiette/deliview-maintenance, branche `main`) en gardant `app/`, `analyse/`, `apercu/` et `CNAME`.
 2. Aperçu non indexé : `SITE_BASE=/apercu/ npm run build`, puis remplacer le dossier `apercu/` du dépôt.
-3. Restent à compléter : blocs `[À REMPLACER : …]` des mentions légales et de la confidentialité
-   (identité de l'éditeur, garanties des transferts hors UE), puis validation par un avocat.
+3. CGV, CGU et accord de sous-traitance : textes dans `src/legal/*.md` (version 1 du 2 octobre 2026, issue du doc
+   « Conditions de Deliview »), pages /cgv/, /conditions-utilisation/ et /accord-sous-traitance/. À faire relire par un avocat ;
+   toute nouvelle version change la date et se publie 30 jours avant d'entrer en vigueur pour les clients (CGV article 22).
