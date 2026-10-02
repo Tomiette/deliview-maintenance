@@ -1,6 +1,6 @@
 ---
 // Accueil, direction « le passe » (maquettes validées le 2 octobre 2026, ordinateur et téléphone) : une seule histoire,
-// dans l'ordre. Votre quotidien (deux tablettes qui sonnent), une seule tablette, vos chiffres face à votre zone
+// dans l'ordre. Votre quotidien (deux tablettes, des chiffres éparpillés, une fin de mois décevante), une seule tablette, vos chiffres face à votre zone
 // (ticket Margherita), quelqu'un de réel pour vous accompagner, puis tarifs, questions et bon de démo.
 import Base from '../layouts/Base.astro';
 import CadreTablette from '../components/CadreTablette.astro';
@@ -90,8 +90,12 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
     <div class="dv-container dv-quotidien">
       <div class="dv-quotidien-intro">
         <p class="dv-overline">Le quotidien</p>
-        <h2 id="quotidien-titre" class="dv-h2 mt-2.5 max-w-[16ch] md:mt-3">Vendredi, 20&nbsp;h&nbsp;30. Les deux tablettes sonnent.</h2>
-        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Vous êtes en plein service. Pendant ce temps, trois choses vous échappent.</p>
+        <h2 id="quotidien-titre" class="dv-h2 mt-2.5 max-w-[16ch] md:mt-3">Deux tablettes. Des chiffres éparpillés partout.</h2>
+        <div class="dv-lead mt-3.5 max-w-[46ch] space-y-2 md:mt-5">
+          <p>Le rapport de vos ventes livraison arrive à la fin du mois.</p>
+          <p>Vous avez eu beaucoup de commandes. Et pourtant, la rentabilité n’est pas au rendez-vous.</p>
+          <p>Pendant le service, trois choses vous échappent.</p>
+        </div>
       </div>
       <figure class="dv-quotidien-dessin m-0">
         <TablettesPlateformes />
