@@ -45,6 +45,20 @@ const tableaux = {
   },
 };
 
+// Case d'angle vide d'un tableau (ex. grille des offres des CGV) : une cellule ordinaire plutôt qu'un en-tête sans texte
+// (règle d'accessibilité « empty-table-header »). Le texte affiché ne change pas.
+const texteDe = (n) => (n.type === 'text' ? n.value : (n.children || []).map(texteDe).join(''));
+const entetesVides = {
+  name: 'deliview-entetes-vides',
+  element: {
+    filter: ['th'],
+    visit(node) {
+      if (texteDe(node).trim() !== '') return;
+      return { ...node, tagName: 'td' };
+    },
+  },
+};
+
 // Espaces insécables de la typographie française, posées sur tout le HTML généré.
 const typographie = {
   name: 'deliview-typographie',
@@ -62,7 +76,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory', assets: 'assets' },
   compressHTML: true,
-  markdown: { processor: satteri({ hastPlugins: [liens, tableaux] }) },
+  markdown: { processor: satteri({ hastPlugins: [liens, tableaux, entetesVides] }) },
   integrations: [typographie],
   vite: { plugins: [tailwindcss()] },
 });

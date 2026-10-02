@@ -267,7 +267,7 @@
     border: 1.5px solid var(--color-grey-2);
   }
   .dv-btn-contour:hover {
-    background: color-mix(in srgb, var(--color-blue) 8%, var(--color-white));
+    background: color-mix(in srgb, var(--color-blue) 8%, transparent);
   }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {

@@ -65,6 +65,7 @@ const etapes = CHRONOLOGIE.length
   }
   .dv-frise-en-cours .dv-frise-point {
     border-color: var(--color-blue);
-    background: color-mix(in srgb, var(--color-blue) 15%, var(--color-white));
+    /* Bleu 1 à 15 % posé sur le blanc du point (le trait de la frise ne doit pas transparaître). */
+    box-shadow: inset 0 0 0 10px color-mix(in srgb, var(--color-blue) 15%, transparent);
   }
 </style>

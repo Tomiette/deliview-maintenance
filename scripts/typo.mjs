@@ -13,7 +13,7 @@ export function typo(texte) {
     .replace(/« /g, '«' + NBSP)
     .replace(/ »/g, NBSP + '»')
     .replace(/(\d) (?=(€|%|h\b|min\b|km\b|cm\b|cl\b|ml\b|l\b|vol\.|ans\b|mois\b|jours\b|semaines\b|minutes\b|heures\b|secondes\b|notes\b|commandes\b|pizzas\b|plats\b|restaurants\b|concurrents\b|photos\b))/g, '$1' + NBSP)
-    .replace(/(\d) (\d{3})(?!\d)/g, '$1' + NBSP + '$2')
+    .replace(/(\d) (?=\d{3}(?!\d))/g, '$1' + NBSP)
     .replace(/\b(n°|N°) (\d)/g, '$1' + NBSP + '$2');
 }
 
