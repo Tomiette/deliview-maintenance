@@ -33,6 +33,7 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés à côté du nom dans le bandeau « Fonctionne avec » et sur la page Intégrations.
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.
 - Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`).
+- robots.txt, sitemap.xml et llms.txt (résumé du site pour les moteurs IA) : générés au build à partir des données du site (`src/pages/robots.txt.ts`, `sitemap.xml.ts`, `llms.txt.ts`). Favicons : `public/favicon.svg` et `public/favicon.ico` (16, 32 et 48 px).
   Les blocs `<script>`, `<style>`, `<pre>` et `<code>` sont mis de côté avant : le CSS minifié peut contenir `<` (`@media (width<=767px)`).
 
 ## Formulaire de démo
