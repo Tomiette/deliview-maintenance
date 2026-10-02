@@ -17,7 +17,7 @@ export const SITE = {
   linkedinEntreprise: 'https://www.linkedin.com/company/deliview/',
   // Vérification de propriété : coller ici le code donné par Google Search Console (balise « google-site-verification »)
   // et par Bing Webmaster Tools (balise « msvalidate.01 »). Vide = balise absente.
-  verificationGoogle: '',
+  verificationGoogle: 'RZtrbAITvqB2gViWoeBinc8GKOVd3zhBlAaoINAyNKM',
   verificationBing: '',
   // Clé IndexNow (Bing, Yandex, Seznam, Naver…) : publiée dans public/<clé>.txt, utilisée par scripts/indexnow.mjs.
   indexNowCle: '74123aaa61c2c6e91a57994f5aed762b',
