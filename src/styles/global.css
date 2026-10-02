@@ -269,6 +269,16 @@
   .dv-btn-contour:hover {
     background: color-mix(in srgb, var(--color-blue) 8%, transparent);
   }
+  /* Bouton bleu au contour (Bleu 1 sur blanc, 19 px gras : grand texte, 3,5:1) : action secondaire à côté du bouton plein. */
+  .dv-btn-bleu {
+    background: var(--color-white);
+    color: var(--color-blue);
+    border: 2px solid var(--color-blue);
+  }
+  .dv-btn-bleu:hover {
+    /* Voile Bleu 1 à 8 % par-dessus le fond blanc (sans dégradé ni nouvelle teinte). */
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent);
+  }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {
     opacity: 0.6;
@@ -910,33 +920,82 @@
 
 /* Accueil (maquettes « le passe ») : placements propres à l'ordinateur et au téléphone. */
 @layer components {
-  /* Haut de page : le ticket posé sur la tablette, en bas à droite sur téléphone, en bas à gauche sur ordinateur. */
+  /* Haut de page : la vidéo dans le cadre tablette, le bouton « Voir Deliview en action » dessous.
+     Téléphone : le ticket Margherita vient après le bouton, incliné, calé à droite.
+     Tablette et ordinateur : le ticket est épinglé au coin haut droit de la vidéo, sur la fausse fiche de la couverture
+     (le titre de la vidéo reste visible) ; pendant la lecture il s'écarte pour libérer toute l'image. */
   .dv-hero-visuel {
     position: relative;
-    padding-bottom: 236px;
+  }
+  .dv-hero-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    margin-top: 16px;
   }
   .dv-hero-ticket {
-    position: absolute;
-    right: 6px;
-    bottom: 0;
+    align-self: flex-end;
     width: 264px;
+    margin-right: 6px;
     rotate: -3deg;
   }
   @media (min-width: 768px) {
     .dv-hero-visuel {
+      width: 100%;
       max-width: 640px;
-      padding: 0 0 72px 56px;
+      margin-inline: auto;
+      padding-top: 30px;
     }
+    .dv-hero-actions {
+      align-items: center;
+      margin-top: 22px;
+    }
+    /* Le ticket garde sa mise en page (256 px) et se réduit à l'échelle de la vidéo, depuis son coin haut droit :
+       il ne couvre que la fausse fiche de la couverture, jamais le titre ni la pastille de lecture. */
     .dv-hero-ticket {
-      right: auto;
-      left: 0;
-      width: 300px;
-      rotate: -4deg;
+      position: absolute;
+      top: 0;
+      right: -24px;
+      z-index: 2;
+      width: 256px;
+      margin: 0;
+      rotate: 4deg;
+      scale: 0.82;
+      transform-origin: top right;
+      transition: opacity 0.35s ease, translate 0.35s ease, visibility 0s linear 0s;
+    }
+    .dv-video-en-lecture .dv-hero-ticket {
+      opacity: 0;
+      translate: 48px -28px;
+      visibility: hidden;
+      transition: opacity 0.35s ease, translate 0.35s ease, visibility 0s linear 0.35s;
     }
   }
   @media (min-width: 1024px) {
     .dv-hero-visuel {
       max-width: none;
+    }
+    .dv-hero-ticket {
+      right: -28px;
+      scale: 0.7;
+    }
+  }
+  @media (min-width: 1280px) {
+    .dv-hero-ticket {
+      right: -56px;
+      scale: 0.8;
+    }
+  }
+  @media (min-width: 1440px) {
+    .dv-hero-ticket {
+      right: -84px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dv-hero-ticket,
+    .dv-video-en-lecture .dv-hero-ticket {
+      transition: none;
     }
   }
 

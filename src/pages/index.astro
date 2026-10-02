@@ -20,6 +20,7 @@ import Etoile from '../icons/etoile.astro';
 import Enveloppe from '../icons/enveloppe.astro';
 import Toque from '../icons/toque.astro';
 import Fleche from '../icons/fleche.astro';
+import Lecture from '../icons/lecture.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { EXEMPLE_MARGHERITA as ex, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien } from '../lib/site';
 
@@ -58,9 +59,10 @@ const video = {
 const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 ---
 
-<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}>
+<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]} precharger="/video/deliview-video-couverture-16x9.webp">
   <!-- Haut de page : slogan, promesse de rentabilité, définition, un seul bouton plein, réassurance ;
-       la vraie capture dans le cadre tablette, le ticket Margherita posé dessus, l'écart entouré au marqueur. -->
+       la vidéo de présentation dans le cadre tablette (chargée au clic), le bouton « Voir Deliview en action » dessous,
+       le ticket Margherita épinglé au coin de la vidéo (il s'écarte pendant la lecture), l'écart entouré au marqueur. -->
   <section class="overflow-hidden bg-grey pb-14 pt-7 md:pb-[104px] md:pt-[72px]" aria-labelledby="hero-titre" data-haut-de-page>
     <div class="dv-container grid items-center gap-x-14 gap-y-9 lg:grid-cols-2">
       <div>
@@ -72,20 +74,14 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
         </div>
         <Reassurance class="mt-[18px] md:mt-6" />
       </div>
-      <div class="dv-hero-visuel">
-        <CadreTablette
-          capture={{
-            src: '/images/capture-hero',
-            largeurs: [800, 1600],
-            largeur: 1600,
-            hauteur: 1000,
-            alt: 'Pricing Menu dans Deliview : chaque plat avec votre prix, la médiane de la zone, l’écart, un prix suggéré et le gain pour 100 ventes',
-          }}
-          mobile={{ src: '/images/capture-carte-mobile', largeurs: [800, 1200], largeur: 1200, hauteur: 750 }}
-          sizes="(min-width: 1200px) 560px, (min-width: 1024px) 45vw, 100vw"
-          priorite
-        />
-        <TicketComparaison exemple={ex} format="haut-de-page" apparition="arrivee" class="dv-hero-ticket" />
+      <div class="dv-hero-visuel" data-video-zone>
+        <HeroVideo />
+        <div class="dv-hero-actions">
+          <button type="button" class="dv-btn dv-btn-bleu dv-hero-voir" data-video-lire data-cta="video-haut-de-page" aria-controls="video-deliview">
+            <Lecture taille={24} />Voir Deliview en action
+          </button>
+          <TicketComparaison exemple={ex} format="haut-de-page" apparition="arrivee" class="dv-hero-ticket" />
+        </div>
       </div>
     </div>
   </section>
@@ -150,7 +146,7 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
     </div>
   </section>
 
-  <!-- Comment ça marche : 3 étapes numérotées en Aspekta, une icône pour chacune, puis la vidéo chargée au clic. -->
+  <!-- Comment ça marche : 3 étapes numérotées en Aspekta, une icône pour chacune (la vidéo est en haut de page). -->
   <section id="comment-ca-marche" class="dv-section bg-white" aria-labelledby="etapes-titre">
     <div class="dv-container">
       <p class="dv-overline">Comment ça marche</p>
@@ -173,7 +169,6 @@ const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
           ))
         }
       </ol>
-      <HeroVideo class="mt-10 md:mt-[72px]" />
     </div>
   </section>
 

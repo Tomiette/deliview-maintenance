@@ -21,12 +21,12 @@ const dansMenu = (menu: string) =>
 ---
 
 <header class="sticky top-0 z-40 border-b border-grey-2/12 bg-white">
-  <div class="dv-container flex h-16 items-center justify-between gap-4 !pr-2 sm:!pr-4 md:!pr-6 lg:h-[76px] lg:gap-10">
+  <div class="dv-container flex h-16 items-center justify-between gap-4 !pr-2 sm:!pr-4 md:!pr-6 xl:h-[76px] xl:gap-10">
     <a href={lien('/')} class="flex min-h-12 shrink-0 items-center" aria-label="Deliview, accueil">
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" />
     </a>
 
-    <nav aria-label="Navigation principale" class="hidden flex-1 lg:block">
+    <nav aria-label="Navigation principale" class="hidden flex-1 xl:block">
       <ul class="flex items-center gap-1 whitespace-nowrap text-[17px] font-semibold leading-none">
         {
           NAV.map((item) =>
@@ -80,7 +80,7 @@ const dansMenu = (menu: string) =>
       </a>
       <a href={lien('/demo/')} class="dv-btn dv-btn-contour hidden !min-h-12 !px-5 !py-0 whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
 
-      <details class="dv-menu lg:hidden">
+      <details class="dv-menu xl:hidden">
         <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
           <Menu taille={32} />
         </summary>
