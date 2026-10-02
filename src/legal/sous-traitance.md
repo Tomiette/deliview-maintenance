@@ -78,7 +78,7 @@ Le présent accord s’applique pendant toute la durée du Contrat, puis jusqu�
 | Sous-traitant | Rôle | Lieu des données | Encadrement |
 | --- | --- | --- | --- |
 | Supabase Inc. | Base de données, authentification, fonctions serveur | Union européenne (Irlande) | Société américaine : clauses contractuelles types de la Commission européenne, prévues par son accord de traitement des données |
-| GitHub Inc. | Hébergement des fichiers de l’interface ; journaux techniques avec adresse IP | États-Unis | Cadre de protection des données UE-États-Unis (Data Privacy Framework) |
+| OVH SAS | Hébergement des fichiers de l’interface ; journaux techniques avec adresse IP | France | Pas de transfert |
 | Sendinblue SAS (Brevo) | E-mails de service, lorsqu’ils sont activés | France | Pas de transfert |
 
 Ne reçoivent aucune donnée personnelle des Utilisateurs : Firecrawl (Mendable, Inc., États-Unis), qui lit les pages publiques des Plateformes, et la Géoplateforme de l’IGN (France), qui calcule les distances.
