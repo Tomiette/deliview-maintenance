@@ -1,0 +1,31 @@
+# Contrôle léger de l'hébergement OVH, sans rien envoyer : interroge directement le serveur du cluster129
+# pour www.deliview.fr et deliview.fr, même si le DNS public pointe encore ailleurs.
+# Se lance à chaque push sur la branche « verif-ovh » (ou à la main).
+
+name: Vérification OVH
+
+on:
+  push:
+    branches: [verif-ovh]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Interroger le serveur OVH
+        run: |
+          IP=51.91.236.255
+          for hote in www.deliview.fr deliview.fr; do
+            echo "== http://$hote/"
+            curl -s -o /dev/null -D - --max-time 20 --resolve $hote:80:$IP http://$hote/ | grep -i '^HTTP/\|^location\|^server' || true
+            echo "== https://$hote/ (certificat non vérifié)"
+            curl -sk -o page.html -w 'code %{http_code}\n' --max-time 20 --resolve $hote:443:$IP https://$hote/ || true
+            grep -o '<title>[^<]*' page.html | head -1 || true
+          done
+          entetes=$(curl -s -o /dev/null -D - --max-time 20 --resolve www.deliview.fr:80:$IP http://www.deliview.fr/ || true)
+          echo "$entetes" | grep -qi '^location: https://www.deliview.fr/' && echo "RÉSULTAT : OVH sert le site." || { echo "RÉSULTAT : OVH ne sert pas encore www.deliview.fr."; exit 1; }
