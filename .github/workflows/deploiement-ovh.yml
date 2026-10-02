@@ -1,0 +1,62 @@
+# Déploiement de www.deliview.fr sur l'hébergement web OVH.
+# À chaque mise à jour de la branche main, le contenu du dépôt est recopié par FTP dans le dossier
+# du site chez OVH (www par défaut). Les accès FTP sont des secrets du dépôt, jamais écrits ici :
+#   OVH_FTP_SERVEUR       ex. ftp.cluster0XX.hosting.ovh.net
+#   OVH_FTP_UTILISATEUR   l'identifiant FTP principal de l'hébergement
+#   OVH_FTP_MOT_DE_PASSE  son mot de passe
+# Variable facultative OVH_FTP_DOSSIER (dossier racine du site chez OVH, « www » par défaut).
+# Sans secrets, le travail s'arrête proprement : rien n'est envoyé.
+
+name: Déploiement OVH
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploiement-ovh
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SERVEUR: ${{ secrets.OVH_FTP_SERVEUR }}
+      UTILISATEUR: ${{ secrets.OVH_FTP_UTILISATEUR }}
+      MOT_DE_PASSE: ${{ secrets.OVH_FTP_MOT_DE_PASSE }}
+      DOSSIER: ${{ vars.OVH_FTP_DOSSIER || 'www' }}
+    steps:
+      - name: Vérifier les accès OVH
+        id: acces
+        run: |
+          if [ -z "$SERVEUR" ] || [ -z "$UTILISATEUR" ] || [ -z "$MOT_DE_PASSE" ]; then
+            echo "Accès OVH absents : rien n'est envoyé."
+            echo "pret=non" >> "$GITHUB_OUTPUT"
+          else
+            echo "pret=oui" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Récupérer le site
+        if: steps.acces.outputs.pret == 'oui'
+        uses: actions/checkout@v4
+
+      - name: Installer lftp
+        if: steps.acces.outputs.pret == 'oui'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Envoyer le site chez OVH
+        if: steps.acces.outputs.pret == 'oui'
+        run: |
+          lftp -u "$UTILISATEUR","$MOT_DE_PASSE" "$SERVEUR" <<FIN
+          set ftp:ssl-allow yes
+          set ftp:ssl-protect-data yes
+          set net:max-retries 3
+          set net:timeout 30
+          mirror --reverse --delete --parallel=4 --verbose=1 --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ ./ $DOSSIER/
+          quit
+          FIN
