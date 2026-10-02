@@ -15,8 +15,17 @@ const liens = {
   element: {
     filter: ['a'],
     visit(node, ctx) {
-      const href = node.properties?.href;
+      let href = node.properties?.href;
       if (typeof href !== 'string') return;
+      // Adresses du site écrites en toutes lettres (« www.deliview.fr/cgv/ », liées en http:// par le Markdown) :
+      // ramenées à un chemin interne, avec la barre finale, pour éviter une redirection HTTP puis une autre.
+      const interne = href.match(/^https?:\/\/(?:www\.)?deliview\.fr(\/[^?#]*)?([?#].*)?$/);
+      if (interne) {
+        let chemin = interne[1] || '/';
+        if (!chemin.endsWith('/') && !/\.[a-z0-9]+$/i.test(chemin)) chemin += '/';
+        href = chemin + (interne[2] || '');
+        ctx.setProperty(node, 'href', href);
+      }
       if (prefixe && href.startsWith('/') && !href.startsWith('//') && !href.startsWith(prefixe + '/')) ctx.setProperty(node, 'href', prefixe + href);
       if (/^https?:\/\//.test(href)) ctx.setProperty(node, 'rel', 'noopener');
     },

@@ -1,4 +1,6 @@
-// robots.txt : moteurs de recherche et robots IA autorisés ; l'app, l'API et l'outil d'analyse exclus.
+// robots.txt : moteurs de recherche et robots IA autorisés ; l'app et l'API exclues.
+// /analyse/ n'est plus bloquée (2 octobre 2026) : la page porte un noindex, que les robots doivent pouvoir lire
+// pour retirer l'adresse de leur index (l'ancien outil public avait été partagé).
 import type { APIRoute } from 'astro';
 import { SITE } from '../lib/site';
 
@@ -10,9 +12,8 @@ export const GET: APIRoute = () => {
     'Allow: /',
     'Disallow: /app/',
     'Disallow: /api/',
-    'Disallow: /analyse/',
     '',
-    ...ROBOTS_IA.flatMap((r) => [`User-agent: ${r}`, 'Allow: /', 'Disallow: /app/', 'Disallow: /analyse/', '']),
+    ...ROBOTS_IA.flatMap((r) => [`User-agent: ${r}`, 'Allow: /', 'Disallow: /app/', '']),
     `Sitemap: ${SITE.url}/sitemap.xml`,
     '',
   ];
