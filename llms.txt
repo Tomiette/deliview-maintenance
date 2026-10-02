@@ -2,13 +2,15 @@
 
 > Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.
 
-Le partenaire des restaurants en livraison. Logiciel français, pour les restaurants en France présents sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens, petites chaînes. Deliview lit les informations publiques des fiches Uber Eats et Deliveroo, sans identifiant à donner. Chaque prix comparé renvoie à la fiche d’où il vient.
+Le partenaire des restaurants en livraison. Logiciel français, pour les restaurants en France présents sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens, petites chaînes. Deliview centralise vos données de livraison Uber Eats et Deliveroo. Chaque prix comparé cite ses sources.
 
 ## Ce que fait Deliview
 
-- [Prix et concurrence](https://www.deliview.fr/solution/prix-et-concurrence/) : Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.
-- [Carte et marge](https://www.deliview.fr/solution/carte-et-marge/) : Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.
-- [Réputation](https://www.deliview.fr/solution/reputation/) : Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.
+- [Pricing Menu](https://www.deliview.fr/solution/carte-et-marge/#pricing-menu) : Repérez les plats vendus trop bas et ce qu’un meilleur prix rapporte. Exemple réel : Margherita à 10,50 €. Médiane de la zone : 15,00 € chez 5 concurrents. (Pizzeria à Chartres, Deliveroo, analyse du 1er octobre 2026).
+- [Optimiseur menu](https://www.deliview.fr/solution/carte-et-marge/#optimiseur-menu) : Des fiches de plats qui donnent envie de commander. Exemple réel : 8 plats sur 33 sans description, soit 24 %. Chez 9 concurrents : 5 %. (Restaurant de burgers à Paris, Deliveroo, analyse du 1er octobre 2026).
+- [Prix des concurrents](https://www.deliview.fr/solution/prix-et-concurrence/#prix-concurrents) : Vos prix face à ceux des restaurants qui livrent les mêmes rues. Exemple réel : Burger à 14,90 €. Médiane de la zone : 11,15 € chez 9 concurrents. (Restaurant de burgers à Paris, Uber Eats, analyse du 1er octobre 2026).
+- [Promos de la zone](https://www.deliview.fr/solution/prix-et-concurrence/#promos-zone) : Voyez les offres de vos voisins avant de lancer les vôtres. Exemple réel : 10 concurrents sur 14 affichaient une promo. Le restaurant n’en avait aucune. (Restaurant de burgers à Paris, Uber Eats, analyse du 1er octobre 2026).
+- [Note et avis](https://www.deliview.fr/solution/reputation/#note-avis) : Votre note face à celle de vos voisins, sur chaque plateforme. Exemple réel : 4,4 sur 169 avis, pour 4,2 en moyenne dans la zone : 2e sur 5. (Pizzeria à Chartres, Deliveroo, analyse du 1er octobre 2026).
 - [Simulateur de rentabilité](https://www.deliview.fr/simulateur/) : ce que rapporte un prix mieux placé, calculé dans le navigateur.
 - [Intégrations](https://www.deliview.fr/integrations/) : Uber Eats et Deliveroo, plateformes analysées en France.
 
@@ -21,21 +23,21 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 ## Guides pour les restaurateurs
 
-- [Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger](https://www.deliview.fr/ressources/ameliorer-note-uber-eats-deliveroo/) : Comment Uber Eats et Deliveroo calculent la note de votre restaurant, ce qui la fait baisser, comment répondre aux avis et ce qu’il ne faut jamais faire.
-- [Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo](https://www.deliview.fr/ressources/analyser-prix-concurrents-livraison/) : Choisissez les bons concurrents, comparez le même plat à taille égale et lisez l’écart avec la médiane de votre zone. Méthode, tableau et exemple chiffré.
-- [Commission Deliveroo pour un restaurant : trouver votre taux et calculer votre marge](https://www.deliview.fr/ressources/commission-deliveroo-restaurant/) : Commission Deliveroo : aucun taux public. Où trouver le vôtre, quels coûts s’y ajoutent et comment calculer votre marge, avec un exemple chiffré.
+- [Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger](https://www.deliview.fr/ressources/ameliorer-note-uber-eats-deliveroo/) : Comment Uber Eats et Deliveroo calculent votre note. Ce qui la fait baisser, comment répondre aux avis, et les erreurs à éviter.
+- [Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo](https://www.deliview.fr/ressources/analyser-prix-concurrents-livraison/) : Choisissez les bons concurrents et comparez le même plat à taille égale. Lisez l’écart avec la médiane de votre zone. Méthode et exemple chiffré.
+- [Commission Deliveroo pour un restaurant : trouver votre taux et calculer votre marge](https://www.deliview.fr/ressources/commission-deliveroo-restaurant/) : Commission Deliveroo : aucun taux public. Où trouver le vôtre, les coûts en plus, et votre marge sur un exemple chiffré.
 - [Commission Uber Eats pour un restaurant : ce qu’Uber Eats prend et ce qu’il vous reste](https://www.deliview.fr/ressources/commission-uber-eats-restaurant/) : Commission Uber Eats : taux affichés, base de calcul, TVA, offres et annonces. Calculez ce qu’il vous reste sur chaque commande, avec un exemple chiffré.
-- [Comment fixer ses prix sur Uber Eats et Deliveroo sans perdre d’argent ni de clients](https://www.deliview.fr/ressources/fixer-prix-uber-eats-deliveroo/) : Calculez le prix plancher de chaque plat, situez-vous face aux prix de votre zone et ajustez sans faire fuir vos clients. Méthode et exemple chiffré.
+- [Comment fixer ses prix sur Uber Eats et Deliveroo sans perdre d’argent ni de clients](https://www.deliview.fr/ressources/fixer-prix-uber-eats-deliveroo/) : Calculez le prix plancher de chaque plat. Situez-vous face à votre zone, puis ajustez sans faire fuir vos clients. Méthode et exemple chiffré.
 - [Comment gérer les tablettes Uber Eats et Deliveroo en plein rush sans rater de commandes ?](https://www.deliview.fr/ressources/tablettes-uber-eats-deliveroo-rush/) : Mode Occupé, pause, ruptures, impression : les réglages d’Uber Eats et de Deliveroo pour les soirs chargés, et l’organisation du poste pour tenir le rush.
 - [TVA des ventes en livraison et à emporter : quel taux appliquer à vos plats et boissons ?](https://www.deliview.fr/ressources/tva-ventes-livraison-restaurant/) : Plats, boissons, menus : le taux de TVA en livraison et à emporter, un exemple de ventilation chiffré et la TVA sur les commissions des plateformes.
-- [Comment savoir si une promo Uber Eats ou Deliveroo est rentable pour votre restaurant](https://www.deliview.fr/ressources/promotion-uber-eats-deliveroo-rentable/) : Types d’offres, qui paie la remise, commission sur le prix remisé : un calcul pas à pas pour savoir si votre promo Uber Eats ou Deliveroo vous rapporte.
+- [Comment savoir si une promo Uber Eats ou Deliveroo est rentable pour votre restaurant](https://www.deliview.fr/ressources/promotion-uber-eats-deliveroo-rentable/) : Promo Uber Eats ou Deliveroo : qui paie la remise, sur quel prix porte la commission. Le calcul pas à pas pour savoir si elle rapporte.
 
 ## Contact
 
-- [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, origine des données, fondateur.
-- [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : Tom Voisin, fondateur, un an d’analyse sur le terrain auprès des restaurants qui livrent.
-- [Demander une démo](https://www.deliview.fr/demo/) : 15 minutes sur les fiches du restaurant.
-- E-mail : tom@deliview.fr
+- [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, engagement, fondateur.
+- [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : le projet, Tom Voisin, fondateur, et la construction de Deliview.
+- [Demander une démo](https://www.deliview.fr/demo/) : 15 minutes sur le restaurant du prospect.
+- E-mail : tom.voisin@deliview.fr
 
 ## Optional
 
