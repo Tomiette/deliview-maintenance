@@ -4,6 +4,7 @@
 // réponse directe en première phrase, une question par titre, FAQPage en données structurées.
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
+import Fleche from '../icons/fleche.astro';
 import { SITE, dateFr, lien } from '../lib/site';
 import { FAQ, FAQ_MAJ, texteBrut } from '../lib/faq';
 
@@ -29,18 +30,18 @@ const faqPage = {
   ariane={[{ nom: 'Questions fréquentes', chemin: '/questions-frequentes/' }]}
   jsonld={[faqPage]}
 >
-  <section class="bg-white">
-    <div class="dv-container pb-10 pt-8 md:pb-14 md:pt-12">
-      <p class="dv-overline dv-muted">Tout savoir avant une démo</p>
-      <h1 class="dv-h1 mt-4 max-w-[22ch]">Questions fréquentes sur Deliview</h1>
-      <p class="dv-lead mt-5 max-w-[62ch]">{SITE.definition}</p>
+  <section class="bg-grey pb-12 pt-6 md:pb-16 md:pt-10" aria-labelledby="faq-page-titre" data-haut-de-page>
+    <div class="dv-container">
+      <p class="dv-overline">Tout savoir avant une démo</p>
+      <h1 id="faq-page-titre" class="dv-h1 mt-3 max-w-[22ch] md:mt-4">Questions fréquentes sur Deliview</h1>
+      <p class="dv-lead mt-4 max-w-[62ch] md:mt-6">{SITE.definition}</p>
       <p class="mt-4 text-[15px] dv-muted">Mis à jour le {dateFr(new Date(FAQ_MAJ))}.</p>
       <nav aria-label="Rubriques" class="mt-8">
-        <ul class="flex flex-wrap gap-3">
+        <ul class="flex flex-wrap gap-2">
           {
             FAQ.map((r) => (
               <li>
-                <a href={`#${r.id}`} class="inline-flex rounded-[10px] border-2 border-grey-2/20 px-4 py-2 text-[15px] font-semibold hover:border-blue">
+                <a href={`#${r.id}`} class="inline-flex min-h-12 items-center rounded-full border-[1.5px] border-grey-2/70 bg-white px-5 text-[16px] font-semibold hover:bg-blue/8">
                   {r.titre}
                 </a>
               </li>
@@ -53,16 +54,16 @@ const faqPage = {
 
   {
     FAQ.map((r, i) => (
-      <section id={r.id} class={`dv-section scroll-mt-24 ${i % 2 === 0 ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`${r.id}-titre`}>
-        <div class="dv-container max-w-[880px]">
+      <section id={r.id} class={`dv-section scroll-mt-20 ${i % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby={`${r.id}-titre`}>
+        <div class="dv-container max-w-[860px]">
           <h2 id={`${r.id}-titre`} class="dv-h2">
             {r.titre}
           </h2>
-          <div class="mt-8 space-y-8">
+          <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
             {r.questions.map((x) => (
-              <div>
-                <h3 class="dv-h3">{x.q}</h3>
-                <p class="mt-2 dv-texte [text-wrap:pretty]" set:html={x.r} />
+              <div class="py-6">
+                <h3 class="font-accent text-[19px] font-bold leading-[1.35] md:text-[21px]">{x.q}</h3>
+                <p class="mt-2 dv-texte text-[17px] leading-[1.6] [text-wrap:pretty] md:text-[18px]" set:html={x.r} />
               </div>
             ))}
           </div>
@@ -71,14 +72,14 @@ const faqPage = {
     ))
   }
 
-  <section class="dv-section bg-white" aria-labelledby="aller-plus-loin">
-    <div class="dv-container max-w-[880px]">
+  <section class={`dv-section ${FAQ.length % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby="aller-plus-loin">
+    <div class="dv-container max-w-[860px]">
       <h2 id="aller-plus-loin" class="dv-h2">Pour aller plus loin</h2>
-      <ul class="mt-6 space-y-3 text-[18px]">
-        <li><a href={lien('/solution/')} class="font-semibold underline underline-offset-4">Tout ce que fait Deliview</a></li>
-        <li><a href={lien('/tarifs/')} class="font-semibold underline underline-offset-4">Comparer les trois offres</a></li>
-        <li><a href={lien('/qui-sommes-nous/')} class="font-semibold underline underline-offset-4">Qui sommes-nous</a></li>
-        <li><a href={lien('/ressources/')} class="font-semibold underline underline-offset-4">Guides pour les restaurateurs sur Uber&nbsp;Eats et Deliveroo</a></li>
+      <ul class="mt-6 grid gap-1">
+        <li><a href={lien('/solution/')} class="dv-lien-fort">Tout ce que fait Deliview<Fleche taille={24} /></a></li>
+        <li><a href={lien('/tarifs/')} class="dv-lien-fort">Comparer les trois offres<Fleche taille={24} /></a></li>
+        <li><a href={lien('/qui-sommes-nous/')} class="dv-lien-fort">Qui sommes-nous<Fleche taille={24} /></a></li>
+        <li><a href={lien('/ressources/')} class="dv-lien-fort">Guides pour les restaurateurs sur Uber&nbsp;Eats et Deliveroo<Fleche taille={24} /></a></li>
       </ul>
     </div>
   </section>

@@ -1,0 +1,70 @@
+---
+// Vraie photo de Tom, posée comme une photo punaisée au passe : cadre blanc, bande adhésive en Bleu 2 à 18 %.
+import { lien } from '../lib/site';
+
+interface Props {
+  legende?: string;
+  class?: string;
+}
+const { legende = 'Tom Voisin, fondateur', class: classe = '' } = Astro.props;
+---
+
+<figure class={`dv-polaroid ${classe}`}>
+  <span class="dv-polaroid-adhesif" aria-hidden="true"></span>
+  <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="200" height="200" loading="lazy" decoding="async" />
+  <figcaption>{legende}</figcaption>
+</figure>
+
+<style>
+  .dv-polaroid {
+    position: relative;
+    width: 196px;
+    margin: 0;
+    padding: 10px 10px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
+    background: var(--color-white);
+    box-shadow: var(--shadow-card);
+    rotate: -2.5deg;
+  }
+  .dv-polaroid-adhesif {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    width: 80px;
+    height: 22px;
+    margin-left: -40px;
+    background: color-mix(in srgb, var(--color-blue-2) 18%, transparent);
+    rotate: 3deg;
+  }
+  img {
+    display: block;
+    width: 174px;
+    height: 174px;
+    object-fit: cover;
+  }
+  figcaption {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  @media (min-width: 768px) {
+    .dv-polaroid {
+      width: 220px;
+      padding: 12px 12px 14px;
+    }
+    .dv-polaroid-adhesif {
+      width: 88px;
+      height: 24px;
+      margin-left: -44px;
+    }
+    img {
+      width: 196px;
+      height: 196px;
+    }
+    figcaption {
+      margin-top: 12px;
+      font-size: 15px;
+    }
+  }
+</style>

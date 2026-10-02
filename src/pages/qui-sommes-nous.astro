@@ -1,19 +1,15 @@
 ---
-// Qui sommes-nous (décisions de Tom, 2 octobre 2026) : le projet en 3 phrases, le fondateur, la chronologie de la
-// construction (frise verticale, étapes fournies par Tom seulement), puis un bouton démo et l'e-mail de Tom.
-// Ancre #tom : page auteur des articles.
+// Qui sommes-nous (décisions de Tom, 2 octobre 2026 ; direction « le passe ») : le projet en 3 phrases, la vraie photo
+// de Tom, la frise de la construction (étapes fournies par Tom seulement, masquée tant qu'il n'y en a pas), les liens
+// LinkedIn, puis un bouton démo et l'e-mail de Tom. Ancre #tom : page auteur des articles.
 import Base from '../layouts/Base.astro';
-import Icone from '../components/Icone.astro';
-import { SITE, dateFr, lien } from '../lib/site';
-import { CHRONOLOGIE } from '../lib/chronologie';
-
-const apercu = import.meta.env.BASE_URL !== '/';
-// Sur l'aperçu seulement, tant que la liste est vide : trois étapes à remplacer, pour voir la frise.
-const etapes = CHRONOLOGIE.length
-  ? CHRONOLOGIE
-  : apercu
-    ? [1, 2, 3].map((n) => ({ date: '', titre: `[À REMPLACER : titre de l’étape ${n}]`, phrase: '[À REMPLACER : une phrase sur ce qui a été construit]', lien: '' }))
-    : [];
+import Polaroid from '../components/Polaroid.astro';
+import Frise from '../components/Frise.astro';
+import Toque from '../icons/toque.astro';
+import Courbe from '../icons/courbe.astro';
+import Enveloppe from '../icons/enveloppe.astro';
+import Fleche from '../icons/fleche.astro';
+import { SITE, lien } from '../lib/site';
 
 const description =
   'Le projet Deliview, son fondateur Tom Voisin et la construction du logiciel, étape par étape, pour les restaurants sur Uber Eats et Deliveroo.';
@@ -35,11 +31,11 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
 ---
 
 <Base title="Qui sommes-nous | Deliview" description={description} ariane={[{ nom: 'Qui sommes-nous', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
-  <section class="bg-white" aria-labelledby="projet-titre">
-    <div class="dv-container pb-14 pt-8 md:pb-20 md:pt-12">
-      <p class="dv-overline dv-muted">{SITE.slogan}</p>
-      <h1 id="projet-titre" class="dv-h1 mt-4 max-w-[18ch]">Rendre la livraison rentable pour chaque restaurant</h1>
-      <div class="mt-6 max-w-[60ch] space-y-3 dv-lead">
+  <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="projet-titre" data-haut-de-page>
+    <div class="dv-container">
+      <p class="dv-overline">{SITE.slogan}</p>
+      <h1 id="projet-titre" class="dv-h1 mt-3 max-w-[18ch] md:mt-4">Rendre la livraison rentable pour chaque restaurant</h1>
+      <div class="dv-lead mt-5 max-w-[60ch] space-y-3 md:mt-6">
         <p>Sur Uber Eats et Deliveroo, les commissions pèsent sur chaque plat vendu.</p>
         <p>Les chiffres utiles sont éparpillés entre une tablette et un espace par plateforme.</p>
         <p>Deliview les réunit, pour que chaque restaurant vende au bon prix.</p>
@@ -47,62 +43,46 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 
-  <section id="tom" class="dv-section scroll-mt-24 bg-grey" aria-labelledby="tom-titre">
-    <div class="dv-container grid gap-10 md:grid-cols-[200px_1fr]">
-      <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="200" height="200" loading="lazy" class="h-40 w-40 rounded-full object-cover md:h-[200px] md:w-[200px]" />
-      <div>
-        <p class="dv-overline dv-muted">Qui je suis</p>
+  <section id="tom" class="dv-section scroll-mt-24 bg-white" aria-labelledby="tom-titre">
+    <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[72px] gap-y-10 md:flex-row md:items-start">
+      <Polaroid class="shrink-0" />
+      <div class="max-w-[620px] flex-1">
+        <p class="flex items-center gap-3">
+          <Toque taille={32} />
+          <span class="dv-overline">Qui je suis</span>
+        </p>
         <h2 id="tom-titre" class="dv-h2 mt-3">Tom Voisin, fondateur de Deliview</h2>
-        <div class="mt-5 max-w-[60ch] space-y-3 [text-wrap:pretty]">
+        <div class="mt-4 space-y-3 text-[17px] leading-[1.6] [text-wrap:pretty] md:mt-5 md:text-[19px]">
           <p>J’ai moi-même été sur Uber Eats et Deliveroo.</p>
           <p>J’ai passé un&nbsp;an sur le terrain, auprès des restaurants qui livrent.</p>
           <p>Partout, deux tablettes en plein rush et des prix fixés à l’instinct.</p>
           <p>Deliview est le résultat de cette année. Je fais la mise en place avec chaque restaurant.</p>
         </div>
-        <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-          <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
-          <a href={SITE.linkedinTom} class="font-semibold underline underline-offset-2" rel="noopener">Tom sur LinkedIn</a>
-          <a href={SITE.linkedinEntreprise} class="font-semibold underline underline-offset-2" rel="noopener">Deliview sur LinkedIn</a>
-        </p>
+        <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:flex-row md:flex-wrap md:gap-x-7 md:text-[17px]">
+          <li><a href={`mailto:${SITE.email}`} class="dv-lien">{SITE.email}</a></li>
+          <li><a href={SITE.linkedinTom} class="dv-lien" rel="noopener">Tom sur LinkedIn</a></li>
+          <li><a href={SITE.linkedinEntreprise} class="dv-lien" rel="noopener">Deliview sur LinkedIn</a></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="dv-section bg-white" aria-labelledby="chronologie-titre">
+  <section class="dv-section bg-grey" aria-labelledby="chronologie-titre">
     <div class="dv-container max-w-[880px]">
-      <p class="dv-overline dv-muted">En public, sur LinkedIn</p>
+      <p class="flex items-center gap-3">
+        <Courbe taille={32} />
+        <span class="dv-overline">En public, sur LinkedIn</span>
+      </p>
       <h2 id="chronologie-titre" class="dv-h2 mt-3 max-w-[22ch]">La construction de Deliview, étape par étape</h2>
       <p class="mt-4 max-w-[60ch]">Je partage chaque étape sur LinkedIn&nbsp;: ce qui marche, ce qui ne marche pas.</p>
-      {
-        etapes.length > 0 && (
-          <ol class="relative mt-10 space-y-10 border-l-2 border-blue/20 pl-8">
-            {etapes.map((e) => (
-              <li class="relative">
-                <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-white bg-blue ring-2 ring-blue/20" aria-hidden="true" />
-                <p class="text-[15px] font-semibold dv-muted">{e.date ? <time datetime={e.date}>{dateFr(new Date(e.date + 'T12:00:00Z'))}</time> : '[À REMPLACER : date]'}</p>
-                <h3 class="dv-h3 mt-1">{e.titre}</h3>
-                <p class="mt-1 max-w-[60ch]">{e.phrase}</p>
-                {e.lien ? (
-                  <a href={e.lien} class="mt-2 inline-flex items-center gap-2 font-semibold underline underline-offset-4" rel="noopener">
-                    Lire le post <Icone nom="fleche" taille={18} />
-                  </a>
-                ) : (
-                  <p class="mt-2 font-semibold">[À REMPLACER : lien du post LinkedIn]</p>
-                )}
-              </li>
-            ))}
-          </ol>
-        )
-      }
-      <p class="mt-10">
-        <a href={SITE.linkedinEntreprise} class="inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4" rel="noopener">
-          Suivre la construction sur LinkedIn <Icone nom="fleche" taille={20} />
-        </a>
+      <Frise />
+      <p class="mt-8">
+        <a href={SITE.linkedinEntreprise} class="dv-lien-fort" rel="noopener">Suivre la construction sur LinkedIn<Fleche taille={24} /></a>
       </p>
     </div>
   </section>
 
-  <section class="dv-section bg-grey" aria-labelledby="bref-titre">
+  <section class="dv-section bg-white" aria-labelledby="bref-titre">
     <div class="dv-container max-w-[880px]">
       <h2 id="bref-titre" class="dv-h2">Deliview en bref</h2>
       <dl class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
@@ -134,12 +114,13 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 
-  <section class="dv-section bg-white" aria-labelledby="contact-titre">
-    <div class="dv-container text-center">
-      <h2 id="contact-titre" class="dv-h2 mx-auto max-w-[20ch]">Parlons de votre restaurant</h2>
+  <section id="demo" class="dv-section bg-grey" aria-labelledby="contact-titre">
+    <div class="dv-container max-w-[760px] text-center">
+      <Enveloppe taille={48} class="mx-auto" />
+      <h2 id="contact-titre" class="dv-h2 mx-auto mt-4 max-w-[20ch]">Parlons de votre restaurant</h2>
       <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Une démo de 15&nbsp;minutes, sur vos prix et votre zone.</p>
-      <p class="mt-8"><a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="qui-sommes-nous">Demander une démo</a></p>
-      <p class="mt-5">Ou écrivez-moi&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a></p>
+      <p class="mt-7"><a href={lien('/demo/')} class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="qui-sommes-nous" data-cta-principal>Demander une démo</a></p>
+      <p class="mt-5">Ou écrivez-moi&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a></p>
     </div>
   </section>
 </Base>

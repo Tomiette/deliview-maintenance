@@ -1,9 +1,11 @@
 ---
-// Article : réponse directe en tête, sommaire, contenu, sources datées, liens vers le pilier et la démo.
+// Article : réponse directe en tête (ticket « En bref »), sommaire, contenu, sources datées, liens vers le pilier
+// et la démo (direction « le passe »).
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
-import Icone from '../../components/Icone.astro';
+import Ticket from '../../components/Ticket.astro';
+import Fleche from '../../icons/fleche.astro';
 import { PILIERS, SITE, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -55,12 +57,12 @@ const jsonArticle = {
   jsonld={[jsonArticle]}
 >
   <article>
-    <header class="bg-white">
-      <div class="dv-container max-w-[820px] pb-8 pt-8 md:pt-12">
-        <p class="dv-overline dv-muted">
+    <header class="bg-grey">
+      <div class="dv-container max-w-[820px] pb-10 pt-6 md:pb-14 md:pt-10">
+        <p class="dv-overline">
           <a href={lien(`/ressources/#${d.theme}`)} class="hover:underline">{THEMES[d.theme]}</a>
         </p>
-        <h1 class="dv-h1 mt-4 !text-[34px] md:!text-[48px]">{d.titre}</h1>
+        <h1 class="dv-h1 mt-3 !text-[34px] md:mt-4 md:!text-[48px]">{d.titre}</h1>
         <p class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] dv-muted">
           <span>Par <a href={lien('/qui-sommes-nous/#tom')} class="font-semibold underline underline-offset-2">{d.auteur}</a>, fondateur de Deliview</span>
           <span aria-hidden="true">·</span>
@@ -81,16 +83,18 @@ const jsonArticle = {
       </div>
     </header>
 
-    <div class="dv-container max-w-[820px] pb-16">
-      <aside class="rounded-[16px] border-l-4 border-blue bg-grey p-6" aria-label="En bref">
-        <p class="dv-overline">En bref</p>
-        <p class="mt-2">{d.enBref}</p>
+    <div class="dv-container max-w-[820px] pb-16 pt-10 md:pt-14">
+      <aside aria-label="En bref">
+        <Ticket papier="px-6 pb-6 pt-5 md:px-8 md:pb-7 md:pt-6">
+          <p class="dv-ticket-entete"><span>En bref</span></p>
+          <p class="mt-3">{d.enBref}</p>
+        </Ticket>
       </aside>
 
       {
         sommaire.length >= 3 && (
-          <nav aria-labelledby="sommaire-titre" class="mt-10 rounded-[16px] border border-grey-2/15 p-6">
-            <p id="sommaire-titre" class="font-semibold">Sommaire</p>
+          <nav aria-labelledby="sommaire-titre" class="dv-card mt-10 p-6">
+            <p id="sommaire-titre" class="font-accent text-[19px] font-bold">Sommaire</p>
             <ol class="mt-3 list-decimal space-y-2 pl-5 text-[16px]">
               {sommaire.map((h) => (
                 <li>
@@ -118,14 +122,14 @@ const jsonArticle = {
         )
       }
 
-      <section class="mt-14 dv-card bg-grey p-6 md:p-8" aria-labelledby="pilier-titre">
-        <p class="dv-overline dv-muted">Dans Deliview</p>
+      <section class="dv-plateau mt-14 p-6 md:p-8" aria-labelledby="pilier-titre">
+        <p class="dv-overline">Dans Deliview</p>
         <h2 id="pilier-titre" class="dv-h3 mt-2">{pilier.titre}</h2>
         <p class="mt-2 dv-muted">{pilier.phrase}</p>
-        <div class="mt-5 flex flex-col gap-3 sm:flex-row">
+        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
           <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
-          <a href="#demo" class="inline-flex min-h-[52px] items-center gap-2 px-2 text-[19px] font-bold underline underline-offset-4" data-cta={`article-${article.id}`}>
-            Demander une démo <Icone nom="fleche" taille={20} />
+          <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
+            Demander une démo<Fleche taille={24} />
           </a>
         </div>
       </section>
@@ -147,14 +151,14 @@ const jsonArticle = {
 
   {
     autres.length > 0 && (
-      <section class="dv-section bg-white !pt-0" aria-labelledby="autres-articles">
+      <section class="dv-section bg-grey" aria-labelledby="autres-articles">
         <div class="dv-container">
           <h2 id="autres-articles" class="dv-h2">À lire aussi</h2>
           <ul class="mt-8 grid gap-6 md:grid-cols-3">
             {autres.map((a) => (
               <li class="dv-card flex flex-col p-6">
-                <p class="dv-overline dv-muted">{THEMES[a.data.theme]}</p>
-                <h3 class="dv-h3 mt-3">
+                <p class="dv-overline">{THEMES[a.data.theme]}</p>
+                <h3 class="mt-3 font-accent text-[20px] font-bold leading-[1.3]">
                   <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
                     {a.data.titre}
                   </a>

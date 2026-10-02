@@ -1,0 +1,9 @@
+---
+// Icône « alerte » : cercle et point d’exclamation (messages d’erreur des formulaires).
+// Tracé repris tel quel de la planche des composants validée (champ en erreur, maquettes « le passe », 2 octobre 2026).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M24.1 6.8c9.5 0 17.2 7.7 17.1 17.3-.1 9.4-7.8 17-17.3 17-9.4 0-17-7.7-16.9-17.2 0-9.5 7.7-17.1 17.1-17.1z" /><path class="b" d="M24 14.8l.2 11.6M24.2 32.8v.4" /></Trace>

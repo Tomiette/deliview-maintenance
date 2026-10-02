@@ -1,0 +1,66 @@
+---
+// Cadre téléphone : même trait que le cadre tablette, coins de 36 px, une fente en haut.
+// Il attend une vraie capture de l'app sur téléphone (compte d'essai, noms modifiés) : elle n'existe pas encore,
+// le composant n'est donc utilisé sur aucune page pour l'instant. Jamais de capture inventée ni de faux écran.
+import { lien, type CaptureApp } from '../lib/site';
+
+interface Props {
+  capture: CaptureApp;
+  sizes?: string;
+  class?: string;
+}
+
+const { capture, sizes = '250px', class: classe = '' } = Astro.props;
+const base = lien(capture.src);
+---
+
+<figure class={`dv-telephone ${classe}`}>
+  <span class="dv-telephone-trait" aria-hidden="true"></span>
+  <span class="dv-telephone-fente" aria-hidden="true"></span>
+  <img
+    src={`${base}-${capture.largeurs[capture.largeurs.length - 1]}.webp`}
+    srcset={capture.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
+    sizes={sizes}
+    alt={`${capture.alt} (données de démonstration)`}
+    width={capture.largeur}
+    height={capture.hauteur}
+    loading="lazy"
+    decoding="async"
+  />
+</figure>
+
+<style>
+  .dv-telephone {
+    position: relative;
+    width: 250px;
+    max-width: 100%;
+    margin: 0;
+    padding: 14px 12px 18px;
+    border: 2.2px solid var(--color-grey-2);
+    border-radius: 36px;
+    background: var(--color-white);
+  }
+  .dv-telephone-trait {
+    position: absolute;
+    inset: -5px -4px -5px -5px;
+    border: 1.2px solid color-mix(in srgb, var(--color-grey-2) 30%, transparent);
+    border-radius: 40px 38px 41px 39px;
+    rotate: 0.6deg;
+    pointer-events: none;
+  }
+  .dv-telephone-fente {
+    display: block;
+    width: 56px;
+    height: 5px;
+    margin: 0 auto 10px;
+    border-radius: 3px;
+    background: var(--color-grey-2);
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 22px;
+    border: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
+  }
+</style>

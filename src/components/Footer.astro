@@ -1,128 +1,126 @@
 ---
-// Pied de page (modèle demandé par Tom) : bandeau photo « Prêt à… » avec deux boutons, puis colonnes
-// Solution / Pour qui / Ressources sur fond blanc, slogan sous le logo.
-// La photo du bandeau est une illustration générée par IA (origine indiquée dans les mentions légales).
-// Contact : l'e-mail de Tom seulement (plus de numéro de téléphone sur le site, décision du 2 octobre 2026).
-import { IMAGES_IA, PILIERS, SITE, lien } from '../lib/site';
+// Pied de page (maquettes « le passe ») : logo, slogan, e-mail avec le sac de livraison dessiné, puis colonnes
+// Solution, Pour qui, Ressources (avec Qui sommes-nous et LinkedIn) et Légal. Plus de bandeau photo :
+// chaque page finit par son propre écran de démo. Contact : l'e-mail de Tom seulement, aucun numéro de téléphone.
+// Sur téléphone : bouton « Demander une démo » fixé en bas de l'écran une fois le haut de page dépassé.
+import SacLivraison from '../icons/sac-livraison.astro';
+import { PILIERS, SITE, lien } from '../lib/site';
 
-const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
-const surTarifs = chemin.startsWith('/tarifs');
 const annee = new Date().getFullYear();
-const photo = IMAGES_IA.livreur;
-const basePhoto = lien('/images/ia/livreur');
 
-const solution = [
-  ...PILIERS.map((p) => ({ libelle: p.surtitre, href: `/solution/${p.slug}/` })),
-  { libelle: 'Intégrations', href: '/integrations/' },
-  { libelle: 'Simulateur de rentabilité', href: '/simulateur/' },
-  { libelle: 'Tarifs', href: '/tarifs/' },
-];
-const pourQui = [
-  { libelle: 'Restaurants et snacks', href: '/#burgers-snacks' },
-  { libelle: 'Pizzerias', href: '/#pizzerias' },
-  { libelle: 'Dark kitchens', href: '/#dark-kitchens' },
-  { libelle: 'Chaînes de restaurants', href: '/#chaines' },
-];
-const ressources = [
-  { libelle: 'Articles et guides', href: lien('/ressources/') },
-  { libelle: 'Uber Eats et Deliveroo ensemble', href: lien('/integrations/uber-eats-et-deliveroo/') },
-  { libelle: 'Qui sommes-nous', href: lien('/qui-sommes-nous/') },
-  { libelle: 'Questions fréquentes', href: lien('/questions-frequentes/') },
-  { libelle: 'Demander une démo', href: lien('/demo/') },
-  { libelle: 'Se connecter', href: SITE.app },
+const colonnes: { id: string; titre: string; liens: { libelle: string; href: string }[] }[] = [
+  {
+    id: 'pied-solution',
+    titre: 'Solution',
+    liens: [
+      // Ordre des maquettes : prix et concurrence, carte et marge, réputation.
+      ...['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug) => {
+        const p = PILIERS.find((x) => x.slug === slug)!;
+        return { libelle: p.surtitre, href: lien(`/solution/${p.slug}/`) };
+      }),
+      { libelle: 'Intégrations', href: lien('/integrations/') },
+      { libelle: 'Simulateur de rentabilité', href: lien('/simulateur/') },
+      { libelle: 'Tarifs', href: lien('/tarifs/') },
+    ],
+  },
+  {
+    id: 'pied-pour-qui',
+    titre: 'Pour qui',
+    // Une seule phrase « Pour qui » sur l'accueil (section Le quotidien) : tous les profils y mènent.
+    liens: ['Pizzerias', 'Burgers et snacks', 'Dark kitchens', 'Chaînes de restaurants'].map((libelle) => ({ libelle, href: lien('/#pour-qui') })),
+  },
+  {
+    id: 'pied-ressources',
+    titre: 'Ressources',
+    liens: [
+      { libelle: 'Articles et guides', href: lien('/ressources/') },
+      { libelle: 'Questions fréquentes', href: lien('/questions-frequentes/') },
+      { libelle: 'Qui sommes-nous', href: lien('/qui-sommes-nous/') },
+      { libelle: 'Tom sur LinkedIn', href: SITE.linkedinTom },
+      { libelle: 'Deliview sur LinkedIn', href: SITE.linkedinEntreprise },
+      { libelle: 'Se connecter', href: SITE.app },
+    ],
+  },
+  {
+    id: 'pied-legal',
+    titre: 'Légal',
+    liens: [
+      { libelle: 'Mentions légales', href: lien('/mentions-legales/') },
+      { libelle: 'Confidentialité et cookies', href: lien('/confidentialite/') },
+      { libelle: 'CGV', href: lien('/cgv/') },
+      { libelle: 'Conditions d’utilisation', href: lien('/conditions-utilisation/') },
+    ],
+  },
 ];
 ---
 
-<section class="dv-bandeau-photo relative isolate overflow-hidden bg-grey-2" aria-labelledby="bandeau-photo-titre">
-  <img
-    src={`${basePhoto}-${photo.largeurs[photo.largeurs.length - 1]}.webp`}
-    srcset={photo.largeurs.map((w) => `${basePhoto}-${w}.webp ${w}w`).join(', ')}
-    sizes="100vw"
-    alt=""
-    width={photo.largeur}
-    height={photo.hauteur}
-    loading="lazy"
-    decoding="async"
-    class="absolute inset-0 -z-10 h-full w-full object-cover object-[65%_center]"
-  />
-  <div class="absolute inset-0 -z-10 bg-grey-2/60" aria-hidden="true"></div>
-  <div class="dv-container flex min-h-[380px] flex-col items-center justify-center py-20 text-center md:min-h-[440px]">
-    <h2 id="bandeau-photo-titre" class="dv-h2 max-w-[20ch] text-white md:!text-[48px]">Prêt à rendre votre activité livraison plus rentable&nbsp;?</h2>
-    <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-      <a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="bandeau-photo">Demander une démo</a>
-      {!surTarifs && <a href={lien('/tarifs/')} class="dv-btn dv-btn-blanc">Voir les tarifs</a>}
-    </div>
-  </div>
-</section>
-
-<footer class="bg-white">
-  <div class="dv-container py-14">
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
-      <div>
-        <img src={lien('/images/logo-deliview.png')} alt="Deliview" width="128" height="27" loading="lazy" />
-        <p class="mt-4 dv-titre text-[18px] leading-snug">{SITE.slogan}.</p>
-        <p class="mt-2 max-w-[36ch] text-[15px] leading-relaxed dv-muted">{SITE.definition}</p>
-        <p class="mt-4 text-[15px]">
-          <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
+<footer id="pied" class="border-t border-grey-2/15 bg-grey pb-9 pt-12 md:pt-[72px]">
+  <div class="dv-container">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-5 lg:gap-10">
+      <div class="col-span-2 md:col-span-3 lg:col-span-1">
+        <img src={lien('/images/logo-deliview.png')} alt="Deliview" width="128" height="27" loading="lazy" decoding="async" />
+        <p class="mt-4 max-w-[22ch] font-accent text-[17px] font-bold leading-[1.35] md:text-[18px]">{SITE.slogan}.</p>
+        <p class="mt-3 flex items-center gap-2.5 text-[16px] font-semibold">
+          <SacLivraison taille={32} />
+          <a href={`mailto:${SITE.email}`} class="dv-lien">{SITE.email}</a>
         </p>
       </div>
-      <nav aria-labelledby="pied-solution">
-        <p id="pied-solution" class="font-semibold">Solution</p>
-        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
-          {solution.map((x) => <li><a href={lien(x.href)} class="hover:underline">{x.libelle}</a></li>)}
-        </ul>
-      </nav>
-      <nav aria-labelledby="pied-pour-qui">
-        <p id="pied-pour-qui" class="font-semibold">Pour qui</p>
-        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
-          {pourQui.map((x) => <li><a href={lien(x.href)} class="hover:underline">{x.libelle}</a></li>)}
-        </ul>
-      </nav>
-      <nav aria-labelledby="pied-ressources">
-        <p id="pied-ressources" class="font-semibold">Ressources</p>
-        <ul class="mt-3 space-y-2 text-[15px] dv-muted">
-          {ressources.map((x) => <li><a href={x.href} class="hover:underline">{x.libelle}</a></li>)}
-          <li><a href={SITE.linkedinTom} class="hover:underline" rel="noopener">Tom sur LinkedIn</a></li>
-          <li><a href={SITE.linkedinEntreprise} class="hover:underline" rel="noopener">Deliview sur LinkedIn</a></li>
-        </ul>
-      </nav>
+      {
+        colonnes.map((c) => (
+          <nav aria-labelledby={c.id}>
+            <p id={c.id} class="text-[16px] font-bold leading-[1.3]">{c.titre}</p>
+            <ul class="mt-2 grid gap-0.5 text-[16px] leading-[1.4] md:mt-3.5 md:gap-1">
+              {c.liens.map((x) => (
+                <li>
+                  <a href={x.href} class="inline-flex min-h-11 items-center hover:underline" rel={x.href.startsWith('http') ? 'noopener' : undefined}>
+                    {x.libelle}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
     </div>
-    <div class="mt-12 flex flex-col gap-3 border-t border-grey-2/15 pt-6 text-[14px] dv-muted md:flex-row md:items-center md:justify-between">
-      <div class="space-y-1">
-        <p>© {annee} Deliview. {SITE.slogan}.</p>
-        <p>Uber Eats et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant.</p>
-      </div>
-      <ul class="flex flex-wrap gap-x-5 gap-y-2">
-        <li><a href={lien('/mentions-legales/')} class="underline underline-offset-2">Mentions légales</a></li>
-        <li><a href={lien('/confidentialite/')} class="underline underline-offset-2">Confidentialité et cookies</a></li>
-        <li><a href={lien('/cgv/')} class="underline underline-offset-2">CGV</a></li>
-        <li><a href={lien('/conditions-utilisation/')} class="underline underline-offset-2">Conditions d’utilisation</a></li>
-      </ul>
+    <div class="mt-10 flex flex-col gap-3 border-t border-grey-2/15 pt-6 text-[14px] leading-[1.5] dv-muted md:mt-14 md:flex-row md:justify-between">
+      <p>© {annee} Deliview. {SITE.slogan}.</p>
+      <p>Uber&nbsp;Eats et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant.</p>
     </div>
   </div>
 </footer>
 
-<div id="dv-barre-demo" class="fixed inset-x-0 bottom-0 z-30 hidden border-t border-grey-2/15 bg-white p-3 sm:hidden" aria-hidden="true">
+<div id="dv-barre-demo" class="fixed inset-x-0 bottom-0 z-30 hidden border-t border-grey-2/15 bg-white px-4 pb-4 pt-3 shadow-[0_-4px_16px_rgba(76,76,76,0.06)] sm:hidden" aria-hidden="true">
   <a href={lien('/demo/')} class="dv-btn dv-btn-plein w-full" data-cta="barre-mobile" tabindex="-1">Demander une démo</a>
 </div>
 
 <script>
-  // Téléphone : bouton démo collé en bas d'écran, seulement quand aucun autre bouton démo n'est visible.
+  // Téléphone : bouton démo fixé en bas de l'écran, seulement une fois le haut de page dépassé, et caché dès qu'un
+  // autre bouton démo plein, le formulaire de démo, la vidéo ou le pied de page sont à l'écran.
   const barre = document.getElementById('dv-barre-demo');
-  // La barre se cache aussi devant la vidéo et le bandeau photo, pour ne pas couvrir leurs boutons.
-  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .hv-cadre, .dv-bandeau-photo'));
+  const haut = document.querySelector('[data-haut-de-page]');
+  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .dv-form, .hv-cadre, #pied'));
   if (barre && 'IntersectionObserver' in window) {
     const visibles = new Set<Element>();
+    let hautDepasse = !haut;
     const maj = () => {
-      const montrer = visibles.size === 0 && window.scrollY > 400;
+      const montrer = hautDepasse && visibles.size === 0 && window.scrollY > 200;
       barre.classList.toggle('hidden', !montrer);
       barre.setAttribute('aria-hidden', String(!montrer));
       barre.querySelector('a')?.setAttribute('tabindex', montrer ? '0' : '-1');
     };
     const obs = new IntersectionObserver((entrees) => {
-      entrees.forEach((e) => (e.isIntersecting ? visibles.add(e.target) : visibles.delete(e.target)));
+      entrees.forEach((e) => {
+        if (e.target === haut) {
+          // Le haut de page est dépassé quand il est sorti de l'écran par le haut.
+          hautDepasse = !e.isIntersecting && e.boundingClientRect.top < 0;
+          return;
+        }
+        if (e.isIntersecting) visibles.add(e.target);
+        else visibles.delete(e.target);
+      });
       maj();
     });
+    if (haut) obs.observe(haut);
     cibles.forEach((c) => obs.observe(c));
     window.addEventListener('scroll', maj, { passive: true });
   }

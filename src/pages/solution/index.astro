@@ -1,13 +1,18 @@
 ---
-// Vue d'ensemble : les 3 piliers et toutes leurs fonctionnalités, disponibles aujourd'hui.
+// Vue d'ensemble (direction « le passe ») : les 3 piliers en cartes fonctionnalité (même gabarit que l'accueil),
+// puis toutes leurs fonctionnalités, disponibles aujourd'hui.
 import Base from '../../layouts/Base.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
+import CarteFonctionnalite from '../../components/CarteFonctionnalite.astro';
+import Reassurance from '../../components/Reassurance.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
-import Icone from '../../components/Icone.astro';
+import Fleche from '../../icons/fleche.astro';
+import { ICONES } from '../../lib/registre-icones';
 import { PILIERS, SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
   'Prix et concurrence, carte et marge, réputation : tout ce que Deliview fait pour votre restaurant sur Uber Eats et Deliveroo, plat par plat.';
+const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug) => PILIERS.find((p) => p.slug === slug)!);
 ---
 
 <Base
@@ -16,47 +21,59 @@ const description =
   ariane={[{ nom: 'Solution', chemin: '/solution/' }]}
   jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/solution/')]}
 >
-  <section class="bg-white">
-    <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
-      <p class="dv-overline dv-muted">Solution</p>
-      <h1 class="dv-h1 mt-4 max-w-[20ch]">Ce que Deliview fait pour votre restaurant</h1>
-      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a href="#demo" class="dv-btn dv-btn-plein" data-cta="solution" data-cta-principal>Demander une démo</a>
-        <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour">Voir les tarifs</a>
+  <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="solution-titre" data-haut-de-page>
+    <div class="dv-container">
+      <p class="dv-overline">Solution</p>
+      <h1 id="solution-titre" class="dv-h1 mt-3 max-w-[20ch] md:mt-4">Ce que Deliview fait pour votre restaurant</h1>
+      <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</p>
+      <div class="mt-7 md:mt-8">
+        <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="solution" data-cta-principal>Demander une démo</a>
       </div>
+      <Reassurance class="mt-[18px] md:mt-6" />
+      <ul class="mt-12 grid gap-5 md:mt-16 lg:grid-cols-3 lg:gap-6">
+        {ordre.map((p) => <CarteFonctionnalite icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} capture={p.carte.capture} href={`/solution/${p.slug}/`} niveau="h2" />)}
+      </ul>
     </div>
   </section>
 
   {
-    PILIERS.map((p, i) => (
-      <section class={`dv-section ${i % 2 === 0 ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`pilier-${p.slug}`}>
-        <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.4fr]">
-          <div>
-            <p class="dv-overline">{p.surtitre}</p>
-            <h2 id={`pilier-${p.slug}`} class="dv-h2 mt-3">{p.titre}</h2>
-            <p class="mt-4 dv-muted dv-texte">{p.description}</p>
-            <a href={lien(`/solution/${p.slug}/`)} class="mt-6 inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
-              Voir {p.surtitre.toLowerCase()} en détail <Icone nom="fleche" taille={20} />
-            </a>
+    ordre.map((p, i) => {
+      const Icone = ICONES[p.icone];
+      return (
+        <section class={`dv-section ${i % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby={`pilier-${p.slug}`}>
+          <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+            <div>
+              <p class="flex items-center gap-3">
+                <Icone taille={48} />
+                <span class="dv-overline">{p.surtitre}</span>
+              </p>
+              <h2 id={`pilier-${p.slug}`} class="dv-h2 mt-4">{p.titre}</h2>
+              <p class="mt-4 dv-muted dv-texte">{p.description}</p>
+              <a href={lien(`/solution/${p.slug}/`)} class="dv-lien-fort mt-4">
+                Voir {p.surtitre.toLowerCase()} en détail<Fleche taille={24} />
+              </a>
+            </div>
+            <ul class="grid gap-4 sm:grid-cols-2">
+              {p.fonctionnalites.map((f) => {
+                const I = ICONES[f.icone];
+                return (
+                  <li class="dv-card p-5 md:p-6">
+                    <I taille={32} />
+                    <h3 class="mt-3 font-accent text-[19px] font-bold leading-snug md:text-[20px]">
+                      <a href={lien(`/solution/${p.slug}/#${f.id}`)} class="hover:underline">{f.nom}</a>
+                    </h3>
+                    <p class="mt-2 text-[16px] dv-muted">{f.benefice}</p>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
-          <ul class="grid gap-4 sm:grid-cols-2">
-            {p.fonctionnalites.map((f) => (
-              <li class="dv-card p-5">
-                <h3 class="flex items-center gap-2 font-semibold leading-snug">
-                  <span class="text-blue"><Icone nom={f.icone} taille={20} /></span>
-                  <a href={lien(`/solution/${p.slug}/#${f.id}`)} class="hover:underline">{f.nom}</a>
-                </h3>
-                <p class="mt-2 text-[16px] dv-muted">{f.benefice}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    ))
+        </section>
+      );
+    })
   }
 
-  <BandeauPlateformes />
+  <BandeauPlateformes fond="gris" />
 
   <SectionDemo section="solution-formulaire" />
 </Base>

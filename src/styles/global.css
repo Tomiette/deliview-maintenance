@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* Charte Deliview : 5 couleurs, pas une de plus (les opacités passent par bg-blue/10, etc.). */
+/* Direction « le passe » (cahier du 2 octobre 2026) : 5 couleurs, pas une de plus.
+   Bleu 1 ou 2 à 8-20 % pour les fonds décoratifs ; Gris 2 en opacité pour les textes secondaires (80 % au moins),
+   les bordures et les champs (70 % au moins). Aucun dégradé, aucun effet de verre, aucune ombre forte. */
 @theme {
   --color-*: initial;
   --color-blue: #5282ff;
@@ -16,6 +18,17 @@
   --radius-card: 16px;
   --radius-btn: 12px;
   --shadow-card: 0 4px 16px rgba(76, 76, 76, 0.06);
+}
+
+/* Noms repris du cahier des charges (icônes et marqueur : var(--dv-blue)). */
+:root {
+  --dv-blue: var(--color-blue);
+  --dv-blue-2: var(--color-blue-2);
+  --dv-grey: var(--color-grey);
+  --dv-white: var(--color-white);
+  --dv-grey-2: var(--color-grey-2);
+  /* Ombre des tickets : un liseré très fin, puis une ombre très légère. */
+  --dv-ombre-ticket: drop-shadow(0 0 0.7px rgba(76, 76, 76, 0.55)) drop-shadow(0 12px 20px rgba(76, 76, 76, 0.09));
 }
 
 @font-face {
@@ -58,7 +71,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 88px;
+    scroll-padding-top: 92px;
   }
   body {
     background: var(--color-white);
@@ -73,22 +86,32 @@
       font-size: 18px;
     }
   }
-  /* Focus clavier visible partout : contour Blue 1 de 2 px, décalé de 2 px. */
+  /* Titres en Aspekta (police du logo) ; texte, boutons et menus en Inter. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-accent);
+    font-weight: 700;
+  }
+  /* Focus clavier visible partout : contour Bleu 1 de 2 px, décalé de 2 px. */
   :focus-visible {
     outline: 2px solid var(--color-blue);
     outline-offset: 2px;
     border-radius: 4px;
   }
-  /* Numéros de téléphone : jamais coupés en fin de ligne. */
-  a[href^="tel:"] {
-    white-space: nowrap;
-  }
-  /* Liens dans le texte : Grey 2 souligné (Blue 1 réservé aux liens isolés en 19 px gras). */
+  /* Liens dans le texte : Gris 2 soulignés (Bleu 1 réservé aux liens isolés en 19 px gras). */
   .prose-dv a,
   p a {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
+  sup {
+    font-size: 0.6em;
+    line-height: 0;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -120,42 +143,37 @@
   }
   @media (min-width: 768px) {
     .dv-section {
-      padding-block: 96px;
+      padding-block: 104px;
     }
   }
 
-  /* Titres en Aspekta (police du logo, géométrique) ; texte courant, boutons et menus en Inter. */
-  .dv-h1,
-  .dv-h2,
-  .dv-h3,
-  .dv-titre {
-    font-family: var(--font-accent);
-  }
+  /* Typographie : titres Aspekta 700, sur-titres Aspekta 600 en capitales, texte Inter. */
   .dv-h1 {
+    font-family: var(--font-accent);
     font-weight: 700;
     font-size: 36px;
-    line-height: 1.12;
-    letter-spacing: -0.02em;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
   }
   .dv-h2 {
+    font-family: var(--font-accent);
     font-weight: 700;
     font-size: 28px;
-    line-height: 1.18;
-    letter-spacing: -0.012em;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
   .dv-h3 {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 1.3;
-    letter-spacing: 0;
-  }
-  .dv-titre {
+    font-family: var(--font-accent);
     font-weight: 700;
-    letter-spacing: -0.015em;
+    font-size: 20px;
+    line-height: 1.25;
   }
   @media (min-width: 768px) {
     .dv-h1 {
       font-size: 56px;
+      line-height: 1.08;
     }
     .dv-h2 {
       font-size: 40px;
@@ -164,25 +182,33 @@
       font-size: 24px;
     }
   }
+  .dv-titre {
+    font-family: var(--font-accent);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
   .dv-lead {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.55;
-    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+    color: color-mix(in srgb, var(--color-grey-2) 90%, transparent);
   }
   @media (min-width: 768px) {
     .dv-lead {
-      font-size: 20px;
+      font-size: 19px;
+      line-height: 1.6;
     }
   }
   .dv-muted {
-    color: color-mix(in srgb, var(--color-grey-2) 82%, transparent);
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
   .dv-overline {
     font-family: var(--font-accent);
     font-weight: 600;
     font-size: 13px;
+    line-height: 1.3;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
   @media (min-width: 768px) {
     .dv-overline {
@@ -204,7 +230,8 @@
     max-width: 70ch;
   }
 
-  /* Boutons : 19 px gras minimum (blanc sur Blue 1 n'est lisible qu'en grand texte), 52 px de haut. */
+  /* Boutons, une version chacun. Principal : Bleu 1, texte blanc Inter 700 19 px (seul format lisible en blanc
+     sur Bleu 1), rayon 12, 52 px de haut ; un seul par écran. Secondaire : contour et texte Gris 2. */
   .dv-btn {
     display: inline-flex;
     align-items: center;
@@ -213,44 +240,65 @@
     min-height: 52px;
     padding: 12px 24px;
     border-radius: var(--radius-btn);
+    font-family: var(--font-sans);
     font-size: 19px;
     font-weight: 700;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
     cursor: pointer;
+  }
+  .dv-btn:hover {
+    text-decoration: none;
   }
   .dv-btn-plein {
     background: var(--color-blue);
     color: var(--color-white);
-    border: 2px solid var(--color-blue);
+    border: 1.5px solid var(--color-blue);
   }
   .dv-btn-plein:hover {
     background: var(--color-blue-2);
     border-color: var(--color-blue-2);
   }
   .dv-btn-contour {
-    background: transparent;
-    color: var(--color-grey-2);
-    border: 2px solid color-mix(in srgb, var(--color-grey-2) 25%, transparent);
-  }
-  .dv-btn-contour:hover {
-    border-color: var(--color-grey-2);
-  }
-  .dv-btn-blanc {
     background: var(--color-white);
     color: var(--color-grey-2);
-    border: 2px solid var(--color-white);
+    border: 1.5px solid var(--color-grey-2);
   }
-  .dv-btn-blanc:hover {
-    background: var(--color-grey);
-    border-color: var(--color-grey);
+  .dv-btn-contour:hover {
+    background: color-mix(in srgb, var(--color-blue) 8%, var(--color-white));
   }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {
     opacity: 0.6;
     cursor: wait;
+  }
+  /* Lien isolé : Bleu 1, Inter 700 19 px, avec la flèche dessinée. */
+  .dv-lien-fort {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 48px;
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-blue);
+    text-decoration: none;
+  }
+  .dv-lien-fort:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  /* Lien souligné en Gris 2 (e-mail, LinkedIn…), cible de 44 px. */
+  .dv-lien {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
   .dv-card {
@@ -258,35 +306,451 @@
     border: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
     border-radius: var(--radius-card);
   }
-  .dv-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 2px 10px;
-    border-radius: 999px;
-    font-size: 13px;
+  .dv-plateau {
+    background: var(--color-grey);
+    border-radius: 24px;
+  }
+
+  /* Icônes dessinées (src/icons/) : trait en couleur du texte, une touche Bleu 1, remplissage Bleu 1 léger. */
+  .dv-ic {
+    flex-shrink: 0;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .dv-ic .b {
+    stroke: var(--color-blue);
+  }
+  .dv-ic .r12 {
+    fill: color-mix(in srgb, var(--color-blue) 12%, transparent);
+  }
+  .dv-ic .r15 {
+    fill: color-mix(in srgb, var(--color-blue) 15%, transparent);
+  }
+
+  /* Ticket : papier blanc, bord dentelé (masque SVG, sans couleur), ombre très légère, chiffres alignés. */
+  .dv-ticket {
+    position: relative;
+    filter: var(--dv-ombre-ticket);
+  }
+  .dv-ticket::before,
+  .dv-ticket-bas::after {
+    content: "";
+    display: block;
+    height: 8px;
+    background: var(--color-white);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 8V4L6 0l6 4v4z'/%3E%3C/svg%3E") 0 0 / 12px 8px repeat-x;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 8V4L6 0l6 4v4z'/%3E%3C/svg%3E") 0 0 / 12px 8px repeat-x;
+  }
+  .dv-ticket-bas::before {
+    content: none;
+  }
+  .dv-ticket-bas::after {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0v4l6 4 6-4V0z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0v4l6 4 6-4V0z'/%3E%3C/svg%3E");
+  }
+  .dv-ticket-papier {
+    background: var(--color-white);
+    border-radius: 0 0 8px 8px;
+    font-variant-numeric: tabular-nums;
+  }
+  .dv-ticket-bas .dv-ticket-papier {
+    border-radius: 0;
+  }
+  /* Pointillés du ticket. */
+  .dv-pointilles {
+    border-top: 1.5px dashed color-mix(in srgb, var(--color-grey-2) 30%, transparent);
+  }
+  .dv-ticket-entete {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: var(--font-accent);
     font-weight: 600;
-    line-height: 1.6;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  @media (min-width: 768px) {
+    .dv-ticket-entete {
+      font-size: 13px;
+    }
+  }
+
+  /* Ticket de comparaison (TicketComparaison.astro). */
+  .dv-tc {
+    width: 100%;
+    max-width: 320px;
+  }
+  .dv-tc .dv-tc-papier {
+    padding: 16px 20px 20px;
+  }
+  .dv-tc-plat {
+    margin-top: 10px;
+    font-family: var(--font-accent);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  .dv-tc-sep {
+    margin-block: 14px;
+  }
+  .dv-tc-lignes {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 12px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+  .dv-tc-lignes dd,
+  .dv-tc-ecart dd {
+    font-weight: 700;
+    text-align: right;
     white-space: nowrap;
   }
-  .dv-badge-dispo {
-    background: color-mix(in srgb, var(--color-blue) 12%, transparent);
-    color: var(--color-grey-2);
+  .dv-tc-ecart {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
   }
-  .dv-badge-bientot {
-    background: var(--color-grey);
-    color: var(--color-grey-2);
-    border: 1px dashed color-mix(in srgb, var(--color-grey-2) 35%, transparent);
+  .dv-tc-ecart dt {
+    font-size: 16px;
+    font-weight: 600;
   }
-  /* Erreurs de formulaire : texte explicite + icône + bordure épaisse, jamais la couleur seule (charte sans rouge). */
-  .dv-erreur {
-    padding-left: 26px;
-    background: no-repeat left 2px / 18px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234c4c4c' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 7v6M12 16.5v.5'/%3E%3C/svg%3E");
+  .dv-tc-chiffre {
+    position: relative;
+    display: inline-block;
+    padding: 4px 10px;
+    font-family: var(--font-accent);
+    font-size: 32px;
+    line-height: 1;
   }
-  [aria-invalid="true"] {
+  .dv-tc-note {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-tc-coupe {
+    margin: 16px -20px 0;
+    border-top: 2px dashed color-mix(in srgb, var(--color-grey-2) 35%, transparent);
+  }
+  .dv-tc-propose {
+    margin-top: 14px;
+  }
+  .dv-tc-lignes-propose {
+    margin-top: 10px;
+  }
+
+  /* Format du haut de page : posé sur la tablette, un peu plus petit. */
+  .dv-tc-haut-de-page {
+    max-width: 264px;
+  }
+  .dv-tc-haut-de-page .dv-tc-papier {
+    padding: 14px 18px 16px;
+  }
+  .dv-tc-haut-de-page .dv-tc-plat {
+    margin-top: 8px;
+    font-size: 23px;
+  }
+  .dv-tc-haut-de-page .dv-tc-sep {
+    margin-block: 12px;
+  }
+  .dv-tc-haut-de-page .dv-tc-lignes {
+    gap: 6px 12px;
+    font-size: 15px;
+  }
+  .dv-tc-haut-de-page .dv-tc-ecart dt {
+    font-size: 15px;
+  }
+  .dv-tc-haut-de-page .dv-tc-chiffre {
+    font-size: 28px;
+  }
+  .dv-tc-haut-de-page .dv-tc-chiffre .dv-mq {
+    --d: 11px;
+  }
+  .dv-tc-haut-de-page .dv-tc-note {
+    margin-top: 12px;
+    font-size: 13px;
+  }
+
+  @media (min-width: 768px) {
+    .dv-tc-standard {
+      max-width: 360px;
+    }
+    .dv-tc-standard .dv-tc-papier {
+      padding: 20px 26px 24px;
+    }
+    .dv-tc-standard .dv-tc-plat {
+      margin-top: 12px;
+      font-size: 30px;
+    }
+    .dv-tc-standard .dv-tc-sep {
+      margin-block: 16px;
+    }
+    .dv-tc-standard .dv-tc-lignes {
+      gap: 10px 16px;
+      font-size: 17px;
+    }
+    .dv-tc-standard .dv-tc-ecart dt {
+      font-size: 17px;
+    }
+    .dv-tc-standard .dv-tc-chiffre {
+      padding: 4px 12px;
+      font-size: 38px;
+    }
+    .dv-tc-standard .dv-tc-chiffre .dv-mq {
+      --d: 13.5px;
+    }
+    .dv-tc-standard .dv-tc-note {
+      margin-top: 18px;
+      font-size: 15px;
+    }
+    .dv-tc-standard .dv-tc-coupe {
+      margin: 20px -26px 0;
+    }
+    .dv-tc-standard .dv-tc-propose {
+      margin-top: 18px;
+    }
+    .dv-tc-standard .dv-tc-lignes-propose {
+      margin-top: 12px;
+    }
+    .dv-tc-haut-de-page {
+      max-width: 300px;
+    }
+    .dv-tc-haut-de-page .dv-tc-papier {
+      padding: 16px 22px 20px;
+    }
+    .dv-tc-haut-de-page .dv-tc-plat {
+      margin-top: 10px;
+      font-size: 26px;
+    }
+    .dv-tc-haut-de-page .dv-tc-sep {
+      margin-block: 14px;
+    }
+    .dv-tc-haut-de-page .dv-tc-lignes {
+      gap: 8px 16px;
+      font-size: 16px;
+    }
+    .dv-tc-haut-de-page .dv-tc-ecart dt {
+      font-size: 16px;
+    }
+    .dv-tc-haut-de-page .dv-tc-chiffre {
+      font-size: 32px;
+    }
+    .dv-tc-haut-de-page .dv-tc-chiffre .dv-mq {
+      --d: 12px;
+    }
+    .dv-tc-haut-de-page .dv-tc-note {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+  }
+
+  /* Barre à bons (le quotidien) : la barre du passe, les constats accrochés dessous. */
+  .dv-barre {
+    position: relative;
+    height: 5px;
+    margin-inline: 4px;
+    border-radius: 3px;
+    background: var(--color-grey-2);
+  }
+  .dv-barre::before,
+  .dv-barre::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    width: 7px;
+    height: 17px;
+    border-radius: 3px;
+    background: var(--color-grey-2);
+  }
+  .dv-barre::before {
+    left: -4px;
+  }
+  .dv-barre::after {
+    right: -4px;
+  }
+  @media (min-width: 768px) {
+    .dv-barre {
+      height: 6px;
+    }
+    .dv-barre::before,
+    .dv-barre::after {
+      top: -7px;
+      width: 8px;
+      height: 20px;
+    }
+  }
+
+  /* Marqueur : cercle, flèche ou soulignement en Bleu 1, trait de 3 px. Visible par défaut ;
+     le script de mouvement le trace une fois à l'apparition. */
+  .dv-mq {
+    position: absolute;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .dv-mq path {
+    fill: none;
+    stroke: var(--color-blue);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .dv-mq-cercle {
+    --d: 12px;
+    left: calc(var(--d) * -1);
+    top: calc(var(--d) * -1);
+    width: calc(100% + var(--d) * 2);
+    height: calc(100% + var(--d) * 2);
+  }
+  .dv-mq-soulignement {
+    left: -4px;
+    bottom: -10px;
+    width: calc(100% + 10px);
+    height: 12px;
+  }
+  /* Annotation au marqueur : jamais de police manuscrite, Inter 700 de 19 px au moins. */
+  .dv-annotation {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-blue);
+  }
+
+  /* Cadre tablette : trait Gris 2 de 2,2 px et second trait léger décalé, comme dessiné à la main. */
+  .dv-tablette {
+    position: relative;
+    margin: 0;
+    padding: 10px;
+    border: 2.2px solid var(--color-grey-2);
+    border-radius: 22px;
+    background: var(--color-white);
+  }
+  .dv-tablette-trait {
+    position: absolute;
+    inset: -5px -4px -4px -5px;
+    border: 1.2px solid color-mix(in srgb, var(--color-grey-2) 30%, transparent);
+    border-radius: 26px 24px 25px 24px;
+    rotate: -0.5deg;
+    pointer-events: none;
+  }
+  .dv-tablette-camera {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background: var(--color-grey-2);
+  }
+  .dv-tablette img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
+  }
+  @media (min-width: 768px) {
+    .dv-tablette {
+      padding: 14px;
+      border-radius: 28px;
+    }
+    .dv-tablette-trait {
+      inset: -6px -5px -5px -6px;
+      border-radius: 33px 30px 32px 31px;
+    }
+    .dv-tablette-camera {
+      top: 5px;
+      width: 5px;
+      height: 5px;
+    }
+    .dv-tablette img {
+      border-radius: 12px;
+    }
+  }
+  .dv-tablette-compacte,
+  .dv-tablette-compacte.dv-tablette {
+    padding: 9px;
     border-width: 2px;
-    border-color: var(--color-grey-2);
-    border-style: dashed;
+    border-radius: 18px;
+  }
+  .dv-tablette-compacte .dv-tablette-camera {
+    top: 4px;
+    width: 4px;
+    height: 4px;
+  }
+  .dv-tablette-compacte img {
+    border-radius: 9px;
+  }
+
+  /* Champs de formulaire : libellé visible, 52 px de haut, bordure Gris 2 à 70 %. */
+  .dv-champ {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border: 1.5px solid color-mix(in srgb, var(--color-grey-2) 70%, transparent);
+    border-radius: 12px;
+    background: var(--color-white);
+    color: var(--color-grey-2);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .dv-champ {
+      font-size: 18px;
+    }
+  }
+  .dv-champ:focus,
+  .dv-champ:focus-visible {
+    outline: none;
+    border: 2px solid var(--color-blue);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue) 18%, transparent);
+  }
+  select.dv-champ {
+    appearance: none;
+    padding-right: 48px;
+  }
+  .dv-champ[aria-invalid="true"] {
+    border: 2px solid var(--color-grey-2);
+  }
+  /* Message d'erreur : texte explicite et icône alerte dessinée (cercle Gris 2, signe Bleu 1), jamais la couleur seule. */
+  .dv-erreur {
+    position: relative;
+    padding-left: 32px;
+    min-height: 24px;
+  }
+  .dv-erreur::before,
+  .dv-erreur::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    -webkit-mask-size: 24px 24px;
+    mask-size: 24px 24px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .dv-erreur::before {
+    background: var(--color-grey-2);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M24.1 6.8c9.5 0 17.2 7.7 17.1 17.3-.1 9.4-7.8 17-17.3 17-9.4 0-17-7.7-16.9-17.2 0-9.5 7.7-17.1 17.1-17.1z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M24.1 6.8c9.5 0 17.2 7.7 17.1 17.3-.1 9.4-7.8 17-17.3 17-9.4 0-17-7.7-16.9-17.2 0-9.5 7.7-17.1 17.1-17.1z'/%3E%3C/svg%3E");
+  }
+  .dv-erreur::after {
+    background: var(--color-blue);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M24 14.8l.2 11.6M24.2 32.8v.4'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' fill='none' stroke='currentColor' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M24 14.8l.2 11.6M24.2 32.8v.4'/%3E%3C/svg%3E");
   }
   /* Messages d'erreur du formulaire sans JavaScript (la fonction renvoie vers /demo/#erreur-…). */
   .dv-erreur-ancre {
@@ -304,6 +768,23 @@
     font-weight: 600;
   }
 
+  /* Questions fréquentes : ouvertes d'un clic, signe plus ou moins dessiné. */
+  .dv-faq summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .dv-faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .dv-faq .dv-faq-moins,
+  .dv-faq details[open] .dv-faq-plus {
+    display: none;
+  }
+  .dv-faq details[open] .dv-faq-moins {
+    display: block;
+  }
+
+  /* Textes longs (articles, pages légales). */
   .prose-dv h2 {
     font-family: var(--font-accent);
     font-weight: 700;
@@ -314,7 +795,7 @@
   }
   .prose-dv h3 {
     font-family: var(--font-accent);
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20px;
     margin-top: 32px;
     margin-bottom: 8px;
@@ -345,9 +826,12 @@
     margin-top: 6px;
   }
   .prose-dv .dv-tableau {
+    position: relative;
     margin-top: 16px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
+    border-radius: 16px;
   }
   .prose-dv .dv-tableau table {
     margin-top: 0;
@@ -357,16 +841,17 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 16px;
+    font-variant-numeric: tabular-nums;
   }
   .prose-dv th,
   .prose-dv td {
     text-align: left;
-    padding: 10px 12px;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
+    padding: 12px 14px;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
     vertical-align: top;
   }
   .prose-dv th {
-    font-weight: 600;
+    font-weight: 700;
     background: var(--color-grey);
   }
   .prose-dv blockquote {
@@ -378,5 +863,238 @@
   }
   .prose-dv .source {
     font-size: 15px;
+  }
+}
+
+/* Mouvement discret : le ticket glisse de 12 px vers le haut à l'apparition, une fois.
+   La classe dv-mouvement n'est posée que si le visiteur n'a pas demandé moins d'animations ;
+   sans elle (ou sans JavaScript), tout est affiché dans son état final. */
+@keyframes dv-glisse {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes dv-apparait {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.dv-mouvement [data-apparition="arrivee"] {
+  animation: dv-glisse 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) 0.15s both;
+}
+.dv-mouvement [data-apparition=""] {
+  transition: opacity 0.5s ease-out, translate 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.dv-mouvement .dv-attente {
+  opacity: 0;
+  translate: 0 12px;
+}
+/* Marqueur du haut de page : caché jusqu'à ce que le script le trace ; s'il ne tourne pas, il apparaît seul. */
+.dv-mouvement [data-marqueur="arrivee"]:not(.dv-trace-pret) path {
+  animation: dv-apparait 0.01s 2.5s both;
+}
+@media print {
+  .dv-attente {
+    opacity: 1 !important;
+    translate: none !important;
+  }
+}
+
+/* Accueil (maquettes « le passe ») : placements propres à l'ordinateur et au téléphone. */
+@layer components {
+  /* Haut de page : le ticket posé sur la tablette, en bas à droite sur téléphone, en bas à gauche sur ordinateur. */
+  .dv-hero-visuel {
+    position: relative;
+    padding-bottom: 236px;
+  }
+  .dv-hero-ticket {
+    position: absolute;
+    right: 6px;
+    bottom: 0;
+    width: 264px;
+    rotate: -3deg;
+  }
+  @media (min-width: 768px) {
+    .dv-hero-visuel {
+      max-width: 640px;
+      padding: 0 0 72px 56px;
+    }
+    .dv-hero-ticket {
+      right: auto;
+      left: 0;
+      width: 300px;
+      rotate: -4deg;
+    }
+  }
+  @media (min-width: 1024px) {
+    .dv-hero-visuel {
+      max-width: none;
+    }
+  }
+
+  /* Le quotidien : texte et dessin côte à côte, la barre à bons dessous, la phrase « Pour qui » sous le texte. */
+  .dv-quotidien {
+    display: grid;
+    grid-template-areas: "intro" "dessin" "bons" "cible";
+    row-gap: 28px;
+  }
+  .dv-quotidien-intro {
+    grid-area: intro;
+  }
+  .dv-quotidien-dessin {
+    grid-area: dessin;
+  }
+  .dv-quotidien-bons {
+    grid-area: bons;
+    margin-top: 12px;
+  }
+  .dv-quotidien-cible {
+    grid-area: cible;
+    margin-top: 12px;
+  }
+  @media (min-width: 1024px) {
+    .dv-quotidien {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: "intro dessin" "cible dessin" "bons bons";
+      column-gap: 56px;
+      row-gap: 0;
+      align-items: center;
+    }
+    .dv-quotidien-intro {
+      align-self: end;
+    }
+    .dv-quotidien-cible {
+      align-self: start;
+      margin-top: 28px;
+    }
+    .dv-quotidien-bons {
+      margin-top: 72px;
+    }
+  }
+
+  /* La bascule : l'annotation et sa flèche au-dessus de la tablette. */
+  .dv-bascule {
+    display: grid;
+    grid-template-areas: "texte" "tablette" "note";
+    row-gap: 32px;
+  }
+  .dv-bascule-texte {
+    grid-area: texte;
+  }
+  .dv-bascule-tablette {
+    grid-area: tablette;
+  }
+  .dv-bascule-note {
+    grid-area: note;
+    margin-top: -12px;
+  }
+  .dv-bascule-fleche {
+    top: 14px;
+    right: 56px;
+    width: 64px;
+    height: 54px;
+  }
+  @media (min-width: 768px) {
+    .dv-bascule-fleche {
+      top: 34px;
+      right: auto;
+      left: 64px;
+      width: 84px;
+      height: 62px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .dv-bascule {
+      grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+      grid-template-areas: "texte tablette" "note tablette";
+      column-gap: 56px;
+      row-gap: 16px;
+      align-items: center;
+    }
+    .dv-bascule-texte {
+      align-self: end;
+    }
+    .dv-bascule-note {
+      align-self: start;
+      margin-top: 0;
+    }
+  }
+
+  /* Exemple réel : le texte à gauche, le ticket sur son plateau à droite, le bouton du simulateur sous le texte. */
+  .dv-exemple {
+    display: grid;
+    grid-template-areas: "intro" "plateau" "suite";
+    row-gap: 28px;
+  }
+  .dv-exemple-intro {
+    grid-area: intro;
+  }
+  .dv-exemple-plateau {
+    grid-area: plateau;
+  }
+  .dv-exemple-suite {
+    grid-area: suite;
+    margin-top: -4px;
+  }
+  @media (max-width: 767px) {
+    .dv-exemple-plateau {
+      border-radius: 20px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .dv-exemple {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: "intro plateau" "suite plateau";
+      column-gap: 56px;
+      row-gap: 16px;
+      align-items: center;
+    }
+    .dv-exemple-intro {
+      align-self: end;
+    }
+    .dv-exemple-suite {
+      align-self: start;
+      margin-top: 0;
+    }
+  }
+}
+
+@layer components {
+  /* Tarifs : la flèche du marqueur pointe de l'annotation « Recommandé » vers le ticket Pro. */
+  .dv-tarifs-fleche {
+    top: -50px;
+    right: 120px;
+    width: 64px;
+    height: 54px;
+    scale: -1 1;
+  }
+}
+
+@layer components {
+  /* Simulateur : gros champs, faciles à remplir au doigt. */
+  .dv-sim-champ {
+    width: 150px;
+    height: 56px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  @media (min-width: 768px) {
+    .dv-sim-champ {
+      width: 170px;
+    }
+  }
+  .dv-sim-detail summary {
+    list-style: none;
+  }
+  .dv-sim-detail summary::-webkit-details-marker {
+    display: none;
   }
 }

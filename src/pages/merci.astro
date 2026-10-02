@@ -1,7 +1,17 @@
 ---
 // Confirmation après l'envoi du formulaire sans JavaScript (la fonction « lead » redirige ici).
+// Direction « le passe » : le bon de démo est noté, Tom rappelle sous 24 h.
 import Base from '../layouts/Base.astro';
+import Ticket from '../components/Ticket.astro';
+import Coche from '../icons/coche.astro';
+import Fleche from '../icons/fleche.astro';
 import { SITE, lien } from '../lib/site';
+
+const suite = [
+  { libelle: 'Voir comment Deliview compare vos prix', href: '/solution/prix-et-concurrence/' },
+  { libelle: 'Lire nos guides sur la livraison', href: '/ressources/' },
+  { libelle: 'Revenir à l’accueil', href: '/' },
+];
 ---
 
 <Base
@@ -9,18 +19,19 @@ import { SITE, lien } from '../lib/site';
   description="Votre demande de démo Deliview est bien arrivée. Tom vous rappelle sous 24 h pour fixer un créneau de 15 minutes, sur votre propre restaurant."
   noindex
 >
-  <section class="dv-section bg-white">
+  <section class="bg-grey py-16 md:py-[104px]" aria-labelledby="merci-titre">
     <div class="dv-container max-w-[760px]">
-      <p class="dv-overline dv-muted">Demande reçue</p>
-      <h1 class="dv-h1 mt-4">C’est noté. Tom vous rappelle sous 24&nbsp;h.</h1>
-      <p class="dv-lead mt-5">Il vous appelle pour fixer votre démo de 15&nbsp;minutes, faite sur votre propre restaurant.</p>
-      <p class="mt-4">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
-      {SITE.rendezVous && <a href={SITE.rendezVous} class="dv-btn dv-btn-plein mt-8" rel="noopener">Choisir mon créneau maintenant</a>}
-      <h2 class="dv-h3 mt-12">En attendant</h2>
-      <ul class="mt-4 space-y-3">
-        <li><a href={lien('/solution/prix-et-concurrence/')} class="font-semibold underline underline-offset-2">Voir comment Deliview compare vos prix</a></li>
-        <li><a href={lien('/ressources/')} class="font-semibold underline underline-offset-2">Lire nos guides sur la livraison</a></li>
-        <li><a href={lien('/')} class="font-semibold underline underline-offset-2">Revenir à l’accueil</a></li>
+      <Ticket inclinaison={-1} papier="px-6 pb-8 pt-6 md:px-10 md:pb-10 md:pt-8">
+        <p class="dv-ticket-entete"><span>Bon de démo</span><span>Reçu</span></p>
+        <p class="mt-5 flex items-center gap-3 dv-overline"><Coche taille={32} />Demande reçue</p>
+        <h1 id="merci-titre" class="dv-h1 mt-3">C’est noté. Tom vous rappelle sous 24&nbsp;h.</h1>
+        <p class="dv-lead mt-5">Il vous appelle pour fixer votre démo de 15&nbsp;minutes, faite sur votre propre restaurant.</p>
+        <p class="mt-4">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
+        {SITE.rendezVous && <a href={SITE.rendezVous} class="dv-btn dv-btn-plein mt-8" rel="noopener">Choisir mon créneau maintenant</a>}
+      </Ticket>
+      <h2 class="dv-h3 mt-14">En attendant</h2>
+      <ul class="mt-3 grid gap-1">
+        {suite.map((x) => <li><a href={lien(x.href)} class="dv-lien-fort">{x.libelle}<Fleche taille={24} /></a></li>)}
       </ul>
     </div>
   </section>

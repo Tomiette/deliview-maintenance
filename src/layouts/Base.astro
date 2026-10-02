@@ -1,5 +1,5 @@
 ---
-// Gabarit commun : balises, données structurées, en-tête, pied de page.
+// Gabarit commun : balises, données structurées, en-tête, pied de page, mouvement discret (direction « le passe »).
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -19,9 +19,11 @@ interface Props {
   noindex?: boolean;
   // Image principale du haut de page (LCP), préchargée : chemin du site, sans la base.
   precharger?: string;
+  // Fond du haut de page (le fil d'Ariane le prolonge) : papier gris par défaut, comme les maquettes.
+  fondHaut?: 'gris' | 'blanc';
 }
 
-const { title, description, ariane = [], jsonld = [], ogType = 'website', noindex = false, precharger } = Astro.props;
+const { title, description, ariane = [], jsonld = [], ogType = 'website', noindex = false, precharger, fondHaut = 'gris' } = Astro.props;
 const canonical = new URL(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/', SITE.url).href;
 // Aperçu (SITE_BASE ≠ /) : jamais indexé.
 const apercu = import.meta.env.BASE_URL !== '/';
@@ -109,21 +111,25 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     {donnees.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+    <!-- Mouvement discret seulement si le visiteur ne demande pas moins d'animations (posé avant le premier affichage). -->
+    <script is:inline>
+      if (window.matchMedia && matchMedia('(prefers-reduced-motion: no-preference)').matches) document.documentElement.classList.add('dv-mouvement');
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
-    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 dv-btn dv-btn-plein">Aller au contenu</a>
+    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 dv-btn dv-btn-contour">Aller au contenu</a>
     <Header />
     <main id="contenu" class="flex-1">
       {
         ariane.length > 0 && (
-          <nav aria-label="Fil d’Ariane" class="dv-container pt-6 text-[15px] dv-muted">
-            <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <nav aria-label="Fil d’Ariane" class={`${fondHaut === 'gris' ? 'bg-grey' : 'bg-white'}`}>
+            <ol class="dv-container flex flex-wrap items-center gap-x-2 gap-y-1 pt-5 text-[15px] dv-muted md:pt-6">
               <li>
                 <a href={lien('/')} class="underline underline-offset-2">Accueil</a>
               </li>
               {ariane.map((x, i) => (
                 <li class="flex items-center gap-2">
-                  <span aria-hidden="true">›</span>
+                  <span aria-hidden="true">/</span>
                   {i === ariane.length - 1 ? (
                     <span aria-current="page">{x.nom}</span>
                   ) : (
@@ -138,5 +144,8 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
       <slot />
     </main>
     <Footer />
+    <script>
+      import '../scripts/mouvement';
+    </script>
   </body>
 </html>

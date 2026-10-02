@@ -1,10 +1,10 @@
 ---
-// Hero de l'accueil : vidéo de présentation en paysage (16:9), à droite du texte (comme Flynt).
-// 1 min 10, sans voix off, avec musique. Seule la couverture fournie par Tom (52 Ko) se charge avec la page ; la vidéo
-// (5 à 7 Mo) ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
-// Toute l'image est cliquable ; la pastille blanche « Voir la vidéo » laisse au hero un seul bouton plein.
-// Sans JavaScript, les contrôles natifs restent affichés. Aucun texte sous la vidéo : son contenu
-// reste disponible pour les lecteurs d'écran (bloc masqué à l'écran, relié par aria-describedby).
+// Vidéo de présentation (16:9, 1 min 10, sans voix off, avec musique), dans le cadre tablette dessiné au trait
+// (section « Comment ça marche » de l'accueil). Seule la couverture fournie par Tom (52 Ko) se charge avec la page ;
+// la vidéo (5 à 7 Mo) ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
+// Toute l'image est cliquable, avec au centre le signe « lecture » dessiné. Sans JavaScript, les contrôles natifs restent
+// affichés. Le contenu de la vidéo reste disponible pour les lecteurs d'écran (bloc masqué, relié par aria-describedby).
+import Lecture from '../icons/lecture.astro';
 import { lien } from '../lib/site';
 
 interface Props {
@@ -45,17 +45,18 @@ const texte = [
         <source src={lien('/video/deliview-video-16x9.mp4')} type="video/mp4" />
         <a href={lien('/video/deliview-video-16x9.mp4')}>Télécharger la vidéo de présentation (MP4, 7 Mo)</a>
       </video>
-      <button class="hv-lire" type="button" aria-label="Voir la vidéo, 1 min 10" hidden>
-        <span class="hv-pastille">
-          <span class="hv-icone" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"></path></svg>
-          </span>
-          Voir la vidéo
+      <button class="hv-lire" type="button" aria-label="Lancer la vidéo de présentation de Deliview, 1 minute 10" hidden>
+        <span class="hv-pastille" aria-hidden="true">
+          <Lecture taille={48} class="hv-icone-grande" />
+          <Lecture taille={32} class="hv-icone-petite" />
         </span>
       </button>
     </div>
+    <figcaption class="hv-note">
+      Deliview en 1&nbsp;min&nbsp;10. La vidéo se charge quand vous <span class="hv-geste-clic">cliquez</span><span class="hv-geste-toucher">touchez</span>.
+    </figcaption>
   </figure>
-  <!-- Contenu de la vidéo pour les lecteurs d'écran uniquement : rien n'est affiché sous la vidéo. -->
+  <!-- Contenu de la vidéo pour les lecteurs d'écran uniquement. -->
   <div id="hv-legende" class="sr-only">
     <p>Restaurants et chiffres d’exemple. Contenu de la vidéo&nbsp;:</p>
     <ol>
@@ -91,95 +92,105 @@ const texte = [
 <style>
   .hv {
     width: 100%;
-    max-width: 720px;
+    max-width: 880px;
     margin-inline: auto;
   }
+  /* Cadre tablette dessiné au trait (Gris 2, 2,2 px), comme les captures de l'app. */
   .hv-cadre {
     position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 20px;
-    overflow: hidden;
-    container-type: inline-size;
-    background: var(--color-grey);
-    box-shadow:
-      0 0 0 1px color-mix(in srgb, var(--color-grey-2) 8%, transparent),
-      0 18px 44px rgba(76, 76, 76, 0.14);
+    padding: 8px;
+    border: 2.2px solid var(--color-grey-2);
+    border-radius: 18px;
+    background: var(--color-white);
   }
   .hv-lecteur {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
     object-fit: cover;
+    background: var(--color-grey);
   }
   .hv-lire {
     position: absolute;
     inset: 0;
     padding: 0;
     border: 0;
+    border-radius: 18px;
     background: transparent;
     cursor: pointer;
   }
   .hv-lire[hidden] {
     display: none;
   }
-  /* Pastille placée dans la colonne gauche de la couverture, sous « pour vous convaincre » ; elle suit la taille de la vidéo. */
+  /* Signe « lecture » dessiné, dans un cercle blanc au trait, au centre de l'image. */
   .hv-pastille {
     position: absolute;
-    left: 22.9%;
-    top: 79.5%;
-    transform: translateX(-50%);
-    display: inline-flex;
+    left: 50%;
+    top: 50%;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    gap: max(6px, 1.4cqw);
-    height: 40px;
-    height: max(32px, 6.6cqw);
-    padding: 0 16px 0 5px;
-    padding: 0 max(12px, 2.8cqw) 0 max(4px, 0.9cqw);
-    border: 1px solid color-mix(in srgb, var(--color-grey-2) 10%, transparent);
-    border-radius: 999px;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 2.2px solid var(--color-grey-2);
+    border-radius: 50%;
     background: var(--color-white);
     color: var(--color-grey-2);
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 15px;
-    font-size: max(14px, 2.8cqw);
-    line-height: 1;
-    white-space: nowrap;
-    box-shadow: 0 10px 26px rgba(76, 76, 76, 0.22);
-    transition: transform 0.15s ease;
+    translate: -50% -50%;
+    transition: scale 0.15s ease;
   }
   .hv-lire:hover .hv-pastille {
-    transform: translateX(-50%) scale(1.05);
+    scale: 1.05;
   }
   .hv-lire:focus-visible {
-    outline: none;
+    outline: 2px solid var(--color-blue);
+    outline-offset: 4px;
   }
-  /* Focus visible même sur l'aperçu clair : contour Blue 1 entouré de blanc. */
   .hv-lire:focus-visible .hv-pastille {
     outline: 2px solid var(--color-blue);
     outline-offset: 2px;
-    box-shadow: 0 0 0 6px var(--color-white);
   }
-  .hv-icone {
-    display: grid;
-    place-items: center;
-    width: 28px;
-    width: max(22px, 4.8cqw);
-    height: 28px;
-    height: max(22px, 4.8cqw);
-    border-radius: 50%;
-    background: var(--color-blue);
-    color: var(--color-white);
+  .hv-pastille :global(.hv-icone-grande),
+  .hv-geste-clic {
+    display: none;
   }
-  .hv-icone svg {
-    width: 55%;
-    height: 55%;
+  .hv-note {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
-  @media (max-width: 767px) {
+  @media (min-width: 768px) {
     .hv-cadre {
+      padding: 12px;
+      border-radius: 24px;
+    }
+    .hv-lecteur {
       border-radius: 14px;
+    }
+    .hv-lire {
+      border-radius: 24px;
+    }
+    .hv-pastille {
+      width: 92px;
+      height: 92px;
+    }
+    .hv-pastille :global(.hv-icone-grande) {
+      display: block;
+    }
+    .hv-pastille :global(.hv-icone-petite),
+    .hv-geste-toucher {
+      display: none;
+    }
+    .hv-geste-clic {
+      display: inline;
+    }
+    .hv-note {
+      margin-top: 16px;
+      font-size: 16px;
     }
   }
   @media (prefers-reduced-motion: reduce) {

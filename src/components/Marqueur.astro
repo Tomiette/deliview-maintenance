@@ -1,0 +1,33 @@
+---
+// Marqueur : le geste du gérant qui annote un ticket. Cercle, flèche ou soulignement en Bleu 1, trait de 3 px,
+// tracés repris des maquettes validées. Un seul par section, toujours sur le chiffre qui compte.
+// Visible par défaut (sans JavaScript, sans animation) ; le script de mouvement le trace une fois à l'apparition.
+// Purement décoratif : le chiffre ou l'annotation qu'il souligne est lisible en texte.
+interface Props {
+  forme: 'cercle' | 'fleche' | 'soulignement';
+  // « arrivee » : tracé dès le chargement (haut de page) ; sinon quand il entre à l'écran.
+  moment?: 'arrivee' | 'defilement';
+  class?: string;
+  style?: string;
+}
+
+const { forme, moment = 'defilement', class: classe = '', style } = Astro.props;
+const TRACES = {
+  cercle: { viewBox: '0 0 120 56', chemins: ['M66 5C38 3 10 11 7 27c-3 15 20 25 52 25 32 0 56-9 55-24C113 14 88 5 58 6c-10 0-19 2-26 6'] },
+  fleche: { viewBox: '0 0 120 80', chemins: ['M6 8C30 6 62 18 84 52', 'M71 49l13.5 3.5 1.5-14'] },
+  soulignement: { viewBox: '0 0 200 16', chemins: ['M4 10C52 4 122 3 196 7'] },
+};
+const t = TRACES[forme];
+---
+
+<svg
+  class={`dv-mq dv-mq-${forme} ${classe}`}
+  viewBox={t.viewBox}
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+  data-marqueur={moment === 'arrivee' ? 'arrivee' : ''}
+  style={style}
+>
+  {t.chemins.map((d) => <path d={d} />)}
+</svg>

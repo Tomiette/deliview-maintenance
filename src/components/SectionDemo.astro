@@ -1,58 +1,64 @@
 ---
-// Section démo (dernier écran de chaque page) : les 4 étapes à gauche, le formulaire à droite.
+// Écran de démo (dernier écran des pages) : le formulaire devient un « bon de démo » posé sur le papier gris,
+// à côté « Ce qui se passe ensuite » en 3 étapes et la vraie photo de Tom, avec son e-mail.
 import DemoForm from './DemoForm.astro';
-import { SITE } from '../lib/site';
+import Ticket from './Ticket.astro';
+import { SITE, lien } from '../lib/site';
 
 interface Props {
   // Section d'origine envoyée avec la demande (mesure des boutons).
   section: string;
   titre?: string;
+  surtitre?: string;
   sousTitre?: string;
   // Niveau du titre : h2 sur les pages, h1 sur la page Démo.
   niveau?: 'h1' | 'h2';
   id?: string;
 }
-const {
-  section,
-  titre = 'Voyez ce que vos prix peuvent vous rapporter',
-  sousTitre = '15 minutes sur votre restaurant : vos prix, vos concurrents, votre note.',
-  niveau = 'h2',
-  id = 'demo',
-} = Astro.props;
+const { section, titre = 'Voyez ce que vos prix peuvent vous rapporter', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo' } = Astro.props;
 const Titre = niveau;
+const SousTitre = niveau === 'h1' ? 'h2' : 'h3';
 const etapes = [
-  { titre: 'Vous remplissez le formulaire', texte: 'Cinq champs, une minute.' },
-  { titre: 'Tom vous rappelle sous 24 h', texte: 'Le créneau se cale hors de vos services.' },
-  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos prix et votre zone.' },
+  { titre: 'Tom vous rappelle sous 24 h', texte: 'Le créneau se cale hors de vos services.' },
+  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos prix et votre zone.' },
   { titre: 'La mise en place, avec vous', texte: 'Si vous continuez, Tom crée votre compte.' },
 ];
 ---
 
-<section id={id} class="bg-grey dv-section" aria-labelledby={`${id}-titre`}>
-  <div class="dv-container grid gap-10 lg:grid-cols-[1fr_480px] lg:gap-16">
-    <div>
-      <p class="dv-overline dv-muted">Démo gratuite</p>
-      <Titre id={`${id}-titre`} class={`${niveau === 'h1' ? 'dv-h1' : 'dv-h2'} mt-3 max-w-[18ch]`}>{titre}</Titre>
-      <p class="dv-lead mt-4 max-w-[52ch]">{sousTitre}</p>
-      <ol class="mt-8 space-y-6">
-        {
-          etapes.map((e, i) => (
-            <li class="flex gap-4">
-              <span class="dv-figure !text-[32px] w-10 shrink-0 text-blue" aria-hidden="true">{i + 1}</span>
-              <span>
-                <span class="block font-semibold">{e.titre.replace(' 24 h', ' 24 h')}</span>
-                <span class="block dv-muted">{e.texte}</span>
-              </span>
-            </li>
-          ))
-        }
-      </ol>
-      <p class="mt-8">
-        Vous préférez écrire&nbsp;? <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
-      </p>
-    </div>
-    <div id={`${id}-formulaire`} class="dv-card p-6 md:p-8">
-      <DemoForm section={section} />
+<section id={id} class={`bg-white ${niveau === 'h1' ? 'pb-16 pt-8 md:pb-[104px] md:pt-12' : 'dv-section'}`} aria-labelledby={`${id}-titre`}>
+  <div class="dv-container">
+    <p class="dv-overline">{surtitre}</p>
+    <Titre id={`${id}-titre`} class={`${niveau === 'h1' ? 'dv-h1' : 'dv-h2'} mt-2.5 max-w-[22ch] md:mt-3`}>{titre}</Titre>
+    {sousTitre && <p class="dv-lead mt-4 max-w-[56ch]">{sousTitre}</p>}
+    <div class="mt-7 grid items-start gap-10 md:mt-12 lg:grid-cols-2 lg:gap-14">
+      <div id={`${id}-formulaire`} class="dv-plateau px-3 py-5 sm:p-8 lg:p-10">
+        <Ticket papier="px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
+          <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>15&nbsp;min</span></p>
+          <DemoForm section={section} />
+        </Ticket>
+      </div>
+      <div class="lg:pt-3">
+        <SousTitre class="font-accent text-[21px] font-bold leading-[1.25] md:text-[24px]">Ce qui se passe ensuite</SousTitre>
+        <ol class="mt-5 grid gap-5 md:mt-7 md:gap-7">
+          {
+            etapes.map((e, i) => (
+              <li class="flex gap-4 md:gap-5">
+                <span class="w-7 shrink-0 font-accent text-[30px] font-bold leading-none text-blue md:w-10 md:text-[36px]" aria-hidden="true">{i + 1}</span>
+                <span>
+                  <span class="block font-accent text-[18px] font-bold leading-[1.3] md:text-[20px]">{e.titre}</span>
+                  <span class="mt-1.5 block text-[16px] leading-[1.55] dv-muted md:text-[17px]">{e.texte}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="mt-8 flex items-center gap-4 border-t border-grey-2/15 pt-7 md:mt-9">
+          <img src={lien('/images/tom-voisin.webp')} alt="Tom Voisin" width="200" height="200" loading="lazy" decoding="async" class="h-14 w-14 shrink-0 rounded-full object-cover md:h-16 md:w-16" />
+          <p class="text-[16px] leading-[1.5] md:text-[17px]">
+            C’est Tom qui vous rappelle.<br /><a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>

@@ -1,42 +1,24 @@
 ---
-// Preuve humaine avant les premiers témoignages : le fondateur, son parcours terrain, son e-mail (aucun faux témoignage).
-// Texte validé dans sa direction par Tom le 2 octobre 2026 : il a lui-même été sur Uber Eats et Deliveroo,
-// et Deliview est le résultat d'un an d'analyse terrain.
+// « Qui est derrière » (accueil) : la vraie photo de Tom, trois phrases, son e-mail, LinkedIn et Qui sommes-nous.
+// Aucun faux témoignage : la preuve humaine, c'est quelqu'un de réel avec son e-mail.
+import Polaroid from './Polaroid.astro';
 import { SITE, lien } from '../lib/site';
-
-interface Props {
-  titre?: string;
-  fond?: 'blanc' | 'gris';
-}
-const { titre = 'Deliview est né d’un\u00a0an sur le terrain', fond = 'blanc' } = Astro.props;
 ---
 
-<section class={`dv-section ${fond === 'gris' ? 'bg-grey' : 'bg-white'}`} aria-labelledby="fondateur-titre">
-  <div class="dv-container">
-    <div class="dv-card grid gap-8 p-6 md:grid-cols-[160px_1fr] md:p-10">
-      <img
-        src={lien('/images/tom-voisin.webp')}
-        alt="Portrait de Tom Voisin, fondateur de Deliview"
-        width="200"
-        height="200"
-        loading="lazy"
-        class="h-32 w-32 rounded-full object-cover md:h-40 md:w-40"
-      />
-      <div>
-        <p class="dv-overline dv-muted">Le fondateur</p>
-        <h2 id="fondateur-titre" class="dv-h2 mt-3">{titre}</h2>
-        <div class="mt-5 max-w-[62ch] space-y-3 [text-wrap:pretty]">
-          <p>Je m’appelle Tom. J’ai moi-même été sur Uber Eats et Deliveroo.</p>
-          <p>J’ai passé un&nbsp;an sur le terrain, auprès des restaurants qui livrent. Partout, deux tablettes en plein rush et des prix fixés à l’instinct.</p>
-          <p>Deliview est le résultat de cette année. Je fais la mise en place avec vous. Quand vous écrivez, c’est moi qui réponds.</p>
-        </div>
-        <p class="mt-5 font-semibold">Tom Voisin, fondateur de Deliview</p>
-        <p class="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-          <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
-          <a href={SITE.linkedinTom} class="font-semibold underline underline-offset-2" rel="noopener">Tom sur LinkedIn</a>
-          <a href={lien('/qui-sommes-nous/')} class="font-semibold underline underline-offset-2">Le projet et son histoire</a>
-        </p>
-      </div>
+<section class="dv-section bg-grey" aria-labelledby="fondateur-titre">
+  <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[72px] gap-y-10 md:flex-row">
+    <Polaroid class="shrink-0" />
+    <div class="max-w-[620px] flex-1">
+      <p class="dv-overline">Qui est derrière</p>
+      <h2 id="fondateur-titre" class="dv-h2 mt-2.5 md:mt-3">Deliview est né d’un&nbsp;an sur le terrain</h2>
+      <p class="mt-3.5 text-[17px] leading-[1.6] md:mt-5 md:text-[19px]">
+        Je m’appelle Tom et j’ai moi-même été sur Uber Eats et Deliveroo. J’ai passé un&nbsp;an auprès des restaurants qui livrent&nbsp;: partout, deux tablettes en plein rush et des prix fixés à l’instinct. Je fais la mise en place avec vous, et quand vous écrivez, c’est moi qui réponds.
+      </p>
+      <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:flex-row md:flex-wrap md:gap-x-7 md:text-[17px]">
+        <li><a href={`mailto:${SITE.email}`} class="dv-lien">{SITE.email}</a></li>
+        <li><a href={SITE.linkedinTom} class="dv-lien" rel="noopener">Tom sur LinkedIn</a></li>
+        <li><a href={lien('/qui-sommes-nous/')} class="dv-lien">Qui sommes-nous</a></li>
+      </ul>
     </div>
   </div>
 </section>

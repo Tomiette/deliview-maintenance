@@ -19,17 +19,24 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Offres et prix (Essentiel, Pro, Premium) : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, le hero, le simulateur et les données structurées suivent
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
 - Polices : titres en Aspekta (police du logo), texte, boutons et menus en Inter
-- Hero de l'accueil : vidéo 16:9 (`HeroVideo.astro`, fichiers dans `public/video/`), chargée au clic seulement
+- Direction graphique « le passe » (cahier et maquettes du 2 octobre 2026) : tickets (`Ticket.astro`, `TicketComparaison.astro`),
+  marqueur (`Marqueur.astro`, tracé une fois à l'apparition par `src/scripts/mouvement.ts`, visible sans JavaScript),
+  cadre tablette (`CadreTablette.astro`), cadre téléphone (`CadreTelephone.astro`, en attente d'une vraie capture sur téléphone),
+  ligne de réassurance (`Reassurance.astro`), carte fonctionnalité (`CarteFonctionnalite.astro`), frise (`Frise.astro`).
+  Exemple réel du ticket de l'accueil : `EXEMPLE_MARGHERITA` (`src/lib/site.ts`)
+- Icônes : dessinées au trait, une par fichier dans `src/icons/` (tracés repris de la planche validée), base commune
+  `Trace.astro` ; registre par nom pour les données (`src/lib/registre-icones.ts`). Aucune bibliothèque d'icônes
+- Vidéo de présentation 16:9 (`HeroVideo.astro`, fichiers dans `public/video/`), dans la section « Comment ça marche », chargée au clic seulement
 - Simulateur de rentabilité : `src/pages/simulateur.astro` (calcul dans le navigateur, rien n'est envoyé)
-- Pied de page : bandeau photo « Prêt à… » puis colonnes Solution / Pour qui / Ressources (`Footer.astro`)
+- Pied de page : colonnes Solution / Pour qui / Ressources / Légal, e-mail (`Footer.astro`) ; sur téléphone, bouton démo fixé en bas
+  une fois le haut de page dépassé (marqué `data-haut-de-page`), caché quand le formulaire de démo est à l'écran
 - Articles : un fichier Markdown par article dans `src/content/ressources/` (format dans `src/content.config.ts`)
-- Captures : `public/images/capture-*.webp` (données de démonstration, noms de restaurants modifiés).
-  `capture-tableau-*` : tableau de bord (Uber Eats et Deliveroo côte à côte), affiché dans un cadre de tablette (`CaptureTablette.astro`)
-- Illustrations générées par IA (Canva) : `public/images/ia/<nom>-<largeur>.webp`, déclarées dans `IMAGES_IA` (`src/lib/site.ts`),
-  affichées par `PhotoIA.astro` sans mention sur l'image (choix de Tom, 2 octobre 2026) ; leur origine est indiquée dans les mentions légales. Jamais présentées comme des clients.
-- Sous les vidéos et les images : aucun micro-texte (légendes, « données de démonstration », mention IA). Les précisions utiles
-  passent dans le texte alternatif ou dans un bloc réservé aux lecteurs d'écran (contenu de la vidéo).
-  Versions HD exportées du design Canva « Deliview site – images IA (export) » (800 et 1536 px, livreur 960 et 1680 px).
+- Captures : `public/images/capture-*.webp` (données de démonstration, noms de restaurants modifiés), toujours dans le cadre
+  tablette (`CadreTablette.astro`). `capture-tableau-*` : Uber Eats et Deliveroo côte à côte ; `capture-hero-*` : Pricing Menu
+  (haut de l'accueil, recadrage `capture-carte-mobile-*` sur téléphone)
+- Images générées par IA : retirées du site (cahier du 2 octobre 2026). Seulement de vraies photos (Tom) et des illustrations au trait
+  (`IllustrationTablettes.astro`). Sous les images : aucun micro-texte ; seule la vidéo garde la note des maquettes
+  (« La vidéo se charge quand vous cliquez »).
 - Logos Uber Eats et Deliveroo : fichiers officiels fournis par Tom dans `src/assets/logos/` (voir le LISEZMOI du dossier), affichés seuls dans le bandeau « Fonctionne avec » (nom en texte alternatif, choix de Tom du 2 octobre 2026) et à côté du nom sur la page Intégrations.
   Sans fichier, le nom s'affiche en texte. Ne jamais redessiner ces logos.
 - Typographie française (espaces insécables, « Uber Eats » jamais coupé) : posée automatiquement à la fin du build (`scripts/typo-html.mjs`).

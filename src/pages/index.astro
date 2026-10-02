@@ -1,77 +1,43 @@
 ---
-import { getCollection } from 'astro:content';
+// Accueil, direction « le passe » (maquettes validées le 2 octobre 2026, ordinateur et téléphone) : une seule histoire,
+// dans l'ordre. Votre quotidien (deux tablettes qui sonnent), une seule tablette, vos chiffres face à votre zone
+// (ticket Margherita), quelqu'un de réel pour vous accompagner, puis tarifs, questions et bon de démo.
 import Base from '../layouts/Base.astro';
-import CaptureTablette from '../components/CaptureTablette.astro';
-import PhotoIA from '../components/PhotoIA.astro';
+import CadreTablette from '../components/CadreTablette.astro';
+import TicketComparaison from '../components/TicketComparaison.astro';
+import Ticket from '../components/Ticket.astro';
+import Marqueur from '../components/Marqueur.astro';
+import Reassurance from '../components/Reassurance.astro';
+import IllustrationTablettes from '../components/IllustrationTablettes.astro';
 import HeroVideo from '../components/HeroVideo.astro';
-import BandeauPlateformes from '../components/BandeauPlateformes.astro';
+import CarteFonctionnalite from '../components/CarteFonctionnalite.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
-import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
-import Icone from '../components/Icone.astro';
+import SectionDemo from '../components/SectionDemo.astro';
+import EtiquettePrix from '../icons/etiquette-prix.astro';
+import Ardoise from '../icons/ardoise.astro';
+import Etoile from '../icons/etoile.astro';
+import Enveloppe from '../icons/enveloppe.astro';
+import Toque from '../icons/toque.astro';
+import Fleche from '../icons/fleche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
-import BlocFonctionnalite from '../components/BlocFonctionnalite.astro';
-import { FONCTIONNALITES, PRIX_ENTREE, SITE, THEMES, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
+import { EXEMPLE_MARGHERITA as ex, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien } from '../lib/site';
 
-const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
-  .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
-  .slice(0, 3);
-
-// Angle (décision de Tom, 2 octobre 2026) : d'abord la rentabilité, ensuite le pilotage.
-const douleurs: { icone: NomIcone; titre: string; texte: string }[] = [
-  {
-    icone: 'prix',
-    titre: 'Des prix fixés à l’instinct',
-    texte: 'Votre voisin vend la même pizza plus cher. Vous ne le voyez pas.',
-  },
-  {
-    icone: 'promo',
-    titre: 'Des promos repérées trop tard',
-    texte: 'Un voisin lance une offre le vendredi. Vous la voyez la semaine suivante.',
-  },
-  {
-    icone: 'tablette',
-    titre: 'Des chiffres éparpillés',
-    texte: 'Une tablette et un espace par plateforme. Rien n’est comparé au même endroit.',
-  },
+// Le quotidien : trois constats courts, accrochés à la barre du passe.
+const constats = [
+  { icone: EtiquettePrix, titre: 'Des prix fixés au feeling', texte: 'Votre voisin vend la même pizza plus cher. Vous ne le voyez pas.', inclinaison: -1.4 },
+  { icone: Ardoise, titre: 'Une carte montée à la va-vite', texte: 'Des photos manquent, des descriptions sont vides. Personne n’a eu le temps d’y revenir.', inclinaison: 0.9 },
+  { icone: Etoile, titre: 'Une note qui bouge', texte: 'Elle perd un dixième. Vous ne savez pas si c’est vous ou toute la zone.', inclinaison: -0.6 },
 ];
 
 const etapes = [
-  { titre: 'Une démo sur votre restaurant', texte: '15 minutes avec Tom, sur vos vrais prix.' },
-  { titre: 'La mise en place avec Tom', texte: 'Votre compte est prêt. Rien à installer.' },
-  { titre: 'Vous ajustez vos prix et vos promos', texte: 'Plat par plat, avec les chiffres de votre zone.' },
+  { icone: Enveloppe, titre: 'Une démo sur votre restaurant', texte: '15 minutes avec Tom, sur vos vrais prix.' },
+  { icone: Toque, titre: 'La mise en place avec Tom', texte: 'Votre compte est prêt. Rien à installer.' },
+  { icone: EtiquettePrix, titre: 'Vous ajustez vos prix et vos promos', texte: 'Plat par plat, avec les chiffres de votre zone.' },
 ];
 
-const benefices: { icone: NomIcone; titre: string; texte: string }[] = [
-  { icone: 'courbe', titre: 'Une meilleure marge par plat', texte: 'Les plats vendus trop bas, repérés avec un prix proposé.' },
-  { icone: 'oeil', titre: 'Vos voisins sous les yeux', texte: 'Leurs prix, leurs notes et leurs promos face aux vôtres.' },
-  { icone: 'alerte', titre: 'Des promos décidées à temps', texte: 'Chaque analyse montre ce qui a changé autour de vous.' },
-  { icone: 'tablette', titre: 'Tout au même endroit', texte: 'Uber Eats et Deliveroo sur un seul écran.' },
-];
-
-const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: string }[] = [
-  {
-    id: 'pizzerias',
-    nom: 'pizzeria',
-    titre: 'Pizzerias',
-    texte: 'Chaque pizza face aux pizzas de même taille autour de vous.',
-    alt: 'Pizzaiolo qui enfourne une pizza dans un four à bois, une tablette de commande posée sur le comptoir',
-  },
-  {
-    id: 'burgers-snacks',
-    nom: 'burger',
-    titre: 'Burgers et snacks',
-    texte: 'Burgers, menus et boissons face aux mêmes articles chez vos voisins.',
-    alt: 'Employée qui ferme un sac de livraison au comptoir d’un restaurant de burgers, à côté d’une tablette de commande',
-  },
-  {
-    id: 'dark-kitchens',
-    nom: 'dark-kitchen',
-    titre: 'Dark kitchens',
-    texte: 'Sans salle ni vitrine, tout se joue sur vos prix et votre note.',
-    alt: 'Cuisine dédiée à la livraison : cuisiniers au travail, sacs de livraison alignés et tablette fixée au mur',
-  },
-];
+// Fonctionnalités : une carte par pilier, dans l'ordre des maquettes.
+const cartes = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug) => PILIERS.find((p) => p.slug === slug)!);
 
 const description = `Deliview centralise vos données Uber Eats et Deliveroo : vos prix face à votre zone, plat par plat, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
 
@@ -88,201 +54,202 @@ const video = {
   height: 1080,
   inLanguage: 'fr-FR',
 };
+
+const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 ---
 
-<Base
-  title="Logiciel restaurant Uber Eats et Deliveroo | Deliview"
-  description={description}
-  jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
-  precharger="/video/deliview-video-couverture-16x9.webp"
->
-  <!-- Hero : promesse de rentabilité, un seul bouton, réducteur de risque, vidéo de présentation à droite. -->
-  <section class="relative overflow-hidden bg-white">
-    <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[560px] w-[560px] rounded-full bg-blue-2/12 md:block"></div>
-    <div class="dv-container relative grid items-center gap-x-12 gap-y-10 pb-14 pt-8 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}>
+  <!-- Haut de page : slogan, promesse de rentabilité, définition, un seul bouton plein, réassurance ;
+       la vraie capture dans le cadre tablette, le ticket Margherita posé dessus, l'écart entouré au marqueur. -->
+  <section class="overflow-hidden bg-grey pb-14 pt-7 md:pb-[104px] md:pt-[72px]" aria-labelledby="hero-titre" data-haut-de-page>
+    <div class="dv-container grid items-center gap-x-14 gap-y-9 lg:grid-cols-2">
       <div>
-        <p class="dv-overline dv-muted">{SITE.slogan}</p>
-        <h1 class="dv-h1 mt-3 md:mt-4 max-w-[15ch]">Augmentez votre rentabilité sur Uber Eats et Deliveroo</h1>
-        <p class="dv-lead mt-5 max-w-[54ch]">{SITE.definition}</p>
-        <div class="mt-8">
-          <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta="hero" data-cta-principal>Demander une démo</a>
+        <p class="dv-overline">{SITE.slogan}</p>
+        <h1 id="hero-titre" class="dv-h1 mt-3 md:mt-4 lg:max-w-[14ch]">Augmentez votre rentabilité sur Uber&nbsp;Eats et Deliveroo</h1>
+        <p class="dv-lead mt-4 max-w-[50ch] md:mt-6">{SITE.definition}</p>
+        <div class="mt-6 md:mt-8">
+          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="hero" data-cta-principal>Demander une démo</a>
         </div>
-        <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-semibold">
-          <span>Sans engagement</span><span aria-hidden="true">·</span><span>Mise en place offerte</span><span aria-hidden="true">·</span><span>Dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</span>
-        </p>
+        <Reassurance class="mt-[18px] md:mt-6" />
       </div>
-      <HeroVideo />
+      <div class="dv-hero-visuel">
+        <CadreTablette
+          capture={{
+            src: '/images/capture-hero',
+            largeurs: [800, 1600],
+            largeur: 1600,
+            hauteur: 1000,
+            alt: 'Pricing Menu dans Deliview : chaque plat avec votre prix, la médiane de la zone, l’écart, un prix suggéré et le gain pour 100 ventes',
+          }}
+          mobile={{ src: '/images/capture-carte-mobile', largeurs: [800, 1200], largeur: 1200, hauteur: 750 }}
+          sizes="(min-width: 1200px) 560px, (min-width: 1024px) 45vw, 100vw"
+          priorite
+        />
+        <TicketComparaison exemple={ex} format="haut-de-page" apparition="arrivee" class="dv-hero-ticket" />
+      </div>
     </div>
   </section>
 
-  <BandeauPlateformes fond="gris" />
-
-  <!-- Le problème : la rentabilité d'abord, puis le pilotage. -->
-  <section class="dv-section bg-white" aria-labelledby="probleme-titre">
-    <div class="dv-container">
-      <p class="dv-overline dv-muted">Le problème</p>
-      <h2 id="probleme-titre" class="dv-h2 mt-3 max-w-[22ch]">Que vous rapporte vraiment chaque plateforme&nbsp;?</h2>
-      <p class="dv-lead mt-4 max-w-[60ch]">Les commissions pèsent sur chaque plat. Et vos chiffres sont dispersés.</p>
-      <div class="mt-10 grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
-        <PhotoIA
-          nom="rush-tablettes"
-          alt="Comptoir de pizzeria en plein service : trois tablettes de commande côte à côte, des tickets et des sacs de livraison"
-          sizes="(min-width: 1200px) 590px, (min-width: 1024px) 50vw, 100vw"
-          ratio="3 / 2"
-        />
-        <ul class="space-y-6">
+  <!-- Le quotidien : les deux tablettes qui sonnent, dessinées au trait, et trois constats accrochés à la barre. -->
+  <section class="dv-section bg-white" aria-labelledby="quotidien-titre">
+    <div class="dv-container dv-quotidien">
+      <div class="dv-quotidien-intro">
+        <p class="dv-overline">Le quotidien</p>
+        <h2 id="quotidien-titre" class="dv-h2 mt-2.5 max-w-[16ch] md:mt-3">Vendredi, 20&nbsp;h&nbsp;30. Les deux tablettes sonnent.</h2>
+        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Vous êtes en plein service. Pendant ce temps, trois choses vous échappent.</p>
+      </div>
+      <figure class="dv-quotidien-dessin m-0">
+        <IllustrationTablettes />
+      </figure>
+      <div class="dv-quotidien-bons">
+        <div class="dv-barre" aria-hidden="true"></div>
+        <ul class="grid gap-5 px-2.5 md:grid-cols-3 md:gap-9 md:px-7">
           {
-            douleurs.map((d) => (
-              <li class="flex gap-4">
-                <span class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
-                  <Icone nom={d.icone} />
-                </span>
-                <div>
-                  <h3 class="dv-h3">{d.titre}</h3>
-                  <p class="mt-1 dv-muted">{d.texte}</p>
-                </div>
-              </li>
+            constats.map((c, i) => (
+              <Ticket balise="li" dents="bas" inclinaison={c.inclinaison} class="origin-top" papier="px-5 pb-4 pt-[18px] md:px-6 md:pb-5 md:pt-[22px]" apparition="defilement">
+                <p class="flex items-center justify-between">
+                  <span class="font-accent text-[12px] font-semibold uppercase leading-none tracking-[0.08em] dv-muted md:text-[13px]">Bon n°&nbsp;0{i + 1}</span>
+                  <c.icone taille={32} />
+                </p>
+                <h3 class="mt-3 font-accent text-[20px] font-bold leading-[1.25] md:mt-[18px] md:text-[23px]">{c.titre}</h3>
+                <p class="mt-1.5 text-[16px] leading-[1.5] dv-muted md:mt-2.5 md:text-[17px] md:leading-[1.55]">{c.texte}</p>
+              </Ticket>
             ))
           }
         </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- L'argument central + comment démarrer, avec la vraie capture du tableau de bord sur tablette. -->
-  <section id="comment-ca-marche" class="dv-section bg-grey" aria-labelledby="etapes-titre">
-    <div class="dv-container grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
-      <div>
-        <p class="dv-overline dv-muted">La solution</p>
-        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[20ch]">{SITE.argument}</h2>
-        <p class="dv-lead mt-4 max-w-[52ch]">Vos prix, votre carte et votre note, face à votre zone, sur un seul écran.</p>
-        <ol class="mt-8 space-y-6">
-          {
-            etapes.map((e, i) => (
-              <li class="flex gap-4">
-                <span class="dv-figure w-12 shrink-0 text-blue" aria-hidden="true">{i + 1}</span>
-                <span>
-                  <span class="block dv-h3">{e.titre}</span>
-                  <span class="mt-1 block dv-muted">{e.texte}</span>
-                </span>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-      <CaptureTablette
-        src="/images/capture-tableau"
-        largeurs={[800, 1300]}
-        largeur={1300}
-        hauteur={812}
-        alt="Tableau de bord Deliview sur une tablette : vos données Uber Eats et Deliveroo côte à côte, avec votre note, votre prix médian et votre rang dans la zone, puis les actions à fort impact plat par plat"
-        sizes="(min-width: 1200px) 620px, (min-width: 1024px) 50vw, 100vw"
-      />
-    </div>
-  </section>
-
-  <!-- Fonctionnalités (modèle unique) : d'abord ce qui rapporte. -->
-  <BlocFonctionnalite f={FONCTIONNALITES['pricing-menu']} page="/solution/carte-et-marge/">
-    <p class="mt-6">
-      <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="pricing-menu-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
-    </p>
-  </BlocFonctionnalite>
-  <BlocFonctionnalite f={FONCTIONNALITES['prix-concurrents']} fond="gris" inverse page="/solution/prix-et-concurrence/" />
-  <BlocFonctionnalite f={FONCTIONNALITES['promos-zone']} page="/solution/prix-et-concurrence/#promos-zone" />
-
-  <section class="bg-white pb-16 md:pb-24" aria-label="Autres fonctionnalités">
-    <div class="dv-container">
-      <p class="dv-card flex flex-wrap items-center gap-x-6 gap-y-3 p-6 font-semibold">
-        <span>Aussi dans Deliview&nbsp;:</span>
-        <a href={lien('/solution/carte-et-marge/#optimiseur-menu')} class="inline-flex items-center gap-2 underline underline-offset-4">Optimiseur menu <Icone nom="fleche" taille={18} /></a>
-        <a href={lien('/solution/reputation/')} class="inline-flex items-center gap-2 underline underline-offset-4">Note et avis <Icone nom="fleche" taille={18} /></a>
+      <p id="pour-qui" class="dv-quotidien-cible max-w-[46ch] scroll-mt-28 border-t border-grey-2/15 pt-5 text-[16px] font-semibold leading-[1.5] md:text-[17px]">
+        Pizzerias, burgers, kebabs, snacks, dark kitchens&nbsp;: de 1 à 10&nbsp;restaurants.
       </p>
     </div>
   </section>
 
-  <!-- Bénéfices + simulateur. -->
-  <section class="dv-section bg-grey" aria-labelledby="benefices-titre">
-    <div class="dv-container grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-      <div>
-        <p class="dv-overline dv-muted">Ce que vous gagnez</p>
-        <h2 id="benefices-titre" class="dv-h2 mt-3 max-w-[16ch]">Vos prix, votre premier levier de marge</h2>
-        <p class="mt-8">
-          <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="benefices-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
-        </p>
+  <!-- La bascule : une seule tablette, la vraie capture de l'écran qui réunit Uber Eats et Deliveroo. -->
+  <section class="dv-section bg-grey" aria-labelledby="bascule-titre">
+    <div class="dv-container dv-bascule">
+      <div class="dv-bascule-texte">
+        <p class="dv-overline">La bascule</p>
+        <h2 id="bascule-titre" class="mt-2.5 font-accent text-[34px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-3 md:text-[52px]">Une seule tablette.</h2>
+        <p class="dv-lead mt-3.5 md:mt-5">Uber&nbsp;Eats et Deliveroo réunis sur un seul écran. Vos prix, votre carte et votre note, face aux restaurants de votre zone.</p>
       </div>
-      <ul class="grid gap-x-10 sm:grid-cols-2">
-        {
-          benefices.map((b, i) => (
-            <li class={`border-grey-2/20 py-6 ${i === 1 ? 'border-t sm:border-t-0' : i >= 2 ? 'border-t' : ''}`}>
-              <span class="text-blue"><Icone nom={b.icone} taille={26} /></span>
-              <h3 class="dv-h3 mt-3">{b.titre}</h3>
-              <p class="mt-2 text-[16px] dv-muted">{b.texte}</p>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="dv-bascule-tablette relative pt-[76px] md:pt-[84px]">
+        <p class="dv-annotation absolute left-0 top-0 max-w-[230px] -rotate-2 md:left-1 md:top-1 md:max-w-none">Uber&nbsp;Eats et Deliveroo, côte à côte</p>
+        <Marqueur forme="fleche" class="dv-bascule-fleche" />
+        <CadreTablette
+          capture={{
+            src: '/images/capture-tableau',
+            largeurs: [800, 1300],
+            largeur: 1300,
+            hauteur: 812,
+            alt: 'Écran Mon restaurant dans Deliview : Uber Eats et Deliveroo côte à côte, avec la note, le prix médian et le rang dans la zone, puis les actions à fort impact',
+          }}
+          sizes="(min-width: 1200px) 700px, (min-width: 1024px) 58vw, 100vw"
+        />
+      </div>
+      <p class="dv-bascule-note text-[16px] leading-[1.6] dv-muted md:text-[17px]">Rien à installer. Vos tablettes de commande restent là pour les commandes.</p>
     </div>
   </section>
 
-  <!-- Pour qui : les trois profils de la cible, illustrés (images IA, origine indiquée dans les mentions légales). -->
-  <section id="pour-qui" class="dv-section bg-white" aria-labelledby="cibles-titre">
+  <!-- Comment ça marche : 3 étapes numérotées en Aspekta, une icône pour chacune, puis la vidéo chargée au clic. -->
+  <section id="comment-ca-marche" class="dv-section bg-white" aria-labelledby="etapes-titre">
     <div class="dv-container">
-      <p class="dv-overline dv-muted">Pour qui</p>
-      <h2 id="cibles-titre" class="dv-h2 mt-3 max-w-[24ch]">Pour les restaurants qui vivent de la livraison</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+      <p class="dv-overline">Comment ça marche</p>
+      <h2 id="etapes-titre" class="dv-h2 mt-2.5 max-w-[22ch] md:mt-3">De la démo à vos premiers prix revus</h2>
+      <ol class="mt-8 grid gap-8 md:mt-14 md:grid-cols-3 md:gap-12">
         {
-          cibles.map((c) => (
-            <li id={c.id} class="dv-card flex flex-col overflow-hidden scroll-mt-28">
-              <PhotoIA nom={c.nom} alt={c.alt} sizes="(min-width: 1200px) 370px, (min-width: 768px) 31vw, 100vw" ratio="4 / 3" cadre="carte" />
-              <div class="p-6">
-                <h3 class="dv-h3">{c.titre}</h3>
-                <p class="mt-2 dv-muted">{c.texte}</p>
+          etapes.map((e, i) => (
+            <li class="grid grid-cols-[48px_1fr] gap-x-4 md:block">
+              <div class="row-span-2 md:flex md:items-center md:gap-[18px]">
+                <span class="hidden font-accent text-[48px] font-bold leading-none text-blue md:inline" aria-hidden="true">{i + 1}</span>
+                <e.icone taille={48} />
+                {i < etapes.length - 1 && <span class="hidden flex-1 border-t-2 border-dashed border-grey-2/25 md:block" aria-hidden="true" />}
+              </div>
+              <div>
+                <p class="font-accent text-[32px] font-bold leading-none text-blue md:hidden" aria-hidden="true">{i + 1}</p>
+                <h3 class="mt-2 font-accent text-[20px] font-bold leading-[1.25] md:mt-[22px] md:text-[24px]">{e.titre}</h3>
+                <p class="mt-1.5 text-[16px] leading-[1.55] dv-muted md:mt-2 md:text-[18px] md:leading-[1.6]">{e.texte}</p>
               </div>
             </li>
           ))
         }
-      </ul>
-      <p id="chaines" class="mt-8 scroll-mt-28 font-semibold">
-        Plusieurs restaurants&nbsp;? Chacun est comparé à sa propre zone. Les offres
-        <a href={lien('/tarifs/')} class="underline underline-offset-2">Pro et Premium</a> couvrent jusqu’à 10&nbsp;restaurants.
-      </p>
+      </ol>
+      <HeroVideo class="mt-10 md:mt-[72px]" />
     </div>
   </section>
 
-  <BlocFondateur fond="gris" />
+  <!-- Fonctionnalités : une carte par pilier, avec la vraie capture. -->
+  <section class="dv-section bg-grey" aria-labelledby="fonctions-titre">
+    <div class="dv-container">
+      <p class="dv-overline">Ce que fait Deliview</p>
+      <h2 id="fonctions-titre" class="dv-h2 mt-2.5 max-w-[24ch] md:mt-3">Vos prix, votre carte, votre note. Face à votre zone.</h2>
+      <ul class="mt-8 grid gap-5 md:mt-12 lg:grid-cols-3 lg:gap-6">
+        {cartes.map((p) => <CarteFonctionnalite icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} capture={p.carte.capture} href={`/solution/${p.slug}/`} />)}
+      </ul>
+    </div>
+  </section>
 
-  {
-    articles.length > 0 && (
-      <section class="dv-section bg-white" aria-labelledby="ressources-titre">
-        <div class="dv-container">
-          <div class="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p class="dv-overline dv-muted">Ressources</p>
-              <h2 id="ressources-titre" class="dv-h2 mt-3">Guides pour vendre mieux en livraison</h2>
-            </div>
-            <a href={lien('/ressources/')} class="font-bold underline underline-offset-4">
-              Toutes les ressources
-            </a>
-          </div>
-          <ul class="mt-10 grid gap-6 md:grid-cols-3">
-            {articles.map((a) => (
-              <li class="dv-card flex flex-col p-6">
-                <p class="dv-overline dv-muted">{THEMES[a.data.theme]}</p>
-                <h3 class="dv-h3 mt-3">
-                  <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
-                    {a.data.titre}
-                  </a>
+  <!-- Exemple réel : le ticket Margherita (vraie analyse, restaurant anonymisé), puis le simulateur. -->
+  <section class="dv-section bg-white" aria-labelledby="exemple-titre">
+    <div class="dv-container dv-exemple">
+      <div class="dv-exemple-intro">
+        <p class="dv-overline">Exemple réel</p>
+        <h2 id="exemple-titre" class="dv-h2 mt-2.5 max-w-[18ch] md:mt-3">Une Margherita vendue {sousLaZone} sous le prix de sa zone</h2>
+        <p class="dv-lead mt-3.5 max-w-[48ch] md:mt-5">
+          Une pizzeria analysée le 1<sup>er</sup>&nbsp;octobre 2026 sur Uber&nbsp;Eats. {ex.concurrents}&nbsp;concurrents vendent la même pizza, à la même taille.
+        </p>
+      </div>
+      <div class="dv-exemple-plateau dv-plateau flex flex-col items-center px-4 pb-7 pt-8 md:px-8 md:pb-10 md:pt-12">
+        <TicketComparaison exemple={ex} proposition inclinaison={-1.5} />
+        <p class="dv-annotation mt-6 -rotate-2 text-center md:mt-7">{sousLaZone} sous la zone, sur chaque pizza</p>
+      </div>
+      <div class="dv-exemple-suite">
+        <p class="dv-lead max-w-[48ch]">
+          Deliview propose {euros(ex.prixPropose)}, une première hausse avant la médiane si les ventes tiennent. Sur 100&nbsp;Margherita vendues, c’est {euros(ex.gainPour100, 0)} de plus.
+        </p>
+        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour mt-6 w-full sm:w-auto md:mt-8" data-cta="exemple-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
+        <p class="mt-3.5 text-[14px] leading-[1.5] dv-muted md:mt-4 md:text-[15px]">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
+      </div>
+    </div>
+  </section>
+
+  <BlocFondateur />
+
+  <!-- Tarifs en bref : trois tickets d'offre, Pro souligné au marqueur. -->
+  <section class="dv-section bg-white" aria-labelledby="tarifs-titre">
+    <div class="dv-container">
+      <p class="dv-overline">Tarifs</p>
+      <h2 id="tarifs-titre" class="dv-h2 mt-2.5 max-w-[24ch] md:mt-3">Un prix fixe par mois, sans engagement</h2>
+      <p class="dv-lead mt-3 md:mt-4">Selon votre nombre de restaurants. La mise en place est offerte.</p>
+      <ul class="mt-8 grid items-end gap-6 px-1 md:mt-14 md:grid-cols-3 md:gap-8 md:px-0">
+        {
+          OFFRES.map((o) => (
+            <Ticket balise="li" papier="px-5 pb-5 pt-[18px] md:px-[26px] md:pb-[26px] md:pt-[22px]">
+              <div class="flex items-baseline justify-between gap-3">
+                <h3 class="relative font-accent text-[22px] font-bold leading-[1.2] md:text-[24px]">
+                  {o.nom}
+                  {o.recommandee && <span class="sr-only">, offre recommandée</span>}
+                  {o.recommandee && <Marqueur forme="soulignement" />}
                 </h3>
-                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )
-  }
+                <span class="text-[15px] leading-[1.3] dv-muted md:hidden">{o.restaurants}</span>
+                {o.recommandee && <span class="dv-annotation hidden md:inline" aria-hidden="true">Recommandé</span>}
+              </div>
+              <p class="mt-1.5 hidden text-[16px] leading-[1.4] dv-muted md:block">{o.restaurants}</p>
+              <div class="dv-pointilles my-4 hidden md:block" aria-hidden="true" />
+              <p class="mt-3 flex items-baseline gap-2 md:mt-0">
+                <span class="font-accent text-[36px] font-bold leading-none md:text-[48px]">{o.prix}&nbsp;€</span>
+                <span class="text-[15px] leading-[1.3] md:text-[16px]">HT par mois</span>
+              </p>
+              {o.recommandee && <p class="dv-annotation mt-2.5 md:hidden" aria-hidden="true">Recommandé</p>}
+              <p class="mt-3.5 hidden text-[16px] leading-[1.5] md:block">{o.pour}.</p>
+            </Ticket>
+          ))
+        }
+      </ul>
+      <a href={lien('/tarifs/')} class="dv-lien-fort mt-5 md:mt-8">Voir le détail des offres<Fleche taille={24} /></a>
+    </div>
+  </section>
 
-  <Faq questions={FAQ_ACCUEIL} filet lien={{ href: lien('/questions-frequentes/'), libelle: 'Toutes les questions fréquentes' }} />
+  <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" />
 
   <SectionDemo section="accueil-formulaire" />
 </Base>

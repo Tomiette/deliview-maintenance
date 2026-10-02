@@ -1,0 +1,9 @@
+---
+// Icône « courbe » : courbe qui monte, tracée au marqueur (résultats).
+// Tracé repris tel quel de la planche des icônes validée (maquettes « le passe », 2 octobre 2026).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M8.6 8.6l.3 30.8 31.6-.3" /><path class="b" d="M13.6 33.4c3.6-.8 5.6-6.2 9-7.4 3-1 4.6 1.9 7.4.5 3.2-1.6 5-7.6 8.2-12M33.4 14l4.8.5-.4 4.8" /></Trace>

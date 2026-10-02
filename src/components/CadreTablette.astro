@@ -1,0 +1,42 @@
+---
+// Cadre tablette : contour dessiné au trait (Gris 2, 2,2 px) et second trait léger, décalé, comme dessiné à la main,
+// autour d'une vraie capture de l'app (compte d'essai, noms de restaurants modifiés). Jamais de capture inventée.
+// Format compact (trait de 2 px, sans second trait) dans les cartes fonctionnalité.
+// `src` : chemin sans extension ; les fichiers <src>-<largeur>.webp de `largeurs` existent dans public/images.
+// `mobile` (facultatif) : autre recadrage de la même vue, plus lisible sur téléphone.
+import { lien, type CaptureApp } from '../lib/site';
+
+interface Props {
+  capture: CaptureApp;
+  mobile?: Omit<CaptureApp, 'alt'>;
+  sizes?: string;
+  compact?: boolean;
+  // Image principale du haut de page : chargée en priorité.
+  priorite?: boolean;
+  class?: string;
+}
+
+const { capture, mobile, sizes = '(min-width: 1200px) 640px, (min-width: 768px) 55vw, 100vw', compact = false, priorite = false, class: classe = '' } = Astro.props;
+const base = lien(capture.src);
+const srcset = capture.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
+const baseMobile = mobile ? lien(mobile.src) : '';
+---
+
+<figure class={`dv-tablette ${compact ? 'dv-tablette-compacte' : ''} ${classe}`}>
+  {!compact && <span class="dv-tablette-trait" aria-hidden="true" />}
+  <span class="dv-tablette-camera" aria-hidden="true"></span>
+  <picture>
+    {mobile && <source media="(max-width: 767px)" srcset={mobile.largeurs.map((w) => `${baseMobile}-${w}.webp ${w}w`).join(', ')} sizes="100vw" width={mobile.largeur} height={mobile.hauteur} />}
+    <img
+      src={`${base}-${capture.largeurs[capture.largeurs.length - 1]}.webp`}
+      srcset={srcset}
+      sizes={sizes}
+      alt={`${capture.alt} (données de démonstration)`}
+      width={capture.largeur}
+      height={capture.hauteur}
+      loading={priorite ? 'eager' : 'lazy'}
+      fetchpriority={priorite ? 'high' : 'auto'}
+      decoding="async"
+    />
+  </picture>
+</figure>

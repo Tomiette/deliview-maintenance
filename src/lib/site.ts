@@ -1,4 +1,5 @@
 // Données du site Deliview : coordonnées, navigation, piliers et fonctionnalités.
+import type { NomIcone } from './registre-icones';
 // Le site ne présente que ce que Deliview fait aujourd'hui (décision de Tom, 2 octobre 2026).
 // Textes marketing : jamais de mention de la façon dont les données sont obtenues (décision de Tom, 2 octobre 2026).
 
@@ -37,24 +38,43 @@ export function lien(chemin: string): string {
   return base + (chemin.startsWith('/') ? chemin : '/' + chemin);
 }
 
-// Illustrations générées par IA (Canva), sans mention sur l'image depuis le 2 octobre 2026 (choix de Tom) ;
-// leur origine est indiquée dans les mentions légales. Elles montrent des situations de restaurateurs, jamais des clients de Deliview.
-// `largeurs` : fichiers présents dans public/images/ia/<nom>-<largeur>.webp.
-export const IMAGES_IA = {
-  'rush-tablettes': { largeurs: [800, 1536], largeur: 1536, hauteur: 1024 },
-  'une-tablette': { largeurs: [800, 1536], largeur: 1536, hauteur: 1024 },
-  pizzeria: { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
-  burger: { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
-  'dark-kitchen': { largeurs: [800, 1536], largeur: 1536, hauteur: 1152 },
-  livreur: { largeurs: [960, 1680], largeur: 1680, hauteur: 944 },
-} as const;
-export type ImageIA = keyof typeof IMAGES_IA;
+// Montant en euros, typographie française : « 10,50 € », « 1 250 € » (espaces insécables).
+export function euros(n: number, decimales = 2): string {
+  const nombre = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: decimales, maximumFractionDigits: decimales }).format(n);
+  return nombre.replace(/[ \s]/g, ' ') + ' €';
+}
+
+// Écart en pourcentage d'un prix face à la médiane de sa zone, arrondi, avec le vrai signe moins : « −28 % ».
+export function ecart(prix: number, mediane: number): string {
+  const e = Math.round(((prix - mediane) / mediane) * 100);
+  return `${e < 0 ? '−' : e > 0 ? '+' : ''}${Math.abs(e)} %`;
+}
+
+// Exemple réel du ticket de comparaison (accueil), tiré d'une vraie analyse Pricing Menu, restaurant anonymisé :
+// une pizzeria sur Uber Eats, relevé du 1er octobre 2026 (même analyse que la capture capture-hero-*.webp).
+export interface ExempleComparaison {
+  plat: string;
+  plateforme: string;
+  votrePrix: number;
+  mediane: number;
+  concurrents: number;
+  // Date du relevé, AAAA-MM-JJ.
+  releve: string;
+  prixPropose: number;
+  gainPour100: number;
+}
+export const EXEMPLE_MARGHERITA: ExempleComparaison = {
+  plat: 'Margherita',
+  plateforme: 'Uber Eats',
+  votrePrix: 10.5,
+  mediane: 14.5,
+  concurrents: 5,
+  releve: '2026-10-01',
+  prixPropose: 12.5,
+  gainPour100: 200,
+};
 
 export type Statut = 'disponible' | 'bientot';
-
-export type NomIcone =
-  | 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge'
-  | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe' | 'tablette' | 'oeil' | 'courbe' | 'calcul';
 
 // Une capture réelle de l'app (compte d'essai, noms anonymisés) : fichiers public<src>-<largeur>.webp.
 export interface CaptureApp {
@@ -88,6 +108,9 @@ export interface Pilier {
   description: string;
   meta: { title: string; description: string };
   fonctionnalites: Fonctionnalite[];
+  // Carte fonctionnalité du pilier (accueil, page Solution) : bénéfice en une phrase, 3 points, vraie capture.
+  // Textes repris des maquettes validées le 2 octobre 2026.
+  carte: { benefice: string; points: string[]; capture: CaptureApp };
 }
 
 const ANALYSE_DU = 'analyse du 1er octobre 2026';
@@ -95,7 +118,7 @@ const ANALYSE_DU = 'analyse du 1er octobre 2026';
 export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   'pricing-menu': {
     id: 'pricing-menu',
-    icone: 'carte',
+    icone: 'etiquette-prix',
     nom: 'Pricing Menu',
     benefice: 'Repérez les plats vendus trop bas et ce qu’un meilleur prix rapporte.',
     points: [
@@ -108,7 +131,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   },
   'optimiseur-menu': {
     id: 'optimiseur-menu',
-    icone: 'source',
+    icone: 'appareil-photo',
     nom: 'Optimiseur menu',
     benefice: 'Des fiches de plats qui donnent envie de commander.',
     points: [
@@ -121,7 +144,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   },
   'prix-concurrents': {
     id: 'prix-concurrents',
-    icone: 'prix',
+    icone: 'loupe-zone',
     nom: 'Prix des concurrents',
     benefice: 'Vos prix face à ceux des restaurants qui livrent les mêmes rues.',
     points: [
@@ -134,7 +157,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   },
   'promos-zone': {
     id: 'promos-zone',
-    icone: 'promo',
+    icone: 'ticket',
     nom: 'Promos de la zone',
     benefice: 'Voyez les offres de vos voisins avant de lancer les vôtres.',
     points: [
@@ -147,7 +170,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   },
   'note-avis': {
     id: 'note-avis',
-    icone: 'note',
+    icone: 'etoile',
     nom: 'Note et avis',
     benefice: 'Votre note face à celle de vos voisins, sur chaque plateforme.',
     points: [
@@ -163,7 +186,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
 export const PILIERS: Pilier[] = [
   {
     slug: 'carte-et-marge',
-    icone: 'carte',
+    icone: 'ardoise',
     surtitre: 'Carte et marge',
     titre: 'Vendez chaque plat au bon prix',
     phrase: 'Les plats vendus trop bas repérés, avec un prix proposé et ses sources.',
@@ -175,10 +198,15 @@ export const PILIERS: Pilier[] = [
         'Chaque plat de votre carte face aux prix de votre zone : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources. Demandez une démo.',
     },
     fonctionnalites: [FONCTIONNALITES['pricing-menu'], FONCTIONNALITES['optimiseur-menu']],
+    carte: {
+      benefice: FONCTIONNALITES['pricing-menu'].benefice,
+      points: [FONCTIONNALITES['pricing-menu'].points[0], FONCTIONNALITES['pricing-menu'].points[1], 'Photos et descriptions de vos plats passées en revue'],
+      capture: FONCTIONNALITES['pricing-menu'].capture,
+    },
   },
   {
     slug: 'prix-et-concurrence',
-    icone: 'prix',
+    icone: 'loupe-zone',
     surtitre: 'Prix et concurrence',
     titre: 'Vos prix et vos promos face à votre quartier',
     phrase: 'Les prix et les offres des restaurants autour de vous, plat par plat.',
@@ -190,10 +218,15 @@ export const PILIERS: Pilier[] = [
         'Vos prix et vos promos face à ceux des restaurants de votre quartier, plat par plat, sur Uber Eats et Deliveroo. Demandez une démo.',
     },
     fonctionnalites: [FONCTIONNALITES['prix-concurrents'], FONCTIONNALITES['promos-zone']],
+    carte: {
+      benefice: FONCTIONNALITES['prix-concurrents'].benefice,
+      points: [FONCTIONNALITES['prix-concurrents'].points[0], FONCTIONNALITES['prix-concurrents'].points[1], 'Les promos de vos voisins, avant de lancer les vôtres'],
+      capture: FONCTIONNALITES['prix-concurrents'].capture,
+    },
   },
   {
     slug: 'reputation',
-    icone: 'note',
+    icone: 'etoile',
     surtitre: 'Réputation',
     titre: 'Votre note face à celles de votre zone',
     phrase: 'Votre place au classement des notes, sur Uber Eats comme sur Deliveroo.',
@@ -205,6 +238,11 @@ export const PILIERS: Pilier[] = [
         'Votre note et votre nombre d’avis comparés aux restaurants de votre zone, sur Uber Eats et Deliveroo. Demandez une démo.',
     },
     fonctionnalites: [FONCTIONNALITES['note-avis']],
+    carte: {
+      benefice: FONCTIONNALITES['note-avis'].benefice,
+      points: FONCTIONNALITES['note-avis'].points,
+      capture: FONCTIONNALITES['note-avis'].capture,
+    },
   },
 ];
 
@@ -337,6 +375,12 @@ export function jsonldLogiciel(description: string, url: string): Record<string,
       url: SITE.url + '/tarifs/',
     },
   };
+}
+
+// Ordinaux en exposant pour l'affichage HTML (« 1<sup>er</sup> », « 2<sup>e</sup> ») ; le texte est échappé avant.
+export function exposants(texte: string): string {
+  const sur = texte.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return sur.replace(/\b(1)(er|re)\b/g, '$1<sup>$2</sup>').replace(/\b(\d+)(e)\b/g, '$1<sup>$2</sup>');
 }
 
 // Date en toutes lettres : « 1er octobre 2026 », « 12 octobre 2026 ».

@@ -1,0 +1,9 @@
+---
+// Icône « oeil » : œil (petit signe d’interface).
+// Tracé repris tel quel de la planche des icônes validée (maquettes « le passe », 2 octobre 2026).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M5.6 24.4C10 16.6 16.6 12.4 24 12.4s14 4.2 18.4 12c-4.4 7.6-11 11.6-18.4 11.6S10 32 5.6 24.4z" /><path d="M24.1 18.8c3 0 5.4 2.4 5.3 5.4 0 2.9-2.4 5.2-5.4 5.2-2.9 0-5.3-2.4-5.2-5.3 0-3 2.4-5.3 5.3-5.3z" /></Trace>

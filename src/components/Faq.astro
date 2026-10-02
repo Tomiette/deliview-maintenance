@@ -1,39 +1,46 @@
 ---
-// Questions fréquentes : texte présent dans le HTML (lisible sans JavaScript), ouvert d'un clic.
+// Questions fréquentes : texte présent dans le HTML (lisible sans JavaScript), ouvert d'un clic,
+// signe plus ou moins dessiné. La première question est ouverte (maquettes « le passe »).
+import Plus from '../icons/plus.astro';
+import Moins from '../icons/moins.astro';
+
 interface Props {
   titre?: string;
+  surtitre?: string;
   questions: { q: string; r: string }[];
   id?: string;
   // Lien optionnel sous la liste (ex. vers la page complète des questions fréquentes).
   lien?: { href: string; libelle: string };
-  // Filet en haut de section, quand la section précédente a le même fond blanc.
-  filet?: boolean;
+  fond?: 'gris' | 'blanc';
+  premiereOuverte?: boolean;
 }
-const { titre = 'Questions fréquentes', questions, id = 'faq', lien, filet = false } = Astro.props;
+const { titre = 'Questions fréquentes', surtitre = 'Questions', questions, id = 'faq', lien, fond = 'gris', premiereOuverte = true } = Astro.props;
 ---
 
-<section id={id} class={`dv-section bg-white ${filet ? 'border-t border-grey-2/10' : ''}`} aria-labelledby={`${id}-titre`}>
-  <div class="dv-container max-w-[880px]">
-    <h2 id={`${id}-titre`} class="dv-h2">{titre}</h2>
-    <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
+<section id={id} class={`dv-section dv-faq ${fond === 'gris' ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`${id}-titre`}>
+  <div class="dv-container max-w-[860px]">
+    {surtitre && <p class="dv-overline">{surtitre}</p>}
+    <h2 id={`${id}-titre`} class={`dv-h2 ${surtitre ? 'mt-2.5 md:mt-3' : ''}`}>{titre}</h2>
+    <div class="mt-7 border-t border-grey-2/20 md:mt-10">
       {
-        questions.map((x) => (
-          <details class="group py-2">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-3 text-[18px] font-semibold md:text-[20px] [&::-webkit-details-marker]:hidden">
-              <h3 class="font-semibold">{x.q}</h3>
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 transition-transform group-open:rotate-45">
-                <path d="M12 5v14M5 12h14" />
-              </svg>
+        questions.map((x, i) => (
+          <details class="border-b border-grey-2/20" open={premiereOuverte && i === 0}>
+            <summary class="flex min-h-12 items-center justify-between gap-6 py-5">
+              <h3 class="font-accent text-[18px] font-bold leading-[1.35] md:text-[20px]">{x.q}</h3>
+              <Plus taille={24} class="dv-faq-plus" />
+              <Moins taille={24} class="dv-faq-moins" />
             </summary>
-            <p class="pb-4 dv-texte" set:html={x.r} />
+            <p class="mb-6 max-w-[64ch] text-[17px] leading-[1.6] md:text-[18px]" set:html={x.r} />
           </details>
         ))
       }
     </div>
-    {lien && (
-      <p class="mt-6">
-        <a href={lien.href} class="font-semibold underline underline-offset-4">{lien.libelle}</a>
-      </p>
-    )}
+    {
+      lien && (
+        <p class="mt-6">
+          <a href={lien.href} class="dv-lien">{lien.libelle}</a>
+        </p>
+      )
+    }
   </div>
 </section>

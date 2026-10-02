@@ -3,8 +3,12 @@
 // sous la main. Chaque champ propose « Je ne sais pas » : il prend alors une valeur affichée sous le champ, avec sa source.
 // Une valeur sans source fiable est présentée comme un exemple, jamais comme une moyenne.
 // Calcul dans le navigateur, rien n'est envoyé. Sans JavaScript, le résultat des valeurs affichées reste lisible.
+// Direction « le passe » : gros champs, résultat présenté comme un ticket, le montant entouré au marqueur, calcul dépliable.
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
+import Ticket from '../components/Ticket.astro';
+import Marqueur from '../components/Marqueur.astro';
+import Pieces from '../icons/pieces.astro';
 import { PRIX_ENTREE, SITE, lien } from '../lib/site';
 
 const TVA = 0.1;
@@ -97,8 +101,7 @@ function calcul(v: Record<string, number>) {
 const defaut = Object.fromEntries(champs.map((c) => [c.id, c.valeur]));
 const r = calcul(defaut);
 const arrondi = (n: number) => (n >= 100 ? Math.round(n / 10) * 10 : Math.round(n));
-const euros = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
-const phrase = (marge: number) => (marge > 0 ? `Environ ${euros(arrondi(marge))} de plus par mois` : 'Pas de gain avec ces chiffres');
+const euros = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
 const fois = (f: number) => (f >= 1 ? `couvre ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(f)} fois` : 'ne couvre pas');
 
 const description =
@@ -118,94 +121,107 @@ const outil = {
 ---
 
 <Base title="Simulateur de rentabilité Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Simulateur de rentabilité', chemin: '/simulateur/' }]} jsonld={[outil]}>
-  <section class="bg-white">
-    <div class="dv-container pb-10 pt-8 md:pb-12 md:pt-12">
-      <p class="dv-overline dv-muted">Simulateur de rentabilité</p>
-      <h1 class="dv-h1 mt-4 max-w-[20ch]">Combien vous rapporte un prix bien placé&nbsp;?</h1>
-      <p class="dv-lead mt-5 max-w-[56ch]">Vous n’avez pas vos chiffres sous la main&nbsp;? Cochez «&nbsp;Je ne sais pas&nbsp;». Rien n’est envoyé.</p>
-    </div>
-  </section>
+  <section class="bg-grey pb-16 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="simulateur-titre" data-haut-de-page>
+    <div class="dv-container">
+      <p class="flex items-center gap-3">
+        <Pieces taille={48} />
+        <span class="dv-overline">Simulateur de rentabilité</span>
+      </p>
+      <h1 id="simulateur-titre" class="dv-h1 mt-4 max-w-[20ch]">Combien vous rapporte un prix bien placé&nbsp;?</h1>
+      <p class="dv-lead mt-4 max-w-[56ch] md:mt-6">Vous n’avez pas vos chiffres sous la main&nbsp;? Cochez «&nbsp;Je ne sais pas&nbsp;». Rien n’est envoyé.</p>
 
-  <section class="dv-section bg-grey !pt-12" aria-labelledby="calcul-titre">
-    <div class="dv-container grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-      <form id="simulateur" class="dv-card p-6 md:p-8" aria-labelledby="calcul-titre" novalidate>
-        <h2 id="calcul-titre" class="dv-h3">Vos chiffres</h2>
-        <div class="mt-6 space-y-8">
-          {
-            champs.map((c) => (
-              <fieldset class="space-y-2" data-champ={c.id}>
-                <legend class="font-semibold">{c.libelle}</legend>
-                <p id={`sim-${c.id}-aide`} class="text-[15px] dv-muted">{c.aide}</p>
-                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span class="flex items-center gap-3">
-                    <input
-                      id={`sim-${c.id}`}
-                      name={c.id}
-                      type="number"
-                      inputmode="decimal"
-                      min={c.min}
-                      max={c.max}
-                      step={c.pas}
-                      value={String(c.valeur)}
-                      readonly
-                      aria-label={c.libelle}
-                      aria-describedby={`sim-${c.id}-aide sim-${c.id}-valeur`}
-                      class="h-12 w-36 rounded-[12px] border border-grey-2/30 bg-white px-4 text-[18px] font-semibold read-only:bg-grey"
-                      data-valeur={c.valeur}
-                    />
-                    <span class="font-semibold">{c.unite}</span>
-                  </span>
-                  <label class="inline-flex min-h-[44px] cursor-pointer items-center gap-2 font-semibold">
-                    <input type="checkbox" name={`${c.id}-inconnu`} checked class="h-5 w-5 accent-blue" />
-                    Je ne sais pas
-                  </label>
+      <div class="mt-10 grid items-start gap-8 md:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+        <form id="simulateur" class="dv-card p-5 sm:p-7 md:p-9" aria-labelledby="calcul-titre" novalidate>
+          <h2 id="calcul-titre" class="font-accent text-[22px] font-bold leading-[1.25] md:text-[26px]">Vos chiffres</h2>
+          <div class="mt-6 grid gap-8 md:mt-8 md:gap-10">
+            {
+              champs.map((c) => (
+                <fieldset class="grid gap-2.5 border-t border-grey-2/12 pt-6 first:border-t-0 first:pt-0" data-champ={c.id}>
+                  <legend class="float-left w-full font-accent text-[19px] font-bold leading-[1.3] md:text-[20px]">{c.libelle}</legend>
+                  <p id={`sim-${c.id}-aide`} class="clear-both text-[15px] leading-[1.5] dv-muted md:text-[16px]">{c.aide}</p>
+                  <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+                    <span class="flex items-center gap-3">
+                      <input
+                        id={`sim-${c.id}`}
+                        name={c.id}
+                        type="number"
+                        inputmode="decimal"
+                        min={c.min}
+                        max={c.max}
+                        step={c.pas}
+                        value={String(c.valeur)}
+                        readonly
+                        aria-label={c.libelle}
+                        aria-describedby={`sim-${c.id}-aide sim-${c.id}-valeur`}
+                        class="dv-champ dv-sim-champ tabular-nums read-only:bg-grey"
+                        data-valeur={c.valeur}
+                      />
+                      <span class="text-[17px] font-semibold md:text-[18px]">{c.unite}</span>
+                    </span>
+                    <label class="inline-flex min-h-12 cursor-pointer items-center gap-3 text-[17px] font-semibold">
+                      <input type="checkbox" name={`${c.id}-inconnu`} checked class="h-6 w-6 shrink-0 accent-blue" />
+                      Je ne sais pas
+                    </label>
+                  </div>
+                  <p id={`sim-${c.id}-valeur`} class="text-[15px] leading-[1.5] md:text-[16px]" data-explication>
+                    <strong>{c.nature === 'moyenne' ? 'En moyenne' : 'Exemple'}&nbsp;:</strong> {c.explication}
+                    {c.source && (
+                      <>
+                        {' '}Source&nbsp;: <a href={c.source.url} rel="noopener" class="underline underline-offset-2">{c.source.libelle}</a>.
+                      </>
+                    )}
+                  </p>
+                </fieldset>
+              ))
+            }
+          </div>
+        </form>
+
+        <div class="lg:sticky lg:top-28">
+          <Ticket papier="px-5 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6">
+            <p class="dv-ticket-entete"><span>Votre simulation</span><span>Par mois</span></p>
+            <div aria-live="polite">
+              <p class="mt-4 text-[17px] font-semibold md:text-[18px]">Votre marge en plus</p>
+              <p class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2" data-sim="ligne" hidden={r.marge <= 0}>
+                <span class="text-[17px] md:text-[18px]">Environ</span>
+                <span class="relative inline-block px-3 py-1 font-accent text-[40px] font-bold leading-none tabular-nums md:text-[48px]">
+                  <span data-sim="montant">{euros(arrondi(r.marge))}</span>
+                  <Marqueur forme="cercle" class="dv-sim-cercle" />
+                </span>
+                <span class="text-[17px] md:text-[18px]">de plus par mois</span>
+              </p>
+              <p class="mt-3 font-accent text-[24px] font-bold leading-[1.25] md:text-[28px]" data-sim="message" hidden={r.marge > 0}>Pas de gain avec ces chiffres</p>
+            </div>
+            <div class="dv-pointilles mt-6" aria-hidden="true"></div>
+            <details class="dv-sim-detail mt-2">
+              <summary class="flex min-h-12 cursor-pointer items-center font-semibold underline underline-offset-4">Voir le détail du calcul</summary>
+              <dl class="divide-y divide-grey-2/15 text-[16px] tabular-nums">
+                <div class="flex items-baseline justify-between gap-4 py-3">
+                  <dt>Ventes en plus par mois (TTC)</dt>
+                  <dd class="font-bold" data-sim="ventes">{euros(r.ventes)}</dd>
                 </div>
-                <p id={`sim-${c.id}-valeur`} class="text-[15px]" data-explication>
-                  <strong>{c.nature === 'moyenne' ? 'En moyenne' : 'Exemple'}&nbsp;:</strong> {c.explication}
-                  {c.source && (
-                    <>
-                      {' '}Source&nbsp;: <a href={c.source.url} rel="noopener" class="underline underline-offset-2">{c.source.libelle}</a>.
-                    </>
-                  )}
-                </p>
-              </fieldset>
-            ))
-          }
+                <div class="flex items-baseline justify-between gap-4 py-3">
+                  <dt>Marge en plus, après TVA (10&nbsp;%) et commission</dt>
+                  <dd class="font-bold" data-sim="marge">{euros(r.marge)}</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 py-3">
+                  <dt>Sur un an</dt>
+                  <dd class="font-bold" data-sim="an">{euros(r.an)}</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 py-3">
+                  <dt>Abonnement Essentiel ({PRIX_ENTREE}&nbsp;€ HT par mois)</dt>
+                  <dd class="font-bold" data-sim="fois">{fois(r.fois)}</dd>
+                </div>
+              </dl>
+              <p class="mt-3 text-[15px] leading-[1.55] dv-muted">
+                Ventes en plus = commandes × panier moyen × part de la carte sous le prix du quartier × hausse. On retire la TVA, puis la commission. À ventes égales&nbsp;: si un plat se vend moins après la hausse, le gain baisse.
+                La méthode complète est dans le guide <a href={lien('/ressources/fixer-prix-uber-eats-deliveroo/')}>fixer ses prix sur Uber Eats et Deliveroo</a>.
+              </p>
+            </details>
+          </Ticket>
+          <a href="#demo" class="dv-btn dv-btn-plein mt-7 w-full" data-cta="simulateur" data-cta-principal>Trouver mes plats vendus trop bas</a>
+          <p class="mt-3 text-center text-[15px] dv-muted">Démo de 15&nbsp;minutes sur votre restaurant · Sans engagement</p>
         </div>
-      </form>
-
-      <div class="lg:sticky lg:top-28">
-        <div class="rounded-[16px] bg-blue p-6 text-white md:p-8" aria-live="polite">
-          <p class="text-[19px] font-bold">Votre marge en plus</p>
-          <p class="mt-2 text-[32px] font-bold leading-tight md:text-[40px]" data-sim="phrase">{phrase(r.marge)}</p>
-        </div>
-        <details class="mt-4 dv-card px-6 py-4">
-          <summary class="cursor-pointer font-semibold">Voir le détail du calcul</summary>
-          <dl class="mt-3 divide-y divide-grey-2/15">
-            <div class="flex items-baseline justify-between gap-4 py-3">
-              <dt>Ventes en plus par mois (TTC)</dt>
-              <dd class="font-semibold" data-sim="ventes">{euros(r.ventes)}</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-4 py-3">
-              <dt>Marge en plus, après TVA (10&nbsp;%) et commission</dt>
-              <dd class="font-semibold" data-sim="marge">{euros(r.marge)}</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-4 py-3">
-              <dt>Sur un an</dt>
-              <dd class="font-semibold" data-sim="an">{euros(r.an)}</dd>
-            </div>
-            <div class="flex items-baseline justify-between gap-4 py-3">
-              <dt>Abonnement Essentiel ({PRIX_ENTREE}&nbsp;€ HT par mois)</dt>
-              <dd class="font-semibold" data-sim="fois">{fois(r.fois)}</dd>
-            </div>
-          </dl>
-          <p class="mt-3 text-[15px] dv-muted">
-            Ventes en plus = commandes × panier moyen × part de la carte sous le prix du quartier × hausse. On retire la TVA, puis la commission. À ventes égales&nbsp;: si un plat se vend moins après la hausse, le gain baisse.
-            La méthode complète est dans le guide <a href={lien('/ressources/fixer-prix-uber-eats-deliveroo/')} class="underline underline-offset-2">fixer ses prix sur Uber Eats et Deliveroo</a>.
-          </p>
-        </details>
-        <a href="#demo" class="dv-btn dv-btn-plein mt-6 w-full" data-cta="simulateur" data-cta-principal>Trouver mes plats vendus trop bas</a>
-        <p class="mt-3 text-center text-[15px] dv-muted">Démo de 15&nbsp;minutes sur votre restaurant · Sans engagement</p>
       </div>
     </div>
   </section>
@@ -229,15 +245,22 @@ const outil = {
   const maj = () => {
     const noms = ['commandes', 'panier', 'part', 'hausse', 'commission'];
     const v = Object.fromEntries(noms.map((n) => [n, lire(n)]));
+    const ligne = sortie('ligne');
+    const message = sortie('message');
     if (noms.some((n) => v[n] === null)) {
-      sortie('phrase').textContent = 'Complétez les champs, ou cochez « Je ne sais pas »';
+      ligne.hidden = true;
+      message.hidden = false;
+      message.textContent = 'Complétez les champs, ou cochez « Je ne sais pas »';
       ['ventes', 'marge', 'an', 'fois'].forEach((k) => (sortie(k).textContent = '—'));
       return;
     }
     const ventes = v.commandes * v.panier * (v.part / 100) * (v.hausse / 100);
     const marge = Math.max(0, ventes / (1 + tva) - ventes * (v.commission / 100));
     const fois = marge / prixEntree;
-    sortie('phrase').textContent = marge > 0 ? `Environ ${euros(arrondi(marge))} de plus par mois` : 'Pas de gain avec ces chiffres';
+    ligne.hidden = !(marge > 0);
+    message.hidden = marge > 0;
+    if (marge > 0) sortie('montant').textContent = euros(arrondi(marge));
+    else message.textContent = 'Pas de gain avec ces chiffres';
     sortie('ventes').textContent = euros(ventes);
     sortie('marge').textContent = euros(marge);
     sortie('an').textContent = euros(marge * 12);

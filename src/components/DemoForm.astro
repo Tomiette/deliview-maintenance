@@ -2,6 +2,9 @@
 // Formulaire de démo : 5 champs, envoyé à la fonction Supabase « lead » (validation côté serveur).
 // Sans JavaScript : envoi classique, la fonction redirige vers /merci/ ou vers /demo/#erreur-….
 // Avec JavaScript : validation à la sortie de chaque champ, envoi sans rechargement, confirmation sur place.
+// Habillé en « bon de démo » par SectionDemo (direction « le passe ») : champs de 52 px, bordure Gris 2 à 70 %,
+// erreur signalée par le texte et l'icône alerte dessinée, jamais par la couleur seule.
+import Chevron from '../icons/chevron.astro';
 import { SITE, lien } from '../lib/site';
 
 interface Props {
@@ -10,57 +13,63 @@ interface Props {
 }
 const { section } = Astro.props;
 const retour = new URL(import.meta.env.BASE_URL, SITE.url).href;
-const champ = 'block w-full rounded-[12px] border border-grey-2/30 bg-white px-4 py-3 text-[16px] text-grey-2 placeholder:text-grey-2/60 focus:border-blue';
+const champ = 'dv-champ placeholder:text-grey-2/70';
+const libelle = 'block text-[16px] font-semibold leading-[1.3]';
+const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 ---
 
 <div class="dv-form" data-section={section}>
   <form
     action={SITE.formulaire}
     method="post"
-    class="space-y-5"
+    class="grid gap-[18px]"
     aria-describedby="dv-form-rgpd"
     data-formulaire-demo
     data-endpoint={SITE.formulaire}
   >
     <div>
-      <label for="dv-nom" class="block font-semibold text-[16px]">Prénom et nom</label>
+      <label for="dv-nom" class={libelle}>Prénom et nom</label>
       <input id="dv-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="120" class={champ + ' mt-2'} aria-describedby="dv-nom-erreur" />
-      <p id="dv-nom-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Indiquez votre prénom et votre nom."></p>
+      <p id="dv-nom-erreur" class={erreur} data-message="Indiquez votre prénom et votre nom."></p>
     </div>
 
     <div>
-      <label for="dv-restaurant" class="block font-semibold text-[16px]">Nom du restaurant et ville</label>
+      <label for="dv-restaurant" class={libelle}>Nom du restaurant et ville</label>
       <input id="dv-restaurant" name="restaurant" type="text" autocomplete="organization" required minlength="2" maxlength="200" placeholder="Exemple : Pizzeria Roma, Lyon 6e" class={champ + ' mt-2'} aria-describedby="dv-restaurant-erreur" />
-      <p id="dv-restaurant-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Indiquez le nom de votre restaurant et sa ville."></p>
+      <p id="dv-restaurant-erreur" class={erreur} data-message="Indiquez le nom de votre restaurant et sa ville."></p>
     </div>
 
     <div>
-      <label for="dv-telephone" class="block font-semibold text-[16px]">Téléphone</label>
+      <label for="dv-telephone" class={libelle}>Téléphone</label>
       <input id="dv-telephone" name="telephone" type="tel" inputmode="tel" autocomplete="tel" required pattern="[0-9+\s\(\)\.\-]{10,20}" maxlength="40" class={champ + ' mt-2'} aria-describedby="dv-telephone-erreur" />
-      <p id="dv-telephone-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Ce numéro semble incomplet. Vérifiez qu’il a bien 10 chiffres."></p>
+      <p id="dv-telephone-erreur" class={erreur} data-message="Ce numéro semble incomplet. Vérifiez qu’il a bien 10 chiffres."></p>
     </div>
 
     <div>
-      <label for="dv-email" class="block font-semibold text-[16px]">E-mail</label>
+      <label for="dv-email" class={libelle}>E-mail</label>
       <input id="dv-email" name="email" type="email" autocomplete="email" required maxlength="200" class={champ + ' mt-2'} aria-describedby="dv-email-erreur" />
-      <p id="dv-email-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Cette adresse e-mail semble incomplète. Vérifiez-la."></p>
+      <p id="dv-email-erreur" class={erreur} data-message="Cette adresse e-mail semble incomplète. Vérifiez-la."></p>
     </div>
 
     <div>
-      <label for="dv-points" class="block font-semibold text-[16px]">Nombre d’établissements</label>
-      <select id="dv-points" name="points_de_vente" required class={champ + ' mt-2 appearance-none bg-[length:16px] bg-[right_16px_center] bg-no-repeat pr-12'} style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234c4c4c' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E&quot;)" aria-describedby="dv-points-erreur">
-        <option value="" selected disabled>Choisir</option>
-        <option value="1">1</option>
-        <option value="2-5">2 à 5</option>
-        <option value="6-10">6 à 10</option>
-        <option value="11-19">11 à 19</option>
-        <option value="20+">20 et plus</option>
-      </select>
-      <p id="dv-points-erreur" class="dv-erreur mt-2 hidden text-[15px] font-semibold" data-message="Choisissez votre nombre d’établissements."></p>
+      <label for="dv-points" class={libelle}>Nombre d’établissements</label>
+      <div class="relative mt-2">
+        <select id="dv-points" name="points_de_vente" required class={champ} aria-describedby="dv-points-erreur">
+          <option value="" selected disabled>Choisir</option>
+          <option value="1">1</option>
+          <option value="2-5">2 à 5</option>
+          <option value="6-10">6 à 10</option>
+          <option value="11-19">11 à 19</option>
+          <option value="20+">20 et plus</option>
+        </select>
+        <Chevron taille={24} class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2" />
+      </div>
+      <p id="dv-points-erreur" class={erreur} data-message="Choisissez votre nombre d’établissements."></p>
     </div>
 
-    <!-- Champ piège : invisible pour les visiteurs, rempli par les robots. -->
-    <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+    <!-- Champ piège : invisible pour les visiteurs, rempli par les robots (masqué sur place : le ticket qui entoure
+         le formulaire a une ombre, un élément placé loin hors de l'écran agrandirait la zone à dessiner). -->
+    <div class="sr-only" aria-hidden="true">
       <label for="dv-site-web">Ne remplissez pas ce champ</label>
       <input id="dv-site-web" name="site_web" type="text" tabindex="-1" autocomplete="off" />
     </div>
@@ -75,10 +84,9 @@ const champ = 'block w-full rounded-[12px] border border-grey-2/30 bg-white px-4
 
     <p class="dv-erreur-generale hidden rounded-[12px] border-2 border-grey-2 bg-white p-4 text-[16px] font-semibold" role="alert"></p>
 
-    <button type="submit" class="dv-btn dv-btn-plein w-full">Demander ma démo</button>
+    <button type="submit" class="dv-btn dv-btn-plein mt-1 w-full">Demander ma démo</button>
 
-    <p class="text-center text-[15px] dv-muted">Gratuit · 15&nbsp;min · Sans engagement</p>
-    <p id="dv-form-rgpd" class="text-[14px] leading-snug dv-muted">
+    <p id="dv-form-rgpd" class="text-[14px] leading-[1.5] dv-muted">
       Vos informations servent uniquement à vous recontacter pour la démo. Détails dans notre <a href={lien('/confidentialite/')}>politique de confidentialité</a>.
     </p>
   </form>

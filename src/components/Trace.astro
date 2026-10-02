@@ -1,0 +1,25 @@
+---
+// Base commune des icônes dessinées (src/icons/) : grille 48 × 48, trait arrondi en couleur du texte (Gris 2),
+// une seule touche de Bleu 1 (classe « b »), remplissage Bleu 1 à 15 % au plus (classes « r12 » et « r15 »).
+// Le trait s'épaissit sur la grille quand l'icône rétrécit, pour rester à environ 2 px à l'écran.
+// Décorative par défaut (aria-hidden) ; avec un titre, elle devient une image nommée.
+import { TRAIT, type ProprietesIcone } from '../lib/icones';
+
+type Props = ProprietesIcone;
+const { taille = 48, titre, class: classe = '' } = Astro.props;
+---
+
+<svg
+  class={`dv-ic ${classe}`}
+  width={taille}
+  height={taille}
+  viewBox="0 0 48 48"
+  stroke-width={TRAIT[taille]}
+  focusable="false"
+  role={titre ? 'img' : undefined}
+  aria-label={titre}
+  aria-hidden={titre ? undefined : 'true'}
+>
+  {titre && <title>{titre}</title>}
+  <slot />
+</svg>

@@ -1,0 +1,50 @@
+---
+// Ticket de comparaison, le composant signature : le plat, votre prix, la médiane de votre zone, l'écart (seul chiffre
+// entouré au marqueur), le nombre de concurrents et la date du relevé. En grand format, sous les pointillés : ce que
+// Deliview propose. Chiffres en Inter tabulaires, vrai signe moins, espaces insécables avant € et %.
+// 320 px de large au plus sur téléphone, 360 px sur ordinateur ; format réduit pour le haut de page (posé sur la tablette).
+import Ticket from './Ticket.astro';
+import Marqueur from './Marqueur.astro';
+import { dateFr, ecart, euros, type ExempleComparaison } from '../lib/site';
+
+interface Props {
+  exemple: ExempleComparaison;
+  format?: 'haut-de-page' | 'standard';
+  // Bloc « Ce que Deliview propose » (prix proposé, gain pour 100 ventes).
+  proposition?: boolean;
+  inclinaison?: number;
+  apparition?: 'defilement' | 'arrivee';
+  class?: string;
+}
+
+const { exemple: e, format = 'standard', proposition = false, inclinaison, apparition = 'defilement', class: classe = '' } = Astro.props;
+const releve = dateFr(new Date(e.releve + 'T12:00:00Z')).replace(/^1er /, '1<sup>er</sup> ');
+---
+
+<Ticket class={`dv-tc dv-tc-${format} ${classe}`} papier="dv-tc-papier" inclinaison={inclinaison} apparition={apparition}>
+  <p class="dv-ticket-entete"><span>Comparaison</span><span>{e.plateforme}</span></p>
+  <p class="dv-tc-plat">{e.plat}</p>
+  <div class="dv-pointilles dv-tc-sep" aria-hidden="true"></div>
+  <dl class="dv-tc-lignes">
+    <dt>Votre prix</dt><dd>{euros(e.votrePrix)}</dd>
+    <dt>Médiane de votre zone</dt><dd>{euros(e.mediane)}</dd>
+  </dl>
+  <div class="dv-pointilles dv-tc-sep" aria-hidden="true"></div>
+  <dl class="dv-tc-ecart">
+    <dt>Écart</dt>
+    <dd><span class="dv-tc-chiffre">{ecart(e.votrePrix, e.mediane)}<Marqueur forme="cercle" moment={apparition === 'arrivee' ? 'arrivee' : 'defilement'} /></span></dd>
+  </dl>
+  <p class="dv-tc-note">{e.concurrents}&nbsp;concurrents · même plat, même taille<br />Relevé du <Fragment set:html={releve} /></p>
+  {
+    proposition && (
+      <>
+        <div class="dv-tc-coupe" aria-hidden="true" />
+        <p class="dv-ticket-entete dv-tc-propose">Ce que Deliview propose</p>
+        <dl class="dv-tc-lignes dv-tc-lignes-propose">
+          <dt>Prix proposé</dt><dd>{euros(e.prixPropose)}</dd>
+          <dt>Pour 100&nbsp;ventes</dt><dd>+{euros(e.gainPour100)}</dd>
+        </dl>
+      </>
+    )
+  }
+</Ticket>

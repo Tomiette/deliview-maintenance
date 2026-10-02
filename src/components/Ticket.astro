@@ -1,0 +1,32 @@
+---
+// Ticket « le passe » : le bon de cuisine blanc posé sur le fond, au bord dentelé, avec une ombre très légère
+// et des chiffres alignés. Base unique de tous les tickets du site : comparaison, constat (barre à bons,
+// dents en bas), offre (tarifs), bon de démo, exemple réel, résultat du simulateur.
+interface Props {
+  // Côté dentelé : en haut (ticket posé), en bas (bon accroché à la barre).
+  dents?: 'haut' | 'bas';
+  // Légère inclinaison en degrés, comme un bon posé à la main.
+  inclinaison?: number;
+  // Glisse de 12 px vers le haut à l'apparition, une fois : « defilement » (quand il entre à l'écran)
+  // ou « arrivee » (dès le chargement, pour le haut de page). Rien ne bouge si le visiteur demande moins d'animations.
+  apparition?: 'defilement' | 'arrivee';
+  balise?: 'div' | 'li' | 'article' | 'figure';
+  id?: string;
+  class?: string;
+  // Classes du papier (marges intérieures, taille de texte).
+  papier?: string;
+}
+
+const { dents = 'haut', inclinaison, apparition, balise: Balise = 'div', id, class: classe = '', papier = '' } = Astro.props;
+---
+
+<Balise
+  id={id}
+  class={`dv-ticket dv-ticket-${dents} ${classe}`}
+  style={inclinaison ? `rotate: ${inclinaison}deg` : undefined}
+  data-apparition={apparition === 'arrivee' ? 'arrivee' : apparition === 'defilement' ? '' : undefined}
+>
+  <div class={`dv-ticket-papier ${papier}`}>
+    <slot />
+  </div>
+</Balise>

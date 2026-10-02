@@ -1,5 +1,6 @@
 ---
-// Page Démo : cible de tous les boutons hors accueil. Messages d'erreur sans JavaScript via #erreur-… (:target).
+// Page Démo : cible de tous les boutons hors accueil (direction « le passe ») : le formulaire en bon de démo à gauche,
+// « Ce qui se passe ensuite » en 3 étapes et la photo de Tom à droite. Messages d'erreur sans JavaScript via #erreur-… (:target).
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
@@ -33,11 +34,11 @@ const erreurs = [
 ];
 ---
 
-<Base title="Demander une démo gratuite de 15 minutes | Deliview" description={description} ariane={[{ nom: 'Demander une démo', chemin: '/demo/' }]}>
+<Base title="Demander une démo gratuite de 15 minutes | Deliview" description={description} ariane={[{ nom: 'Demander une démo', chemin: '/demo/' }]} fondHaut="blanc">
   {
     erreurs.map((e) => (
       <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
-        <p class="dv-erreur rounded-[12px] border-2 border-grey-2 bg-grey p-4 !pl-11 font-semibold [background-position:16px_18px]">{e.texte}</p>
+        <p class="rounded-[12px] border-2 border-grey-2 bg-grey p-4 font-semibold"><span class="dv-erreur block">{e.texte}</span></p>
       </div>
     ))
   }
@@ -47,5 +48,5 @@ const erreurs = [
     titre="Demander une démo de Deliview"
     sousTitre="15 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 24 h."
   />
-  <Faq questions={faq} titre="Avant la démo" />
+  <Faq questions={faq} titre="Avant la démo" fond="gris" />
 </Base>

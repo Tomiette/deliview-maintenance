@@ -1,54 +1,62 @@
 ---
-// En-tête collant : logo, navigation (méga-menus « Notre solution » et « Ressources »), connexion en bouton contour,
-// bouton démo plein. Plus de barre d'annonce ni de simulateur en haut du site (décision de Tom, 2 octobre 2026).
-// Menus en <details> : utilisables sans JavaScript et au clavier ; Échap les ferme (script ci-dessous).
-import Icone from './Icone.astro';
+// En-tête collant (maquettes « le passe ») : logo, navigation avec méga-menus « Notre solution » et « Ressources »,
+// « Se connecter » avec le cadenas dessiné, bouton « Demander une démo » en contour : le seul bouton plein
+// d'un écran est celui du haut de page.
+// Menus en <details> : utilisables sans JavaScript et au clavier (Entrée ou Espace pour ouvrir) ; Échap les ferme.
+import Cadenas from '../icons/cadenas.astro';
+import Chevron from '../icons/chevron.astro';
+import Menu from '../icons/menu.astro';
+import { ICONES } from '../lib/registre-icones';
 import { MENU_RESSOURCES, NAV, PILIERS, SITE, lien } from '../lib/site';
 
 const MENUS: Record<string, { href: string; titre: string; phrase: string; icone?: (typeof PILIERS)[number]['icone'] }[]> = {
   solution: PILIERS.map((p) => ({ href: `/solution/${p.slug}/`, titre: p.surtitre, phrase: p.phrase, icone: p.icone })),
   ressources: MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase })),
 };
+// Page en cours (sans la base de l'aperçu), pour marquer l'entrée active de la navigation.
+const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
+const actif = (href: string) => chemin === href;
+const dansMenu = (menu: string) =>
+  menu === 'solution' ? chemin.startsWith('/solution/') : MENU_RESSOURCES.some((r) => chemin.startsWith(r.href) && r.href !== '/');
 ---
 
-<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-grey-2/15">
-  <div class="dv-container flex h-[72px] items-center justify-between gap-4">
-    <a href={lien('/')} class="shrink-0" aria-label="Deliview, accueil">
+<header class="sticky top-0 z-40 border-b border-grey-2/12 bg-white">
+  <div class="dv-container flex h-16 items-center justify-between gap-4 !pr-2 sm:!pr-4 md:!pr-6 lg:h-[76px] lg:gap-10">
+    <a href={lien('/')} class="flex min-h-12 shrink-0 items-center" aria-label="Deliview, accueil">
       <img src={lien('/images/logo-deliview.png')} alt="Deliview" width="128" height="27" />
     </a>
 
-    <nav aria-label="Navigation principale" class="hidden lg:block">
-      <ul class="flex items-center gap-1 whitespace-nowrap text-[16px] font-semibold">
+    <nav aria-label="Navigation principale" class="hidden flex-1 lg:block">
+      <ul class="flex items-center gap-1 whitespace-nowrap text-[17px] font-semibold leading-none">
         {
           NAV.map((item) =>
             item.menu ? (
               <li class="relative">
                 <details class="dv-menu group">
-                  <summary class="flex cursor-pointer list-none items-center gap-1 rounded-lg px-3 py-2 hover:bg-grey [&::-webkit-details-marker]:hidden">
+                  <summary class={`dv-nav-lien flex min-h-12 cursor-pointer list-none items-center gap-1.5 rounded-[10px] px-3 hover:bg-grey [&::-webkit-details-marker]:hidden ${dansMenu(item.menu) ? 'dv-nav-actif' : ''}`}>
                     {item.libelle}
-                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+                    <Chevron taille={24} class="transition-transform group-open:rotate-180" />
                   </summary>
-                  <div class="absolute left-0 top-full mt-2 w-[400px] rounded-[16px] border border-grey-2/15 bg-white p-3 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
+                  <div class="absolute left-0 top-full mt-2 w-[420px] rounded-[16px] border border-grey-2/15 bg-white p-3 shadow-[0_8px_24px_rgba(76,76,76,0.1)]">
                     <ul class="space-y-1">
-                      {MENUS[item.menu].map((x) => (
-                        <li>
-                          <a href={lien(x.href)} class="flex gap-3 rounded-xl p-3 hover:bg-grey">
-                            {x.icone && (
-                              <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
-                                <Icone nom={x.icone} taille={18} />
+                      {MENUS[item.menu].map((x) => {
+                        const Icone = x.icone ? ICONES[x.icone] : null;
+                        return (
+                          <li>
+                            <a href={lien(x.href)} class="flex gap-3 rounded-xl p-3 hover:bg-grey" aria-current={actif(x.href) ? 'page' : undefined}>
+                              {Icone && <Icone taille={32} />}
+                              <span class="whitespace-normal">
+                                <span class="block font-semibold leading-snug">{x.titre}</span>
+                                <span class="mt-1 block text-[15px] font-normal leading-snug dv-muted">{x.phrase}</span>
                               </span>
-                            )}
-                            <span class="whitespace-normal">
-                              <span class="block font-semibold">{x.titre}</span>
-                              <span class="mt-0.5 block text-[15px] font-normal leading-snug dv-muted">{x.phrase}</span>
-                            </span>
-                          </a>
-                        </li>
-                      ))}
+                            </a>
+                          </li>
+                        );
+                      })}
                     </ul>
                     {item.menu === 'solution' && (
-                      <p class="mt-1 border-t border-grey-2/10 px-3 pt-3 pb-1 text-[15px]">
-                        <a href={lien('/solution/')} class="underline underline-offset-2">Voir toute la solution</a>
+                      <p class="mt-1 border-t border-grey-2/10 px-3 pt-2 text-[16px]">
+                        <a href={lien('/solution/')} class="dv-lien">Voir toute la solution</a>
                       </p>
                     )}
                   </div>
@@ -56,7 +64,7 @@ const MENUS: Record<string, { href: string; titre: string; phrase: string; icone
               </li>
             ) : (
               <li>
-                <a href={lien(item.href)} class="block rounded-lg px-3 py-2 hover:bg-grey">
+                <a href={lien(item.href)} class={`dv-nav-lien flex min-h-12 items-center rounded-[10px] px-3 hover:bg-grey ${chemin.startsWith(item.href) ? 'dv-nav-actif' : ''}`} aria-current={actif(item.href) ? 'page' : undefined}>
                   {item.libelle}
                 </a>
               </li>
@@ -66,47 +74,54 @@ const MENUS: Record<string, { href: string; titre: string; phrase: string; icone
       </ul>
     </nav>
 
-    <div class="flex items-center gap-2">
-      <a href={SITE.app} class="dv-btn dv-btn-contour !min-h-[44px] !px-4 !py-2 !text-[16px] hidden whitespace-nowrap sm:inline-flex">Se connecter</a>
-      <a href={lien('/demo/')} class="dv-btn dv-btn-plein !min-h-[44px] !px-4 !py-2 hidden whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
+    <div class="flex items-center gap-2 lg:gap-4">
+      <a href={SITE.app} class="hidden min-h-12 items-center gap-2 px-2 text-[17px] font-semibold leading-none whitespace-nowrap hover:underline sm:inline-flex">
+        <Cadenas taille={24} />Se connecter
+      </a>
+      <a href={lien('/demo/')} class="dv-btn dv-btn-contour hidden !min-h-12 !px-5 !py-0 whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
 
       <details class="dv-menu lg:hidden">
-        <summary class="flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-lg border border-grey-2/20 [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
-          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
+          <Menu taille={32} />
         </summary>
-        <div class="fixed inset-x-0 top-[72px] max-h-[calc(100dvh-72px)] overflow-y-auto border-b border-grey-2/15 bg-white px-4 pb-6 pt-2">
-          <p class="dv-overline pt-2 pb-1">Notre solution</p>
+        <div class="fixed inset-x-0 top-16 max-h-[calc(100dvh-64px)] overflow-y-auto border-b border-grey-2/15 bg-white px-4 pb-6 pt-2">
+          <p class="dv-overline pt-3 pb-1">Notre solution</p>
           <ul>
             {
-              PILIERS.map((p) => (
-                <li>
-                  <a href={lien(`/solution/${p.slug}/`)} class="flex items-center gap-3 py-3 font-semibold border-b border-grey-2/10">
-                    <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
-                      <Icone nom={p.icone} taille={18} />
-                    </span>
-                    {p.surtitre}
-                  </a>
-                </li>
-              ))
+              PILIERS.map((p) => {
+                const Icone = ICONES[p.icone];
+                return (
+                  <li>
+                    <a href={lien(`/solution/${p.slug}/`)} class="flex min-h-12 items-center gap-3 border-b border-grey-2/10 py-2 font-semibold">
+                      <Icone taille={32} />
+                      {p.surtitre}
+                    </a>
+                  </li>
+                );
+              })
             }
             {
               NAV.filter((x) => !x.menu).map((item) => (
                 <li>
-                  <a href={lien(item.href)} class="block py-3 font-semibold border-b border-grey-2/10">{item.libelle}</a>
+                  <a href={lien(item.href)} class="flex min-h-12 items-center border-b border-grey-2/10 py-2 font-semibold" aria-current={actif(item.href) ? 'page' : undefined}>
+                    {item.libelle}
+                  </a>
                 </li>
               ))
             }
           </ul>
-          <p class="dv-overline pt-5 pb-1">Ressources</p>
+          <p class="dv-overline pt-6 pb-1">Ressources</p>
           <ul>
             {
               MENU_RESSOURCES.map((r) => (
                 <li>
-                  <a href={lien(r.href)} class="block py-3 font-semibold border-b border-grey-2/10">{r.libelle}</a>
+                  <a href={lien(r.href)} class="flex min-h-12 items-center border-b border-grey-2/10 py-2 font-semibold">{r.libelle}</a>
                 </li>
               ))
             }
-            <li><a href={SITE.app} class="block py-3 font-semibold">Se connecter</a></li>
+            <li>
+              <a href={SITE.app} class="flex min-h-12 items-center gap-2 py-2 font-semibold"><Cadenas taille={24} />Se connecter</a>
+            </li>
           </ul>
           <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>
         </div>
@@ -114,6 +129,16 @@ const MENUS: Record<string, { href: string; titre: string; phrase: string; icone
     </div>
   </div>
 </header>
+
+<style>
+  /* Entrée de la navigation correspondant à la page : soulignée en Bleu 1. */
+  .dv-nav-actif {
+    text-decoration: underline;
+    text-decoration-color: var(--color-blue);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 8px;
+  }
+</style>
 
 <script>
   // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme.

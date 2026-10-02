@@ -1,0 +1,9 @@
+---
+// Icône « toque » : toque de cuisinier (Qui sommes-nous, mise en place).
+// Tracé repris tel quel de la planche des icônes validée (maquettes « le passe », 2 octobre 2026).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M15.2 28.4c-4.2-.6-7.2-4-6.8-8 .4-3.8 3.8-6.6 7.6-6.4.8-3.8 4.2-6.6 8.2-6.6 4 .1 7.3 2.9 8 6.7 3.8-.4 7.4 2.3 7.8 6.1.4 4-2.4 7.4-6.4 8.2" /><path d="M15.2 28.4l.4 10.2c0 .6.5 1 1.1 1l15.8-.2c.6 0 1-.5 1-1.1l.1-9.9" /><path d="M19.8 24.6c.1-1.8.6-3.4 1.6-4.6M28.4 24.4c0-1.6-.4-3.1-1.2-4.4" /><path class="b" d="M15.6 33.6c5.8-.5 11.9-.5 18-.2" /></Trace>
