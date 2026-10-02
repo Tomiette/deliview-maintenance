@@ -32,6 +32,11 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 ## Contact
 
+- [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, origine des données, fondateur.
 - [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : Tom Voisin, fondateur, un an d’analyse sur le terrain auprès des restaurants qui livrent.
 - [Demander une démo](https://www.deliview.fr/demo/) : 15 minutes sur les fiches du restaurant.
 - E-mail : tom@deliview.fr
+
+## Optional
+
+- [Version complète en texte brut](https://www.deliview.fr/llms-full.txt) : questions fréquentes et guides en entier, avec leurs sources.

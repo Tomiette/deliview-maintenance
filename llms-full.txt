@@ -1,0 +1,832 @@
+# Deliview
+
+> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.
+
+Le partenaire des restaurants en livraison. Site : https://www.deliview.fr. Contact : tom@deliview.fr, 06 32 37 79 88. Fondateur : Tom Voisin (https://www.deliview.fr/qui-sommes-nous/#tom).
+
+## Ce que fait Deliview
+
+- Prix et concurrence (https://www.deliview.fr/solution/prix-et-concurrence/) : Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.
+- Carte et marge (https://www.deliview.fr/solution/carte-et-marge/) : Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.
+- Réputation (https://www.deliview.fr/solution/reputation/) : Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.
+
+## Tarifs (HT par mois, sans engagement, mise en place offerte)
+
+- Essentiel : 59 €, 1 restaurant. Pour vendre chaque plat au bon prix.
+- Pro : 149 €, jusqu’à 5 restaurants. Pour piloter la rentabilité de plusieurs restaurants.
+- Premium : 349 €, jusqu’à 10 restaurants. Pour un groupe de restaurants, avec un suivi chaque mois.
+
+## Questions fréquentes (mises à jour le 2026-10-02, https://www.deliview.fr/questions-frequentes/)
+
+### Deliview en bref
+
+**Qu’est-ce que Deliview ?**
+Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable. Deliview est conçu pour les restaurants en France présents sur Uber Eats et Deliveroo.
+
+**À qui s’adresse Deliview ?**
+Aux restaurants qui vendent sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens et petites chaînes, de 1 à 10 restaurants. Au-delà, Tom fait une offre sur mesure.
+
+**Sur quelles plateformes fonctionne Deliview ?**
+Uber Eats et Deliveroo, en France. Les deux fiches d’un même restaurant sont lues séparément, car prix, notes et offres peuvent y être différents.
+
+**Deliview est-il lié à Uber Eats ou à Deliveroo ?**
+Non. Deliview est un logiciel indépendant, ni affilié ni approuvé par Uber Eats ou Deliveroo. Ce sont des marques de leurs propriétaires respectifs.
+
+### Fonctionnement
+
+**Comment Deliview compare-t-il mes prix à ceux de mes concurrents ?**
+Plat par plat, à plat comparable : même type et même taille, par exemple votre pizza 33 cm face aux pizzas 33 cm de votre zone. Deliview calcule la médiane des prix de la zone et l’écart avec votre prix. Il faut au moins 2 concurrents pour conclure ; sinon, Deliview le dit.
+
+**Combien de concurrents Deliview analyse-t-il ?**
+Jusqu’à 20 restaurants du même secteur autour de vous, sur Uber Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins : Deliview garde ceux qu’il trouve. Avec les offres Pro et Premium, vous ajoutez 3 concurrents de votre choix par restaurant.
+
+**D’où viennent les données de Deliview ?**
+Des informations publiques des fiches Uber Eats et Deliveroo : prix, notes, nombre d’avis, offres, photos et descriptions des plats. Chaque prix comparé renvoie à la fiche d’où il vient.
+
+**Faut-il donner mes identifiants Uber Eats ou Deliveroo ?**
+Non. Deliview ne demande aucun accès à votre espace restaurant. Vos identifiants restent à vous.
+
+**Deliview modifie-t-il mes prix sur les plateformes ?**
+Non. Quand la comparaison le permet, Deliview propose un prix, avec ses sources ; vous décidez, puis vous le changez vous-même dans votre espace Uber Eats ou Deliveroo.
+
+**Deliview voit-il mes commandes et mon chiffre d’affaires ?**
+Non. Ces données ne sont pas publiques, et Deliview travaille aujourd’hui uniquement sur les informations publiques des fiches.
+
+**Faut-il installer quelque chose ?**
+Non. Deliview s’ouvre dans le navigateur, sur une tablette, un ordinateur ou un téléphone. Vos tablettes Uber Eats et Deliveroo restent là pour recevoir les commandes.
+
+### Prix et engagement
+
+**Combien coûte Deliview ?**
+Trois offres selon votre nombre de restaurants : Essentiel à 59 € HT par mois (1 restaurant), Pro à 149 € HT par mois (jusqu’à 5 restaurants), Premium à 349 € HT par mois (jusqu’à 10 restaurants). Le détail de chaque offre est sur la page Tarifs.
+
+**Y a-t-il un engagement ?**
+Non. L’abonnement est mensuel et sans engagement, et la mise en place est offerte.
+
+**Peut-on essayer Deliview avant de payer ?**
+Oui, par une démo de 15 minutes faite sur vos propres fiches Uber Eats et Deliveroo, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. Demander une démo.
+
+### Qui est derrière Deliview
+
+**Qui a créé Deliview ?**
+Tom Voisin, fondateur de Deliview, étudiant-entrepreneur du réseau PEPITE. Il a lui-même été sur Uber Eats et Deliveroo, et Deliview est le résultat d’un an d’analyse sur le terrain auprès des restaurants qui livrent. Son parcours.
+
+**Comment vérifier le sérieux de Deliview avant de s’abonner ?**
+Tout se vérifie avant de payer : la démo se fait sur vos propres fiches, chaque prix comparé renvoie à sa source, les prix sont publics et l’abonnement est sans engagement. Vous parlez directement au fondateur, par téléphone ou sur LinkedIn.
+
+**Où sont hébergées les données ?**
+Dans l’Union européenne : la base de données de Deliview est hébergée en Irlande. Le détail est dans la politique de confidentialité.
+
+**Comment contacter Deliview ?**
+Par téléphone au 06 32 37 79 88, par e-mail à tom@deliview.fr, ou en demandant une démo. C’est Tom qui répond.
+
+## Guides pour les restaurateurs
+
+### Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger
+
+Adresse : https://www.deliview.fr/ressources/ameliorer-note-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Sur Uber Eats comme sur Deliveroo, la note est une moyenne d’étoiles de 1 à 5 qui privilégie les notes récentes. Pour la faire monter, traitez d’abord ce qui la fait baisser : plats manquants, erreurs, retards et emballage. Répondez aux avis, comparez-vous aux restaurants de votre zone, et ne publiez ni n’achetez jamais de faux avis : c’est un délit.
+
+## Comment Uber Eats et Deliveroo calculent-ils votre note ?
+
+Les deux plateformes font la moyenne des étoiles, de 1 à 5, que vos clients donnent après leur commande. Elles privilégient les notes récentes et n’affichent rien avant 10 notes.
+
+| Point | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Qui note | Le client, de 1 à 5 étoiles, après chaque commande | Le client, de 1 à 5 étoiles, une fois la commande livrée |
+| Notes retenues | Celles des 91 derniers jours, selon la page légale française (2022) | Les 400 dernières notes |
+| Affichage | À partir de 10 notes | À partir de 10 commandes notées |
+| Ce que voit le client | La note moyenne ; les commentaires restent privés, sauf les « stories » de clients réguliers | Les notes, les avis du plus récent au plus ancien, des tags et la répartition des notes |
+
+Les pages d’Uber ne décrivent pas toutes la même méthode : sa [page légale](https://www.uber.com/fr/fr/legal/ratings-and-reviews-on-uber-eats/) parle des 91 derniers jours. Son aide évoque une moyenne, « la priorité étant donnée aux notes les plus récentes ». Une FAQ pour les commerçants décrit une moyenne pondérée qui favorise les 90 derniers jours. Dans tous les cas, vos trois derniers mois comptent le plus.
+
+Sur Deliveroo, une mauvaise note reste dans votre moyenne jusqu’à ce que 400 notes plus récentes la chassent. À 100 notes par mois, cela prend quatre mois. Quand vous avez peu de notes, chacune pèse lourd. Exemple simplifié, en moyenne simple : avec 20 notes à 4,5, une seule note à 1 étoile fait tomber la moyenne à 4,33.
+
+### Pourquoi votre note pèse sur vos ventes
+
+Chez Deliveroo, « plus votre note sera élevée, plus vous apparaîtrez dans les premiers résultats de la liste sur l’application ». Une bonne note aide aussi votre Score Confiance à passer à « Bon » ou « Excellent ». Chez Uber Eats, les « Notes des Clients » entrent dans le score de réussite de votre établissement. Un score insuffisant peut restreindre votre accès aux outils d’offres et d’annonces, ceux qui servent à [lancer une promo rentable](/ressources/promotion-uber-eats-deliveroo-rentable/).
+
+## Qu’est-ce qui fait baisser votre note ?
+
+Les deux plateformes pointent les mêmes causes : plats manquants ou erronés, retards de préparation et emballage. La plupart se corrigent avec une méthode simple, dès le prochain service.
+
+Deliveroo a titré l’un de ses guides « Comment éviter les articles manquants ou incorrects afin de réduire les remboursements et protéger vos notes ». Il cite comme causes fréquentes les stocks ou menus non à jour, l’absence de zone dédiée à la préparation et les sacs non scellés. Sa [page d’aide sur la notation](https://help.deliveroo.com/fr/articles/3198521-notation-des-commandes) conseille de finir les plats pour l’heure de récupération prévue et de n’oublier aucun produit. Elle demande des emballages qui « conservent bien la chaleur et laissent passer l’humidité ».
+
+Chez Uber Eats, le score de réussite suit le taux d’erreur de commandes et l’attente des coursiers due à une préparation tardive. Il suit aussi la satisfaction sur le goût et la qualité des plats. Selon une FAQ d’Uber, les restaurants les mieux notés « acceptent les commandes rapidement et vérifient minutieusement les détails de chaque commande ». Uber Eats conseille aussi de tenir l’inventaire à jour et d’emballer pour éviter « la casse ou les fuites ».
+
+Les gestes tirés de ces pages :
+
+- mettez à jour vos ruptures avant chaque rush, sur les deux tablettes ;
+- cochez chaque article sur le ticket avant de fermer le sac ;
+- fermez chaque sac et attachez ensemble ceux d’une même commande ;
+- écrivez le nombre de produits sur le sac ;
+- passez en « Mode occupé » sur la tablette Deliveroo quand les commandes affluent.
+
+Pour tenir ces gestes en plein service, voir [comment gérer les tablettes Uber Eats et Deliveroo pendant le rush](/ressources/tablettes-uber-eats-deliveroo-rush/).
+
+## Faut-il répondre aux avis ?
+
+Oui, et les deux plateformes le permettent. Le client est prévenu par e-mail.
+
+Sur Uber Eats, ouvrez Uber Eats Manager, onglet Commentaires, puis Avis, et cliquez sur Répondre. Vous pouvez joindre un code promotionnel. Les avis ne peuvent être supprimés ni par vous ni par l’assistance. Uber Eats Manager sait aussi automatiser des réponses selon la note en étoiles ou le montant minimum de commande.
+
+Sur Deliveroo, répondez depuis le Partner Hub, section Avis et notes. Votre réponse reste privée : elle part par e-mail et n’apparaît pas dans l’application. Deliveroo la relit avant envoi, et vous avez 30 jours pour répondre. Vous pouvez ajouter un bon d’achat, facturé avec la mention « Bon de réduction à payer par le restaurant ».
+
+Selon Deliveroo, la clientèle est « 23 % plus susceptible de commander chez vous si vous interagissez avec elle ». Une bonne réponse nomme le problème précis, s’excuse si l’erreur vient de vous et dit ce que vous changez. Deliveroo peut refuser les réponses qui invitent à commander ailleurs ou en direct, et celles qui rejettent la faute sur le livreur.
+
+Sur Deliveroo, signalez enfin les avis qui enfreignent les règles, avec les trois points à côté de l’avis. La plateforme supprime par exemple les avis centrés sur la livraison ou sur des situations « indépendantes de la volonté du restaurant ».
+
+## Que faut-il ne jamais faire ?
+
+Publier de faux avis ou en acheter. C’est un délit, et Deliveroo supprime les avis qui ne sont pas authentiques.
+
+La [DGCCRF](https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/avis-en-ligne-attention-aux-faux-commentaires) rappelle que de faux avis positifs déposés « à l’initiative du professionnel » sont « constitutifs d’un délit de pratiques commerciales trompeuses ». La [loi sur les pratiques trompeuses](https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-commerciales-trompeuses-les-cles-pour-les-reconnaitre-et-sen-premunir) vise aussi le fait de « diffuser ou faire diffuser par une autre personne morale ou physique des faux avis ». La peine : deux ans d’emprisonnement et 300 000 € d’amende, qui peut être portée à 10 % du chiffre d’affaires moyen annuel.
+
+Les règles de Deliveroo vont dans le même sens. Elles interdisent de publier des avis sur votre propre restaurant, ou d’en demander à vos employés, amis ou famille. Elles interdisent aussi d’offrir paiement, réduction ou bon d’achat « en échange d’avis », et de demander la suppression d’un avis négatif. Les avis publiés en violation de ces règles sont supprimés et « ne seront plus pris en compte dans votre note de partenaire ».
+
+Un geste après un avis reste permis : Deliveroo autorise un bon d’achat aux clients « à titre exceptionnel après qu’ils ont laissé un avis ». Uber Eats permet aussi de joindre un code promo à votre réponse. Le geste répond à un avis déjà publié : il ne l’achète pas. En cas de doute sur une pratique, demandez l’avis d’un avocat.
+
+## Comment savoir si votre note est bonne ?
+
+Comparez-la à celles des restaurants qui livrent votre zone, pas à un chiffre idéal. Le client choisit parmi les restaurants affichés chez lui.
+
+Deliveroo met en avant ceux qui ont reçu « les meilleurs avis des utilisateurs dans le quartier », dans une bannière « Mieux notés ». Son Partner Hub permet de « comparer vos notes avec celles des autres restaurants dans votre zone ». Exemple : 4,4 vous place en tête si vos voisins sont entre 4,1 et 4,3, et en dernier s’ils sont entre 4,6 et 4,8.
+
+Regardez aussi le nombre de notes : une moyenne établie sur 15 notes bouge bien plus vite qu’une moyenne sur 500. Et gardez un œil sur les seuils propres aux plateformes, comme le score de réussite d’Uber Eats ou le Score Confiance de Deliveroo.
+
+Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme : voir [votre note face à celles de votre zone](/solution/reputation/).
+
+## Par où commencer cette semaine ?
+
+Partez des mauvaises notes du dernier mois : elles disent quoi corriger en premier.
+
+1. Relevez votre note sur chaque plateforme, et celles de cinq voisins de même cuisine.
+2. Lisez les commentaires des mauvaises notes dans Uber Eats Manager et le Partner Hub, puis classez-les : manquant, erreur, retard, emballage, goût.
+3. Corrigez la cause la plus fréquente dès le prochain service, avec un geste simple et vérifiable.
+4. Répondez aux avis récents, en commençant par les plus sévères. Sur Deliveroo, vous avez 30 jours.
+5. Signalez les avis qui sortent des règles de la plateforme.
+6. Refaites le point dans un mois. Sur Uber Eats, vos trois derniers mois comptent le plus ; sur Deliveroo, vos 400 dernières notes.
+
+Sources : Les notes et évaluations sur Uber Eats (Uber, https://www.uber.com/fr/fr/legal/ratings-and-reviews-on-uber-eats/, consulté le 1er octobre 2026) ; Notes des commerçants (Uber, https://help.uber.com/fr-FR/ubereats/restaurants/article/notes-des-commer%C3%A7ants?nodeId=f102d7b6-c06d-4e16-b76b-728eac1d702a, consulté le 1er octobre 2026) ; FAQ sur les notes (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/faq-sur-les-notes?nodeId=142bda2b-1760-4570-8130-64cadc93eaee, consulté le 1er octobre 2026) ; Politique de Score de Réussite Partenaire - Restaurants Partenaires (Uber, https://www.uber.com/fr/fr/legal/merchant-success-score-policy/, consulté le 1er octobre 2026) ; 4 façons d’augmenter la satisfaction des utilisateurs (Uber, https://merchants.ubereats.com/fr/fr/resources/articles/4-effective-ways-to-increase-customer-satisfaction/, consulté le 1er octobre 2026) ; Comment répondre à un commentaire négatif (avec exemples) (Uber, https://merchants.ubereats.com/fr/fr/resources/articles/how-to-respond-to-a-bad-review/, consulté le 1er octobre 2026) ; Répondez directement aux commentaires des clients (Uber, https://merchants.ubereats.com/fr/fr/technology/reach-customers/customer-reviews/, consulté le 1er octobre 2026) ; Notation des commandes (Deliveroo, https://help.deliveroo.com/fr/articles/3198521-notation-des-commandes, consulté le 1er octobre 2026) ; Avis et notes dans l’application Deliveroo (Deliveroo, https://help.deliveroo.com/fr/articles/6258682-avis-et-notes-dans-l-application-deliveroo, consulté le 1er octobre 2026) ; Répondez aux avis de votre clientèle (Deliveroo, https://help.deliveroo.com/fr/articles/4693672-repondez-aux-avis-de-votre-clientele, consulté le 1er octobre 2026) ; Où puis-je voir mes notes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3215325-ou-puis-je-voir-mes-notes, consulté le 1er octobre 2026) ; Comment éviter les articles manquants ou incorrects afin de réduire les remboursements et protéger vos notes (Deliveroo, https://merchants.deliveroo.com/fr-FR/learning-centre/how-to-avoid-missing-or-incorrect-items, consulté le 1er octobre 2026) ; Politiques Deliveroo (lignes directrices relatives à la communauté, Programme Confiance) (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 1er octobre 2026) ; Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 1er octobre 2026) ; Avis en ligne : attention aux faux commentaires ! (Ministère de l’Économie (DGCCRF), https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/avis-en-ligne-attention-aux-faux-commentaires, consulté le 1er octobre 2026) ; Pratiques commerciales trompeuses : les clés pour les reconnaître et s’en prémunir (Ministère de l’Économie (DGCCRF), https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/pratiques-commerciales-trompeuses-les-cles-pour-les-reconnaitre-et-sen-premunir, consulté le 1er octobre 2026)
+
+### Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo
+
+Adresse : https://www.deliview.fr/ressources/analyser-prix-concurrents-livraison/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Choisissez cinq à dix restaurants de votre cuisine qui livrent vos clients. Comparez le même plat à taille égale et notez prix et promos dans un tableau daté. Calculez la médiane plutôt que la moyenne. Un écart de plus de 10 %, sur au moins deux comparaisons, est un signal. Refaites l’exercice chaque mois.
+
+## Quels concurrents choisir ?
+
+Retenez cinq à dix restaurants de la même cuisine, qui livrent dans votre zone et que vos clients voient dans l’application. Ce sont eux que vos clients comparent avant de commander.
+
+Ouvrez Uber Eats et Deliveroo avec l’adresse d’un client habituel, pas celle du restaurant. Cherchez votre plat phare et notez les restaurants qui s’affichent : vous voyez à peu près ce que vos clients voient.
+
+Gardez la même cuisine : une pizzeria se compare à des pizzerias, un burger à des burgers. Ajoutez un ou deux restaurants que vos clients citent, même un peu plus loin.
+
+Faites le relevé sur chaque plateforme séparément : ne supposez pas qu’un restaurant affiche les mêmes prix sur Uber Eats et sur Deliveroo.
+
+## Comment comparer ce qui est comparable ?
+
+Comparez le même plat, à taille ou contenance égale. Une pizza 33 cm se compare à des pizzas 33 cm, une canette 33 cl à des canettes 33 cl.
+
+Un menu se compare à des menus de même composition : un burger avec frites et boisson ne se compare pas à un burger seul. Une recette sans équivalent chez vos voisins se situe plutôt dans sa famille, pizzas ou desserts, sans prix précis à copier.
+
+### Notez tout dans un tableau
+
+Une ligne par restaurant et par plat suffit, avec la date du relevé. Voici un relevé fictif sur Uber Eats, pour une margherita 33 cm.
+
+| Restaurant | Prix affiché | Promo affichée | Prix payé pour la pizza |
+| --- | --- | --- | --- |
+| Votre restaurant | 14,00 € | Aucune | 14,00 € |
+| Restaurant A | 11,00 € | Aucune | 11,00 € |
+| Restaurant B | 12,00 € | Aucune | 12,00 € |
+| Restaurant C | 12,50 € | 20 % de remise sur la pizza | 10,00 € |
+| Restaurant D | 13,00 € | Aucune | 13,00 € |
+| Restaurant E | 19,00 € | Aucune | 19,00 € |
+
+## Pourquoi la médiane plutôt que la moyenne ?
+
+La médiane est le prix du milieu, une fois les prix rangés du moins cher au plus cher. Un prix extrême tire la moyenne vers le haut ou vers le bas, alors que la médiane bouge à peine.
+
+Reprenons les cinq concurrents du tableau : 11,00 €, 12,00 €, 12,50 €, 13,00 € et 19,00 €. Leur moyenne est de 13,50 €, soit 67,50 € divisés par 5. Leur médiane est de 12,50 €, le troisième prix sur cinq.
+
+Votre margherita à 14,00 € dépasse la moyenne de 3,7 %, ce qui paraît raisonnable. Elle dépasse pourtant la médiane de 12 %. Remplacez les 19,00 € du restaurant E par 14,00 € : la médiane reste à 12,50 € et la moyenne tombe aussi à 12,50 €. Un seul prix suffisait à masquer l’écart.
+
+Avec un nombre pair de prix, la médiane est la moyenne des deux prix du milieu. Calculez-la sur les prix affichés et lisez les promos à part.
+
+## Comment tenir compte des promos ?
+
+Notez deux prix pour chaque plat : le prix affiché et le prix payé avec la promo. Calculez la médiane sur les prix affichés, puis regardez qui fait des promos, sur quels plats et à quel rythme.
+
+Une remise sur un plat change le prix payé. Avec 20 % de remise, la margherita du restaurant C passe de 12,50 € à 10,00 €. Une offre liée à un montant minimum de commande ne change pas le prix du plat seul : notez-la dans une colonne à part.
+
+Les offres prennent plusieurs formes. Selon [la page promotions d’Uber Eats](https://merchants.ubereats.com/fr/fr/technology/grow-your-store/promotions/), elles vont « des réductions offertes à partir d’un montant minimum de commande aux plats offerts ». Les [conditions générales de Deliveroo](https://merchants.deliveroo.com/fr-FR/legal/terms) précisent qu’une remise sur le panier porte sur le sous-total des articles, hors frais de livraison et de service.
+
+Un prix barré indique un prix de référence. Sur Deliveroo, ce prix ne peut pas dépasser le plus petit prix pratiqué dans les 30 jours avant le lancement de l’offre. Un concurrent qui affiche la même remise à chaque relevé vend, dans les faits, à son prix remisé : comparez-vous aussi à ce prix. Pour juger vos propres offres, lisez notre article sur [les promos rentables sur Uber Eats et Deliveroo](/ressources/promotion-uber-eats-deliveroo-rentable/).
+
+## Comment lire le résultat ?
+
+Calculez l’écart entre votre prix et la médiane. Au-delà de 10 % au-dessus ou en dessous, avec au moins deux restaurants comparables, vous tenez un signal. Entre les deux, votre prix est bien placé.
+
+L’écart se calcule ainsi : (votre prix − médiane) ÷ médiane. Dans l’exemple, (14,00 − 12,50) ÷ 12,50 donne 12 %, au-dessus du seuil de 10 %.
+
+- **Plus de 10 % au-dessus** : cherchez ce qui justifie l’écart, comme la taille, les produits ou votre note. Sans raison visible, rapprochez-vous de la médiane, sans passer sous votre [prix plancher](/ressources/fixer-prix-uber-eats-deliveroo/).
+- **Plus de 10 % en dessous** : vous laissez sans doute de la marge. Montez par étapes et suivez vos ventes après chaque hausse.
+- **Une seule comparaison** : ne concluez pas. Élargissez la zone ou attendez le relevé suivant.
+
+[Deliview compare vos prix à ceux de votre quartier](/solution/prix-et-concurrence/) à partir de vos fiches publiques Uber Eats et Deliveroo, sans identifiant à donner. Il retient jusqu’à 20 restaurants de votre secteur, dont jusqu’à 3 de votre choix, et compare chaque plat au même plat à taille égale. Il calcule la médiane et l’écart, et ne conclut qu’avec au moins 2 concurrents. Il signale aussi les promos affichées et ce qui a changé depuis l’analyse précédente.
+
+## À quelle fréquence refaire l’exercice ?
+
+Une fois par mois suffit en temps normal. Refaites-le aussi après un changement de carte chez vous, ou quand un nouveau restaurant arrive dans votre zone.
+
+Les prix de la restauration bougent : selon l’[Insee](https://www.insee.fr/fr/statistiques/9051406), ils ont augmenté de 2,1 % sur un an en août 2026. Chez vos voisins, une nouvelle carte ou une promo peut déplacer la médiane d’un mois à l’autre.
+
+Gardez vos anciens tableaux. Sur trois mois, l’évolution d’un concurrent en dit plus qu’un relevé isolé : hausses régulières, promo permanente, nouvelle taille.
+
+## Par où commencer cette semaine ?
+
+Commencez petit : trois plats, cinq concurrents, une plateforme.
+
+1. Choisissez trois plats : votre meilleure vente, un menu et une boisson.
+2. Ouvrez Uber Eats avec l’adresse d’un client habituel et notez cinq concurrents de votre cuisine.
+3. Relevez pour chacun le prix affiché, la taille, la promo et la date.
+4. Calculez la médiane et votre écart pour chaque plat.
+5. Pour chaque écart de plus de 10 %, décidez d’une action et notez-la.
+
+Faites ensuite le même relevé sur Deliveroo, puis recommencez le mois suivant.
+
+Sources : En août 2026, les prix à la consommation augmentent de 2,4 % sur un an (Informations rapides n° 218) (Insee, https://www.insee.fr/fr/statistiques/9051406, consulté le 1er octobre 2026) ; Mettez en place des promotions pour votre établissement (Uber, https://merchants.ubereats.com/fr/fr/technology/grow-your-store/promotions/, consulté le 1er octobre 2026) ; Conditions générales des partenaires Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 1er octobre 2026)
+
+### Commission Deliveroo pour un restaurant : trouver votre taux et calculer votre marge
+
+Adresse : https://www.deliview.fr/ressources/commission-deliveroo-restaurant/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Deliveroo ne publie pas de taux de commission pour les restaurants en France. Le vôtre figure dans votre contrat et sur vos factures hebdomadaires. Deliveroo déduit sa commission et la TVA éventuelle sur celle-ci, puis les offres, la publicité, les annulations et certains remboursements. Calculez votre marge en hors taxes, plat par plat.
+
+## Deliveroo publie-t-il son taux de commission ?
+
+Non. Les pages de Deliveroo destinées aux restaurants en France ne donnent aucun taux de commission. Nous avons vérifié l’accueil partenaires, la FAQ, les offres de livraison, les conditions et les politiques, le 1er octobre 2026.
+
+Chaque restaurant a pourtant le sien. L’[aide de Deliveroo](https://help.deliveroo.com/fr/articles/14686799-transparence-des-prix-sur-deliveroo-prix-verifies-et-visibilite-des-majorations-elevees-france) parle de « votre taux de commission », et ses [conditions](https://merchants.deliveroo.com/fr-FR/legal/terms) renvoient à votre contrat, le « Pack Services ». Vous l’acceptez dans le Portail Partenaire au moment de l’inscription.
+
+## Où trouver votre propre taux ?
+
+Dans votre contrat, puis sur vos factures. Deliveroo vous paie chaque semaine les ventes de la semaine précédente, « dans un délai de deux jours ouvrés », selon sa [FAQ](https://merchants.deliveroo.com/fr-FR/faqs).
+
+1. Relisez votre contrat : l’aide de Deliveroo parle de « la commission prévue par le contrat ».
+2. Dans le Portail Partenaire, téléchargez vos factures en PDF ou en CSV. Celles de la dernière année sont disponibles.
+3. Lisez la première partie : elle donne « le total des revenus générés par vos commandes et le total de la commission Deliveroo à régler ».
+4. Divisez la commission par les revenus, semaine par semaine. Notez si la commission est indiquée hors taxes ou TVA comprise.
+5. Parcourez la liste détaillée des commandes : vos frais, vos remises et les commandes annulées ou remboursées y figurent.
+
+L’article d’aide [Factures et paiements](https://help.deliveroo.com/fr/articles/2037435-factures-et-paiements) décrit chaque partie de la facture.
+
+## Livrer avec Deliveroo ou avec vos livreurs : qu’est-ce qui change ?
+
+Ce qui change : qui livre, et qui fixe la zone et les frais de livraison. Deliveroo ne publie le tarif d’aucun de ces services, donc demandez le taux de chacun avant de signer.
+
+- **Service Core** : les livreurs Deliveroo livrent vos commandes, et vos clients peuvent aussi venir les retirer au restaurant
+- **Marketplace+** : vos propres livreurs livrent, avec la zone, les frais de livraison et le minimum de commande que vous fixez
+- **Editions** : votre marque ouvre dans un site Deliveroo conçu pour la livraison, contre une « commission simple et unique en pourcentage »
+- **Express** : les livreurs Deliveroo livrent les commandes passées sur votre propre site ou votre application
+
+En Marketplace+, vous pouvez appeler un livreur Deliveroo en renfort quand les commandes s’accumulent.
+
+## Quels coûts s’ajoutent à la commission ?
+
+Les offres, la publicité, les annulations et certains remboursements. Ils apparaissent sur votre facture et réduisent votre paiement.
+
+- **Offres** : vous en payez le coût, « sauf accord contraire ». Vos frais de service sont alors calculés « sur le prix réduit payé par le Client ».
+- **Publicité** : vous fixez un budget et un coût par vue du menu, déduit à chaque clic sur votre annonce. Le budget utilisé est retiré de votre facture chaque semaine, selon la [FAQ publicités](https://help.deliveroo.com/fr/articles/4840108-foire-aux-questions-sur-les-publicites).
+- **Récompenses** : si vous activez ce programme, le client reçoit un crédit après 4 commandes d’au moins 15 € en 30 jours. Ce crédit vaut 8 €, ou 10 € pour un abonné Plus, et vous le financez.
+- **Annulations de votre fait** : la commande ne vous est pas payée. Deliveroo vous facture l’équivalent de ses frais de service TTC, plus d’éventuels autres frais, selon sa [politique d’annulation](https://merchants.deliveroo.com/fr-FR/legal/policies).
+- **Remboursements** : ils sont à votre charge quand le problème vient de vous, par exemple un article manquant. Vous avez [7 jours pour les contester](https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge).
+
+Comptez aussi les frais ponctuels. Les forfaits photo vont de 79 € TTC pour 15 photos à 478 € TTC pour 125 photos. La politique de Deliveroo sur l’équipement mentionne enfin des « Frais d’Établissement » par site, fixés dans votre contrat.
+
+## Comment calculer votre marge sur une commande Deliveroo ?
+
+Partez du prix payé par le client, retirez les frais de service TVA comprise, puis passez en hors taxes. Votre taux n’étant pas public, prenons un burger vendu 15 € et trois taux d’exemple.
+
+Dans sa politique d’annulation, Deliveroo décrit ce qu’il verse : « la valeur totale de la Commande, moins les Frais de Services TTC ». L’exemple applique le taux au prix payé par le client, comme le suggèrent les conditions Marketer. Il compte la TVA sur les frais au taux normal de 20 %, selon le [BOFiP](https://bofip.impots.gouv.fr/bofip/1376-PGP.html/identifiant=BOI-TVA-LIQ-20-20140919). Vérifiez ces deux points sur votre contrat et vos factures.
+
+| Burger à 15 € TTC | Taux 20 % | Taux 25 % | Taux 30 % |
+| --- | --- | --- | --- |
+| Frais de service HT | 3,00 € | 3,75 € | 4,50 € |
+| TVA sur ces frais (20 %) | 0,60 € | 0,75 € | 0,90 € |
+| Versé par Deliveroo | 11,40 € | 10,50 € | 9,60 € |
+| Reste HT avant matière | 10,64 € | 9,89 € | 9,14 € |
+
+La dernière ligne part de 13,64 € HT. Un plat livré pour être mangé tout de suite relève en principe de la TVA à 10 %, selon le [BOFiP](https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821). Faites confirmer votre taux par votre expert-comptable, et lisez notre guide sur [la TVA des ventes en livraison](/ressources/tva-ventes-livraison-restaurant/).
+
+Retirez ensuite votre matière et votre emballage. Avec 4,50 € HT, par exemple, il reste entre 4,64 € et 6,14 € par burger selon le taux.
+
+Une offre de 20 % sur le panier ramène le burger à 12 €. Au taux de 25 %, vos frais tombent à 3,00 € HT, et il vous reste 7,91 € HT au lieu de 9,89 €. La remise de 3 € vous coûte donc 1,98 € HT de marge. Notre article sur [les promotions rentables](/ressources/promotion-uber-eats-deliveroo-rentable/) détaille ce calcul.
+
+## Deliveroo et Uber Eats : que peut-on comparer ?
+
+Vous pouvez comparer les règles de calcul, mais pas les taux. Uber Eats affiche des pourcentages sur sa [page tarifs France](https://merchants.ubereats.com/fr/fr/pricing/) ; Deliveroo n’en publie aucun.
+
+| Point | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Taux public | 15 %, 30 % ou 33 % affichés, avec réserve | aucun |
+| Base des frais | prix TTC × votre taux | non publiée |
+| Offres | à votre charge, frais sur le prix réduit | à votre charge, frais sur le prix réduit |
+| Publicité | au clic, tarif fixé par Uber | au clic, coût par vue fixé par vous |
+| Paiement | chaque semaine | chaque semaine |
+| Vos propres livreurs | possible | possible avec Marketplace+ |
+
+Uber Eats peut aussi facturer des frais d’utilisation pour chaque commande avec offre. Ses taux affichés appellent une réserve, détaillée dans notre article sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/).
+
+## Par où commencer cette semaine ?
+
+Téléchargez vos quatre dernières factures en CSV dans le Portail Partenaire, puis calculez votre taux réel. Ensuite, passez à vos plats.
+
+- Calculez le reste HT de vos dix plats les plus vendus, après frais et matière
+- Listez les offres, la publicité et les remboursements du mois, avec leur coût
+- Vérifiez votre majoration des prix dans le Portail Partenaire avant de monter un prix
+
+Quand il le peut, Deliveroo mesure l’écart entre vos prix sur l’application et au restaurant, sur vos 20 principaux produits. Les partenaires restent « entièrement libres de leur politique tarifaire », précise son [Programme Confiance](https://merchants.deliveroo.com/fr-FR/legal/policies). Mais cet écart compte pour atteindre un Score Confiance « Bon » ou « Excellent ». La bannière « [Prix validés](https://help.deliveroo.com/fr/articles/14686799-transparence-des-prix-sur-deliveroo-prix-verifies-et-visibilite-des-majorations-elevees-france) » demande même une majoration moyenne de 0 %.
+
+Pour choisir le bon niveau de prix, lisez notre guide pour [fixer vos prix sur Uber Eats et Deliveroo](/ressources/fixer-prix-uber-eats-deliveroo/).
+
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il liste aussi les plats vendus à un prix différent sur Deliveroo et sur Uber Eats : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+
+Sources : Foire aux questions (Deliveroo, https://merchants.deliveroo.com/fr-FR/faqs, consulté le 1er octobre 2026) ; Développez votre activité avec Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR, consulté le 1er octobre 2026) ; Une solution de livraison et de collecte de classe mondiale pour votre entreprise (Service Core) (Deliveroo, https://merchants.deliveroo.com/fr-FR/what-we-offer/delivery, consulté le 1er octobre 2026) ; Vos livreurs, nos clients (Marketplace+) (Deliveroo, https://merchants.deliveroo.com/fr-FR/what-we-offer/marketplace, consulté le 1er octobre 2026) ; Solutions pour les restaurants en livraison uniquement (Editions) (Deliveroo, https://merchants.deliveroo.com/fr-FR/what-we-offer/editions, consulté le 1er octobre 2026) ; Livraison à la demande via votre propre site web ou application (Deliveroo Express) (Deliveroo, https://merchants.deliveroo.com/fr-FR/what-we-offer/deliveroo-express, consulté le 1er octobre 2026) ; Conditions générales partenaires (Marketer, Récompenses, Service Photographies) (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 1er octobre 2026) ; Politiques partenaires (annulations, Programme Confiance, équipement) (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 1er octobre 2026) ; Factures et paiements (Deliveroo, https://help.deliveroo.com/fr/articles/2037435-factures-et-paiements, consulté le 1er octobre 2026) ; Foire aux questions sur les publicités (Deliveroo, https://help.deliveroo.com/fr/articles/4840108-foire-aux-questions-sur-les-publicites, consulté le 1er octobre 2026) ; Pourquoi cette annulation m’a-t-elle été facturée ? (Deliveroo, https://help.deliveroo.com/fr/articles/8021203-pourquoi-cette-annulation-m-a-t-elle-ete-facturee, consulté le 1er octobre 2026) ; Pourquoi ce remboursement est-il à ma charge ? (Deliveroo, https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge, consulté le 1er octobre 2026) ; Transparence des prix sur Deliveroo : Prix Vérifiés et visibilité des majorations élevées (France) (Deliveroo, https://help.deliveroo.com/fr/articles/14686799-transparence-des-prix-sur-deliveroo-prix-verifies-et-visibilite-des-majorations-elevees-france, consulté le 1er octobre 2026) ; Questions courantes sur votre rapport qualité-prix (Deliveroo, https://help.deliveroo.com/fr/articles/9019830-questions-courantes-sur-votre-rapport-qualite-prix, consulté le 1er octobre 2026) ; Une tarification adaptée à votre entreprise (Uber, https://merchants.ubereats.com/fr/fr/pricing/, consulté le 1er octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France) (Uber, https://www.uber.com/legal/en/document/?country=france&lang=fr&name=uber-eats-merchant-terms-and-conditions, consulté le 1er octobre 2026) ; Questions fréquentes (Uber, https://merchants.ubereats.com/fr/fr/faq/, consulté le 1er octobre 2026) ; TVA - Liquidation - Taux - Le taux normal (BOI-TVA-LIQ-20) (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/1376-PGP.html/identifiant=BOI-TVA-LIQ-20-20140919, consulté le 1er octobre 2026) ; Annexe TVA : taux applicables aux ventes à emporter ou à livrer de produits alimentaires préparés en vue d’une consommation immédiate (BOI-ANNX-000495) (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821, consulté le 1er octobre 2026)
+
+### Commission Uber Eats pour un restaurant : ce qu’Uber Eats prend et ce qu’il vous reste
+
+Adresse : https://www.deliview.fr/ressources/commission-uber-eats-restaurant/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Uber Eats prélève un pourcentage du prix TTC de vos plats, plus la TVA éventuelle sur ces frais. Votre taux figure sur votre bon de commande. Sa page tarifs affiche 15 %, 30 % ou 33 %, avec une note qui les réserve au Japon. Exemple : à 30 %, une pizza à 14 € vous laisse 8,53 € HT avant matière.
+
+## Combien Uber Eats prend-il sur une commande ?
+
+Uber Eats prélève des « frais de service » : un pourcentage du prix TTC de vos plats. Sa [page tarifs France](https://merchants.ubereats.com/fr/fr/pricing/), consultée le 1er octobre 2026, affiche trois formules.
+
+| Formule affichée | Frais de service | Commandes à emporter |
+| --- | --- | --- |
+| Produits du quotidien | 15 % | non disponibles |
+| Standard | 30 % | 15 % |
+| Premium | 33 % | taux réduit |
+
+Les trois formules ajoutent 1,99 € de « frais d’abonnement hebdomadaire ». Avec la formule à 15 %, les clients doivent taper le nom exact de votre restaurant pour vous trouver. Vous ne pouvez y créer ni offre ni annonce.
+
+En Premium, la page annonce « -10 % sur les frais de service » pour la vente à emporter. Sa [version anglaise](https://merchants.ubereats.com/fr/en/pricing/) parle d’un taux réduit de 10 %.
+
+Une note en bas de cette même page affirme pourtant que ces formules sont « uniquement disponibles au Japon ». Prenez donc ces taux comme un simple repère. Votre tarif est celui de votre contrat, qui le précise : vos frais de service « sont spécifiquement établis sur le Bon de commande ».
+
+## Le taux change-t-il si vous livrez vous-même ?
+
+Il peut changer. Le [contrat Uber Eats](https://www.uber.com/legal/en/document/?country=france&lang=fr&name=uber-eats-merchant-terms-and-conditions) fixe des frais pour chacun des trois modes ci-dessous, avec un pourcentage inscrit sur votre bon de commande :
+
+- la livraison par un coursier du réseau Uber, ou « Méthode de la Marketplace »
+- la livraison par vos propres livreurs, ou « Méthode de l’Agrégateur »
+- le retrait au restaurant par le client, ou « Méthode sans livraison »
+
+La page tarifs ne publie aucun taux pour la livraison par votre équipe. Demandez-le à Uber Eats avant de choisir ce mode.
+
+## Comment calculer ce qu’il vous reste sur une commande ?
+
+Partez du prix TTC payé par le client, retirez les frais et leur TVA, puis raisonnez en hors taxes. Le contrat fixe la base : le prix de vente « incluant la TVA », « multiplié par le pourcentage » de vos frais.
+
+Ces frais sont « hors TVA ». Si la TVA s’y applique, vous la payez « en sus ». L’exemple la compte au taux normal de 20 %, qui vaut pour les opérations sans autre taux prévu, selon le [BOFiP](https://bofip.impots.gouv.fr/bofip/1376-PGP.html/identifiant=BOI-TVA-LIQ-20-20140919).
+
+Prenons une pizza vendue 14 €, livrée par un coursier Uber, avec un taux de 30 %.
+
+| Ce qu’Uber Eats vous verse | Montant |
+| --- | --- |
+| Prix payé par le client (TTC) | 14,00 € |
+| Frais de service : 14,00 € × 30 % | − 4,20 € |
+| TVA à 20 % sur ces frais | − 0,84 € |
+| Versement pour cette pizza | 8,96 € |
+
+Ce versement ne dit pas encore ce qu’il vous reste. Une pizza livrée pour être mangée tout de suite relève en principe de la TVA à 10 %. Le [BOFiP](https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821) vise en effet les « produits livrés destinés à une consommation immédiate ».
+
+| Ce qu’il vous reste (HT) | Montant |
+| --- | --- |
+| Prix hors TVA (14 € ÷ 1,10) | 12,73 € |
+| Frais de service hors TVA | − 4,20 € |
+| Reste avant matière | 8,53 € |
+| Matière et emballage (exemple) | − 4,00 € |
+| Reste pour l’équipe, le loyer et le bénéfice | 4,53 € |
+
+La TVA payée sur les frais (0,84 €) sort de ce calcul si vous la récupérez sur votre déclaration de TVA. Faites valider ce point, et votre taux de TVA, par votre expert-comptable. Le détail des taux est dans notre guide sur [la TVA des ventes en livraison](/ressources/tva-ventes-livraison-restaurant/).
+
+Ajoutez enfin l’abonnement : avec 50 commandes par semaine, 1,99 € représente environ 0,04 € par commande.
+
+## Qu’est-ce qui s’ajoute aux frais de service ?
+
+Les offres, les annonces et les remboursements. Le contrat prévoit qu’Uber Eats les déduise de vos versements.
+
+- **Les offres** : vous en payez le coût, et Uber peut facturer en plus des « Frais d’Utilisation des Offres » à chaque commande concernée. Leur montant vous est communiqué avant la création de l’offre.
+- **Les annonces sponsorisées** : elles sont facturées au clic, hors TVA, au tarif fixé par Uber pour chaque emplacement. Votre campagne s’arrête quand le budget hebdomadaire est atteint, puis reprend la semaine suivante.
+- **Les remboursements** accordés aux clients en votre nom : ils sont retirés de vos recettes.
+
+En formule Premium, Uber Eats finance les annonces « à 50 % » et les offres « à 25 % », « jusqu’à 150 € par mois ». Le contrat prévoit aussi des « Frais d’activation » du compte : demandez-en le montant avant de signer.
+
+Prenons une remise de 20 % sur la pizza : le client paie 11,20 €. Les frais se calculent alors « sur la base du Prix au détail réduit », soit 3,36 € HT. Il vous reste 6,82 € HT au lieu de 8,53 €. La remise de 2,80 € vous coûte donc 1,71 € HT de marge, hors frais d’utilisation des offres.
+
+Faites ce calcul avant chaque promotion : notre article sur [les promotions rentables sur Uber Eats et Deliveroo](/ressources/promotion-uber-eats-deliveroo-rentable/) détaille la méthode.
+
+## Comment retrouver votre propre taux ?
+
+Lisez votre bon de commande, puis vérifiez vos relevés de paiement. Uber Eats vous paie chaque semaine par virement, et chaque versement se détaille commande par commande.
+
+1. Retrouvez votre bon de commande : avec les conditions complémentaires, il forme votre contrat Uber Eats.
+2. Connectez-vous à Uber Eats Manager depuis un ordinateur, puis ouvrez l’onglet Paiements.
+3. Téléchargez le détail d’un versement : il donne « la taxe, le sous-total, les frais, les ajustements et le montant net versé ».
+4. Recalculez les frais de quelques commandes avec le taux de votre bon de commande. À 30 %, une pizza à 14 € donne 4,20 € de frais, ou 5,04 € TVA comprise.
+5. Refaites ce contrôle sur les commandes à emporter et sur celles livrées par votre équipe.
+6. Si les montants ne correspondent pas, ouvrez le chat de l’assistance dans Uber Eats Manager.
+
+## Par où commencer cette semaine ?
+
+Commencez par vos dix plats les plus vendus sur Uber Eats. Pour chacun, calculez le reste HT après frais de service, puis après matière et emballage.
+
+- Repérez les plats qui passent sous votre objectif de marge
+- Choisissez pour chacun une action : prix, portion, recette ou mise en avant
+- Comparez avec le même plat chez vos voisins avant de monter un prix
+
+Le contrat vous laisse la main : il « incombe au Partenaire de déterminer et de fixer le Prix au détail ». Il cite aussi le prix parmi les critères de classement des restaurants dans l’application. Notre guide pour [fixer vos prix sur Uber Eats et Deliveroo](/ressources/fixer-prix-uber-eats-deliveroo/) vous aide à trouver le bon niveau.
+
+Faites ensuite le même exercice sur Deliveroo, qui ne publie pas ses taux. Notre article sur [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/) explique où trouver le vôtre.
+
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il signale les plats trop chers ou sous-évalués, et ceux vendus à des prix différents sur Uber Eats et Deliveroo : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+
+Sources : Une tarification adaptée à votre entreprise (Uber, https://merchants.ubereats.com/fr/fr/pricing/, consulté le 1er octobre 2026) ; Pricing That Works for Your Business (page tarifs France, version anglaise) (Uber, https://merchants.ubereats.com/fr/en/pricing/, consulté le 1er octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France) (Uber, https://www.uber.com/legal/en/document/?country=france&lang=fr&name=uber-eats-merchant-terms-and-conditions, consulté le 1er octobre 2026) ; Questions fréquentes (Uber, https://merchants.ubereats.com/fr/fr/faq/, consulté le 1er octobre 2026) ; Solutions de livraison pour les restaurants (Uber, https://merchants.ubereats.com/fr/fr/business/restaurants/, consulté le 1er octobre 2026) ; Faites-vous connaître avec les annonces intégrées à l’application Uber (Uber, https://merchants.ubereats.com/fr/fr/technology/grow-your-store/advertisements/, consulté le 1er octobre 2026) ; TVA - Liquidation - Taux - Le taux normal (BOI-TVA-LIQ-20) (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/1376-PGP.html/identifiant=BOI-TVA-LIQ-20-20140919, consulté le 1er octobre 2026) ; Annexe TVA : taux applicables aux ventes à emporter ou à livrer de produits alimentaires préparés en vue d’une consommation immédiate (BOI-ANNX-000495) (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821, consulté le 1er octobre 2026)
+
+### Comment fixer ses prix sur Uber Eats et Deliveroo sans perdre d’argent ni de clients
+
+Adresse : https://www.deliview.fr/ressources/fixer-prix-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Partez de vos coûts : matière, emballage, TVA et commission. Calculez le prix sous lequel vous perdez de l’argent, puis comparez-le au prix médian du même plat dans votre zone. Les prix sont libres, mais Uber Eats peut tenir compte des vôtres pour votre mise en avant. Changez quelques plats à la fois et mesurez.
+
+## Quels coûts mettre dans le prix d’un plat livré ?
+
+Quatre postes pèsent sur chaque plat livré : la matière, l’emballage, la TVA et la commission de la plateforme. Votre prix affiché doit les couvrir et laisser de quoi payer l’équipe, le loyer et votre bénéfice.
+
+Prenez la matière sur vos fiches techniques. Ajoutez l’emballage, absent en salle : boîte, sachet, couverts, pot de sauce.
+
+### La TVA
+
+Le client voit un prix TTC. Chez Uber Eats, les [conditions complémentaires pour les partenaires](https://www.uber.com/legal/en/document/?country=france&lang=fr&name=uber-eats-merchant-terms-and-conditions) précisent que le prix de chaque produit « inclura la TVA ». Selon le [BOFiP](https://bofip.impots.gouv.fr/bofip/2033-PGP.html/identifiant=BOI-TVA-LIQ-30-10-10-20251119), les plats préparés pour une consommation immédiate, vendus à emporter ou à livrer, relèvent du taux de 10 %. Les boissons alcooliques relèvent du taux de 20 %.
+
+Faites confirmer le taux de chaque produit par votre expert-comptable.
+
+### La commission
+
+La commission dépend de votre contrat et peut différer entre Uber Eats et Deliveroo. Dans leurs contrats, les deux plateformes l’appellent « frais de service ». Chez Uber Eats, ces frais sont « spécifiquement établis sur le Bon de commande », selon les conditions complémentaires. Reprenez votre taux, sa base de calcul et la TVA éventuelle sur ces frais dans votre contrat ou sur vos relevés.
+
+Voir nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+## Comment calculer votre prix plancher ?
+
+Le prix plancher est le prix affiché en dessous duquel un plat ne couvre plus vos coûts et la marge que vous visez. Il se calcule en quatre étapes, pour chaque plat et chaque plateforme.
+
+1. Additionnez le coût matière et l’emballage du plat.
+2. Ajoutez ce qui doit vous rester par plat pour payer l’équipe, le loyer, l’énergie et votre bénéfice.
+3. Calculez la part du prix affiché qui vous reste après TVA et commission : 1 ÷ (1 + taux de TVA) − taux de commission.
+4. Divisez le total de l’étape 2 par cette part : vous obtenez votre prix plancher TTC.
+
+Cette formule suppose une commission calculée sur le prix TTC. Si elle porte sur le prix hors taxes, l’étape 3 devient (1 − taux de commission) ÷ (1 + taux de TVA).
+
+### Un exemple chiffré
+
+Prenons une pizza : 2,80 € de matière, 0,40 € d’emballage et 3,50 € à garder par pizza. Le total de l’étape 2 est de 6,70 €. Retenons une TVA de 10 % et une commission de 30 % sur le prix affiché, un taux choisi pour l’exemple.
+
+La part qui vous reste vaut 1 ÷ 1,10 − 0,30, soit environ 0,609. Le prix plancher est donc de 6,70 ÷ 0,609, soit 11,00 €. Le tableau vérifie le calcul à ce prix, puis au prix arrondi de 11,50 €.
+
+| Pour une pizza affichée à | 11,00 € | 11,50 € |
+| --- | --- | --- |
+| TVA à 10 % | 1,00 € | 1,05 € |
+| Commission de l’exemple (30 %, hors TVA) | 3,30 € | 3,45 € |
+| Matière | 2,80 € | 2,80 € |
+| Emballage | 0,40 € | 0,40 € |
+| Il vous reste | 3,50 € | 3,80 € |
+
+Refaites ensuite le calcul avec le prix après remise. Avec 20 % de remise, la pizza à 11,50 € passe à 9,20 €. Il ne vous reste alors que 2,40 €, sous les 3,50 € visés.
+
+Quand une de vos offres réduit le prix d’un produit, Uber Eats calcule ses frais de service sur le prix réduit. Deliveroo fait de même quand une offre que vous financez réduit le panier.
+
+## Où se situe votre prix face aux restaurants de votre zone ?
+
+Comparez chaque plat au même plat, à taille égale, chez les restaurants qui livrent vos clients. Retenez la médiane de leurs prix plutôt que la moyenne : un seul restaurant très cher ou très bon marché la fait à peine bouger.
+
+Si votre prix s’écarte de plus de 10 % de la médiane, sur au moins deux comparaisons, vous tenez un signal. La méthode complète est dans notre guide pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
+
+Mettez ensuite la médiane face à votre prix plancher. Si elle passe sous votre plancher, ne vous alignez pas : revoyez plutôt la recette, la portion ou l’emballage. Si elle dépasse nettement votre prix, vous avez de la place pour monter.
+
+Deliview fait ce relevé pour vous : il retient jusqu’à 20 restaurants de votre secteur et compare chaque plat au même plat chez eux. Quand un plat est trop cher ou sous-évalué, il propose un prix, cite les plats comparés et montre l’impact pour 100 ventes. Voir [vos prix face à ceux de votre quartier](/solution/prix-et-concurrence/) et [le prix proposé pour chaque plat de votre carte](/solution/carte-et-marge/).
+
+## Avez-vous le droit de vendre plus cher en livraison qu’en salle ?
+
+Oui, en principe : les prix sont libres en France, et vous pouvez afficher un prix différent en salle, sur Uber Eats et sur Deliveroo. Deux conditions : le client voit le prix TTC avant de commander, et vous respectez votre contrat de plateforme.
+
+Le principe vient de l’[article L410-2 du Code de commerce](https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000005634379/LEGISCTA000006133183/). Sauf quand la loi en dispose autrement, les prix « sont librement déterminés par le jeu de la concurrence ». La DGCCRF l’écrit pour votre métier dans sa [fiche sur les restaurants](https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/restaurants-droits-et-obligations-des-professionnels) : « Les prix pratiqués par les restaurateurs sont libres. »
+
+Cette liberté s’accompagne d’une obligation d’information, que la DGCCRF rattache notamment à l’article L112-1 du Code de la consommation. Selon sa [fiche sur l’information sur les prix](https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/linformation-sur-les-prix), les prix doivent être « exprimés en euros et toutes taxes comprises ». Le client doit pouvoir les connaître avant de conclure la vente, y compris à distance et sur internet.
+
+Votre contrat de plateforme ajoute ses propres règles. Chez Uber Eats, les conditions complémentaires sont nettes : « Il incombe au Partenaire de déterminer et de fixer le Prix au détail ». Ce texte, modifié le 10 septembre 2026, vous demande aussi, sauf clause contraire, de communiquer les prix appliqués dans vos propres établissements.
+
+Uber peut s’en servir comme prix de référence pour « mesurer le taux de majoration des prix ». Cette mesure sert à l’application de votre bon de commande. La plateforme peut aussi tenir compte de vos prix pour décider de votre mise en avant et de votre référencement. Relisez donc votre bon de commande avant de creuser l’écart avec la salle.
+
+Chez Deliveroo, la [politique d’information sur les menus](https://merchants.deliveroo.com/fr-FR/legal/policies), mise à jour en mai 2026, vous rend responsable de l’exactitude des informations de votre menu. Elle rappelle que les règles d’affichage et de fixation des prix s’appliquent sur la plateforme, notamment pour les réductions.
+
+Ce résumé ne remplace pas un avis juridique : pour un cas précis, interrogez un avocat ou votre expert-comptable.
+
+## Comment changer vos prix sans faire fuir vos clients ?
+
+Changez peu de plats à la fois, par petites touches, et regardez les ventes avant d’aller plus loin. Vous saurez ainsi quel changement a produit quel effet.
+
+Choisissez deux ou trois plats, pas toute la carte. Notez la date, l’ancien prix et le nouveau, plateforme par plateforme. Comparez ensuite leurs ventes sur les quatre semaines avant et les quatre semaines après.
+
+Pour une forte hausse, montez en deux temps, à quelques semaines d’écart. Vérifiez aussi que chaque écart de prix entre votre fiche Uber Eats et votre fiche Deliveroo est voulu.
+
+Évitez enfin de monter vos prix juste avant une promo. Les [conditions générales Deliveroo](https://merchants.deliveroo.com/fr-FR/legal/terms) citent « l’augmentation de vos prix avant une Offre » comme exemple d’utilisation abusive ou trompeuse, passible de suspension. Elles plafonnent aussi le prix de référence d’une offre au plus petit prix des 30 jours avant son lancement.
+
+## Par où commencer cette semaine ?
+
+Commencez par vos meilleures ventes : ce sont elles qui pèsent le plus sur votre marge.
+
+1. Listez vos cinq plats les plus vendus sur chaque plateforme.
+2. Calculez leur prix plancher avec votre vrai taux de commission.
+3. Relevez le prix du même plat, à taille égale, chez cinq restaurants qui livrent votre quartier.
+4. Corrigez d’abord les plats affichés sous leur prix plancher.
+5. Notez la date de chaque changement et suivez les ventes de ces plats pendant quatre semaines.
+
+Sources : Code de commerce, titre Ier : dispositions générales (articles L410-1 à L410-6) (Légifrance, https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000005634379/LEGISCTA000006133183/, consulté le 1er octobre 2026) ; Restaurants : droits et obligations des professionnels (DGCCRF, ministère de l’Économie, https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/restaurants-droits-et-obligations-des-professionnels, consulté le 1er octobre 2026) ; L’information sur les prix (DGCCRF, ministère de l’Économie, https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/linformation-sur-les-prix, consulté le 1er octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (Uber, https://www.uber.com/legal/en/document/?country=france&lang=fr&name=uber-eats-merchant-terms-and-conditions, consulté le 1er octobre 2026) ; Conditions générales des partenaires Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 1er octobre 2026) ; Politiques des partenaires Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 1er octobre 2026) ; TVA - Liquidation - Taux réduits - Produits destinés à l’alimentation humaine (BOI-TVA-LIQ-30-10-10) (BOFiP-Impôts, Direction générale des Finances publiques, https://bofip.impots.gouv.fr/bofip/2033-PGP.html/identifiant=BOI-TVA-LIQ-30-10-10-20251119, consulté le 1er octobre 2026)
+
+### Comment gérer les tablettes Uber Eats et Deliveroo en plein rush sans rater de commandes ?
+
+Adresse : https://www.deliview.fr/ressources/tablettes-uber-eats-deliveroo-rush/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : Préparez les tablettes avant le service : ruptures à jour, imprimante testée, son bien audible. En plein rush, ajoutez du temps de préparation avec le mode Occupé ou suspendez les commandes, et retirez aussitôt chaque plat épuisé. Confiez les tablettes à une seule personne et vérifiez chaque sac avant de le remettre au livreur.
+
+Uber Eats et Deliveroo ont prévu des réglages pour les soirs chargés, mais leurs boutons ne portent pas toujours le même nom. Voici ceux que documentent leurs pages d’aide, consultées le 1er octobre 2026, puis l’organisation du poste qui limite les commandes ratées.
+
+## Quels réglages Uber Eats et Deliveroo proposent-ils pour les soirs chargés ?
+
+Les deux plateformes permettent d’ajouter du temps de préparation, de suspendre les nouvelles commandes et de retirer un plat épuisé. Les noms des boutons varient d’une tablette à l’autre.
+
+| Besoin | Uber Eats (application Commandes) | Deliveroo |
+| --- | --- | --- |
+| Plus de temps pour les nouvelles commandes | « Occupé » : vous choisissez le temps de préparation à ajouter | Mode Occupé : bouton en haut à droite de la tablette, puis le temps voulu |
+| Plus de temps pour une seule commande | « Modifier » sur le temps de préparation de la commande | « Besoin de plus de temps » retarde l’arrivée du livreur |
+| Ne plus recevoir de commandes | « Interrompre », pour la durée choisie | « Fermer maintenant » dans le Portail Partenaire |
+| Imprimer les tickets | Impression automatique : Paramètres, puis Impression de reçus | Tablette Sunmi : impression par défaut si le Bluetooth est activé |
+| Retirer un plat épuisé | Menu, bouton « En stock » : pour la journée ou pour une durée indéterminée | Niveaux de stock : « Épuisé aujourd’hui » ou « Cacher du menu » |
+
+Sur Uber Eats, « Occupé » et « Interrompre » se trouvent derrière le même bouton « Ouvrir », dans le coin droit de l’onglet Commande. Le [guide de l’application Commandes](https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/) détaille chaque étape. Pour revenir à la normale, touchez « Commandes interrompues », puis « Ouvrir ».
+
+Chez Deliveroo, le mode Occupé sert quand la cuisine est débordée : manque de personnel, panne d’équipement, pic difficile comme un soir de match. Deliveroo déconseille de l’activer pour le « pic habituel du vendredi soir ». Utilisé trop souvent, il fausse le calcul de votre temps de préparation. Et comme vos commandes prennent alors plus de temps, votre classement dans l’application peut en être affecté.
+
+Le mode Occupé ne vaut que pour les commandes reçues après son activation. Désactivez-le dès que le pic est passé, comme le demande [la page d’aide de Deliveroo](https://help.deliveroo.com/fr/articles/2408618-utiliser-le-mode-occupe-pendant-les-periodes-de-pointe). Si une urgence bloque la cuisine, Deliveroo prévoit aussi d’indiquer que vous êtes fermé temporairement.
+
+## Faut-il accepter les commandes automatiquement ?
+
+Sur Deliveroo, l’acceptation automatique libère la personne qui surveillait la tablette. Elle suppose des ruptures tenues à jour, car une commande acceptée puis annulée vous coûte des frais.
+
+Une fois activée, elle s’applique à toutes les commandes « dès que possible », quelle que soit leur taille. Les commandes programmées restent à accepter à la main. La tablette doit rester allumée, et elle sonne pendant deux secondes à chaque nouvelle commande.
+
+Si vous ne pouvez pas honorer une commande acceptée, Deliveroo demande d’appeler son support et applique des frais d’annulation. D’après [sa page sur les annulations](https://help.deliveroo.com/fr/articles/8871153-comprendre-les-commandes-annulees-et-comment-les-reduire), ces frais équivalent à la commission et aux autres frais de la commande. Sans acceptation automatique, ne laissez rien traîner : une commande sans réponse est refusée automatiquement au bout de 10 minutes.
+
+Sur Uber Eats, le guide de l’application Commandes décrit une acceptation commande par commande. La tablette clignote en vert et sonne, vous vérifiez le détail, puis vous touchez « Accepter ».
+
+## Comment éviter de vendre un plat que vous n’avez plus ?
+
+Retirez le plat dès que vous constatez la rupture, sur les deux plateformes. Deliveroo est clair : si un client commande un article indisponible, vous devrez rejeter la commande.
+
+Sur Uber Eats, ouvrez le menu dans l’application Commandes, trouvez le plat et touchez « En stock ». Vous indiquez alors une rupture pour la journée ou pour une durée indéterminée.
+
+Sur Deliveroo, passez par le Hub : « Commandes en direct », puis « Niveaux de stock ». « Épuisé aujourd’hui » remet le plat en ligne le lendemain à l’ouverture, « Cacher du menu » le retire jusqu’à ce que vous le remettiez. Deliveroo rappelle ensuite de publier le menu pour que le changement s’applique.
+
+Si la rupture tombe au milieu d’une commande :
+
+- **Uber Eats** : touchez les trois points à côté de l’article et indiquez la rupture. Le client a 10 minutes pour confirmer ou modifier sa commande, sinon elle est annulée. L’article reste indisponible jusqu’au lendemain.
+- **Deliveroo** : touchez « Gérer votre commande », puis « Marquer le produit en rupture de stock ». Le client reçoit un panier sans l’article et peut le compléter. S’il ne commande pas à nouveau, l’annulation vous est facturée.
+
+## Comment organiser le poste pour ne rien rater ?
+
+Confiez les tablettes à une seule personne et placez-les là où on les entend. Ensuite, répétez la même routine à chaque commande, du ticket jusqu’au sac.
+
+### Les tablettes
+
+Posez les deux tablettes côte à côte au poste d’emballage, branchées. Uber Eats conseille de les garder chargées et loin des fours à micro-ondes, qui peuvent créer des interférences. Deliveroo recommande un volume d’au moins 50 % et une mise en veille réglée sur « Jamais ». Gardez chaque application ouverte : Deliveroo ne garantit pas les notifications quand la tablette affiche une autre application.
+
+### Qui fait quoi
+
+Pendant le rush, la même personne accepte, imprime, contrôle et remet les sacs. Deliveroo conseille de désigner un membre de l’équipe pour les seules commandes en livraison si vous n’avez pas de maintien au chaud. La cuisine, elle, travaille sur les tickets imprimés.
+
+### L’ordre de préparation
+
+Lancez chaque commande dès qu’elle arrive, comme le recommande Deliveroo, sans faire passer une plateforme avant l’autre. Touchez « Commande prête » sur Deliveroo et « Prête » sur Uber Eats à chaque commande. Deliveroo calcule votre temps de préparation à partir de vos commandes des 14 derniers jours : ce geste régulier le rend plus juste.
+
+### Le contrôle avant remise
+
+Avant de fermer le sac, comparez-le au ticket : plats, sauces, boissons, couverts. Fixez le ticket portant le numéro de commande à l’extérieur du sac, avec du ruban adhésif, comme le demande Deliveroo. Quand le livreur arrive, vérifiez sur la tablette la commande qu’il vient chercher : Uber Eats affiche son nom à droite de l’écran.
+
+Deux tablettes, ce sont deux sonneries et deux menus à tenir à jour. Deliview réunit déjà vos données Uber Eats et Deliveroo sur un seul écran : vos prix, vos notes et ceux de vos concurrents. Voyez [comment Deliview se connecte à Uber Eats et Deliveroo](/integrations/uber-eats-et-deliveroo/).
+
+## Comment préparer le rush avant le service ?
+
+Le rush se prépare avant l’ouverture : stocks vérifiés, carte allégée si la soirée s’annonce chargée, emballages et imprimantes prêts.
+
+- **Ruptures** : faites le point des stocks et retirez ce qui manquera. Sur Deliveroo, « Épuisé aujourd’hui » ne dure qu’une journée : refaites la manipulation chaque jour tant que l’ingrédient manque.
+- **Carte réduite** : les soirs de match ou de forte affluence, retirez les plats les plus longs à préparer. Remettez-les en ligne le lendemain.
+- **Emballages** : préparez sacs, boîtes et sauces en portions. Selon Deliveroo, préparer l’emballage avant le service peut faire gagner « des minutes précieuses ».
+- **Imprimantes** : vérifiez le rouleau et imprimez un ticket test avant l’ouverture. Deliveroo conseille de tester ses réglages restaurant fermé, pour éviter un problème d’impression en plein travail.
+- **Temps de préparation** : sur Uber Eats, réglez votre temps habituel dans Uber Eats Manager, rubrique Paramètres. Sur Deliveroo, il est calculé automatiquement.
+- **Heure de fermeture** : calez-la sur les dernières commandes que l’équipe peut encore préparer. Deliveroo rappelle que les commandes passées en fin de journée doivent être honorées.
+
+## Ce que vous pouvez faire avant votre prochain service
+
+Avant l’ouverture, réglez les deux tablettes et le poste en suivant cette liste.
+
+1. Réglez le volume des deux tablettes et désactivez leur mise en veille.
+2. Activez l’impression automatique sur Uber Eats, puis imprimez un ticket test sur chaque imprimante.
+3. Repérez « Occupé » et « Interrompre » sur Uber Eats, et le bouton du mode Occupé sur Deliveroo.
+4. Mettez vos ruptures à jour sur les deux plateformes, puis publiez le menu Deliveroo.
+5. Désignez la personne qui tiendra les tablettes ce soir.
+6. Affichez au poste d’emballage une fiche de contrôle : plats, sauces, boissons, couverts, ticket sur le sac.
+
+Une commande annulée déçoit le client et l’incite à laisser un avis négatif, note Deliveroo. Pour la suite, voyez [comment améliorer votre note sur Uber Eats et Deliveroo](/ressources/ameliorer-note-uber-eats-deliveroo/).
+
+Sources : Guide des commerçants : Utilisez l’application Commandes sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/, consulté le 1er octobre 2026) ; Premiers pas avec votre imprimante et votre tablette (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/equipment/, consulté le 1er octobre 2026) ; Guide des commerçants : Comment utiliser Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-manager/, consulté le 1er octobre 2026) ; Utiliser le mode Occupé pendant les périodes de pointe (Deliveroo, https://help.deliveroo.com/fr/articles/2408618-utiliser-le-mode-occupe-pendant-les-periodes-de-pointe, consulté le 1er octobre 2026) ; Acceptation automatique des commandes (Deliveroo, https://help.deliveroo.com/fr/articles/3142042-acceptation-automatique-des-commandes, consulté le 1er octobre 2026) ; Comprendre les commandes annulées et comment les réduire (Deliveroo, https://help.deliveroo.com/fr/articles/8871153-comprendre-les-commandes-annulees-et-comment-les-reduire, consulté le 1er octobre 2026) ; Gérer les commandes en cours dans Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/3815200-gerer-les-commandes-en-cours-dans-portail-partenaire, consulté le 1er octobre 2026) ; Comment marquer les articles du menu comme indisponibles ? (Deliveroo, https://help.deliveroo.com/fr/articles/2070031-comment-marquer-les-articles-du-menu-comme-indisponibles, consulté le 1er octobre 2026) ; Substitution de produits - Restaurant uniquement (Deliveroo, https://help.deliveroo.com/fr/articles/10156329-substitution-de-produits-restaurant-uniquement, consulté le 1er octobre 2026) ; Comment fonctionnent les temps de préparation (Deliveroo, https://help.deliveroo.com/fr/articles/2152581-comment-fonctionnent-les-temps-de-preparation, consulté le 1er octobre 2026) ; Comment les temps de préparation sont-ils établis ? (Deliveroo, https://help.deliveroo.com/fr/articles/3197797-comment-les-temps-de-preparation-sont-ils-etablis, consulté le 1er octobre 2026) ; Configurer votre tablette Sunmi (Deliveroo, https://help.deliveroo.com/fr/articles/3863955-configurer-votre-tablette-sunmi, consulté le 1er octobre 2026)
+
+### TVA des ventes en livraison et à emporter : quel taux appliquer à vos plats et boissons ?
+
+Adresse : https://www.deliview.fr/ressources/tva-ventes-livraison-restaurant/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
+
+En bref : En livraison et à emporter, la nourriture préparée pour être mangée tout de suite relève du taux de 10 %. Les boissons sans alcool en bouteille ou en canette, les pâtisseries sucrées, les chips et les yaourts relèvent de 5,5 %. L’alcool relève toujours de 20 %. Sur une commande mixte, appliquez à chaque produit son taux.
+
+Une même commande Uber Eats ou Deliveroo peut porter trois taux de TVA. Voici lesquels s’appliquent, d’après les textes officiels consultés le 1er octobre 2026, et comment les répartir. Ces taux valent pour la France métropolitaine : la Corse et les départements d’outre-mer ont des règles propres.
+
+## Quel taux de TVA pour les plats livrés ou à emporter ?
+
+Le taux de 10 % s’applique à la nourriture préparée en vue d’une consommation immédiate, livrée ou à emporter. Les produits qui n’ont pas vocation à être consommés immédiatement passent en général à 5,5 %, tandis que l’alcool reste toujours à 20 %.
+
+L’article 279 du Code général des impôts taxe à 10 % les « produits alimentaires préparés en vue d’une consommation immédiate », vendus à emporter ou livrés. Le [BOFiP](https://bofip.impots.gouv.fr/bofip/2033-PGP.html/identifiant=BOI-TVA-LIQ-30-10-10-20251119) précise qu’il s’agit de nourriture et de boissons « destinées à être consommées dans les instants suivant l’achat », chaudes ou froides. Que votre client mange tout de suite ou plus tard ne change rien au taux.
+
+Pour la livraison, le [tableau récapitulatif du BOFiP](https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821) retient 10 % « dès lors que la préparation, la vente et la livraison se suivent immédiatement ». À défaut, c’est 5,5 %, le taux habituel des produits alimentaires.
+
+| Produit vendu en livraison ou à emporter | Taux |
+| --- | --- |
+| Pizzas, burgers, kebabs, frites, quiches, sushis frais | 10 % |
+| Sandwichs, salades vendues avec couverts | 10 % |
+| Glaces à l’unité : cornet, bâtonnet, pot individuel de moins de 200 ml | 10 % |
+| Pâtisseries sucrées, viennoiseries, chips en sachet, yaourts, fruits | 5,5 % |
+| Produits surgelés, conserves, produits sous vide | 5,5 % |
+| Boissons sans alcool en gobelet, verre en plastique ou tasse en carton | 10 % |
+| Boissons sans alcool en bouteille, canette, brique ou fût | 5,5 % |
+| Boissons alcoolisées | 20 % |
+| Confiseries, certains chocolats | 20 % |
+
+Source : BOFiP, BOI-ANNX-000495 et BOI-TVA-LIQ-30-10-10, versions en vigueur au 1er octobre 2026.
+
+Attention aux plats cuisinés vendus à emporter. Le BOFiP les range à 5,5 %, comme les produits surgelés, « sauf lorsqu’ils peuvent être consommés sur place ». Entreprendre Service Public indique pourtant 10 % pour les plats cuisinés livrés en vue d’une consommation immédiate. Si vous vendez sans salle ou proposez des plats à réchauffer, faites trancher la question par votre expert-comptable.
+
+## Et pour les boissons ?
+
+Tout dépend de l’alcool et du contenant. Sans alcool, comptez 5,5 % en bouteille, canette ou brique, et 10 % en gobelet. Avec alcool, c’est 20 % dans tous les cas.
+
+Le contenant compte, car une boisson fermée peut se conserver alors qu’un gobelet se boit tout de suite. [Entreprendre Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F22399) prend l’exemple d’une petite bouteille d’eau vendue à emporter : 5,5 %, même si le client l’ouvre dès l’achat.
+
+Le taux de 20 % vise les boissons de plus de 1,2 % vol. et les bières de plus de 0,5 % vol. Il s’applique sur place, à emporter comme en livraison. Une bière sans alcool en canette, sous ce seuil, relève donc de 5,5 %.
+
+## Que faire quand une commande mélange plusieurs taux ?
+
+Vous avez deux options, toutes deux acceptées par l’administration fiscale, selon Entreprendre Service Public. Soit vous appliquez à chaque produit son taux, soit vous appliquez le taux le plus élevé à toute la vente. La première, appelée ventilation, ne vous fait jamais payer plus de TVA que la seconde.
+
+### Exemple chiffré d’une commande livrée
+
+Prenons une commande livrée : une pizza à 14 €, une canette de soda à 2,50 € et une bière en bouteille à 4 €, prix TTC. Pour chaque ligne, divisez le prix TTC par 1,10 (taux de 10 %), 1,055 (5,5 %) ou 1,20 (20 %) pour obtenir le prix hors taxe.
+
+| Produit | Prix TTC | Taux | Prix HT | TVA |
+| --- | --- | --- | --- | --- |
+| Pizza | 14,00 € | 10 % | 12,73 € | 1,27 € |
+| Canette de soda | 2,50 € | 5,5 % | 2,37 € | 0,13 € |
+| Bière en bouteille | 4,00 € | 20 % | 3,33 € | 0,67 € |
+| **Total** | **20,50 €** | | **18,43 €** | **2,07 €** |
+
+Sans ventilation, toute la commande passerait à 20 % : 17,08 € HT et 3,42 € de TVA. L’écart atteint 1,35 € sur cette seule commande, soit 135 € sur 100 commandes identiques.
+
+### Et les menus à prix unique ?
+
+Un menu burger, frites et canette vendu à prix fixe pose une autre question : quelle part du prix revient à chaque taux. Sans ventilation, tout le menu passe au taux le plus élevé, ici 10 %.
+
+Pour ventiler, le [BOFiP](https://bofip.impots.gouv.fr/bofip/256-PGP.html/identifiant=BOI-TVA-LIQ-30-20-10-20-20240807) demande une méthode « économiquement rationnelle » que vous pouvez justifier. Il donne en exemple un partage au prorata des prix à la carte hors taxe. Ce texte vise les menus servis sur place avec de l’alcool : pour vos menus livrés, faites valider la méthode par votre expert-comptable.
+
+Sur Deliveroo, chaque produit et chaque option porte son propre taux de TVA dans Menu Manager. Vérifiez celui de la boisson proposée en option dans vos menus.
+
+## La commission des plateformes change-t-elle votre TVA ?
+
+La TVA que vous collectez se calcule sur le prix de vos plats, pas sur le virement reçu après commission. La TVA que la plateforme vous facture sur sa commission se déduit, en principe, de celle que vous devez.
+
+Le [BOFiP](https://bofip.impots.gouv.fr/bofip/1461-PGP.html/identifiant=BOI-TVA-BASE-10-10-20220511) inclut dans la base de la TVA « toutes les sommes, valeurs, biens ou services reçus ou à recevoir », y compris d’un tiers. La commission rémunère un service que la plateforme vous rend : elle ne réduit pas le prix de vente de vos plats. Les promotions et les remboursements, eux, peuvent modifier ce prix : faites confirmer leur traitement par votre expert-comptable.
+
+Deliveroo détaille la TVA sur sa commission dans le rapport « Commandes » du Hub : sous-total, commission et « TVA sur la commission Deliveroo », commande par commande. Sur Uber Eats, vos factures et documents fiscaux se téléchargent dans Uber Eats Manager, rubrique Paiements. Pour le détail des frais, lisez nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+Le [ministère de l’Économie](https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/autres-impots-et-taxes/entreprises-ce-que-vous-devez-savoir-sur-la-tva) le rappelle : « vous pouvez déduire la TVA que vous payez sur vos achats professionnels ». Le montant doit figurer sur un justificatif, comme une facture. Vous reversez ensuite la différence entre la TVA collectée et la TVA déductible.
+
+## Ce que vous pouvez faire cette semaine
+
+Commencez par vérifier le taux de chaque produit de votre carte, puis rassemblez les justificatifs pour votre expert-comptable.
+
+1. Listez vos produits et notez le taux de chacun avec le tableau plus haut, en commençant par les boissons et les desserts.
+2. Sur Deliveroo, contrôlez dans Menu Manager le taux de TVA de chaque produit et de chaque option.
+3. Téléchargez le rapport « Commandes » du Hub Deliveroo : il couvre 90 jours au plus et reste téléchargeable 90 jours.
+4. Récupérez vos factures et documents fiscaux dans Uber Eats Manager.
+5. Transmettez chaque mois ces documents à votre expert-comptable.
+6. Posez-lui vos cas particuliers : menus à prix unique, plats cuisinés, desserts maison, promotions, remboursements, franchise en base de TVA.
+
+Les taux de TVA peuvent changer avec chaque loi de finances. Cet article vous aide à poser les bonnes questions, mais il ne remplace pas l’avis de votre expert-comptable.
+
+Sources : ANNEXE - TVA - Tableau récapitulatif des taux applicables pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d’une consommation immédiate, en fonction des produits et des situations (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821, consulté le 1er octobre 2026) ; TVA - Liquidation - Taux réduits - Produits destinés à l’alimentation humaine (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/2033-PGP.html/identifiant=BOI-TVA-LIQ-30-10-10-20251119, consulté le 1er octobre 2026) ; TVA - Liquidation - Prestations de services imposables aux taux réduits - Ventes à consommer sur place, restauration collective (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/256-PGP.html/identifiant=BOI-TVA-LIQ-30-20-10-20-20240807, consulté le 1er octobre 2026) ; TVA - Liquidation - Taux - Généralités (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/1380-PGP.html/identifiant=BOI-TVA-LIQ-10-20250514, consulté le 1er octobre 2026) ; TVA - Base d’imposition - Règles applicables à l’ensemble des opérations imposables (Direction générale des Finances publiques (BOFiP), https://bofip.impots.gouv.fr/bofip/1461-PGP.html/identifiant=BOI-TVA-BASE-10-10-20220511, consulté le 1er octobre 2026) ; Taux de TVA sur les produits alimentaires et les boissons (Entreprendre Service Public (DILA), https://entreprendre.service-public.gouv.fr/vosdroits/F22399, consulté le 1er octobre 2026) ; Entreprises : ce que vous devez savoir sur la TVA (Ministère de l’Économie, https://www.economie.gouv.fr/entreprises/gerer-sa-fiscalite-et-ses-impots/autres-impots-et-taxes/entreprises-ce-que-vous-devez-savoir-sur-la-tva, consulté le 1er octobre 2026) ; Comment consulter et exploiter les rapports dans Hub (ne concerne pas les partenaires Deliveroo Signature) (Deliveroo, https://help.deliveroo.com/fr/articles/6463245-comment-consulter-et-exploiter-les-rapports-dans-hub-ne-concerne-pas-les-partenaires-deliveroo-signature, consulté le 1er octobre 2026) ; Gérer votre menu Deliveroo sur le Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/3524899-gerer-votre-menu-deliveroo-sur-le-portail-partenaire, consulté le 1er octobre 2026) ; Guide des commerçants : Comment utiliser Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-manager/, consulté le 1er octobre 2026)
+
+### Comment savoir si une promo Uber Eats ou Deliveroo est rentable pour votre restaurant
+
+Adresse : https://www.deliview.fr/ressources/promotion-uber-eats-deliveroo-rentable/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-01
+
+En bref : Une promo est rentable si elle apporte assez de commandes en plus pour compenser la marge perdue. Sur Uber Eats comme sur Deliveroo, vous payez la remise et la commission porte sur le prix remisé. Dans notre exemple, 20 % de remise sur une pizza imposent 52 % de ventes en plus pour garder la même marge.
+
+## Quelles promos pouvez-vous lancer sur Uber Eats et Deliveroo ?
+
+Les deux plateformes proposent des remises en pourcentage, des remises dès un montant d’achat, le « 1 acheté, 1 offert » et la livraison offerte. Voici les formats cités sur leurs pages pour les restaurants, consultées le 1er octobre 2026.
+
+| Type d’offre | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Remise en pourcentage | « Pourcentage d’économies » sur la carte, « Économies sur les articles du menu » sur un plat ou une catégorie | « % de réduction » |
+| Remise dès un montant d’achat | « Dépensez plus pour économiser davantage » | « Dépensez et économisez » |
+| Un acheté, un offert | « 1 acheté, 1 offert », sur 10 articles au plus | « Un acheté = un offert » |
+| Article offert | « Article offert avec la commande », dès un montant minimum | Non cité |
+| Livraison offerte | « Livraison offerte » | « Livraison gratuite » |
+| Heures creuses | « Happy hour : 14 h - 17 h » | Non cité |
+| Fidélité | Une offre jointe à vos réponses automatiques aux avis | « Récompenses » : un crédit offert après 4 commandes en 30 jours |
+
+Deliveroo mentionne aussi des « réductions fixes » et des « offres groupées ». « Non cité » signifie absent des pages consultées, pas forcément absent de votre compte. Les offres disponibles pour votre restaurant s’affichent dans l’onglet Marketing d’Uber Eats Manager et dans le Partner Hub de Deliveroo, rubrique Marketer puis Offres.
+
+Vous choisissez aussi qui voit l’offre. Uber Eats vous laisse viser tous les clients de votre zone de livraison ou seulement les nouveaux. Deliveroo cite les nouveaux clients, les clients inactifs, ou tous les clients pendant certaines périodes.
+
+## Qui paie la remise, vous ou la plateforme ?
+
+Vous, sauf accord contraire. Les [conditions d’Uber Eats](https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/) (version du 10 septembre 2026) disent que vous êtes « seul redevable du Coût de l’Offre », retenu sur vos versements. Les [conditions de Deliveroo](https://merchants.deliveroo.com/fr-FR/legal/terms) précisent : « Sauf accord contraire de notre part, vous prendrez en charge le coût de toutes les Offres utilisées par les clients ». Le programme « Récompenses » de Deliveroo suit la même règle : « Le crédit est financé par vous ».
+
+La commission, elle, porte sur le prix remisé. Uber Eats facture ses frais de service « sur la base du Prix au détail réduit et non pas sur le Prix au détail total ». Deliveroo écrit que « vos frais de service seront calculés sur le prix réduit payé par le Client ». Si Deliveroo accepte de financer une offre, la commission revient au prix non remisé.
+
+La livraison offerte suit une autre logique. Chez Uber Eats, vous payez la part des frais de livraison que le client ne règle plus, et la commission ne change pas. Chez Deliveroo, ces frais « varient selon les Commandes » : fixez un budget maximum.
+
+Comptez enfin les frais d’outil. La page marketing d’Uber Eats annonce que vous ne payez pas de frais supplémentaires par offre. Ses conditions prévoient pourtant que des « Frais d’Utilisation des Offres » peuvent s’appliquer à chaque commande remisée, avec un montant communiqué avant la création de l’offre. Deliveroo prévoit aussi des « Frais Marketer », que la plateforme Marketer affiche.
+
+Vérifiez aussi que vous avez accès aux offres. Uber Eats peut restreindre ses outils d’offres si votre score de réussite, qui inclut votre note, est insuffisant. Deliveroo peut suspendre l’accès à Marketer selon vos performances : voir [comment améliorer votre note sur Uber Eats et Deliveroo](/ressources/ameliorer-note-uber-eats-deliveroo/).
+
+## Combien de commandes en plus faut-il pour qu’une promo soit rentable ?
+
+Assez pour retrouver la marge totale d’avant la promo. Le calcul tient en un tableau, à refaire avec vos propres chiffres.
+
+Prenons une pizza vendue 14 €, qui vous coûte 4 € de matière et d’emballage, avec une commission de 30 %. Ce taux sert d’exemple : le vôtre dépend de votre contrat (voir [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/)). Pour simplifier, on ignore la TVA. Vous vendez 100 pizzas par semaine et testez une remise de 20 %.
+
+| Pour une pizza | Sans promo | Avec 20 % de remise |
+| --- | --- | --- |
+| Prix payé par le client | 14,00 € | 11,20 € |
+| Commission de 30 % sur ce prix | 4,20 € | 3,36 € |
+| Matière et emballage | 4,00 € | 4,00 € |
+| Marge par pizza | 5,80 € | 3,84 € |
+| Pizzas à vendre pour garder 580 € de marge | 100 | 152 |
+
+La remise de 20 % sur le prix fait baisser votre marge par pizza de 34 %. Pour garder vos 580 € de marge par semaine, il faut vendre 152 pizzas au lieu de 100, soit 52 % de plus. La formule : commandes habituelles × marge sans promo ÷ marge avec promo, soit 100 × 5,80 ÷ 3,84 = 151,04, arrondi à l’unité supérieure : 152.
+
+Le calcul de la commission sur le prix remisé vous aide. Si elle restait calculée sur 14 €, votre marge tomberait à 3,00 € et il faudrait 194 pizzas.
+
+Le « 1 acheté, 1 offert » coûte plus cher qu’il n’en a l’air. Vous encaissez 14 € pour deux pizzas : après 4,20 € de commission et 8 € de matière et d’emballage, il reste 1,80 €. Pour garder 580 € de marge, il faudrait 323 commandes au lieu de 100, sauf si le client complète son panier.
+
+Deux réglages limitent le coût. Le premier est un montant minimum de commande, que Deliveroo recommande pour « protéger vos marges ». Le second est le ciblage des nouveaux clients : seules leurs commandes sont remisées, refaites donc le calcul sur cette part. Si des frais d’outil s’appliquent, retirez-les aussi de la marge avec promo.
+
+## Faut-il surveiller les promos de vos voisins ?
+
+Oui, car vos clients comparent les offres sur le même écran. Une promo se juge face à celles des restaurants qui livrent la même rue.
+
+Chez Deliveroo, le fait qu’un restaurant « propose actuellement une promotion » compte parmi les [critères de classement](https://deliveroo.fr/fr/partner-ranking). Une bannière « Offres près de chez vous » met aussi en avant les restaurants en promo. Chez Uber Eats, votre offre s’affiche « sur votre fiche d’établissement dans le flux et sur la page de votre menu ».
+
+Si tous vos voisins affichent 30 % de remise, vos 10 % risquent de passer inaperçus. Si aucun n’affiche d’offre, une remise modeste peut suffire à vous distinguer. Regardez aussi leurs prix de base : une remise sur un plat déjà plus cher que ceux du quartier peut ne pas suffire. Pour cette comparaison, voir [comment analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
+
+Deliview repère les promos affichées par les restaurants de votre secteur, sur Uber Eats et Deliveroo. Il vous montre ce qui a changé depuis l’analyse précédente : nouvelle promo, prix modifié, nouveau concurrent. Voir [vos prix et les promos de votre zone](/solution/prix-et-concurrence/).
+
+## Comment tester une promo sans y laisser votre marge ?
+
+Lancez une seule offre, courte et plafonnée, puis comparez le résultat au seuil calculé avant. Voici la méthode en six étapes.
+
+1. Notez votre point de départ : commandes et marge des quatre dernières semaines, sur les mêmes jours et créneaux.
+2. Calculez votre seuil : le nombre de commandes qui garde la même marge, frais d’outil compris.
+3. Choisissez une offre, une plateforme et un créneau. Deliveroo conseille de cibler les périodes creuses, et Uber Eats propose une « Happy hour » de 14 h à 17 h.
+4. Fixez une date de fin et un budget maximum. Sur Uber Eats, l’offre s’arrête seule quand le budget est atteint. Sur Deliveroo, vous pouvez l’annuler « à tout moment sans pénalité ».
+5. Mesurez à la fin : commandes, panier moyen, marge, nouveaux clients. Uber Eats affiche les performances des offres dans Marketing, onglet Performance, et Deliveroo dans le Partner Hub.
+6. Suivez les deux semaines suivantes, pour voir si les nouveaux clients reviennent sans remise.
+
+Ne montez jamais vos prix juste avant une promo. Les conditions de Deliveroo citent cet abus, qui peut entraîner une suspension. Elles imposent un prix de référence au plus égal au prix le plus bas pratiqué dans les 30 jours avant l’offre.
+
+Si l’offre n’atteint pas son seuil, arrêtez-la et gardez les chiffres : ils serviront de base au prochain test.
+
+Sources : Rendre votre établissement plus visible grâce aux outils marketing (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/marketing/, consulté le 1er octobre 2026) ; Mettez en place des promotions pour votre établissement (Uber, https://merchants.ubereats.com/fr/fr/technology/grow-your-store/promotions/, consulté le 1er octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 1er octobre 2026) ; Politique de Score de Réussite Partenaire - Restaurants Partenaires (Uber, https://www.uber.com/fr/fr/legal/merchant-success-score-policy/, consulté le 1er octobre 2026) ; Comment augmenter vos commandes grâce aux Offres (Deliveroo, https://merchants.deliveroo.com/fr-FR/learning-centre/how-to-grow-your-orders-with-offers, consulté le 1er octobre 2026) ; Développez votre entreprise grâce aux outils de croissance de Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR/why-deliveroo/growth, consulté le 1er octobre 2026) ; Conditions générales (Conditions Générales Marketer et Récompenses) (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 1er octobre 2026) ; Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 1er octobre 2026)
