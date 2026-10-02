@@ -78,7 +78,7 @@ const dansMenu = (menu: string) =>
       <a href={SITE.app} class="hidden min-h-12 items-center gap-2 px-2 text-[17px] font-semibold leading-none whitespace-nowrap hover:underline sm:inline-flex">
         <Cadenas taille={24} />Se connecter
       </a>
-      <a href={lien('/demo/')} class="dv-btn dv-btn-contour hidden !min-h-12 !px-5 !py-0 whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
+      <a href={lien('/demo/')} id="dv-entete-demo" class="dv-btn dv-btn-bleu dv-entete-demo hidden !min-h-12 !px-5 !py-0 whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
 
       <details class="dv-menu xl:hidden">
         <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
@@ -141,6 +141,22 @@ const dansMenu = (menu: string) =>
 </style>
 
 <script>
+  // Bouton démo de l'en-tête (demande de Tom, 2 octobre 2026 : en bleu) : contour bleu tant qu'un autre bouton démo
+  // plein ou le formulaire de démo est à l'écran (un seul bouton plein par écran), bleu plein dès qu'il n'y en a plus.
+  const demoEntete = document.getElementById('dv-entete-demo');
+  if (demoEntete && 'IntersectionObserver' in window) {
+    const autres = Array.from(document.querySelectorAll('.dv-btn-plein, #demo, .dv-form')).filter(
+      (el) => !el.closest('#dv-barre-demo') && !el.closest('header'),
+    );
+    const visibles = new Set<Element>();
+    const obs = new IntersectionObserver((entrees) => {
+      entrees.forEach((e) => (e.isIntersecting ? visibles.add(e.target) : visibles.delete(e.target)));
+      demoEntete.classList.toggle('dv-entete-plein', visibles.size === 0);
+    });
+    autres.forEach((el) => obs.observe(el));
+    if (!autres.length) demoEntete.classList.add('dv-entete-plein');
+  }
+
   // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme.
   const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.dv-menu'));
   menus.forEach((m) =>

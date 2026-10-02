@@ -279,6 +279,17 @@
     /* Voile Bleu 1 à 8 % par-dessus le fond blanc (sans dégradé ni nouvelle teinte). */
     box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent);
   }
+  /* Bouton démo de l'en-tête : contour bleu, puis bleu plein quand aucun autre bouton démo plein n'est à l'écran. */
+  .dv-entete-demo.dv-entete-plein {
+    background: var(--color-blue);
+    color: var(--color-white);
+    border-color: var(--color-blue);
+  }
+  .dv-entete-demo.dv-entete-plein:hover {
+    background: var(--color-blue-2);
+    border-color: var(--color-blue-2);
+    box-shadow: none;
+  }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {
     opacity: 0.6;
