@@ -1,5 +1,9 @@
 ---
-// Ligne de réassurance, sous le bouton principal du haut de page : trois petites icônes dessinées de 24 px.
+// Réassurance, sous le bouton principal du haut de page : trois petites icônes dessinées de 24 px.
+// Mise en page (retour de Tom, 2 octobre 2026) : jamais de 2 + 1. Les trois points s'empilent en colonne
+// tant que la place manque (mobile, colonne du haut de l'accueil) et passent sur une seule ligne
+// dès que le bloc fait 40 rem de large (requête de conteneur, pas de point de rupture de l'écran).
+// En colonne, les icônes forment un axe commun et leur tracé s'aligne sur le bord gauche du bouton.
 import CadenasOuvert from '../icons/cadenas-ouvert.astro';
 import Toque from '../icons/toque.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
@@ -12,8 +16,48 @@ interface Props {
 const { centre = false, class: classe = '' } = Astro.props;
 ---
 
-<ul class={`flex flex-wrap gap-x-6 gap-y-2.5 text-[15px] font-semibold leading-[1.3] md:text-[16px] ${centre ? 'justify-center' : ''} ${classe}`}>
-  <li class="flex items-center gap-2"><CadenasOuvert taille={24} />Sans engagement</li>
-  <li class="flex items-center gap-2"><Toque taille={24} />Mise en place offerte</li>
-  <li class="flex items-center gap-2"><EtiquettePrix taille={24} />Dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</li>
-</ul>
+<div class={`dv-reassurance ${centre ? 'dv-reassurance-centre' : ''} ${classe}`}>
+  <ul class="text-[15px] font-semibold leading-[1.3] md:text-[16px]">
+    <li><CadenasOuvert taille={24} />Sans engagement</li>
+    <li><Toque taille={24} />Mise en place offerte</li>
+    <li><EtiquettePrix taille={24} />Dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</li>
+  </ul>
+</div>
+
+<style>
+  .dv-reassurance {
+    container-type: inline-size;
+  }
+  .dv-reassurance ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 12px;
+  }
+  .dv-reassurance-centre ul {
+    width: fit-content;
+    margin-inline: auto;
+  }
+  .dv-reassurance li {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+  /* Le tracé des icônes laisse 3 px de vide à gauche sur 24 px : on le compense pour que le pictogramme
+     tombe sur le bord du bouton, et non 3 à 5 px en retrait. */
+  .dv-reassurance li :global(svg) {
+    margin-left: -3px;
+  }
+  @container (min-width: 40rem) {
+    .dv-reassurance ul {
+      flex-direction: row;
+      flex-wrap: wrap; /* filet de sécurité si le visiteur grossit le texte : jamais de débordement */
+      align-items: center;
+      column-gap: 28px;
+    }
+    .dv-reassurance-centre ul {
+      width: auto;
+      justify-content: center;
+    }
+  }
+</style>
