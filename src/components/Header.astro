@@ -1,20 +1,15 @@
 ---
-// En-tête collant : barre d'annonce (simulateur), logo, navigation (méga-menu « Notre solution » avec icônes),
-// connexion en bouton contour, bouton démo plein.
+// En-tête collant : logo, navigation (méga-menus « Notre solution » et « Ressources »), connexion en bouton contour,
+// bouton démo plein. Plus de barre d'annonce ni de simulateur en haut du site (décision de Tom, 2 octobre 2026).
 // Menus en <details> : utilisables sans JavaScript et au clavier ; Échap les ferme (script ci-dessous).
 import Icone from './Icone.astro';
-import { NAV, PILIERS, SITE, lien } from '../lib/site';
----
+import { MENU_RESSOURCES, NAV, PILIERS, SITE, lien } from '../lib/site';
 
-<aside class="bg-grey text-[15px]" aria-label="Simulateur de rentabilité">
-  <div class="dv-container flex items-center justify-center gap-3 py-2 text-center">
-    <p>
-      <strong class="hidden md:inline">Combien vous rapporte un prix mieux placé&nbsp;?</strong><span class="hidden md:inline"> Faites le calcul en moins d’une minute.</span>
-      <strong class="md:hidden">Calculez votre gain en 1&nbsp;minute</strong>
-      <a href={lien('/simulateur/')} class="ml-1 font-semibold underline underline-offset-2 whitespace-nowrap">Simuler</a>
-    </p>
-  </div>
-</aside>
+const MENUS: Record<string, { href: string; titre: string; phrase: string; icone?: (typeof PILIERS)[number]['icone'] }[]> = {
+  solution: PILIERS.map((p) => ({ href: `/solution/${p.slug}/`, titre: p.surtitre, phrase: p.phrase, icone: p.icone })),
+  ressources: MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase })),
+};
+---
 
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-grey-2/15">
   <div class="dv-container flex h-[72px] items-center justify-between gap-4">
@@ -35,26 +30,27 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                   </summary>
                   <div class="absolute left-0 top-full mt-2 w-[400px] rounded-[16px] border border-grey-2/15 bg-white p-3 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
                     <ul class="space-y-1">
-                      {PILIERS.map((p) => (
+                      {MENUS[item.menu].map((x) => (
                         <li>
-                          <a href={lien(`/solution/${p.slug}/`)} class="flex gap-3 rounded-xl p-3 hover:bg-grey">
-                            <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
-                              <Icone nom={p.icone} taille={18} />
-                            </span>
-                            <span class="whitespace-normal">
-                              <span class="flex items-center gap-2">
-                                <span class="font-semibold">{p.surtitre}</span>
+                          <a href={lien(x.href)} class="flex gap-3 rounded-xl p-3 hover:bg-grey">
+                            {x.icone && (
+                              <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-blue/10 text-blue">
+                                <Icone nom={x.icone} taille={18} />
                               </span>
-                              <span class="mt-0.5 block text-[15px] font-normal leading-snug dv-muted">{p.phrase}</span>
+                            )}
+                            <span class="whitespace-normal">
+                              <span class="block font-semibold">{x.titre}</span>
+                              <span class="mt-0.5 block text-[15px] font-normal leading-snug dv-muted">{x.phrase}</span>
                             </span>
                           </a>
                         </li>
                       ))}
                     </ul>
-                    <p class="mt-1 flex flex-wrap gap-x-4 border-t border-grey-2/10 px-3 pt-3 pb-1 text-[15px]">
-                      <a href={lien('/solution/')} class="underline underline-offset-2">Voir toute la solution</a>
-                      <a href={lien('/simulateur/')} class="underline underline-offset-2">Simuler ma rentabilité</a>
-                    </p>
+                    {item.menu === 'solution' && (
+                      <p class="mt-1 border-t border-grey-2/10 px-3 pt-3 pb-1 text-[15px]">
+                        <a href={lien('/solution/')} class="underline underline-offset-2">Voir toute la solution</a>
+                      </p>
+                    )}
                   </div>
                 </details>
               </li>
@@ -93,7 +89,6 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                 </li>
               ))
             }
-            <li><a href={lien('/simulateur/')} class="block py-3 font-semibold border-b border-grey-2/10">Simulateur de rentabilité</a></li>
             {
               NAV.filter((x) => !x.menu).map((item) => (
                 <li>
@@ -101,7 +96,16 @@ import { NAV, PILIERS, SITE, lien } from '../lib/site';
                 </li>
               ))
             }
-            <li><a href={lien('/qui-sommes-nous/')} class="block py-3 font-semibold border-b border-grey-2/10">Qui sommes-nous</a></li>
+          </ul>
+          <p class="dv-overline pt-5 pb-1">Ressources</p>
+          <ul>
+            {
+              MENU_RESSOURCES.map((r) => (
+                <li>
+                  <a href={lien(r.href)} class="block py-3 font-semibold border-b border-grey-2/10">{r.libelle}</a>
+                </li>
+              ))
+            }
             <li><a href={SITE.app} class="block py-3 font-semibold">Se connecter</a></li>
           </ul>
           <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>

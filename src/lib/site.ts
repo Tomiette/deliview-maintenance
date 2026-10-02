@@ -1,5 +1,6 @@
 // Données du site Deliview : coordonnées, navigation, piliers et fonctionnalités.
 // Le site ne présente que ce que Deliview fait aujourd'hui (décision de Tom, 2 octobre 2026).
+// Textes marketing : jamais de mention de la façon dont les données sont obtenues (décision de Tom, 2 octobre 2026).
 
 export const SITE = {
   nom: 'Deliview',
@@ -10,9 +11,10 @@ export const SITE = {
   // Direction de copywriting fixée par Tom le 1er octobre 2026.
   definition:
     'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.',
-  email: 'tom@deliview.fr',
-  telephone: '06 32 37 79 88',
-  telephoneLien: '+33632377988',
+  // Argument central (décision de Tom, 2 octobre 2026).
+  argument: 'Deliview centralise vos données de livraison Uber Eats et Deliveroo.',
+  // Seul contact public depuis le 2 octobre 2026. Le numéro de Tom n'apparaît plus que dans les mentions légales (LCEN).
+  email: 'tom.voisin@deliview.fr',
   linkedinTom: 'https://www.linkedin.com/in/tomvoisin/',
   linkedinEntreprise: 'https://www.linkedin.com/company/deliview/',
   // Vérification de propriété : coller ici le code donné par Google Search Console (balise « google-site-verification »)
@@ -50,15 +52,30 @@ export type ImageIA = keyof typeof IMAGES_IA;
 
 export type Statut = 'disponible' | 'bientot';
 
-export interface Fonctionnalite {
-  titre: string;
-  texte: string;
-  statut: Statut;
-}
-
 export type NomIcone =
   | 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'fleche' | 'telephone' | 'horloge'
   | 'bouclier' | 'source' | 'equipe' | 'promo' | 'plateformes' | 'europe' | 'tablette' | 'oeil' | 'courbe' | 'calcul';
+
+// Une capture réelle de l'app (compte d'essai, noms anonymisés) : fichiers public<src>-<largeur>.webp.
+export interface CaptureApp {
+  src: string;
+  largeurs: number[];
+  largeur: number;
+  hauteur: number;
+  alt: string;
+}
+
+// Modèle unique de fonctionnalité (décision de Tom, 2 octobre 2026) : nom, bénéfice en une phrase, 3 points au plus,
+// une vraie capture et un exemple chiffré tiré d'une vraie analyse, anonymisé (restaurant, ville, plateforme, date).
+export interface Fonctionnalite {
+  id: string;
+  icone: NomIcone;
+  nom: string;
+  benefice: string;
+  points: string[];
+  capture: CaptureApp;
+  exemple: { texte: string; contexte: string };
+}
 
 export interface Pilier {
   slug: string;
@@ -70,87 +87,139 @@ export interface Pilier {
   statut: Statut | 'partiel';
   description: string;
   meta: { title: string; description: string };
-  // `src` : chemin sans extension (fichiers -800.webp et -1600.webp).
-  capture?: { src: string; alt: string; largeur: number; hauteur: number };
-  // Pilier sans écran à montrer (bientôt) : illustration IA de la situation qu'il règle.
-  illustration?: { nom: ImageIA; alt: string };
   fonctionnalites: Fonctionnalite[];
 }
 
-export const PILIERS: Pilier[] = [
-  {
-    slug: 'prix-et-concurrence',
-    icone: 'prix',
-    surtitre: 'Prix et concurrence',
-    titre: 'Vos prix face à ceux de votre quartier, plat par plat',
-    phrase: 'Votre margherita face aux margheritas des restaurants autour de vous, à taille égale, sur les deux plateformes.',
-    statut: 'disponible',
-    description:
-      'Deliview retrouve vos fiches Uber Eats et Deliveroo, choisit jusqu’à 20 restaurants de votre secteur autour de vous et compare chaque plat au même plat chez eux.',
-    meta: {
-      title: 'Prix des concurrents Uber Eats et Deliveroo | Deliview',
-      description:
-        'Vos prix face à ceux des restaurants de votre quartier, plat par plat, sur Uber Eats et Deliveroo. Médiane, écart et sources. Demandez une démo.',
-    },
-    capture: { src: '/images/capture-concurrence', alt: 'Classement des restaurants de la zone dans Deliview : note, prix médian, avis et distance de chaque concurrent', largeur: 1600, hauteur: 1000 },
-    fonctionnalites: [
-      { titre: 'Chaque plat comparé au même plat', texte: 'Même type, même taille : une pizza 33 cm face à des pizzas 33 cm. Vous voyez la médiane, la fourchette, l’écart et la fiche d’où vient chaque prix.', statut: 'disponible' },
-      { titre: 'Jusqu’à 20 concurrents autour de vous', texte: 'Deliview repère les restaurants de votre secteur sur les deux plateformes, vérifie leur adresse et calcule leur distance.', statut: 'disponible' },
-      { titre: 'Les concurrents que vous voulez suivre', texte: 'Ajoutez jusqu’à 3 fiches à surveiller à coup sûr, même plus loin ou d’une autre cuisine.', statut: 'disponible' },
-      { titre: 'Les promos de la zone', texte: 'Les offres affichées par vos concurrents, avec le prix réellement payé quand la remise est chiffrée sur la fiche.', statut: 'disponible' },
-      { titre: 'Une alerte quand ça bouge', texte: 'Nouvelle promo, prix changé, note qui bouge, nouveau concurrent : chaque analyse vous montre ce qui a changé depuis la précédente.', statut: 'disponible' },
+const ANALYSE_DU = 'analyse du 1er octobre 2026';
+
+export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
+  'pricing-menu': {
+    id: 'pricing-menu',
+    icone: 'carte',
+    nom: 'Pricing Menu',
+    benefice: 'Repérez les plats vendus trop bas et ce qu’un meilleur prix rapporte.',
+    points: [
+      'Chaque plat classé : sous-évalué, bien placé ou trop cher',
+      'Un prix proposé dès que 2 concurrents vendent le même plat',
+      'Le gain calculé pour 100 ventes du plat',
     ],
+    capture: { src: '/images/capture-carte', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Pricing Menu dans Deliview : score de positionnement, plats à augmenter, plats trop chers et gain pour 100 ventes, puis chaque plat avec votre prix, la médiane de la zone et le prix suggéré' },
+    exemple: { texte: 'Margherita à 10,50 €. Médiane de la zone : 15,00 € chez 5 concurrents.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
   },
+  'optimiseur-menu': {
+    id: 'optimiseur-menu',
+    icone: 'source',
+    nom: 'Optimiseur menu',
+    benefice: 'Des fiches de plats qui donnent envie de commander.',
+    points: [
+      'Photos et descriptions passées en revue, plat par plat',
+      'Comparées aux fiches des restaurants de votre zone',
+      'Un modèle de description à suivre pour chaque plat',
+    ],
+    capture: { src: '/images/capture-optimiseur', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Optimiseur menu dans Deliview : plats à retravailler, part des plats avec photo et avec une vraie description face à la zone, puis la liste des plats à reprendre' },
+    exemple: { texte: '8 plats sur 33 sans description, soit 24 %. Chez 9 concurrents : 5 %.', contexte: `Restaurant de burgers à Paris, Deliveroo, ${ANALYSE_DU}` },
+  },
+  'prix-concurrents': {
+    id: 'prix-concurrents',
+    icone: 'prix',
+    nom: 'Prix des concurrents',
+    benefice: 'Vos prix face à ceux des restaurants qui livrent les mêmes rues.',
+    points: [
+      'Jusqu’à 20 restaurants de votre secteur, avec leur distance',
+      'Chaque plat face au même plat, à taille égale',
+      'Jusqu’à 3 concurrents de votre choix en plus',
+    ],
+    capture: { src: '/images/capture-concurrence', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Concurrence dans Deliview : chaque restaurant de la zone avec sa note, son prix médian, son nombre d’avis et sa distance' },
+    exemple: { texte: 'Burger à 14,90 €. Médiane de la zone : 11,15 € chez 9 concurrents.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
+  },
+  'promos-zone': {
+    id: 'promos-zone',
+    icone: 'promo',
+    nom: 'Promos de la zone',
+    benefice: 'Voyez les offres de vos voisins avant de lancer les vôtres.',
+    points: [
+      'Chaque offre affichée par vos concurrents',
+      'Le prix réellement payé quand la remise est chiffrée',
+      'Ce qui a changé depuis la dernière analyse',
+    ],
+    capture: { src: '/images/capture-promos', largeurs: [800, 1300], largeur: 1312, hauteur: 403, alt: 'Promotions actives chez vos concurrents dans Deliview : chaque offre avec le restaurant, sa note, son prix médian et sa distance' },
+    exemple: { texte: '10 concurrents sur 14 affichaient une promo. Le restaurant n’en avait aucune.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
+  },
+  'note-avis': {
+    id: 'note-avis',
+    icone: 'note',
+    nom: 'Note et avis',
+    benefice: 'Votre note face à celle de vos voisins, sur chaque plateforme.',
+    points: [
+      'Votre place au classement des notes de la zone',
+      'Votre nombre d’avis face au leur',
+      'Uber Eats et Deliveroo, chacun de son côté',
+    ],
+    capture: { src: '/images/capture-avis', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Classement des notes de la zone dans Deliview : votre note, la moyenne de la zone et l’écart' },
+    exemple: { texte: '4,4 sur 169 avis, pour 4,2 en moyenne dans la zone : 2e sur 5.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
+  },
+};
+
+export const PILIERS: Pilier[] = [
   {
     slug: 'carte-et-marge',
     icone: 'carte',
     surtitre: 'Carte et marge',
-    titre: 'Sachez quels plats vous pouvez vendre plus cher',
-    phrase: 'Chaque plat de votre carte classé : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources.',
+    titre: 'Vendez chaque plat au bon prix',
+    phrase: 'Les plats vendus trop bas repérés, avec un prix proposé et ses sources.',
     statut: 'disponible',
-    description:
-      'Pricing Menu passe toute votre carte en revue. Quand au moins 2 concurrents vendent le même plat, il propose un prix et montre ce que le changement rapporte pour 100 ventes.',
+    description: 'Chaque plat de votre carte face au même plat dans votre zone. Vous voyez ce qu’un meilleur prix vous rapporte.',
     meta: {
       title: 'Optimiser vos prix sur Uber Eats et Deliveroo | Deliview',
       description:
         'Chaque plat de votre carte face aux prix de votre zone : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources. Demandez une démo.',
     },
-    capture: { src: '/images/capture-carte', alt: 'Pricing Menu de Deliview : chaque plat avec votre prix, la médiane de la zone, l’écart, un statut et le prix proposé', largeur: 1600, hauteur: 1000 },
-    fonctionnalites: [
-      { titre: 'Toute votre carte passée en revue', texte: 'Chaque plat reçoit un statut. Une recette unique est située parmi les plats de sa famille chez vos concurrents : pizzas, pâtes, desserts, boissons.', statut: 'disponible' },
-      { titre: 'Un prix proposé, avec ses sources', texte: 'Quand au moins 2 concurrents vendent le même plat, Deliview propose un prix et cite chaque plat comparé.', statut: 'disponible' },
-      { titre: 'L’impact pour 100 ventes', texte: 'Ce que change un nouveau prix pour 100 ventes du plat. Pas d’estimation de vos volumes : vous les connaissez mieux que nous.', statut: 'disponible' },
-      { titre: 'Vos décisions gardées', texte: 'Vous validez un prix, Deliview le note avec la raison, pour le reporter dans votre back-office.', statut: 'disponible' },
-      { titre: 'Optimiseur menu : des fiches qui donnent envie', texte: 'Photo manquante, description absente ou qui répète le nom du plat : chaque plat passé en revue, comparé aux fiches de votre zone, avec les mieux présentées comme exemples.', statut: 'disponible' },
-    ],
+    fonctionnalites: [FONCTIONNALITES['pricing-menu'], FONCTIONNALITES['optimiseur-menu']],
+  },
+  {
+    slug: 'prix-et-concurrence',
+    icone: 'prix',
+    surtitre: 'Prix et concurrence',
+    titre: 'Vos prix et vos promos face à votre quartier',
+    phrase: 'Les prix et les offres des restaurants autour de vous, plat par plat.',
+    statut: 'disponible',
+    description: 'Jusqu’à 20 restaurants de votre secteur, sur Uber Eats et Deliveroo. Vous voyez leurs prix et leurs promos avant de fixer les vôtres.',
+    meta: {
+      title: 'Prix des concurrents Uber Eats et Deliveroo | Deliview',
+      description:
+        'Vos prix et vos promos face à ceux des restaurants de votre quartier, plat par plat, sur Uber Eats et Deliveroo. Demandez une démo.',
+    },
+    fonctionnalites: [FONCTIONNALITES['prix-concurrents'], FONCTIONNALITES['promos-zone']],
   },
   {
     slug: 'reputation',
     icone: 'note',
     surtitre: 'Réputation',
     titre: 'Votre note face à celles de votre zone',
-    phrase: 'Votre place au classement des notes de votre zone, sur Uber Eats comme sur Deliveroo.',
+    phrase: 'Votre place au classement des notes, sur Uber Eats comme sur Deliveroo.',
     statut: 'disponible',
-    description:
-      'Deliview compare votre note et votre nombre d’avis à ceux des restaurants autour de vous, plateforme par plateforme.',
+    description: 'Votre note et votre nombre d’avis face aux restaurants autour de vous, plateforme par plateforme.',
     meta: {
       title: 'Note Uber Eats et Deliveroo face à votre zone | Deliview',
       description:
         'Votre note et votre nombre d’avis comparés aux restaurants de votre zone, sur Uber Eats et Deliveroo. Demandez une démo.',
     },
-    capture: { src: '/images/capture-avis', alt: 'Classement des notes de la zone dans Deliview : votre note, la moyenne de la zone et l’écart', largeur: 1600, hauteur: 1000 },
-    fonctionnalites: [
-      { titre: 'Votre place au classement des notes', texte: 'Votre note face à celles des restaurants de votre zone, sur chaque plateforme, avec le meilleur et le plus faible.', statut: 'disponible' },
-      { titre: 'Le nombre d’avis comparé', texte: 'Combien d’avis vous avez face à vos voisins : un critère que les clients regardent avant de commander.', statut: 'disponible' },
-    ],
+    fonctionnalites: [FONCTIONNALITES['note-avis']],
   },
 ];
 
+// « Ressources » ouvre un menu : articles, questions fréquentes, Qui sommes-nous (décision de Tom, 2 octobre 2026).
 export const NAV = [
-  { libelle: 'Notre solution', href: '/solution/', menu: true },
+  { libelle: 'Notre solution', href: '/solution/', menu: 'solution' },
   { libelle: 'Intégrations', href: '/integrations/' },
   { libelle: 'Tarifs', href: '/tarifs/' },
-  { libelle: 'Ressources', href: '/ressources/' },
+  { libelle: 'Ressources', href: '/ressources/', menu: 'ressources' },
+];
+
+export const MENU_RESSOURCES = [
+  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/' },
+  { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement.', href: '/questions-frequentes/' },
+  { libelle: 'Qui sommes-nous', phrase: 'Le projet, le fondateur et la construction de Deliview.', href: '/qui-sommes-nous/' },
 ];
 
 export const PLATEFORMES = [
@@ -158,15 +227,15 @@ export const PLATEFORMES = [
     slug: 'uber-eats',
     nom: 'Uber Eats',
     statut: 'disponible' as Statut,
-    resume: 'Votre fiche et celles de vos concurrents analysées : prix, notes, avis, offres.',
-    disponible: ['Votre fiche retrouvée à partir du nom et de la ville', 'Prix de toute la carte, notes, nombre d’avis, offres affichées', 'Fiches des concurrents de votre zone, avec leur distance'],
+    resume: 'Vos prix, votre note et vos offres face à vos concurrents Uber Eats.',
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les plats à revoir, avec un prix proposé'],
   },
   {
     slug: 'deliveroo',
     nom: 'Deliveroo',
     statut: 'disponible' as Statut,
-    resume: 'Les mêmes analyses que sur Uber Eats, et les écarts entre vos deux fiches.',
-    disponible: ['Votre fiche retrouvée à partir du nom et de la ville', 'Prix de toute la carte, notes, nombre d’avis, offres affichées', 'Écarts de prix entre votre fiche Deliveroo et votre fiche Uber Eats'],
+    resume: 'Les mêmes analyses que sur Uber Eats, et les écarts entre vos deux cartes.',
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les écarts de prix entre vos cartes Deliveroo et Uber Eats'],
   },
 ];
 

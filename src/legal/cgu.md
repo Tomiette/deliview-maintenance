@@ -16,7 +16,7 @@ Les présentes conditions générales d’utilisation (CGU) s’appliquent à to
 
 2.2. Le propriétaire peut inviter d’autres utilisateurs par un lien personnel, valable 14 jours et réservé à l’adresse e-mail invitée. Il choisit leur rôle et les restaurants auxquels ils accèdent, et peut retirer un accès à tout moment.
 
-2.3. Les identifiants sont personnels. L’utilisateur choisit un mot de passe robuste, ne le communique à personne et signale sans délai à tom@deliview.fr tout usage non autorisé de son compte.
+2.3. Les identifiants sont personnels. L’utilisateur choisit un mot de passe robuste, ne le communique à personne et signale sans délai à tom.voisin@deliview.fr tout usage non autorisé de son compte.
 
 2.4. L’accès suppose un navigateur récent et une connexion internet, à la charge de l’utilisateur.
 
@@ -76,7 +76,7 @@ Les données personnelles des utilisateurs sont traitées selon la politique de 
 
 10.1. Deliview peut modifier les CGU. La version en vigueur est publiée à l’adresse www.deliview.fr/conditions-utilisation/ avec sa date. Les utilisateurs inscrits sont informés des modifications importantes par e-mail ou dans l’app. Pour les entreprises abonnées, elles prennent effet dans les conditions de l’article 22 des CGV : préavis de 30 jours et faculté de résilier sans frais.
 
-10.2. Les CGU s’appliquent tant que l’utilisateur a accès à l’app. Il peut demander la suppression de son accès à tout moment à tom@deliview.fr.
+10.2. Les CGU s’appliquent tant que l’utilisateur a accès à l’app. Il peut demander la suppression de son accès à tout moment à tom.voisin@deliview.fr.
 
 ## Article 11. Droit applicable
 

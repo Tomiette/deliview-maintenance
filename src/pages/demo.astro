@@ -11,25 +11,25 @@ const description =
 const faq = [
   {
     q: 'La démo est-elle vraiment faite sur mon restaurant ?',
-    r: 'Oui. Tom lance une analyse sur vos fiches Uber Eats et Deliveroo avant l’appel&nbsp;: vous voyez vos prix face à ceux de votre zone, pas un exemple générique.',
+    r: 'Oui. Tom prépare la démo sur votre restaurant. Vous voyez vos prix face à ceux de votre zone, pas un exemple.',
   },
   {
     q: 'Dois-je préparer quelque chose ?',
-    r: 'Non. Le nom et la ville de votre restaurant suffisent. Aucun identifiant Uber Eats ou Deliveroo n’est demandé.',
+    r: 'Non. Le nom et la ville de votre restaurant suffisent.',
   },
   {
     q: 'Deliview remplace-t-il mes tablettes Uber Eats et Deliveroo ?',
-    r: 'Non. Deliview réunit vos prix, vos notes et ceux de vos concurrents. Vos tablettes Uber Eats et Deliveroo restent là pour recevoir les commandes.',
+    r: 'Non. Deliview centralise vos prix, vos notes et ceux de vos concurrents. Vos tablettes restent là pour recevoir les commandes.',
   },
   {
     q: 'Combien coûte Deliview ?',
-    r: `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE}&nbsp;€ HT par mois, sans engagement et avec la mise en place offerte. Le détail est sur la page <a href="${lien('/tarifs/')}">Tarifs</a>.`,
+    r: `Dès ${PRIX_ENTREE}&nbsp;€ HT par mois, sans engagement. La mise en place est offerte. Le détail est sur la page <a href="${lien('/tarifs/')}">Tarifs</a>.`,
   },
 ];
 const erreurs = [
   { id: 'erreur-champs', texte: 'Un champ est incomplet. Vérifiez vos informations, puis renvoyez le formulaire.' },
-  { id: 'erreur-limite', texte: `Trop de demandes sont parties de cette connexion. Appelez Tom au ${SITE.telephone}.` },
-  { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Appelez Tom au ${SITE.telephone} ou écrivez à ${SITE.email}.` },
+  { id: 'erreur-limite', texte: `Trop de demandes sont parties de cette connexion. Écrivez à Tom : ${SITE.email}.` },
+  { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Écrivez à Tom : ${SITE.email}.` },
 ];
 ---
 
@@ -45,7 +45,7 @@ const erreurs = [
     section="page-demo"
     niveau="h1"
     titre="Demander une démo de Deliview"
-    sousTitre="15 minutes sur votre propre restaurant : vos fiches Uber Eats et Deliveroo réunies, vos concurrents, vos prix. Tom vous rappelle sous 24 h."
+    sousTitre="15 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 24 h."
   />
   <Faq questions={faq} titre="Avant la démo" />
 </Base>

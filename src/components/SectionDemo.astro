@@ -1,7 +1,6 @@
 ---
 // Section démo (dernier écran de chaque page) : les 4 étapes à gauche, le formulaire à droite.
 import DemoForm from './DemoForm.astro';
-import Icone from './Icone.astro';
 import { SITE } from '../lib/site';
 
 interface Props {
@@ -16,16 +15,16 @@ interface Props {
 const {
   section,
   titre = 'Voyez ce que vos prix peuvent vous rapporter',
-  sousTitre = 'Une démo de 15 minutes sur vos propres fiches Uber Eats et Deliveroo : vos prix, vos concurrents, votre note et les plats à ajuster.',
+  sousTitre = '15 minutes sur votre restaurant : vos prix, vos concurrents, votre note.',
   niveau = 'h2',
   id = 'demo',
 } = Astro.props;
 const Titre = niveau;
 const etapes = [
   { titre: 'Vous remplissez le formulaire', texte: 'Cinq champs, une minute.' },
-  { titre: 'Tom vous rappelle sous 24 h', texte: 'Pour caler un créneau en dehors de vos services.' },
-  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos fiches, vos concurrents et vos prix.' },
-  { titre: 'La mise en place, avec vous', texte: 'Si vous continuez, Tom configure votre compte avec vous.' },
+  { titre: 'Tom vous rappelle sous 24 h', texte: 'Le créneau se cale hors de vos services.' },
+  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos prix et votre zone.' },
+  { titre: 'La mise en place, avec vous', texte: 'Si vous continuez, Tom crée votre compte.' },
 ];
 ---
 
@@ -48,11 +47,8 @@ const etapes = [
           ))
         }
       </ol>
-      <p class="mt-8 flex items-center gap-3">
-        <Icone nom="telephone" class="shrink-0" />
-        <span>
-          Vous préférez appeler&nbsp;? <a href={`tel:${SITE.telephoneLien}`} class="font-semibold whitespace-nowrap">{SITE.telephone}</a>
-        </span>
+      <p class="mt-8">
+        Vous préférez écrire&nbsp;? <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
       </p>
     </div>
     <div id={`${id}-formulaire`} class="dv-card p-6 md:p-8">

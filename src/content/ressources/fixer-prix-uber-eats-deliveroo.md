@@ -1,7 +1,7 @@
 ---
 titre: "Comment fixer ses prix sur Uber Eats et Deliveroo sans perdre d’argent ni de clients"
 titreSeo: "Fixer ses prix sur Uber Eats et Deliveroo"
-description: "Calculez le prix plancher de chaque plat, situez-vous face aux prix de votre zone et ajustez sans faire fuir vos clients. Méthode et exemple chiffré."
+description: "Calculez le prix plancher de chaque plat. Situez-vous face à votre zone, puis ajustez sans faire fuir vos clients. Méthode et exemple chiffré."
 theme: prix-et-concurrence
 enBref: "Partez de vos coûts : matière, emballage, TVA et commission. Calculez le prix sous lequel vous perdez de l’argent, puis comparez-le au prix médian du même plat dans votre zone. Les prix sont libres, mais Uber Eats peut tenir compte des vôtres pour votre mise en avant. Changez quelques plats à la fois et mesurez."
 publieLe: 2026-10-01

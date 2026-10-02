@@ -1,30 +1,33 @@
 ---
-// Qui sommes-nous : mission, fondateur (page auteur des articles, ancre #tom), engagements, fiche d'identité.
+// Qui sommes-nous (décisions de Tom, 2 octobre 2026) : le projet en 3 phrases, le fondateur, la chronologie de la
+// construction (frise verticale, étapes fournies par Tom seulement), puis un bouton démo et l'e-mail de Tom.
+// Ancre #tom : page auteur des articles.
 import Base from '../layouts/Base.astro';
-import SectionDemo from '../components/SectionDemo.astro';
 import Icone from '../components/Icone.astro';
-import { SITE, lien } from '../lib/site';
+import { SITE, dateFr, lien } from '../lib/site';
+import { CHRONOLOGIE } from '../lib/chronologie';
+
+const apercu = import.meta.env.BASE_URL !== '/';
+// Sur l'aperçu seulement, tant que la liste est vide : trois étapes à remplacer, pour voir la frise.
+const etapes = CHRONOLOGIE.length
+  ? CHRONOLOGIE
+  : apercu
+    ? [1, 2, 3].map((n) => ({ date: '', titre: `[À REMPLACER : titre de l’étape ${n}]`, phrase: '[À REMPLACER : une phrase sur ce qui a été construit]', lien: '' }))
+    : [];
 
 const description =
-  'Deliview est né d’un an sur le terrain : un logiciel français, fondé par Tom Voisin, pour rendre la livraison plus rentable sur Uber Eats et Deliveroo.';
-
-const engagements = [
-  { icone: 'source' as const, titre: 'Des chiffres sourcés', texte: 'Chaque prix comparé renvoie à la fiche d’où il vient. Quand les données ne suffisent pas, Deliview le dit.' },
-  { icone: 'bouclier' as const, titre: 'Aucun identifiant demandé', texte: 'Deliview lit les informations publiques de vos fiches. Vos accès Uber Eats et Deliveroo restent à vous.' },
-  { icone: 'europe' as const, titre: 'Vos données en Europe', texte: 'Comptes et analyses hébergés dans l’Union européenne, en Irlande.' },
-  { icone: 'horloge' as const, titre: 'Pas de promesse en l’air', texte: 'Ce site ne présente que ce que Deliview fait aujourd’hui, avec des exemples tirés de vraies fiches.' },
-];
+  'Le projet Deliview, son fondateur Tom Voisin et la construction du logiciel, étape par étape, pour les restaurants sur Uber Eats et Deliveroo.';
 
 const personne = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Tom Voisin',
   jobTitle: 'Fondateur de Deliview',
-  description:
-    'Fondateur de Deliview. A lui-même été sur Uber Eats et Deliveroo, et a passé un an sur le terrain à analyser comment travaillent les restaurants qui livrent.',
+  description: 'Fondateur de Deliview. A lui-même été sur Uber Eats et Deliveroo, et a passé un an sur le terrain auprès des restaurants qui livrent.',
   knowsAbout: ['Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison'],
   url: SITE.url + '/qui-sommes-nous/#tom',
   image: SITE.url + '/images/tom-voisin.jpg',
+  email: SITE.email,
   sameAs: [SITE.linkedinTom],
   worksFor: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
 };
@@ -32,95 +35,111 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
 ---
 
 <Base title="Qui sommes-nous | Deliview" description={description} ariane={[{ nom: 'Qui sommes-nous', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
-  <section class="bg-white">
-    <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
-      <p class="dv-overline dv-muted">Qui sommes-nous</p>
-      <h1 class="dv-h1 mt-4 max-w-[20ch]">{SITE.slogan}</h1>
-      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition}</p>
-    </div>
-  </section>
-
-  <section class="dv-section bg-grey" aria-labelledby="mission-titre">
-    <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.2fr]">
-      <div>
-        <p class="dv-overline dv-muted">Notre mission</p>
-        <h2 id="mission-titre" class="dv-h2 mt-3 max-w-[18ch]">Rendre la livraison plus rentable pour chaque restaurant</h2>
-      </div>
-      <div class="space-y-4 dv-texte">
-        <p>Sur Uber Eats et Deliveroo, un restaurant se joue face à ses voisins, sur un écran de téléphone. Le client compare en quelques secondes. Le restaurateur, lui, jongle avec deux tablettes et n’a pas le temps de faire pareil.</p>
-        <p>Deliview réunit ses données livraison au même endroit&nbsp;: les prix de sa zone plat par plat, sa place au classement des notes, la présentation de chaque plat. Il voit ce que font ses concurrents et ajuste ses prix et ses promos.</p>
+  <section class="bg-white" aria-labelledby="projet-titre">
+    <div class="dv-container pb-14 pt-8 md:pb-20 md:pt-12">
+      <p class="dv-overline dv-muted">{SITE.slogan}</p>
+      <h1 id="projet-titre" class="dv-h1 mt-4 max-w-[18ch]">Rendre la livraison rentable pour chaque restaurant</h1>
+      <div class="mt-6 max-w-[60ch] space-y-3 dv-lead">
+        <p>Sur Uber Eats et Deliveroo, les commissions pèsent sur chaque plat vendu.</p>
+        <p>Les chiffres utiles sont éparpillés entre une tablette et un espace par plateforme.</p>
+        <p>Deliview les réunit, pour que chaque restaurant vende au bon prix.</p>
       </div>
     </div>
   </section>
 
-  <section id="tom" class="dv-section bg-white" aria-labelledby="tom-titre">
+  <section id="tom" class="dv-section scroll-mt-24 bg-grey" aria-labelledby="tom-titre">
     <div class="dv-container grid gap-10 md:grid-cols-[200px_1fr]">
       <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="200" height="200" loading="lazy" class="h-40 w-40 rounded-full object-cover md:h-[200px] md:w-[200px]" />
       <div>
-        <p class="dv-overline dv-muted">Le fondateur</p>
-        <h2 id="tom-titre" class="dv-h2 mt-3">Tom Voisin</h2>
-        <div class="mt-5 max-w-[64ch] space-y-4 [text-wrap:pretty]">
-          <p>Je m’appelle Tom et j’ai fondé Deliview. J’ai moi-même été sur Uber Eats et Deliveroo, et j’ai passé un&nbsp;an sur le terrain à analyser comment travaillent les restaurants qui livrent.</p>
-          <p>D’un restaurant à l’autre, j’ai vu la même chose. Deux tablettes qui sonnent en plein rush. Deux cartes et deux grilles de prix à tenir à jour. Des prix fixés à l’instinct, sans savoir ce que fait le restaurant d’à côté. Pendant ce temps, les clients comparent tout en quelques secondes.</p>
-          <p>Deliview est le résultat de cette année d’analyse. J’ai commencé par ce qui manquait le plus&nbsp;: savoir si vos prix tiennent face à ceux de votre zone. Deliview lit les fiches publiques, compare chaque plat au même plat chez les voisins et cite ses sources.</p>
-          <p>Je fais la mise en place avec chaque restaurant. Quand vous appelez, c’est moi qui décroche.</p>
+        <p class="dv-overline dv-muted">Qui je suis</p>
+        <h2 id="tom-titre" class="dv-h2 mt-3">Tom Voisin, fondateur de Deliview</h2>
+        <div class="mt-5 max-w-[60ch] space-y-3 [text-wrap:pretty]">
+          <p>J’ai moi-même été sur Uber Eats et Deliveroo.</p>
+          <p>J’ai passé un&nbsp;an sur le terrain, auprès des restaurants qui livrent.</p>
+          <p>Partout, deux tablettes en plein rush et des prix fixés à l’instinct.</p>
+          <p>Deliview est le résultat de cette année. Je fais la mise en place avec chaque restaurant.</p>
         </div>
         <p class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
-          <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a>
           <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
           <a href={SITE.linkedinTom} class="font-semibold underline underline-offset-2" rel="noopener">Tom sur LinkedIn</a>
+          <a href={SITE.linkedinEntreprise} class="font-semibold underline underline-offset-2" rel="noopener">Deliview sur LinkedIn</a>
         </p>
       </div>
     </div>
   </section>
 
-  <section class="dv-section bg-grey" aria-labelledby="engagements-titre">
-    <div class="dv-container">
-      <h2 id="engagements-titre" class="dv-h2">Nos engagements</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {
-          engagements.map((e) => (
-            <li class="dv-card p-6">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
-                <Icone nom={e.icone} />
-              </span>
-              <h3 class="dv-h3 mt-4">{e.titre}</h3>
-              <p class="mt-2 text-[16px] dv-muted" set:html={e.texte} />
-            </li>
-          ))
-        }
-      </ul>
+  <section class="dv-section bg-white" aria-labelledby="chronologie-titre">
+    <div class="dv-container max-w-[880px]">
+      <p class="dv-overline dv-muted">En public, sur LinkedIn</p>
+      <h2 id="chronologie-titre" class="dv-h2 mt-3 max-w-[22ch]">La construction de Deliview, étape par étape</h2>
+      <p class="mt-4 max-w-[60ch]">Je partage chaque étape sur LinkedIn&nbsp;: ce qui marche, ce qui ne marche pas.</p>
+      {
+        etapes.length > 0 && (
+          <ol class="relative mt-10 space-y-10 border-l-2 border-blue/20 pl-8">
+            {etapes.map((e) => (
+              <li class="relative">
+                <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-white bg-blue ring-2 ring-blue/20" aria-hidden="true" />
+                <p class="text-[15px] font-semibold dv-muted">{e.date ? <time datetime={e.date}>{dateFr(new Date(e.date + 'T12:00:00Z'))}</time> : '[À REMPLACER : date]'}</p>
+                <h3 class="dv-h3 mt-1">{e.titre}</h3>
+                <p class="mt-1 max-w-[60ch]">{e.phrase}</p>
+                {e.lien ? (
+                  <a href={e.lien} class="mt-2 inline-flex items-center gap-2 font-semibold underline underline-offset-4" rel="noopener">
+                    Lire le post <Icone nom="fleche" taille={18} />
+                  </a>
+                ) : (
+                  <p class="mt-2 font-semibold">[À REMPLACER : lien du post LinkedIn]</p>
+                )}
+              </li>
+            ))}
+          </ol>
+        )
+      }
+      <p class="mt-10">
+        <a href={SITE.linkedinEntreprise} class="inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4" rel="noopener">
+          Suivre la construction sur LinkedIn <Icone nom="fleche" taille={20} />
+        </a>
+      </p>
     </div>
   </section>
 
-  <section class="dv-section bg-white" aria-labelledby="fiche-titre">
+  <section class="dv-section bg-grey" aria-labelledby="bref-titre">
     <div class="dv-container max-w-[880px]">
-      <h2 id="fiche-titre" class="dv-h2">Deliview en bref</h2>
+      <h2 id="bref-titre" class="dv-h2">Deliview en bref</h2>
       <dl class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Ce que fait Deliview</dt>
-          <dd>Réunit vos données Uber Eats et Deliveroo sur une seule tablette&nbsp;: vos prix face à votre zone, plat par plat, et votre note face à vos voisins.</dd>
+          <dd>{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Fondateur</dt>
-          <dd>Tom Voisin, étudiant-entrepreneur (réseau PEPITE)</dd>
+          <dd>Tom Voisin</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Origine</dt>
-          <dd>Un&nbsp;an d’analyse sur le terrain, auprès des restaurants qui livrent sur Uber Eats et Deliveroo</dd>
+          <dd>Un&nbsp;an sur le terrain, auprès des restaurants qui livrent</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Plateformes</dt>
-          <dd>Uber Eats et Deliveroo. France uniquement.</dd>
+          <dd>Uber Eats et Deliveroo, en France</dd>
         </div>
         <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
           <dt class="font-semibold">Hébergement des données</dt>
           <dd>Union européenne (Irlande)</dd>
         </div>
+        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
+          <dt class="font-semibold">Société</dt>
+          <dd>DELIVIEW SAS, <a href={lien('/mentions-legales/')} class="underline underline-offset-2">mentions légales</a></dd>
+        </div>
       </dl>
-      <p class="mt-6"><a href={lien('/questions-frequentes/')} class="font-semibold underline underline-offset-4">Toutes les questions fréquentes sur Deliview</a></p>
     </div>
   </section>
 
-  <SectionDemo section="qui-sommes-nous-formulaire" titre="Parlons de votre restaurant" />
+  <section class="dv-section bg-white" aria-labelledby="contact-titre">
+    <div class="dv-container text-center">
+      <h2 id="contact-titre" class="dv-h2 mx-auto max-w-[20ch]">Parlons de votre restaurant</h2>
+      <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Une démo de 15&nbsp;minutes, sur vos prix et votre zone.</p>
+      <p class="mt-8"><a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="qui-sommes-nous">Demander une démo</a></p>
+      <p class="mt-5">Ou écrivez-moi&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a></p>
+    </div>
+  </section>
 </Base>

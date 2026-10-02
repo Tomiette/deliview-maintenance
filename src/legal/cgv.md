@@ -1,6 +1,6 @@
 Version du 2 octobre 2026.
 
-DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom@deliview.fr, 06 32 37 79 88.
+DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
 ## Article 1. Définitions
 
@@ -82,7 +82,7 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 
 7.1. Le Client bénéficie des dispositions du Code de la consommation applicables aux contrats conclus hors établissement, en application de son article L221-3, lorsque les trois conditions suivantes sont réunies : le Contrat est conclu hors établissement, y compris lorsqu’il est signé à distance juste après une visite de Deliview dans les locaux du Client, son objet n’entre pas dans le champ de l’activité principale du Client, et le Client emploie cinq salariés ou moins.
 
-7.2. Le Client peut alors se rétracter dans un délai de 14 jours à compter de la conclusion du Contrat, sans avoir à motiver sa décision. Il utilise le formulaire de l’annexe 2 ou toute autre déclaration dénuée d’ambiguïté, adressée à tom@deliview.fr ou au siège de Deliview.
+7.2. Le Client peut alors se rétracter dans un délai de 14 jours à compter de la conclusion du Contrat, sans avoir à motiver sa décision. Il utilise le formulaire de l’annexe 2 ou toute autre déclaration dénuée d’ambiguïté, adressée à tom.voisin@deliview.fr ou au siège de Deliview.
 
 7.3. Si le Client a demandé expressément que le Service commence avant la fin de ce délai, il paie, en cas de rétractation, un montant proportionnel au Service fourni jusqu’à la communication de sa décision. Deliview lui rembourse les autres sommes versées dans les 14 jours suivant la réception de sa décision.
 
@@ -112,7 +112,7 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 
 10.1. Le Contrat est conclu pour une durée indéterminée, par périodes successives d’un mois, sans durée minimale d’engagement.
 
-10.2. Le Client peut résilier à tout moment, par e-mail à tom@deliview.fr ou depuis son espace de facturation. La résiliation prend effet à la fin de la période mensuelle en cours et aucune nouvelle échéance n’est prélevée. La période commencée reste due. Lorsque les présentes permettent au Client de résilier sans frais (articles 3.3, 4.3, 8.3, 21.2 et 22, et article 4.2 de l’accord de sous-traitance), Deliview lui rembourse la part du prix payée pour la période non exécutée.
+10.2. Le Client peut résilier à tout moment, par e-mail à tom.voisin@deliview.fr ou depuis son espace de facturation. La résiliation prend effet à la fin de la période mensuelle en cours et aucune nouvelle échéance n’est prélevée. La période commencée reste due. Lorsque les présentes permettent au Client de résilier sans frais (articles 3.3, 4.3, 8.3, 21.2 et 22, et article 4.2 de l’accord de sous-traitance), Deliview lui rembourse la part du prix payée pour la période non exécutée.
 
 10.3. Deliview peut résilier le Contrat à tout moment par e-mail, avec un préavis de 30 jours. Elle rembourse alors la part du prix payée pour la période non exécutée.
 
@@ -190,7 +190,7 @@ Chaque partie garde confidentielles les informations non publiques de l’autre 
 
 ## Article 19. Références commerciales
 
-Sauf refus écrit du Client, adressé à tout moment à tom@deliview.fr, Deliview peut citer le nom commercial et le logo du Client comme référence, sur son site et dans ses présentations commerciales. Deliview ne publie jamais les données, résultats ou chiffres du Client sans son accord écrit.
+Sauf refus écrit du Client, adressé à tout moment à tom.voisin@deliview.fr, Deliview peut citer le nom commercial et le logo du Client comme référence, sur son site et dans ses présentations commerciales. Deliview ne publie jamais les données, résultats ou chiffres du Client sans son accord écrit.
 
 ## Article 20. Force majeure
 
@@ -252,7 +252,7 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 À remplir et renvoyer uniquement si le Client souhaite se rétracter, dans le cas prévu à l’article 7.
 
-À l’attention de DELIVIEW, 9 rue Maurice Hubert, 61340 Berd’Huis, tom@deliview.fr.
+À l’attention de DELIVIEW, 9 rue Maurice Hubert, 61340 Berd’Huis, tom.voisin@deliview.fr.
 
 Je notifie par la présente ma rétractation du contrat portant sur la prestation de services ci-dessous :
 

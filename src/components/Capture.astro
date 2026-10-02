@@ -1,7 +1,7 @@
 ---
 // Capture réelle de l'app Deliview, dans un cadre de fenêtre, sans texte autour de l'image :
 // le texte alternatif précise qu'il s'agit de données de démonstration.
-// `src` : chemin sans extension ; les fichiers -800.webp et -1600.webp existent dans public/images.
+// `src` : chemin sans extension ; les fichiers -<largeur>.webp de `largeurs` (800 et 1600 par défaut) existent dans public/images.
 // `srcMobile` (facultatif) : recadrage plus lisible sur téléphone (fichiers -mobile-800.webp, -mobile-1200.webp).
 import { lien } from '../lib/site';
 
@@ -10,12 +10,13 @@ interface Props {
   alt: string;
   largeur?: number;
   hauteur?: number;
+  largeurs?: number[];
   srcMobile?: { src: string; largeur: number; hauteur: number };
   // Image principale de la page (hero) : chargée en priorité.
   priorite?: boolean;
   class?: string;
 }
-const { src, alt, largeur = 1600, hauteur = 1000, srcMobile, priorite = false, class: classe = '' } = Astro.props;
+const { src, alt, largeur = 1600, hauteur = 1000, largeurs = [800, 1600], srcMobile, priorite = false, class: classe = '' } = Astro.props;
 const base = lien(src);
 const baseMobile = srcMobile ? lien(srcMobile.src) : null;
 ---
@@ -30,8 +31,8 @@ const baseMobile = srcMobile ? lien(srcMobile.src) : null;
     <picture>
       {baseMobile && srcMobile && <source media="(max-width: 767px)" srcset={`${baseMobile}-800.webp 800w, ${baseMobile}-1200.webp 1200w`} sizes="100vw" width={srcMobile.largeur} height={srcMobile.hauteur} />}
       <img
-        src={`${base}-1600.webp`}
-        srcset={`${base}-800.webp 800w, ${base}-1600.webp 1600w`}
+        src={`${base}-${largeurs[largeurs.length - 1]}.webp`}
+        srcset={largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
         sizes="(min-width: 1200px) 640px, (min-width: 768px) 55vw, 100vw"
         alt={`${alt} (données de démonstration)`}
         width={largeur}

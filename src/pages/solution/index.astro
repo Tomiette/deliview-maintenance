@@ -20,7 +20,7 @@ const description =
     <div class="dv-container pb-12 pt-8 md:pb-16 md:pt-12">
       <p class="dv-overline dv-muted">Solution</p>
       <h1 class="dv-h1 mt-4 max-w-[20ch]">Ce que Deliview fait pour votre restaurant</h1>
-      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.definition}</p>
+      <p class="dv-lead mt-5 max-w-[60ch]">{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</p>
       <div class="mt-8 flex flex-col gap-3 sm:flex-row">
         <a href="#demo" class="dv-btn dv-btn-plein" data-cta="solution" data-cta-principal>Demander une démo</a>
         <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour">Voir les tarifs</a>
@@ -43,8 +43,11 @@ const description =
           <ul class="grid gap-4 sm:grid-cols-2">
             {p.fonctionnalites.map((f) => (
               <li class="dv-card p-5">
-                <h3 class="font-semibold leading-snug">{f.titre}</h3>
-                <p class="mt-2 text-[16px] dv-muted">{f.texte}</p>
+                <h3 class="flex items-center gap-2 font-semibold leading-snug">
+                  <span class="text-blue"><Icone nom={f.icone} taille={20} /></span>
+                  <a href={lien(`/solution/${p.slug}/#${f.id}`)} class="hover:underline">{f.nom}</a>
+                </h3>
+                <p class="mt-2 text-[16px] dv-muted">{f.benefice}</p>
               </li>
             ))}
           </ul>

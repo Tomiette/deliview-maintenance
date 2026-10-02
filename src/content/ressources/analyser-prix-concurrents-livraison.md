@@ -1,7 +1,7 @@
 ---
 titre: "Comment analyser les prix de vos concurrents sur Uber Eats et Deliveroo"
 titreSeo: "Analyser les prix de vos concurrents Uber Eats"
-description: "Choisissez les bons concurrents, comparez le même plat à taille égale et lisez l’écart avec la médiane de votre zone. Méthode, tableau et exemple chiffré."
+description: "Choisissez les bons concurrents et comparez le même plat à taille égale. Lisez l’écart avec la médiane de votre zone. Méthode et exemple chiffré."
 theme: prix-et-concurrence
 enBref: "Choisissez cinq à dix restaurants de votre cuisine qui livrent vos clients. Comparez le même plat à taille égale et notez prix et promos dans un tableau daté. Calculez la médiane plutôt que la moyenne. Un écart de plus de 10 %, sur au moins deux comparaisons, est un signal. Refaites l’exercice chaque mois."
 publieLe: 2026-10-01
@@ -81,7 +81,7 @@ L’écart se calcule ainsi : (votre prix − médiane) ÷ médiane. Dans l’e
 - **Plus de 10 % en dessous** : vous laissez sans doute de la marge. Montez par étapes et suivez vos ventes après chaque hausse.
 - **Une seule comparaison** : ne concluez pas. Élargissez la zone ou attendez le relevé suivant.
 
-[Deliview compare vos prix à ceux de votre quartier](/solution/prix-et-concurrence/) à partir de vos fiches publiques Uber Eats et Deliveroo, sans identifiant à donner. Il retient jusqu’à 20 restaurants de votre secteur, dont jusqu’à 3 de votre choix, et compare chaque plat au même plat à taille égale. Il calcule la médiane et l’écart, et ne conclut qu’avec au moins 2 concurrents. Il signale aussi les promos affichées et ce qui a changé depuis l’analyse précédente.
+[Deliview compare vos prix à ceux de votre quartier](/solution/prix-et-concurrence/) sur Uber Eats et Deliveroo. Il retient jusqu’à 20 restaurants de votre secteur, dont jusqu’à 3 de votre choix, et compare chaque plat au même plat à taille égale. Il calcule la médiane et l’écart, et ne conclut qu’avec au moins 2 concurrents. Il signale aussi les promos affichées et ce qui a changé depuis l’analyse précédente.
 
 ## À quelle fréquence refaire l’exercice ?
 

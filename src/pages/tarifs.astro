@@ -35,7 +35,7 @@ const faq = [
   },
   {
     q: 'La mise en place est-elle payante ?',
-    r: 'Non, elle est offerte. Tom crée votre compte avec vous, lance la première analyse et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans votre navigateur, sur tablette, ordinateur ou téléphone.',
+    r: 'Non, elle est offerte. Tom crée votre compte avec vous et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans le navigateur.',
   },
   {
     q: 'J’ai un seul restaurant : puis-je choisir Pro ou Premium ?',
@@ -43,15 +43,11 @@ const faq = [
   },
   {
     q: 'Deliview remplace-t-il mes tablettes Uber Eats et Deliveroo ?',
-    r: 'Non. Deliview réunit vos prix, vos notes et ceux de vos concurrents. Vos tablettes Uber Eats et Deliveroo restent là pour recevoir les commandes.',
-  },
-  {
-    q: 'Faut-il donner mes identifiants Uber Eats ou Deliveroo ?',
-    r: 'Non. Deliview lit les informations publiques de vos fiches&nbsp;: prix, notes, offres. Aucun accès à votre espace restaurant n’est demandé.',
+    r: 'Non. Deliview centralise vos prix, vos notes et ceux de vos concurrents. Vos tablettes restent là pour recevoir les commandes.',
   },
   {
     q: 'J’ai plus de 10 restaurants.',
-    r: `Tom vous fait une offre sur mesure. Appelez-le au <a href="tel:${SITE.telephoneLien}">${SITE.telephone}</a> ou demandez une démo.`,
+    r: `Tom vous fait une offre sur mesure. Écrivez-lui à <a href="mailto:${SITE.email}">${SITE.email}</a> ou demandez une démo.`,
   },
   {
     q: 'Où sont hébergées mes données ?',
@@ -139,10 +135,10 @@ const logiciel = {
         }
       </ul>
       <p class="mt-8 text-center dv-texte mx-auto">
-        Plus de 10&nbsp;restaurants&nbsp;? Tom vous fait une offre sur mesure&nbsp;: <a href={`tel:${SITE.telephoneLien}`} class="font-semibold">{SITE.telephone}</a>.
+        Plus de 10&nbsp;restaurants&nbsp;? Tom vous fait une offre sur mesure&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.
       </p>
-      <p class="mt-2 text-center text-[15px]">
-        <a href={lien('/simulateur/')} class="font-semibold">Combien vous rapporte un prix mieux placé&nbsp;?</a>
+      <p class="mt-8 text-center">
+        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="tarifs-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
       </p>
       <p class="mt-2 text-center text-[14px] dv-muted">
         Prix HT. Abonnement soumis aux <a href={lien('/cgv/')} class="underline underline-offset-2">conditions générales de vente</a>.
@@ -195,5 +191,5 @@ const logiciel = {
 
   <Faq questions={faq} />
 
-  <SectionDemo section="tarifs-formulaire" titre="Choisissez votre offre avec Tom" sousTitre="Une démo de 15 minutes sur vos propres fiches : vous voyez ce que Deliview trouve pour votre restaurant, puis vous choisissez votre offre." />
+  <SectionDemo section="tarifs-formulaire" titre="Choisissez votre offre avec Tom" sousTitre="15 minutes sur votre restaurant. Vous voyez ce que Deliview trouve, puis vous choisissez." />
 </Base>

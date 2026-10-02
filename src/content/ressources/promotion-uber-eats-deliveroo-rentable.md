@@ -1,7 +1,7 @@
 ---
 titre: "Comment savoir si une promo Uber Eats ou Deliveroo est rentable pour votre restaurant"
 titreSeo: "Promo Uber Eats restaurant : est-ce rentable ?"
-description: "Types d’offres, qui paie la remise, commission sur le prix remisé : un calcul pas à pas pour savoir si votre promo Uber Eats ou Deliveroo vous rapporte."
+description: "Promo Uber Eats ou Deliveroo : qui paie la remise, sur quel prix porte la commission. Le calcul pas à pas pour savoir si elle rapporte."
 theme: prix-et-concurrence
 enBref: "Une promo est rentable si elle apporte assez de commandes en plus pour compenser la marge perdue. Sur Uber Eats comme sur Deliveroo, vous payez la remise et la commission porte sur le prix remisé. Dans notre exemple, 20 % de remise sur une pizza imposent 52 % de ventes en plus pour garder la même marge."
 publieLe: 2026-10-01

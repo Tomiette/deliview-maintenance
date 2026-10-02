@@ -1,9 +1,9 @@
 ---
-// Page pilier (gabarit unique pour les 3 piliers) : hero, fonctionnalités, méthode, FAQ, autres piliers, démo.
+// Page pilier (gabarit unique pour les 3 piliers) : hero, fonctionnalités (modèle unique), méthode, FAQ, autres piliers, démo.
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Capture from '../../components/Capture.astro';
-import PhotoIA from '../../components/PhotoIA.astro';
+import BlocFonctionnalite from '../../components/BlocFonctionnalite.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -22,89 +22,78 @@ const articles = (
   await getCollection('ressources', (a) => !a.data.brouillon && (a.data.theme === pilier.slug || (ARTICLES_LIES[pilier.slug] ?? []).includes(a.id)))
 ).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
 
-type Icon = 'prix' | 'zone' | 'alerte' | 'note' | 'carte' | 'commandes' | 'check' | 'source' | 'equipe' | 'promo' | 'plateformes';
-const ICONES: Record<string, Icon[]> = {
-  'prix-et-concurrence': ['prix', 'zone', 'check', 'promo', 'alerte'],
-  'carte-et-marge': ['carte', 'source', 'prix', 'check', 'equipe'],
-  reputation: ['note', 'equipe', 'note', 'source', 'alerte'],
-};
-
-// Méthode (réponse directe d'abord) et questions propres à chaque pilier.
+// Méthode (réponse directe d'abord) et questions propres à chaque pilier. Rien sur la façon dont les données sont obtenues.
 const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: string[]; faq: { q: string; r: string }[] }> = {
   'prix-et-concurrence': {
     methodeTitre: 'Comment Deliview compare vos prix',
     reponse:
-      'Deliview ne compare que des plats comparables&nbsp;: même type, même taille. Votre pizza 33&nbsp;cm face aux pizzas 33&nbsp;cm des voisins, vos menus face à leurs menus. Il calcule la médiane des prix de la zone, puis l’écart entre votre prix et cette médiane.',
+      'Deliview ne compare que des plats comparables&nbsp;: même type, même taille. Il calcule la médiane des prix de la zone, puis l’écart avec votre prix.',
     points: [
-      'Au moins 2 concurrents pour conclure. En dessous, Deliview le dit au lieu d’inventer une moyenne.',
-      'Plus de 10&nbsp;% au-dessus de la médiane&nbsp;: trop cher. Plus de 10&nbsp;% en dessous&nbsp;: sous-évalué. Entre les deux&nbsp;: bien placé.',
-      'Une recette que personne d’autre ne vend est située parmi les plats de sa famille&nbsp;: pizzas, pâtes, desserts, boissons de même contenance.',
-      'Chaque prix cité renvoie à la fiche Uber Eats ou Deliveroo d’où il vient.',
+      'Au moins 2 concurrents pour conclure. Sinon, Deliview le dit.',
+      'Plus de 10&nbsp;% au-dessus de la médiane&nbsp;: trop cher. Plus de 10&nbsp;% en dessous&nbsp;: sous-évalué.',
+      'Une recette unique est située parmi les plats de sa famille&nbsp;: pizzas, pâtes, desserts.',
+      'Chaque prix comparé cite ses sources.',
     ],
     faq: [
       {
         q: 'Comment Deliview choisit-il mes concurrents ?',
-        r: 'Il cherche sur Uber Eats et Deliveroo les restaurants de votre secteur, vérifie leur adresse et garde les plus proches et les plus complets, jusqu’à 20. Vous pouvez aussi imposer jusqu’à 3 restaurants à suivre, même plus loin.',
-      },
-      {
-        q: 'D’où viennent les prix ?',
-        r: 'Des fiches publiques Uber Eats et Deliveroo, lues au moment de l’analyse. Deliview ne demande aucun accès à votre compte, ni à ceux de vos concurrents.',
+        r: 'Il retient jusqu’à 20 restaurants de votre secteur, les plus proches. Avec Pro et Premium, vous ajoutez 3 restaurants de votre choix, même plus loin.',
       },
       {
         q: 'À quelle fréquence les prix sont-ils mis à jour ?',
-        r: 'À chaque analyse, que vous lancez quand vous voulez depuis l’app. Deliview vous montre ce qui a changé depuis la précédente&nbsp;: promos, prix, notes, nouveaux concurrents.',
+        r: 'À chaque analyse&nbsp;: une par semaine avec Essentiel, à la demande avec Pro et Premium. Deliview montre ce qui a changé depuis la précédente.',
       },
       {
-        q: 'Mes prix en livraison sont plus chers qu’en salle. Est-ce un problème pour la comparaison ?',
-        r: 'Non. Deliview compare vos prix de livraison aux prix de livraison des voisins, sur la même plateforme.',
+        q: 'Mes prix en livraison sont plus chers qu’en salle. Est-ce un problème ?',
+        r: 'Non. Deliview compare vos prix de livraison à ceux de vos voisins, sur la même plateforme.',
       },
     ],
   },
   'carte-et-marge': {
     methodeTitre: 'Comment Deliview propose un prix',
     reponse:
-      'Deliview propose un prix seulement quand au moins 2 concurrents vendent le même plat à taille égale. Trop cher de plus de 10&nbsp;%&nbsp;: il propose la médiane de la zone. Sous-évalué de plus de 10&nbsp;%&nbsp;: il propose une hausse en deux temps, d’abord à mi-chemin de la médiane.',
+      'Deliview propose un prix dès que 2 concurrents vendent le même plat, à taille égale. Trop cher&nbsp;: il propose la médiane. Sous-évalué&nbsp;: une hausse en deux temps.',
     points: [
-      'Chaque proposition cite les plats comparés, leur restaurant et leur prix.',
-      'L’impact est donné pour 100 ventes du plat&nbsp;: vous l’appliquez à vos propres volumes.',
-      'Une recette unique n’a pas de prix proposé. Deliview la situe parmi les plats de sa famille chez vos voisins, à titre de repère.',
-      'Vous validez ou écartez chaque proposition. Deliview garde votre décision et sa raison.',
+      'Chaque proposition cite les plats comparés et leur prix.',
+      'Le gain est donné pour 100 ventes du plat. Vous l’appliquez à vos volumes.',
+      'Une recette unique n’a pas de prix proposé, seulement un repère.',
+      'Vous validez ou écartez chaque proposition. Deliview garde votre décision.',
     ],
     faq: [
       {
         q: 'Deliview modifie-t-il mes prix sur Uber Eats ou Deliveroo ?',
-        r: 'Non. Vous décidez, puis vous reportez le nouveau prix dans votre espace Uber Eats ou Deliveroo.',
+        r: 'Non. Vous décidez, puis vous reportez le prix dans votre espace Uber Eats ou Deliveroo.',
       },
       {
         q: 'Que faire d’un plat que personne d’autre ne vend ?',
-        r: 'Deliview le compare aux plats de la même famille dans votre zone et vous dit s’il est moins cher que la plupart, dans la moyenne ou plus cher. C’est un repère, pas un prix conseillé.',
+        r: 'Deliview le compare aux plats de la même famille dans votre zone. C’est un repère, pas un prix conseillé.',
       },
     ],
   },
   reputation: {
     methodeTitre: 'Comment lire votre place au classement',
     reponse:
-      'Deliview classe les restaurants de votre zone par note, plateforme par plateforme, puis par nombre d’avis en cas d’égalité. Vous voyez votre rang, la note moyenne de la zone et si vous êtes au-dessus, dans la moyenne ou en dessous.',
+      'Deliview classe les restaurants de votre zone par note, plateforme par plateforme. Vous voyez votre rang et la note moyenne de la zone.',
     points: [
-      'Uber Eats et Deliveroo sont classés séparément&nbsp;: les clients et les notes n’y sont pas les mêmes.',
-      'Le nombre d’avis compte aussi&nbsp;: un 4,8 sur 12 avis ne pèse pas comme un 4,6 sur 900.',
-      'Les concurrents que vous suivez à la main entrent aussi dans la comparaison.',
+      'Uber Eats et Deliveroo sont classés à part&nbsp;: les clients n’y sont pas les mêmes.',
+      'Le nombre d’avis compte. Un 4,8 sur 12 avis ne vaut pas un 4,6 sur 900.',
+      'Les concurrents que vous suivez entrent aussi dans le classement.',
     ],
     faq: [
       {
-        q: 'Deliview lit-il mes avis clients ?',
-        r: 'Non. Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme.',
+        q: 'Deliview répond-il à mes avis clients ?',
+        r: 'Non. Deliview compare votre note et vos avis à ceux de votre zone, plateforme par plateforme.',
       },
       {
         q: 'Pourquoi comparer ma note à celle des voisins ?',
-        r: 'Parce que le client choisit parmi les restaurants qu’il voit dans l’appli. Une note de 4,5 n’a pas le même poids dans une zone où la plupart des restaurants sont à 4,7.',
+        r: 'Parce que le client choisit parmi les restaurants qu’il voit. Un 4,5 ne pèse pas pareil si vos voisins sont à 4,7.',
       },
     ],
   },
 };
 
 const c = CONTENU[pilier.slug];
-const icones = ICONES[pilier.slug];
+const premiere = pilier.fonctionnalites[0];
 const url = `${SITE.url}/solution/${pilier.slug}/`;
 ---
 
@@ -119,7 +108,7 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
 >
   <section class="relative overflow-hidden bg-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-24 h-[480px] w-[480px] rounded-full bg-blue-2/12"></div>
-    <div class={`dv-container relative grid items-center gap-12 pb-16 pt-8 md:pb-20 md:pt-12 ${pilier.capture || pilier.illustration ? 'lg:grid-cols-[1fr_1.1fr]' : ''}`}>
+    <div class="dv-container relative grid items-center gap-12 pb-16 pt-8 md:pb-20 md:pt-12 lg:grid-cols-[1fr_1.1fr]">
       <div>
         <p class="dv-overline dv-muted">{pilier.surtitre}</p>
         <h1 class="dv-h1 mt-4 max-w-[18ch]">{pilier.titre}</h1>
@@ -131,31 +120,21 @@ const url = `${SITE.url}/solution/${pilier.slug}/`;
           <a href={lien('/tarifs/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Voir les tarifs</a>
         </div>
       </div>
-      {pilier.capture && <Capture src={pilier.capture.src} alt={pilier.capture.alt} largeur={pilier.capture.largeur} hauteur={pilier.capture.hauteur} priorite />}
-      {!pilier.capture && pilier.illustration && (
-        <PhotoIA nom={pilier.illustration.nom} alt={pilier.illustration.alt} sizes="(min-width: 1200px) 600px, (min-width: 1024px) 50vw, 100vw" ratio="3 / 2" priorite />
-      )}
+      <Capture src={premiere.capture.src} alt={premiere.capture.alt} largeur={premiere.capture.largeur} hauteur={premiere.capture.hauteur} largeurs={premiere.capture.largeurs} priorite />
     </div>
   </section>
 
-  <section class="dv-section bg-grey" aria-labelledby="fonctions-titre">
-    <div class="dv-container">
-      <h2 id="fonctions-titre" class="dv-h2 max-w-[24ch]">Ce que vous pouvez faire avec Deliview</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-          pilier.fonctionnalites.map((f, i) => (
-            <li class="dv-card flex flex-col p-6">
-              <span class="inline-flex h-12 w-12 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
-                <Icone nom={icones[i] || 'check'} />
-              </span>
-              <h3 class="dv-h3 mt-4">{f.titre}</h3>
-              <p class="mt-2 dv-muted">{f.texte}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
+  {
+    pilier.fonctionnalites.map((f, i) => (
+      <BlocFonctionnalite f={f} fond={i % 2 === 0 ? 'gris' : 'blanc'} inverse={i % 2 === 1}>
+        {f.id === 'pricing-menu' && (
+          <p class="mt-6">
+            <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="pilier-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
+          </p>
+        )}
+      </BlocFonctionnalite>
+    ))
+  }
 
   <section class="dv-section bg-white" aria-labelledby="methode-titre">
     <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1fr]">

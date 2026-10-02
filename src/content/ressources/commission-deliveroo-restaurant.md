@@ -1,7 +1,7 @@
 ---
 titre: "Commission Deliveroo pour un restaurant : trouver votre taux et calculer votre marge"
 titreSeo: "Commission Deliveroo restaurant : votre marge"
-description: "Commission Deliveroo : aucun taux public. Où trouver le vôtre, quels coûts s’y ajoutent et comment calculer votre marge, avec un exemple chiffré."
+description: "Commission Deliveroo : aucun taux public. Où trouver le vôtre, les coûts en plus, et votre marge sur un exemple chiffré."
 theme: carte-et-marge
 enBref: "Deliveroo ne publie pas de taux de commission pour les restaurants en France. Le vôtre figure dans votre contrat et sur vos factures hebdomadaires. Deliveroo déduit sa commission et la TVA éventuelle sur celle-ci, puis les offres, la publicité, les annulations et certains remboursements. Calculez votre marge en hors taxes, plat par plat."
 publieLe: 2026-10-01

@@ -1,5 +1,5 @@
 ---
-// Page par plateforme (motif Zapier) : ce que Deliview lit, comment démarrer, FAQ.
+// Page par plateforme (motif Zapier) : ce que Deliview montre, comment démarrer, FAQ.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -14,56 +14,45 @@ const { slug } = Astro.props as { slug: string };
 const p = PLATEFORMES.find((x) => x.slug === slug)!;
 const autres = PLATEFORMES.filter((x) => x.slug !== slug);
 
+const ETAPES = [
+  { titre: 'Une démo sur votre restaurant', texte: '15 minutes avec Tom, sur vos prix et votre zone.' },
+  { titre: 'La mise en place, avec Tom', texte: 'Votre compte est prêt. Rien à installer.' },
+  { titre: 'Vos données sur un seul écran', texte: 'Vos prix, votre note et vos concurrents, plat par plat.' },
+];
 const CONTENU: Record<string, { title: string; description: string; h1: string; lead: string; etapes?: { titre: string; texte: string }[]; faq: { q: string; r: string }[] }> = {
   'uber-eats': {
     title: 'Uber Eats : vos prix face à vos concurrents | Deliview',
     description:
-      'Deliview lit votre fiche Uber Eats et celles des restaurants autour de vous : prix de toute la carte, notes, avis, offres. Sans identifiant à donner.',
+      'Votre carte Uber Eats face aux restaurants autour de vous : prix plat par plat, notes, avis et offres. Demandez une démo.',
     h1: 'Uber Eats : vos prix et votre note face à votre zone',
-    lead: 'Deliview retrouve votre fiche Uber Eats à partir du nom et de la ville de votre restaurant, puis la compare aux fiches des restaurants autour de vous.',
-    etapes: [
-      { titre: 'Donnez le nom et la ville du restaurant', texte: 'Ajoutez l’adresse si plusieurs établissements portent le même nom.' },
-      { titre: 'Deliview retrouve votre fiche', texte: 'Il lit toute votre carte, votre note, vos avis et vos offres.' },
-      { titre: 'L’analyse de votre zone suit', texte: 'Vos prix et votre note face aux restaurants autour de vous, en quelques minutes.' },
-    ],
+    lead: 'Chaque plat de votre carte Uber Eats face au même plat chez vos voisins. Votre note et vos offres aussi.',
+    etapes: ETAPES,
     faq: [
-      {
-        q: 'Faut-il donner mes identifiants Uber Eats ?',
-        r: 'Non. Deliview lit les informations publiques de votre fiche&nbsp;: prix, note, nombre d’avis, offres. Aucun accès à votre espace restaurant n’est demandé.',
-      },
       {
         q: 'Deliview est-il un partenaire officiel d’Uber Eats ?',
         r: 'Non. Deliview est un logiciel indépendant, ni affilié ni approuvé par Uber Eats.',
       },
       {
         q: 'Et si mon restaurant n’est que sur Uber Eats ?',
-        r: 'Deliview fonctionne aussi avec une seule plateforme&nbsp;: l’analyse porte alors sur Uber Eats uniquement.',
+        r: 'Deliview fonctionne aussi avec une seule plateforme. L’analyse porte alors sur Uber Eats seulement.',
       },
     ],
   },
   deliveroo: {
     title: 'Deliveroo : vos prix face à vos concurrents | Deliview',
     description:
-      'Deliview lit votre fiche Deliveroo et celles de votre zone : prix, notes, offres, et les écarts avec votre fiche Uber Eats. Sans identifiant à donner.',
+      'Votre carte Deliveroo face aux restaurants autour de vous : prix, notes, offres, et les écarts avec votre carte Uber Eats.',
     h1: 'Deliveroo : vos prix et votre note face à votre zone',
-    lead: 'Les mêmes analyses que sur Uber Eats, plus les écarts de prix entre vos deux fiches, plat par plat.',
-    etapes: [
-      { titre: 'Donnez le nom et la ville du restaurant', texte: 'Ajoutez l’adresse si plusieurs établissements portent le même nom.' },
-      { titre: 'Deliview retrouve votre fiche', texte: 'Il lit toute votre carte, votre note, vos avis et vos offres.' },
-      { titre: 'L’analyse de votre zone suit', texte: 'Vos prix et votre note face aux restaurants autour de vous, en quelques minutes.' },
-    ],
+    lead: 'Les mêmes analyses que sur Uber Eats. En plus, les écarts de prix entre vos deux cartes, plat par plat.',
+    etapes: ETAPES,
     faq: [
-      {
-        q: 'Faut-il donner mes identifiants Deliveroo ?',
-        r: 'Non. Deliview lit les informations publiques de votre fiche&nbsp;: prix, note, nombre d’avis, offres. Aucun accès à votre espace restaurant n’est demandé.',
-      },
       {
         q: 'Deliview est-il un partenaire officiel de Deliveroo ?',
         r: 'Non. Deliview est un logiciel indépendant, ni affilié ni approuvé par Deliveroo.',
       },
       {
         q: 'Mes prix ne sont pas les mêmes sur Deliveroo et sur Uber Eats. Deliview le voit-il ?',
-        r: 'Oui. Deliview liste les plats vendus à un prix différent sur vos deux fiches, avec les deux prix. À vous de voir lesquels sont voulus.',
+        r: 'Oui. Deliview liste les plats à prix différent sur vos deux cartes, avec les deux prix. À vous de voir lesquels sont voulus.',
       },
     ],
   },
@@ -146,7 +135,7 @@ const c = CONTENU[slug];
         }
         <li class="dv-card flex flex-col p-6">
           <p class="text-[22px] font-bold">Uber Eats et Deliveroo ensemble</p>
-          <p class="mt-3 flex-1 dv-muted">Vos deux fiches côte à côte&nbsp;: les écarts de prix entre elles, vos concurrents et votre note sur chaque plateforme.</p>
+          <p class="mt-3 flex-1 dv-muted">Vos deux cartes côte à côte. Les écarts de prix, vos concurrents et votre note.</p>
           <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="mt-4 inline-flex items-center gap-2 font-bold underline underline-offset-4">
             Voir les deux ensemble <Icone nom="fleche" taille={18} />
           </a>

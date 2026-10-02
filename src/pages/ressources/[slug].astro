@@ -108,6 +108,16 @@ const jsonArticle = {
         <Content />
       </div>
 
+      {
+        article.id === 'fixer-prix-uber-eats-deliveroo' && (
+          <p class="mt-10">
+            <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="article-simulateur">
+              Combien vous rapporte un prix bien placé&nbsp;?
+            </a>
+          </p>
+        )
+      }
+
       <section class="mt-14 dv-card bg-grey p-6 md:p-8" aria-labelledby="pilier-titre">
         <p class="dv-overline dv-muted">Dans Deliview</p>
         <h2 id="pilier-titre" class="dv-h3 mt-2">{pilier.titre}</h2>

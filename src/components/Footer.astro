@@ -1,7 +1,8 @@
 ---
 // Pied de page (modèle demandé par Tom) : bandeau photo « Prêt à… » avec deux boutons, puis colonnes
 // Solution / Pour qui / Ressources sur fond blanc, slogan sous le logo.
-// La photo du bandeau est une illustration générée par IA : mention visible dans le coin.
+// La photo du bandeau est une illustration générée par IA (origine indiquée dans les mentions légales).
+// Contact : l'e-mail de Tom seulement (plus de numéro de téléphone sur le site, décision du 2 octobre 2026).
 import { IMAGES_IA, PILIERS, SITE, lien } from '../lib/site';
 
 const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
@@ -68,8 +69,7 @@ const ressources = [
         <p class="mt-4 dv-titre text-[18px] leading-snug">{SITE.slogan}.</p>
         <p class="mt-2 max-w-[36ch] text-[15px] leading-relaxed dv-muted">{SITE.definition}</p>
         <p class="mt-4 text-[15px]">
-          <a href={`tel:${SITE.telephoneLien}`} class="font-semibold underline underline-offset-2">{SITE.telephone}</a><br />
-          <a href={`mailto:${SITE.email}`} class="underline underline-offset-2">{SITE.email}</a>
+          <a href={`mailto:${SITE.email}`} class="font-semibold underline underline-offset-2">{SITE.email}</a>
         </p>
       </div>
       <nav aria-labelledby="pied-solution">
@@ -89,6 +89,7 @@ const ressources = [
         <ul class="mt-3 space-y-2 text-[15px] dv-muted">
           {ressources.map((x) => <li><a href={x.href} class="hover:underline">{x.libelle}</a></li>)}
           <li><a href={SITE.linkedinTom} class="hover:underline" rel="noopener">Tom sur LinkedIn</a></li>
+          <li><a href={SITE.linkedinEntreprise} class="hover:underline" rel="noopener">Deliview sur LinkedIn</a></li>
         </ul>
       </nav>
     </div>

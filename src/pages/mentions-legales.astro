@@ -2,6 +2,10 @@
 // Mentions légales (LCEN, article 6). Identité de DELIVIEW SAS reprise de sa fiche au registre (2 octobre 2026).
 import Base from '../layouts/Base.astro';
 import { SITE, lien } from '../lib/site';
+
+// Numéro obligatoire ici seulement (LCEN, article 1-1) : le seul endroit du site où il apparaît, jusqu'au numéro pro.
+const TELEPHONE = '06 32 37 79 88';
+const TELEPHONE_LIEN = '+33632377988';
 ---
 
 <Base
@@ -16,7 +20,7 @@ import { SITE, lien } from '../lib/site';
 
       <h2>Éditeur du site</h2>
       <p>Le site deliview.fr est édité par DELIVIEW, société par actions simplifiée au capital de 500&nbsp;euros, dont le siège est situé 9&nbsp;rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102&nbsp;681&nbsp;509. Numéro de TVA intracommunautaire&nbsp;: FR87102681509.</p>
-      <p>Contact&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={`tel:${SITE.telephoneLien}`}>{SITE.telephone}</a></p>
+      <p>Contact&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={`tel:${TELEPHONE_LIEN}`}>{TELEPHONE}</a></p>
 
       <h2>Directeur de la publication</h2>
       <p>Tom Voisin, président de DELIVIEW.</p>

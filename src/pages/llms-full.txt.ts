@@ -17,7 +17,7 @@ export const GET: APIRoute = async () => {
     '',
     `> ${SITE.definition}`,
     '',
-    `${SITE.slogan}. Site : ${SITE.url}. Contact : ${SITE.email}, ${SITE.telephone}. Fondateur : Tom Voisin (${u('/qui-sommes-nous/#tom')}).`,
+    `${SITE.slogan}. Site : ${SITE.url}. Contact : ${SITE.email}. Fondateur : Tom Voisin (${u('/qui-sommes-nous/#tom')}).`,
     '',
     '## Ce que fait Deliview',
     '',

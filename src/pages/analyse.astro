@@ -1,0 +1,24 @@
+---
+// Ancienne adresse de l'outil d'analyse sans compte. Depuis le 2 octobre 2026 (décision de Tom), une analyse ne se lance
+// qu'avec un compte client ou admin, depuis l'app. Cette page remplace l'outil public.
+import Base from '../layouts/Base.astro';
+import { SITE, lien } from '../lib/site';
+---
+
+<Base
+  title="Analyse réservée aux clients | Deliview"
+  description="Les analyses Deliview se lancent depuis votre compte client. Pas encore client ? Demandez une démo de 15 minutes."
+  noindex
+>
+  <section class="dv-section bg-white">
+    <div class="dv-container max-w-[760px]">
+      <p class="dv-overline dv-muted">Analyse</p>
+      <h1 class="dv-h1 mt-4">L’analyse est réservée aux clients</h1>
+      <p class="dv-lead mt-5">Vos analyses se lancent depuis votre compte Deliview.</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href={lien('/demo/')} class="dv-btn dv-btn-plein" data-cta="analyse-reservee">Demander une démo</a>
+        <a href={SITE.app} class="dv-btn dv-btn-contour">Se connecter</a>
+      </div>
+    </div>
+  </section>
+</Base>

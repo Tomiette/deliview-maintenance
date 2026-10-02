@@ -10,42 +10,43 @@ import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
 import Icone from '../components/Icone.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
-import { PILIERS, PRIX_ENTREE, SITE, THEMES, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
+import BlocFonctionnalite from '../components/BlocFonctionnalite.astro';
+import { FONCTIONNALITES, PRIX_ENTREE, SITE, THEMES, jsonldLogiciel, lien, type ImageIA, type NomIcone } from '../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon))
   .sort((a, b) => b.data.publieLe.getTime() - a.data.publieLe.getTime())
   .slice(0, 3);
 
+// Angle (décision de Tom, 2 octobre 2026) : d'abord la rentabilité, ensuite le pilotage.
 const douleurs: { icone: NomIcone; titre: string; texte: string }[] = [
-  {
-    icone: 'tablette',
-    titre: 'Deux tablettes, deux cartes',
-    texte: 'Deux grilles de prix à tenir à jour, et des écarts entre vos deux fiches qui passent inaperçus.',
-  },
   {
     icone: 'prix',
     titre: 'Des prix fixés à l’instinct',
-    texte: 'Relever les prix des voisins, vérifier les tailles, recommencer sur l’autre plateforme : personne n’a le temps entre deux services.',
+    texte: 'Votre voisin vend la même pizza plus cher. Vous ne le voyez pas.',
   },
   {
     icone: 'promo',
-    titre: 'Des promos repérées après coup',
-    texte: 'Un voisin lance une offre le vendredi soir. Vous la découvrez souvent la semaine suivante, en regardant vos ventes.',
+    titre: 'Des promos repérées trop tard',
+    texte: 'Un voisin lance une offre le vendredi. Vous la voyez la semaine suivante.',
+  },
+  {
+    icone: 'tablette',
+    titre: 'Des chiffres éparpillés',
+    texte: 'Une tablette et un espace par plateforme. Rien n’est comparé au même endroit.',
   },
 ];
 
-// Les trois temps de la promesse : vos données réunies, vos concurrents visibles, vos prix et vos promos ajustés.
 const etapes = [
-  { titre: 'Vos données sur une seule tablette', texte: 'Le nom et la ville de votre restaurant suffisent : Deliview retrouve vos fiches Uber Eats et Deliveroo et les réunit au même endroit.' },
-  { titre: 'Vous voyez ce que font vos concurrents', texte: 'Leurs prix plat par plat, leurs notes et leurs promos, chez jusqu’à 20 restaurants de votre secteur, sur les deux plateformes.' },
-  { titre: 'Vous ajustez vos prix et vos promos', texte: 'Chaque plat reçoit un statut et, quand la comparaison le permet, un prix proposé avec ses sources. Vous décidez, plat par plat.' },
+  { titre: 'Une démo sur votre restaurant', texte: '15 minutes avec Tom, sur vos vrais prix.' },
+  { titre: 'La mise en place avec Tom', texte: 'Votre compte est prêt. Rien à installer.' },
+  { titre: 'Vous ajustez vos prix et vos promos', texte: 'Plat par plat, avec les chiffres de votre zone.' },
 ];
 
 const benefices: { icone: NomIcone; titre: string; texte: string }[] = [
-  { icone: 'oeil', titre: 'Voyez ce que font vos concurrents', texte: 'Leurs prix, leurs notes et leurs promos face aux vôtres, chez les restaurants qui livrent les mêmes rues.' },
-  { icone: 'courbe', titre: 'Ajustez vos prix plat par plat', texte: 'Les plats vendus trop bas repérés, un prix proposé avec ses sources et ce qu’il rapporte pour 100 ventes.' },
-  { icone: 'alerte', titre: 'Ajustez vos promos à temps', texte: 'Nouvelle promo, prix changé, nouveau concurrent : vous le voyez à chaque analyse, avant de décider des vôtres.' },
-  { icone: 'tablette', titre: 'Tout sur une seule tablette', texte: 'Vos données Uber Eats et Deliveroo au même endroit, sans ouvrir les fiches une par une entre deux services.' },
+  { icone: 'courbe', titre: 'Une meilleure marge par plat', texte: 'Les plats vendus trop bas, repérés avec un prix proposé.' },
+  { icone: 'oeil', titre: 'Vos voisins sous les yeux', texte: 'Leurs prix, leurs notes et leurs promos face aux vôtres.' },
+  { icone: 'alerte', titre: 'Des promos décidées à temps', texte: 'Chaque analyse montre ce qui a changé autour de vous.' },
+  { icone: 'tablette', titre: 'Tout au même endroit', texte: 'Uber Eats et Deliveroo sur un seul écran.' },
 ];
 
 const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: string }[] = [
@@ -53,26 +54,26 @@ const cibles: { id: string; nom: ImageIA; titre: string; texte: string; alt: str
     id: 'pizzerias',
     nom: 'pizzeria',
     titre: 'Pizzerias',
-    texte: 'Chaque pizza comparée aux pizzas de même taille autour de vous, sur Uber Eats comme sur Deliveroo.',
+    texte: 'Chaque pizza face aux pizzas de même taille autour de vous.',
     alt: 'Pizzaiolo qui enfourne une pizza dans un four à bois, une tablette de commande posée sur le comptoir',
   },
   {
     id: 'burgers-snacks',
     nom: 'burger',
     titre: 'Burgers et snacks',
-    texte: 'Burgers, menus, boissons : chaque article comparé au même article chez les restaurants de votre zone.',
+    texte: 'Burgers, menus et boissons face aux mêmes articles chez vos voisins.',
     alt: 'Employée qui ferme un sac de livraison au comptoir d’un restaurant de burgers, à côté d’une tablette de commande',
   },
   {
     id: 'dark-kitchens',
     nom: 'dark-kitchen',
     titre: 'Dark kitchens',
-    texte: 'Sans salle ni vitrine, tout se joue sur la fiche : vos prix et votre note face à vos voisins, sur les deux plateformes.',
+    texte: 'Sans salle ni vitrine, tout se joue sur vos prix et votre note.',
     alt: 'Cuisine dédiée à la livraison : cuisiniers au travail, sacs de livraison alignés et tablette fixée au mur',
   },
 ];
 
-const description = `Vos données Uber Eats et Deliveroo sur une seule tablette : voyez vos concurrents, ajustez vos prix et vos promos. Dès ${PRIX_ENTREE} € HT par mois.`;
+const description = `Deliview centralise vos données Uber Eats et Deliveroo : vos prix face à votre zone, plat par plat, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
 
 const video = {
   '@context': 'https://schema.org',
@@ -95,7 +96,7 @@ const video = {
   jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
   precharger="/video/deliview-video-couverture-16x9.webp"
 >
-  <!-- Hero : promesse de rentabilité, deux boutons, réducteur de risque, vidéo de présentation à droite. -->
+  <!-- Hero : promesse de rentabilité, un seul bouton, réducteur de risque, vidéo de présentation à droite. -->
   <section class="relative overflow-hidden bg-white">
     <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[560px] w-[560px] rounded-full bg-blue-2/12 md:block"></div>
     <div class="dv-container relative grid items-center gap-x-12 gap-y-10 pb-14 pt-8 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
@@ -103,9 +104,8 @@ const video = {
         <p class="dv-overline dv-muted">{SITE.slogan}</p>
         <h1 class="dv-h1 mt-3 md:mt-4 max-w-[15ch]">Augmentez votre rentabilité sur Uber Eats et Deliveroo</h1>
         <p class="dv-lead mt-5 max-w-[54ch]">{SITE.definition}</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div class="mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein sm:whitespace-nowrap" data-cta="hero" data-cta-principal>Demander une démo</a>
-          <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour sm:whitespace-nowrap">Simuler ma rentabilité</a>
         </div>
         <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] font-semibold">
           <span>Sans engagement</span><span aria-hidden="true">·</span><span>Mise en place offerte</span><span aria-hidden="true">·</span><span>Dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</span>
@@ -117,12 +117,12 @@ const video = {
 
   <BandeauPlateformes fond="gris" />
 
-  <!-- Le problème : la situation au comptoir (illustration IA) et trois difficultés vécues. -->
+  <!-- Le problème : la rentabilité d'abord, puis le pilotage. -->
   <section class="dv-section bg-white" aria-labelledby="probleme-titre">
     <div class="dv-container">
       <p class="dv-overline dv-muted">Le problème</p>
-      <h2 id="probleme-titre" class="dv-h2 mt-3 max-w-[22ch]">Deux tablettes, et toujours pas de vue d’ensemble</h2>
-      <p class="dv-lead mt-4 max-w-[60ch]">Uber Eats d’un côté, Deliveroo de l’autre, les prix des voisins nulle part. Vos clients, eux, comparent tout en quelques secondes.</p>
+      <h2 id="probleme-titre" class="dv-h2 mt-3 max-w-[22ch]">Que vous rapporte vraiment chaque plateforme&nbsp;?</h2>
+      <p class="dv-lead mt-4 max-w-[60ch]">Les commissions pèsent sur chaque plat. Et vos chiffres sont dispersés.</p>
       <div class="mt-10 grid items-center gap-8 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
         <PhotoIA
           nom="rush-tablettes"
@@ -149,13 +149,13 @@ const video = {
     </div>
   </section>
 
-  <!-- Comment ça marche : trois étapes numérotées + vraie capture du tableau de bord sur tablette. -->
+  <!-- L'argument central + comment démarrer, avec la vraie capture du tableau de bord sur tablette. -->
   <section id="comment-ca-marche" class="dv-section bg-grey" aria-labelledby="etapes-titre">
     <div class="dv-container grid items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
       <div>
-        <p class="dv-overline dv-muted">Comment ça marche</p>
-        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[18ch]">De vos données à une livraison plus rentable</h2>
-        <p class="dv-lead mt-4 max-w-[52ch]">Rien à installer, aucun identifiant à donner&nbsp;: Deliview part des informations publiques de vos fiches. Il s’ouvre sur votre tablette, votre ordinateur ou votre téléphone.</p>
+        <p class="dv-overline dv-muted">La solution</p>
+        <h2 id="etapes-titre" class="dv-h2 mt-3 max-w-[20ch]">{SITE.argument}</h2>
+        <p class="dv-lead mt-4 max-w-[52ch]">Vos prix, votre carte et votre note, face à votre zone, sur un seul écran.</p>
         <ol class="mt-8 space-y-6">
           {
             etapes.map((e, i) => (
@@ -169,11 +169,6 @@ const video = {
             ))
           }
         </ol>
-        <p class="mt-8">
-          <a href={lien('/integrations/')} class="inline-flex items-center gap-2 text-[19px] font-bold underline underline-offset-4">
-            Voir les plateformes compatibles <Icone nom="fleche" taille={20} />
-          </a>
-        </p>
       </div>
       <CaptureTablette
         src="/images/capture-tableau"
@@ -186,43 +181,33 @@ const video = {
     </div>
   </section>
 
-  <!-- Les 4 piliers, chacun avec sa page. -->
-  <section class="dv-section bg-white" aria-labelledby="piliers-titre">
+  <!-- Fonctionnalités (modèle unique) : d'abord ce qui rapporte. -->
+  <BlocFonctionnalite f={FONCTIONNALITES['pricing-menu']} page="/solution/carte-et-marge/">
+    <p class="mt-6">
+      <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="pricing-menu-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
+    </p>
+  </BlocFonctionnalite>
+  <BlocFonctionnalite f={FONCTIONNALITES['prix-concurrents']} fond="gris" inverse page="/solution/prix-et-concurrence/" />
+  <BlocFonctionnalite f={FONCTIONNALITES['promos-zone']} page="/solution/prix-et-concurrence/#promos-zone" />
+
+  <section class="bg-white pb-16 md:pb-24" aria-label="Autres fonctionnalités">
     <div class="dv-container">
-      <p class="dv-overline dv-muted">Nos fonctionnalités</p>
-      <h2 id="piliers-titre" class="dv-h2 mt-3 max-w-[24ch]">Vos prix, votre carte et votre note face à votre zone</h2>
-      <ul class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {
-          PILIERS.map((p) => (
-            <li class="dv-card flex flex-col p-6 md:p-8">
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="inline-flex h-11 w-11 items-center justify-center rounded-[12px] bg-blue/10 text-blue">
-                  <Icone nom={p.icone} taille={22} />
-                </span>
-                <p class="dv-overline">{p.surtitre}</p>
-              </div>
-              <h3 class="dv-h3 mt-4">{p.titre}</h3>
-              <p class="mt-2 flex-1 dv-muted">{p.phrase}</p>
-              <a href={lien(`/solution/${p.slug}/`)} class="mt-5 inline-flex items-center gap-2 font-bold underline underline-offset-4">
-                Voir {p.surtitre.toLowerCase()} <Icone nom="fleche" taille={18} />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <p class="dv-card flex flex-wrap items-center gap-x-6 gap-y-3 p-6 font-semibold">
+        <span>Aussi dans Deliview&nbsp;:</span>
+        <a href={lien('/solution/carte-et-marge/#optimiseur-menu')} class="inline-flex items-center gap-2 underline underline-offset-4">Optimiseur menu <Icone nom="fleche" taille={18} /></a>
+        <a href={lien('/solution/reputation/')} class="inline-flex items-center gap-2 underline underline-offset-4">Note et avis <Icone nom="fleche" taille={18} /></a>
+      </p>
     </div>
   </section>
 
-  <!-- Bénéfices + simulateur (motif Flynt) : à gauche l'appel au simulateur, à droite 4 bénéfices sans chiffre inventé. -->
+  <!-- Bénéfices + simulateur. -->
   <section class="dv-section bg-grey" aria-labelledby="benefices-titre">
     <div class="dv-container grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
-        <p class="inline-flex rounded-[10px] border-2 border-blue px-4 py-1.5 dv-overline">Simulateur de rentabilité</p>
-        <h2 id="benefices-titre" class="dv-h2 mt-5 max-w-[16ch]">Vos prix, votre premier levier de rentabilité</h2>
+        <p class="dv-overline dv-muted">Ce que vous gagnez</p>
+        <h2 id="benefices-titre" class="dv-h2 mt-3 max-w-[16ch]">Vos prix, votre premier levier de marge</h2>
         <p class="mt-8">
-          <a href={lien('/simulateur/')} class="inline-flex items-center gap-2 text-[19px] font-bold text-blue underline-offset-4 hover:underline">
-            Simulez votre gain en moins d’une minute <Icone nom="fleche" taille={20} />
-          </a>
+          <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour" data-cta="benefices-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
         </p>
       </div>
       <ul class="grid gap-x-10 sm:grid-cols-2">
@@ -243,8 +228,7 @@ const video = {
   <section id="pour-qui" class="dv-section bg-white" aria-labelledby="cibles-titre">
     <div class="dv-container">
       <p class="dv-overline dv-muted">Pour qui</p>
-      <h2 id="cibles-titre" class="dv-h2 mt-3 max-w-[24ch]">Pour les restaurants qui comptent sur Uber Eats et Deliveroo</h2>
-      <p class="dv-lead mt-4 max-w-[60ch]">Indépendants, dark kitchens ou petites chaînes&nbsp;: chaque plat est comparé au même plat chez les restaurants de votre zone.</p>
+      <h2 id="cibles-titre" class="dv-h2 mt-3 max-w-[24ch]">Pour les restaurants qui vivent de la livraison</h2>
       <ul class="mt-10 grid gap-6 md:grid-cols-3">
         {
           cibles.map((c) => (
@@ -259,7 +243,7 @@ const video = {
         }
       </ul>
       <p id="chaines" class="mt-8 scroll-mt-28 font-semibold">
-        Plusieurs établissements&nbsp;? Chacun est comparé aux restaurants de sa propre zone, et les offres
+        Plusieurs restaurants&nbsp;? Chacun est comparé à sa propre zone. Les offres
         <a href={lien('/tarifs/')} class="underline underline-offset-2">Pro et Premium</a> couvrent jusqu’à 10&nbsp;restaurants.
       </p>
     </div>

@@ -1,0 +1,57 @@
+---
+// Bloc fonctionnalité, modèle unique (décision de Tom, 2 octobre 2026) : nom, bénéfice en une phrase, 3 points au plus,
+// une vraie capture de l'app et un exemple chiffré tiré d'une vraie analyse, anonymisé. Texte et capture alternent.
+// Le slot accueille un bouton utile à cet endroit (ex. le simulateur sous Pricing Menu).
+import Capture from './Capture.astro';
+import Icone from './Icone.astro';
+import { lien, type Fonctionnalite } from '../lib/site';
+
+interface Props {
+  f: Fonctionnalite;
+  inverse?: boolean;
+  fond?: 'blanc' | 'gris';
+  niveau?: 'h2' | 'h3';
+  // Lien vers la page de la fonctionnalité (sur l'accueil).
+  page?: string;
+}
+const { f, inverse = false, fond = 'blanc', niveau = 'h2', page } = Astro.props;
+const Titre = niveau;
+---
+
+<section id={f.id} class={`dv-section scroll-mt-24 ${fond === 'gris' ? 'bg-grey' : 'bg-white'}`} aria-labelledby={`${f.id}-titre`}>
+  <div class="dv-container grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class={inverse ? 'lg:order-2' : ''}>
+      <p class="dv-overline flex items-center gap-2 text-blue">
+        <Icone nom={f.icone} taille={20} />
+        <span>{f.nom}</span>
+      </p>
+      <Titre id={`${f.id}-titre`} class="dv-h2 mt-3 max-w-[20ch]">{f.benefice}</Titre>
+      <ul class="mt-6 space-y-3">
+        {
+          f.points.map((x) => (
+            <li class="flex gap-3">
+              <span class="mt-0.5 shrink-0 text-blue"><Icone nom="check" taille={22} /></span>
+              <span>{x}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figure class="mt-8 rounded-[16px] border border-grey-2/15 bg-white p-5">
+        <figcaption class="text-[14px] font-semibold uppercase tracking-[0.08em] dv-muted">Exemple réel</figcaption>
+        <p class="mt-2 text-[19px] font-bold leading-snug">{f.exemple.texte}</p>
+        <p class="mt-1 text-[15px] dv-muted">{f.exemple.contexte}. Nom du restaurant masqué.</p>
+      </figure>
+      <slot />
+      {
+        page && (
+          <p class="mt-6">
+            <a href={lien(page)} class="inline-flex items-center gap-2 font-bold underline underline-offset-4">
+              En savoir plus sur {f.nom} <Icone nom="fleche" taille={18} />
+            </a>
+          </p>
+        )
+      }
+    </div>
+    <Capture src={f.capture.src} alt={f.capture.alt} largeur={f.capture.largeur} hauteur={f.capture.hauteur} largeurs={f.capture.largeurs} class={inverse ? 'lg:order-1' : ''} />
+  </div>
+</section>

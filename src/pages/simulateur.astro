@@ -1,36 +1,108 @@
 ---
-// Simulateur de rentabilité (motif Flynt « Simuler ma rentabilité ») : calcul transparent, fait dans le navigateur,
-// rien n'est envoyé. Sans JavaScript, l'exemple par défaut reste affiché avec sa méthode.
+// Simulateur de rentabilité (décisions de Tom, 2 octobre 2026) : pensé pour le restaurateur qui n'a pas ses chiffres
+// sous la main. Chaque champ propose « Je ne sais pas » : il prend alors une valeur affichée sous le champ, avec sa source.
+// Une valeur sans source fiable est présentée comme un exemple, jamais comme une moyenne.
+// Calcul dans le navigateur, rien n'est envoyé. Sans JavaScript, le résultat des valeurs affichées reste lisible.
 import Base from '../layouts/Base.astro';
-import PhotoIA from '../components/PhotoIA.astro';
 import SectionDemo from '../components/SectionDemo.astro';
-import Icone from '../components/Icone.astro';
 import { PRIX_ENTREE, SITE, lien } from '../lib/site';
 
-// Valeurs d'exemple (modifiables par le visiteur).
-const defaut = { commandes: 1000, plats: 2, part: 20, hausse: 1, commission: 30 };
 const TVA = 0.1;
 
-function calcul(v: typeof defaut) {
-  const concernes = v.commandes * v.plats * (v.part / 100);
-  const ventes = concernes * v.hausse;
-  const marge = Math.max(0, ventes / (1 + TVA) - ventes * (v.commission / 100));
-  return { concernes, ventes, marge, an: marge * 12, fois: marge / PRIX_ENTREE };
-}
-const r = calcul(defaut);
-const euros = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
-const nombre = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+type Champ = {
+  id: 'commandes' | 'panier' | 'part' | 'hausse' | 'commission';
+  libelle: string;
+  aide: string;
+  unite: string;
+  min: number;
+  max: number;
+  pas: number;
+  valeur: number;
+  // « moyenne » : valeur sourcée ; « exemple » : valeur sans moyenne fiable.
+  nature: 'moyenne' | 'exemple';
+  explication: string;
+  source?: { libelle: string; url: string };
+};
 
-const champs = [
-  { id: 'commandes', libelle: 'Commandes livraison par mois', aide: 'Uber Eats et Deliveroo réunis.', min: 0, max: 100000, pas: 10, unite: 'commandes' },
-  { id: 'plats', libelle: 'Plats par commande, en moyenne', aide: 'Boissons et desserts compris.', min: 1, max: 10, pas: 0.1, unite: 'plats' },
-  { id: 'part', libelle: 'Part de vos plats vendus sous le prix de votre zone', aide: 'Exemple à ajuster : Deliview vous donne ce chiffre pour votre restaurant.', min: 0, max: 100, pas: 1, unite: '%' },
-  { id: 'hausse', libelle: 'Hausse moyenne sur ces plats', aide: 'Prix payé par le client, TTC.', min: 0, max: 10, pas: 0.1, unite: '€' },
-  { id: 'commission', libelle: 'Commission moyenne de vos plateformes', aide: 'Votre taux, à vérifier sur vos relevés Uber Eats et Deliveroo.', min: 0, max: 60, pas: 1, unite: '%' },
-] as const;
+const champs: Champ[] = [
+  {
+    id: 'commandes',
+    libelle: 'Vos commandes en livraison par mois',
+    aide: 'Uber Eats et Deliveroo réunis.',
+    unite: 'commandes',
+    min: 0,
+    max: 100000,
+    pas: 10,
+    valeur: 600,
+    nature: 'exemple',
+    explication: '600 commandes, soit 20 par jour. Aucune moyenne fiable n’est publiée.',
+  },
+  {
+    id: 'panier',
+    libelle: 'Votre panier moyen',
+    aide: 'Ce que paie le client par commande.',
+    unite: '€ TTC',
+    min: 0,
+    max: 500,
+    pas: 0.5,
+    valeur: 25,
+    nature: 'moyenne',
+    explication: '25 € par commande en 2024, sur 350 000 paiements par carte.',
+    source: { libelle: 'CDLK Services, baromètre de la livraison de repas, février 2025', url: 'https://www.cdlkservices.com/barometre-payment-data-zoom-sur-le-secteur-des-livraisons-repas-performances-2024/' },
+  },
+  {
+    id: 'part',
+    libelle: 'Part de votre carte vendue sous le prix du quartier',
+    aide: 'Deliview vous donne ce chiffre pour votre restaurant.',
+    unite: '%',
+    min: 0,
+    max: 100,
+    pas: 1,
+    valeur: 21,
+    nature: 'exemple',
+    explication: '11 plats sur 52 sous la médiane de la zone. Vraie analyse : burgers, Paris, 1er octobre 2026.',
+  },
+  {
+    id: 'hausse',
+    libelle: 'Hausse de prix sur ces plats',
+    aide: 'Vous choisissez la hausse.',
+    unite: '%',
+    min: 0,
+    max: 100,
+    pas: 1,
+    valeur: 10,
+    nature: 'exemple',
+    explication: '10 %, l’écart à partir duquel Deliview signale un plat sous-évalué.',
+  },
+  {
+    id: 'commission',
+    libelle: 'Commission de vos plateformes',
+    aide: 'Votre taux figure sur vos factures.',
+    unite: '%',
+    min: 0,
+    max: 60,
+    pas: 1,
+    valeur: 30,
+    nature: 'exemple',
+    explication: '30 %, le taux Standard de la page tarifs d’Uber Eats. Deliveroo ne publie pas le sien.',
+    source: { libelle: 'Uber Eats, page tarifs', url: 'https://merchants.ubereats.com/fr/fr/pricing/' },
+  },
+];
+
+function calcul(v: Record<string, number>) {
+  const ventes = v.commandes * v.panier * (v.part / 100) * (v.hausse / 100);
+  const marge = Math.max(0, ventes / (1 + TVA) - ventes * (v.commission / 100));
+  return { ventes, marge, an: marge * 12, fois: marge / PRIX_ENTREE };
+}
+const defaut = Object.fromEntries(champs.map((c) => [c.id, c.valeur]));
+const r = calcul(defaut);
+const arrondi = (n: number) => (n >= 100 ? Math.round(n / 10) * 10 : Math.round(n));
+const euros = (n: number) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
+const phrase = (marge: number) => (marge > 0 ? `Environ ${euros(arrondi(marge))} de plus par mois` : 'Pas de gain avec ces chiffres');
+const fois = (f: number) => (f >= 1 ? `couvre ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(f)} fois` : 'ne couvre pas');
 
 const description =
-  'Calculez ce que vous rapporte un prix mieux placé sur Uber Eats et Deliveroo : commandes, hausse, commission. Résultat immédiat, rien n’est envoyé.';
+  'Combien vous rapporte un prix bien placé sur Uber Eats et Deliveroo ? Vos chiffres, ou des valeurs sourcées si vous ne les avez pas. Rien n’est envoyé.';
 const outil = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
@@ -46,21 +118,11 @@ const outil = {
 ---
 
 <Base title="Simulateur de rentabilité Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Simulateur de rentabilité', chemin: '/simulateur/' }]} jsonld={[outil]}>
-  <section class="relative overflow-hidden bg-white">
-    <div aria-hidden="true" class="pointer-events-none absolute -right-40 -top-40 hidden h-[520px] w-[520px] rounded-full bg-blue-2/12 md:block"></div>
-    <div class="dv-container relative grid items-center gap-10 pb-12 pt-8 md:pb-16 md:pt-12 lg:grid-cols-[1.1fr_0.9fr]">
-      <div>
-        <p class="inline-flex rounded-[10px] border-2 border-blue px-4 py-1.5 dv-overline">Simulateur de rentabilité</p>
-        <h1 class="dv-h1 mt-5 max-w-[18ch]">Combien vous rapporte un prix mieux placé&nbsp;?</h1>
-        <p class="dv-lead mt-5 max-w-[54ch]">Entrez vos chiffres&nbsp;: le simulateur calcule ce que gagne votre marge quand vos plats vendus trop bas rejoignent le prix de votre zone. Le calcul se fait dans votre navigateur, rien n’est envoyé.</p>
-      </div>
-      <PhotoIA
-        nom="une-tablette"
-        alt="Chef en tablier qui consulte une tablette dans sa cuisine, à côté de sacs de livraison isothermes"
-        sizes="(min-width: 1200px) 480px, (min-width: 1024px) 40vw, 100vw"
-        ratio="3 / 2"
-        priorite
-      />
+  <section class="bg-white">
+    <div class="dv-container pb-10 pt-8 md:pb-12 md:pt-12">
+      <p class="dv-overline dv-muted">Simulateur de rentabilité</p>
+      <h1 class="dv-h1 mt-4 max-w-[20ch]">Combien vous rapporte un prix bien placé&nbsp;?</h1>
+      <p class="dv-lead mt-5 max-w-[56ch]">Vous n’avez pas vos chiffres sous la main&nbsp;? Cochez «&nbsp;Je ne sais pas&nbsp;». Rien n’est envoyé.</p>
     </div>
   </section>
 
@@ -68,28 +130,45 @@ const outil = {
     <div class="dv-container grid items-start gap-8 lg:grid-cols-[1.1fr_0.9fr]">
       <form id="simulateur" class="dv-card p-6 md:p-8" aria-labelledby="calcul-titre" novalidate>
         <h2 id="calcul-titre" class="dv-h3">Vos chiffres</h2>
-        <div class="mt-6 space-y-6">
+        <div class="mt-6 space-y-8">
           {
             champs.map((c) => (
-              <div>
-                <label for={`sim-${c.id}`} class="block font-semibold">{c.libelle}</label>
-                <p id={`sim-${c.id}-aide`} class="mt-1 text-[15px] dv-muted">{c.aide}</p>
-                <div class="mt-2 flex items-center gap-3">
-                  <input
-                    id={`sim-${c.id}`}
-                    name={c.id}
-                    type="number"
-                    inputmode="decimal"
-                    min={c.min}
-                    max={c.max}
-                    step={c.pas}
-                    value={String(defaut[c.id])}
-                    aria-describedby={`sim-${c.id}-aide`}
-                    class="h-12 w-40 rounded-[12px] border border-grey-2/30 bg-white px-4 text-[18px] font-semibold"
-                  />
-                  <span class="font-semibold">{c.unite}</span>
+              <fieldset class="space-y-2" data-champ={c.id}>
+                <legend class="font-semibold">{c.libelle}</legend>
+                <p id={`sim-${c.id}-aide`} class="text-[15px] dv-muted">{c.aide}</p>
+                <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <span class="flex items-center gap-3">
+                    <input
+                      id={`sim-${c.id}`}
+                      name={c.id}
+                      type="number"
+                      inputmode="decimal"
+                      min={c.min}
+                      max={c.max}
+                      step={c.pas}
+                      value={String(c.valeur)}
+                      readonly
+                      aria-label={c.libelle}
+                      aria-describedby={`sim-${c.id}-aide sim-${c.id}-valeur`}
+                      class="h-12 w-36 rounded-[12px] border border-grey-2/30 bg-white px-4 text-[18px] font-semibold read-only:bg-grey"
+                      data-valeur={c.valeur}
+                    />
+                    <span class="font-semibold">{c.unite}</span>
+                  </span>
+                  <label class="inline-flex min-h-[44px] cursor-pointer items-center gap-2 font-semibold">
+                    <input type="checkbox" name={`${c.id}-inconnu`} checked class="h-5 w-5 accent-blue" />
+                    Je ne sais pas
+                  </label>
                 </div>
-              </div>
+                <p id={`sim-${c.id}-valeur`} class="text-[15px]" data-explication>
+                  <strong>{c.nature === 'moyenne' ? 'En moyenne' : 'Exemple'}&nbsp;:</strong> {c.explication}
+                  {c.source && (
+                    <>
+                      {' '}Source&nbsp;: <a href={c.source.url} rel="noopener" class="underline underline-offset-2">{c.source.libelle}</a>.
+                    </>
+                  )}
+                </p>
+              </fieldset>
             ))
           }
         </div>
@@ -97,85 +176,93 @@ const outil = {
 
       <div class="lg:sticky lg:top-28">
         <div class="rounded-[16px] bg-blue p-6 text-white md:p-8" aria-live="polite">
-          <p class="text-[19px] font-bold">Votre marge en plus, chaque mois</p>
-          <p class="mt-2 dv-figure !text-[56px] !leading-none" data-sim="marge">{euros(r.marge)}</p>
-          <p class="mt-3 text-[19px] font-bold">soit <span data-sim="an">{euros(r.an)}</span> par an</p>
+          <p class="text-[19px] font-bold">Votre marge en plus</p>
+          <p class="mt-2 text-[32px] font-bold leading-tight md:text-[40px]" data-sim="phrase">{phrase(r.marge)}</p>
         </div>
-        <dl class="mt-4 dv-card divide-y divide-grey-2/15 px-6">
-          <div class="flex items-baseline justify-between gap-4 py-4">
-            <dt>Plats concernés par mois</dt>
-            <dd class="font-semibold" data-sim="concernes">{nombre(r.concernes)}</dd>
-          </div>
-          <div class="flex items-baseline justify-between gap-4 py-4">
-            <dt>Ventes en plus par mois (TTC)</dt>
-            <dd class="font-semibold" data-sim="ventes">{euros(r.ventes)}</dd>
-          </div>
-          <div class="flex items-baseline justify-between gap-4 py-4">
-            <dt>Abonnement Essentiel ({PRIX_ENTREE}&nbsp;€ HT par mois)</dt>
-            <dd class="font-semibold" data-sim="fois">{r.fois >= 1 ? `remboursé ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(r.fois)} fois` : 'non remboursé'}</dd>
-          </div>
-        </dl>
+        <details class="mt-4 dv-card px-6 py-4">
+          <summary class="cursor-pointer font-semibold">Voir le détail du calcul</summary>
+          <dl class="mt-3 divide-y divide-grey-2/15">
+            <div class="flex items-baseline justify-between gap-4 py-3">
+              <dt>Ventes en plus par mois (TTC)</dt>
+              <dd class="font-semibold" data-sim="ventes">{euros(r.ventes)}</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-3">
+              <dt>Marge en plus, après TVA (10&nbsp;%) et commission</dt>
+              <dd class="font-semibold" data-sim="marge">{euros(r.marge)}</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-3">
+              <dt>Sur un an</dt>
+              <dd class="font-semibold" data-sim="an">{euros(r.an)}</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 py-3">
+              <dt>Abonnement Essentiel ({PRIX_ENTREE}&nbsp;€ HT par mois)</dt>
+              <dd class="font-semibold" data-sim="fois">{fois(r.fois)}</dd>
+            </div>
+          </dl>
+          <p class="mt-3 text-[15px] dv-muted">
+            Ventes en plus = commandes × panier moyen × part de la carte sous le prix du quartier × hausse. On retire la TVA, puis la commission. À ventes égales&nbsp;: si un plat se vend moins après la hausse, le gain baisse.
+            La méthode complète est dans le guide <a href={lien('/ressources/fixer-prix-uber-eats-deliveroo/')} class="underline underline-offset-2">fixer ses prix sur Uber Eats et Deliveroo</a>.
+          </p>
+        </details>
         <a href="#demo" class="dv-btn dv-btn-plein mt-6 w-full" data-cta="simulateur" data-cta-principal>Trouver mes plats vendus trop bas</a>
-        <p class="mt-3 text-center text-[15px] dv-muted">Démo de 15&nbsp;minutes sur vos propres fiches · Sans engagement</p>
+        <p class="mt-3 text-center text-[15px] dv-muted">Démo de 15&nbsp;minutes sur votre restaurant · Sans engagement</p>
       </div>
     </div>
   </section>
 
-  <section class="dv-section bg-white" aria-labelledby="methode-titre">
-    <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1fr]">
-      <div>
-        <p class="dv-overline dv-muted">La méthode</p>
-        <h2 id="methode-titre" class="dv-h2 mt-3 max-w-[20ch]">Comment le calcul est fait</h2>
-        <p class="mt-5 dv-texte">Le simulateur multiplie vos plats vendus sous le prix de votre zone par la hausse que vous indiquez. Il retire ensuite la TVA et la commission des plateformes, pour ne garder que ce qui reste dans votre marge.</p>
-      </div>
-      <ul class="space-y-4 self-center">
-        <li class="flex gap-3">
-          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="calcul" taille={18} /></span>
-          <span>Plats concernés = commandes × plats par commande × part de plats vendus trop bas.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="calcul" taille={18} /></span>
-          <span>Marge en plus = ventes en plus hors TVA (10&nbsp;%, le taux de la plupart des plats livrés) − commission calculée sur le prix payé par le client.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="check" taille={18} /></span>
-          <span>À ventes égales&nbsp;: si un plat augmenté se vend moins, le gain baisse. Deliview propose une hausse en deux temps quand l’écart avec votre zone est grand. La méthode complète est dans notre guide pour <a href={lien('/ressources/fixer-prix-uber-eats-deliveroo/')} class="underline underline-offset-2">fixer ses prix sur Uber Eats et Deliveroo</a>.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icone nom="source" taille={18} /></span>
-          <span>Pour la TVA de vos ventes en livraison, lisez notre <a href={lien('/ressources/tva-ventes-livraison-restaurant/')} class="underline underline-offset-2">guide sur la TVA des ventes en livraison</a>.</span>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <SectionDemo section="simulateur-formulaire" titre="Trouvez vos plats vendus trop bas" sousTitre="Une démo de 15 minutes sur vos propres fiches Uber Eats et Deliveroo : Tom vous montre, plat par plat, ce que vous pouvez ajuster." />
+  <SectionDemo section="simulateur-formulaire" titre="Trouvez vos plats vendus trop bas" sousTitre="Une démo de 15 minutes sur votre restaurant. Tom vous montre, plat par plat, ce que vous pouvez ajuster." />
 </Base>
 
 <script define:vars={{ tva: 0.1, prixEntree: PRIX_ENTREE }}>
-  // Recalcul à chaque saisie ; un champ vide ou hors limites compte pour 0.
+  // « Je ne sais pas » coché : la valeur affichée sous le champ est utilisée et le champ est verrouillé.
+  // Décoché : le champ se vide et attend votre chiffre. Recalcul à chaque saisie.
   const form = document.getElementById('simulateur');
   const sortie = (cle) => document.querySelector(`[data-sim="${cle}"]`);
   const euros = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n)) + ' €';
-  const nombre = (n) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 }).format(Math.round(n));
+  const arrondi = (n) => (n >= 100 ? Math.round(n / 10) * 10 : Math.round(n));
   const lire = (nom) => {
     const champ = form.elements.namedItem(nom);
     const v = parseFloat(String(champ.value).replace(',', '.'));
-    if (!Number.isFinite(v)) return 0;
+    if (!Number.isFinite(v)) return null;
     return Math.min(Math.max(v, Number(champ.min)), Number(champ.max));
   };
   const maj = () => {
-    const concernes = lire('commandes') * lire('plats') * (lire('part') / 100);
-    const ventes = concernes * lire('hausse');
-    const marge = Math.max(0, ventes / (1 + tva) - ventes * (lire('commission') / 100));
+    const noms = ['commandes', 'panier', 'part', 'hausse', 'commission'];
+    const v = Object.fromEntries(noms.map((n) => [n, lire(n)]));
+    if (noms.some((n) => v[n] === null)) {
+      sortie('phrase').textContent = 'Complétez les champs, ou cochez « Je ne sais pas »';
+      ['ventes', 'marge', 'an', 'fois'].forEach((k) => (sortie(k).textContent = '—'));
+      return;
+    }
+    const ventes = v.commandes * v.panier * (v.part / 100) * (v.hausse / 100);
+    const marge = Math.max(0, ventes / (1 + tva) - ventes * (v.commission / 100));
     const fois = marge / prixEntree;
-    sortie('concernes').textContent = nombre(concernes);
+    sortie('phrase').textContent = marge > 0 ? `Environ ${euros(arrondi(marge))} de plus par mois` : 'Pas de gain avec ces chiffres';
     sortie('ventes').textContent = euros(ventes);
     sortie('marge').textContent = euros(marge);
     sortie('an').textContent = euros(marge * 12);
-    sortie('fois').textContent = fois >= 1 ? `remboursé ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(fois)} fois` : 'non remboursé';
+    sortie('fois').textContent = fois >= 1 ? `couvre ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(fois)} fois` : 'ne couvre pas';
   };
   if (form) {
+    form.querySelectorAll('fieldset[data-champ]').forEach((f) => {
+      const champ = f.querySelector('input[type=number]');
+      const case_ = f.querySelector('input[type=checkbox]');
+      const explication = f.querySelector('[data-explication]');
+      const appliquer = () => {
+        if (case_.checked) {
+          champ.value = champ.dataset.valeur;
+          champ.readOnly = true;
+          explication.hidden = false;
+        } else {
+          champ.readOnly = false;
+          champ.value = '';
+          explication.hidden = true;
+          champ.focus();
+        }
+        maj();
+      };
+      case_.addEventListener('change', appliquer);
+    });
     form.addEventListener('input', maj);
     form.addEventListener('submit', (e) => e.preventDefault());
     maj();
