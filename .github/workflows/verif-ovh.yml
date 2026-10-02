@@ -29,3 +29,13 @@ jobs:
           done
           entetes=$(curl -s -o /dev/null -D - --max-time 20 --resolve www.deliview.fr:80:$IP http://www.deliview.fr/ || true)
           echo "$entetes" | grep -qi '^location: https://www.deliview.fr/' && echo "RÉSULTAT : OVH sert le site." || { echo "RÉSULTAT : OVH ne sert pas encore www.deliview.fr."; exit 1; }
+          # Certificat : vérification complète (sans -k), directement sur le serveur OVH.
+          for hote in www.deliview.fr deliview.fr; do
+            if curl -sS -o /dev/null --max-time 20 --resolve $hote:443:$IP https://$hote/; then
+              echo "CERTIFICAT : valide pour $hote."
+            else
+              echo "CERTIFICAT : pas encore valide pour $hote."
+            fi
+          done
+          echo "== DNS public"
+          for r in 8.8.8.8 1.1.1.1; do echo "$r : $(dig +short @$r www.deliview.fr A | tr '\n' ' ')"; done
