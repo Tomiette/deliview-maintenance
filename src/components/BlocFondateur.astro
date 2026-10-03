@@ -1,16 +1,24 @@
 ---
 // « Qui est derrière » (accueil) : la vraie photo de Tom, trois phrases, son e-mail, LinkedIn et Qui sommes-nous.
 // Aucun faux témoignage : la preuve humaine, c'est quelqu'un de réel avec son e-mail.
-import Polaroid from './Polaroid.astro';
+// Refonte en relief (3 octobre 2026) : la photo dans un cadre blanc incliné en 3D, sa légende flotte devant.
 import { SITE, lien } from '../lib/site';
 ---
 
-<section class="dv-section bg-grey" aria-labelledby="fondateur-titre">
-  <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[72px] gap-y-10 md:flex-row">
-    <Polaroid class="shrink-0" />
+<section class="dv-section bg-grey dv-points" aria-labelledby="fondateur-titre">
+  <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
+    <div class="dv-fondateur-scene shrink-0" data-apparition="">
+      <figure class="dv-fondateur-3d">
+        <span class="dv-fondateur-tranche" aria-hidden="true"></span>
+        <div class="dv-fondateur-cadre">
+          <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="400" height="400" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="dv-fondateur-legende"><span class="dv-puce"><i></i>Tom Voisin, fondateur</span></figcaption>
+      </figure>
+    </div>
     <div class="max-w-[620px] flex-1">
-      <p class="dv-overline">Qui est derrière</p>
-      <h2 id="fondateur-titre" class="dv-h2 mt-2.5 md:mt-3">Deliview est né d’un&nbsp;an sur le terrain</h2>
+      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Qui est derrière</p>
+      <h2 id="fondateur-titre" class="dv-h2 mt-4 md:mt-5">Deliview est né d’un&nbsp;an sur le terrain</h2>
       <p class="mt-3.5 text-[17px] leading-[1.6] md:mt-5 md:text-[19px]">
         Je m’appelle Tom et j’ai moi-même été sur Uber Eats et Deliveroo. J’ai passé un&nbsp;an auprès des restaurants qui livrent&nbsp;: partout, deux tablettes en plein rush et des prix fixés à l’instinct. Je fais la mise en place avec vous, et quand vous écrivez, c’est moi qui réponds.
       </p>

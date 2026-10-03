@@ -1,0 +1,67 @@
+---
+// Le quotidien, en relief (refonte du 3 octobre 2026) : la tablette Uber Eats et le terminal Deliveroo (avec son
+// ticket qui sort de l'imprimante), inclinés l'un vers l'autre, qui sonnent en même temps. Écrans schématiques
+// (lignes grises, une commande qui arrive en Bleu 1 à 12 %) : aucune interface de plateforme imitée, aucun logo ;
+// les plateformes sont nommées en toutes lettres. Les appareils flottent à des rythmes décalés, les ondes « sonnent »
+// (seulement si le visiteur n'a pas demandé moins d'animations).
+interface Props {
+  class?: string;
+}
+const { class: classe = '' } = Astro.props;
+const lignes = [62, 48, 70, 54, 40];
+---
+
+<div class={`dv-scene dv-scene-tablettes ${classe}`} role="img" aria-label="La tablette Uber Eats et le terminal Deliveroo qui sonnent en même temps" data-apparition="">
+  <div class="dv-scene-cadre">
+    <div class="dv-scene-3d">
+      <span class="dv-scene-ombre" aria-hidden="true"></span>
+
+      <div class="dv-tp-place dv-tp-place-tablette">
+        <div class="dv-flotte">
+          <div class="dv-appareil dv-tp-tablette">
+            <span class="dv-appareil-tranche dv-appareil-tranche-2"></span>
+            <span class="dv-appareil-tranche"></span>
+            <div class="dv-appareil-face">
+              <span class="dv-appareil-camera"></span>
+              <div class="dv-appareil-ecran dv-sq">
+                <span class="dv-sq-barre"><b></b><b class="dv-sq-court"></b></span>
+                <span class="dv-sq-alerte"><i></i><b></b><b class="dv-sq-court"></b></span>
+                {
+                  lignes.map((l) => (
+                    <span class="dv-sq-ligne">
+                      <i />
+                      <b style={`width:${l}%`} />
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+            <svg class="dv-tp-ondes dv-tp-ondes-d" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32c9-2 16-9 18-18M8 22c4-1 7-4 8-8" /></svg>
+            <svg class="dv-tp-ondes dv-tp-ondes-g" viewBox="0 0 40 40" aria-hidden="true"><path d="M32 32c-9-2-16-9-18-18M32 22c-4-1-7-4-8-8" /></svg>
+          </div>
+          <span class="dv-puce dv-tp-nom"><i></i>Uber Eats</span>
+        </div>
+      </div>
+
+      <div class="dv-tp-place dv-tp-place-terminal">
+        <div class="dv-flotte">
+          <div class="dv-appareil dv-tp-terminal">
+            <span class="dv-tp-ticket"><b></b><b class="dv-sq-court"></b><b></b></span>
+            <span class="dv-appareil-tranche dv-appareil-tranche-2"></span>
+            <span class="dv-appareil-tranche"></span>
+            <div class="dv-appareil-face">
+              <div class="dv-appareil-ecran dv-sq">
+                <span class="dv-sq-barre"><b class="dv-sq-court"></b></span>
+                <span class="dv-sq-alerte"><i></i><b></b></span>
+                <span class="dv-sq-ligne"><i></i><b style="width:58%"></b></span>
+                <span class="dv-sq-ligne"><i></i><b style="width:44%"></b></span>
+              </div>
+            </div>
+            <svg class="dv-tp-ondes dv-tp-ondes-d" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32c9-2 16-9 18-18M8 22c4-1 7-4 8-8" /></svg>
+          </div>
+          <span class="dv-puce dv-tp-nom"><i></i>Deliveroo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

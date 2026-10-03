@@ -11,8 +11,11 @@ import { lien } from '../lib/site';
 
 interface Props {
   class?: string;
+  // Couverture chargée plus tard (vidéo dans une fenêtre fermée au chargement) : posée par le script qui l'ouvre.
+  couvertureDifferee?: boolean;
 }
-const { class: classe = '' } = Astro.props;
+const { class: classe = '', couvertureDifferee = false } = Astro.props;
+const couverture = lien('/video/deliview-video-couverture-v2-16x9.webp');
 
 const texte = [
   'Bon, j’ai 1 minute pour vous convaincre. Alors je vous la fais courte.',
@@ -39,7 +42,8 @@ const texte = [
       preload="none"
       width="1920"
       height="1080"
-      poster={lien('/video/deliview-video-couverture-v2-16x9.webp')}
+      poster={couvertureDifferee ? undefined : couverture}
+      data-couverture={couvertureDifferee ? couverture : undefined}
       aria-label="Vidéo de présentation de Deliview, 1 minute 10, sans voix off"
       aria-describedby="hv-legende"
     >

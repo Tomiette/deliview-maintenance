@@ -1,0 +1,73 @@
+---
+// Scène en relief (refonte du 3 octobre 2026) : une vraie capture de l'app dans une tablette inclinée en 3D,
+// au-dessus d'une ombre très légère, avec des éléments flottants (slot, composant Flottant) à différentes profondeurs.
+// Technique : perspective sur la scène, plateau incliné en preserve-3d, éléments avancés en translateZ ;
+// toutes les tailles en unités de conteneur (cqi), la scène garde ses proportions à toutes les largeurs.
+// Les éléments flottants ne reprennent que des chiffres visibles sur la capture : rien n'est inventé.
+// Sans animation demandée (prefers-reduced-motion), tout reste immobile, à sa place finale.
+import { lien, type CaptureApp } from '../lib/site';
+
+interface Props {
+  capture: CaptureApp;
+  // Côté de la tablette qui s'avance vers le visiteur.
+  sens?: 'droite' | 'gauche';
+  sizes?: string;
+  // Image principale du haut de page : chargée tout de suite (la page la précharge sur ordinateur, où elle est
+  // au premier écran ; sur téléphone, elle passe après le texte).
+  priorite?: boolean;
+  // Largeur / hauteur de la scène (place des éléments flottants comprise).
+  ratio?: number;
+  ratioMobile?: number;
+  // Place de la tablette dans la scène, en % : gauche, haut, largeur.
+  appareil?: { x: number; y: number; largeur: number };
+  // Fond de la section : « bleu » retire l'ombre (jamais de bleu assombri).
+  fond?: 'clair' | 'bleu';
+  // Inclinaison suivie par le pointeur de la souris (haut de page).
+  suiviPointeur?: boolean;
+  class?: string;
+}
+
+const {
+  capture,
+  sens = 'droite',
+  sizes = '(min-width: 1200px) 600px, (min-width: 1024px) 50vw, 100vw',
+  priorite = false,
+  ratio = 1.12,
+  ratioMobile,
+  appareil = { x: 7, y: 15, largeur: 86 },
+  fond = 'clair',
+  suiviPointeur = false,
+  class: classe = '',
+} = Astro.props;
+const base = lien(capture.src);
+const srcset = capture.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ');
+const style = [`--ratio:${ratio}`, `--ratio-m:${ratioMobile ?? ratio}`, `--ax:${appareil.x}%`, `--ay:${appareil.y}%`, `--aw:${appareil.largeur}%`].join(';');
+---
+
+<figure class={`dv-scene dv-scene-${sens} dv-scene-fond-${fond} ${classe}`} data-apparition={priorite ? undefined : ''} data-scene={suiviPointeur ? 'pointeur' : ''} style={style}>
+  <div class="dv-scene-cadre">
+    <div class="dv-scene-3d">
+      {fond === 'clair' && <span class="dv-scene-ombre" aria-hidden="true"></span>}
+      <div class="dv-appareil">
+        <span class="dv-appareil-tranche dv-appareil-tranche-2" aria-hidden="true"></span>
+        <span class="dv-appareil-tranche" aria-hidden="true"></span>
+        <div class="dv-appareil-face">
+          <span class="dv-appareil-camera" aria-hidden="true"></span>
+          <div class="dv-appareil-ecran">
+            <img
+              src={`${base}-${capture.largeurs[capture.largeurs.length - 1]}.webp`}
+              srcset={srcset}
+              sizes={sizes}
+              alt={capture.alt}
+              width={capture.largeur}
+              height={capture.hauteur}
+              loading={priorite ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </div>
+        </div>
+      </div>
+      <slot />
+    </div>
+  </div>
+</figure>

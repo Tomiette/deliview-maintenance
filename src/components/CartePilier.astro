@@ -1,0 +1,61 @@
+---
+// Carte d'un pilier, en relief (refonte du 3 octobre 2026) : en haut, une vraie carte de l'app (fragment de capture,
+// restaurant anonymisé) inclinée en 3D sur un plateau à points ; dessous, icône dans sa tuile, nom, bénéfice,
+// 3 points au plus et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au survol, elle se soulève
+// et le fragment se redresse.
+import Coche from '../icons/coche.astro';
+import Fleche from '../icons/fleche.astro';
+import { ICONES, type NomIcone } from '../lib/registre-icones';
+import { lien, type CaptureApp } from '../lib/site';
+
+interface Props {
+  icone: NomIcone;
+  nom: string;
+  benefice: string;
+  points: string[];
+  fragment: CaptureApp;
+  href: string;
+  // Inclinaison du fragment : alternée d'une carte à l'autre.
+  sens?: 'droite' | 'gauche';
+}
+
+const { icone, nom, benefice, points, fragment, href, sens = 'droite' } = Astro.props;
+const Icone = ICONES[icone];
+const base = lien(fragment.src);
+---
+
+<li class={`dv-relief dv-relief-lien dv-pilier dv-pilier-${sens}`}>
+  <div class="dv-pilier-scene">
+    <div class="dv-pilier-3d">
+      <img
+        class="dv-fragment"
+        src={`${base}-${fragment.largeurs[fragment.largeurs.length - 1]}.webp`}
+        srcset={fragment.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
+        sizes="(min-width: 1200px) 290px, (min-width: 1024px) 24vw, (min-width: 640px) 60vw, 80vw"
+        alt={fragment.alt}
+        width={fragment.largeur}
+        height={fragment.hauteur}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+  <div class="dv-pilier-corps">
+    <span class="dv-tuile"><Icone taille={32} /></span>
+    <h3 class="mt-4 font-accent text-[21px] font-bold leading-[1.25] md:mt-5 md:text-[24px]">{nom}</h3>
+    <p class="mt-1.5 text-[17px] leading-[1.5] md:mt-2 md:text-[18px] md:leading-[1.55]">{benefice}</p>
+    <ul class="mt-4 grid gap-2 text-[16px] leading-[1.45] dv-muted md:mt-5 md:gap-2.5 md:leading-[1.5]">
+      {
+        points.map((p) => (
+          <li class="flex gap-2.5">
+            <Coche taille={24} />
+            <span>{p}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <a href={lien(href)} class="dv-lien-fort dv-pilier-lien mt-auto self-start pt-4" aria-label={`Voir comment ça marche : ${nom.toLowerCase()}`}>
+      Voir comment ça marche<Fleche taille={24} />
+    </a>
+  </div>
+</li>

@@ -1,0 +1,42 @@
+---
+// Vidéo de présentation dans une fenêtre (refonte du 3 octobre 2026) : le haut de page montre l'app en relief,
+// la vidéo s'ouvre au clic sur « Voir Deliview en action » et se lance avec le son, jamais en automatique.
+// Tout lien ou bouton [data-video-ouvrir] ouvre la fenêtre. Sans JavaScript (ou sans <dialog>), ces liens mènent
+// au fichier MP4. Échap, le bouton Fermer ou un clic hors de la vidéo referment la fenêtre et mettent en pause.
+import HeroVideo from './HeroVideo.astro';
+import Plus from '../icons/plus.astro';
+---
+
+<dialog id="dv-video-dialogue" class="dv-dialogue" aria-label="Vidéo de présentation de Deliview">
+  <div class="dv-dialogue-corps" data-video-zone>
+    <button type="button" class="dv-dialogue-fermer" data-dialogue-fermer>
+      <Plus taille={24} class="rotate-45" />
+      <span class="sr-only">Fermer la vidéo</span>
+    </button>
+    <HeroVideo couvertureDifferee />
+  </div>
+</dialog>
+
+<script>
+  const dialogue = document.getElementById('dv-video-dialogue') as HTMLDialogElement | null;
+  if (dialogue && typeof dialogue.showModal === 'function') {
+    const video = dialogue.querySelector('video');
+    const lecture = dialogue.querySelector<HTMLButtonElement>('.hv-lire');
+    document.querySelectorAll<HTMLElement>('[data-video-ouvrir]').forEach((b) =>
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        // La couverture ne se télécharge qu'à la première ouverture.
+        if (video && !video.poster && video.dataset.couverture) video.poster = video.dataset.couverture;
+        dialogue.showModal();
+        // Même geste que le clic : la lecture démarre avec le son.
+        lecture?.click();
+      }),
+    );
+    dialogue.querySelector('[data-dialogue-fermer]')?.addEventListener('click', () => dialogue.close());
+    // Clic sur le fond (hors du cadre de la vidéo).
+    dialogue.addEventListener('click', (e) => {
+      if (e.target === dialogue) dialogue.close();
+    });
+    dialogue.addEventListener('close', () => video?.pause());
+  }
+</script>

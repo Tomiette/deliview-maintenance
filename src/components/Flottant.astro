@@ -1,0 +1,31 @@
+---
+// Élément flottant d'une scène en relief : placé en % de la scène, avancé vers le visiteur (translateZ),
+// il monte et descend doucement, à son propre rythme. Décoratif pour les lecteurs d'écran : il ne reprend
+// que ce que dit déjà le texte de remplacement de la capture.
+interface Props {
+  // Position sur ordinateur, en % de la scène (x mesuré depuis la droite si `droite`).
+  x: number;
+  y: number;
+  // Position sur téléphone (moins de 768 px), si elle change.
+  xm?: number;
+  ym?: number;
+  droite?: boolean;
+  // Profondeur, en % de la largeur de la scène.
+  z?: number;
+  // Rythme du flottement, en secondes.
+  duree?: number;
+  delai?: number;
+  // Masqué sur téléphone (scène trop étroite).
+  bureau?: boolean;
+  class?: string;
+}
+
+const { x, y, xm, ym, droite = false, z = 9, duree = 6, delai = 0, bureau = false, class: classe = '' } = Astro.props;
+const style = [`--x:${x}%`, `--y:${y}%`, `--xm:${xm ?? x}%`, `--ym:${ym ?? y}%`, `--z:${z}cqi`, `--duree:${duree}s`, `--delai:${delai}s`].join(';');
+---
+
+<div class={`dv-flottant ${droite ? 'dv-flottant-droite' : ''} ${bureau ? 'dv-flottant-bureau' : ''} ${classe}`} style={style} aria-hidden="true">
+  <div class="dv-flotte">
+    <slot />
+  </div>
+</div>

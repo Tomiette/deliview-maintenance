@@ -17,8 +17,10 @@ interface Props {
   ogType?: 'website' | 'article';
   // Pages sans intérêt dans les moteurs (merci, 404).
   noindex?: boolean;
-  // Image principale du haut de page (LCP), préchargée : chemin du site, sans la base.
-  precharger?: string;
+  // Image principale du haut de page (LCP), préchargée : chemin du site, sans la base,
+  // ou jeu d'images responsive (srcset et sizes déjà préfixés, comme dans la balise img).
+  // `media` : préchargée seulement quand l'image est en haut de l'écran (ordinateur), jamais sur téléphone.
+  precharger?: string | { srcset: string; sizes: string; media?: string };
   // Fond du haut de page (le fil d'Ariane le prolonge) : papier gris par défaut, comme les maquettes.
   fondHaut?: 'gris' | 'blanc';
 }
@@ -98,7 +100,8 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={inter700} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={aspekta700} as="font" type="font/woff2" crossorigin />
-    {precharger && <link rel="preload" as="image" href={lien(precharger)} fetchpriority="high" />}
+    {typeof precharger === 'string' && <link rel="preload" as="image" href={lien(precharger)} fetchpriority="high" />}
+    {precharger && typeof precharger === 'object' && <link rel="preload" as="image" imagesrcset={precharger.srcset} imagesizes={precharger.sizes} media={precharger.media} fetchpriority="high" />}
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Deliview" />

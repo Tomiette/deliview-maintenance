@@ -29,6 +29,17 @@
   --dv-grey-2: var(--color-grey-2);
   /* Ombre des tickets : un liseré très fin, puis une ombre très légère. */
   --dv-ombre-ticket: drop-shadow(0 0 0.7px rgba(76, 76, 76, 0.55)) drop-shadow(0 12px 20px rgba(76, 76, 76, 0.09));
+
+  /* Relief (refonte du 3 octobre 2026) : le bord inférieur d'un bouton ou d'une carte est du Gris 2 en transparence,
+     jamais un bleu plus foncé ; les objets flottants portent une ombre très légère. */
+  --dv-bord: color-mix(in srgb, var(--color-grey-2) 15%, transparent);
+  --dv-levre: color-mix(in srgb, var(--color-grey-2) 11%, transparent);
+  --dv-levre-forte: color-mix(in srgb, var(--color-grey-2) 25%, transparent);
+  --dv-levre-bouton: color-mix(in srgb, var(--color-grey-2) 45%, transparent);
+  --dv-ombre-flottante: 0 14px 28px color-mix(in srgb, var(--color-grey-2) 9%, transparent);
+  /* Fond à points (Gris 2 à 16 %, tous les 24 px), sans dégradé : un motif SVG. */
+  --dv-points: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%234c4c4c' fill-opacity='.16'/%3E%3C/svg%3E");
+  --dv-points-blancs: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23ffffff' fill-opacity='.35'/%3E%3C/svg%3E");
 }
 
 @font-face {
@@ -246,7 +257,8 @@
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
+    /* Relief : le bouton repose sur un bord de 4 px ; il s'enfonce d'un pixel au survol, entièrement au clic. */
+    transition: background-color 0.15s ease, border-color 0.15s ease, translate 0.12s ease, box-shadow 0.12s ease;
     cursor: pointer;
   }
   .dv-btn:hover {
@@ -256,39 +268,53 @@
     background: var(--color-blue);
     color: var(--color-white);
     border: 1.5px solid var(--color-blue);
+    box-shadow: 0 4px 0 var(--dv-levre-bouton);
   }
   .dv-btn-plein:hover {
     background: var(--color-blue-2);
     border-color: var(--color-blue-2);
+    translate: 0 1px;
+    box-shadow: 0 3px 0 var(--dv-levre-bouton);
   }
   .dv-btn-contour {
     background: var(--color-white);
     color: var(--color-grey-2);
     border: 1.5px solid var(--color-grey-2);
+    box-shadow: 0 4px 0 var(--dv-levre-forte);
   }
   .dv-btn-contour:hover {
-    background: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    translate: 0 1px;
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent), 0 3px 0 var(--dv-levre-forte);
   }
   /* Bouton bleu au contour (Bleu 1 sur blanc, 19 px gras : grand texte, 3,5:1) : action secondaire à côté du bouton plein. */
   .dv-btn-bleu {
     background: var(--color-white);
     color: var(--color-blue);
     border: 2px solid var(--color-blue);
+    box-shadow: 0 4px 0 var(--dv-levre-forte);
   }
   .dv-btn-bleu:hover {
     /* Voile Bleu 1 à 8 % par-dessus le fond blanc (sans dégradé ni nouvelle teinte). */
-    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent);
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent), 0 3px 0 var(--dv-levre-forte);
+    translate: 0 1px;
+  }
+  .dv-btn-plein:active,
+  .dv-btn-contour:active,
+  .dv-btn-bleu:active {
+    translate: 0 4px;
+    box-shadow: 0 0 0 transparent;
   }
   /* Bouton démo de l'en-tête : contour bleu, puis bleu plein quand aucun autre bouton démo plein n'est à l'écran. */
   .dv-entete-demo.dv-entete-plein {
     background: var(--color-blue);
     color: var(--color-white);
     border-color: var(--color-blue);
+    box-shadow: 0 4px 0 var(--dv-levre-bouton);
   }
   .dv-entete-demo.dv-entete-plein:hover {
     background: var(--color-blue-2);
     border-color: var(--color-blue-2);
-    box-shadow: none;
+    box-shadow: 0 3px 0 var(--dv-levre-bouton);
   }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {
@@ -929,36 +955,424 @@
   }
 }
 
-/* Accueil (maquettes « le passe ») : placements propres à l'ordinateur et au téléphone. */
+/* ───────────────────────── Relief (refonte du 3 octobre 2026) ─────────────────────────
+   Technique des sites produit en 3D (captures inclinées, cartes flottantes, boutons et cartes en relief),
+   dans la charte : 5 couleurs, le relief est un bord inférieur en Gris 2 transparent, aucun bleu plus foncé,
+   aucun dégradé, aucun effet de verre, ombres très légères. Les scènes se mesurent en unités de conteneur (cqi). */
 @layer components {
-  /* Haut de page : la vidéo dans le cadre tablette, le bouton « Voir Deliview en action » dessous, sans texte autour. */
-  .dv-hero-visuel {
+  /* Carte en relief : blanche, bordure Gris 2 à 15 %, posée sur un bord de 5 px. */
+  .dv-relief {
     position: relative;
+    background: var(--color-white);
+    border: 1px solid var(--dv-bord);
+    border-radius: var(--radius-card);
+    box-shadow: 0 5px 0 var(--dv-levre);
   }
-  .dv-hero-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 16px;
+  /* Carte entièrement cliquable (lien étiré) : elle se soulève au survol. */
+  .dv-relief-lien {
+    transition: translate 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dv-relief-lien:hover,
+  .dv-relief-lien:focus-within {
+    translate: 0 -4px;
+    box-shadow: 0 9px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+
+  /* Fonds à points (motif SVG, sans dégradé). */
+  .dv-points {
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+  .dv-points-bleus {
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+
+  /* Pastille : sur-titre dans une étiquette blanche en relief, point Bleu 1. */
+  .dv-pastille {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 34px;
+    padding: 6px 14px 6px 12px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 999px;
+    background: var(--color-white);
+    box-shadow: 0 3px 0 var(--dv-levre);
+  }
+  .dv-pastille-point {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-blue);
+  }
+  /* Badge (« Recommandé ») : Bleu 1 à 12 %, texte Gris 2. */
+  .dv-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-blue) 12%, transparent);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  /* Tuile : icône ou numéro dans un carré blanc en relief. */
+  .dv-tuile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border: 1px solid var(--dv-bord);
+    border-radius: 14px;
+    background: var(--color-white);
+    box-shadow: 0 4px 0 var(--dv-levre);
+  }
+  .dv-tuile-numero {
+    font-family: var(--font-accent);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-blue);
   }
   @media (min-width: 768px) {
-    .dv-hero-visuel {
-      width: 100%;
-      max-width: 640px;
-      margin-inline: auto;
+    .dv-tuile {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
     }
-    .dv-hero-actions {
-      align-items: center;
-      margin-top: 22px;
-    }
-  }
-  @media (min-width: 1024px) {
-    .dv-hero-visuel {
-      max-width: none;
+    .dv-tuile-numero {
+      font-size: 30px;
     }
   }
 
-  /* Le quotidien : texte et dessin côte à côte, la barre à bons dessous. */
+  /* ── Scène en relief ── */
+  .dv-scene {
+    --rx: 13deg;
+    --ry: -20deg;
+    --rz: 2deg;
+    position: relative;
+    margin: 0;
+    container-type: inline-size;
+    perspective: 1600px;
+  }
+  .dv-scene-gauche {
+    --ry: 20deg;
+    --rz: -2deg;
+  }
+  .dv-scene-cadre {
+    position: relative;
+    aspect-ratio: var(--ratio-m, 1.1);
+  }
+  @media (min-width: 768px) {
+    .dv-scene-cadre {
+      aspect-ratio: var(--ratio, 1.1);
+    }
+  }
+  .dv-scene-3d {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz)) rotateX(var(--px, 0deg)) rotateY(var(--py, 0deg));
+  }
+  /* Ombre très légère sous la tablette (jamais sur l'aplat bleu). */
+  .dv-scene-ombre {
+    position: absolute;
+    left: 12%;
+    right: 8%;
+    top: 32%;
+    bottom: 6%;
+    border-radius: 9cqi;
+    background: color-mix(in srgb, var(--color-grey-2) 20%, transparent);
+    filter: blur(5cqi);
+    transform: translateZ(-14cqi);
+  }
+
+  /* Tablette : face Gris 2, deux tranches plus claires derrière pour l'épaisseur, écran blanc. */
+  .dv-appareil {
+    position: absolute;
+    left: var(--ax, 7%);
+    top: var(--ay, 15%);
+    width: var(--aw, 86%);
+    border-radius: 4.2cqi;
+    transform-style: preserve-3d;
+  }
+  .dv-appareil-face {
+    position: relative;
+    padding: 2cqi;
+    border-radius: inherit;
+    background: var(--color-grey-2);
+  }
+  .dv-appareil-tranche {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--color-white);
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-grey-2) 72%, transparent);
+    transform: translateZ(-0.7cqi);
+  }
+  .dv-appareil-tranche-2 {
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-grey-2) 55%, transparent);
+    transform: translateZ(-1.4cqi);
+  }
+  .dv-appareil-camera {
+    position: absolute;
+    top: 0.75cqi;
+    left: 50%;
+    width: 0.6cqi;
+    height: 0.6cqi;
+    margin-left: -0.3cqi;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-white) 35%, transparent);
+  }
+  .dv-appareil-ecran {
+    overflow: hidden;
+    border-radius: 2.2cqi;
+    background: var(--color-white);
+  }
+  .dv-appareil-ecran img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Élément flottant : placé en % de la scène, avancé vers le visiteur, il monte et descend doucement. */
+  .dv-flottant {
+    position: absolute;
+    left: var(--xm);
+    top: var(--ym);
+    transform: translateZ(var(--z, 9cqi));
+    transform-style: preserve-3d;
+  }
+  .dv-flottant-droite {
+    left: auto;
+    right: var(--xm);
+  }
+  .dv-flottant-bureau {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .dv-flottant {
+      left: var(--x);
+      top: var(--y);
+    }
+    .dv-flottant-droite {
+      left: auto;
+      right: var(--x);
+    }
+    .dv-flottant-bureau {
+      display: block;
+    }
+  }
+  .dv-flotte {
+    transform-style: preserve-3d;
+  }
+
+  /* Puce : étiquette blanche en relief (nom d'une plateforme, repère de la capture). */
+  .dv-puce {
+    display: inline-flex;
+    align-items: center;
+    gap: max(6px, 1.3cqi);
+    padding: max(7px, 1.4cqi) max(12px, 2.5cqi);
+    border: 1px solid var(--dv-bord);
+    border-radius: 999px;
+    background: var(--color-white);
+    box-shadow: 0 max(3px, 0.6cqi) 0 var(--dv-levre), var(--dv-ombre-flottante);
+    font-size: max(12px, 2.4cqi);
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-grey-2);
+  }
+  .dv-puce i {
+    width: max(7px, 1.4cqi);
+    height: max(7px, 1.4cqi);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--color-blue);
+  }
+  .dv-puce-forte {
+    font-weight: 700;
+  }
+  /* Annotation Bleu 1 : grand texte uniquement (19 px gras). */
+  .dv-puce-bleue {
+    max-width: 100%;
+    padding: 10px 18px;
+    border-radius: 24px;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+    white-space: normal;
+    color: var(--color-blue);
+  }
+
+  /* Bulle : carte flottante qui reprend un chiffre de la capture. */
+  .dv-bulle {
+    padding: max(10px, 2.2cqi) max(12px, 2.8cqi);
+    border: 1px solid var(--dv-bord);
+    border-radius: max(12px, 2.4cqi);
+    background: var(--color-white);
+    box-shadow: 0 max(3px, 0.7cqi) 0 var(--dv-levre), var(--dv-ombre-flottante);
+    font-size: max(12px, 2.3cqi);
+    line-height: 1.35;
+    white-space: nowrap;
+    color: var(--color-grey-2);
+  }
+  .dv-bulle-sur {
+    font-family: var(--font-accent);
+    font-size: max(10px, 1.75cqi);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-bulle-titre {
+    margin-top: max(4px, 0.9cqi);
+    font-family: var(--font-accent);
+    font-size: max(14px, 3cqi);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .dv-bulle-fleche {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: color-mix(in srgb, var(--color-grey-2) 70%, transparent);
+  }
+  .dv-bulle-gain {
+    display: inline-block;
+    margin-top: max(6px, 1.2cqi);
+    padding: max(3px, 0.6cqi) max(9px, 1.5cqi);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-blue) 12%, transparent);
+    font-weight: 700;
+  }
+  .dv-bulle-chiffre {
+    font-family: var(--font-accent);
+    font-size: max(18px, 4.4cqi);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .dv-bulle-texte {
+    margin-top: max(4px, 0.8cqi);
+  }
+  .dv-bulle-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Mouvement : flottement et arrivée des scènes, seulement si le visiteur n'a pas demandé moins d'animations. */
+  .dv-mouvement .dv-flotte {
+    animation: dv-flotte var(--duree, 6s) ease-in-out var(--delai, 0s) infinite alternate;
+  }
+  .dv-mouvement .dv-scene-3d {
+    transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .dv-mouvement .dv-scene.dv-attente .dv-scene-3d {
+    transform: rotateX(calc(var(--rx) + 14deg)) rotateY(calc(var(--ry) * 1.6)) rotateZ(var(--rz)) translateZ(-8cqi);
+  }
+  .dv-mouvement [data-scene="pointeur"] .dv-scene-3d {
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  /* ── Haut de page ── */
+  .dv-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: 32px 64px;
+    background: var(--color-white);
+  }
+  .dv-hero-grille {
+    display: grid;
+    row-gap: 36px;
+    align-items: center;
+  }
+  .dv-hero-boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .dv-hero-boutons .dv-btn {
+    width: 100%;
+  }
+  .dv-hero-video-bureau {
+    display: none !important;
+  }
+  .dv-hero-visuel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+  /* Forme décorative : Bleu 2 à 12 %, nette (aucun flou), derrière la tablette. */
+  .dv-hero-forme {
+    position: absolute;
+    left: 16%;
+    width: 78%;
+    top: 6%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-blue-2) 12%, transparent);
+  }
+  .dv-scene-note {
+    position: relative;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.45;
+    text-align: center;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-hero-video-mobile {
+    width: 100%;
+    margin-top: 18px;
+  }
+  @media (min-width: 640px) {
+    .dv-hero-boutons {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .dv-hero-boutons .dv-btn {
+      width: auto;
+      padding-inline: 26px;
+    }
+  }
+  @media (min-width: 768px) {
+    .dv-hero {
+      padding-block: 64px 96px;
+    }
+    .dv-hero-video-mobile {
+      display: none;
+    }
+    .dv-hero-video-bureau {
+      display: inline-flex !important;
+    }
+  }
+  @media (min-width: 1024px) {
+    .dv-hero-grille {
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+      column-gap: 40px;
+    }
+    .dv-hero-visuel {
+      max-width: none;
+    }
+    .dv-hero-boutons {
+      gap: 12px;
+    }
+    .dv-hero-boutons .dv-btn {
+      padding-inline: 22px;
+    }
+  }
+
+  /* ── Le quotidien ── */
   .dv-quotidien {
     display: grid;
     grid-template-areas: "intro" "dessin" "bons";
@@ -969,10 +1383,23 @@
   }
   .dv-quotidien-dessin {
     grid-area: dessin;
+    width: 100%;
+    max-width: 560px;
+    margin-inline: auto;
   }
   .dv-quotidien-bons {
     grid-area: bons;
-    margin-top: 12px;
+    margin-top: 8px;
+  }
+  .dv-constat,
+  .dv-etape {
+    padding: 22px 22px 24px;
+  }
+  @media (min-width: 768px) {
+    .dv-constat,
+    .dv-etape {
+      padding: 26px 28px 30px;
+    }
   }
   @media (min-width: 1024px) {
     .dv-quotidien {
@@ -983,47 +1410,243 @@
       align-items: center;
     }
     .dv-quotidien-bons {
-      margin-top: 72px;
+      margin-top: 64px;
     }
   }
 
-  /* La bascule : l'annotation et sa flèche au-dessus de la tablette. */
+  /* Les deux appareils du quotidien. */
+  .dv-scene-tablettes {
+    --rx: 10deg;
+    --ry: 0deg;
+    --rz: 0deg;
+    --ratio: 1.24;
+    --ratio-m: 1.14;
+  }
+  .dv-scene-tablettes .dv-scene-ombre {
+    left: 6%;
+    right: 6%;
+    top: 40%;
+    bottom: 10%;
+    background: color-mix(in srgb, var(--color-grey-2) 14%, transparent);
+  }
+  .dv-tp-place {
+    position: absolute;
+    transform-style: preserve-3d;
+  }
+  .dv-tp-place-tablette {
+    left: 2%;
+    top: 29%;
+    width: 60%;
+    transform: rotateY(18deg) rotateZ(-2deg) translateZ(2cqi);
+  }
+  .dv-tp-place-terminal {
+    left: 67%;
+    top: 17%;
+    width: 29%;
+    transform: rotateY(-20deg) rotateZ(3deg) translateZ(7cqi);
+  }
+  .dv-tp-place .dv-appareil {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+  }
+  .dv-mouvement .dv-tp-place-tablette .dv-flotte {
+    --duree: 5.8s;
+  }
+  .dv-mouvement .dv-tp-place-terminal .dv-flotte {
+    --duree: 6.6s;
+    --delai: -2.4s;
+  }
+  .dv-tp-terminal {
+    border-radius: 4cqi;
+  }
+  .dv-tp-terminal .dv-appareil-face {
+    padding: 2.2cqi 2cqi 7cqi;
+  }
+  .dv-tp-terminal .dv-appareil-ecran {
+    aspect-ratio: 0.78;
+  }
+  .dv-tp-tablette .dv-appareil-ecran {
+    aspect-ratio: 1.45;
+  }
+  /* Écrans schématiques : lignes Gris 2 à 14 %, une commande qui arrive en Bleu 1 à 12 %. */
+  .dv-sq {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6cqi;
+    padding: 2.4cqi;
+  }
+  .dv-sq b {
+    display: block;
+    height: 1.5cqi;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-grey-2) 14%, transparent);
+  }
+  .dv-sq-barre {
+    display: flex;
+    justify-content: space-between;
+    gap: 3cqi;
+    margin-bottom: 0.6cqi;
+  }
+  .dv-sq-barre b {
+    width: 34%;
+  }
+  .dv-sq-barre .dv-sq-court {
+    width: 16%;
+  }
+  .dv-sq-alerte,
+  .dv-sq-ligne {
+    display: flex;
+    align-items: center;
+    gap: 1.6cqi;
+    border-radius: 1.4cqi;
+  }
+  .dv-sq-alerte {
+    padding: 1.6cqi;
+    background: color-mix(in srgb, var(--color-blue) 12%, transparent);
+  }
+  .dv-sq-alerte b {
+    flex: 1;
+    background: color-mix(in srgb, var(--color-blue) 35%, transparent);
+  }
+  .dv-sq-alerte .dv-sq-court {
+    flex: 0 0 18%;
+  }
+  .dv-sq i {
+    width: 2.4cqi;
+    height: 2.4cqi;
+    flex-shrink: 0;
+    border-radius: 0.8cqi;
+    background: color-mix(in srgb, var(--color-grey-2) 14%, transparent);
+  }
+  .dv-sq-alerte i {
+    border-radius: 50%;
+    background: var(--color-blue);
+  }
+  .dv-sq-ligne {
+    padding-inline: 1.6cqi;
+  }
+  /* Ticket qui sort de l'imprimante du terminal : papier blanc, bord dentelé en haut (masque SVG, sans couleur). */
+  .dv-tp-ticket {
+    position: absolute;
+    left: 22%;
+    right: 22%;
+    top: -13.4cqi;
+    height: 18cqi;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4cqi;
+    padding: 1.2cqi 2cqi 0;
+    background: var(--color-white);
+    filter: drop-shadow(0 0 0.6px color-mix(in srgb, var(--color-grey-2) 55%, transparent));
+    transform: translateZ(-0.35cqi);
+  }
+  .dv-tp-ticket::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 1.6cqi;
+    background: var(--color-white);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 8V4L6 0l6 4v4z'/%3E%3C/svg%3E") 0 0 / 2.4cqi 1.6cqi repeat-x;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 8V4L6 0l6 4v4z'/%3E%3C/svg%3E") 0 0 / 2.4cqi 1.6cqi repeat-x;
+  }
+  .dv-tp-ticket b {
+    display: block;
+    height: 1.2cqi;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-grey-2) 16%, transparent);
+  }
+  .dv-tp-ticket .dv-sq-court {
+    width: 60%;
+  }
+  /* Ondes : la tablette sonne. */
+  .dv-tp-ondes {
+    position: absolute;
+    width: 9cqi;
+    height: 9cqi;
+    fill: none;
+    stroke: var(--color-blue);
+    stroke-width: 3;
+    stroke-linecap: round;
+    overflow: visible;
+  }
+  .dv-tp-ondes-d {
+    top: -6cqi;
+    right: -6cqi;
+  }
+  .dv-tp-ondes-g {
+    top: -6cqi;
+    left: -6cqi;
+  }
+  .dv-mouvement .dv-tp-ondes {
+    animation: dv-sonne 1.6s ease-in-out infinite;
+  }
+  .dv-mouvement .dv-tp-place-terminal .dv-tp-ondes {
+    animation-delay: -0.8s;
+  }
+  .dv-tp-nom {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 3cqi);
+    translate: -50% 0;
+    transform: translateZ(4cqi);
+  }
+
+  /* ── La bascule : le seul aplat Bleu 1 de la page ── */
+  .dv-bande-bleue {
+    background-color: var(--color-blue);
+    background-image: var(--dv-points-blancs);
+    background-size: 24px 24px;
+    color: var(--color-white);
+    overflow: hidden;
+  }
+  .dv-bande-bleue .dv-pastille {
+    border-color: var(--color-white);
+    box-shadow: 0 3px 0 color-mix(in srgb, var(--color-grey-2) 25%, transparent);
+  }
+  /* Blanc sur Bleu 1 : grand texte uniquement (24 px, ou 19 px gras). */
+  .dv-bascule-lead {
+    max-width: 30ch;
+    font-size: 24px;
+    line-height: 1.4;
+  }
+  .dv-bascule-note {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
   .dv-bascule {
     display: grid;
     grid-template-areas: "texte" "tablette" "note";
-    row-gap: 32px;
+    row-gap: 28px;
   }
   .dv-bascule-texte {
     grid-area: texte;
   }
   .dv-bascule-tablette {
     grid-area: tablette;
+    width: 100%;
+    max-width: 640px;
+    margin-inline: auto;
   }
   .dv-bascule-note {
     grid-area: note;
-    margin-top: -12px;
-  }
-  .dv-bascule-fleche {
-    top: 14px;
-    right: 56px;
-    width: 64px;
-    height: 54px;
+    max-width: 34ch;
   }
   @media (min-width: 768px) {
-    .dv-bascule-fleche {
-      top: 34px;
-      right: auto;
-      left: 64px;
-      width: 84px;
-      height: 62px;
+    .dv-bascule-lead {
+      font-size: 26px;
     }
   }
   @media (min-width: 1024px) {
     .dv-bascule {
-      grid-template-columns: minmax(0, 440px) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
       grid-template-areas: "texte tablette" "note tablette";
-      column-gap: 56px;
-      row-gap: 16px;
+      column-gap: 48px;
+      row-gap: 24px;
       align-items: center;
     }
     .dv-bascule-texte {
@@ -1031,11 +1654,95 @@
     }
     .dv-bascule-note {
       align-self: start;
-      margin-top: 0;
+    }
+    .dv-bascule-tablette {
+      max-width: none;
     }
   }
 
-  /* Exemple réel : le texte à gauche, le ticket sur son plateau à droite, le bouton du simulateur sous le texte. */
+  /* ── Comment ça marche : les cartes reliées par un trait pointillé ── */
+  .dv-etape {
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .dv-etape:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 58px;
+      right: -25px;
+      width: 24px;
+      border-top: 2px dashed color-mix(in srgb, var(--color-grey-2) 30%, transparent);
+    }
+  }
+
+  /* ── Cartes des piliers ── */
+  .dv-pilier {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .dv-pilier-scene {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 236px;
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--dv-bord);
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+    perspective: 900px;
+    overflow: hidden;
+  }
+  .dv-pilier-3d {
+    width: 82%;
+    max-width: 300px;
+    transform: rotateX(14deg) rotateY(-16deg) rotateZ(2deg);
+    transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .dv-pilier-gauche .dv-pilier-3d {
+    transform: rotateX(14deg) rotateY(16deg) rotateZ(-2deg);
+  }
+  .dv-relief-lien:hover .dv-pilier-3d,
+  .dv-relief-lien:focus-within .dv-pilier-3d {
+    transform: rotateX(4deg) rotateY(0deg) rotateZ(0deg) translateY(-4px);
+  }
+  .dv-fragment {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 0 var(--dv-levre-forte)) drop-shadow(0 14px 18px color-mix(in srgb, var(--color-grey-2) 12%, transparent));
+  }
+  .dv-pilier-corps {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 22px 24px;
+  }
+  @media (min-width: 768px) {
+    .dv-pilier-scene {
+      height: 264px;
+    }
+    .dv-pilier-corps {
+      padding: 26px 28px 28px;
+    }
+  }
+  /* Lien étiré : toute la carte mène à la page du pilier. */
+  .dv-pilier-lien::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+  .dv-pilier-lien:focus-visible {
+    outline: none;
+  }
+  .dv-pilier-lien:focus-visible::after {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+
+  /* ── Exemple réel : le ticket flotte au-dessus d'un plateau à points incliné ── */
   .dv-exemple {
     display: grid;
     grid-template-areas: "intro" "plateau" "suite";
@@ -1046,14 +1753,64 @@
   }
   .dv-exemple-plateau {
     grid-area: plateau;
+    position: relative;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 8px 28px;
+  }
+  .dv-exemple-sol {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 22%;
+    bottom: 0;
+    border-radius: 28px;
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+    transform: perspective(900px) rotateX(38deg);
+    transform-origin: 50% 100%;
+  }
+  .dv-exemple-ombre {
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    bottom: 14%;
+    height: 40px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-grey-2) 18%, transparent);
+    filter: blur(14px);
+  }
+  .dv-exemple-ticket {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    perspective: 1200px;
+  }
+  .dv-exemple-ticket .dv-flotte {
+    --duree: 6.4s;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .dv-exemple-ticket .dv-tc {
+    transform: rotateX(8deg) rotateY(-12deg) rotateZ(-1.5deg);
+  }
+  .dv-exemple-annotation {
+    position: relative;
+    margin-top: 22px;
+    rotate: -2deg;
   }
   .dv-exemple-suite {
     grid-area: suite;
     margin-top: -4px;
   }
-  @media (max-width: 767px) {
+  @media (min-width: 768px) {
     .dv-exemple-plateau {
-      border-radius: 20px;
+      padding: 48px 24px 36px;
     }
   }
   @media (min-width: 1024px) {
@@ -1071,6 +1828,171 @@
       align-self: start;
       margin-top: 0;
     }
+  }
+
+  /* ── Qui est derrière : la photo dans un cadre incliné en 3D ── */
+  .dv-fondateur-scene {
+    perspective: 1000px;
+    padding: 8px 12px 36px;
+  }
+  .dv-fondateur-3d {
+    position: relative;
+    margin: 0;
+    width: 220px;
+    transform-style: preserve-3d;
+    transform: rotateX(8deg) rotateY(18deg) rotateZ(-2deg);
+  }
+  .dv-fondateur-cadre {
+    position: relative;
+    padding: 12px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 22px;
+    background: var(--color-white);
+    box-shadow: 0 5px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-fondateur-tranche {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background: var(--color-white);
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-grey-2) 14%, transparent);
+    transform: translateZ(-10px);
+  }
+  .dv-fondateur-cadre img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  .dv-fondateur-legende {
+    position: absolute;
+    left: -22px;
+    bottom: -24px;
+    transform: translateZ(40px);
+  }
+  .dv-fondateur-legende .dv-puce {
+    gap: 8px;
+    padding: 9px 16px;
+    font-size: 15px;
+    box-shadow: 0 4px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-fondateur-legende .dv-puce i {
+    width: 8px;
+    height: 8px;
+  }
+  .dv-mouvement .dv-fondateur-legende {
+    animation: dv-flotte-px 6s ease-in-out infinite alternate;
+  }
+  @media (min-width: 768px) {
+    .dv-fondateur-3d {
+      width: 250px;
+    }
+  }
+
+  /* ── Tarifs : la carte Pro mise en avant ── */
+  .dv-offre {
+    padding: 22px 22px 24px;
+  }
+  .dv-offre-pro {
+    border: 2px solid var(--color-blue);
+  }
+  @media (min-width: 768px) {
+    .dv-offre {
+      padding: 26px 28px 30px;
+    }
+    .dv-offre-pro {
+      translate: 0 -14px;
+    }
+  }
+
+  /* ── Questions fréquentes en cartes ── */
+  .dv-faq-carte {
+    padding-inline: 20px;
+  }
+  .dv-faq-carte > p {
+    margin-bottom: 22px;
+  }
+  @media (min-width: 768px) {
+    .dv-faq-carte {
+      padding-inline: 28px;
+    }
+  }
+
+  /* ── Démo : le bon posé sur un plateau à points ── */
+  .dv-demo-plateau {
+    border-radius: 24px;
+  }
+  .dv-tuile-numero + span {
+    min-width: 0;
+  }
+
+  /* ── Fenêtre de la vidéo ── */
+  .dv-dialogue {
+    width: min(960px, calc(100vw - 32px));
+    max-width: none;
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+  .dv-dialogue::backdrop {
+    background: color-mix(in srgb, var(--color-grey-2) 80%, transparent);
+  }
+  .dv-dialogue-corps {
+    position: relative;
+    padding-top: 60px;
+  }
+  .dv-dialogue-fermer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 12px;
+    background: var(--color-white);
+    color: var(--color-grey-2);
+    box-shadow: 0 4px 0 var(--dv-levre-forte);
+    cursor: pointer;
+  }
+  .dv-dialogue-fermer:hover {
+    translate: 0 1px;
+    box-shadow: 0 3px 0 var(--dv-levre-forte);
+  }
+}
+
+@keyframes dv-flotte {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -1.6cqi;
+  }
+}
+@keyframes dv-flotte-px {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -8px;
+  }
+}
+@keyframes dv-sonne {
+  0%,
+  100% {
+    opacity: 0.25;
+    scale: 0.92;
+  }
+  50% {
+    opacity: 1;
+    scale: 1;
   }
 }
 

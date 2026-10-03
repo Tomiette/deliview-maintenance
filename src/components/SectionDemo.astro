@@ -1,6 +1,8 @@
 ---
 // Écran de démo (dernier écran des pages) : le formulaire devient un « bon de démo » posé sur le papier gris,
 // à côté « Ce qui se passe ensuite » en 3 étapes et la vraie photo de Tom, avec son e-mail.
+// Variante « relief » (refonte du 3 octobre 2026, accueil) : le bon devient une carte en relief posée sur un plateau
+// à points (Bleu 1 à 8 %), les numéros des étapes dans des tuiles.
 import DemoForm from './DemoForm.astro';
 import Ticket from './Ticket.astro';
 import { SITE, lien } from '../lib/site';
@@ -14,8 +16,9 @@ interface Props {
   // Niveau du titre : h2 sur les pages, h1 sur la page Démo.
   niveau?: 'h1' | 'h2';
   id?: string;
+  relief?: boolean;
 }
-const { section, titre = 'Voyez ce que vos prix peuvent vous rapporter', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo' } = Astro.props;
+const { section, titre = 'Voyez ce que vos prix peuvent vous rapporter', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo', relief = false } = Astro.props;
 const Titre = niveau;
 const SousTitre = niveau === 'h1' ? 'h2' : 'h3';
 const etapes = [
@@ -27,24 +30,39 @@ const etapes = [
 
 <section id={id} class={`bg-white ${niveau === 'h1' ? 'pb-16 pt-8 md:pb-[104px] md:pt-12' : 'dv-section'}`} aria-labelledby={`${id}-titre`}>
   <div class="dv-container">
-    <p class="dv-overline">{surtitre}</p>
-    <Titre id={`${id}-titre`} class={`${niveau === 'h1' ? 'dv-h1' : 'dv-h2'} mt-2.5 max-w-[22ch] md:mt-3`}>{titre}</Titre>
+    <p class={`dv-overline ${relief ? 'dv-pastille' : ''}`}>{relief && <span class="dv-pastille-point" aria-hidden="true" />}{surtitre}</p>
+    <Titre id={`${id}-titre`} class={`${niveau === 'h1' ? 'dv-h1' : 'dv-h2'} ${relief ? 'mt-4 md:mt-5' : 'mt-2.5 md:mt-3'} max-w-[22ch]`}>{titre}</Titre>
     {sousTitre && <p class="dv-lead mt-4 max-w-[56ch]">{sousTitre}</p>}
     <div class="mt-7 grid items-start gap-10 md:mt-12 lg:grid-cols-2 lg:gap-14">
-      <div id={`${id}-formulaire`} class="dv-plateau px-3 py-5 sm:p-8 lg:p-10">
-        <Ticket papier="px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
-          <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>15&nbsp;min</span></p>
-          <DemoForm section={section} />
-        </Ticket>
-      </div>
+      {
+        relief ? (
+          <div id={`${id}-formulaire`} class="dv-demo-plateau dv-points-bleus px-3 py-5 sm:p-8 lg:p-10">
+            <div class="dv-relief px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
+              <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>15&nbsp;min</span></p>
+              <DemoForm section={section} />
+            </div>
+          </div>
+        ) : (
+          <div id={`${id}-formulaire`} class="dv-plateau px-3 py-5 sm:p-8 lg:p-10">
+            <Ticket papier="px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
+              <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>15&nbsp;min</span></p>
+              <DemoForm section={section} />
+            </Ticket>
+          </div>
+        )
+      }
       <div class="lg:pt-3">
         <SousTitre class="font-accent text-[21px] font-bold leading-[1.25] md:text-[24px]">Ce qui se passe ensuite</SousTitre>
         <ol class="mt-5 grid gap-5 md:mt-7 md:gap-7">
           {
             etapes.map((e, i) => (
               <li class="flex gap-4 md:gap-5">
-                <span class="w-7 shrink-0 font-accent text-[30px] font-bold leading-none text-blue md:w-10 md:text-[36px]" aria-hidden="true">{i + 1}</span>
-                <span>
+                {relief ? (
+                  <span class="dv-tuile dv-tuile-numero shrink-0" aria-hidden="true">{i + 1}</span>
+                ) : (
+                  <span class="w-7 shrink-0 font-accent text-[30px] font-bold leading-none text-blue md:w-10 md:text-[36px]" aria-hidden="true">{i + 1}</span>
+                )}
+                <span class={relief ? 'pt-1 md:pt-2' : ''}>
                   <span class="block font-accent text-[18px] font-bold leading-[1.3] md:text-[20px]">{e.titre}</span>
                   <span class="mt-1.5 block text-[16px] leading-[1.55] dv-muted md:text-[17px]">{e.texte}</span>
                 </span>

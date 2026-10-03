@@ -93,6 +93,32 @@ function demarrer() {
   });
 }
 
+// Haut de page : la tablette suit légèrement le pointeur de la souris (au plus 3 à 4 degrés), jamais au doigt.
+function suivrePointeur() {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+  document.querySelectorAll<HTMLElement>('[data-scene="pointeur"]').forEach((scene) => {
+    const zone = scene.closest('section') ?? scene;
+    let image = 0;
+    zone.addEventListener('pointermove', (e) => {
+      if (image) return;
+      image = requestAnimationFrame(() => {
+        image = 0;
+        const r = scene.getBoundingClientRect();
+        const x = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+        const y = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+        scene.style.setProperty('--px', `${(-y * 3).toFixed(2)}deg`);
+        scene.style.setProperty('--py', `${(x * 4).toFixed(2)}deg`);
+      });
+    });
+    zone.addEventListener('pointerleave', () => {
+      scene.style.removeProperty('--px');
+      scene.style.removeProperty('--py');
+    });
+  });
+}
+
+if (!calme) suivrePointeur();
+
 if (!calme && 'IntersectionObserver' in window) {
   // Les longueurs se mesurent avec les polices définitives (Aspekta) ; au plus 1,5 s d'attente.
   const polices = document.fonts ? Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]) : Promise.resolve();
