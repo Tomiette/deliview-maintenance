@@ -1,14 +1,15 @@
 ---
-// Vue d'ensemble (direction « le passe ») : les 3 piliers en cartes fonctionnalité (même gabarit que l'accueil),
-// puis toutes leurs fonctionnalités, disponibles aujourd'hui.
+// Vue d'ensemble : les 3 piliers en cartes (même gabarit que l'accueil, une vraie carte de l'app inclinée en 3D),
+// puis toutes leurs fonctionnalités, disponibles aujourd'hui. Refonte en relief du 3 octobre 2026.
 import Base from '../../layouts/Base.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
-import CarteFonctionnalite from '../../components/CarteFonctionnalite.astro';
+import CartePilier from '../../components/CartePilier.astro';
+import Pastille from '../../components/Pastille.astro';
 import Reassurance from '../../components/Reassurance.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
-import { PILIERS, SITE, jsonldLogiciel, lien } from '../../lib/site';
+import { FRAGMENTS, PILIERS, SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
   'Prix et concurrence, carte et marge, réputation : tout ce que Deliview fait pour votre restaurant sur Uber Eats et Deliveroo, plat par plat.';
@@ -23,15 +24,15 @@ const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug)
 >
   <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="solution-titre" data-haut-de-page>
     <div class="dv-container">
-      <p class="dv-overline">Solution</p>
-      <h1 id="solution-titre" class="dv-h1 mt-3 max-w-[20ch] md:mt-4">Ce que Deliview fait pour votre restaurant</h1>
+      <Pastille>Solution</Pastille>
+      <h1 id="solution-titre" class="dv-h1 mt-5 max-w-[20ch] md:mt-6">Ce que Deliview fait pour votre restaurant</h1>
       <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</p>
       <div class="mt-7 md:mt-8">
         <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="solution" data-cta-principal>Demander une démo</a>
       </div>
-      <Reassurance class="mt-[18px] md:mt-6" />
-      <ul class="mt-12 grid gap-5 md:mt-16 lg:grid-cols-3 lg:gap-6">
-        {ordre.map((p) => <CarteFonctionnalite icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} capture={p.carte.capture} href={`/solution/${p.slug}/`} niveau="h2" />)}
+      <Reassurance class="mt-[22px] md:mt-7" />
+      <ul class="mt-12 grid gap-6 md:mt-16 lg:grid-cols-3">
+        {ordre.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} niveau="h2" />)}
       </ul>
     </div>
   </section>
@@ -40,14 +41,11 @@ const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug)
     ordre.map((p, i) => {
       const Icone = ICONES[p.icone];
       return (
-        <section class={`dv-section ${i % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby={`pilier-${p.slug}`}>
+        <section class={`dv-section ${i % 2 === 0 ? 'bg-white' : 'bg-grey dv-points'}`} aria-labelledby={`pilier-${p.slug}`}>
           <div class="dv-container grid gap-10 lg:grid-cols-[1fr_1.4fr]">
             <div>
-              <p class="flex items-center gap-3">
-                <Icone taille={48} />
-                <span class="dv-overline">{p.surtitre}</span>
-              </p>
-              <h2 id={`pilier-${p.slug}`} class="dv-h2 mt-4">{p.titre}</h2>
+              <Pastille icone={Icone}>{p.surtitre}</Pastille>
+              <h2 id={`pilier-${p.slug}`} class="dv-h2 mt-4 md:mt-5">{p.titre}</h2>
               <p class="mt-4 dv-muted dv-texte">{p.description}</p>
               <a href={lien(`/solution/${p.slug}/`)} class="dv-lien-fort mt-4">
                 Voir {p.surtitre.toLowerCase()} en détail<Fleche taille={24} />
@@ -57,10 +55,12 @@ const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug)
               {p.fonctionnalites.map((f) => {
                 const I = ICONES[f.icone];
                 return (
-                  <li class="dv-card p-5 md:p-6">
-                    <I taille={32} />
-                    <h3 class="mt-3 font-accent text-[19px] font-bold leading-snug md:text-[20px]">
-                      <a href={lien(`/solution/${p.slug}/#${f.id}`)} class="hover:underline">{f.nom}</a>
+                  <li class="dv-card dv-carte-lien p-5 md:p-6">
+                    <span class="dv-tuile">
+                      <I taille={32} />
+                    </span>
+                    <h3 class="mt-4 font-accent text-[19px] font-bold leading-snug md:text-[20px]">
+                      <a href={lien(`/solution/${p.slug}/#${f.id}`)} class="dv-etire hover:underline">{f.nom}</a>
                     </h3>
                     <p class="mt-2 text-[16px] dv-muted">{f.benefice}</p>
                   </li>

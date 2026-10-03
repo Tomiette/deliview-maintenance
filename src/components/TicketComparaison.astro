@@ -2,14 +2,13 @@
 // Ticket de comparaison, le composant signature : le plat, votre prix, la médiane de votre zone, l'écart (seul chiffre
 // entouré au marqueur), le nombre de concurrents et la date du relevé. En grand format, sous les pointillés : ce que
 // Deliview propose. Chiffres en Inter tabulaires, vrai signe moins, espaces insécables avant € et %.
-// 320 px de large au plus sur téléphone, 360 px sur ordinateur ; format réduit pour le haut de page (posé sur la tablette).
+// 320 px de large au plus sur téléphone, 360 px sur ordinateur.
 import Ticket from './Ticket.astro';
 import Marqueur from './Marqueur.astro';
 import { dateFr, ecart, euros, type ExempleComparaison } from '../lib/site';
 
 interface Props {
   exemple: ExempleComparaison;
-  format?: 'haut-de-page' | 'standard';
   // Bloc « Ce que Deliview propose » (prix proposé, gain pour 100 ventes).
   proposition?: boolean;
   inclinaison?: number;
@@ -17,11 +16,11 @@ interface Props {
   class?: string;
 }
 
-const { exemple: e, format = 'standard', proposition = false, inclinaison, apparition = 'defilement', class: classe = '' } = Astro.props;
+const { exemple: e, proposition = false, inclinaison, apparition = 'defilement', class: classe = '' } = Astro.props;
 const releve = dateFr(new Date(e.releve + 'T12:00:00Z')).replace(/^1er /, '1<sup>er</sup> ');
 ---
 
-<Ticket class={`dv-tc dv-tc-${format} ${classe}`} papier="dv-tc-papier" inclinaison={inclinaison} apparition={apparition}>
+<Ticket class={`dv-tc dv-tc-standard ${classe}`} papier="dv-tc-papier" inclinaison={inclinaison} apparition={apparition}>
   <p class="dv-ticket-entete"><span>Comparaison</span><span>{e.plateforme}</span></p>
   <p class="dv-tc-plat">{e.plat}</p>
   <div class="dv-pointilles dv-tc-sep" aria-hidden="true"></div>

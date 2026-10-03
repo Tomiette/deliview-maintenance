@@ -1,12 +1,16 @@
 ---
-// Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble (direction « le passe »).
+// Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble.
+// Refonte en relief (3 octobre 2026) : en haut, l'écran Ma carte (les deux plateformes dans la même liste) incliné en 3D.
 import Base from '../../layouts/Base.astro';
-import CadreTablette from '../../components/CadreTablette.astro';
+import Scene3D from '../../components/Scene3D.astro';
+import Flottant from '../../components/Flottant.astro';
+import Bulle from '../../components/Bulle.astro';
+import Pastille from '../../components/Pastille.astro';
 import Reassurance from '../../components/Reassurance.astro';
 import Coche from '../../icons/coche.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
-import { SITE, jsonldLogiciel } from '../../lib/site';
+import { FONCTIONNALITES, SITE, jsonldLogiciel } from '../../lib/site';
 
 const description =
   'Uber Eats et Deliveroo sur un seul écran : écarts de prix entre vos deux cartes, concurrents et note sur chaque plateforme.';
@@ -43,39 +47,38 @@ const faq = [
   jsonld={[jsonldLogiciel(description, `${SITE.url}/integrations/uber-eats-et-deliveroo/`)]}
 >
   <section class="overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="ensemble-titre" data-haut-de-page>
-    <div class="dv-container grid items-center gap-x-14 gap-y-10 lg:grid-cols-[1fr_1.1fr]">
+    <div class="dv-container grid items-center gap-x-12 gap-y-10 lg:grid-cols-[1fr_1.05fr]">
       <div>
-        <p class="dv-overline">Intégration</p>
-        <h1 id="ensemble-titre" class="dv-h1 mt-3 max-w-[16ch] md:mt-4">Gérer Uber Eats et Deliveroo ensemble</h1>
+        <Pastille>Intégration</Pastille>
+        <h1 id="ensemble-titre" class="dv-h1 mt-5 max-w-[16ch] md:mt-6">Gérer Uber Eats et Deliveroo ensemble</h1>
         <p class="dv-lead mt-4 max-w-[56ch] md:mt-6">{SITE.argument} Vos deux cartes côte à côte, vos concurrents et votre note sur chaque plateforme.</p>
         <div class="mt-7 md:mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
         </div>
-        <Reassurance class="mt-[18px] md:mt-6" />
+        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
-      <CadreTablette
-        capture={{
-          src: '/images/capture-tableau',
-          largeurs: [800, 1300],
-          largeur: 1300,
-          hauteur: 812,
-          alt: 'Tableau de bord Deliview : vos données Uber Eats et Deliveroo côte à côte, avec votre note, votre prix médian, votre nombre d’avis et votre rang dans chaque zone',
-        }}
-        sizes="(min-width: 1200px) 600px, (min-width: 1024px) 50vw, 100vw"
-        priorite
-      />
+      <div class="w-full">
+        <Scene3D capture={FONCTIONNALITES['pricing-menu'].capture} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
+          <Flottant x={2} y={4} xm={0} ym={3} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
+          <Flottant x={-4} y={60} xm={0} ym={66} droite z={15} duree={6.8} delai={-2}><Bulle sur="Dips Bacon · Deliveroo" fleche={['4,30 €', '5,60 €']} gain="+1,30 €" /></Flottant>
+          <Flottant x={-4} y={72} z={12} duree={7.2} delai={-4} bureau><Bulle chiffre="21 plats" texte="moins chers que chez vos concurrents" /></Flottant>
+        </Scene3D>
+        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
+      </div>
     </div>
   </section>
 
   <section class="dv-section bg-white" aria-labelledby="aujourdhui-titre">
     <div class="dv-container">
-      <p class="dv-overline">Disponible</p>
-      <h2 id="aujourdhui-titre" class="dv-h2 mt-2.5 md:mt-3">Ce que vous avez dès aujourd’hui</h2>
+      <Pastille>Disponible</Pastille>
+      <h2 id="aujourdhui-titre" class="dv-h2 mt-4 md:mt-5">Ce que vous avez dès aujourd’hui</h2>
       <ul class="mt-8 grid gap-6 md:mt-10 md:grid-cols-2">
         {
           aujourdhui.map((x) => (
-            <li class="dv-card flex gap-3 p-6">
-              <Coche taille={24} class="mt-1" />
+            <li class="dv-card flex gap-4 p-6" data-apparition="">
+              <span class="dv-tuile dv-tuile-petite">
+                <Coche taille={24} />
+              </span>
               <div>
                 <h3 class="font-accent text-[20px] font-bold leading-[1.3] md:text-[22px]">{x.titre}</h3>
                 <p class="mt-2 dv-muted">{x.texte}</p>

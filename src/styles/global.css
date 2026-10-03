@@ -348,14 +348,35 @@
     text-underline-offset: 3px;
   }
 
+  /* Carte : blanche, bordure Gris 2 à 15 %, posée sur son bord en relief (refonte du 3 octobre 2026). */
   .dv-card {
+    position: relative;
     background: var(--color-white);
     border: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
     border-radius: var(--radius-card);
+    box-shadow: 0 5px 0 var(--dv-levre);
   }
-  .dv-plateau {
-    background: var(--color-grey);
-    border-radius: 24px;
+  /* Carte cliquable : le lien principal (.dv-etire) couvre toute la carte ; elle se soulève au survol. */
+  .dv-carte-lien {
+    transition: translate 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dv-carte-lien:hover,
+  .dv-carte-lien:focus-within {
+    translate: 0 -4px;
+    box-shadow: 0 9px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-etire::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-card);
+  }
+  .dv-etire:focus-visible {
+    outline: none;
+  }
+  .dv-etire:focus-visible::after {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
   }
 
   /* Icônes dessinées (src/icons/) : trait en couleur du texte, une touche Bleu 1, remplissage Bleu 1 léger. */
@@ -493,38 +514,6 @@
     margin-top: 10px;
   }
 
-  /* Format du haut de page : posé sur la tablette, un peu plus petit. */
-  .dv-tc-haut-de-page {
-    max-width: 264px;
-  }
-  .dv-tc-haut-de-page .dv-tc-papier {
-    padding: 14px 18px 16px;
-  }
-  .dv-tc-haut-de-page .dv-tc-plat {
-    margin-top: 8px;
-    font-size: 23px;
-  }
-  .dv-tc-haut-de-page .dv-tc-sep {
-    margin-block: 12px;
-  }
-  .dv-tc-haut-de-page .dv-tc-lignes {
-    gap: 6px 12px;
-    font-size: 15px;
-  }
-  .dv-tc-haut-de-page .dv-tc-ecart dt {
-    font-size: 15px;
-  }
-  .dv-tc-haut-de-page .dv-tc-chiffre {
-    font-size: 28px;
-  }
-  .dv-tc-haut-de-page .dv-tc-chiffre .dv-mq {
-    --d: 11px;
-  }
-  .dv-tc-haut-de-page .dv-tc-note {
-    margin-top: 12px;
-    font-size: 13px;
-  }
-
   @media (min-width: 768px) {
     .dv-tc-standard {
       max-width: 360px;
@@ -566,72 +555,6 @@
     .dv-tc-standard .dv-tc-lignes-propose {
       margin-top: 12px;
     }
-    .dv-tc-haut-de-page {
-      max-width: 300px;
-    }
-    .dv-tc-haut-de-page .dv-tc-papier {
-      padding: 16px 22px 20px;
-    }
-    .dv-tc-haut-de-page .dv-tc-plat {
-      margin-top: 10px;
-      font-size: 26px;
-    }
-    .dv-tc-haut-de-page .dv-tc-sep {
-      margin-block: 14px;
-    }
-    .dv-tc-haut-de-page .dv-tc-lignes {
-      gap: 8px 16px;
-      font-size: 16px;
-    }
-    .dv-tc-haut-de-page .dv-tc-ecart dt {
-      font-size: 16px;
-    }
-    .dv-tc-haut-de-page .dv-tc-chiffre {
-      font-size: 32px;
-    }
-    .dv-tc-haut-de-page .dv-tc-chiffre .dv-mq {
-      --d: 12px;
-    }
-    .dv-tc-haut-de-page .dv-tc-note {
-      margin-top: 16px;
-      font-size: 14px;
-    }
-  }
-
-  /* Barre à bons (le quotidien) : la barre du passe, les constats accrochés dessous. */
-  .dv-barre {
-    position: relative;
-    height: 5px;
-    margin-inline: 4px;
-    border-radius: 3px;
-    background: var(--color-grey-2);
-  }
-  .dv-barre::before,
-  .dv-barre::after {
-    content: "";
-    position: absolute;
-    top: -6px;
-    width: 7px;
-    height: 17px;
-    border-radius: 3px;
-    background: var(--color-grey-2);
-  }
-  .dv-barre::before {
-    left: -4px;
-  }
-  .dv-barre::after {
-    right: -4px;
-  }
-  @media (min-width: 768px) {
-    .dv-barre {
-      height: 6px;
-    }
-    .dv-barre::before,
-    .dv-barre::after {
-      top: -7px;
-      width: 8px;
-      height: 20px;
-    }
   }
 
   /* Marqueur : cercle, flèche ou soulignement en Bleu 1, trait de 3 px. Visible par défaut ;
@@ -662,82 +585,6 @@
     width: calc(100% + 10px);
     height: 12px;
   }
-  /* Annotation au marqueur : jamais de police manuscrite, Inter 700 de 19 px au moins. */
-  .dv-annotation {
-    font-family: var(--font-sans);
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--color-blue);
-  }
-
-  /* Cadre tablette : trait Gris 2 de 2,2 px et second trait léger décalé, comme dessiné à la main. */
-  .dv-tablette {
-    position: relative;
-    margin: 0;
-    padding: 10px;
-    border: 2.2px solid var(--color-grey-2);
-    border-radius: 22px;
-    background: var(--color-white);
-  }
-  .dv-tablette-trait {
-    position: absolute;
-    inset: -5px -4px -4px -5px;
-    border: 1.2px solid color-mix(in srgb, var(--color-grey-2) 30%, transparent);
-    border-radius: 26px 24px 25px 24px;
-    rotate: -0.5deg;
-    pointer-events: none;
-  }
-  .dv-tablette-camera {
-    position: absolute;
-    top: 3px;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    margin-left: -2px;
-    border-radius: 50%;
-    background: var(--color-grey-2);
-  }
-  .dv-tablette img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
-  }
-  @media (min-width: 768px) {
-    .dv-tablette {
-      padding: 14px;
-      border-radius: 28px;
-    }
-    .dv-tablette-trait {
-      inset: -6px -5px -5px -6px;
-      border-radius: 33px 30px 32px 31px;
-    }
-    .dv-tablette-camera {
-      top: 5px;
-      width: 5px;
-      height: 5px;
-    }
-    .dv-tablette img {
-      border-radius: 12px;
-    }
-  }
-  .dv-tablette-compacte,
-  .dv-tablette-compacte.dv-tablette {
-    padding: 9px;
-    border-width: 2px;
-    border-radius: 18px;
-  }
-  .dv-tablette-compacte .dv-tablette-camera {
-    top: 4px;
-    width: 4px;
-    height: 4px;
-  }
-  .dv-tablette-compacte img {
-    border-radius: 9px;
-  }
-
   /* Champs de formulaire : libellé visible, 52 px de haut, bordure Gris 2 à 70 %. */
   .dv-champ {
     display: block;
@@ -1001,6 +848,17 @@
     background: var(--color-white);
     box-shadow: 0 3px 0 var(--dv-levre);
   }
+  .dv-pastille > svg {
+    margin-block: -5px;
+    margin-left: -2px;
+  }
+  .dv-pastille a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .dv-pastille a:hover {
+    text-decoration: underline;
+  }
   .dv-pastille-point {
     width: 8px;
     height: 8px;
@@ -1051,6 +909,13 @@
     .dv-tuile-numero {
       font-size: 30px;
     }
+  }
+  .dv-tuile.dv-tuile-petite {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 22px;
+    box-shadow: 0 3px 0 var(--dv-levre);
   }
 
   /* ── Scène en relief ── */
@@ -1742,6 +1607,129 @@
     outline-offset: 2px;
   }
 
+  /* Puce-lien (thèmes des ressources, rubriques des questions) : pastille blanche en relief, 48 px de haut. */
+  .dv-puce-lien {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 20px;
+    border: 1.5px solid color-mix(in srgb, var(--color-grey-2) 70%, transparent);
+    border-radius: 999px;
+    background: var(--color-white);
+    box-shadow: 0 3px 0 var(--dv-levre-forte);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: translate 0.12s ease, box-shadow 0.12s ease;
+  }
+  .dv-puce-lien:hover {
+    translate: 0 1px;
+    box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent), 0 2px 0 var(--dv-levre-forte);
+    text-decoration: none;
+  }
+
+  /* Article : l'encadré « Dans Deliview », la carte de l'app du pilier inclinée à droite. */
+  .dv-article-pilier {
+    overflow: hidden;
+  }
+  .dv-article-pilier-scene {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .dv-article-pilier-image {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 250px;
+      align-items: center;
+    }
+    .dv-article-pilier-scene {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      padding: 24px 24px 24px 0;
+      perspective: 900px;
+    }
+    .dv-article-pilier-scene .dv-pilier-3d {
+      width: 100%;
+    }
+  }
+
+  /* ── Bandeau « Fonctionne avec » : chaque plateforme dans sa tuile en relief ── */
+  .dv-plateforme-tuile {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 60px;
+    padding: 7px 20px 7px 7px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 16px;
+    background: var(--color-white);
+    box-shadow: 0 4px 0 var(--dv-levre);
+    font-family: var(--font-accent);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-grey-2);
+    text-decoration: none;
+    transition: translate 0.15s ease, box-shadow 0.15s ease;
+  }
+  .dv-plateforme-tuile:hover {
+    translate: 0 -2px;
+    box-shadow: 0 6px 0 var(--dv-levre);
+    text-decoration: none;
+  }
+
+  /* ── Fragment flottant : une vraie carte de l'app inclinée en 3D, au-dessus d'un plateau à points ── */
+  .dv-fragment-scene {
+    position: relative;
+    container-type: inline-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8cqi 3cqi 10cqi;
+    perspective: 1000px;
+  }
+  .dv-fragment-scene::before {
+    content: "";
+    position: absolute;
+    inset: 4% 0 0;
+    border-radius: 24px;
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+  .dv-fragment-3d {
+    position: relative;
+    width: 92%;
+    max-width: 480px;
+    transform-style: preserve-3d;
+    transform: rotateX(12deg) rotateY(-16deg) rotateZ(2deg);
+  }
+  .dv-fragment-gauche .dv-fragment-3d {
+    transform: rotateX(12deg) rotateY(16deg) rotateZ(-2deg);
+  }
+  .dv-fragment-3d .dv-fragment {
+    filter: drop-shadow(0 5px 0 var(--dv-levre-forte)) drop-shadow(0 18px 24px color-mix(in srgb, var(--color-grey-2) 12%, transparent));
+  }
+  .dv-fragment-puce {
+    position: absolute;
+    transform: translateZ(60px);
+  }
+  .dv-fragment-puce-haut {
+    top: -5cqi;
+    left: -2cqi;
+  }
+  .dv-fragment-puce-bas {
+    bottom: -6cqi;
+    right: -3cqi;
+  }
+  .dv-fragment-scene .dv-puce {
+    font-size: max(14px, 3.2cqi);
+  }
+  .dv-mouvement .dv-fragment-scene .dv-flotte {
+    animation-name: dv-flotte-px;
+  }
+
   /* ── Exemple réel : le ticket flotte au-dessus d'un plateau à points incliné ── */
   .dv-exemple {
     display: grid;
@@ -1906,6 +1894,12 @@
       translate: 0 -14px;
     }
   }
+  /* Page Tarifs : offres complètes (bouton, liste), Pro surélevée seulement quand les cartes sont côte à côte. */
+  @media (max-width: 1023px) {
+    .dv-offres-page .dv-offre-pro {
+      translate: none;
+    }
+  }
 
   /* ── Questions fréquentes en cartes ── */
   .dv-faq-carte {
@@ -1993,17 +1987,6 @@
   50% {
     opacity: 1;
     scale: 1;
-  }
-}
-
-@layer components {
-  /* Tarifs : la flèche du marqueur pointe de l'annotation « Recommandé » vers le ticket Pro. */
-  .dv-tarifs-fleche {
-    top: -50px;
-    right: 120px;
-    width: 64px;
-    height: 54px;
-    scale: -1 1;
   }
 }
 

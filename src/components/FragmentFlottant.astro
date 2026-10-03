@@ -1,0 +1,42 @@
+---
+// Fragment flottant (refonte en relief, 3 octobre 2026) : une vraie carte de l'app (restaurant anonymisé), inclinée en 3D
+// au-dessus d'un plateau à points Bleu 1 à 8 %, qui flotte doucement. Une étiquette facultative (slot « puce ») flotte devant.
+import { lien, type CaptureApp } from '../lib/site';
+
+interface Props {
+  fragment: CaptureApp;
+  sens?: 'droite' | 'gauche';
+  sizes?: string;
+  // Place de l'étiquette : en haut à gauche ou en bas à droite.
+  placePuce?: 'haut' | 'bas';
+  priorite?: boolean;
+  class?: string;
+}
+const { fragment, sens = 'droite', sizes = '(min-width: 1024px) 420px, 80vw', placePuce = 'haut', priorite = false, class: classe = '' } = Astro.props;
+const base = lien(fragment.src);
+---
+
+<figure class={`dv-fragment-scene dv-fragment-${sens} m-0 ${classe}`} data-apparition={priorite ? undefined : ''}>
+  <div class="dv-fragment-3d">
+    <div class="dv-flotte">
+      <img
+        class="dv-fragment"
+        src={`${base}-${fragment.largeurs[fragment.largeurs.length - 1]}.webp`}
+        srcset={fragment.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
+        sizes={sizes}
+        alt={fragment.alt}
+        width={fragment.largeur}
+        height={fragment.hauteur}
+        loading={priorite ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    </div>
+    {
+      Astro.slots.has('puce') && (
+        <div class={`dv-fragment-puce dv-fragment-puce-${placePuce}`} aria-hidden="true">
+          <slot name="puce" />
+        </div>
+      )
+    }
+  </div>
+</figure>

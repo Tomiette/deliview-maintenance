@@ -4,6 +4,7 @@
 // réponse directe en première phrase, une question par titre, FAQPage en données structurées.
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
+import Pastille from '../components/Pastille.astro';
 import Fleche from '../icons/fleche.astro';
 import { SITE, dateFr, lien } from '../lib/site';
 import { FAQ, FAQ_MAJ, texteBrut } from '../lib/faq';
@@ -32,8 +33,8 @@ const faqPage = {
 >
   <section class="bg-grey pb-12 pt-6 md:pb-16 md:pt-10" aria-labelledby="faq-page-titre" data-haut-de-page>
     <div class="dv-container">
-      <p class="dv-overline">Tout savoir avant une démo</p>
-      <h1 id="faq-page-titre" class="dv-h1 mt-3 max-w-[22ch] md:mt-4">Questions fréquentes sur Deliview</h1>
+      <Pastille>Tout savoir avant une démo</Pastille>
+      <h1 id="faq-page-titre" class="dv-h1 mt-5 max-w-[22ch] md:mt-6">Questions fréquentes sur Deliview</h1>
       <p class="dv-lead mt-4 max-w-[62ch] md:mt-6">{SITE.definition}</p>
       <p class="mt-4 text-[15px] dv-muted">Mis à jour le {dateFr(new Date(FAQ_MAJ))}.</p>
       <nav aria-label="Rubriques" class="mt-8">
@@ -41,7 +42,7 @@ const faqPage = {
           {
             FAQ.map((r) => (
               <li>
-                <a href={`#${r.id}`} class="inline-flex min-h-12 items-center rounded-full border-[1.5px] border-grey-2/70 bg-white px-5 text-[16px] font-semibold hover:bg-blue/8">
+                <a href={`#${r.id}`} class="dv-puce-lien">
                   {r.titre}
                 </a>
               </li>
@@ -54,14 +55,14 @@ const faqPage = {
 
   {
     FAQ.map((r, i) => (
-      <section id={r.id} class={`dv-section scroll-mt-20 ${i % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby={`${r.id}-titre`}>
+      <section id={r.id} class={`dv-section scroll-mt-20 ${i % 2 === 0 ? 'bg-white' : 'bg-grey dv-points'}`} aria-labelledby={`${r.id}-titre`}>
         <div class="dv-container max-w-[860px]">
           <h2 id={`${r.id}-titre`} class="dv-h2">
             {r.titre}
           </h2>
-          <div class="mt-8 divide-y divide-grey-2/15 border-y border-grey-2/15">
+          <div class="mt-8 grid gap-4">
             {r.questions.map((x) => (
-              <div id={x.id} class="scroll-mt-24 py-6">
+              <div id={x.id} class="dv-card scroll-mt-24 px-6 py-5 md:px-8 md:py-6">
                 <h3 class="font-accent text-[19px] font-bold leading-[1.35] md:text-[21px]">{x.q}</h3>
                 <p class="mt-2 dv-texte text-[17px] leading-[1.6] [text-wrap:pretty] md:text-[18px]" set:html={x.r} />
               </div>
@@ -72,7 +73,7 @@ const faqPage = {
     ))
   }
 
-  <section class={`dv-section ${FAQ.length % 2 === 0 ? 'bg-white' : 'bg-grey'}`} aria-labelledby="aller-plus-loin">
+  <section class={`dv-section ${FAQ.length % 2 === 0 ? 'bg-white' : 'bg-grey dv-points'}`} aria-labelledby="aller-plus-loin">
     <div class="dv-container max-w-[860px]">
       <h2 id="aller-plus-loin" class="dv-h2">Pour aller plus loin</h2>
       <ul class="mt-6 grid gap-1">

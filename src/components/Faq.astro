@@ -1,7 +1,7 @@
 ---
 // Questions fréquentes : texte présent dans le HTML (lisible sans JavaScript), ouvert d'un clic,
 // signe plus ou moins dessiné. La première question est ouverte (maquettes « le passe »).
-// Variante « relief » (refonte du 3 octobre 2026, accueil) : chaque question dans sa carte, sur le fond à points.
+// Refonte en relief (3 octobre 2026) : chaque question dans sa carte en relief ; fond gris à points.
 import Plus from '../icons/plus.astro';
 import Moins from '../icons/moins.astro';
 
@@ -14,19 +14,18 @@ interface Props {
   lien?: { href: string; libelle: string };
   fond?: 'gris' | 'blanc';
   premiereOuverte?: boolean;
-  relief?: boolean;
 }
-const { titre = 'Questions fréquentes', surtitre = 'Questions', questions, id = 'faq', lien, fond = 'gris', premiereOuverte = true, relief = false } = Astro.props;
+const { titre = 'Questions fréquentes', surtitre = 'Questions', questions, id = 'faq', lien, fond = 'gris', premiereOuverte = true } = Astro.props;
 ---
 
-<section id={id} class={`dv-section dv-faq ${fond === 'gris' ? 'bg-grey' : 'bg-white'} ${relief ? 'dv-points dv-faq-relief' : ''}`} aria-labelledby={`${id}-titre`}>
+<section id={id} class={`dv-section dv-faq ${fond === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} aria-labelledby={`${id}-titre`}>
   <div class="dv-container max-w-[860px]">
-    {surtitre && <p class={`dv-overline ${relief ? 'dv-pastille' : ''}`}>{relief && <span class="dv-pastille-point" aria-hidden="true" />}{surtitre}</p>}
-    <h2 id={`${id}-titre`} class={`dv-h2 ${surtitre ? (relief ? 'mt-4 md:mt-5' : 'mt-2.5 md:mt-3') : ''}`}>{titre}</h2>
-    <div class={relief ? 'mt-7 grid gap-3.5 md:mt-10 md:gap-4' : 'mt-7 border-t border-grey-2/20 md:mt-10'}>
+    {surtitre && <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true" />{surtitre}</p>}
+    <h2 id={`${id}-titre`} class={`dv-h2 ${surtitre ? 'mt-4 md:mt-5' : ''}`}>{titre}</h2>
+    <div class="mt-7 grid gap-3.5 md:mt-10 md:gap-4">
       {
         questions.map((x, i) => (
-          <details class={relief ? 'dv-relief dv-faq-carte' : 'border-b border-grey-2/20'} open={premiereOuverte && i === 0}>
+          <details class="dv-relief dv-faq-carte" open={premiereOuverte && i === 0}>
             <summary class="flex min-h-12 items-center justify-between gap-6 py-5">
               <h3 class="font-accent text-[18px] font-bold leading-[1.35] md:text-[20px]">{x.q}</h3>
               <Plus taille={24} class="dv-faq-plus" />

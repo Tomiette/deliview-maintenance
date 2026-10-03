@@ -9,6 +9,7 @@ import SectionDemo from '../components/SectionDemo.astro';
 import Ticket from '../components/Ticket.astro';
 import Marqueur from '../components/Marqueur.astro';
 import Pieces from '../icons/pieces.astro';
+import Pastille from '../components/Pastille.astro';
 import { PRIX_ENTREE, SITE, lien } from '../lib/site';
 
 const TVA = 0.1;
@@ -121,16 +122,13 @@ const outil = {
 ---
 
 <Base title="Simulateur de rentabilité Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Simulateur de rentabilité', chemin: '/simulateur/' }]} jsonld={[outil]}>
-  <section class="bg-grey pb-16 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="simulateur-titre" data-haut-de-page>
+  <section class="overflow-x-clip bg-grey pb-16 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="simulateur-titre" data-haut-de-page>
     <div class="dv-container">
-      <p class="flex items-center gap-3">
-        <Pieces taille={48} />
-        <span class="dv-overline">Simulateur de rentabilité</span>
-      </p>
-      <h1 id="simulateur-titre" class="dv-h1 mt-4 max-w-[20ch]">Combien vous rapporte un prix bien placé&nbsp;?</h1>
+      <Pastille icone={Pieces}>Simulateur de rentabilité</Pastille>
+      <h1 id="simulateur-titre" class="dv-h1 mt-5 max-w-[20ch] md:mt-6">Combien vous rapporte un prix bien placé&nbsp;?</h1>
       <p class="dv-lead mt-4 max-w-[56ch] md:mt-6">Vous n’avez pas vos chiffres sous la main&nbsp;? Cochez «&nbsp;Je ne sais pas&nbsp;». Rien n’est envoyé.</p>
 
-      <div class="mt-10 grid items-start gap-8 md:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+      <div class="mt-10 grid grid-cols-[minmax(0,1fr)] items-start gap-8 md:mt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
         <form id="simulateur" class="dv-card p-5 sm:p-7 md:p-9" aria-labelledby="calcul-titre" novalidate>
           <h2 id="calcul-titre" class="font-accent text-[22px] font-bold leading-[1.25] md:text-[26px]">Vos chiffres</h2>
           <div class="mt-6 grid gap-8 md:mt-8 md:gap-10">
@@ -178,7 +176,7 @@ const outil = {
         </form>
 
         <div class="lg:sticky lg:top-28">
-          <Ticket papier="px-5 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6">
+          <Ticket inclinaison={-1} papier="px-5 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6">
             <p class="dv-ticket-entete"><span>Votre simulation</span><span>Par mois</span></p>
             <div aria-live="polite">
               <p class="mt-4 text-[17px] font-semibold md:text-[18px]">Votre marge en plus</p>

@@ -1,12 +1,17 @@
 ---
-// Intégrations : Uber Eats et Deliveroo, tableau de ce que Deliview montre pour chacune (direction « le passe »).
+// Intégrations : Uber Eats et Deliveroo, tableau de ce que Deliview montre pour chacune.
+// Refonte en relief (3 octobre 2026) : en haut, l'accueil de l'app (Uber Eats et Deliveroo côte à côte) incliné en 3D.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Reassurance from '../../components/Reassurance.astro';
+import Scene3D from '../../components/Scene3D.astro';
+import Flottant from '../../components/Flottant.astro';
+import Bulle from '../../components/Bulle.astro';
+import Pastille from '../../components/Pastille.astro';
 import Coche from '../../icons/coche.astro';
 import Fleche from '../../icons/fleche.astro';
 import Enveloppe from '../../icons/enveloppe.astro';
-import { PLATEFORMES, SITE, lien } from '../../lib/site';
+import { CAPTURE_POSITION, PLATEFORMES, SITE, lien } from '../../lib/site';
 import { logoPlateforme } from '../../lib/logos';
 
 const description =
@@ -24,15 +29,26 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
 ---
 
 <Base title="Intégrations Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Intégrations', chemin: '/integrations/' }]}>
-  <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="integrations-titre" data-haut-de-page>
-    <div class="dv-container">
-      <p class="dv-overline">Intégrations</p>
-      <h1 id="integrations-titre" class="dv-h1 mt-3 max-w-[18ch] md:mt-4">Uber Eats et Deliveroo, réunis sur un seul écran</h1>
-      <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, vos notes et vos offres, face à ceux des restaurants autour de vous.</p>
-      <div class="mt-7 md:mt-8">
-        <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integrations" data-cta-principal>Demander une démo</a>
+  <section class="overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="integrations-titre" data-haut-de-page>
+    <div class="dv-container grid items-center gap-x-12 gap-y-10 lg:grid-cols-[1fr_1.05fr]">
+      <div>
+        <Pastille>Intégrations</Pastille>
+        <h1 id="integrations-titre" class="dv-h1 mt-5 max-w-[18ch] md:mt-6">Uber Eats et Deliveroo, réunis sur un seul écran</h1>
+        <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, vos notes et vos offres, face à ceux des restaurants autour de vous.</p>
+        <div class="mt-7 md:mt-8">
+          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integrations" data-cta-principal>Demander une démo</a>
+        </div>
+        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
-      <Reassurance class="mt-[18px] md:mt-6" />
+      <div class="w-full">
+        <Scene3D capture={CAPTURE_POSITION} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
+          <Flottant x={2} y={5} xm={2} ym={5} z={9} duree={5.6}><span class="dv-puce"><i></i>Uber Eats</span></Flottant>
+          <Flottant x={-3} y={18} xm={0} ym={10} droite z={14} duree={6.4} delai={-2}><span class="dv-puce"><i></i>Deliveroo</span></Flottant>
+          <Flottant x={-4} y={58} xm={0} ym={64} z={16} duree={7} delai={-1}><Bulle chiffre="4,2" etoile texte="8e sur 14 · Uber Eats" /></Flottant>
+          <Flottant x={-2} y={70} xm={0} ym={66} droite z={11} duree={6} delai={-3}><Bulle chiffre="4,3" etoile texte="4e sur 8 · Deliveroo" /></Flottant>
+        </Scene3D>
+        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
+      </div>
     </div>
   </section>
 
@@ -42,20 +58,24 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
       <ul class="mt-8 grid gap-6 md:mt-10 md:grid-cols-2 lg:grid-cols-3">
         {
           PLATEFORMES.map((p) => ({ ...p, logo: logoPlateforme(p.slug) })).map((p) => (
-            <li class="dv-card flex flex-col p-6 md:p-7">
-              {p.logo && <img src={p.logo.src} alt="" width={p.logo.largeur} height={p.logo.hauteur} class="mb-4 h-14 w-auto self-start rounded-[12px]" loading="lazy" decoding="async" />}
+            <li class="dv-card dv-carte-lien flex flex-col p-6 md:p-7">
+              {p.logo && (
+                <span class="dv-tuile mb-5 self-start !h-auto !w-auto p-1.5">
+                  <img src={p.logo.src} alt="" width={p.logo.largeur} height={p.logo.hauteur} class="h-12 w-auto rounded-[10px]" loading="lazy" decoding="async" />
+                </span>
+              )}
               <h3 class="font-accent text-[24px] font-bold leading-[1.2] md:text-[26px]">{p.nom}</h3>
               <p class="mt-3 flex-1 dv-muted">{p.resume}</p>
-              <a href={lien(`/integrations/${p.slug}/`)} class="dv-lien-fort mt-4 self-start">
+              <a href={lien(`/integrations/${p.slug}/`)} class="dv-lien-fort dv-etire mt-4 self-start">
                 Voir l’intégration {p.nom}<Fleche taille={24} />
               </a>
             </li>
           ))
         }
-        <li class="dv-card flex flex-col p-6 md:p-7">
+        <li class="dv-card dv-carte-lien flex flex-col p-6 md:p-7">
           <h3 class="font-accent text-[24px] font-bold leading-[1.2] md:text-[26px]">Uber Eats et Deliveroo ensemble</h3>
           <p class="mt-3 flex-1 dv-muted">Vos deux cartes côte à côte. Les écarts de prix, vos concurrents et votre note sur chaque plateforme.</p>
-          <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="dv-lien-fort mt-4 self-start">
+          <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="dv-lien-fort dv-etire mt-4 self-start">
             Gérer les deux ensemble<Fleche taille={24} />
           </a>
         </li>
@@ -63,10 +83,10 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
     </div>
   </section>
 
-  <section class="dv-section bg-grey" aria-labelledby="tableau-titre">
+  <section class="dv-section bg-grey dv-points" aria-labelledby="tableau-titre">
     <div class="dv-container">
       <h2 id="tableau-titre" class="dv-h2 max-w-[24ch]">Ce que vous voyez, plateforme par plateforme</h2>
-      <div class="relative mt-8 overflow-x-auto rounded-[16px] border border-grey-2/15 bg-white" tabindex="0" role="region" aria-label="Tableau des données par plateforme, défile horizontalement">
+      <div class="dv-card mt-8 overflow-x-auto" tabindex="0" role="region" aria-label="Tableau des données par plateforme, défile horizontalement">
         <table class="w-full min-w-[640px] border-collapse text-left text-[16px]">
           <caption class="sr-only">Données visibles dans Deliview pour Uber Eats et Deliveroo</caption>
           <thead class="bg-grey">
@@ -99,7 +119,7 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
         </table>
       </div>
       <div class="dv-card mt-10 flex flex-col gap-4 p-6 md:flex-row md:items-start md:gap-5 md:p-8">
-        <Enveloppe taille={48} />
+        <span class="dv-tuile"><Enveloppe taille={32} /></span>
         <div>
           <h3 class="dv-h3">Un outil vous manque&nbsp;?</h3>
           <p class="mt-2 max-w-[62ch]">Caisse, réservation, site de commande&nbsp;: dites à Tom ce que vous utilisez. Les prochaines intégrations se décident avec les restaurants clients.</p>

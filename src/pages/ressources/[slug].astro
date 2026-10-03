@@ -1,12 +1,13 @@
 ---
 // Article : réponse directe en tête (ticket « En bref »), sommaire, contenu, sources datées, liens vers le pilier
-// et la démo (direction « le passe »).
+// et la démo. Refonte en relief (3 octobre 2026) : pastille du thème, encadré « Dans Deliview » avec la vraie carte
+// de l'app du pilier, inclinée en 3D.
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Ticket from '../../components/Ticket.astro';
 import Fleche from '../../icons/fleche.astro';
-import { PILIERS, SITE, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+import { FRAGMENTS, PILIERS, SITE, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
 
 export async function getStaticPaths() {
   const articles = await getCollection('ressources', (a) => !a.data.brouillon);
@@ -24,6 +25,8 @@ const pilier: { slug: string; titre: string; phrase: string; surtitre: string } 
   surtitre: 'La solution',
 };
 const sommaire = headings.filter((h) => h.depth === 2);
+// Vraie carte de l'app du pilier (décorative ici : le texte de l'encadré dit déjà ce qu'elle montre).
+const fragment = pilier.slug ? FRAGMENTS[pilier.slug] : undefined;
 const autres = (await getCollection('ressources', (a) => !a.data.brouillon && a.id !== article.id))
   .sort((a, b) => Number(b.data.theme === d.theme) - Number(a.data.theme === d.theme) || b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime())
   .slice(0, 3);
@@ -59,10 +62,11 @@ const jsonArticle = {
   <article>
     <header class="bg-grey">
       <div class="dv-container max-w-[820px] pb-10 pt-6 md:pb-14 md:pt-10">
-        <p class="dv-overline">
-          <a href={lien(`/ressources/#${d.theme}`)} class="hover:underline">{THEMES[d.theme]}</a>
+        <p class="dv-overline dv-pastille">
+          <span class="dv-pastille-point" aria-hidden="true"></span>
+          <a href={lien(`/ressources/#${d.theme}`)}>{THEMES[d.theme]}</a>
         </p>
-        <h1 class="dv-h1 mt-3 !text-[34px] md:mt-4 md:!text-[48px]">{d.titre}</h1>
+        <h1 class="dv-h1 mt-5 !text-[34px] md:mt-6 md:!text-[48px]">{d.titre}</h1>
         <p class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[15px] dv-muted">
           <span>Par <a href={lien('/qui-sommes-nous/#tom')} class="font-semibold underline underline-offset-2">{d.auteur}</a>, fondateur de Deliview</span>
           <span aria-hidden="true">·</span>
@@ -122,16 +126,37 @@ const jsonArticle = {
         )
       }
 
-      <section class="dv-plateau mt-14 p-6 md:p-8" aria-labelledby="pilier-titre">
-        <p class="dv-overline">Dans Deliview</p>
-        <h2 id="pilier-titre" class="dv-h3 mt-2">{pilier.titre}</h2>
-        <p class="mt-2 dv-muted">{pilier.phrase}</p>
-        <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-          <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
-          <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
-            Demander une démo<Fleche taille={24} />
-          </a>
+      <section class={`dv-card dv-article-pilier mt-14 ${fragment ? 'dv-article-pilier-image' : ''}`} aria-labelledby="pilier-titre">
+        <div class="p-6 md:p-8">
+          <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Dans Deliview</p>
+          <h2 id="pilier-titre" class="dv-h3 mt-4">{pilier.titre}</h2>
+          <p class="mt-2 dv-muted">{pilier.phrase}</p>
+          <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">Voir {pilier.surtitre.toLowerCase()}</a>
+            <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
+              Demander une démo<Fleche taille={24} />
+            </a>
+          </div>
         </div>
+        {
+          fragment && (
+            <div class="dv-article-pilier-scene" aria-hidden="true">
+              <div class="dv-pilier-3d">
+                <img
+                  class="dv-fragment"
+                  src={lien(`${fragment.src}-${fragment.largeurs[0]}.webp`)}
+                  srcset={fragment.largeurs.map((w) => `${lien(fragment.src)}-${w}.webp ${w}w`).join(', ')}
+                  sizes="260px"
+                  alt=""
+                  width={fragment.largeur}
+                  height={fragment.hauteur}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          )
+        }
       </section>
 
       <section class="mt-14" aria-labelledby="sources-titre">
@@ -151,15 +176,15 @@ const jsonArticle = {
 
   {
     autres.length > 0 && (
-      <section class="dv-section bg-grey" aria-labelledby="autres-articles">
+      <section class="dv-section bg-grey dv-points" aria-labelledby="autres-articles">
         <div class="dv-container">
           <h2 id="autres-articles" class="dv-h2">À lire aussi</h2>
           <ul class="mt-8 grid gap-6 md:grid-cols-3">
             {autres.map((a) => (
-              <li class="dv-card flex flex-col p-6">
+              <li class="dv-card dv-carte-lien flex flex-col p-6">
                 <p class="dv-overline">{THEMES[a.data.theme]}</p>
                 <h3 class="mt-3 font-accent text-[20px] font-bold leading-[1.3]">
-                  <a href={lien(`/ressources/${a.id}/`)} class="hover:underline">
+                  <a href={lien(`/ressources/${a.id}/`)} class="dv-etire hover:underline">
                     {a.data.titre}
                   </a>
                 </h3>

@@ -1,0 +1,39 @@
+---
+// Bulle flottante d'une scène en relief : ne reprend que des chiffres visibles sur la capture qu'elle accompagne.
+// sur : petite ligne en capitales ; titre : ligne en Aspekta (ou fleche : ancien prix → nouveau prix) ;
+// gain : pastille Bleu 1 à 12 % ; chiffre : grand chiffre (avec l'étoile dessinée si etoile) ; texte : une ligne.
+import Etoile from '../icons/etoile.astro';
+
+interface Props {
+  sur?: string;
+  titre?: string;
+  fleche?: [string, string];
+  gain?: string;
+  chiffre?: string;
+  etoile?: boolean;
+  texte?: string;
+}
+const { sur, titre, fleche, gain, chiffre, etoile = false, texte } = Astro.props;
+---
+
+<div class="dv-bulle">
+  {sur && <p class="dv-bulle-sur">{sur}</p>}
+  {titre && <p class="dv-bulle-titre">{titre}</p>}
+  {
+    fleche && (
+      <p class="dv-bulle-titre">
+        {fleche[0]} <span class="dv-bulle-fleche">→</span> {fleche[1]}
+      </p>
+    )
+  }
+  {gain && <span class="dv-bulle-gain">{gain}</span>}
+  {
+    chiffre && (
+      <p class={`dv-bulle-chiffre ${etoile ? 'dv-bulle-note' : ''}`}>
+        {chiffre}
+        {etoile && <Etoile taille={24} />}
+      </p>
+    )
+  }
+  {texte && <p class="dv-bulle-texte">{texte}</p>}
+</div>

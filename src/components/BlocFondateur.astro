@@ -2,20 +2,13 @@
 // « Qui est derrière » (accueil) : la vraie photo de Tom, trois phrases, son e-mail, LinkedIn et Qui sommes-nous.
 // Aucun faux témoignage : la preuve humaine, c'est quelqu'un de réel avec son e-mail.
 // Refonte en relief (3 octobre 2026) : la photo dans un cadre blanc incliné en 3D, sa légende flotte devant.
+import PhotoTom from './PhotoTom.astro';
 import { SITE, lien } from '../lib/site';
 ---
 
 <section class="dv-section bg-grey dv-points" aria-labelledby="fondateur-titre">
   <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
-    <div class="dv-fondateur-scene shrink-0" data-apparition="">
-      <figure class="dv-fondateur-3d">
-        <span class="dv-fondateur-tranche" aria-hidden="true"></span>
-        <div class="dv-fondateur-cadre">
-          <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="400" height="400" loading="lazy" decoding="async" />
-        </div>
-        <figcaption class="dv-fondateur-legende"><span class="dv-puce"><i></i>Tom Voisin, fondateur</span></figcaption>
-      </figure>
-    </div>
+    <PhotoTom />
     <div class="max-w-[620px] flex-1">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Qui est derrière</p>
       <h2 id="fondateur-titre" class="dv-h2 mt-4 md:mt-5">Deliview est né d’un&nbsp;an sur le terrain</h2>

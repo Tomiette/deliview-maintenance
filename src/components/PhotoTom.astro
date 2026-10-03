@@ -1,0 +1,21 @@
+---
+// Vraie photo de Tom dans un cadre blanc incliné en 3D (refonte en relief, 3 octobre 2026), sa légende flotte devant.
+// Accueil (« Qui est derrière ») et Qui sommes-nous.
+import { lien } from '../lib/site';
+
+interface Props {
+  legende?: string;
+  class?: string;
+}
+const { legende = 'Tom Voisin, fondateur', class: classe = '' } = Astro.props;
+---
+
+<div class={`dv-fondateur-scene shrink-0 ${classe}`} data-apparition="">
+  <figure class="dv-fondateur-3d">
+    <span class="dv-fondateur-tranche" aria-hidden="true"></span>
+    <div class="dv-fondateur-cadre">
+      <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="400" height="400" loading="lazy" decoding="async" />
+    </div>
+    <figcaption class="dv-fondateur-legende"><span class="dv-puce"><i></i>{legende}</span></figcaption>
+  </figure>
+</div>

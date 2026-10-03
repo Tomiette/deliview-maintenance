@@ -17,10 +17,12 @@ interface Props {
   href: string;
   // Inclinaison du fragment : alternée d'une carte à l'autre.
   sens?: 'droite' | 'gauche';
+  niveau?: 'h2' | 'h3';
 }
 
-const { icone, nom, benefice, points, fragment, href, sens = 'droite' } = Astro.props;
+const { icone, nom, benefice, points, fragment, href, sens = 'droite', niveau = 'h3' } = Astro.props;
 const Icone = ICONES[icone];
+const Titre = niveau;
 const base = lien(fragment.src);
 ---
 
@@ -42,7 +44,7 @@ const base = lien(fragment.src);
   </div>
   <div class="dv-pilier-corps">
     <span class="dv-tuile"><Icone taille={32} /></span>
-    <h3 class="mt-4 font-accent text-[21px] font-bold leading-[1.25] md:mt-5 md:text-[24px]">{nom}</h3>
+    <Titre class="mt-4 font-accent text-[21px] font-bold leading-[1.25] md:mt-5 md:text-[24px]">{nom}</Titre>
     <p class="mt-1.5 text-[17px] leading-[1.5] md:mt-2 md:text-[18px] md:leading-[1.55]">{benefice}</p>
     <ul class="mt-4 grid gap-2 text-[16px] leading-[1.45] dv-muted md:mt-5 md:gap-2.5 md:leading-[1.5]">
       {

@@ -51,7 +51,7 @@ export function ecart(prix: number, mediane: number): string {
 }
 
 // Exemple réel du ticket de comparaison (accueil), tiré d'une vraie analyse Pricing Menu, restaurant anonymisé :
-// une pizzeria sur Uber Eats, relevé du 1er octobre 2026 (même analyse que la capture capture-hero-*.webp).
+// une pizzeria sur Uber Eats, relevé du 1er octobre 2026.
 export interface ExempleComparaison {
   plat: string;
   plateforme: string;
@@ -87,6 +87,17 @@ export interface CaptureApp {
 
 // Modèle unique de fonctionnalité (décision de Tom, 2 octobre 2026) : nom, bénéfice en une phrase, 3 points au plus,
 // une vraie capture et un exemple chiffré tiré d'une vraie analyse, anonymisé (restaurant, ville, plateforme, date).
+// Bulle flottante devant une capture : uniquement des chiffres visibles sur cette capture.
+export interface BulleCapture {
+  sur?: string;
+  titre?: string;
+  fleche?: [string, string];
+  gain?: string;
+  chiffre?: string;
+  etoile?: boolean;
+  texte?: string;
+}
+
 export interface Fonctionnalite {
   id: string;
   icone: NomIcone;
@@ -94,6 +105,7 @@ export interface Fonctionnalite {
   benefice: string;
   points: string[];
   capture: CaptureApp;
+  bulle: BulleCapture;
   exemple: { texte: string; contexte: string };
 }
 
@@ -114,6 +126,9 @@ export interface Pilier {
 }
 
 const ANALYSE_DU = 'analyse du 1er octobre 2026';
+// Captures de l'app (refonte en relief, 3 octobre 2026) : compte d'essai, analyse réelle d'un restaurant de burgers
+// à Paris (2 octobre 2026), noms anonymisés (« Burger Démo », « Concurrent A, B… »), aucune vente affichée.
+export const ANONYME = 'Restaurant anonymisé.';
 
 export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
   'pricing-menu': {
@@ -126,7 +141,8 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
       'Un prix proposé dès que 2 concurrents vendent le même plat',
       'Le gain calculé pour 100 ventes du plat',
     ],
-    capture: { src: '/images/capture-carte', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Pricing Menu dans Deliview : score de positionnement, plats à augmenter, plats trop chers et gain pour 100 ventes, puis chaque plat avec votre prix, la médiane de la zone et le prix suggéré' },
+    capture: { src: '/images/scene-carte', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Ma carte dans Deliview : 21 plats moins chers que chez les concurrents, 17 plus chers que la zone, puis les plats à monter avec le prix conseillé et le gain, Uber Eats et Deliveroo dans la même liste. ${ANONYME}` },
+    bulle: { sur: 'Dips Bacon · Deliveroo', fleche: ['4,30 €', '5,60 €'], gain: '+1,30 €' },
     exemple: { texte: 'Margherita à 10,50 €. Médiane de la zone : 15,00 € chez 5 concurrents.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
   },
   'optimiseur-menu': {
@@ -139,7 +155,8 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
       'Comparées aux restaurants de votre zone',
       'Un modèle de description à suivre pour chaque plat',
     ],
-    capture: { src: '/images/capture-optimiseur', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Optimiseur menu dans Deliview : plats à retravailler, part des plats avec photo et avec une vraie description face à la zone, puis la liste des plats à reprendre' },
+    capture: { src: '/images/scene-presentation', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Présentation de la carte dans Deliview : 24 plats sur 37 à retravailler sur Uber Eats, par lesquels commencer, puis chaque plat avec ce qui lui manque (description absente ou trop courte). ${ANONYME}` },
+    bulle: { chiffre: '24 plats sur 37', texte: 'à retravailler sur Uber Eats' },
     exemple: { texte: '8 plats sur 33 sans description, soit 24 %. Chez 9 concurrents : 5 %.', contexte: `Restaurant de burgers à Paris, Deliveroo, ${ANALYSE_DU}` },
   },
   'prix-concurrents': {
@@ -152,7 +169,8 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
       'Chaque plat face au même plat, à taille égale',
       'Jusqu’à 3 concurrents de votre choix en plus',
     ],
-    capture: { src: '/images/capture-concurrence', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Concurrence dans Deliview : chaque restaurant de la zone avec sa note, son prix médian, son nombre d’avis et sa distance' },
+    capture: { src: '/images/scene-actions', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Actions proposées par Deliview : chaque plat moins cher que chez les concurrents, avec le prix des concurrents pour le même plat et le gain par article ou par commande. ${ANONYME}` },
+    bulle: { sur: 'Milkshake Vanille · Uber Eats', fleche: ['6,40 €', '7,60 €'], gain: '+1,20 € par commande' },
     exemple: { texte: 'Burger à 14,90 €. Médiane de la zone : 11,15 € chez 9 concurrents.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
   },
   'promos-zone': {
@@ -165,7 +183,8 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
       'Le prix réellement payé quand la remise est chiffrée',
       'Ce qui a changé depuis la dernière analyse',
     ],
-    capture: { src: '/images/capture-promos', largeurs: [800, 1300], largeur: 1312, hauteur: 403, alt: 'Promotions actives chez vos concurrents dans Deliview : chaque offre avec le restaurant, sa note, son prix médian et sa distance' },
+    capture: { src: '/images/scene-promos', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Promotions de la zone dans Deliview : 11 restaurants sur 15 en promo sur Uber Eats, 4 sur 10 sur Deliveroo, les offres les plus courantes et qui les affiche. ${ANONYME}` },
+    bulle: { chiffre: '11 sur 15', texte: 'restaurants en promo sur Uber Eats' },
     exemple: { texte: '10 concurrents sur 14 affichaient une promo. Le restaurant n’en avait aucune.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
   },
   'note-avis': {
@@ -178,7 +197,8 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
       'Votre nombre d’avis face au leur',
       'Uber Eats et Deliveroo, chacun de son côté',
     ],
-    capture: { src: '/images/capture-avis', largeurs: [800, 1600], largeur: 1600, hauteur: 1000, alt: 'Classement des notes de la zone dans Deliview : votre note, la moyenne de la zone et l’écart' },
+    capture: { src: '/images/scene-notes', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Notes de la zone dans Deliview : 4,2 sur Uber Eats (8e sur 14, moyenne de la zone 4,1) et 4,3 sur Deliveroo (4e sur 8), l’écart et le classement par note. ${ANONYME}` },
+    bulle: { chiffre: '4,2', etoile: true, texte: '8e sur 14 · Uber Eats' },
     exemple: { texte: '4,4 sur 169 avis, pour 4,2 en moyenne dans la zone : 2e sur 5.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
   },
 };
@@ -245,6 +265,54 @@ export const PILIERS: Pilier[] = [
     },
   },
 ];
+
+// Une vraie carte de l'app par pilier (cartes des piliers, articles) et par plateforme (pages Intégrations).
+export const FRAGMENTS: Record<string, CaptureApp> = {
+  'prix-et-concurrence': {
+    src: '/images/frag-action-milkshake',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 610,
+    alt: `Action proposée par Deliview : passer un milkshake de 6,40 € à 7,60 €, entre 7,73 € et 8,75 € chez 3 concurrents, soit 1,20 € de plus par commande. ${ANONYME}`,
+  },
+  'carte-et-marge': {
+    src: '/images/frag-a-monter',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 596,
+    alt: `Plats à monter dans Deliview, avec les prix des concurrents : dips bacon de 4,30 € à 5,60 €, 1,30 € de plus ; milkshake de 6,40 € à 7,60 €, 1,20 € de plus. ${ANONYME}`,
+  },
+  reputation: {
+    src: '/images/frag-notes-ue',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 557,
+    alt: `Note Uber Eats dans Deliview : 4,2 sur plus de 2 000 avis, moyenne de la zone 4,1, 8e sur 14, et la note à atteindre pour entrer dans le top 3. ${ANONYME}`,
+  },
+  'uber-eats': {
+    src: '/images/frag-position-ue',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 538,
+    alt: `Position Uber Eats dans Deliview : note 4,2, 8e sur 14 (moyenne de la zone 4,1), prix médian 14,40 €, 52 % au-dessus de la zone, aucune offre quand 10 concurrents sur 14 en ont une. ${ANONYME}`,
+  },
+  deliveroo: {
+    src: '/images/frag-position-dr',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 538,
+    alt: `Position Deliveroo dans Deliview : note 4,3, 4e sur 8 (moyenne de la zone 4,3), prix médian 12,90 €, 30 % au-dessus de la zone, aucune offre quand 4 concurrents sur 9 en ont une. ${ANONYME}`,
+  },
+};
+
+// Accueil de l'app, Uber Eats et Deliveroo côte à côte (page Intégrations, pilier Prix et concurrence).
+export const CAPTURE_POSITION: CaptureApp = {
+  src: '/images/scene-position',
+  largeurs: [800, 1200, 1600],
+  largeur: 1600,
+  hauteur: 1000,
+  alt: `Accueil de Deliview : la position du restaurant face à sa zone, Uber Eats et Deliveroo côte à côte (note, prix médian, offres), puis ce qui a changé chez les concurrents cette semaine. ${ANONYME}`,
+};
 
 // « Ressources » ouvre un menu : articles, questions fréquentes, Qui sommes-nous (décision de Tom, 2 octobre 2026).
 export const NAV = [

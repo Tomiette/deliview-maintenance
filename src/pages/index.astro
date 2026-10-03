@@ -26,7 +26,7 @@ import Fleche from '../icons/fleche.astro';
 import Lecture from '../icons/lecture.astro';
 import Etoile from '../icons/etoile.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
-import { EXEMPLE_MARGHERITA as ex, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
+import { ANONYME, EXEMPLE_MARGHERITA as ex, FRAGMENTS, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
 
 // Le quotidien : trois constats du terrain (textes de Tom, 3 octobre 2026).
 const constats = [
@@ -42,7 +42,6 @@ const etapes = [
 ];
 
 // Vraies captures de l'app (compte d'essai, restaurant anonymisé, analyse du 2 octobre 2026).
-const ANONYME = 'Restaurant anonymisé.';
 const captureAccueil: CaptureApp = {
   src: '/images/scene-accueil',
   largeurs: [800, 1200, 1600],
@@ -57,30 +56,7 @@ const captureCarte: CaptureApp = {
   hauteur: 1000,
   alt: `Écran Ma carte de Deliview : 21 plats moins chers que chez les concurrents, 17 plus chers que la zone, puis les plats à monter, Uber Eats et Deliveroo dans la même liste (dips bacon de 4,30 € à 5,60 €, milkshake de 6,40 € à 7,60 €). ${ANONYME}`,
 };
-// Une vraie carte de l'app par pilier, dans l'ordre des maquettes.
-const fragments: Record<string, CaptureApp> = {
-  'prix-et-concurrence': {
-    src: '/images/frag-action-milkshake',
-    largeurs: [400, 800],
-    largeur: 800,
-    hauteur: 610,
-    alt: `Action proposée par Deliview : passer un milkshake de 6,40 € à 7,60 €, entre 7,73 € et 8,75 € chez 3 concurrents, soit 1,20 € de plus par commande. ${ANONYME}`,
-  },
-  'carte-et-marge': {
-    src: '/images/frag-a-monter',
-    largeurs: [400, 800],
-    largeur: 800,
-    hauteur: 596,
-    alt: `Plats à monter dans Deliview, avec les prix des concurrents : dips bacon de 4,30 € à 5,60 €, 1,30 € de plus ; milkshake de 6,40 € à 7,60 €, 1,20 € de plus. ${ANONYME}`,
-  },
-  reputation: {
-    src: '/images/frag-notes-ue',
-    largeurs: [400, 800],
-    largeur: 800,
-    hauteur: 557,
-    alt: `Note Uber Eats dans Deliview : 4,2 sur plus de 2 000 avis, moyenne de la zone 4,1, 8e sur 14, et la note à atteindre pour entrer dans le top 3. ${ANONYME}`,
-  },
-};
+// Une vraie carte de l'app par pilier (FRAGMENTS), dans l'ordre des maquettes.
 const cartes = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug) => PILIERS.find((p) => p.slug === slug)!);
 
 const description = `Deliview centralise vos données Uber Eats et Deliveroo : vos prix face à votre zone, plat par plat, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
@@ -241,7 +217,7 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Ce que fait Deliview</p>
       <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">Vos prix, votre carte, votre note. Face à votre zone.</h2>
       <ul class="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
-        {cartes.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={fragments[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} />)}
+        {cartes.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} />)}
       </ul>
     </div>
   </section>
@@ -313,9 +289,9 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
     </div>
   </section>
 
-  <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" relief />
+  <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" />
 
-  <SectionDemo section="accueil-formulaire" relief />
+  <SectionDemo section="accueil-formulaire" />
 
   <VideoDialogue />
 </Base>

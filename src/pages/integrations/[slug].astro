@@ -1,16 +1,18 @@
 ---
-// Page par plateforme (motif Zapier) : ce que Deliview montre, comment démarrer, FAQ (direction « le passe »).
+// Page par plateforme (motif Zapier) : ce que Deliview montre, comment démarrer, FAQ.
+// Refonte en relief (3 octobre 2026) : en haut, la vraie carte « position » de la plateforme qui flotte en 3D.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Reassurance from '../../components/Reassurance.astro';
-import Ticket from '../../components/Ticket.astro';
+import Pastille from '../../components/Pastille.astro';
+import FragmentFlottant from '../../components/FragmentFlottant.astro';
 import Coche from '../../icons/coche.astro';
 import Fleche from '../../icons/fleche.astro';
 import Enveloppe from '../../icons/enveloppe.astro';
 import Toque from '../../icons/toque.astro';
 import EtiquettePrix from '../../icons/etiquette-prix.astro';
-import { PLATEFORMES, SITE, jsonldLogiciel, lien } from '../../lib/site';
+import { FRAGMENTS, PLATEFORMES, SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 export function getStaticPaths() {
   return PLATEFORMES.map((p) => ({ params: { slug: p.slug }, props: { slug: p.slug } }));
@@ -75,22 +77,30 @@ const c = CONTENU[slug];
   ]}
   jsonld={[jsonldLogiciel(c.description, `${SITE.url}/integrations/${p.slug}/`)]}
 >
-  <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="plateforme-titre" data-haut-de-page>
-    <div class="dv-container">
-      <p class="dv-overline">Intégration</p>
-      <h1 id="plateforme-titre" class="dv-h1 mt-3 max-w-[20ch] md:mt-4">{c.h1}</h1>
-      <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{c.lead}</p>
-      <div class="mt-7 md:mt-8">
-        <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`integration-${p.slug}`} data-cta-principal>Demander une démo</a>
+  <section class="overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="plateforme-titre" data-haut-de-page>
+    <div class="dv-container grid items-center gap-x-12 gap-y-8 lg:grid-cols-[1.1fr_1fr]">
+      <div>
+        <Pastille>Intégration</Pastille>
+        <h1 id="plateforme-titre" class="dv-h1 mt-5 max-w-[20ch] md:mt-6">{c.h1}</h1>
+        <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{c.lead}</p>
+        <div class="mt-7 md:mt-8">
+          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`integration-${p.slug}`} data-cta-principal>Demander une démo</a>
+        </div>
+        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
-      <Reassurance class="mt-[18px] md:mt-6" />
+      <div class="w-full">
+        <FragmentFlottant fragment={FRAGMENTS[p.slug]} priorite class="mx-auto max-w-[520px]" sizes="(min-width: 1024px) 440px, 84vw">
+          <span slot="puce" class="dv-puce"><i></i>{p.nom}</span>
+        </FragmentFlottant>
+        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
+      </div>
     </div>
   </section>
 
   <section class="dv-section bg-white" aria-labelledby="perimetre-titre">
     <div class="dv-container">
       <h2 id="perimetre-titre" class="dv-h2 max-w-[24ch]">Ce que Deliview fait avec {p.nom}</h2>
-      <Ticket class="mt-8 max-w-[640px] md:mt-10" papier="px-6 pb-6 pt-5 md:px-8 md:pb-8 md:pt-6" apparition="defilement">
+      <div class="dv-card mt-8 max-w-[680px] px-6 pb-6 pt-5 md:mt-10 md:px-8 md:pb-8 md:pt-6" data-apparition="">
         <p class="dv-ticket-entete"><span>Avec Deliview</span><span>{p.nom}</span></p>
         <ul class="mt-4 grid gap-3">
           {p.disponible.map((x) => (
@@ -100,25 +110,27 @@ const c = CONTENU[slug];
             </li>
           ))}
         </ul>
-      </Ticket>
+      </div>
     </div>
   </section>
 
   {
     c.etapes && (
-      <section class="dv-section bg-grey" aria-labelledby="demarrer-titre">
+      <section class="dv-section bg-grey dv-points" aria-labelledby="demarrer-titre">
         <div class="dv-container">
           <h2 id="demarrer-titre" class="dv-h2">Démarrer avec {p.nom}</h2>
-          <ol class="mt-8 grid gap-8 md:mt-10 md:grid-cols-3 md:gap-12">
+          <ol class="dv-etapes mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-6">
             {c.etapes.map((e, i) => {
               const Icone = [Enveloppe, Toque, EtiquettePrix][i];
               return (
-                <li>
-                  <div class="flex items-center gap-[18px]">
-                    <span class="font-accent text-[40px] font-bold leading-none text-blue md:text-[48px]" aria-hidden="true">{i + 1}</span>
+                <li class="dv-relief dv-etape" data-apparition="">
+                  <p class="flex items-center justify-between">
+                    <span class="dv-tuile dv-tuile-numero" aria-hidden="true">
+                      {i + 1}
+                    </span>
                     {Icone && <Icone taille={48} />}
-                  </div>
-                  <h3 class="mt-4 font-accent text-[20px] font-bold leading-[1.25] md:mt-5 md:text-[24px]">{e.titre}</h3>
+                  </p>
+                  <h3 class="mt-5 font-accent text-[20px] font-bold leading-[1.25] md:mt-6 md:text-[24px]">{e.titre}</h3>
                   <p class="mt-2 dv-muted">{e.texte}</p>
                 </li>
               );
@@ -131,25 +143,25 @@ const c = CONTENU[slug];
 
   <Faq questions={c.faq} fond="blanc" />
 
-  <section class="dv-section bg-grey" aria-labelledby="autres-integrations">
+  <section class="dv-section bg-grey dv-points" aria-labelledby="autres-integrations">
     <div class="dv-container">
       <h2 id="autres-integrations" class="dv-h2">Les autres intégrations</h2>
       <ul class="mt-8 grid gap-6 md:grid-cols-2">
         {
           autres.map((x) => (
-            <li class="dv-card flex flex-col p-6 md:p-7">
+            <li class="dv-card dv-carte-lien flex flex-col p-6 md:p-7">
               <p class="font-accent text-[22px] font-bold">{x.nom}</p>
               <p class="mt-3 flex-1 dv-muted">{x.resume}</p>
-              <a href={lien(`/integrations/${x.slug}/`)} class="dv-lien-fort mt-3 self-start">
+              <a href={lien(`/integrations/${x.slug}/`)} class="dv-lien-fort dv-etire mt-3 self-start">
                 Voir {x.nom}<Fleche taille={24} />
               </a>
             </li>
           ))
         }
-        <li class="dv-card flex flex-col p-6 md:p-7">
+        <li class="dv-card dv-carte-lien flex flex-col p-6 md:p-7">
           <p class="font-accent text-[22px] font-bold">Uber Eats et Deliveroo ensemble</p>
           <p class="mt-3 flex-1 dv-muted">Vos deux cartes côte à côte. Les écarts de prix, vos concurrents et votre note.</p>
-          <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="dv-lien-fort mt-3 self-start">
+          <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="dv-lien-fort dv-etire mt-3 self-start">
             Voir les deux ensemble<Fleche taille={24} />
           </a>
         </li>

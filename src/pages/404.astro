@@ -1,7 +1,8 @@
 ---
-// Page introuvable : liens utiles vers les piliers et la démo (direction « le passe »).
+// Page introuvable : liens utiles vers les piliers et la démo. Refonte en relief du 3 octobre 2026.
 import Base from '../layouts/Base.astro';
 import Fleche from '../icons/fleche.astro';
+import Pastille from '../components/Pastille.astro';
 import { ICONES } from '../lib/registre-icones';
 import { PILIERS, lien } from '../lib/site';
 ---
@@ -9,8 +10,8 @@ import { PILIERS, lien } from '../lib/site';
 <Base title="Page introuvable | Deliview" description="Cette page n’existe pas ou plus. Retrouvez les fonctionnalités de Deliview ou demandez une démo de 15 minutes." noindex>
   <section class="bg-grey py-16 md:py-[104px]" aria-labelledby="introuvable-titre" data-haut-de-page>
     <div class="dv-container max-w-[760px]">
-      <p class="dv-overline">Erreur 404</p>
-      <h1 id="introuvable-titre" class="dv-h1 mt-3 md:mt-4">Cette page n’existe pas</h1>
+      <Pastille>Erreur 404</Pastille>
+      <h1 id="introuvable-titre" class="dv-h1 mt-5 md:mt-6">Cette page n’existe pas</h1>
       <p class="dv-lead mt-5">Le lien est peut-être ancien ou mal recopié. Voici où aller.</p>
       <ul class="mt-8 grid gap-3">
         {
@@ -18,8 +19,10 @@ import { PILIERS, lien } from '../lib/site';
             const Icone = ICONES[p.icone];
             return (
               <li>
-                <a href={lien(`/solution/${p.slug}/`)} class="dv-card flex min-h-12 items-center gap-4 p-4 font-semibold hover:underline">
-                  <Icone taille={32} />
+                <a href={lien(`/solution/${p.slug}/`)} class="dv-card dv-carte-lien flex min-h-12 items-center gap-4 p-4 font-semibold hover:underline">
+                  <span class="dv-tuile dv-tuile-petite">
+                    <Icone taille={24} />
+                  </span>
                   {p.surtitre}
                 </a>
               </li>
