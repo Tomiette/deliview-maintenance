@@ -1,34 +1,42 @@
 User-agent: *
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 Disallow: /api/
 
 User-agent: OAI-SearchBot
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: GPTBot
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: ClaudeBot
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: Claude-SearchBot
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /app/
+Disallow: /outils/
 
 Sitemap: https://www.deliview.fr/sitemap.xml
