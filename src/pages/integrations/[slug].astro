@@ -4,7 +4,6 @@
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
-import Reassurance from '../../components/Reassurance.astro';
 import Pastille from '../../components/Pastille.astro';
 import FragmentFlottant from '../../components/FragmentFlottant.astro';
 import Coche from '../../icons/coche.astro';
@@ -86,13 +85,11 @@ const c = CONTENU[slug];
         <div class="mt-7 md:mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`integration-${p.slug}`} data-cta-principal>Demander une démo</a>
         </div>
-        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
       <div class="w-full">
         <FragmentFlottant fragment={FRAGMENTS[p.slug]} priorite class="mx-auto max-w-[520px]" sizes="(min-width: 1024px) 440px, 84vw">
           <span slot="puce" class="dv-puce"><i></i>{p.nom}</span>
         </FragmentFlottant>
-        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
       </div>
     </div>
   </section>

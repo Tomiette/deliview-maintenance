@@ -5,7 +5,6 @@ import Base from '../../layouts/Base.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import CartePilier from '../../components/CartePilier.astro';
 import Pastille from '../../components/Pastille.astro';
-import Reassurance from '../../components/Reassurance.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
@@ -30,7 +29,6 @@ const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug)
       <div class="mt-7 md:mt-8">
         <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="solution" data-cta-principal>Demander une démo</a>
       </div>
-      <Reassurance class="mt-[22px] md:mt-7" />
       <ul class="mt-12 grid gap-6 md:mt-16 lg:grid-cols-3">
         {ordre.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} niveau="h2" />)}
       </ul>

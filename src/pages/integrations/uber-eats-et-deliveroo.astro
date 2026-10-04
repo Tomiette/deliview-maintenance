@@ -6,7 +6,6 @@ import Scene3D from '../../components/Scene3D.astro';
 import Flottant from '../../components/Flottant.astro';
 import Bulle from '../../components/Bulle.astro';
 import Pastille from '../../components/Pastille.astro';
-import Reassurance from '../../components/Reassurance.astro';
 import Coche from '../../icons/coche.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -55,7 +54,6 @@ const faq = [
         <div class="mt-7 md:mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
         </div>
-        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
       <div class="w-full">
         <Scene3D capture={FONCTIONNALITES['pricing-menu'].capture} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
@@ -63,7 +61,6 @@ const faq = [
           <Flottant x={-4} y={60} xm={0} ym={66} droite z={15} duree={6.8} delai={-2}><Bulle sur="Dips Bacon · Deliveroo" fleche={['4,30 €', '5,60 €']} gain="+1,30 €" /></Flottant>
           <Flottant x={-4} y={72} z={12} duree={7.2} delai={-4} bureau><Bulle chiffre="21 plats" texte="moins chers que chez vos concurrents" /></Flottant>
         </Scene3D>
-        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
       </div>
     </div>
   </section>

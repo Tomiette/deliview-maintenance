@@ -12,7 +12,6 @@ import Pastille from '../../components/Pastille.astro';
 import CartePilier from '../../components/CartePilier.astro';
 import BlocFonctionnalite from '../../components/BlocFonctionnalite.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
-import Reassurance from '../../components/Reassurance.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Coche from '../../icons/coche.astro';
@@ -174,7 +173,6 @@ const fondAutres = fond();
         <div class="mt-7 md:mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`pilier-${pilier.slug}`} data-cta-principal>Demander une démo</a>
         </div>
-        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
       <div class="w-full">
         <Scene3D capture={haut.capture} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
@@ -193,7 +191,6 @@ const fondAutres = fond();
             ))
           }
         </Scene3D>
-        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
       </div>
     </div>
   </section>

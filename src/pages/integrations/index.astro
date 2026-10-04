@@ -3,7 +3,6 @@
 // Refonte en relief (3 octobre 2026) : en haut, l'accueil de l'app (Uber Eats et Deliveroo côte à côte) incliné en 3D.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
-import Reassurance from '../../components/Reassurance.astro';
 import Scene3D from '../../components/Scene3D.astro';
 import Flottant from '../../components/Flottant.astro';
 import Bulle from '../../components/Bulle.astro';
@@ -38,7 +37,6 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
         <div class="mt-7 md:mt-8">
           <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integrations" data-cta-principal>Demander une démo</a>
         </div>
-        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
       <div class="w-full">
         <Scene3D capture={CAPTURE_POSITION} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
@@ -47,7 +45,6 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
           <Flottant x={-4} y={58} xm={0} ym={64} z={16} duree={7} delai={-1}><Bulle chiffre="4,2" etoile texte="8e sur 14 · Uber Eats" /></Flottant>
           <Flottant x={-2} y={70} xm={0} ym={66} droite z={11} duree={6} delai={-3}><Bulle chiffre="4,3" etoile texte="4e sur 8 · Deliveroo" /></Flottant>
         </Scene3D>
-        <p class="dv-scene-note">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
       </div>
     </div>
   </section>
