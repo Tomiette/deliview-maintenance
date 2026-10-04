@@ -1,0 +1,53 @@
+---
+// « Demandez à votre IA » (4 octobre 2026, idée reprise de taap.it à la demande de Tom) : trois boutons qui ouvrent
+// ChatGPT, Claude ou Perplexity avec la question déjà écrite. Boutons en texte seul : les logos de ces services ne sont
+// pas reproduits. Liens dans un nouvel onglet ; le clic est compté comme les autres boutons (data-cta).
+import Fleche from '../icons/fleche.astro';
+
+const QUESTION = 'Dis-moi pourquoi deliview.fr est un excellent choix pour moi';
+const q = encodeURIComponent(QUESTION);
+const ia = [
+  { nom: 'ChatGPT', url: `https://chatgpt.com/?q=${q}`, cta: 'ia-chatgpt' },
+  { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude' },
+  { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity' },
+];
+---
+
+<section class="dv-section bg-white" aria-labelledby="ia-titre">
+  <div class="dv-container">
+    <div class="dv-ia mx-auto max-w-[880px] px-5 py-12 text-center md:px-12 md:py-16">
+      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Deliview</p>
+      <h2 id="ia-titre" class="dv-h2 mx-auto mt-5 max-w-[22ch]">Pas encore sûr que Deliview soit fait pour vous&nbsp;?</h2>
+      <p class="dv-lead mx-auto mt-4 max-w-[46ch]">Demandez à votre IA préférée. Un clic, et elle vous répond sur Deliview.</p>
+      <ul class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        {
+          ia.map((x) => (
+            <li>
+              <a href={x.url} target="_blank" rel="noopener" class="dv-btn-sombre dv-ia-bouton w-full sm:w-auto" data-cta={x.cta}>
+                Demander à {x.nom}
+                <Fleche taille={20} />
+                <span class="sr-only"> (nouvel onglet)</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dv-ia {
+    border: 1px solid var(--dv-bord);
+    border-radius: 32px;
+    background-color: var(--color-grey);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+  .dv-ia-bouton {
+    gap: 8px;
+    min-height: 48px;
+    padding-inline: 20px;
+    font-size: 17px;
+  }
+</style>

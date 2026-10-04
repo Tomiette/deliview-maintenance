@@ -26,6 +26,7 @@ import Fleche from '../icons/fleche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
 import { ANONYME, EXEMPLE_MARGHERITA as ex, FRAGMENTS, OFFRES, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
+import DemanderIA from '../components/DemanderIA.astro';
 
 // Le quotidien : trois constats du terrain (textes de Tom, 4 octobre 2026 : prix, promo, menu).
 const constats = [
@@ -317,6 +318,8 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
   </section>
 
   <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" />
+
+  <DemanderIA />
 
   <SectionDemo section="accueil-formulaire" />
 
