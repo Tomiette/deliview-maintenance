@@ -316,18 +316,19 @@ export const CAPTURE_POSITION: CaptureApp = {
 
 // « Ressources » ouvre un menu : articles, questions fréquentes, Qui sommes-nous (décision de Tom, 2 octobre 2026).
 export const NAV = [
-  { libelle: 'Notre solution', href: '/solution/', menu: 'solution' },
-  { libelle: 'Intégrations', href: '/integrations/' },
+  { libelle: 'Solution', href: '/solution/', menu: 'solution' },
   { libelle: 'Tarifs', href: '/tarifs/' },
   { libelle: 'Parrainage', href: '/parrainage/' },
   { libelle: 'Ressources', href: '/ressources/', menu: 'ressources' },
 ];
 
+// Icônes dessinées du registre (src/lib/registre-icones.ts), affichées à côté de chaque entrée du menu.
 export const MENU_RESSOURCES = [
-  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/' },
-  { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement.', href: '/questions-frequentes/' },
-  { libelle: 'Qui sommes-nous', phrase: 'Le projet, le fondateur et la construction de Deliview.', href: '/qui-sommes-nous/' },
-];
+  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/', icone: 'ticket' },
+  { libelle: 'Intégrations', phrase: 'Les plateformes qui fonctionnent avec Deliview.', href: '/integrations/', icone: 'tablette-qui-sonne' },
+  { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement.', href: '/questions-frequentes/', icone: 'enveloppe' },
+  { libelle: 'Qui sommes-nous', phrase: 'Le projet, le fondateur et la construction de Deliview.', href: '/qui-sommes-nous/', icone: 'toque' },
+] as const;
 
 export const PLATEFORMES = [
   {

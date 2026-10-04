@@ -1,24 +1,24 @@
 ---
 // En-tête collant et flottant (4 octobre 2026, logique de taap.it) : une barre blanche arrondie posée au-dessus de la
-// page, le logo, la navigation au centre avec les méga-menus « Notre solution » et « Ressources », « Se connecter » en
+// page, le logo, la navigation au centre avec les méga-menus « Solution » et « Ressources » (Intégrations rangée dans Ressources, 4 octobre 2026), « Se connecter » en
 // lien souligné et « Demander une démo » en bouton sombre. Le bouton bleu en pastille reste celui des pages.
 // Menus en <details> : utilisables sans JavaScript et au clavier (Entrée ou Espace pour ouvrir) ; Échap les ferme.
 import Cadenas from '../icons/cadenas.astro';
 import Chevron from '../icons/chevron.astro';
 import BoutonDemo from './BoutonDemo.astro';
 import Menu from '../icons/menu.astro';
-import { ICONES } from '../lib/registre-icones';
+import { ICONES, type NomIcone } from '../lib/registre-icones';
 import { MENU_RESSOURCES, NAV, PILIERS, SITE, lien } from '../lib/site';
 
-const MENUS: Record<string, { href: string; titre: string; phrase: string; icone?: (typeof PILIERS)[number]['icone'] }[]> = {
+const MENUS: Record<string, { href: string; titre: string; phrase: string; icone?: NomIcone }[]> = {
   solution: PILIERS.map((p) => ({ href: `/solution/${p.slug}/`, titre: p.surtitre, phrase: p.phrase, icone: p.icone })),
-  ressources: MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase })),
+  ressources: MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase, icone: r.icone })),
 };
 // Page en cours (sans la base de l'aperçu), pour marquer l'entrée active de la navigation.
 const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
 const actif = (href: string) => chemin === href;
 const dansMenu = (menu: string) =>
-  menu === 'solution' ? chemin.startsWith('/solution/') : MENU_RESSOURCES.some((r) => chemin.startsWith(r.href) && r.href !== '/');
+  menu === 'solution' ? chemin.startsWith('/solution/') : MENU_RESSOURCES.some((r) => chemin.startsWith(r.href));
 ---
 
 <header class="dv-entete sticky top-0 z-40">
@@ -85,7 +85,7 @@ const dansMenu = (menu: string) =>
           <Menu taille={32} />
         </summary>
         <div class="fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-6 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
-          <p class="dv-overline pt-3 pb-1">Notre solution</p>
+          <p class="dv-overline pt-3 pb-1">Solution</p>
           <ul>
             {
               PILIERS.map((p) => {
@@ -113,11 +113,17 @@ const dansMenu = (menu: string) =>
           <p class="dv-overline pt-6 pb-1">Ressources</p>
           <ul>
             {
-              MENU_RESSOURCES.map((r) => (
-                <li>
-                  <a href={lien(r.href)} class="flex min-h-12 items-center border-b border-grey-2/10 py-2 font-semibold">{r.libelle}</a>
-                </li>
-              ))
+              MENU_RESSOURCES.map((r) => {
+                const Icone = ICONES[r.icone];
+                return (
+                  <li>
+                    <a href={lien(r.href)} class="flex min-h-12 items-center gap-3 border-b border-grey-2/10 py-2 font-semibold" aria-current={actif(r.href) ? 'page' : undefined}>
+                      <Icone taille={32} />
+                      {r.libelle}
+                    </a>
+                  </li>
+                );
+              })
             }
             <li>
               <a href={SITE.app} class="flex min-h-12 items-center gap-2 py-2 font-semibold"><Cadenas taille={24} />Se connecter</a>
