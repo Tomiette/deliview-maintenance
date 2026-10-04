@@ -16,13 +16,13 @@ interface Props {
   niveau?: 'h1' | 'h2';
   id?: string;
 }
-const { section, titre = 'Voyez ce que vos prix peuvent vous rapporter', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo' } = Astro.props;
+const { section, titre = 'Demandez votre démo gratuite', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo' } = Astro.props;
 const Titre = niveau;
 const SousTitre = niveau === 'h1' ? 'h2' : 'h3';
 const etapes = [
-  { titre: 'Tom vous rappelle sous 24 h', texte: 'Le créneau se cale hors de vos services.' },
-  { titre: 'La démo, sur votre restaurant', texte: '15 minutes sur vos prix et votre zone.' },
-  { titre: 'La mise en place, avec vous', texte: 'Si vous continuez, Tom crée votre compte.' },
+  { titre: 'Tom vous rappelle sous 3 h', texte: 'On choisit ensemble un moment hors de vos services.' },
+  { titre: 'La démo', texte: 'Voyez où votre restaurant peut gagner en rentabilité sur Uber Eats et Deliveroo.' },
+  { titre: 'Si vous continuez', texte: 'Vous choisissez votre offre, et je vous accompagne pour la mise en place.' },
 ];
 ---
 
@@ -34,7 +34,7 @@ const etapes = [
     <div class="mt-7 grid items-start gap-10 md:mt-12 lg:grid-cols-2 lg:gap-14">
       <div id={`${id}-formulaire`} class="dv-demo-plateau dv-points-bleus px-3 py-5 sm:p-8 lg:p-10">
         <div class="dv-relief px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
-          <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>15&nbsp;min</span></p>
+          <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>30&nbsp;min</span></p>
           <DemoForm section={section} />
         </div>
       </div>
@@ -54,12 +54,47 @@ const etapes = [
           }
         </ol>
         <div class="mt-8 flex items-center gap-4 border-t border-grey-2/15 pt-7 md:mt-9">
-          <img src={lien('/images/tom-voisin.webp')} alt="Tom Voisin" width="400" height="400" loading="lazy" decoding="async" class="h-14 w-14 shrink-0 rounded-full object-cover md:h-16 md:w-16" />
-          <p class="text-[16px] leading-[1.5] md:text-[17px]">
-            C’est Tom qui vous rappelle.<br /><a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>
-          </p>
+          <span class="dv-tom-en-ligne">
+            <img src={lien('/images/tom-voisin.webp')} alt="Tom Voisin" width="400" height="400" loading="lazy" decoding="async" class="h-14 w-14 rounded-full object-cover md:h-16 md:w-16" />
+            <span class="dv-tom-en-ligne-pastille"><i aria-hidden="true"></i>En ligne</span>
+          </span>
+          <a href={`mailto:${SITE.email}`} class="text-[16px] font-semibold leading-[1.5] md:text-[17px]">{SITE.email}</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Photo de Tom avec la mention « En ligne » (demande de Tom, 4 octobre 2026). Point en Bleu 1 : la charte du site
+     n'a que cinq couleurs. */
+  .dv-tom-en-ligne {
+    position: relative;
+    flex-shrink: 0;
+    padding-bottom: 10px;
+  }
+  .dv-tom-en-ligne-pastille {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 999px;
+    background: var(--color-white);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-grey-2);
+  }
+  .dv-tom-en-ligne-pastille i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-blue);
+  }
+</style>

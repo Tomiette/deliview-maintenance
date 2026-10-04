@@ -11,7 +11,7 @@ export const SITE = {
   // Même texte partout (hero de l'accueil, Qui sommes-nous, pied de page, données structurées, LinkedIn).
   // Direction de copywriting fixée par Tom le 1er octobre 2026.
   definition:
-    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.',
+    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable.',
   // Argument central (décision de Tom, 2 octobre 2026).
   argument: 'Deliview centralise vos données de livraison Uber Eats et Deliveroo.',
   // Seul contact public depuis le 2 octobre 2026. Le numéro de Tom n'apparaît plus que dans les mentions légales (LCEN).
@@ -364,7 +364,7 @@ export const OFFRES: Offre[] = [
     nom: 'Essentiel',
     prix: 59,
     restaurants: '1 restaurant',
-    pour: 'Pour vendre chaque plat au bon prix',
+    pour: 'Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix',
     inclus: [
       'Vos données Uber Eats et Deliveroo réunies sur un seul écran',
       'Jusqu’à 20 concurrents de votre zone analysés',
@@ -381,7 +381,7 @@ export const OFFRES: Offre[] = [
     nom: 'Pro',
     prix: 149,
     restaurants: 'Jusqu’à 5 restaurants',
-    pour: 'Pour piloter la rentabilité de plusieurs restaurants',
+    pour: 'Pilotez la rentabilité de tous vos restaurants et gardez une longueur d’avance sur vos concurrents',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     inclus: [
@@ -397,7 +397,7 @@ export const OFFRES: Offre[] = [
     nom: 'Premium',
     prix: 349,
     restaurants: 'Jusqu’à 10 restaurants',
-    pour: 'Pour un groupe de restaurants, avec un suivi chaque mois',
+    pour: 'Tous vos restaurants plus rentables, avec Tom à vos côtés',
     base: 'Tout Pro, plus :',
     inclus: ['Accès illimités pour vos équipes', 'Un point chaque mois avec Tom sur vos prix'],
   },

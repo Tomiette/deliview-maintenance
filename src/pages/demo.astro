@@ -7,7 +7,7 @@ import Faq from '../components/Faq.astro';
 import { PRIX_ENTREE, SITE, lien } from '../lib/site';
 
 const description =
-  'Une démo de 15 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 24 h.';
+  'Une démo de 30 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 3 h.';
 
 const faq = [
   {
@@ -34,7 +34,7 @@ const erreurs = [
 ];
 ---
 
-<Base title="Demander une démo gratuite de 15 minutes | Deliview" description={description} ariane={[{ nom: 'Demander une démo', chemin: '/demo/' }]} fondHaut="blanc">
+<Base title="Demander une démo gratuite de 30 minutes | Deliview" description={description} ariane={[{ nom: 'Demander une démo', chemin: '/demo/' }]} fondHaut="blanc">
   {
     erreurs.map((e) => (
       <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
@@ -46,7 +46,7 @@ const erreurs = [
     section="page-demo"
     niveau="h1"
     titre="Demander une démo de Deliview"
-    sousTitre="15 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 24 h."
+    sousTitre="30 minutes sur votre restaurant : vos prix, vos concurrents, votre note. Tom vous rappelle sous 3 h."
   />
   <Faq questions={faq} titre="Avant la démo" fond="gris" />
 </Base>

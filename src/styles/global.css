@@ -1063,6 +1063,13 @@
     border-radius: 50%;
     background: var(--color-blue);
   }
+  /* Logo officiel de la plateforme, à gauche du nom (bulles du haut de l'accueil). */
+  .dv-puce-logo {
+    height: max(20px, 4cqi);
+    width: auto;
+    flex-shrink: 0;
+    border-radius: max(5px, 1cqi);
+  }
   .dv-puce-forte {
     font-weight: 700;
   }

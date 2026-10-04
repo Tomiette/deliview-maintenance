@@ -85,7 +85,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Peut-on essayer Deliview avant de payer ?',
-        r: `Oui, par une démo de 15&nbsp;minutes sur votre propre restaurant, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. <a href="${lien('/demo/')}">Demander une démo</a>.`,
+        r: `Oui, par une démo de 30&nbsp;minutes sur votre propre restaurant, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. <a href="${lien('/demo/')}">Demander une démo</a>.`,
       },
       {
         q: 'Comment ouvrir un compte ?',

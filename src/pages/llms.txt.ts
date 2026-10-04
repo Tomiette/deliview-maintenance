@@ -35,7 +35,7 @@ export const GET: APIRoute = async () => {
     '',
     `- [Questions fréquentes](${u('/questions-frequentes/')}) : ce que fait Deliview, pour qui, prix, engagement, fondateur.`,
     `- [Qui sommes-nous](${u('/qui-sommes-nous/')}) : le projet, Tom Voisin, fondateur, et la construction de Deliview.`,
-    `- [Demander une démo](${u('/demo/')}) : 15 minutes sur le restaurant du prospect.`,
+    `- [Demander une démo](${u('/demo/')}) : 30 minutes sur le restaurant du prospect.`,
     `- E-mail : ${SITE.email}`,
     '',
     '## Optional',

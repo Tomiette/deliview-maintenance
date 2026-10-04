@@ -1,6 +1,6 @@
 ---
 // Confirmation après l'envoi du formulaire sans JavaScript (la fonction « lead » redirige ici).
-// Direction « le passe » : le bon de démo est noté, Tom rappelle sous 24 h.
+// Direction « le passe » : le bon de démo est noté, Tom rappelle sous 3 h.
 import Base from '../layouts/Base.astro';
 import Ticket from '../components/Ticket.astro';
 import Coche from '../icons/coche.astro';
@@ -16,7 +16,7 @@ const suite = [
 
 <Base
   title="Demande reçue | Deliview"
-  description="Votre demande de démo Deliview est bien arrivée. Tom vous rappelle sous 24 h pour fixer un créneau de 15 minutes, sur votre propre restaurant."
+  description="Votre demande de démo Deliview est bien arrivée. Tom vous rappelle sous 3 h pour fixer un créneau de 30 minutes, sur votre propre restaurant."
   noindex
 >
   <section class="bg-grey dv-points py-16 md:py-[104px]" aria-labelledby="merci-titre">
@@ -24,8 +24,8 @@ const suite = [
       <Ticket inclinaison={-1} papier="px-6 pb-8 pt-6 md:px-10 md:pb-10 md:pt-8">
         <p class="dv-ticket-entete"><span>Bon de démo</span><span>Reçu</span></p>
         <p class="mt-5 flex items-center gap-3 dv-overline"><Coche taille={32} />Demande reçue</p>
-        <h1 id="merci-titre" class="dv-h1 mt-3">C’est noté. Tom vous rappelle sous 24&nbsp;h.</h1>
-        <p class="dv-lead mt-5">Il vous appelle pour fixer votre démo de 15&nbsp;minutes, faite sur votre propre restaurant.</p>
+        <h1 id="merci-titre" class="dv-h1 mt-3">C’est noté. Tom vous rappelle sous 3&nbsp;h.</h1>
+        <p class="dv-lead mt-5">Il vous appelle pour fixer votre démo de 30&nbsp;minutes, faite sur votre propre restaurant.</p>
         <p class="mt-4">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
         {SITE.rendezVous && <a href={SITE.rendezVous} class="dv-btn dv-btn-plein mt-8" rel="noopener">Choisir mon créneau maintenant</a>}
       </Ticket>

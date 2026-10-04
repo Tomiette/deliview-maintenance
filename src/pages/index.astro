@@ -12,7 +12,6 @@ import Flottant from '../components/Flottant.astro';
 import TablettesRelief from '../components/TablettesRelief.astro';
 import CartePilier from '../components/CartePilier.astro';
 import TicketComparaison from '../components/TicketComparaison.astro';
-import Reassurance from '../components/Reassurance.astro';
 import VideoDialogue from '../components/VideoDialogue.astro';
 import BlocFondateur from '../components/BlocFondateur.astro';
 import Faq from '../components/Faq.astro';
@@ -26,19 +25,20 @@ import Fleche from '../icons/fleche.astro';
 import Lecture from '../icons/lecture.astro';
 import Etoile from '../icons/etoile.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
+import { logoPlateforme } from '../lib/logos';
 import { ANONYME, EXEMPLE_MARGHERITA as ex, FRAGMENTS, OFFRES, PILIERS, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
 
-// Le quotidien : trois constats du terrain (textes de Tom, 3 octobre 2026).
+// Le quotidien : trois constats du terrain (textes de Tom, 4 octobre 2026 : prix, promo, menu).
 const constats = [
-  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent direct vend la même pizza plus cher. Vous ne le voyez pas. Vous pourriez monter votre prix juste sous le sien et rester moins cher que lui.' },
-  { icone: Ardoise, titre: 'Un menu construit trop vite', texte: 'Des photos manquent, des descriptions sont vides. Personne n’a eu le temps d’y revenir. Et votre restaurant ressort moins bien sur les plateformes.' },
-  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Votre classement sur les plateformes était déjà correct. La promo, elle, se paie sur chaque commande.' },
+  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent vend la même pizza plus cher, et vous ne le voyez pas. Montez votre prix juste sous le sien : vous restez moins cher, et vous gagnez plus.' },
+  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Sans promo, vous étiez déjà bien classé sur les plateformes. Celle-ci ne vous fait rien gagner, mais elle vous coûte sur chaque commande.' },
+  { icone: Ardoise, titre: 'Un menu construit trop vite', texte: 'Sans belles photos ni bonnes descriptions, le client ne commande pas. Et moins de commandes, c’est moins de visibilité sur les plateformes.' },
 ];
 
 const etapes = [
-  { icone: Enveloppe, titre: 'Une démo sur votre restaurant', texte: '15 minutes avec Tom, sur vos vrais prix.' },
-  { icone: Toque, titre: 'La mise en place avec Tom', texte: 'Votre compte est prêt. Rien à installer.' },
-  { icone: EtiquettePrix, titre: 'Vous ajustez vos prix et vos promos', texte: 'Plat par plat, avec les chiffres de votre zone.' },
+  { icone: Enveloppe, titre: 'La démo', texte: 'Sur votre restaurant, avec Tom.' },
+  { icone: Toque, titre: 'La mise en place', texte: 'Tom ouvre votre compte.' },
+  { icone: EtiquettePrix, titre: 'Vous gagnez plus', texte: 'Votre activité livraison devient plus rentable.' },
 ];
 
 // Vraies captures de l'app (compte d'essai, restaurant anonymisé, analyse du 2 octobre 2026).
@@ -76,6 +76,10 @@ const video = {
 };
 
 const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
+const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six', 'Sept', 'Huit', 'Neuf', 'Dix'][ex.concurrents] ?? String(ex.concurrents);
+// Logos officiels dans les bulles Uber Eats et Deliveroo du haut de page (demande de Tom, 4 octobre 2026).
+const logoUber = logoPlateforme('uber-eats');
+const logoDeliveroo = logoPlateforme('deliveroo');
 const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
 ---
 
@@ -97,13 +101,12 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
           <a href="#demo" class="dv-btn dv-btn-plein" data-cta="hero" data-cta-principal>Demander une démo</a>
           <a href={lienVideo} class="dv-btn dv-btn-contour dv-hero-video-bureau" data-video-ouvrir data-cta="video-haut-de-page"><Lecture taille={24} />Voir Deliview en action</a>
         </div>
-        <Reassurance class="mt-[22px] md:mt-7" />
       </div>
       <div class="dv-hero-visuel">
         <span class="dv-hero-forme" aria-hidden="true"></span>
         <Scene3D capture={captureAccueil} priorite suiviPointeur ratio={1.16} ratioMobile={1.02} appareil={{ x: 3, y: 15, largeur: 92 }} sizes="(min-width: 1200px) 520px, (min-width: 1024px) 44vw, 92vw">
-          <Flottant x={2} y={5} xm={2} ym={5} z={9} duree={5.6}><span class="dv-puce"><i></i>Uber Eats</span></Flottant>
-          <Flottant x={-3} y={19} xm={0} ym={10} droite z={14} duree={6.4} delai={-2}><span class="dv-puce"><i></i>Deliveroo</span></Flottant>
+          <Flottant x={2} y={5} xm={2} ym={5} z={9} duree={5.6}><span class="dv-puce">{logoUber && <img src={logoUber.src} alt="" width={logoUber.largeur} height={logoUber.hauteur} class="dv-puce-logo" />}{!logoUber && <i></i>}Uber Eats</span></Flottant>
+          <Flottant x={-3} y={19} xm={0} ym={10} droite z={14} duree={6.4} delai={-2}><span class="dv-puce">{logoDeliveroo && <img src={logoDeliveroo.src} alt="" width={logoDeliveroo.largeur} height={logoDeliveroo.hauteur} class="dv-puce-logo" />}{!logoDeliveroo && <i></i>}Deliveroo</span></Flottant>
           <Flottant x={33} y={2} z={6} duree={6.8} delai={-4} bureau><span class="dv-puce">21 restaurants suivis dans votre zone</span></Flottant>
           <Flottant x={-3} y={58} xm={0} ym={66} z={16} duree={7} delai={-1}>
             <div class="dv-bulle">
@@ -119,7 +122,6 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
             </div>
           </Flottant>
         </Scene3D>
-        <p class="dv-scene-note">{ANONYME} Chiffres tirés d’une vraie analyse Deliview.</p>
         <a href={lienVideo} class="dv-btn dv-btn-contour dv-hero-video-mobile" data-video-ouvrir data-cta="video-haut-de-page"><Lecture taille={24} />Voir Deliview en action</a>
       </div>
     </div>
@@ -162,8 +164,8 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
     <div class="dv-container dv-bascule">
       <div class="dv-bascule-texte">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>La bascule</p>
-        <h2 id="bascule-titre" class="mt-4 font-accent text-[40px] font-bold leading-[1.05] tracking-[-0.015em] md:mt-5 md:text-[60px]">Une seule tablette.</h2>
-        <p class="dv-bascule-lead mt-4 md:mt-6">Uber&nbsp;Eats et Deliveroo réunis sur un seul écran. Vos prix, votre carte et votre note, face aux restaurants de votre zone.</p>
+        <h2 id="bascule-titre" class="mt-4 font-accent text-[36px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-5 md:text-[44px]">Toutes vos données de livraison centralisées</h2>
+        <p class="dv-bascule-lead mt-4 md:mt-6">Deliview regroupe vos données Uber&nbsp;Eats et Deliveroo. Vous voyez ce que font vos concurrents. Vous adoptez une stratégie de prix et de promotion intelligente, et vous rendez votre activité livraison plus rentable.</p>
       </div>
       <div class="dv-bascule-tablette">
         <Scene3D capture={captureCarte} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
@@ -191,7 +193,7 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
   <section id="comment-ca-marche" class="dv-section bg-white" aria-labelledby="etapes-titre">
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Comment ça marche</p>
-      <h2 id="etapes-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">De la démo à vos premiers prix revus</h2>
+      <h2 id="etapes-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">De la démo à vos premiers résultats</h2>
       <ol class="dv-etapes mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
         {
           etapes.map((e, i) => (
@@ -229,7 +231,7 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Exemple réel</p>
         <h2 id="exemple-titre" class="dv-h2 mt-4 max-w-[18ch] md:mt-5">Une Margherita vendue {sousLaZone} sous le prix de sa zone</h2>
         <p class="dv-lead mt-3.5 max-w-[48ch] md:mt-5">
-          Une pizzeria analysée le 1<sup>er</sup>&nbsp;octobre 2026 sur Uber&nbsp;Eats. {ex.concurrents}&nbsp;concurrents vendent la même pizza, à la même taille.
+          Une pizzeria sur Uber&nbsp;Eats, analysée le 1<sup>er</sup>&nbsp;octobre 2026. {nombreEnLettres} concurrents directs vendent la même pizza, à la même taille, autour de {euros(ex.mediane)}. Elle la vend {euros(ex.votrePrix)}.
         </p>
       </div>
       <div class="dv-exemple-plateau" data-apparition="">
@@ -244,10 +246,9 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
       </div>
       <div class="dv-exemple-suite">
         <p class="dv-lead max-w-[48ch]">
-          Deliview propose {euros(ex.prixPropose)}, une première hausse avant la médiane si les ventes tiennent. Sur 100&nbsp;Margherita vendues, c’est {euros(ex.gainPour100, 0)} de plus.
+          Deliview propose de passer à {euros(ex.prixPropose)}. La pizza reste moins chère que chez les voisins, et sur 100&nbsp;Margherita vendues, c’est {euros(ex.gainPour100, 0)} de plus.
         </p>
         <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour mt-6 w-full sm:w-auto md:mt-8" data-cta="exemple-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
-        <p class="mt-4 text-[14px] leading-[1.5] dv-muted md:mt-5 md:text-[15px]">Restaurant anonymisé. Chiffres tirés d’une vraie analyse Deliview.</p>
       </div>
     </div>
   </section>
@@ -258,8 +259,8 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
   <section class="dv-section bg-white" aria-labelledby="tarifs-titre">
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Tarifs</p>
-      <h2 id="tarifs-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">Un prix fixe par mois, sans engagement</h2>
-      <p class="dv-lead mt-3 md:mt-4">Selon votre nombre de restaurants. La mise en place est offerte.</p>
+      <h2 id="tarifs-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">Un prix fixe, sans engagement</h2>
+      <p class="dv-lead mt-3 md:mt-4">Mise en place offerte.</p>
       <ul class="dv-offres mt-8 grid items-end gap-5 md:mt-14 md:grid-cols-3 md:gap-6">
         {
           OFFRES.map((o) => (
