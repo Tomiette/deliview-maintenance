@@ -2,6 +2,8 @@
 // structurées (FAQPage) et les fichiers llms.txt / llms-full.txt lus par les moteurs IA.
 // Règle : uniquement des faits vérifiables aujourd'hui (offres, fonctionnement, hébergement, fondateur).
 // Jamais la façon dont les données sont obtenues (décision de Tom, 2 octobre 2026).
+// 4 octobre 2026 (accord de Tom) : Deliview applique les prix et promos validés et importe les ventes chaque semaine
+// (app, 3 octobre) ; les réponses « Non » d'avant sont remplacées. Délai repris de l'app (lib/promesse.ts : 10 minutes).
 // Réponse directe dans la première phrase ; HTML limité aux liens et aux espaces insécables.
 import { OFFRES, SITE, lien } from './site';
 
@@ -19,7 +21,7 @@ export interface RubriqueFaq {
 
 const prix = OFFRES.map((o) => `${o.nom}&nbsp;: ${o.prix}&nbsp;€&nbsp;HT par mois, ${o.restaurants.toLowerCase()}`).join('. ');
 
-export const FAQ_MAJ = '2026-10-02';
+export const FAQ_MAJ = '2026-10-04';
 
 export const FAQ: RubriqueFaq[] = [
   {
@@ -59,11 +61,15 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Deliview modifie-t-il mes prix sur les plateformes ?',
-        r: 'Non. Deliview propose un prix avec ses sources. Vous décidez, puis vous le changez dans votre espace Uber&nbsp;Eats ou Deliveroo.',
+        r: 'Oui, quand vous le décidez. Deliview propose un prix avec ses sources. Vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Même chose pour vos promotions. Rien ne change sans votre accord.',
+      },
+      {
+        q: 'Comment Deliview applique-t-il mes changements ?',
+        r: 'Vous invitez Deliview comme utilisateur, une fois, dans Uber&nbsp;Eats Manager et dans le Partner Hub de Deliveroo. Jamais avec votre mot de passe. Vous retirez cet accès quand vous voulez, depuis la plateforme.',
       },
       {
         q: 'Deliview suit-il mes commandes et mon chiffre d’affaires ?',
-        r: 'Non. Deliview compare vos prix, vos plats, vos notes et vos promos à votre zone. Il ne suit ni vos commandes ni votre chiffre d’affaires.',
+        r: 'Oui, semaine par semaine. Deliview ajoute vos ventes Uber&nbsp;Eats et Deliveroo chaque semaine, avec trois mois d’historique au départ. Vous voyez vos ventes, vos commandes, votre panier moyen et vos créneaux creux. Vous n’avez rien à importer. Les commandes en direct restent sur vos tablettes.',
       },
       {
         q: 'Faut-il installer quelque chose ?',
@@ -103,7 +109,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Comment vérifier le sérieux de Deliview avant de s’abonner ?',
-        r: `La démo se fait sur votre restaurant. Chaque prix comparé cite ses sources. L’abonnement est sans engagement. Deliview est éditée par DELIVIEW SAS, immatriculée en France (SIREN 102&nbsp;681&nbsp;509). Voir les <a href="${lien('/mentions-legales/')}">mentions légales</a>.`,
+        r: `La démo se fait sur votre restaurant. Chaque prix comparé cite ses sources. L’abonnement est sans engagement. Deliview est éditée par DELIVIEW SAS, immatriculée en France (SIREN 102&nbsp;681&nbsp;509). Tous les faits à vérifier, avec leurs liens&nbsp;: <a href="${lien('/deliview-est-il-fiable/')}">Deliview est-il fiable&nbsp;?</a>`,
       },
       {
         q: 'Où sont hébergées les données ?',

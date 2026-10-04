@@ -4,16 +4,30 @@
 import type { APIRoute } from 'astro';
 import { SITE } from '../lib/site';
 
-const ROBOTS_IA = ['OAI-SearchBot', 'GPTBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'PerplexityBot', 'Google-Extended'];
+// Robots des moteurs de réponse et des modèles d'IA (noms publiés par leurs éditeurs). Un robot qui a son propre groupe
+// ignore le groupe « * » : chaque groupe reprend donc les mêmes exclusions (4 octobre 2026).
+const ROBOTS_IA = [
+  'OAI-SearchBot',
+  'GPTBot',
+  'ChatGPT-User',
+  'ClaudeBot',
+  'Claude-SearchBot',
+  'Claude-User',
+  'PerplexityBot',
+  'Perplexity-User',
+  'Google-Extended',
+  'Applebot-Extended',
+  'CCBot',
+];
+const EXCLUS = ['/app/', '/api/'];
 
 export const GET: APIRoute = () => {
   const lignes = [
     'User-agent: *',
     'Allow: /',
-    'Disallow: /app/',
-    'Disallow: /api/',
+    ...EXCLUS.map((c) => `Disallow: ${c}`),
     '',
-    ...ROBOTS_IA.flatMap((r) => [`User-agent: ${r}`, 'Allow: /', 'Disallow: /app/', '']),
+    ...ROBOTS_IA.flatMap((r) => [`User-agent: ${r}`, 'Allow: /', ...EXCLUS.map((c) => `Disallow: ${c}`), '']),
     `Sitemap: ${SITE.url}/sitemap.xml`,
     '',
   ];

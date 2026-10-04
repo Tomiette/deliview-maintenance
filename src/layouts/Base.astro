@@ -41,12 +41,14 @@ const organisation = {
   url: SITE.url,
   logo: SITE.url + '/images/logo-deliview.png',
   vatID: 'FR87102681509',
+  identifier: { '@type': 'PropertyValue', propertyID: 'SIREN', value: '102681509' },
   address: { '@type': 'PostalAddress', streetAddress: '9 rue Maurice Hubert', postalCode: '61340', addressLocality: 'Berd’Huis', addressCountry: 'FR' },
   description: SITE.definition,
   slogan: SITE.slogan,
   email: SITE.email,
   areaServed: 'FR',
-  sameAs: [SITE.linkedinEntreprise],
+  // Profils officiels et fiche au registre national des entreprises (même entité partout, 4 octobre 2026).
+  sameAs: [SITE.linkedinEntreprise, 'https://annuaire-entreprises.data.gouv.fr/entreprise/102681509'],
   knowsAbout: ['Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison', 'Analyse de la concurrence des restaurants'],
   contactPoint: {
     '@type': 'ContactPoint',
