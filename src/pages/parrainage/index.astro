@@ -8,7 +8,6 @@ import Base from '../../layouts/Base.astro';
 import Pastille from '../../components/Pastille.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
-import Pieces from '../../icons/pieces.astro';
 import { OFFRES, SITE, lien } from '../../lib/site';
 
 const PAR_MOIS = 2;
@@ -42,7 +41,7 @@ const erreurs = [
 const pageUrl = SITE.url + '/parrainage/';
 ---
 
-<Base title="Parrainage : 2 restaurateurs, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Parrainage', chemin: '/parrainage/' }]}>
+<Base title="Parrainage : 2 restaurateurs, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Parrainage', chemin: '/parrainage/' }]} fondHaut="blanc">
   {
     erreurs.map((e) => (
       <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
@@ -53,30 +52,29 @@ const pageUrl = SITE.url + '/parrainage/';
     ))
   }
 
-  <!-- Haut de page : l'offre et le curseur -->
-  <section class="bg-grey pb-16 pt-6 md:pb-[96px] md:pt-10" aria-labelledby="parrainage-titre" data-haut-de-page>
-    <div class="dv-container max-w-[920px] text-center">
-      <Pastille icone={Pieces}>Parrainage</Pastille>
-      <h1 id="parrainage-titre" class="dv-h1 mx-auto mt-5 max-w-[18ch] md:mt-6">
-        <span class="text-blue">2&nbsp;restaurateurs</span> parrainés, 1&nbsp;mois offert
+  <!-- Haut de page : l'offre et le curseur (mise en page de taap.it : titre centré, colonnes en fond, curseur pleine
+       largeur avec la bulle sous le bouton du curseur et le gain en grand à droite) -->
+  <section class="dv-parr-hero overflow-x-clip pb-16 pt-6 md:pb-[104px] md:pt-12" aria-labelledby="parrainage-titre" data-haut-de-page>
+    <div class="dv-container max-w-[1100px] text-center">
+      <h1 id="parrainage-titre" class="dv-h1 mx-auto max-w-[20ch]">
+        <span class="text-blue">2&nbsp;parrainages</span> = 1&nbsp;mois offert.<br class="hidden sm:block" /> Sans limite.
       </h1>
-      <p class="dv-lead mx-auto mt-4 max-w-[50ch] md:mt-5">
-        Vous utilisez Deliview&nbsp;? Recommandez-le aux restaurateurs que vous connaissez. Tous les 2&nbsp;filleuls abonnés, votre mois suivant est offert.
+      <p class="dv-lead mx-auto mt-4 max-w-[34ch] md:mt-5">
+        Vos voisins restaurateurs. Notre produit. Un mois d’abonnement offert tous les 2&nbsp;filleuls abonnés.
       </p>
-      <a href="#lien" class="dv-btn dv-btn-contour mt-7">Créer mon lien de parrainage</a>
+      <a href="#lien" class="dv-btn-sombre mt-7 md:mt-8">Créer mon lien de parrainage</a>
 
-      <div class="dv-relief dv-parr-calcul mx-auto mt-10 max-w-[760px] px-5 py-7 text-left sm:px-8 md:mt-12 md:px-10 md:py-9">
-        <label for="parr-nombre" class="block text-[16px] font-semibold leading-[1.3]">
-          Restaurateurs parrainés&nbsp;: <output id="parr-nombre-valeur" for="parr-nombre" class="dv-parr-chiffre-petit">6</output>
-        </label>
-        <input id="parr-nombre" type="range" min="0" max="20" step="1" value="6" class="dv-parr-curseur mt-4 w-full" aria-describedby="parr-resultat" />
-        <div id="parr-resultat" class="mt-6 flex flex-wrap items-end gap-x-4 gap-y-1" aria-live="polite">
-          <p class="dv-parr-chiffre"><span data-parr-mois>3</span> <span data-parr-mot>mois</span></p>
-          <p class="pb-2 text-[18px] font-semibold leading-[1.3]">d’abonnement offerts</p>
+      <div class="dv-parr-calcul mt-12 md:mt-16">
+        <div class="dv-parr-piste">
+          <label for="parr-nombre" class="sr-only">Nombre de restaurateurs parrainés</label>
+          <input id="parr-nombre" type="range" min="0" max="20" step="1" value="10" class="dv-parr-curseur w-full" aria-describedby="parr-resultat" />
+          <output for="parr-nombre" class="dv-parr-bulle" aria-hidden="true" data-parr-bulle><span id="parr-nombre-valeur">10</span>&nbsp;parrainages</output>
         </div>
-        <p class="mt-2 text-[16px] leading-[1.5] dv-muted">
-          Avec l’offre {pro.nom}, c’est <strong class="font-chiffres text-grey-2" data-parr-euros>{3 * pro.prix}&nbsp;€</strong> HT que vous ne payez pas.
-        </p>
+        <div id="parr-resultat" class="dv-parr-gain" aria-live="polite">
+          <p class="dv-parr-chiffre"><span data-parr-mois>5</span>&nbsp;mois</p>
+          <p class="dv-parr-sous">offerts</p>
+          <p class="mt-1 text-[15px] leading-[1.4] dv-muted">soit <strong class="font-chiffres font-semibold text-grey-2" data-parr-euros>{5 * pro.prix}&nbsp;€</strong> HT en offre {pro.nom}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -145,19 +143,29 @@ const pageUrl = SITE.url + '/parrainage/';
   const curseur = document.getElementById('parr-nombre');
   const valeur = document.getElementById('parr-nombre-valeur');
   const mois = document.querySelector('[data-parr-mois]');
-  const mot = document.querySelector('[data-parr-mot]');
   const euros = document.querySelector('[data-parr-euros]');
+  const bulle = document.querySelector('[data-parr-bulle]');
   const nf = new Intl.NumberFormat('fr-FR');
   function majCurseur() {
     const n = Number(curseur.value);
     const m = Math.floor(n / PAR_MOIS);
     valeur.textContent = String(n);
     mois.textContent = String(m);
-    mot.textContent = 'mois';
     euros.textContent = nf.format(m * prixPro) + ' €';
-    curseur.style.setProperty('--parr-rempli', (n / Number(curseur.max)) * 100 + '%');
+    const pct = (n / Number(curseur.max)) * 100;
+    curseur.style.setProperty('--parr-rempli', pct + '%');
+    bulle.lastChild.textContent = n > 1 ? '\u00a0parrainages' : '\u00a0parrainage';
+    placerBulle();
     curseur.setAttribute('aria-valuetext', n + ' restaurateurs parrainés, ' + m + ' mois offerts');
   }
+  // La bulle suit le bouton du curseur (32 px de large), sans jamais sortir de la piste.
+  function placerBulle() {
+    const w = curseur.clientWidth;
+    const bw = bulle.offsetWidth;
+    const x = 16 + (Number(curseur.value) / Number(curseur.max)) * (w - 32);
+    bulle.style.left = Math.min(Math.max(x, bw / 2), w - bw / 2) + 'px';
+  }
+  addEventListener('resize', placerBulle);
   curseur.addEventListener('input', majCurseur);
   majCurseur();
 
@@ -196,11 +204,65 @@ const pageUrl = SITE.url + '/parrainage/';
 </script>
 
 <style>
+  /* Fond du haut : colonnes fines (Gris 2 à 8 %) sur un dégradé blanc vers gris, comme taap.it, aux couleurs de la charte. */
+  .dv-parr-hero {
+    background-color: var(--color-grey);
+    background-image:
+      linear-gradient(to bottom, var(--color-white), color-mix(in srgb, var(--color-white) 0%, transparent) 70%),
+      repeating-linear-gradient(to right, color-mix(in srgb, var(--color-grey-2) 8%, transparent) 0 1px, transparent 1px 176px);
+    background-position: center top;
+    border-bottom: 1px solid var(--dv-bord);
+  }
+  .dv-parr-calcul {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+  }
+  @media (min-width: 768px) {
+    .dv-parr-calcul {
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+    }
+  }
+  .dv-parr-piste {
+    position: relative;
+    padding-bottom: 56px;
+  }
+  .dv-parr-bulle {
+    position: absolute;
+    top: 44px;
+    transform: translateX(-50%);
+    padding: 8px 12px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 10px;
+    background: var(--color-white);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-grey-2) 10%, transparent);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--color-grey-2);
+  }
+  .dv-parr-bulle span {
+    font-family: var(--font-chiffres);
+    font-weight: 700;
+  }
+  .dv-parr-gain {
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .dv-parr-gain {
+      min-width: 220px;
+      text-align: left;
+    }
+  }
   .dv-parr-chiffre {
     font-family: var(--font-chiffres);
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 700;
     line-height: 1;
+    letter-spacing: -0.02em;
     color: var(--color-blue);
   }
   @media (min-width: 768px) {
@@ -208,52 +270,57 @@ const pageUrl = SITE.url + '/parrainage/';
       font-size: 64px;
     }
   }
-  .dv-parr-chiffre-petit {
-    font-family: var(--font-chiffres);
+  .dv-parr-sous {
+    margin-top: 6px;
+    font-size: 20px;
     font-weight: 700;
-    color: var(--color-blue);
+    line-height: 1.2;
   }
   .dv-parr-curseur {
-    --parr-rempli: 30%;
+    --parr-rempli: 50%;
+    display: block;
     appearance: none;
     height: 44px;
     background: transparent;
     cursor: pointer;
   }
   .dv-parr-curseur::-webkit-slider-runnable-track {
-    height: 12px;
+    height: 16px;
     border-radius: 999px;
-    background: linear-gradient(to right, var(--color-blue) var(--parr-rempli), color-mix(in srgb, var(--color-blue) 15%, transparent) var(--parr-rempli));
+    background: linear-gradient(to right, var(--color-blue) var(--parr-rempli), var(--color-white) var(--parr-rempli));
+    box-shadow: inset 0 0 0 1px var(--dv-bord);
   }
   .dv-parr-curseur::-moz-range-track {
-    height: 12px;
+    height: 16px;
     border-radius: 999px;
-    background: color-mix(in srgb, var(--color-blue) 15%, transparent);
+    background: var(--color-white);
+    box-shadow: inset 0 0 0 1px var(--dv-bord);
   }
   .dv-parr-curseur::-moz-range-progress {
-    height: 12px;
+    height: 16px;
     border-radius: 999px;
     background: var(--color-blue);
   }
   .dv-parr-curseur::-webkit-slider-thumb {
     appearance: none;
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     margin-top: -8px;
     border: 4px solid var(--color-blue);
     border-radius: 50%;
     background: var(--color-white);
   }
   .dv-parr-curseur::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
     border: 4px solid var(--color-blue);
     border-radius: 50%;
     background: var(--color-white);
   }
   .dv-parr-curseur:focus-visible {
     outline: 2px solid var(--color-blue);
-    outline-offset: 2px;
+    outline-offset: 4px;
   }
   .dv-parr-lien {
     padding: 14px 16px;
