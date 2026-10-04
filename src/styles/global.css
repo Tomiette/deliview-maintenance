@@ -1540,6 +1540,17 @@
     translate: -50% 0;
     transform: translateZ(4cqi);
   }
+  /* Logo officiel de la plateforme dans l'étiquette (fichier fourni, jamais redessiné). */
+  .dv-tp-nom {
+    padding-left: max(6px, 1.2cqi);
+    white-space: nowrap;
+  }
+  .dv-tp-logo {
+    width: auto;
+    height: max(26px, 5.4cqi);
+    border-radius: max(7px, 1.4cqi);
+    flex-shrink: 0;
+  }
 
   /* ── La bascule : le seul aplat Bleu 1 de la page ── */
   .dv-bande-bleue {

@@ -1,14 +1,18 @@
 ---
 // Le quotidien, en relief (refonte du 3 octobre 2026) : la tablette Uber Eats et le terminal Deliveroo (avec son
 // ticket qui sort de l'imprimante), inclinés l'un vers l'autre, qui sonnent en même temps. Écrans schématiques
-// (lignes grises, une commande qui arrive en Bleu 1 à 12 %) : aucune interface de plateforme imitée, aucun logo ;
-// les plateformes sont nommées en toutes lettres. Les appareils flottent à des rythmes décalés, les ondes « sonnent »
+// (lignes grises, une commande qui arrive en Bleu 1 à 12 %) : aucune interface de plateforme imitée. Sous chaque
+// appareil, le logo officiel de la plateforme (fichiers fournis par Tom, jamais redessinés) et son nom en toutes lettres
+// (4 octobre 2026, demande de Tom). Les appareils flottent à des rythmes décalés, les ondes « sonnent »
 // (seulement si le visiteur n'a pas demandé moins d'animations).
 interface Props {
   class?: string;
 }
 const { class: classe = '' } = Astro.props;
+import { logoPlateforme } from '../lib/logos';
 const lignes = [62, 48, 70, 54, 40];
+const logoUber = logoPlateforme('uber-eats');
+const logoDeliveroo = logoPlateforme('deliveroo');
 ---
 
 <div class={`dv-scene dv-scene-tablettes ${classe}`} role="img" aria-label="La tablette Uber Eats et le terminal Deliveroo qui sonnent en même temps" data-apparition="">
@@ -39,7 +43,7 @@ const lignes = [62, 48, 70, 54, 40];
             <svg class="dv-tp-ondes dv-tp-ondes-d" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32c9-2 16-9 18-18M8 22c4-1 7-4 8-8" /></svg>
             <svg class="dv-tp-ondes dv-tp-ondes-g" viewBox="0 0 40 40" aria-hidden="true"><path d="M32 32c-9-2-16-9-18-18M32 22c-4-1-7-4-8-8" /></svg>
           </div>
-          <span class="dv-puce dv-tp-nom"><i></i>Uber Eats</span>
+          <span class="dv-puce dv-tp-nom">{logoUber ? <img src={logoUber.src} alt="" width={logoUber.largeur} height={logoUber.hauteur} class="dv-tp-logo" loading="lazy" decoding="async" /> : <i />}Uber Eats</span>
         </div>
       </div>
 
@@ -59,7 +63,7 @@ const lignes = [62, 48, 70, 54, 40];
             </div>
             <svg class="dv-tp-ondes dv-tp-ondes-d" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 32c9-2 16-9 18-18M8 22c4-1 7-4 8-8" /></svg>
           </div>
-          <span class="dv-puce dv-tp-nom"><i></i>Deliveroo</span>
+          <span class="dv-puce dv-tp-nom">{logoDeliveroo ? <img src={logoDeliveroo.src} alt="" width={logoDeliveroo.largeur} height={logoDeliveroo.hauteur} class="dv-tp-logo" loading="lazy" decoding="async" /> : <i />}Deliveroo</span>
         </div>
       </div>
     </div>
