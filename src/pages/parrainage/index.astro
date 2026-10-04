@@ -1,0 +1,267 @@
+---
+// Parrainage (4 octobre 2026, décision de Tom) : 2 restaurateurs parrainés = 1 mois offert au parrain. Un filleul compte
+// quand il a payé son premier mois. Le parrain crée son lien (?par=Prénom, restaurant) et le partage ; le filleul arrive
+// sur cette page, son formulaire est prérempli avec le parrain, et la fonction « lead » range le parrain dans les notes
+// de la demande. Tom retire lui-même le mois offert de la facture suivante du parrain.
+// Mise en page reprise de la logique de taap.it (curseur de gain, 3 étapes, conditions), contenu propre à Deliview.
+import Base from '../../layouts/Base.astro';
+import Pastille from '../../components/Pastille.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
+import Faq from '../../components/Faq.astro';
+import Pieces from '../../icons/pieces.astro';
+import { OFFRES, SITE, lien } from '../../lib/site';
+
+const PAR_MOIS = 2;
+const pro = OFFRES.find((o) => o.slug === 'pro') ?? OFFRES[0];
+const description =
+  'Clients Deliview : recommandez Deliview à 2 restaurateurs et gagnez 1 mois d’abonnement offert. Sans limite : 4 parrainages, 2 mois offerts.';
+const etapes = [
+  { titre: 'Créez votre lien', texte: 'Votre prénom et votre restaurant, c’est tout. Le lien est prêt en 10 secondes.' },
+  { titre: 'Partagez-le', texte: 'Par WhatsApp, par SMS, ou de vive voix à un restaurateur que vous connaissez. Il demande sa démo depuis votre lien.' },
+  { titre: 'Votre mois est offert', texte: 'Dès que 2 de vos filleuls ont payé leur premier mois, Tom retire un mois de votre prochaine facture.' },
+];
+const faq = [
+  { q: 'Qui peut parrainer ?', r: 'Tout restaurateur client de Deliview, avec un abonnement payant en cours.' },
+  {
+    q: 'Quand un filleul compte-t-il ?',
+    r: 'Quand il a payé son premier mois. Il doit être un nouveau client&nbsp;: un restaurateur déjà abonné à Deliview ne compte pas.',
+  },
+  { q: 'Y a-t-il une limite ?', r: 'Non. 2 filleuls, 1 mois offert&nbsp;; 4 filleuls, 2 mois offerts&nbsp;; et ainsi de suite.' },
+  { q: 'Comment le mois m’est-il offert ?', r: 'Tom le retire de votre prochaine facture, sur votre offre actuelle. Vous n’avez rien à demander.' },
+  {
+    q: 'Mon filleul a oublié d’utiliser mon lien.',
+    r: `Écrivez à Tom (<a href="mailto:${SITE.email}">${SITE.email}</a>) avec le nom de son restaurant&nbsp;: il le rattache à votre parrainage.`,
+  },
+  { q: 'Puis-je être payé en argent ?', r: 'Non. Le parrainage donne des mois d’abonnement offerts, pas de versement.' },
+];
+const erreurs = [
+  { id: 'erreur-champs', texte: 'Un champ est incomplet. Vérifiez vos informations, puis renvoyez le formulaire.' },
+  { id: 'erreur-limite', texte: `Trop de demandes sont parties de cette connexion. Écrivez à Tom : ${SITE.email}.` },
+  { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Écrivez à Tom : ${SITE.email}.` },
+];
+const pageUrl = SITE.url + '/parrainage/';
+---
+
+<Base title="Parrainage : 2 restaurateurs, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Parrainage', chemin: '/parrainage/' }]}>
+  {
+    erreurs.map((e) => (
+      <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
+        <p class="rounded-[12px] border-2 border-grey-2 bg-grey p-4 font-semibold">
+          <span class="dv-erreur block">{e.texte}</span>
+        </p>
+      </div>
+    ))
+  }
+
+  <!-- Haut de page : l'offre et le curseur -->
+  <section class="bg-grey pb-16 pt-6 md:pb-[96px] md:pt-10" aria-labelledby="parrainage-titre" data-haut-de-page>
+    <div class="dv-container max-w-[920px] text-center">
+      <Pastille icone={Pieces}>Parrainage</Pastille>
+      <h1 id="parrainage-titre" class="dv-h1 mx-auto mt-5 max-w-[18ch] md:mt-6">
+        <span class="text-blue">2&nbsp;restaurateurs</span> parrainés, 1&nbsp;mois offert
+      </h1>
+      <p class="dv-lead mx-auto mt-4 max-w-[50ch] md:mt-5">
+        Vous utilisez Deliview&nbsp;? Recommandez-le aux restaurateurs que vous connaissez. Tous les 2&nbsp;filleuls abonnés, votre mois suivant est offert.
+      </p>
+      <a href="#lien" class="dv-btn dv-btn-contour mt-7">Créer mon lien de parrainage</a>
+
+      <div class="dv-relief dv-parr-calcul mx-auto mt-10 max-w-[760px] px-5 py-7 text-left sm:px-8 md:mt-12 md:px-10 md:py-9">
+        <label for="parr-nombre" class="block text-[16px] font-semibold leading-[1.3]">
+          Restaurateurs parrainés&nbsp;: <output id="parr-nombre-valeur" for="parr-nombre" class="dv-parr-chiffre-petit">6</output>
+        </label>
+        <input id="parr-nombre" type="range" min="0" max="20" step="1" value="6" class="dv-parr-curseur mt-4 w-full" aria-describedby="parr-resultat" />
+        <div id="parr-resultat" class="mt-6 flex flex-wrap items-end gap-x-4 gap-y-1" aria-live="polite">
+          <p class="dv-parr-chiffre"><span data-parr-mois>3</span> <span data-parr-mot>mois</span></p>
+          <p class="pb-2 text-[18px] font-semibold leading-[1.3]">d’abonnement offerts</p>
+        </div>
+        <p class="mt-2 text-[16px] leading-[1.5] dv-muted">
+          Avec l’offre {pro.nom}, c’est <strong class="font-chiffres text-grey-2" data-parr-euros>{3 * pro.prix}&nbsp;€</strong> HT que vous ne payez pas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comment ça marche -->
+  <section class="dv-section bg-white" aria-labelledby="parr-etapes-titre">
+    <div class="dv-container">
+      <div class="text-center">
+        <Pastille>Comment ça marche</Pastille>
+        <h2 id="parr-etapes-titre" class="dv-h2 mx-auto mt-4 max-w-[22ch] md:mt-5">Trois étapes, aucune démarche de votre côté</h2>
+      </div>
+      <ol class="mt-10 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
+        {
+          etapes.map((e, i) => (
+            <li class="dv-relief px-6 pb-7 pt-6 md:px-7">
+              <span class="dv-tuile dv-tuile-numero" aria-hidden="true">{i + 1}</span>
+              <h3 class="mt-5 font-accent text-[20px] font-bold leading-[1.3] md:text-[22px]">{e.titre}</h3>
+              <p class="mt-2 text-[16px] leading-[1.55] dv-muted md:text-[17px]">{e.texte}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Créer son lien -->
+  <section id="lien" class="dv-section bg-grey" aria-labelledby="parr-lien-titre">
+    <div class="dv-container max-w-[760px]">
+      <div class="text-center">
+        <Pastille>Votre lien</Pastille>
+        <h2 id="parr-lien-titre" class="dv-h2 mx-auto mt-4 max-w-[22ch] md:mt-5">Créez votre lien de parrainage</h2>
+        <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Votre filleul verra votre nom en demandant sa démo. C’est ainsi que Tom sait qu’il vient de vous.</p>
+      </div>
+      <div class="dv-relief mt-8 px-5 py-7 sm:px-8 md:mt-10 md:px-10 md:py-9">
+        <label for="parr-qui" class="block text-[16px] font-semibold leading-[1.3]">Votre prénom et votre restaurant</label>
+        <input id="parr-qui" type="text" maxlength="160" autocomplete="off" placeholder="Exemple : Karim, Burger Factory Lyon" class="dv-champ mt-2 placeholder:text-grey-2/70" aria-describedby="parr-qui-aide" />
+        <p id="parr-qui-aide" class="mt-2 text-[15px] leading-[1.4] dv-muted">Vous êtes client de Deliview&nbsp;: indiquez le nom sous lequel Tom vous connaît.</p>
+
+        <div class="mt-6" data-parr-sortie hidden>
+          <p class="block text-[16px] font-semibold leading-[1.3]" id="parr-lien-libelle">Votre lien</p>
+          <p class="dv-parr-lien mt-2" aria-labelledby="parr-lien-libelle"><span data-parr-lien></span></p>
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <button type="button" class="dv-btn dv-btn-plein w-full" data-parr-copier>Copier le lien</button>
+            <a href="#" class="dv-btn dv-btn-contour w-full" target="_blank" rel="noopener" data-parr-whatsapp>Envoyer par WhatsApp<span class="sr-only"> (nouvel onglet)</span></a>
+          </div>
+          <p class="mt-3 min-h-[1.5em] text-[15px] font-semibold" role="status" data-parr-statut></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Faq questions={faq} titre="Les conditions" fond="blanc" />
+
+  <SectionDemo
+    section="page-parrainage"
+    variante="parrainage"
+    id="demo"
+    surtitre="Vous êtes recommandé"
+    titre="Un restaurateur vous a parlé de Deliview ?"
+    sousTitre={'Demandez votre démo gratuite de 30 minutes. Indiquez qui vous recommande : c’est ce qui lui offre son mois.'}
+  />
+</Base>
+
+<script define:vars={{ PAR_MOIS, prixPro: pro.prix, pageUrl }}>
+  // Curseur : mois offerts = parrainages ÷ 2 (arrondi en dessous), et leur valeur sur l'offre Pro.
+  const curseur = document.getElementById('parr-nombre');
+  const valeur = document.getElementById('parr-nombre-valeur');
+  const mois = document.querySelector('[data-parr-mois]');
+  const mot = document.querySelector('[data-parr-mot]');
+  const euros = document.querySelector('[data-parr-euros]');
+  const nf = new Intl.NumberFormat('fr-FR');
+  function majCurseur() {
+    const n = Number(curseur.value);
+    const m = Math.floor(n / PAR_MOIS);
+    valeur.textContent = String(n);
+    mois.textContent = String(m);
+    mot.textContent = 'mois';
+    euros.textContent = nf.format(m * prixPro) + ' €';
+    curseur.style.setProperty('--parr-rempli', (n / Number(curseur.max)) * 100 + '%');
+    curseur.setAttribute('aria-valuetext', n + ' restaurateurs parrainés, ' + m + ' mois offerts');
+  }
+  curseur.addEventListener('input', majCurseur);
+  majCurseur();
+
+  // Lien de parrainage : adresse de cette page avec ?par=…, renvoie au formulaire de démo.
+  const qui = document.getElementById('parr-qui');
+  const sortie = document.querySelector('[data-parr-sortie]');
+  const lienTexte = document.querySelector('[data-parr-lien]');
+  const copier = document.querySelector('[data-parr-copier]');
+  const whatsapp = document.querySelector('[data-parr-whatsapp]');
+  const statut = document.querySelector('[data-parr-statut]');
+  let lienActuel = '';
+  function majLien() {
+    const v = qui.value.replace(/\s+/g, ' ').trim().slice(0, 160);
+    sortie.hidden = v.length < 2;
+    statut.textContent = '';
+    if (v.length < 2) return;
+    lienActuel = pageUrl + '?par=' + encodeURIComponent(v) + '#demo';
+    lienTexte.textContent = lienActuel;
+    const message = 'J’utilise Deliview pour mes prix et mes promos sur Uber Eats et Deliveroo. Demande ta démo gratuite avec mon lien : ' + lienActuel;
+    whatsapp.href = 'https://wa.me/?text=' + encodeURIComponent(message);
+  }
+  qui.addEventListener('input', majLien);
+  copier.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(lienActuel);
+      statut.textContent = 'Lien copié. Collez-le dans un SMS ou un message.';
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(lienTexte);
+      const s = getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      statut.textContent = 'Le lien est sélectionné : copiez-le avec votre appareil.';
+    }
+  });
+</script>
+
+<style>
+  .dv-parr-chiffre {
+    font-family: var(--font-chiffres);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-blue);
+  }
+  @media (min-width: 768px) {
+    .dv-parr-chiffre {
+      font-size: 64px;
+    }
+  }
+  .dv-parr-chiffre-petit {
+    font-family: var(--font-chiffres);
+    font-weight: 700;
+    color: var(--color-blue);
+  }
+  .dv-parr-curseur {
+    --parr-rempli: 30%;
+    appearance: none;
+    height: 44px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .dv-parr-curseur::-webkit-slider-runnable-track {
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--color-blue) var(--parr-rempli), color-mix(in srgb, var(--color-blue) 15%, transparent) var(--parr-rempli));
+  }
+  .dv-parr-curseur::-moz-range-track {
+    height: 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-blue) 15%, transparent);
+  }
+  .dv-parr-curseur::-moz-range-progress {
+    height: 12px;
+    border-radius: 999px;
+    background: var(--color-blue);
+  }
+  .dv-parr-curseur::-webkit-slider-thumb {
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    margin-top: -8px;
+    border: 4px solid var(--color-blue);
+    border-radius: 50%;
+    background: var(--color-white);
+  }
+  .dv-parr-curseur::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 4px solid var(--color-blue);
+    border-radius: 50%;
+    background: var(--color-white);
+  }
+  .dv-parr-curseur:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  .dv-parr-lien {
+    padding: 14px 16px;
+    border: 1px dashed var(--dv-bord);
+    border-radius: 12px;
+    background: var(--color-grey);
+    font-size: 15px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+</style>

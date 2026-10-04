@@ -7,16 +7,19 @@
 // Variante « commencer » (4 octobre 2026, boutons « Commencer maintenant » des offres) : le choix de l'offre en tête
 // (Pro par défaut, ou l'offre de l'adresse ?offre=…), les mêmes 5 champs, puis la confirmation d'ouverture de compte.
 // La fonction « lead » reconnaît le champ « offre » : alerte « Nouveau départ » à Tom, retour vers /commencer/merci/.
+// Variante « parrainage » (4 octobre 2026, page /parrainage/) : un champ de plus en tête, « Qui vous recommande ? »,
+// prérempli par le lien de partage du parrain (?par=…). La fonction « lead » range le parrain dans les notes.
 import Chevron from '../icons/chevron.astro';
 import { OFFRES, SITE, lien } from '../lib/site';
 
 interface Props {
   // Section d'origine par défaut (si le visiteur n'a cliqué sur aucun bouton démo avant).
   section: string;
-  variante?: 'demo' | 'commencer';
+  variante?: 'demo' | 'commencer' | 'parrainage';
 }
 const { section, variante = 'demo' } = Astro.props;
 const depart = variante === 'commencer';
+const parrainage = variante === 'parrainage';
 const offreParDefaut = OFFRES.find((o) => o.recommandee) ?? OFFRES[0];
 const retour = new URL(import.meta.env.BASE_URL, SITE.url).href;
 const champ = 'dv-champ placeholder:text-grey-2/70';
@@ -50,6 +53,16 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
             ))}
           </div>
         </fieldset>
+      )
+    }
+
+    {
+      parrainage && (
+        <div>
+          <label for="dv-parrain" class={libelle}>Qui vous recommande&nbsp;?</label>
+          <input id="dv-parrain" name="parrain" type="text" autocomplete="off" required minlength="2" maxlength="160" placeholder="Exemple : Karim, Burger Factory Lyon" class={champ + ' mt-2'} aria-describedby="dv-parrain-erreur" />
+          <p id="dv-parrain-erreur" class={erreur} data-message="Indiquez le prénom et le restaurant de la personne qui vous recommande."></p>
+        </div>
       )
     }
 
@@ -180,7 +193,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     const v = c.value.trim();
     if (c.name === 'telephone') return telephoneValide(v);
     if (c.name === 'email') return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-    if (c.name === 'nom' || c.name === 'restaurant') return v.length >= 2;
+    if (c.name === 'nom' || c.name === 'restaurant' || c.name === 'parrain') return v.length >= 2;
     if (c.name === 'points_de_vente') return v !== '';
     return true;
   }
@@ -234,6 +247,10 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       /* valeur illisible : ignorée */
     }
     (form.elements.namedItem('page_origine') as HTMLInputElement).value = location.pathname.slice(0, 200);
+    // Lien de parrainage (?par=…) : le nom du parrain est déjà écrit.
+    const parrain = form.elements.namedItem('parrain') as HTMLInputElement | null;
+    const par = (params.get('par') || '').trim().slice(0, 160);
+    if (parrain && par && !parrain.value) parrain.value = par;
     const sectionCta = form.elements.namedItem('section_cta') as HTMLInputElement;
     const sectionParDefaut = sectionCta.value;
 

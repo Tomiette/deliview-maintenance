@@ -16,7 +16,8 @@ interface Props {
   niveau?: 'h1' | 'h2';
   id?: string;
   // « commencer » : formulaire de départ (choix de l'offre) et étapes de l'ouverture du compte (page /commencer/).
-  variante?: 'demo' | 'commencer';
+  // « parrainage » : formulaire avec « Qui vous recommande ? » (page /parrainage/).
+  variante?: 'demo' | 'commencer' | 'parrainage';
 }
 const { section, titre = 'Demandez votre démo gratuite', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo', variante = 'demo' } = Astro.props;
 const Titre = niveau;
