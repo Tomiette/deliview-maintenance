@@ -1,0 +1,9 @@
+---
+// Icône « profil » : fiche avec un portrait (profil LinkedIn de Tom, de Deliview). Dessinée dans le style de la planche :
+// trait Gris 2, une touche de Bleu 1 (les lignes de texte). Pas de logo de marque redessiné.
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M6.6 12.4c0-1.2 1-2.2 2.2-2.2l30.6-.2c1.2 0 2.2 1 2.2 2.2l.2 23.4c0 1.2-1 2.2-2.2 2.2l-30.7.2c-1.2 0-2.2-1-2.2-2.2z" /><path d="M17.6 17.4c2.4 0 4.3 1.9 4.3 4.3s-1.9 4.3-4.3 4.3-4.3-1.9-4.3-4.3 1.9-4.3 4.3-4.3z" /><path d="M10.8 33.4c1.2-3.4 3.8-5.2 6.8-5.2s5.6 1.8 6.8 5.2" /><path class="b" d="M28.4 20.6l8.6-.1M28.6 27.4l6-.1" /></Trace>

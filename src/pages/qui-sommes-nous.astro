@@ -3,6 +3,7 @@
 // de Tom, la frise de la construction (étapes fournies par Tom seulement, masquée tant qu'il n'y en a pas), les liens
 // LinkedIn, puis un bouton démo et l'e-mail de Tom. Ancre #tom : page auteur des articles.
 // Refonte en relief (3 octobre 2026) : pastilles, photo dans un cadre incliné en 3D, « Deliview en bref » en carte.
+import Profil from '../icons/profil.astro';
 import Base from '../layouts/Base.astro';
 import PhotoTom from '../components/PhotoTom.astro';
 import Pastille from '../components/Pastille.astro';
@@ -57,10 +58,10 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
           <p>Partout, deux tablettes en plein rush et des prix fixés à l’instinct.</p>
           <p>Deliview est le résultat de cette année. Je fais la mise en place avec chaque restaurant.</p>
         </div>
-        <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:flex-row md:flex-wrap md:gap-x-7 md:text-[17px]">
-          <li><a href={`mailto:${SITE.email}`} class="dv-lien">{SITE.email}</a></li>
-          <li><a href={SITE.linkedinTom} class="dv-lien" rel="noopener">Tom sur LinkedIn</a></li>
-          <li><a href={SITE.linkedinEntreprise} class="dv-lien" rel="noopener">Deliview sur LinkedIn</a></li>
+        <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:text-[17px]">
+          <li><a href={`mailto:${SITE.email}`} class="dv-lien gap-2"><Enveloppe taille={24} />{SITE.email}</a></li>
+          <li><a href={SITE.linkedinTom} class="dv-lien gap-2" rel="noopener"><Profil taille={24} />Tom sur LinkedIn</a></li>
+          <li><a href={SITE.linkedinEntreprise} class="dv-lien gap-2" rel="noopener"><Profil taille={24} />Deliview sur LinkedIn</a></li>
         </ul>
       </div>
     </div>
