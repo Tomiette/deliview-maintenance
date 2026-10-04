@@ -359,6 +359,9 @@ export interface Offre {
 }
 
 export const OFFRES: Offre[] = [
+  // Répartition des fonctionnalités (4 octobre 2026, demande de Tom) : Essentiel pour voir clair et corriger ses prix
+  // sur un restaurant ; Pro pour agir (promos, photos, relance, assistant) sur plusieurs restaurants ; Premium pour
+  // un réseau, avec Tom à vos côtés. Les limites ne sont pas encore appliquées dans l'app.
   {
     slug: 'essentiel',
     nom: 'Essentiel',
@@ -366,12 +369,13 @@ export const OFFRES: Offre[] = [
     restaurants: '1 restaurant',
     pour: 'Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix',
     inclus: [
-      'Vos données Uber Eats et Deliveroo réunies sur un seul écran',
-      'Jusqu’à 20 concurrents de votre zone analysés',
-      'Pricing Menu : chaque plat comparé, prix proposé avec ses sources',
-      'Optimiseur menu : photos et descriptions de vos plats passées en revue',
-      'Promos des concurrents et classement des notes',
-      'Ce qui a changé depuis la dernière analyse',
+      'Vos ventes Uber Eats et Deliveroo sur un seul écran, et ce qui vous reste',
+      'Votre classement sur Uber Eats et Deliveroo',
+      'Jusqu’à 20 concurrents suivis : prix, promos, notes',
+      'Chaque plat comparé à la zone, prix proposé avec ses sources',
+      'Vous validez un prix, Deliview le met en ligne',
+      'Photos et descriptions de vos plats passées en revue',
+      'Alerte si votre restaurant est fermé pendant le service',
       '1 analyse complète par semaine',
       '2 accès : vous et votre gérant',
     ],
@@ -385,10 +389,13 @@ export const OFFRES: Offre[] = [
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     inclus: [
+      'Tous vos restaurants sur un seul écran',
+      'Promos conseillées sur vos heures creuses, mises en ligne pour vous',
+      'Nouvelles photos de vos plats, préparées à partir des vôtres',
+      'Restaurant fermé en plein service : Deliview le relance sous 5 min',
+      'Assistant Deliview et rapport PDF pour vos équipes',
+      '3 concurrents de votre choix suivis de près',
       'Analyses à la demande, sans limite',
-      '3 concurrents de votre choix suivis par restaurant',
-      'Assistant Deliview : vos questions sur votre zone',
-      'Historique de vos décisions de prix',
       'Jusqu’à 10 accès pour vos équipes',
     ],
   },
@@ -399,7 +406,7 @@ export const OFFRES: Offre[] = [
     restaurants: 'Jusqu’à 10 restaurants',
     pour: 'Tous vos restaurants plus rentables, avec Tom à vos côtés',
     base: 'Tout Pro, plus :',
-    inclus: ['Accès illimités pour vos équipes', 'Un point chaque mois avec Tom sur vos prix'],
+    inclus: ['Un point chaque mois avec Tom sur vos prix et vos promos', 'Historique de vos décisions de prix', 'Accès illimités pour vos équipes'],
   },
 ];
 
