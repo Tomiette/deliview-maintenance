@@ -352,6 +352,12 @@
   }
   /* L'action passe sur deux lignes plutôt que de déborder (petits téléphones, menu du téléphone) ; la pastille ne
      rétrécit jamais. */
+  /* Sans pastille intérieure : le texte seul, centré. */
+  .dv-cta.dv-cta-seul {
+    justify-content: center;
+    padding: 6px 28px;
+    text-align: center;
+  }
   .dv-cta-texte {
     min-width: 0;
     text-wrap: balance;
