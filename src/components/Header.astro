@@ -23,13 +23,13 @@ const dansMenu = (menu: string) =>
 
 <header class="dv-entete sticky top-0 z-40">
   <div class="dv-container">
-  <div class="dv-entete-barre flex h-16 items-center justify-between gap-4 xl:h-[72px] xl:gap-8">
+  <div class="dv-entete-barre flex h-16 items-center justify-between gap-4 xl:h-[72px] xl:gap-4">
     <a href={lien('/')} class="flex min-h-12 shrink-0 items-center" aria-label="Deliview, accueil">
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" />
     </a>
 
     <nav aria-label="Navigation principale" class="hidden flex-1 xl:block">
-      <ul class="flex items-center justify-center gap-1 whitespace-nowrap text-[17px] font-medium leading-none">
+      <ul class="flex items-center justify-center gap-0 whitespace-nowrap text-[16px] font-medium leading-none">
         {
           NAV.map((item) =>
             item.menu ? (

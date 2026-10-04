@@ -319,6 +319,7 @@ export const NAV = [
   { libelle: 'Notre solution', href: '/solution/', menu: 'solution' },
   { libelle: 'Intégrations', href: '/integrations/' },
   { libelle: 'Tarifs', href: '/tarifs/' },
+  { libelle: 'Parrainage', href: '/parrainage/' },
   { libelle: 'Ressources', href: '/ressources/', menu: 'ressources' },
 ];
 
