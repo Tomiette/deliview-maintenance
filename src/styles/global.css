@@ -1499,14 +1499,9 @@
     font-size: 24px;
     line-height: 1.4;
   }
-  .dv-bascule-note {
-    font-size: 19px;
-    font-weight: 700;
-    line-height: 1.4;
-  }
   .dv-bascule {
     display: grid;
-    grid-template-areas: "texte" "tablette" "note";
+    grid-template-areas: "texte" "tablette";
     row-gap: 28px;
   }
   .dv-bascule-texte {
@@ -1518,10 +1513,6 @@
     max-width: 640px;
     margin-inline: auto;
   }
-  .dv-bascule-note {
-    grid-area: note;
-    max-width: 34ch;
-  }
   @media (min-width: 768px) {
     .dv-bascule-lead {
       font-size: 26px;
@@ -1530,16 +1521,10 @@
   @media (min-width: 1024px) {
     .dv-bascule {
       grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
-      grid-template-areas: "texte tablette" "note tablette";
+      grid-template-areas: "texte tablette";
       column-gap: 48px;
       row-gap: 24px;
       align-items: center;
-    }
-    .dv-bascule-texte {
-      align-self: end;
-    }
-    .dv-bascule-note {
-      align-self: start;
     }
     .dv-bascule-tablette {
       max-width: none;
