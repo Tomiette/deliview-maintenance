@@ -7,11 +7,18 @@ self.addEventListener('fetch', () => {
   /* réseau seulement */
 });
 
-// Notification reçue : { titre, texte, lien } (lien relatif à l'app, ex. « #/ »).
+// Notification reçue : { titre, texte, lien } (lien relatif à l'app, ex. « #/ »). Sans contenu (fonction « notifier »,
+// 4 octobre 2026) : le point du lundi, qui ouvre l'accueil.
+const POINT_DU_LUNDI = {
+  titre: 'Votre point du lundi',
+  texte: 'Vos restaurants, du plus urgent au plus tranquille : ouvrez Deliview pour voir quoi faire cette semaine.',
+  lien: './',
+  tag: 'point-du-lundi',
+};
 self.addEventListener('push', (e) => {
   let d = {};
   try {
-    d = e.data ? e.data.json() : {};
+    d = e.data ? e.data.json() : POINT_DU_LUNDI;
   } catch {
     d = { texte: e.data ? e.data.text() : '' };
   }
