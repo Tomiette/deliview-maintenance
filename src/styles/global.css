@@ -1540,7 +1540,9 @@
   }
   /* Logo officiel de la plateforme dans l'étiquette (fichier fourni, jamais redessiné). */
   .dv-tp-nom {
+    width: max-content;
     padding-left: max(6px, 1.2cqi);
+    padding-right: max(14px, 2.8cqi);
     white-space: nowrap;
   }
   .dv-tp-logo {
