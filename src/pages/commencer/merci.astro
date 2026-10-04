@@ -1,0 +1,38 @@
+---
+// Confirmation du formulaire de départ envoyé sans JavaScript (la fonction « lead » redirige ici quand une offre est
+// choisie). Même ticket que la page merci de la démo ; Tom appelle sous 3 h pour ouvrir le compte.
+import Base from '../../layouts/Base.astro';
+import Ticket from '../../components/Ticket.astro';
+import Coche from '../../icons/coche.astro';
+import Fleche from '../../icons/fleche.astro';
+import { SITE, lien } from '../../lib/site';
+
+const suite = [
+  { libelle: 'Voir comment Deliview compare vos prix', href: '/solution/prix-et-concurrence/' },
+  { libelle: 'Lire nos guides sur la livraison', href: '/ressources/' },
+  { libelle: 'Revenir à l’accueil', href: '/' },
+];
+---
+
+<Base
+  title="Demande reçue | Deliview"
+  description={'Votre demande d’ouverture de compte Deliview est bien arrivée. Tom vous appelle sous 3 h pour ouvrir votre compte avec vous.'}
+  noindex
+  barreDemo={false}
+>
+  <section class="bg-grey dv-points py-16 md:py-[104px]" aria-labelledby="merci-titre">
+    <div class="dv-container max-w-[760px]">
+      <Ticket inclinaison={-1} papier="px-6 pb-8 pt-6 md:px-10 md:pb-10 md:pt-8">
+        <p class="dv-ticket-entete"><span>Ouverture de compte</span><span>Reçue</span></p>
+        <p class="mt-5 flex items-center gap-3 dv-overline"><Coche taille={32} />Demande reçue</p>
+        <h1 id="merci-titre" class="dv-h1 mt-3">C’est noté. Tom vous appelle sous 3&nbsp;h.</h1>
+        <p class="dv-lead mt-5">Il crée votre compte avec vous et vous montre comment lire vos résultats. Rien à payer aujourd’hui.</p>
+        <p class="mt-4">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
+      </Ticket>
+      <h2 class="dv-h3 mt-14">En attendant</h2>
+      <ul class="mt-3 grid gap-1">
+        {suite.map((x) => <li><a href={lien(x.href)} class="dv-lien-fort">{x.libelle}<Fleche taille={24} /></a></li>)}
+      </ul>
+    </div>
+  </section>
+</Base>

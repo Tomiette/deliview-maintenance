@@ -1,0 +1,66 @@
+---
+// Page de départ (4 octobre 2026, logique de taap.it, choix de Tom) : cible des boutons « Commencer maintenant » des
+// offres. Le restaurateur choisit son offre (celle du bouton cliqué, ?offre=…) et laisse ses coordonnées ; Tom l'appelle
+// sous 3 h pour ouvrir le compte avec lui. Aucun paiement sur le site : Tom envoie ensuite le lien de paiement Stripe.
+// Hors des moteurs (noindex, absente du plan du site). Messages d'erreur sans JavaScript via #erreur-… (:target).
+import Base from '../../layouts/Base.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
+import Faq from '../../components/Faq.astro';
+import { SITE, lien } from '../../lib/site';
+
+const faq = [
+  {
+    q: 'Dois-je payer aujourd’hui ?',
+    r: 'Non. Tom vous appelle d’abord et ouvre votre compte avec vous. Vous vous abonnez ensuite en ligne, avec le lien de paiement qu’il vous envoie.',
+  },
+  {
+    q: 'Puis-je changer d’offre plus tard ?',
+    r: 'Oui, à tout moment&nbsp;: Tom s’en charge pour vous. Le nombre de restaurants de chaque offre est un maximum, pas un minimum.',
+  },
+  {
+    q: 'Y a-t-il un engagement ?',
+    r: 'Non. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.',
+  },
+  {
+    q: 'Je préfère voir Deliview avant de choisir.',
+    r: `Demandez une démo gratuite de 30&nbsp;minutes, faite sur votre restaurant&nbsp;: <a href="${lien('/demo/')}">demander une démo</a>.`,
+  },
+];
+const erreurs = [
+  { id: 'erreur-champs', texte: 'Un champ est incomplet. Vérifiez vos informations, puis renvoyez le formulaire.' },
+  { id: 'erreur-limite', texte: `Trop de demandes sont parties de cette connexion. Écrivez à Tom : ${SITE.email}.` },
+  { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Écrivez à Tom : ${SITE.email}.` },
+];
+---
+
+<Base
+  title="Commencer : choisissez votre offre | Deliview"
+  description={'Choisissez votre offre Deliview et laissez vos coordonnées\u00a0: Tom vous appelle sous 3\u00a0h pour ouvrir votre compte avec vous. Rien à payer aujourd’hui.'}
+  ariane={[
+    { nom: 'Tarifs', chemin: '/tarifs/' },
+    { nom: 'Commencer', chemin: '/commencer/' },
+  ]}
+  fondHaut="blanc"
+  noindex
+  barreDemo={false}
+>
+  {
+    erreurs.map((e) => (
+      <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
+        <p class="rounded-[12px] border-2 border-grey-2 bg-grey p-4 font-semibold">
+          <span class="dv-erreur block">{e.texte}</span>
+        </p>
+      </div>
+    ))
+  }
+  <SectionDemo
+    section="page-commencer"
+    variante="commencer"
+    niveau="h1"
+    id="commencer"
+    surtitre="Ouverture de compte"
+    titre="Commencez avec Deliview"
+    sousTitre={'Choisissez votre offre et laissez vos coordonnées. Tom vous appelle sous 3\u00a0h pour ouvrir votre compte avec vous. Rien à payer aujourd’hui.'}
+  />
+  <Faq questions={faq} titre="Avant de commencer" fond="gris" />
+</Base>

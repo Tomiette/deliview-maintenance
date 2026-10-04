@@ -2,6 +2,7 @@
 // Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble.
 // Refonte en relief (3 octobre 2026) : en haut, l'écran Ma carte (les deux plateformes dans la même liste) incliné en 3D.
 import Base from '../../layouts/Base.astro';
+import BoutonDemo from '../../components/BoutonDemo.astro';
 import Scene3D from '../../components/Scene3D.astro';
 import Flottant from '../../components/Flottant.astro';
 import Bulle from '../../components/Bulle.astro';
@@ -52,7 +53,7 @@ const faq = [
         <h1 id="ensemble-titre" class="dv-h1 mt-5 max-w-[16ch] md:mt-6">Gérer Uber Eats et Deliveroo ensemble</h1>
         <p class="dv-lead mt-4 max-w-[56ch] md:mt-6">{SITE.argument} Vos deux cartes côte à côte, vos concurrents et votre note sur chaque plateforme.</p>
         <div class="mt-7 md:mt-8">
-          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integration-combinee" data-cta-principal>Demander une démo</a>
+          <BoutonDemo href="#demo" cta="integration-combinee" principal class="w-full sm:w-auto" />
         </div>
       </div>
       <div class="w-full">

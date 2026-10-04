@@ -15,15 +15,25 @@ interface Props {
   // Niveau du titre : h2 sur les pages, h1 sur la page Démo.
   niveau?: 'h1' | 'h2';
   id?: string;
+  // « commencer » : formulaire de départ (choix de l'offre) et étapes de l'ouverture du compte (page /commencer/).
+  variante?: 'demo' | 'commencer';
 }
-const { section, titre = 'Demandez votre démo gratuite', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo' } = Astro.props;
+const { section, titre = 'Demandez votre démo gratuite', surtitre = 'Démo', sousTitre, niveau = 'h2', id = 'demo', variante = 'demo' } = Astro.props;
 const Titre = niveau;
 const SousTitre = niveau === 'h1' ? 'h2' : 'h3';
-const etapes = [
-  { titre: 'Tom vous rappelle sous 3 h', texte: 'On choisit ensemble un moment hors de vos services.' },
-  { titre: 'La démo', texte: 'Voyez où votre restaurant peut gagner en rentabilité sur Uber Eats et Deliveroo.' },
-  { titre: 'Si vous continuez', texte: 'Vous choisissez votre offre, et je vous accompagne pour la mise en place.' },
-];
+const depart = variante === 'commencer';
+const etapes = depart
+  ? [
+      { titre: 'Tom vous appelle sous 3 h', texte: 'Il confirme avec vous l’offre qui convient à vos restaurants.' },
+      { titre: 'Il ouvre votre compte avec vous', texte: 'La mise en place est offerte : vous voyez vos prix, vos concurrents et votre note sur un seul écran.' },
+      { titre: 'Vous vous abonnez en ligne', texte: 'Tom vous envoie le lien de paiement. Sans engagement : vous arrêtez quand vous voulez.' },
+    ]
+  : [
+      { titre: 'Tom vous rappelle sous 3 h', texte: 'On choisit ensemble un moment hors de vos services.' },
+      { titre: 'La démo', texte: 'Voyez où votre restaurant peut gagner en rentabilité sur Uber Eats et Deliveroo.' },
+      { titre: 'Si vous continuez', texte: 'Vous choisissez votre offre, et je vous accompagne pour la mise en place.' },
+    ];
+const entete = depart ? ['Votre compte', 'Sans engagement'] : ['Bon de démo', '30 min'];
 ---
 
 <section id={id} class={`bg-white ${niveau === 'h1' ? 'pb-16 pt-8 md:pb-[104px] md:pt-12' : 'dv-section'}`} aria-labelledby={`${id}-titre`}>
@@ -34,8 +44,8 @@ const etapes = [
     <div class="mt-7 grid items-start gap-10 md:mt-12 lg:grid-cols-2 lg:gap-14">
       <div id={`${id}-formulaire`} class="dv-demo-plateau dv-points-bleus px-3 py-5 sm:p-8 lg:p-10">
         <div class="dv-relief px-[18px] pb-[22px] pt-5 md:px-7 md:pb-7 md:pt-6">
-          <p class="dv-ticket-entete mb-4"><span>Bon de démo</span><span>30&nbsp;min</span></p>
-          <DemoForm section={section} />
+          <p class="dv-ticket-entete mb-4"><span>{entete[0]}</span><span>{entete[1]}</span></p>
+          <DemoForm section={section} variante={variante} />
         </div>
       </div>
       <div class="lg:pt-3">

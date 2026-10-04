@@ -11,9 +11,12 @@
   --color-white: #ffffff;
   --color-grey-2: #4c4c4c;
 
+  /* Typographie (4 octobre 2026, demande de Tom : la police de taap.it, qui est Aspekta, celle du logo) : Aspekta pour
+     tout le texte, les titres, les boutons et les menus ; Inter seulement pour les prix des offres. */
   --font-*: initial;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-accent: "Aspekta", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Aspekta", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-accent: "Aspekta", ui-sans-serif, system-ui, sans-serif;
+  --font-chiffres: "Inter", "Aspekta", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 16px;
   --radius-btn: 12px;
@@ -42,26 +45,27 @@
   --dv-points-blancs: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23ffffff' fill-opacity='.35'/%3E%3C/svg%3E");
 }
 
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/inter-latin-400-normal.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("../fonts/inter-latin-600-normal.woff2") format("woff2");
-}
+/* Inter 700 : les prix des offres seulement. */
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url("../fonts/inter-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Aspekta";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../fonts/Aspekta-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Aspekta";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../fonts/Aspekta-500.woff2") format("woff2");
 }
 @font-face {
   font-family: "Aspekta";
@@ -82,7 +86,7 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
-    scroll-padding-top: 92px;
+    scroll-padding-top: 104px;
   }
   body {
     background: var(--color-white);
@@ -97,7 +101,7 @@
       font-size: 18px;
     }
   }
-  /* Titres en Aspekta (police du logo) ; texte, boutons et menus en Inter. */
+  /* Titres, texte, boutons et menus en Aspekta (police du logo). */
   h1,
   h2,
   h3 {
@@ -158,13 +162,13 @@
     }
   }
 
-  /* Typographie : titres Aspekta 700, sur-titres Aspekta 600 en capitales, texte Inter. */
+  /* Typographie : titres Aspekta 700 resserrés (comme taap.it), sur-titres Aspekta 600 en capitales, texte Aspekta 400. */
   .dv-h1 {
     font-family: var(--font-accent);
     font-weight: 700;
     font-size: 36px;
     line-height: 1.1;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
   .dv-h2 {
@@ -172,7 +176,7 @@
     font-weight: 700;
     font-size: 28px;
     line-height: 1.15;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
   .dv-h3 {
@@ -241,8 +245,9 @@
     max-width: 70ch;
   }
 
-  /* Boutons, une version chacun. Principal : Bleu 1, texte blanc Inter 700 19 px (seul format lisible en blanc
-     sur Bleu 1), rayon 12, 52 px de haut ; un seul par écran. Secondaire : contour et texte Gris 2. */
+  /* Boutons, une version chacun. Plein : Bleu 1, texte blanc Aspekta 700 19 px (seul format lisible en blanc sur
+     Bleu 1), rayon 12, 52 px de haut (envoi des formulaires). Secondaire : contour et texte Gris 2. Le bouton démo
+     des pages est la pastille .dv-cta (BoutonDemo.astro). */
   .dv-btn {
     display: inline-flex;
     align-items: center;
@@ -304,24 +309,105 @@
     translate: 0 4px;
     box-shadow: 0 0 0 transparent;
   }
-  /* Bouton démo de l'en-tête : contour bleu, puis bleu plein quand aucun autre bouton démo plein n'est à l'écran. */
-  .dv-entete-demo.dv-entete-plein {
-    background: var(--color-blue);
-    color: var(--color-white);
-    border-color: var(--color-blue);
-    box-shadow: 0 4px 0 var(--dv-levre-bouton);
-  }
-  .dv-entete-demo.dv-entete-plein:hover {
-    background: var(--color-blue-2);
-    border-color: var(--color-blue-2);
-    box-shadow: 0 3px 0 var(--dv-levre-bouton);
-  }
   .dv-btn[disabled],
   .dv-btn[aria-disabled="true"] {
     opacity: 0.6;
     cursor: wait;
   }
-  /* Lien isolé : Bleu 1, Inter 700 19 px, avec la flèche dessinée. */
+  /* Bouton principal en pastille (4 octobre 2026, logique de taap.it) : pastille blanche au contour Bleu 1 et halo
+     Bleu 1 léger, action en Gris 2, pastille Bleu 1 « gratuite → » à droite (texte blanc 19 px gras, 3,5:1). */
+  .dv-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 60px;
+    padding: 6px 6px 6px 24px;
+    border: 1.5px solid color-mix(in srgb, var(--color-blue) 55%, transparent);
+    border-radius: 999px;
+    background: var(--color-white);
+    color: var(--color-grey-2);
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-blue) 12%, transparent), 0 12px 28px color-mix(in srgb, var(--color-blue) 18%, transparent);
+    transition: translate 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+  }
+  .dv-cta:hover {
+    text-decoration: none;
+    translate: 0 -1px;
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-blue) 16%, transparent), 0 16px 32px color-mix(in srgb, var(--color-blue) 24%, transparent);
+  }
+  .dv-cta:active {
+    translate: 0 1px;
+  }
+  .dv-cta:focus-visible {
+    outline-offset: 4px;
+    border-radius: 999px;
+  }
+  /* L'action passe sur deux lignes plutôt que de déborder (petits téléphones, menu du téléphone) ; la pastille ne
+     rétrécit jamais. */
+  .dv-cta-texte {
+    min-width: 0;
+    text-wrap: balance;
+  }
+  .dv-cta-pastille {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 6px;
+    min-height: 46px;
+    padding: 8px 14px 8px 18px;
+    border-radius: 999px;
+    background: var(--color-blue);
+    color: var(--color-white);
+    white-space: nowrap;
+    transition: background-color 0.15s ease;
+  }
+  .dv-cta:hover .dv-cta-pastille {
+    background: var(--color-blue-2);
+  }
+  /* Téléphone : action en 17 px (Gris 2 sur blanc), pastille gardée en 19 px gras (blanc sur Bleu 1). */
+  @media (max-width: 420px) {
+    .dv-cta {
+      gap: 10px;
+      padding-left: 20px;
+      font-size: 17px;
+    }
+    .dv-cta-pastille {
+      padding-inline: 14px 10px;
+      font-size: 19px;
+    }
+  }
+  /* Bouton sombre (en-tête, comme « Créer un compte » chez taap.it) : Gris 2 plein, texte blanc (8,6:1). */
+  .dv-btn-sombre {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: var(--color-grey-2);
+    color: var(--color-white);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid var(--color-grey-2);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-white) 18%, transparent);
+    transition: background-color 0.15s ease;
+  }
+  .dv-btn-sombre:hover {
+    text-decoration: none;
+    background: color-mix(in srgb, var(--color-grey-2) 88%, var(--color-white));
+  }
+
+  /* Lien isolé : Bleu 1, Aspekta 700 19 px, avec la flèche dessinée. */
   .dv-lien-fort {
     display: inline-flex;
     align-items: center;
@@ -1889,21 +1975,123 @@
   .dv-offre {
     padding: 22px 22px 24px;
   }
+  /* Offre recommandée (4 octobre 2026, logique de taap.it) : contour Bleu 1 de 2 px et bandeau « Recommandé » posé
+     sur le haut de la carte (Bleu 1 à 12 % sur blanc, texte Gris 2 en gras). Cartes empilées : la place du bandeau est
+     réservée au-dessus de la carte ; côte à côte, il déborde dans la marge au-dessus de la grille (contenu aligné). */
   .dv-offre-pro {
     border: 2px solid var(--color-blue);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 40px;
+  }
+  .dv-offre-bandeau {
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 6px 16px;
+    border: 2px solid var(--color-blue);
+    border-bottom: 0;
+    border-radius: 16px 16px 0 0;
+    background: color-mix(in srgb, var(--color-blue) 12%, var(--color-white));
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .dv-offre-prix {
+    font-family: var(--font-chiffres);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
   }
   @media (min-width: 768px) {
     .dv-offre {
       padding: 26px 28px 30px;
     }
-    .dv-offre-pro {
+    .dv-offres .dv-offre-pro {
+      margin-top: 0;
       translate: 0 -14px;
     }
   }
-  /* Page Tarifs : offres complètes (bouton, liste), Pro surélevée seulement quand les cartes sont côte à côte. */
-  @media (max-width: 1023px) {
+  /* Page Tarifs : cartes côte à côte à partir de 1024 px seulement. */
+  @media (min-width: 1024px) {
     .dv-offres-page .dv-offre-pro {
-      translate: none;
+      margin-top: 0;
+      translate: 0 -14px;
+    }
+  }
+
+  /* Formulaire « Commencer » : l'offre se choisit dans une liste de cartes (vrais boutons radio, coche Bleu 1). La carte
+     choisie prend un contour Bleu 1 et un voile Bleu 1 à 8 % ; le focus clavier entoure la carte. */
+  .dv-choix-offre {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .dv-choix-offre-carte {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "radio nom prix" "radio detail prix";
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 2px;
+    min-height: 64px;
+    padding: 10px 16px;
+    border: 1.5px solid color-mix(in srgb, var(--color-grey-2) 70%, transparent);
+    border-radius: 12px;
+    background: var(--color-white);
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .dv-choix-offre-carte input {
+    grid-area: radio;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--color-blue);
+    cursor: pointer;
+  }
+  .dv-choix-offre-nom {
+    grid-area: nom;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .dv-choix-offre-detail {
+    grid-area: detail;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+  .dv-choix-offre-prix {
+    grid-area: prix;
+    font-family: var(--font-chiffres);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-align: right;
+    white-space: nowrap;
+  }
+  .dv-choix-offre-carte:hover {
+    border-color: var(--color-grey-2);
+  }
+  .dv-choix-offre-carte:has(input:checked) {
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 1px var(--color-blue), inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent);
+  }
+  @supports selector(:has(*)) {
+    .dv-choix-offre-carte input:focus-visible {
+      outline: none;
+    }
+    .dv-choix-offre-carte:has(input:focus-visible) {
+      outline: 2px solid var(--color-blue);
+      outline-offset: 2px;
     }
   }
 

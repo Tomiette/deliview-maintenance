@@ -1,15 +1,20 @@
 ---
 // Tarifs : 3 abonnements selon le nombre de restaurants (OFFRES dans src/lib/site.ts), trois cartes en relief côte à côte
-// (empilées sur téléphone), Pro mise en avant (bord Bleu 1, badge « Recommandé », légèrement surélevée), tableau
+// (empilées sur téléphone), Pro mise en avant (bord Bleu 1, bandeau « Recommandé », légèrement surélevée), tableau
 // comparatif, lien vers le simulateur, questions (FAQPage), bandeau final. Uniquement ce que Deliview fait aujourd'hui.
 // Refonte en relief du 3 octobre 2026 (les tickets et la flèche au marqueur de la direction « le passe » sont retirés).
+// 4 octobre 2026 (logique de taap.it, choix de Tom) : chaque offre a son bouton « Commencer maintenant » vers le
+// formulaire de départ /commencer/?offre=… (pas de paiement sur le site) ; prix en Inter ; la démo reste proposée
+// juste sous les offres et en bas de page, pour qui veut voir avant de choisir.
 import Base from '../layouts/Base.astro';
+import BoutonDemo from '../components/BoutonDemo.astro';
 import Reassurance from '../components/Reassurance.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
 import Coche from '../icons/coche.astro';
 import Pieces from '../icons/pieces.astro';
 import Enveloppe from '../icons/enveloppe.astro';
+import Fleche from '../icons/fleche.astro';
 import { OFFRES, PRIX_ENTREE, SITE, jsonldLogiciel, lien } from '../lib/site';
 
 const description = `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE} € HT par mois : sans engagement, mise en place offerte. Comparez Essentiel, Pro et Premium.`;
@@ -96,35 +101,34 @@ const logiciel = {
         <Reassurance centre class="mt-5 md:mt-[22px]" />
       </div>
 
-      <ul class="dv-offres-page mt-12 grid items-stretch gap-6 md:mt-16 lg:grid-cols-3">
+      <ul class="dv-offres-page mt-12 grid items-stretch gap-6 md:mt-16 lg:mt-20 lg:grid-cols-3">
         {
           OFFRES.map((o) => (
             <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-32 flex-col ${o.recommandee ? 'dv-offre-pro' : ''}`}>
-              <div class="flex items-center justify-between gap-3">
-                <h2 class="font-accent text-[26px] font-bold leading-[1.2] md:text-[28px]">
-                  {o.nom}
-                  {o.recommandee && <span class="sr-only">, offre recommandée</span>}
-                </h2>
-                {o.recommandee && (
-                  <span class="dv-badge" aria-hidden="true">
-                    Recommandé
-                  </span>
-                )}
-              </div>
+              {o.recommandee && (
+                <p class="dv-offre-bandeau" aria-hidden="true">
+                  Recommandé
+                </p>
+              )}
+              <h2 class="font-accent text-[26px] font-bold leading-[1.2] md:text-[28px]">
+                {o.nom}
+                {o.recommandee && <span class="sr-only">, offre recommandée</span>}
+              </h2>
               <p class="mt-1.5 text-[16px] font-semibold leading-[1.4]">{o.restaurants}</p>
-              <p class="mt-1 text-[16px] leading-[1.5] dv-muted lg:min-h-[48px]">{o.pour}.</p>
+              <p class="mt-1 text-[16px] leading-[1.5] dv-muted lg:min-h-[72px]">{o.pour}.</p>
               <p class="mt-5 flex items-baseline gap-2 border-t border-grey-2/15 pt-5">
-                <span class="font-accent text-[44px] font-bold leading-none md:text-[52px]">{o.prix}&nbsp;€</span>
+                <span class="dv-offre-prix text-[46px] md:text-[54px]">{o.prix}&nbsp;€</span>
                 <span class="text-[16px] leading-[1.3]">HT par mois</span>
               </p>
               <a
-                href={lien('/demo/')}
+                href={lien(`/commencer/?offre=${o.slug}`)}
                 class={`dv-btn mt-6 w-full ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
                 data-cta={`tarifs-${o.slug}`}
                 {...(o.recommandee ? { 'data-cta-principal': '' } : {})}
               >
-                Choisir {o.nom}
+                Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
               </a>
+              <p class="mt-3 text-center text-[15px] leading-[1.4] dv-muted">Rien à payer aujourd’hui</p>
               <div class="mt-6 border-t border-grey-2/15" aria-hidden="true" />
               {o.base && <p class="mt-5 text-[16px] font-bold leading-[1.4]">{o.base.replace(' :', ' :')}</p>}
               <ul class={`${o.base ? 'mt-3' : 'mt-5'} grid gap-3 text-[16px] leading-[1.5]`}>
@@ -140,7 +144,13 @@ const logiciel = {
         }
       </ul>
 
-      <div class="dv-card mt-12 flex flex-col gap-5 p-6 md:px-7 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+      <!-- Autre chemin, pour qui veut voir avant de choisir (le bouton de chaque offre mène au formulaire de départ). -->
+      <div class="mt-10 flex flex-col items-center gap-1 text-center md:mt-12">
+        <p class="text-[17px] leading-[1.5] md:text-[18px]">Vous préférez voir Deliview sur votre restaurant avant de choisir&nbsp;?</p>
+        <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
+      </div>
+
+      <div class="dv-card mt-10 flex flex-col gap-5 p-6 md:mt-12 md:px-7 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <p class="flex items-center gap-4 text-[17px] font-semibold leading-[1.45] md:text-[18px]">
           <span class="dv-tuile"><Pieces taille={32} /></span>
           <span>Plus de 10&nbsp;restaurants&nbsp;? Tom vous fait une offre sur mesure&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</span>
@@ -207,7 +217,7 @@ const logiciel = {
       <span class="dv-tuile"><Enveloppe taille={32} /></span>
       <h2 id="final-titre" class="dv-h2 mt-5">Voyez d’abord ce que vos prix peuvent vous rapporter</h2>
       <p class="dv-lead mt-4">30&nbsp;minutes avec Tom, sur votre restaurant, avant tout paiement.</p>
-      <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-7 w-full sm:w-auto sm:px-7" data-cta="tarifs-final" data-cta-principal>Demander une démo</a>
+      <BoutonDemo href={lien('/demo/')} cta="tarifs-final" principal class="mt-7 w-full sm:w-auto" />
     </div>
   </section>
 </Base>

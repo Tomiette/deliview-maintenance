@@ -2,6 +2,7 @@
 // Intégrations : Uber Eats et Deliveroo, tableau de ce que Deliview montre pour chacune.
 // Refonte en relief (3 octobre 2026) : en haut, l'accueil de l'app (Uber Eats et Deliveroo côte à côte) incliné en 3D.
 import Base from '../../layouts/Base.astro';
+import BoutonDemo from '../../components/BoutonDemo.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Scene3D from '../../components/Scene3D.astro';
 import Flottant from '../../components/Flottant.astro';
@@ -35,7 +36,7 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
         <h1 id="integrations-titre" class="dv-h1 mt-5 max-w-[18ch] md:mt-6">Uber Eats et Deliveroo, réunis sur un seul écran</h1>
         <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, vos notes et vos offres, face à ceux des restaurants autour de vous.</p>
         <div class="mt-7 md:mt-8">
-          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="integrations" data-cta-principal>Demander une démo</a>
+          <BoutonDemo href="#demo" cta="integrations" principal class="w-full sm:w-auto" />
         </div>
       </div>
       <div class="w-full">

@@ -4,6 +4,7 @@
 // LinkedIn, puis un bouton démo et l'e-mail de Tom. Ancre #tom : page auteur des articles.
 // Refonte en relief (3 octobre 2026) : pastilles, photo dans un cadre incliné en 3D, « Deliview en bref » en carte.
 import Profil from '../icons/profil.astro';
+import BoutonDemo from '../components/BoutonDemo.astro';
 import Base from '../layouts/Base.astro';
 import PhotoTom from '../components/PhotoTom.astro';
 import Pastille from '../components/Pastille.astro';
@@ -116,7 +117,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
       <span class="dv-tuile"><Enveloppe taille={32} /></span>
       <h2 id="contact-titre" class="dv-h2 mx-auto mt-5 max-w-[20ch]">Parlons de votre restaurant</h2>
       <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Une démo de 30&nbsp;minutes, sur vos prix et votre zone.</p>
-      <p class="mt-7"><a href={lien('/demo/')} class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="qui-sommes-nous" data-cta-principal>Demander une démo</a></p>
+      <p class="mt-7"><BoutonDemo href={lien('/demo/')} cta="qui-sommes-nous" principal class="w-full sm:w-auto" /></p>
       <p class="mt-5">Ou écrivez-moi&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a></p>
     </div>
   </section>

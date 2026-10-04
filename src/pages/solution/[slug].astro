@@ -4,6 +4,7 @@
 // Refonte en relief (3 octobre 2026) : en haut, un autre écran de l'app que ceux des blocs, incliné en 3D, avec des
 // bulles qui reprennent ses chiffres ; les autres piliers en cartes avec leur carte de l'app.
 import { getCollection } from 'astro:content';
+import BoutonDemo from '../../components/BoutonDemo.astro';
 import Base from '../../layouts/Base.astro';
 import Scene3D from '../../components/Scene3D.astro';
 import Flottant from '../../components/Flottant.astro';
@@ -171,7 +172,7 @@ const fondAutres = fond();
           }
         </ul>
         <div class="mt-7 md:mt-8">
-          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`pilier-${pilier.slug}`} data-cta-principal>Demander une démo</a>
+          <BoutonDemo href="#demo" cta={`pilier-${pilier.slug}`} principal class="w-full sm:w-auto" />
         </div>
       </div>
       <div class="w-full">

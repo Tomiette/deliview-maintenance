@@ -1,10 +1,11 @@
 ---
-// En-tête collant (maquettes « le passe ») : logo, navigation avec méga-menus « Notre solution » et « Ressources »,
-// « Se connecter » avec le cadenas dessiné, bouton « Demander une démo » en contour : le seul bouton plein
-// d'un écran est celui du haut de page.
+// En-tête collant et flottant (4 octobre 2026, logique de taap.it) : une barre blanche arrondie posée au-dessus de la
+// page, le logo, la navigation au centre avec les méga-menus « Notre solution » et « Ressources », « Se connecter » en
+// lien souligné et « Demander une démo » en bouton sombre. Le bouton bleu en pastille reste celui des pages.
 // Menus en <details> : utilisables sans JavaScript et au clavier (Entrée ou Espace pour ouvrir) ; Échap les ferme.
 import Cadenas from '../icons/cadenas.astro';
 import Chevron from '../icons/chevron.astro';
+import BoutonDemo from './BoutonDemo.astro';
 import Menu from '../icons/menu.astro';
 import { ICONES } from '../lib/registre-icones';
 import { MENU_RESSOURCES, NAV, PILIERS, SITE, lien } from '../lib/site';
@@ -20,14 +21,15 @@ const dansMenu = (menu: string) =>
   menu === 'solution' ? chemin.startsWith('/solution/') : MENU_RESSOURCES.some((r) => chemin.startsWith(r.href) && r.href !== '/');
 ---
 
-<header class="sticky top-0 z-40 border-b border-grey-2/12 bg-white">
-  <div class="dv-container flex h-16 items-center justify-between gap-4 !pr-2 sm:!pr-4 md:!pr-6 xl:h-[76px] xl:gap-10">
+<header class="dv-entete sticky top-0 z-40">
+  <div class="dv-container">
+  <div class="dv-entete-barre flex h-16 items-center justify-between gap-4 xl:h-[72px] xl:gap-8">
     <a href={lien('/')} class="flex min-h-12 shrink-0 items-center" aria-label="Deliview, accueil">
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" />
     </a>
 
     <nav aria-label="Navigation principale" class="hidden flex-1 xl:block">
-      <ul class="flex items-center gap-1 whitespace-nowrap text-[17px] font-semibold leading-none">
+      <ul class="flex items-center justify-center gap-1 whitespace-nowrap text-[17px] font-medium leading-none">
         {
           NAV.map((item) =>
             item.menu ? (
@@ -75,16 +77,14 @@ const dansMenu = (menu: string) =>
     </nav>
 
     <div class="flex items-center gap-2 lg:gap-4">
-      <a href={SITE.app} class="hidden min-h-12 items-center gap-2 px-2 text-[17px] font-semibold leading-none whitespace-nowrap hover:underline sm:inline-flex">
-        <Cadenas taille={24} />Se connecter
-      </a>
-      <a href={lien('/demo/')} id="dv-entete-demo" class="dv-btn dv-btn-bleu dv-entete-demo hidden !min-h-12 !px-5 !py-0 whitespace-nowrap sm:inline-flex" data-cta="header">Demander une démo</a>
+      <a href={SITE.app} class="hidden min-h-12 items-center px-2 text-[17px] font-medium leading-none whitespace-nowrap underline underline-offset-4 hover:decoration-2 sm:inline-flex">Se connecter</a>
+      <a href={lien('/demo/')} class="dv-btn-sombre hidden sm:inline-flex" data-cta="header">Demander une démo</a>
 
       <details class="dv-menu xl:hidden">
         <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
           <Menu taille={32} />
         </summary>
-        <div class="fixed inset-x-0 top-16 max-h-[calc(100dvh-64px)] overflow-y-auto border-b border-grey-2/15 bg-white px-4 pb-6 pt-2">
+        <div class="fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-6 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
           <p class="dv-overline pt-3 pb-1">Notre solution</p>
           <ul>
             {
@@ -123,14 +123,31 @@ const dansMenu = (menu: string) =>
               <a href={SITE.app} class="flex min-h-12 items-center gap-2 py-2 font-semibold"><Cadenas taille={24} />Se connecter</a>
             </li>
           </ul>
-          <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-4 w-full" data-cta="menu-mobile">Demander une démo</a>
+          <BoutonDemo href={lien('/demo/')} cta="menu-mobile" class="mt-5 w-full" />
         </div>
       </details>
     </div>
   </div>
+  </div>
 </header>
 
 <style>
+  /* Barre flottante : blanche, arrondie, bordure Gris 2 à 12 %, ombre très légère, posée 10 px sous le haut. */
+  .dv-entete {
+    padding-top: 10px;
+  }
+  .dv-entete-barre {
+    padding-inline: 12px 8px;
+    border: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
+    border-radius: 18px;
+    background: var(--color-white);
+    box-shadow: 0 6px 24px rgba(76, 76, 76, 0.07);
+  }
+  @media (min-width: 640px) {
+    .dv-entete-barre {
+      padding-inline: 18px 10px;
+    }
+  }
   /* Entrée de la navigation correspondant à la page : soulignée en Bleu 1. */
   .dv-nav-actif {
     text-decoration: underline;
@@ -141,22 +158,6 @@ const dansMenu = (menu: string) =>
 </style>
 
 <script>
-  // Bouton démo de l'en-tête (demande de Tom, 2 octobre 2026 : en bleu) : contour bleu tant qu'un autre bouton démo
-  // plein ou le formulaire de démo est à l'écran (un seul bouton plein par écran), bleu plein dès qu'il n'y en a plus.
-  const demoEntete = document.getElementById('dv-entete-demo');
-  if (demoEntete && 'IntersectionObserver' in window) {
-    const autres = Array.from(document.querySelectorAll('.dv-btn-plein, #demo, .dv-form')).filter(
-      (el) => !el.closest('#dv-barre-demo') && !el.closest('header'),
-    );
-    const visibles = new Set<Element>();
-    const obs = new IntersectionObserver((entrees) => {
-      entrees.forEach((e) => (e.isIntersecting ? visibles.add(e.target) : visibles.delete(e.target)));
-      demoEntete.classList.toggle('dv-entete-plein', visibles.size === 0);
-    });
-    autres.forEach((el) => obs.observe(el));
-    if (!autres.length) demoEntete.classList.add('dv-entete-plein');
-  }
-
   // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme.
   const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.dv-menu'));
   menus.forEach((m) =>

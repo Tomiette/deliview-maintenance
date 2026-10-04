@@ -1,0 +1,23 @@
+---
+// Bouton principal (4 octobre 2026, logique de taap.it reprise à la demande de Tom) : une pastille blanche au contour
+// Bleu 1 lumineux, l'action en Gris 2, et à droite une pastille Bleu 1 « gratuite → » qui lève le risque. Texte blanc
+// sur Bleu 1 en 19 px gras (grand texte, 3,5:1). Nom accessible : « Demander une démo gratuite ».
+// Le même bouton revient en haut de page, à la fin des sections et dans la barre du téléphone.
+import Fleche from '../icons/fleche.astro';
+
+interface Props {
+  href: string;
+  cta: string; // section d'origine, gardée pour le formulaire (data-cta)
+  principal?: boolean; // bouton principal de la page (masque la barre du téléphone quand il est à l'écran)
+  libelle?: string;
+  complement?: string;
+  class?: string;
+  tabindex?: number;
+}
+const { href, cta, principal = false, libelle = 'Demander une démo', complement = 'gratuite', class: classe = '', tabindex } = Astro.props;
+---
+
+<a href={href} class={`dv-cta ${classe}`} data-cta={cta} {...(principal ? { 'data-cta-principal': '' } : {})} tabindex={tabindex}>
+  <span class="dv-cta-texte">{libelle}</span>
+  <span class="dv-cta-pastille">{complement}<Fleche taille={24} /></span>
+</a>

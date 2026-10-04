@@ -2,6 +2,7 @@
 // Page par plateforme (motif Zapier) : ce que Deliview montre, comment démarrer, FAQ.
 // Refonte en relief (3 octobre 2026) : en haut, la vraie carte « position » de la plateforme qui flotte en 3D.
 import Base from '../../layouts/Base.astro';
+import BoutonDemo from '../../components/BoutonDemo.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
 import Pastille from '../../components/Pastille.astro';
@@ -83,7 +84,7 @@ const c = CONTENU[slug];
         <h1 id="plateforme-titre" class="dv-h1 mt-5 max-w-[20ch] md:mt-6">{c.h1}</h1>
         <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{c.lead}</p>
         <div class="mt-7 md:mt-8">
-          <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta={`integration-${p.slug}`} data-cta-principal>Demander une démo</a>
+          <BoutonDemo href="#demo" cta={`integration-${p.slug}`} principal class="w-full sm:w-auto" />
         </div>
       </div>
       <div class="w-full">

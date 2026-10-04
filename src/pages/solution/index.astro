@@ -2,6 +2,7 @@
 // Vue d'ensemble : les 3 piliers en cartes (même gabarit que l'accueil, une vraie carte de l'app inclinée en 3D),
 // puis toutes leurs fonctionnalités, disponibles aujourd'hui. Refonte en relief du 3 octobre 2026.
 import Base from '../../layouts/Base.astro';
+import BoutonDemo from '../../components/BoutonDemo.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import CartePilier from '../../components/CartePilier.astro';
 import Pastille from '../../components/Pastille.astro';
@@ -27,7 +28,7 @@ const ordre = ['prix-et-concurrence', 'carte-et-marge', 'reputation'].map((slug)
       <h1 id="solution-titre" class="dv-h1 mt-5 max-w-[20ch] md:mt-6">Ce que Deliview fait pour votre restaurant</h1>
       <p class="dv-lead mt-4 max-w-[60ch] md:mt-6">{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</p>
       <div class="mt-7 md:mt-8">
-        <a href="#demo" class="dv-btn dv-btn-plein w-full sm:w-auto sm:px-7" data-cta="solution" data-cta-principal>Demander une démo</a>
+        <BoutonDemo href="#demo" cta="solution" principal class="w-full sm:w-auto" />
       </div>
       <ul class="mt-12 grid gap-6 md:mt-16 lg:grid-cols-3">
         {ordre.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} niveau="h2" />)}

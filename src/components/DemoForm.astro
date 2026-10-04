@@ -4,14 +4,20 @@
 // Avec JavaScript : validation à la sortie de chaque champ, envoi sans rechargement, confirmation sur place.
 // Habillé en « bon de démo » par SectionDemo (direction « le passe ») : champs de 52 px, bordure Gris 2 à 70 %,
 // erreur signalée par le texte et l'icône alerte dessinée, jamais par la couleur seule.
+// Variante « commencer » (4 octobre 2026, boutons « Commencer maintenant » des offres) : le choix de l'offre en tête
+// (Pro par défaut, ou l'offre de l'adresse ?offre=…), les mêmes 5 champs, puis la confirmation d'ouverture de compte.
+// La fonction « lead » reconnaît le champ « offre » : alerte « Nouveau départ » à Tom, retour vers /commencer/merci/.
 import Chevron from '../icons/chevron.astro';
-import { SITE, lien } from '../lib/site';
+import { OFFRES, SITE, lien } from '../lib/site';
 
 interface Props {
   // Section d'origine par défaut (si le visiteur n'a cliqué sur aucun bouton démo avant).
   section: string;
+  variante?: 'demo' | 'commencer';
 }
-const { section } = Astro.props;
+const { section, variante = 'demo' } = Astro.props;
+const depart = variante === 'commencer';
+const offreParDefaut = OFFRES.find((o) => o.recommandee) ?? OFFRES[0];
 const retour = new URL(import.meta.env.BASE_URL, SITE.url).href;
 const champ = 'dv-champ placeholder:text-grey-2/70';
 const libelle = 'block text-[16px] font-semibold leading-[1.3]';
@@ -27,6 +33,26 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     data-formulaire-demo
     data-endpoint={SITE.formulaire}
   >
+    {
+      depart && (
+        <fieldset class="dv-choix-offre">
+          <legend class={libelle}>
+            Votre offre <span class="font-normal dv-muted">· prix HT par mois</span>
+          </legend>
+          <div class="mt-2 grid gap-2.5">
+            {OFFRES.map((o) => (
+              <label class="dv-choix-offre-carte">
+                <input type="radio" name="offre" value={o.slug} checked={o.slug === offreParDefaut.slug} data-nom={o.nom} />
+                <span class="dv-choix-offre-nom">{o.nom}</span>
+                <span class="dv-choix-offre-detail dv-muted">{o.restaurants}</span>
+                <span class="dv-choix-offre-prix">{o.prix}&nbsp;€</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      )
+    }
+
     <div>
       <label for="dv-nom" class={libelle}>Prénom et nom</label>
       <input id="dv-nom" name="nom" type="text" autocomplete="name" required minlength="2" maxlength="120" class={champ + ' mt-2'} aria-describedby="dv-nom-erreur" />
@@ -84,19 +110,32 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
     <p class="dv-erreur-generale hidden rounded-[12px] border-2 border-grey-2 bg-white p-4 text-[16px] font-semibold" role="alert"></p>
 
-    <button type="submit" class="dv-btn dv-btn-plein mt-1 w-full">Demander ma démo</button>
+    <button type="submit" class="dv-btn dv-btn-plein mt-1 w-full" data-bouton-envoi>{depart ? 'Commencer maintenant' : 'Demander ma démo'}</button>
 
     <p id="dv-form-rgpd" class="text-[14px] leading-[1.5] dv-muted">
-      Vos informations servent uniquement à vous recontacter pour la démo. Détails dans notre <a href={lien('/confidentialite/')}>politique de confidentialité</a>.
+      {depart ? 'Vos informations servent uniquement à ouvrir votre compte et à vous recontacter.' : 'Vos informations servent uniquement à vous recontacter pour la démo.'} Détails dans notre <a href={lien('/confidentialite/')}>politique de confidentialité</a>.
     </p>
   </form>
 
   <div class="dv-form-ok hidden" role="status" tabindex="-1">
     <p class="dv-h3">C’est noté<span data-prenom></span>.</p>
-    <p class="mt-3">Tom vous rappelle sous 3&nbsp;h au <strong data-tel></strong> pour fixer votre démo de 30&nbsp;minutes.</p>
-    <p class="mt-3">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
     {
-      SITE.rendezVous && (
+      depart ? (
+        <>
+          <p class="mt-3">
+            Offre choisie&nbsp;: <strong data-offre-ok>{offreParDefaut.nom}</strong>. Tom vous appelle sous 3&nbsp;h au <strong data-tel></strong> pour ouvrir votre compte avec vous.
+          </p>
+          <p class="mt-3">Rien à payer aujourd’hui. Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
+        </>
+      ) : (
+        <>
+          <p class="mt-3">Tom vous rappelle sous 3&nbsp;h au <strong data-tel></strong> pour fixer votre démo de 30&nbsp;minutes.</p>
+          <p class="mt-3">Besoin d’aller plus vite&nbsp;? Écrivez à Tom&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a>.</p>
+        </>
+      )
+    }
+    {
+      SITE.rendezVous && !depart && (
         <a href={SITE.rendezVous} class="dv-btn dv-btn-contour mt-5 w-full" rel="noopener">
           Choisir mon créneau maintenant
         </a>
@@ -170,6 +209,20 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     const generale = form.querySelector<HTMLElement>('.dv-erreur-generale')!;
     const message = (c: Champ) => document.getElementById(c.id + '-erreur')?.dataset.message || 'Vérifiez ce champ.';
 
+    // Formulaire « Commencer » : l'offre de l'adresse (?offre=…) est cochée, le bouton dit l'offre choisie.
+    const offres = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="offre"]'));
+    const offreChoisie = () => offres.find((x) => x.checked);
+    if (offres.length) {
+      const voulue = offres.find((x) => x.value === params.get('offre'));
+      if (voulue) voulue.checked = true;
+      const libelleBouton = () => {
+        const o = offreChoisie();
+        if (o && !bouton.disabled) bouton.textContent = 'Commencer avec ' + (o.dataset.nom || o.value);
+      };
+      offres.forEach((x) => x.addEventListener('change', libelleBouton));
+      libelleBouton();
+    }
+
     // Provenance : UTM de la visite, page, dernier bouton démo cliqué.
     try {
       const utm = JSON.parse(lireStockage('dv_utm') || '{}') as Record<string, string>;
@@ -222,6 +275,9 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
           if (span && prenom) span.textContent = ', ' + prenom;
           const tel = ok.querySelector('[data-tel]');
           if (tel) tel.textContent = String(donnees.telephone || '');
+          const o = offreChoisie();
+          const offreOk = ok.querySelector('[data-offre-ok]');
+          if (offreOk && o) offreOk.textContent = o.dataset.nom || o.value;
           form.classList.add('hidden');
           ok.classList.remove('hidden');
           ok.focus();

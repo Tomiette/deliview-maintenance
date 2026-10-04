@@ -95,7 +95,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Comment ouvrir un compte ?',
-        r: 'Deliview s’utilise sur abonnement. Après la démo, Tom crée votre compte et fait la mise en place avec vous.',
+        r: `Deliview s’utilise sur abonnement. Choisissez votre offre sur la page <a href="${lien('/tarifs/')}">Tarifs</a> et cliquez sur «&nbsp;Commencer maintenant&nbsp;»&nbsp;: Tom vous appelle sous 3&nbsp;h, crée votre compte et fait la mise en place avec vous. Rien à payer au moment de la demande. Vous pouvez aussi <a href="${lien('/demo/')}">demander une démo</a> avant de choisir.`,
       },
     ],
   },

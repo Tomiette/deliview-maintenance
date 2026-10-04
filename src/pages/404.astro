@@ -1,6 +1,7 @@
 ---
 // Page introuvable : liens utiles vers les piliers et la démo. Refonte en relief du 3 octobre 2026.
 import Base from '../layouts/Base.astro';
+import BoutonDemo from '../components/BoutonDemo.astro';
 import Fleche from '../icons/fleche.astro';
 import Pastille from '../components/Pastille.astro';
 import { ICONES } from '../lib/registre-icones';
@@ -34,7 +35,7 @@ import { PILIERS, lien } from '../lib/site';
         <li><a href={lien('/ressources/')} class="dv-lien-fort">Ressources<Fleche taille={24} /></a></li>
         <li><a href={lien('/')} class="dv-lien-fort">Accueil<Fleche taille={24} /></a></li>
       </ul>
-      <a href={lien('/demo/')} class="dv-btn dv-btn-plein mt-10 w-full sm:w-auto sm:px-7" data-cta="404" data-cta-principal>Demander une démo</a>
+      <BoutonDemo href={lien('/demo/')} cta="404" principal class="mt-10 w-full sm:w-auto" />
     </div>
   </section>
 </Base>
