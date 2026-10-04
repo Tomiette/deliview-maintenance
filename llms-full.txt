@@ -1,6 +1,6 @@
 # Deliview
 
-> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.
+> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable.
 
 Le partenaire des restaurants en livraison. Site : https://www.deliview.fr. Contact : tom.voisin@deliview.fr. Fondateur : Tom Voisin (https://www.deliview.fr/qui-sommes-nous/#tom).
 
@@ -12,16 +12,16 @@ Le partenaire des restaurants en livraison. Site : https://www.deliview.fr. Cont
 
 ## Tarifs (HT par mois, sans engagement, mise en place offerte)
 
-- Essentiel : 59 €, 1 restaurant. Pour vendre chaque plat au bon prix.
-- Pro : 149 €, jusqu’à 5 restaurants. Pour piloter la rentabilité de plusieurs restaurants.
-- Premium : 349 €, jusqu’à 10 restaurants. Pour un groupe de restaurants, avec un suivi chaque mois.
+- Essentiel : 59 €, 1 restaurant. Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix.
+- Pro : 149 €, jusqu’à 5 restaurants. Pilotez la rentabilité de tous vos restaurants et gardez une longueur d’avance sur vos concurrents.
+- Premium : 349 €, jusqu’à 10 restaurants. Tous vos restaurants plus rentables, avec Tom à vos côtés.
 
 ## Questions fréquentes (mises à jour le 2026-10-02, https://www.deliview.fr/questions-frequentes/)
 
 ### Deliview en bref
 
 **Qu’est-ce que Deliview ?**
-Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable. Deliview est conçu pour les restaurants en France présents sur Uber Eats et Deliveroo.
+Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable. Deliview est conçu pour les restaurants en France présents sur Uber Eats et Deliveroo.
 
 **À qui s’adresse Deliview ?**
 Aux restaurants qui vendent sur Uber Eats et Deliveroo, de 1 à 10 restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.
@@ -58,7 +58,7 @@ Trois offres, selon votre nombre de restaurants. Essentiel : 59 € HT par mois,
 Non. L’abonnement est mensuel et sans engagement. La mise en place est offerte.
 
 **Peut-on essayer Deliview avant de payer ?**
-Oui, par une démo de 15 minutes sur votre propre restaurant, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. Demander une démo.
+Oui, par une démo de 30 minutes sur votre propre restaurant, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. Demander une démo.
 
 **Comment ouvrir un compte ?**
 Deliview s’utilise sur abonnement. Après la démo, Tom crée votre compte et fait la mise en place avec vous.

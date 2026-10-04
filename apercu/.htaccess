@@ -1,0 +1,46 @@
+# www.deliview.fr sur l'hébergement web OVH (fichier versionné dans la branche site-source,
+# copié tel quel à la racine du site par le build, puis envoyé par le déploiement GitHub Actions).
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+
+# Une seule adresse publique : https://www.deliview.fr
+# (méthode recommandée par OVH : le port 80 signale une requête en HTTP).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{SERVER_PORT} 80 [OR]
+  RewriteCond %{HTTP_HOST} !^www\.deliview\.fr$ [NC]
+  RewriteRule ^(.*)$ https://www.deliview.fr/$1 [R=301,L]
+</IfModule>
+
+# Pages HTML toujours fraîches ; fichiers à nom versionné (assets/) gardés un an.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/webp "access plus 7 days"
+  ExpiresByType image/png "access plus 7 days"
+  ExpiresByType image/jpeg "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 7 days"
+  ExpiresByType image/x-icon "access plus 7 days"
+  ExpiresByType video/mp4 "access plus 7 days"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  # HTTPS imposé par le navigateur pendant un an après la première visite (ignoré en HTTP, sans les sous-domaines).
+  Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>

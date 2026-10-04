@@ -1,6 +1,6 @@
 # Deliview
 
-> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix et vos promos, et vous rendez votre activité livraison plus rentable.
+> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable.
 
 Le partenaire des restaurants en livraison. Logiciel français, pour les restaurants en France présents sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens, petites chaînes. Deliview centralise vos données de livraison Uber Eats et Deliveroo. Chaque prix comparé cite ses sources.
 
@@ -16,9 +16,9 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 ## Tarifs
 
-- Essentiel : 59 € HT par mois, 1 restaurant. Pour vendre chaque plat au bon prix.
-- Pro : 149 € HT par mois, jusqu’à 5 restaurants. Pour piloter la rentabilité de plusieurs restaurants.
-- Premium : 349 € HT par mois, jusqu’à 10 restaurants. Pour un groupe de restaurants, avec un suivi chaque mois.
+- Essentiel : 59 € HT par mois, 1 restaurant. Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix.
+- Pro : 149 € HT par mois, jusqu’à 5 restaurants. Pilotez la rentabilité de tous vos restaurants et gardez une longueur d’avance sur vos concurrents.
+- Premium : 349 € HT par mois, jusqu’à 10 restaurants. Tous vos restaurants plus rentables, avec Tom à vos côtés.
 - Sans engagement, mise en place offerte. Détail : https://www.deliview.fr/tarifs/
 
 ## Guides pour les restaurateurs
@@ -36,7 +36,7 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 - [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, engagement, fondateur.
 - [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : le projet, Tom Voisin, fondateur, et la construction de Deliview.
-- [Demander une démo](https://www.deliview.fr/demo/) : 15 minutes sur le restaurant du prospect.
+- [Demander une démo](https://www.deliview.fr/demo/) : 30 minutes sur le restaurant du prospect.
 - E-mail : tom.voisin@deliview.fr
 
 ## Optional
