@@ -404,7 +404,7 @@ export const OFFRES: Offre[] = [
   {
     slug: 'premium',
     nom: 'Premium',
-    prix: 349,
+    prix: 249,
     restaurants: 'Jusqu’à 10 restaurants',
     pour: 'Tous vos restaurants plus rentables, avec Tom à vos côtés',
     base: 'Tout Pro, plus :',

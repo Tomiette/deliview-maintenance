@@ -1,4 +1,4 @@
-Version du 2 octobre 2026.
+Version du 4 octobre 2026.
 
 DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
@@ -232,7 +232,7 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 |  | Essentiel | Pro | Premium |
 | --- | --- | --- | --- |
-| Prix hors taxes par mois | 59 € | 149 € | 349 € |
+| Prix hors taxes par mois | 59 € | 149 € | 249 € |
 | Établissements couverts | 1 | Jusqu’à 5 | Jusqu’à 10 |
 | Fiches Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
 | Concurrents analysés par Établissement | Jusqu’à 20 | Jusqu’à 20 | Jusqu’à 20 |
