@@ -74,7 +74,7 @@ const texte = [
     const pastille = cadre.querySelector<HTMLButtonElement>('.hv-lire');
     if (!video || !pastille) return;
     const zone = cadre.closest<HTMLElement>('[data-video-zone]');
-    const boutons = zone ? Array.from(zone.querySelectorAll<HTMLButtonElement>('[data-video-lire]')) : [];
+    const boutons = zone ? Array.from(zone.querySelectorAll<HTMLElement>('[data-video-lire]')) : [];
     video.controls = false;
     pastille.hidden = false;
     // Avec un bouton visible sous la vidéo, la pastille reste un raccourci à la souris (hors tabulation).
@@ -87,7 +87,14 @@ const texte = [
       video.focus({ preventScroll: true });
     };
     pastille.addEventListener('click', lire);
-    boutons.forEach((b) => b.addEventListener('click', lire));
+    // Un lien « Voir Deliview en action » (le fichier MP4 sans JavaScript) lance la vidéo sur place.
+    boutons.forEach((b) =>
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        lire();
+        cadre.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }),
+    );
     video.addEventListener('play', () => zone?.classList.add('dv-video-en-lecture'));
     video.addEventListener('ended', () => {
       video.controls = false;

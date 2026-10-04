@@ -1185,6 +1185,20 @@
     max-width: 600px;
     margin-inline: auto;
   }
+  /* La vidéo de présentation, à droite du texte (4 octobre 2026), devant la forme décorative. */
+  .dv-hero-video {
+    position: relative;
+  }
+  .dv-hero-visuel:has(.dv-hero-video) .dv-hero-video-mobile {
+    position: relative;
+  }
+  .dv-hero-visuel:has(.dv-hero-video) .dv-hero-forme {
+    pointer-events: none;
+    left: 12%;
+    width: 76%;
+    top: 50%;
+    translate: 0 -50%;
+  }
   /* Forme décorative : Bleu 2 à 12 %, nette (aucun flou), derrière la tablette. */
   .dv-hero-forme {
     position: absolute;
