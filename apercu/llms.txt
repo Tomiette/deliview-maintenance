@@ -36,6 +36,7 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 - [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, engagement, fondateur.
 - [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : le projet, Tom Voisin, fondateur, et la construction de Deliview.
+- [Deliview est-il fiable ?](https://www.deliview.fr/deliview-est-il-fiable/) : éditeur (DELIVIEW SAS, SIREN 102 681 509), prix publics, contrats, hébergement des données, accès aux comptes, contact. Chaque fait avec son lien.
 - [Demander une démo](https://www.deliview.fr/demo/) : 30 minutes sur le restaurant du prospect.
 - E-mail : tom.voisin@deliview.fr
 

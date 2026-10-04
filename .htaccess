@@ -13,6 +13,17 @@ AddDefaultCharset utf-8
   RewriteCond %{SERVER_PORT} 80 [OR]
   RewriteCond %{HTTP_HOST} !^www\.deliview\.fr$ [NC]
   RewriteRule ^(.*)$ https://www.deliview.fr/$1 [R=301,L]
+
+  # Anciennes pages retirées (2 octobre 2026) : redirection définitive vers la page qui les remplace.
+  # Les pages de renvoi restent dans public/ en secours.
+  RewriteRule ^integrations/uber-direct/?$ https://www.deliview.fr/integrations/ [R=301,L]
+  RewriteRule ^solution/commandes/?$ https://www.deliview.fr/solution/ [R=301,L]
+
+  # Adresse d'un dossier sans barre finale (/tarifs) : une seule redirection, vers l'adresse publique exacte
+  # (la redirection automatique d'Apache ajoutait « :443 » à l'adresse, 4 octobre 2026).
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ https://www.deliview.fr/$1/ [R=301,L]
 </IfModule>
 
 # Pages HTML toujours fraîches ; fichiers à nom versionné (assets/) gardés un an.
