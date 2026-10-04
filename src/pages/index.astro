@@ -23,7 +23,6 @@ import LoupeZone from '../icons/loupe-zone.astro';
 import Enveloppe from '../icons/enveloppe.astro';
 import Toque from '../icons/toque.astro';
 import Fleche from '../icons/fleche.astro';
-import Lecture from '../icons/lecture.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
 import { ANONYME, EXEMPLE_MARGHERITA as ex, FRAGMENTS, OFFRES, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
@@ -104,7 +103,6 @@ const video = {
 
 const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six', 'Sept', 'Huit', 'Neuf', 'Dix'][ex.concurrents] ?? String(ex.concurrents);
-const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
 ---
 
 <Base
@@ -113,9 +111,9 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
   jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
   precharger="/video/deliview-video-couverture-v2-16x9.webp"
 >
-  <!-- Haut de page : slogan, promesse de rentabilité, définition, le bouton démo (seul bouton plein) et « Voir Deliview
-       en action » ; à droite, la vidéo de présentation (demande de Tom, 4 octobre 2026), lancée au clic sur l'image ou
-       sur ce bouton. -->
+  <!-- Haut de page : slogan, promesse de rentabilité, définition et le bouton démo, seul bouton ; à droite, la vidéo de
+       présentation (demande de Tom, 4 octobre 2026), lancée au clic sur l'image. Bouton « Voir Deliview en action »
+       retiré le 4 octobre 2026 (demande de Tom). -->
   <section class="dv-hero" aria-labelledby="hero-titre" data-haut-de-page data-video-zone>
     <div class="dv-container dv-hero-grille">
       <div class="dv-hero-texte">
@@ -124,13 +122,11 @@ const lienVideo = lien('/video/deliview-video-v2-16x9.mp4');
         <p class="dv-lead mt-4 max-w-[46ch] md:mt-6">{SITE.definition}</p>
         <div class="dv-hero-boutons">
           <BoutonDemo href="#demo" cta="hero" principal />
-          <a href={lienVideo} class="dv-btn dv-btn-contour dv-hero-video-bureau" data-video-lire data-cta="video-haut-de-page"><Lecture taille={24} />Voir Deliview en action</a>
         </div>
       </div>
       <div class="dv-hero-visuel">
         <span class="dv-hero-forme" aria-hidden="true"></span>
         <HeroVideo class="dv-hero-video" />
-        <a href={lienVideo} class="dv-btn dv-btn-contour dv-hero-video-mobile" data-video-lire data-cta="video-haut-de-page"><Lecture taille={24} />Voir Deliview en action</a>
       </div>
     </div>
   </section>

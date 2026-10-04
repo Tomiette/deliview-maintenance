@@ -1259,12 +1259,6 @@
     gap: 14px;
     margin-top: 28px;
   }
-  .dv-hero-boutons .dv-btn {
-    width: 100%;
-  }
-  .dv-hero-video-bureau {
-    display: none !important;
-  }
   .dv-hero-visuel {
     position: relative;
     width: 100%;
@@ -1273,9 +1267,6 @@
   }
   /* La vidéo de présentation, à droite du texte (4 octobre 2026), devant la forme décorative. */
   .dv-hero-video {
-    position: relative;
-  }
-  .dv-hero-visuel:has(.dv-hero-video) .dv-hero-video-mobile {
     position: relative;
   }
   .dv-hero-visuel:has(.dv-hero-video) .dv-hero-forme {
@@ -1303,29 +1294,15 @@
     text-align: center;
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
-  .dv-hero-video-mobile {
-    width: 100%;
-    margin-top: 18px;
-  }
   @media (min-width: 640px) {
     .dv-hero-boutons {
       flex-direction: row;
       flex-wrap: wrap;
     }
-    .dv-hero-boutons .dv-btn {
-      width: auto;
-      padding-inline: 26px;
-    }
   }
   @media (min-width: 768px) {
     .dv-hero {
       padding-block: 64px 96px;
-    }
-    .dv-hero-video-mobile {
-      display: none;
-    }
-    .dv-hero-video-bureau {
-      display: inline-flex !important;
     }
   }
   @media (min-width: 1024px) {
@@ -1338,9 +1315,6 @@
     }
     .dv-hero-boutons {
       gap: 12px;
-    }
-    .dv-hero-boutons .dv-btn {
-      padding-inline: 22px;
     }
   }
 
