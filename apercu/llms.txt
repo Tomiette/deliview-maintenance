@@ -1,11 +1,18 @@
 # Deliview
 
-> Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable.
+> Deliview est un logiciel français qui centralise vos chiffres Uber Eats et Deliveroo sur un seul écran. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et votre activité livraison devient plus rentable.
 
 Le partenaire des restaurants en livraison. Logiciel français, pour les restaurants en France présents sur Uber Eats et Deliveroo : pizzerias, burgers et snacks, dark kitchens, petites chaînes. Deliview centralise vos données de livraison Uber Eats et Deliveroo. Chaque prix comparé cite ses sources.
 
 ## Ce que fait Deliview
 
+- [Vos promotions](https://www.deliview.fr/solution/#promotions) : Une stratégie de promotion intelligente, alimentée par l’IA. Pas d’offre là où vous vendez déjà bien · Une offre ciblée sur vos heures creuses · Le bilan de chaque offre, pour garder celles qui ramènent des commandes.
+- [La fraude client](https://www.deliview.fr/solution/#fraude) : Contestez un remboursement Uber Eats en un clic. Le montant et la date limite, commande par commande · Le suivi de chaque contestation · Récupérez l’argent de la fraude.
+- [Vos prix](https://www.deliview.fr/solution/#prix) : Deliview compare chaque plat de votre menu au même plat chez vos concurrents. Votre Margherita face à celles des restaurants autour de vous · Le prix conseillé, et ce qu’il vous rapporte · Vous validez, Deliview le met en ligne.
+- [Fermé en plein service](https://www.deliview.fr/solution/#fermeture) : Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.
+- [Vos avis](https://www.deliview.fr/solution/#avis) : Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.
+- [Votre assistant IA](https://www.deliview.fr/solution/#assistant) : Une question sur vos ventes, vos prix ou vos concurrents ? Il répond avec vos chiffres et prépare le rapport pour vos équipes.
+- [Vos objectifs](https://www.deliview.fr/solution/#objectifs) : Par semaine ou par mois, restaurant par restaurant. Et chaque lundi, le point sur votre téléphone.
 - [Pricing Menu](https://www.deliview.fr/solution/carte-et-marge/#pricing-menu) : Repérez les plats vendus trop bas et ce qu’un meilleur prix rapporte. Exemple réel : Margherita à 10,50 €. Médiane de la zone : 15,00 € chez 5 concurrents. (Pizzeria à Chartres, Deliveroo, analyse du 1er octobre 2026).
 - [Optimiseur menu](https://www.deliview.fr/solution/carte-et-marge/#optimiseur-menu) : Des fiches de plats qui donnent envie de commander. Exemple réel : 8 plats sur 33 sans description, soit 24 %. Chez 9 concurrents : 5 %. (Restaurant de burgers à Paris, Deliveroo, analyse du 1er octobre 2026).
 - [Prix des concurrents](https://www.deliview.fr/solution/prix-et-concurrence/#prix-concurrents) : Vos prix face à ceux des restaurants qui livrent les mêmes rues. Exemple réel : Burger à 14,90 €. Médiane de la zone : 11,15 € chez 9 concurrents. (Restaurant de burgers à Paris, Uber Eats, analyse du 1er octobre 2026).
@@ -16,9 +23,9 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 
 ## Tarifs
 
-- Essentiel : 59 € HT par mois, 1 restaurant. Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix.
-- Pro : 149 € HT par mois, jusqu’à 5 restaurants. Pilotez la rentabilité de tous vos restaurants et gardez une longueur d’avance sur vos concurrents.
-- Premium : 249 € HT par mois, jusqu’à 10 restaurants. Tous vos restaurants plus rentables, avec Tom à vos côtés.
+- Essentiel : 59 € HT par mois, 1 restaurant. Suivez et améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo.
+- Pro : 199 € HT par mois, jusqu’à 3 restaurants. Pilotez et améliorez votre rentabilité : Deliview agit pour vous sur les promos, les prix et la fraude client.
+- Groupe : 399 € HT par mois, jusqu’à 10 restaurants. Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom.
 - Sans engagement, mise en place offerte. Détail : https://www.deliview.fr/tarifs/
 
 ## Guides pour les restaurateurs
