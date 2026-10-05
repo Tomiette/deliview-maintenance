@@ -3,6 +3,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import DemanderIA from '../components/DemanderIA.astro';
 import { SITE, lien } from '../lib/site';
 import aspekta400 from '../fonts/Aspekta-400.woff2?url';
 import aspekta700 from '../fonts/Aspekta-700.woff2?url';
@@ -24,9 +25,15 @@ interface Props {
   fondHaut?: 'gris' | 'blanc';
   // Bouton démo fixé en bas de l'écran du téléphone (faux sur la page de départ /commencer/).
   barreDemo?: boolean;
+  // Bloc « Demandez à votre IA » avant le pied de page (6 octobre 2026, demande de Tom) : partout sauf les pages du menu
+  // Ressources, les pages légales et les pages de parcours. Forcé à vrai ou faux par la page si besoin.
+  ia?: boolean;
 }
 
-const { title, description, ariane = [], jsonld = [], ogType = 'website', noindex = false, precharger, fondHaut = 'gris', barreDemo = true } = Astro.props;
+const { title, description, ariane = [], jsonld = [], ogType = 'website', noindex = false, precharger, fondHaut = 'gris', barreDemo = true, ia } = Astro.props;
+const chemin = '/' + Astro.url.pathname.replace(import.meta.env.BASE_URL, '').replace(/^\/+/, '');
+const SANS_IA = /^\/(ressources|integrations|questions-frequentes|qui-sommes-nous|mentions-legales|cgv|conditions-utilisation|confidentialite|accord-sous-traitance|merci|commencer|analyse|404)(\/|$)/;
+const avecIA = ia ?? (!noindex && !SANS_IA.test(chemin));
 const canonical = new URL(Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/', SITE.url).href;
 // Aperçu (SITE_BASE ≠ /) : jamais indexé.
 const apercu = import.meta.env.BASE_URL !== '/';
@@ -151,6 +158,7 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
         )
       }
       <slot />
+      {avecIA && <DemanderIA />}
     </main>
     <Footer barreDemo={barreDemo} />
     <script>

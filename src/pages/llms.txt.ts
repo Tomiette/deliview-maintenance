@@ -2,7 +2,7 @@
 // données que les pages, pour ne jamais diverger du site (offres, piliers, articles).
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { OFFRES, PILIERS, SITE } from '../lib/site';
+import { LEVIERS, OFFRES, PILIERS, SITE, VEILLE } from '../lib/site';
 
 export const GET: APIRoute = async () => {
   const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort(
@@ -18,6 +18,8 @@ export const GET: APIRoute = async () => {
     '',
     '## Ce que fait Deliview',
     '',
+    ...LEVIERS.map((l) => `- [${l.nom}](${u(`/solution/#${l.id}`)}) : ${l.benefice} ${l.points.join(' · ')}.`),
+    ...VEILLE.map((v) => `- [${v.nom.replace(/ \?$/, '')}](${u(`/solution/#${v.id}`)}) : ${v.texte}`),
     ...PILIERS.flatMap((p) => p.fonctionnalites.map((f) => `- [${f.nom}](${u(`/solution/${p.slug}/#${f.id}`)}) : ${f.benefice} Exemple réel : ${f.exemple.texte} (${f.exemple.contexte}).`)),
     `- [Simulateur de rentabilité](${u('/simulateur/')}) : ce que rapporte un prix mieux placé, calculé dans le navigateur.`,
     `- [Intégrations](${u('/integrations/')}) : Uber Eats et Deliveroo, plateformes analysées en France.`,

@@ -1,0 +1,9 @@
+---
+// Icône « cible » : cible et flèche (objectifs).
+// Dessinée le 6 octobre 2026 dans le style de la planche validée (grille 48, trait arrondi, une touche de Bleu 1).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M22.6 8.4c8.4-.2 15.4 6.6 15.6 15 .2 8.4-6.6 15.4-15 15.6-8.4.2-15.4-6.6-15.6-15-.2-8.4 6.6-15.4 15-15.6z" /><path d="M22.7 15.4c4.6-.1 8.3 3.5 8.4 8.1.1 4.6-3.5 8.3-8.1 8.4-4.6.1-8.3-3.5-8.4-8.1-.1-4.6 3.5-8.3 8.1-8.4z" /><path class="b" d="M23 23.4l15.8-15.6M33.8 7.6l5.2.1-.1 5.2" /></Trace>

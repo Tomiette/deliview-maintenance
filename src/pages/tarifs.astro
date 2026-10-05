@@ -2,6 +2,8 @@
 // Tarifs : 3 abonnements selon le nombre de restaurants (OFFRES dans src/lib/site.ts), trois cartes en relief côte à côte
 // (empilées sur téléphone), Pro mise en avant (bord Bleu 1, bandeau « Recommandé », légèrement surélevée), tableau
 // comparatif, lien vers le simulateur, questions (FAQPage), bandeau final. Uniquement ce que Deliview fait aujourd'hui.
+// 6 octobre 2026 (demande de Tom) : Essentiel 59 €, Pro 199 € (3 restaurants), Groupe 399 € (10 restaurants), offres
+// et comparatif récrits en mots simples, questions à la première personne.
 // Refonte en relief du 3 octobre 2026 (les tickets et la flèche au marqueur de la direction « le passe » sont retirés).
 // 4 octobre 2026 (logique de taap.it, choix de Tom) : chaque offre a son bouton « Commencer maintenant » vers le
 // formulaire de départ /commencer/?offre=… (pas de paiement sur le site) ; prix en Inter ; la démo reste proposée
@@ -16,51 +18,66 @@ import Enveloppe from '../icons/enveloppe.astro';
 import Fleche from '../icons/fleche.astro';
 import { OFFRES, PRIX_ENTREE, SITE, jsonldLogiciel, lien } from '../lib/site';
 
-const description = `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE} € HT par mois : sans engagement, mise en place offerte. Comparez Essentiel, Pro et Premium.`;
+const description = `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE} € HT par mois : sans engagement, mise en place offerte. Comparez Essentiel, Pro et Groupe.`;
 
 type Case = 'oui' | 'non' | string;
-const comparatif: { libelle: string; valeurs: [Case, Case, Case] }[] = [
-  { libelle: 'Restaurants inclus', valeurs: ['1', 'Jusqu’à 5', 'Jusqu’à 10'] },
-  { libelle: 'Ventes Uber Eats et Deliveroo sur un seul écran, ce qui vous reste', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Classement sur Uber Eats et Deliveroo', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Concurrents suivis par restaurant (prix, promos, notes)', valeurs: ['Jusqu’à 20', 'Jusqu’à 20', 'Jusqu’à 20'] },
-  { libelle: 'Chaque plat comparé, prix proposé avec ses sources', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Nouveaux prix mis en ligne pour vous', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Photos et descriptions passées en revue', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Alerte restaurant fermé pendant le service', valeurs: ['oui', 'oui', 'oui'] },
-  { libelle: 'Tous vos restaurants sur un seul écran', valeurs: ['non', 'oui', 'oui'] },
-  { libelle: 'Promos conseillées, mises en ligne pour vous', valeurs: ['non', 'oui', 'oui'] },
-  { libelle: 'Nouvelles photos préparées à partir des vôtres', valeurs: ['non', 'oui', 'oui'] },
-  { libelle: 'Relance du restaurant fermé, sous 5 min', valeurs: ['non', 'oui', 'oui'] },
-  { libelle: 'Assistant Deliview et rapport PDF', valeurs: ['non', 'oui', 'oui'] },
-  { libelle: 'Concurrents de votre choix suivis de près', valeurs: ['non', '3 par restaurant', '3 par restaurant'] },
-  { libelle: 'Analyses', valeurs: ['1 par semaine', 'À la demande', 'À la demande'] },
-  { libelle: 'Historique des décisions de prix', valeurs: ['non', 'non', 'oui'] },
-  { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
-  { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
-  { libelle: 'Mise en place avec Tom', valeurs: ['Offerte', 'Offerte', 'Offerte'] },
-  { libelle: 'Engagement', valeurs: ['Aucun', 'Aucun', 'Aucun'] },
+// Comparatif en trois blocs (6 octobre 2026, demande de Tom) : ce que vous suivez, ce que Deliview fait pour vous,
+// l'accompagnement. Mêmes mots que les cartes des offres.
+const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, Case, Case] }[] }[] = [
+  {
+    groupe: 'Suivre votre rentabilité',
+    lignes: [
+      { libelle: 'Restaurants', valeurs: ['1', 'Jusqu’à 3', 'Jusqu’à 10'] },
+      { libelle: 'Vos ventes Uber Eats et Deliveroo sur un seul écran', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos prix comparés à ceux de vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Les promos et les notes de votre zone', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Une réponse rédigée par l’IA pour chaque avis', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Alerte si vous êtes fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos objectifs, et le point chaque lundi', valeurs: ['oui', 'oui', 'oui'] },
+    ],
+  },
+  {
+    groupe: 'Deliview agit pour vous',
+    lignes: [
+      { libelle: 'Promos conseillées, mises en ligne pour vous', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Nouveaux prix mis en ligne pour vous', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Remboursements Uber Eats contestés en un clic', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Restaurant fermé relancé en un clic', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Assistant IA et rapport pour vos équipes', valeurs: ['non', 'oui', 'oui'] },
+    ],
+  },
+  {
+    groupe: 'Accompagnement',
+    lignes: [
+      { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'L’historique de vos décisions de prix', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
+      { libelle: 'Mise en place avec Tom', valeurs: ['Offerte', 'Offerte', 'Offerte'] },
+      { libelle: 'Engagement', valeurs: ['Aucun', 'Aucun', 'Aucun'] },
+    ],
+  },
 ];
 
+// Questions à la première personne (6 octobre 2026, demande de Tom).
 const faq = [
   {
-    q: 'Y a-t-il un engagement ?',
+    q: 'Est-ce que je m’engage sur une durée ?',
     r: 'Non. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.',
   },
   {
-    q: 'La mise en place est-elle payante ?',
+    q: 'Est-ce que je paie la mise en place ?',
     r: 'Non, elle est offerte. Tom crée votre compte avec vous et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans le navigateur.',
   },
   {
-    q: 'J’ai un seul restaurant : puis-je choisir Pro ou Premium ?',
+    q: 'J’ai un seul restaurant : est-ce que je peux choisir Pro ou Groupe ?',
     r: 'Oui. Le nombre de restaurants de chaque offre est un maximum, pas un minimum. Vous pouvez changer d’offre à tout moment.',
   },
   {
-    q: 'Deliview remplace-t-il mes tablettes Uber Eats et Deliveroo ?',
-    r: 'Non. Deliview centralise vos prix, vos notes et ceux de vos concurrents. Vos tablettes restent là pour recevoir les commandes.',
+    q: 'Est-ce que je garde mes tablettes Uber Eats et Deliveroo ?',
+    r: 'Oui. Vos tablettes restent là pour recevoir les commandes. Deliview réunit vos chiffres, vos prix et ceux de vos concurrents sur un seul écran.',
   },
   {
-    q: 'J’ai plus de 10 restaurants.',
+    q: 'J’ai plus de 10 restaurants : comment je fais ?',
     r: `Tom vous fait une offre sur mesure. Écrivez-lui à <a href="mailto:${SITE.email}">${SITE.email}</a> ou demandez une démo.`,
   },
   {
@@ -153,13 +170,10 @@ const logiciel = {
         <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
       </div>
 
-      <div class="dv-card mt-10 flex flex-col gap-5 p-6 md:mt-12 md:px-7 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
-        <p class="flex items-center gap-4 text-[17px] font-semibold leading-[1.45] md:text-[18px]">
-          <span class="dv-tuile"><Pieces taille={32} /></span>
-          <span>Plus de 10&nbsp;restaurants&nbsp;? Tom vous fait une offre sur mesure&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</span>
-        </p>
-        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour shrink-0" data-cta="tarifs-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
-      </div>
+      <p class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[17px] font-semibold leading-[1.5] md:mt-10 md:text-[18px]">
+        <span class="dv-tuile"><Pieces taille={32} /></span>
+        <span>Plus de 10&nbsp;restaurants&nbsp;? <a href={lien('/demo/')} class="dv-lien" data-cta="tarifs-plus-de-10">Parlons-en.</a></span>
+      </p>
       <p class="mt-5 text-center text-[14px] dv-muted">
         Prix HT. Abonnement soumis aux <a href={lien('/cgv/')}>conditions générales de vente</a>.
       </p>
@@ -184,27 +198,34 @@ const logiciel = {
           </thead>
           <tbody>
             {
-              comparatif.map((l) => (
-                <tr class="border-t border-grey-2/12">
-                  <th scope="row" class="px-6 py-4 text-left font-normal">{l.libelle}</th>
-                  {l.valeurs.map((c, i) => (
-                    <td class={`px-4 py-4 text-center ${OFFRES[i].recommandee ? 'bg-blue/10' : ''}`}>
-                      {c === 'oui' ? (
-                        <span class="inline-flex justify-center">
-                          <Coche taille={24} />
-                          <span class="sr-only">Inclus</span>
-                        </span>
-                      ) : c === 'non' ? (
-                        <span>
-                          <span aria-hidden="true">—</span>
-                          <span class="sr-only">Non inclus</span>
-                        </span>
-                      ) : (
-                        <span>{c}</span>
-                      )}
-                    </td>
+              comparatif.map((g) => (
+                <>
+                  <tr class="border-t border-grey-2/12 bg-grey/60">
+                    <th scope="colgroup" colspan={4} class="px-6 pb-3 pt-6 text-left font-accent text-[17px] font-bold">{g.groupe}</th>
+                  </tr>
+                  {g.lignes.map((l) => (
+                    <tr class="border-t border-grey-2/12">
+                      <th scope="row" class="px-6 py-4 text-left font-normal">{l.libelle}</th>
+                      {l.valeurs.map((c, i) => (
+                        <td class={`px-4 py-4 text-center ${OFFRES[i].recommandee ? 'bg-blue/10' : ''}`}>
+                          {c === 'oui' ? (
+                            <span class="inline-flex justify-center">
+                              <Coche taille={24} />
+                              <span class="sr-only">Inclus</span>
+                            </span>
+                          ) : c === 'non' ? (
+                            <span>
+                              <span aria-hidden="true">—</span>
+                              <span class="sr-only">Non inclus</span>
+                            </span>
+                          ) : (
+                            <span>{c}</span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
+                </>
               ))
             }
           </tbody>

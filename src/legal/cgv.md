@@ -1,4 +1,4 @@
-Version du 4 octobre 2026.
+Version du 6 octobre 2026.
 
 DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
@@ -230,19 +230,21 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 ## Annexe 1. Offres
 
-|  | Essentiel | Pro | Premium |
+|  | Essentiel | Pro | Groupe |
 | --- | --- | --- | --- |
-| Prix hors taxes par mois | 59 € | 149 € | 249 € |
-| Établissements couverts | 1 | Jusqu’à 5 | Jusqu’à 10 |
-| Fiches Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
-| Concurrents analysés par Établissement | Jusqu’à 20 | Jusqu’à 20 | Jusqu’à 20 |
-| Concurrents choisis par le Client | Non | 3 par Établissement | 3 par Établissement |
-| Pricing Menu et Optimiseur menu | Oui | Oui | Oui |
-| Promotions des concurrents et classement des notes | Oui | Oui | Oui |
-| Changements depuis la dernière Analyse | Oui | Oui | Oui |
-| Analyses | 1 par semaine | À la demande | À la demande |
-| Assistant | Non | Oui | Oui |
-| Historique des décisions de prix | Non | Oui | Oui |
+| Prix hors taxes par mois | 59 € | 199 € | 399 € |
+| Établissements couverts | 1 | Jusqu’à 3 | Jusqu’à 10 |
+| Ventes Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
+| Prix comparés à ceux des concurrents, plat par plat | Oui | Oui | Oui |
+| Promotions et notes des concurrents | Oui | Oui | Oui |
+| Réponse rédigée par l’IA pour chaque avis, envoyée après validation du Client | Oui | Oui | Oui |
+| Alerte de fermeture pendant les heures d’ouverture habituelles | Oui | Oui | Oui |
+| Objectifs et point hebdomadaire | Oui | Oui | Oui |
+| Promotions et prix validés par le Client, appliqués par Deliview | Non | Oui | Oui |
+| Contestation des remboursements Uber Eats | Non | Oui | Oui |
+| Réouverture du restaurant à la demande du Client | Non | Oui | Oui |
+| Assistant et rapport | Non | Oui | Oui |
+| Historique des décisions de prix | Non | Non | Oui |
 | Utilisateurs | 2 | 10 | Sans limite fixe |
 | Point mensuel avec Deliview | Non | Non | Oui |
 | Mise en place | Offerte | Offerte | Offerte |

@@ -3,7 +3,7 @@
 // Généré au build à partir des mêmes données que les pages.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { OFFRES, PILIERS, SITE } from '../lib/site';
+import { LEVIERS, OFFRES, PILIERS, SITE, VEILLE } from '../lib/site';
 import { FAQ, FAQ_MAJ, texteBrut } from '../lib/faq';
 
 export const GET: APIRoute = async () => {
@@ -23,6 +23,8 @@ export const GET: APIRoute = async () => {
     '',
     '## Ce que fait Deliview',
     '',
+    ...LEVIERS.map((l) => `- ${l.nom} (${u(`/solution/#${l.id}`)}) : ${l.benefice} ${l.points.join(' · ')}.`),
+    ...VEILLE.map((v) => `- ${v.nom.replace(/ \?$/, '')} (${u(`/solution/#${v.id}`)}) : ${v.texte}`),
     ...PILIERS.map((p) => `- ${p.surtitre} (${u(`/solution/${p.slug}/`)}) : ${p.phrase}`),
     '',
     '## Tarifs (HT par mois, sans engagement, mise en place offerte)',

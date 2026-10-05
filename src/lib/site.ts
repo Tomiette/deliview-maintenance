@@ -9,9 +9,9 @@ export const SITE = {
   // Slogan définitif (décision de Tom, 1er octobre 2026) : hero, pied de page, Qui sommes-nous, données structurées.
   slogan: 'Le partenaire des restaurants en livraison',
   // Même texte partout (hero de l'accueil, Qui sommes-nous, pied de page, données structurées, LinkedIn).
-  // Direction de copywriting fixée par Tom le 1er octobre 2026.
+  // Direction de copywriting fixée par Tom le 1er octobre 2026, texte revu le 6 octobre 2026 (« un seul écran »).
   definition:
-    'Deliview est un logiciel français qui réunit vos données Uber Eats et Deliveroo sur une seule tablette. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et vous rendez votre activité livraison plus rentable.',
+    'Deliview est un logiciel français qui centralise vos chiffres Uber Eats et Deliveroo sur un seul écran. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et votre activité livraison devient plus rentable.',
   // Argument central (décision de Tom, 2 octobre 2026).
   argument: 'Deliview centralise vos données de livraison Uber Eats et Deliveroo.',
   // Seul contact public depuis le 2 octobre 2026. Le numéro de Tom n'apparaît plus que dans les mentions légales (LCEN).
@@ -305,6 +305,111 @@ export const FRAGMENTS: Record<string, CaptureApp> = {
   },
 };
 
+// Compte de démonstration de l'app (« Pizza Démo », chiffres fictifs) : captures des écrans qui n'ont pas d'analyse réelle
+// anonymisée (accueil, contestations, résultats des campagnes), 6 octobre 2026.
+export const DEMO = 'Compte de démonstration, chiffres fictifs.';
+FRAGMENTS.contestations = {
+  src: '/images/frag-contestations',
+  largeurs: [400, 800],
+  largeur: 800,
+  hauteur: 677,
+  alt: `À faire dans Deliview : récupérez 86,40 € retirés par Uber Eats, 3 remboursements, premier délai le 30 octobre ; en cours, la contestation d’une commande de 9,90 €. ${DEMO}`,
+};
+FRAGMENTS.campagnes = {
+  src: '/images/frag-campagnes',
+  largeurs: [400, 800],
+  largeur: 800,
+  hauteur: 656,
+  alt: `Vos campagnes sur Uber Eats dans Deliview : la meilleure offre, le retour des annonces, puis chaque offre avec ses ventes, ses commandes et ses nouveaux clients. ${DEMO}`,
+};
+
+// Ce que fait Deliview (6 octobre 2026, demande de Tom) : trois leviers de rentabilité, puis ce que Deliview surveille
+// pour vous. Repris dans l'accueil, le menu Solution, la page Solution et le pied de page. Uniquement ce que l'app fait.
+// Contestations : Uber Eats seulement (l'app ne conteste pas encore sur Deliveroo).
+export interface Levier {
+  id: string;
+  icone: NomIcone;
+  nom: string;
+  // Une ligne pour le menu Solution.
+  phrase: string;
+  benefice: string;
+  points: string[];
+  fragment: CaptureApp;
+  // Page qui détaille le levier, s'il y en a une.
+  detail?: { href: string; libelle: string };
+}
+export const LEVIERS: Levier[] = [
+  {
+    id: 'promotions',
+    icone: 'ticket',
+    nom: 'Vos promotions',
+    phrase: 'Des offres sur vos heures creuses, et le bilan de chacune.',
+    benefice: 'Une stratégie de promotion intelligente, alimentée par l’IA.',
+    points: ['Pas d’offre là où vous vendez déjà bien', 'Une offre ciblée sur vos heures creuses', 'Le bilan de chaque offre, pour garder celles qui ramènent des commandes'],
+    fragment: FRAGMENTS.campagnes,
+    detail: { href: '/solution/prix-et-concurrence/', libelle: 'Voir les promos de votre zone' },
+  },
+  {
+    id: 'fraude',
+    icone: 'bouclier',
+    nom: 'La fraude client',
+    phrase: 'Les remboursements injustifiés, contestés en un clic.',
+    benefice: 'Contestez un remboursement Uber Eats en un clic.',
+    points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
+    fragment: FRAGMENTS.contestations,
+  },
+  {
+    id: 'prix',
+    icone: 'etiquette-prix',
+    nom: 'Vos prix',
+    phrase: 'Chaque plat face au même plat chez vos concurrents.',
+    benefice: 'Deliview compare chaque plat de votre menu au même plat chez vos concurrents.',
+    points: ['Votre Margherita face à celles des restaurants autour de vous', 'Le prix conseillé, et ce qu’il vous rapporte', 'Vous validez, Deliview le met en ligne'],
+    fragment: FRAGMENTS['carte-et-marge'],
+    detail: { href: '/solution/carte-et-marge/', libelle: 'Voir vos prix en détail' },
+  },
+];
+
+export interface Veille {
+  id: string;
+  icone: NomIcone;
+  nom: string;
+  phrase: string;
+  texte: string;
+  detail?: { href: string; libelle: string };
+}
+export const VEILLE: Veille[] = [
+  {
+    id: 'fermeture',
+    icone: 'boutique-arret',
+    nom: 'Fermé en plein service ?',
+    phrase: 'Prévenu tout de suite, relancé en un clic.',
+    texte: 'Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.',
+  },
+  {
+    id: 'avis',
+    icone: 'bulle-etoile',
+    nom: 'Vos avis',
+    phrase: 'Une réponse prête pour chaque avis.',
+    texte: 'Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.',
+    detail: { href: '/solution/reputation/', libelle: 'Votre note face à votre zone' },
+  },
+  {
+    id: 'assistant',
+    icone: 'robot',
+    nom: 'Votre assistant IA',
+    phrase: 'Vos questions, répondues avec vos chiffres.',
+    texte: 'Une question sur vos ventes, vos prix ou vos concurrents ? Il répond avec vos chiffres et prépare le rapport pour vos équipes.',
+  },
+  {
+    id: 'objectifs',
+    icone: 'cible',
+    nom: 'Vos objectifs',
+    phrase: 'Le point chaque lundi sur votre téléphone.',
+    texte: 'Par semaine ou par mois, restaurant par restaurant. Et chaque lundi, le point sur votre téléphone.',
+  },
+];
+
 // Accueil de l'app, Uber Eats et Deliveroo côte à côte (page Intégrations, pilier Prix et concurrence).
 export const CAPTURE_POSITION: CaptureApp = {
   src: '/images/scene-position',
@@ -324,7 +429,7 @@ export const NAV = [
 
 // Icônes dessinées du registre (src/lib/registre-icones.ts), affichées à côté de chaque entrée du menu.
 export const MENU_RESSOURCES = [
-  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/', icone: 'ticket' },
+  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/', icone: 'ardoise' },
   { libelle: 'Intégrations', phrase: 'Les plateformes qui fonctionnent avec Deliview.', href: '/integrations/', icone: 'tablette-qui-sonne' },
   { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement.', href: '/questions-frequentes/', icone: 'enveloppe' },
   { libelle: 'Qui sommes-nous', phrase: 'Le projet, le fondateur et la construction de Deliview.', href: '/qui-sommes-nous/', icone: 'toque' },
@@ -361,54 +466,50 @@ export interface Offre {
 }
 
 export const OFFRES: Offre[] = [
-  // Répartition des fonctionnalités (4 octobre 2026, demande de Tom) : Essentiel pour voir clair et corriger ses prix
-  // sur un restaurant ; Pro pour agir (promos, photos, relance, assistant) sur plusieurs restaurants ; Premium pour
-  // un réseau, avec Tom à vos côtés. Les limites ne sont pas encore appliquées dans l'app.
+  // Répartition revue le 6 octobre 2026 (demande de Tom) : Essentiel pour suivre et améliorer un restaurant ; Pro pour que
+  // Deliview agisse (promos, prix, fraude client) sur 3 restaurants ; Groupe (identifiant « premium », gardé par l'app et
+  // Stripe) pour un réseau, avec un point chaque mois avec Tom. Les limites ne sont pas encore appliquées dans l'app.
   {
     slug: 'essentiel',
     nom: 'Essentiel',
     prix: 59,
     restaurants: '1 restaurant',
-    pour: 'Suivez vos concurrents, soignez votre visibilité et vendez chaque plat au bon prix',
+    pour: 'Suivez et améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo',
     inclus: [
-      'Vos ventes Uber Eats et Deliveroo sur un seul écran, et ce qui vous reste',
-      'Votre classement sur Uber Eats et Deliveroo',
-      'Jusqu’à 20 concurrents suivis : prix, promos, notes',
-      'Chaque plat comparé à la zone, prix proposé avec ses sources',
-      'Vous validez un prix, Deliview le met en ligne',
-      'Photos et descriptions de vos plats passées en revue',
-      'Alerte si votre restaurant est fermé pendant le service',
-      '1 analyse complète par semaine',
-      '2 accès : vous et votre gérant',
+      'Vos ventes Uber Eats et Deliveroo sur un seul écran',
+      'Vos prix comparés à ceux de vos concurrents',
+      'Les promos et les notes de votre zone',
+      'Une réponse rédigée par l’IA pour chaque avis',
+      'Alerte si vous êtes fermé en plein service',
+      'Vos objectifs, et le point chaque lundi',
+      '2 accès',
     ],
   },
   {
     slug: 'pro',
     nom: 'Pro',
-    prix: 149,
-    restaurants: 'Jusqu’à 5 restaurants',
-    pour: 'Pilotez la rentabilité de tous vos restaurants et gardez une longueur d’avance sur vos concurrents',
+    prix: 199,
+    restaurants: 'Jusqu’à 3 restaurants',
+    pour: 'Pilotez et améliorez votre rentabilité : Deliview agit pour vous sur les promos, les prix et la fraude client',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     inclus: [
-      'Tous vos restaurants sur un seul écran',
-      'Promos conseillées sur vos heures creuses, mises en ligne pour vous',
-      'Nouvelles photos de vos plats, préparées à partir des vôtres',
-      'Restaurant fermé en plein service : Deliview le relance sous 5 min',
-      'Assistant Deliview et rapport PDF pour vos équipes',
-      '3 concurrents de votre choix suivis de près',
-      'Analyses à la demande, sans limite',
-      'Jusqu’à 10 accès pour vos équipes',
+      'Promos conseillées, mises en ligne pour vous',
+      'Nouveaux prix mis en ligne pour vous',
+      'Remboursements Uber Eats contestés en un clic',
+      'Restaurant fermé relancé en un clic',
+      'Assistant IA et rapport pour vos équipes',
+      '10 accès',
     ],
   },
   {
     slug: 'premium',
-    nom: 'Premium',
-    prix: 249,
+    nom: 'Groupe',
+    prix: 399,
     restaurants: 'Jusqu’à 10 restaurants',
-    pour: 'Tous vos restaurants plus rentables, avec Tom à vos côtés',
+    pour: 'Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom',
     base: 'Tout Pro, plus :',
-    inclus: ['Un point chaque mois avec Tom sur vos prix et vos promos', 'Historique de vos décisions de prix', 'Accès illimités pour vos équipes'],
+    inclus: ['Un point chaque mois avec Tom', 'L’historique de vos décisions de prix', 'Accès illimités'],
   },
 ];
 

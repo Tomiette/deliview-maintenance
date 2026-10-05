@@ -21,7 +21,7 @@ const reponse =
 const questions: { id: string; q: string; r: string; liens: { libelle: string; href: string }[] }[] = [
   {
     id: 'editeur',
-    q: 'Qui édite Deliview ?',
+    q: 'Qui est-ce que je paie, exactement ?',
     r: 'DELIVIEW, société par actions simplifiée dont le siège est au 9&nbsp;rue Maurice Hubert, 61340 Berd’Huis. Elle est immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102&nbsp;681&nbsp;509. Numéro de TVA intracommunautaire&nbsp;: FR87102681509. Son président est Tom Voisin.',
     liens: [
       { libelle: 'Fiche officielle sur l’Annuaire des entreprises', href: ANNUAIRE },
@@ -39,7 +39,7 @@ const questions: { id: string; q: string; r: string; liens: { libelle: string; h
   },
   {
     id: 'prix',
-    q: 'Combien coûte Deliview, sans surprise ?',
+    q: 'Combien me coûte Deliview, sans surprise ?',
     r: `Les prix sont publics&nbsp;: ${prix}. Au-delà de 10&nbsp;restaurants, Tom fait une offre sur mesure. La mise en place est offerte. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.`,
     liens: [
       { libelle: 'Tarifs', href: lien('/tarifs/') },
@@ -48,7 +48,7 @@ const questions: { id: string; q: string; r: string; liens: { libelle: string; h
   },
   {
     id: 'contrats',
-    q: 'Quels contrats pouvez-vous lire avant de vous abonner ?',
+    q: 'Quels contrats est-ce que je peux lire avant de m’abonner ?',
     r: 'Tous, sans compte ni démo&nbsp;: les conditions générales de vente, les conditions d’utilisation, l’accord de sous-traitance des données (RGPD), la politique de confidentialité et les mentions légales.',
     liens: [
       { libelle: 'Conditions générales de vente', href: lien('/cgv/') },
@@ -59,25 +59,25 @@ const questions: { id: string; q: string; r: string; liens: { libelle: string; h
   },
   {
     id: 'donnees',
-    q: 'Où sont hébergées vos données ?',
+    q: 'Où sont hébergées mes données ?',
     r: 'Dans l’Union européenne&nbsp;: la base de données de Deliview est hébergée en Irlande, chez Supabase. Le site et l’app sont hébergés par OVH, société française.',
     liens: [{ libelle: 'Politique de confidentialité', href: lien('/confidentialite/') }],
   },
   {
     id: 'acces',
-    q: 'Comment Deliview accède-t-il à vos comptes Uber Eats et Deliveroo ?',
+    q: 'Comment Deliview accède à mes comptes Uber Eats et Deliveroo ?',
     r: 'Par une invitation d’utilisateur, que vous envoyez une fois depuis Uber&nbsp;Eats Manager et depuis le Partner Hub de Deliveroo. Jamais avec votre mot de passe. Vous retirez cet accès quand vous voulez, depuis la plateforme. Deliview est un logiciel indépendant, ni affilié ni approuvé par Uber&nbsp;Eats ou Deliveroo.',
     liens: [{ libelle: 'Questions fréquentes sur le fonctionnement', href: lien('/questions-frequentes/#fonctionnement') }],
   },
   {
     id: 'references',
-    q: 'Deliview a-t-il des références ?',
+    q: 'Est-ce que Deliview a des références ?',
     r: 'Deliview est récent et ne publie pas encore d’avis de clients. Pour juger sur pièces, la démo de 30&nbsp;minutes se fait sur votre restaurant, avec vos vrais prix et vos vrais concurrents, avant tout paiement. Ensuite, l’abonnement reste sans engagement.',
     liens: [{ libelle: 'Demander une démo', href: lien('/demo/') }],
   },
   {
     id: 'contact',
-    q: 'Comment joindre Deliview ?',
+    q: 'Comment je joins Deliview ?',
     r: `Par e-mail à <a href="mailto:${SITE.email}">${SITE.email}</a>, une adresse du domaine deliview.fr, comme le site. C’est Tom qui répond. Après une demande de démo, il vous rappelle sous 3&nbsp;h.`,
     liens: [{ libelle: 'Demander une démo', href: lien('/demo/') }],
   },

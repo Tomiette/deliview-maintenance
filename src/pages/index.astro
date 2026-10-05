@@ -18,75 +18,32 @@ import BlocFondateur from '../components/BlocFondateur.astro';
 import Faq from '../components/Faq.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
-import Ardoise from '../icons/ardoise.astro';
+import Bouclier from '../icons/bouclier.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
-import Enveloppe from '../icons/enveloppe.astro';
-import Toque from '../icons/toque.astro';
 import Fleche from '../icons/fleche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
-import { ANONYME, EXEMPLE_MARGHERITA as ex, FRAGMENTS, OFFRES, PRIX_ENTREE, SITE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
-import DemanderIA from '../components/DemanderIA.astro';
+import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
 
-// Le quotidien : trois constats du terrain (textes de Tom, 4 octobre 2026 : prix, promo, menu).
+// Le quotidien : trois constats du terrain (textes de Tom, 6 octobre 2026 : promo, fraude client, prix).
 const constats = [
-  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent vend la même pizza plus cher, et vous ne le voyez pas. Montez votre prix juste sous le sien : vous restez moins cher, et vous gagnez plus.' },
-  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Sans promo, vous étiez déjà bien classé sur les plateformes. Celle-ci ne vous fait rien gagner, mais elle vous coûte sur chaque commande.' },
-  { icone: Ardoise, titre: 'Un menu construit trop vite', texte: 'Sans belles photos ni bonnes descriptions, le client ne commande pas. Et moins de commandes, c’est moins de visibilité sur les plateformes.' },
+  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Elle tourne pendant les heures où vous êtes déjà plein. Elle ne vous fait rien gagner, mais vous la payez sur chaque commande.' },
+  { icone: Bouclier, titre: 'La fraude client, à vos frais', texte: 'Un client dit qu’il manque un plat. Il était dans le sac. La plateforme le rembourse quand même et retire la somme de votre versement.' },
+  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent direct vend la même pizza plus cher, et vous ne le voyez pas. Vous perdez de la marge sur chaque commande.' },
 ];
 
-const etapes = [
-  { icone: Enveloppe, titre: 'La démo', texte: 'Sur votre restaurant, avec Tom.' },
-  { icone: Toque, titre: 'La mise en place', texte: 'Tom ouvre votre compte.' },
-  { icone: EtiquettePrix, titre: 'Vous gagnez plus', texte: 'Votre activité livraison devient plus rentable.' },
-];
-
-// Vraies captures de l'app (compte d'essai, restaurant anonymisé, analyse du 2 octobre 2026).
-const captureCarte: CaptureApp = {
-  src: '/images/scene-carte',
+// La bascule : l'accueil de l'app (compte de démonstration « Pizza Démo », 6 octobre 2026, demande de Tom).
+const captureAccueil: CaptureApp = {
+  src: '/images/scene-accueil',
   largeurs: [800, 1200, 1600],
   largeur: 1600,
   hauteur: 1000,
-  alt: `Écran Ma carte de Deliview : 21 plats moins chers que chez les concurrents, 17 plus chers que la zone, puis les plats à monter, Uber Eats et Deliveroo dans la même liste (dips bacon de 4,30 € à 5,60 €, milkshake de 6,40 € à 7,60 €). ${ANONYME}`,
+  alt: `Accueil de Deliview : ce que Deliview vous a rapporté (443 €, Uber Eats et Deliveroo), puis À faire : récupérez 86,40 € retirés par Uber Eats, 3 remboursements, et ce que Deliview applique pour vous. ${DEMO}`,
 };
-// Une vraie carte de l'app par pilier (FRAGMENTS), dans l'ordre des maquettes.
-// Ce que fait Deliview (refonte du 4 octobre 2026, demande de Tom) : les trois leviers de rentabilité en grandes cartes
-// (prix, promos, note), avec une vraie carte de l'app chacun, puis ce que Deliview surveille et fait pour vous.
-// Uniquement des fonctions en ligne dans l'app.
-const leviers = [
-  {
-    icone: 'etiquette-prix' as const,
-    nom: 'Vos prix',
-    benefice: 'Repérez les plats vendus moins cher que chez vos voisins, et ce qu’un meilleur prix vous rapporte.',
-    points: ['Chaque plat face au même plat, chez jusqu’à 20 restaurants autour de vous', 'Le prix à mettre, et le gain pour 100 ventes', 'Vous validez, Deliview le met en ligne sous\u00a010\u00a0min'],
-    fragment: FRAGMENTS['carte-et-marge'],
-    href: '/solution/carte-et-marge/',
-  },
-  {
-    icone: 'ticket' as const,
-    nom: 'Vos promos',
-    benefice: 'Des promos qui ramènent des commandes, pas des remises offertes à des clients déjà là.',
-    points: ['Les offres de vos concurrents, sur Uber Eats et Deliveroo', 'Vos remises gardées pour vos créneaux creux', 'Le bilan de chaque offre : vos commandes avant et après'],
-    fragment: FRAGMENTS['uber-eats'],
-    href: '/solution/prix-et-concurrence/',
-  },
-  {
-    icone: 'etoile' as const,
-    nom: 'Votre note',
-    benefice: 'Votre note face à celle de vos voisins, et ce qu’il vous manque pour passer devant.',
-    points: ['Votre place au classement des notes de la zone', 'La note à atteindre pour entrer dans le top 3', 'Uber Eats et Deliveroo, chacun de son côté'],
-    fragment: FRAGMENTS.reputation,
-    href: '/solution/reputation/',
-  },
-];
-const enPlus = [
-  { icone: ICONES['appareil-photo'], titre: 'Des plats qui donnent envie', texte: 'Chaque photo et chaque description passées en revue. Une nouvelle photo préparée à partir de la vôtre, mise en ligne pour vous.' },
-  { icone: ICONES.courbe, titre: 'Ce qui vous reste vraiment', texte: 'Vos ventes Uber Eats et Deliveroo réunies : commandes, chiffre d’affaires et ce qui vous reste, semaine par semaine.' },
-  { icone: ICONES['tablette-qui-sonne'], titre: 'Fermé en plein service ?', texte: 'Deliview vous prévient dès que votre restaurant se ferme pendant vos heures habituelles, et le relance sous\u00a05\u00a0min.' },
-  { icone: ICONES.pieces, titre: 'L’action de la semaine', texte: 'Chaque semaine, le changement qui a le plus à vous rapporter, chiffré, en tête de votre écran.' },
-];
+// Ce que fait Deliview (6 octobre 2026, demande de Tom) : les trois leviers (LEVIERS) avec une vraie carte de l'app
+// chacun, puis ce que Deliview surveille pour vous (VEILLE). Uniquement des fonctions en ligne dans l'app.
 
-const description = `Deliview centralise vos données Uber Eats et Deliveroo : vos prix face à votre zone, plat par plat, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
+const description = `Deliview centralise vos chiffres Uber Eats et Deliveroo : promos, fraude client et prix, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
 
 const video = {
   '@context': 'https://schema.org',
@@ -119,8 +76,8 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     <div class="dv-container dv-hero-grille">
       <div class="dv-hero-texte">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>{SITE.slogan}</p>
-        <h1 id="hero-titre" class="dv-h1 mt-5 md:mt-6 lg:max-w-[14ch]">Augmentez votre <span class="text-blue">rentabilité</span> sur Uber&nbsp;Eats et Deliveroo</h1>
-        <p class="dv-lead mt-4 max-w-[46ch] md:mt-6">{SITE.definition}</p>
+        <h1 id="hero-titre" class="dv-h1 mt-5 md:mt-6 lg:max-w-[14ch]">Améliorez votre <span class="text-blue">rentabilité</span> sur Uber&nbsp;Eats et Deliveroo</h1>
+        <p class="dv-lead mt-4 max-w-[46ch] md:mt-6">Deliview centralise vos chiffres Uber&nbsp;Eats et Deliveroo sur un seul écran. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et votre activité livraison devient plus rentable.</p>
         <div class="dv-hero-boutons">
           <BoutonDemo href="#demo" cta="hero" principal />
         </div>
@@ -132,13 +89,29 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
+  <!-- Ils testent Deliview depuis le début (6 octobre 2026, demande de Tom) : le logo de Pizza Cosy, premier restaurant
+       pilote. Logo affiché avec l'accord du restaurant (à confirmer par écrit par Tom). -->
+  <section class="bg-white pb-10 md:pb-14" aria-labelledby="pilotes-titre">
+    <div class="dv-container">
+      <div class="dv-relief dv-pilotes mx-auto w-fit max-w-full">
+        <p id="pilotes-titre" class="dv-pilotes-titre">Ils testent Deliview depuis le début</p>
+        <ul class="dv-pilotes-liste">
+          <li class="dv-pilote">
+            <img src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
+            <span>Pizza Cosy</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <!-- Le quotidien : les deux appareils qui sonnent, en relief, et trois constats dans leurs cartes. -->
   <section class="dv-section bg-grey dv-points overflow-x-clip" aria-labelledby="quotidien-titre">
     <div class="dv-container dv-quotidien">
       <div class="dv-quotidien-intro">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Le quotidien</p>
         <h2 id="quotidien-titre" class="dv-h2 mt-4 max-w-[16ch] md:mt-5">Deux tablettes. Des chiffres éparpillés partout.</h2>
-        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Le rapport de vos ventes livraison arrive. Vous avez des commandes. Et pourtant, la rentabilité n’est pas au <span class="whitespace-nowrap">rendez-vous…</span></p>
+        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Le rapport de vos ventes livraison arrive. Vous avez des commandes, et pourtant, la rentabilité n’est pas au <span class="whitespace-nowrap">rendez-vous…</span></p>
       </div>
       <div class="dv-quotidien-dessin">
         <TablettesRelief />
@@ -164,28 +137,27 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
-  <!-- La bascule : le seul aplat Bleu 1 de la page. L'écran Ma carte, Uber Eats et Deliveroo dans la même liste. -->
+  <!-- La bascule : le seul aplat Bleu 1 de la page. L'accueil de l'app : ce que Deliview vous a rapporté, et À faire. -->
   <section class="dv-section dv-bande-bleue" aria-labelledby="bascule-titre">
     <div class="dv-container dv-bascule">
       <div class="dv-bascule-texte">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>La bascule</p>
         <h2 id="bascule-titre" class="mt-4 font-accent text-[36px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-5 md:text-[44px]">Toutes vos données de livraison centralisées</h2>
-        <p class="dv-bascule-lead mt-4 md:mt-6">Deliview regroupe vos données Uber&nbsp;Eats et Deliveroo. Vous voyez ce que font vos concurrents. Vous adoptez une stratégie de prix et de promotion intelligente, et vous rendez votre activité livraison plus rentable.</p>
+        <p class="dv-bascule-lead mt-4 md:mt-6">Deliview réunit vos chiffres Uber&nbsp;Eats et Deliveroo sur un seul écran. Vous voyez où part votre marge&nbsp;: une promo qui tourne pour rien, un remboursement à contester, un plat moins cher que chez vos concurrents. Vous décidez, Deliview l’applique, et votre activité livraison devient plus rentable.</p>
       </div>
       <div class="dv-bascule-tablette">
-        <Scene3D capture={captureCarte} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
+        <Scene3D capture={captureAccueil} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
           <Flottant x={2} y={2} xm={0} ym={2} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
           <Flottant x={-3} y={60} xm={0} ym={68} droite z={15} duree={6.8} delai={-2}>
             <div class="dv-bulle">
-              <p class="dv-bulle-sur">Dips Bacon · Deliveroo</p>
-              <p class="dv-bulle-titre">4,30&nbsp;€ <span class="dv-bulle-fleche" aria-hidden="true">→</span> 5,60&nbsp;€</p>
-              <span class="dv-bulle-gain">+1,30&nbsp;€</span>
+              <p class="dv-bulle-chiffre">86,40&nbsp;€</p>
+              <p class="dv-bulle-texte">à contester</p>
             </div>
           </Flottant>
           <Flottant x={-4} y={74} xm={0} ym={76} z={12} duree={7.2} delai={-4} bureau>
             <div class="dv-bulle">
-              <p class="dv-bulle-chiffre">21 plats</p>
-              <p class="dv-bulle-texte">moins chers que chez vos concurrents</p>
+              <p class="dv-bulle-sur">Votre creux</p>
+              <p class="dv-bulle-titre">le mardi midi</p>
             </div>
           </Flottant>
         </Scene3D>
@@ -193,51 +165,30 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
-  <!-- Comment ça marche : 3 étapes en cartes, numéro dans sa tuile, icône dessinée (la vidéo est en haut de page). -->
-  <section id="comment-ca-marche" class="dv-section bg-white" aria-labelledby="etapes-titre">
-    <div class="dv-container">
-      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Comment ça marche</p>
-      <h2 id="etapes-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">De la démo à vos premiers résultats</h2>
-      <ol class="dv-etapes mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
-        {
-          etapes.map((e, i) => (
-            <li class="dv-relief dv-etape" data-apparition="">
-              <p class="flex items-center justify-between">
-                <span class="dv-tuile dv-tuile-numero" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <e.icone taille={48} />
-              </p>
-              <h3 class="mt-5 font-accent text-[20px] font-bold leading-[1.25] md:mt-6 md:text-[24px]">{e.titre}</h3>
-              <p class="mt-1.5 text-[16px] leading-[1.55] dv-muted md:mt-2 md:text-[18px] md:leading-[1.6]">{e.texte}</p>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
   <!-- Fonctionnalités : les trois leviers de rentabilité (vraie carte de l'app inclinée en 3D), puis le reste en bref. -->
   <section class="dv-section bg-grey dv-points" aria-labelledby="fonctions-titre">
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Ce que fait Deliview</p>
-      <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Plus de marge sur chaque commande livrée</h2>
-      <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Deliview compare votre restaurant à ceux qui livrent les mêmes rues. Il vous dit quoi changer, combien ça rapporte, et le met en ligne pour vous.</p>
+      <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Plus de rentabilité sur votre activité livraison</h2>
+      <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Deliview repère où part votre marge sur Uber&nbsp;Eats et Deliveroo. Vous validez, Deliview l’applique.</p>
       <ul class="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
-        {leviers.map((l, i) => <CartePilier icone={l.icone} nom={l.nom} benefice={l.benefice} points={l.points} fragment={l.fragment} href={l.href} sens={i % 2 ? 'gauche' : 'droite'} />)}
+        {LEVIERS.map((l, i) => <CartePilier icone={l.icone} nom={l.nom} benefice={l.benefice} points={l.points} fragment={l.fragment} href={`/solution/#${l.id}`} sens={i % 2 ? 'gauche' : 'droite'} />)}
       </ul>
       <h3 class="mt-12 font-accent text-[21px] font-bold leading-[1.25] md:mt-16 md:text-[24px]">Et pour ne rien laisser filer</h3>
       <ul class="mt-5 grid gap-5 sm:grid-cols-2 md:mt-6 md:gap-6 lg:grid-cols-4">
         {
-          enPlus.map((e) => (
-            <li class="dv-relief dv-constat" data-apparition="">
-              <span class="dv-tuile">
-                <e.icone taille={32} />
-              </span>
-              <h4 class="mt-4 font-accent text-[19px] font-bold leading-[1.3] md:mt-5 md:text-[20px]">{e.titre}</h4>
-              <p class="mt-2 text-[16px] leading-[1.5] dv-muted">{e.texte}</p>
-            </li>
-          ))
+          VEILLE.map((v) => {
+            const Icone = ICONES[v.icone];
+            return (
+              <li class="dv-relief dv-constat" data-apparition="">
+                <span class="dv-tuile">
+                  <Icone taille={32} />
+                </span>
+                <h4 class="mt-4 font-accent text-[19px] font-bold leading-[1.3] md:mt-5 md:text-[20px]">{v.nom}</h4>
+                <p class="mt-2 text-[16px] leading-[1.5] dv-muted">{v.texte}</p>
+              </li>
+            );
+          })
         }
       </ul>
     </div>
@@ -248,9 +199,9 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     <div class="dv-container dv-exemple">
       <div class="dv-exemple-intro">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Exemple réel</p>
-        <h2 id="exemple-titre" class="dv-h2 mt-4 max-w-[18ch] md:mt-5">Une Margherita vendue {sousLaZone} sous le prix de sa zone</h2>
+        <h2 id="exemple-titre" class="dv-h2 mt-4 max-w-[18ch] md:mt-5">Une Margherita {sousLaZone} sous le prix de sa zone</h2>
         <p class="dv-lead mt-3.5 max-w-[48ch] md:mt-5">
-          Une pizzeria sur Uber&nbsp;Eats, analysée le 1<sup>er</sup>&nbsp;octobre 2026. {nombreEnLettres} concurrents directs vendent la même pizza, à la même taille, autour de {euros(ex.mediane)}. Elle la vend {euros(ex.votrePrix)}.
+          Une pizzeria sur Uber&nbsp;Eats vendait sa Margherita {euros(ex.votrePrix)}. {nombreEnLettres} concurrents la vendent autour de {euros(ex.mediane)}. Deliview propose {euros(ex.prixPropose)}&nbsp;: toujours moins cher que les voisins, et {euros(ex.gainPour100, 0)} de ventes en plus pour 100&nbsp;pizzas.
         </p>
       </div>
       <div class="dv-exemple-plateau" data-apparition="">
@@ -258,16 +209,13 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
         <span class="dv-exemple-ombre" aria-hidden="true"></span>
         <div class="dv-exemple-ticket">
           <div class="dv-flotte">
-            <TicketComparaison exemple={ex} proposition />
+            <TicketComparaison exemple={ex} />
           </div>
         </div>
         <p class="dv-exemple-annotation max-w-full"><span class="dv-puce dv-puce-bleue">{sousLaZone} sous la zone, sur chaque pizza</span></p>
       </div>
       <div class="dv-exemple-suite">
-        <p class="dv-lead max-w-[48ch]">
-          Deliview propose de passer à {euros(ex.prixPropose)}. La pizza reste moins chère que chez les voisins, et sur 100&nbsp;Margherita vendues, c’est {euros(ex.gainPour100, 0)} de plus.
-        </p>
-        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour mt-6 w-full sm:w-auto md:mt-8" data-cta="exemple-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
+        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour w-full sm:w-auto" data-cta="exemple-simulateur">Calculer pour mon restaurant</a>
       </div>
     </div>
   </section>
@@ -313,13 +261,12 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
           ))
         }
       </ul>
-      <a href={lien('/tarifs/')} class="dv-lien-fort mt-6 md:mt-8">Voir le détail des offres<Fleche taille={24} /></a>
+      <p class="mt-6 text-[17px] font-semibold leading-[1.5] md:mt-8 md:text-[18px]">Plus de 10&nbsp;restaurants&nbsp;? <a href="#demo" class="dv-lien" data-cta="accueil-plus-de-10">Parlons-en.</a></p>
+      <a href={lien('/tarifs/')} class="dv-lien-fort mt-2">Voir le détail des offres<Fleche taille={24} /></a>
     </div>
   </section>
 
   <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" />
-
-  <DemanderIA />
 
   <SectionDemo section="accueil-formulaire" />
 

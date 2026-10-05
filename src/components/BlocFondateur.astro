@@ -1,6 +1,7 @@
 ---
 // « Qui est derrière » (accueil) : la vraie photo de Tom, trois phrases, son e-mail, LinkedIn et Qui sommes-nous.
 // Aucun faux témoignage : la preuve humaine, c'est quelqu'un de réel avec son e-mail.
+// Les trois liens sur une seule ligne, sous le texte (6 octobre 2026, demande de Tom).
 // Refonte en relief (3 octobre 2026) : la photo dans un cadre blanc incliné en 3D, sa légende flotte devant.
 import Enveloppe from '../icons/enveloppe.astro';
 import Profil from '../icons/profil.astro';
@@ -10,7 +11,7 @@ import { SITE, lien } from '../lib/site';
 ---
 
 <section class="dv-section bg-grey dv-points" aria-labelledby="fondateur-titre">
-  <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
+  <div class="dv-container flex max-w-[1040px] flex-col items-center gap-x-16 gap-y-12 md:flex-row">
     <PhotoTom />
     <div class="max-w-[620px] flex-1">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Qui est derrière</p>
@@ -20,7 +21,7 @@ import { SITE, lien } from '../lib/site';
         <p>Partout, j’ai entendu la même chose&nbsp;: des commissions trop élevées, des promos qui mangent les bénéfices, et jamais le temps de tout gérer.</p>
         <p>Alors j’ai créé l’outil qui leur manquait&nbsp;: Deliview.</p>
       </div>
-      <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:text-[17px]">
+      <ul class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 text-[16px] md:mt-6 lg:flex-nowrap lg:whitespace-nowrap">
         <li><a href={`mailto:${SITE.email}`} class="dv-lien gap-2"><Enveloppe taille={24} />{SITE.email}</a></li>
         <li><a href={SITE.linkedinTom} class="dv-lien gap-2" rel="noopener"><Profil taille={24} />Tom sur LinkedIn</a></li>
         <li><a href={lien('/qui-sommes-nous/')} class="dv-lien gap-2"><Toque taille={24} />Qui sommes-nous</a></li>

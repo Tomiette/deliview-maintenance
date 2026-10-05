@@ -3,6 +3,8 @@
 // ChatGPT, Claude ou Perplexity avec la question déjà écrite. Logos : fichiers officiels du paquet @lobehub/icons-static-svg
 // 1.95.1 (MIT), copiés tels quels dans src/icons/ia, jamais redessinés. Liens dans un nouvel onglet ; le clic est compté
 // comme les autres boutons (data-cta).
+// Depuis le 6 octobre 2026 (demande de Tom) : posé par le gabarit sous le bon de démo, sur toutes les pages sauf celles
+// du menu Ressources, les pages légales et les pages de parcours (merci, 404, départ).
 import { lien } from '../lib/site';
 import logoChatgpt from '../icons/ia/openai.svg?raw';
 import logoClaude from '../icons/ia/claude.svg?raw';
@@ -17,12 +19,12 @@ const ia = [
 ];
 ---
 
-<section class="dv-section bg-white" aria-labelledby="ia-titre">
+<section class="bg-white pb-16 pt-4 md:pb-[96px] md:pt-6" aria-labelledby="ia-titre">
   <div class="dv-container">
     <div class="dv-ia mx-auto max-w-[880px] px-5 py-12 text-center md:px-12 md:py-16">
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="166" height="32" class="mx-auto h-8 w-auto" loading="lazy" />
       <h2 id="ia-titre" class="dv-h2 mx-auto mt-5 max-w-[22ch]">Pas encore sûr que Deliview soit fait pour vous&nbsp;?</h2>
-      <p class="dv-lead mx-auto mt-4 max-w-[46ch]">Demandez à votre IA préférée. Un clic, et elle vous répond sur Deliview.</p>
+      <p class="dv-lead mx-auto mt-4 max-w-[46ch]">Demandez à votre IA préférée ce qu’elle pense de Deliview.</p>
       <ul class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
         {
           ia.map((x) => (
