@@ -14,6 +14,7 @@
 // et IPv6) : un prospect verrait Claude dire qu'il ne sait rien de Deliview.
 // 6 octobre 2026, 15 h 28 (demande de Tom) : Gemini ajouté (logo officiel du même paquet). Gemini n'accepte pas de
 // question dans son adresse : le clic copie la question, Gemini s'ouvre, et la page dit de la coller.
+// 6 octobre 2026, 16 h 14 (demande de Tom) : seulement ChatGPT et Claude ; Gemini et Perplexity retirés.
 import { lien } from '../lib/site';
 import logoChatgpt from '../icons/ia/openai.svg?raw';
 import logoClaude from '../icons/ia/claude.svg?raw';
@@ -25,9 +26,9 @@ const QUESTION =
 const q = encodeURIComponent(QUESTION);
 const ia = [
   { nom: 'ChatGPT', url: `https://chatgpt.com/?hints=search&q=${q}`, cta: 'ia-chatgpt', logo: logoChatgpt, actif: true },
-  { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude', logo: logoClaude, actif: false },
-  { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity', logo: logoPerplexity, actif: true },
-  { nom: 'Gemini', url: 'https://gemini.google.com/app', cta: 'ia-gemini', logo: logoGemini, actif: true, copie: true },
+  { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude', logo: logoClaude, actif: true },
+  { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity', logo: logoPerplexity, actif: false },
+  { nom: 'Gemini', url: 'https://gemini.google.com/app', cta: 'ia-gemini', logo: logoGemini, actif: false, copie: true },
 ].filter((x) => x.actif) as { nom: string; url: string; cta: string; logo: string; copie?: boolean }[];
 ---
 
