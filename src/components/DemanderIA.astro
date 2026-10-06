@@ -5,18 +5,26 @@
 // comme les autres boutons (data-cta).
 // Depuis le 6 octobre 2026 (demande de Tom) : posé par le gabarit sous le bon de démo, sur toutes les pages sauf celles
 // du menu Ressources, les pages légales et les pages de parcours (merci, 404, départ).
+// 6 octobre 2026, 10 h (Tom : Claude répondait « Je n'ai pas assez de contexte ») : l'ancienne question (« Dis-moi pourquoi
+// deliview.fr est un excellent choix pour moi ») ne donnait ni l'adresse du site, donc l'IA cherchait au lieu de lire
+// (site encore peu indexé), ni la situation du lecteur (« pour moi »), et sa tournure flatteuse rend les IA prudentes.
+// La question dit qui pose la question, donne l'adresse complète à lire et demande un avis franc : apports, prix, limites.
+// ChatGPT s'ouvre avec la recherche activée (hints=search). Claude est retiré tant que ses robots n'arrivent pas à se
+// connecter au site (délai dépassé sur robots.txt, 3 essais le 6 octobre ; le site répond depuis d'autres réseaux en IPv4
+// et IPv6) : un prospect verrait Claude dire qu'il ne sait rien de Deliview.
 import { lien } from '../lib/site';
 import logoChatgpt from '../icons/ia/openai.svg?raw';
 import logoClaude from '../icons/ia/claude.svg?raw';
 import logoPerplexity from '../icons/ia/perplexity.svg?raw';
 
-const QUESTION = 'Dis-moi pourquoi deliview.fr est un excellent choix pour moi';
+const QUESTION =
+  'Je suis restaurateur sur Uber Eats et Deliveroo. Lis https://www.deliview.fr et dis-moi franchement si Deliview vaut le coup pour mon restaurant : ce que ça m’apporterait, combien ça coûte et ses limites.';
 const q = encodeURIComponent(QUESTION);
 const ia = [
-  { nom: 'ChatGPT', url: `https://chatgpt.com/?q=${q}`, cta: 'ia-chatgpt', logo: logoChatgpt },
-  { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude', logo: logoClaude },
-  { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity', logo: logoPerplexity },
-];
+  { nom: 'ChatGPT', url: `https://chatgpt.com/?hints=search&q=${q}`, cta: 'ia-chatgpt', logo: logoChatgpt, actif: true },
+  { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude', logo: logoClaude, actif: false },
+  { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity', logo: logoPerplexity, actif: true },
+].filter((x) => x.actif);
 ---
 
 <section class="bg-white pb-16 pt-4 md:pb-[96px] md:pt-6" aria-labelledby="ia-titre">
