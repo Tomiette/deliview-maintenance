@@ -7,7 +7,7 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 ## Ce que fait Deliview
 
 - [Vos promotions](https://www.deliview.fr/solution/#promotions) : Une stratégie de promotion intelligente, alimentée par l’IA. Pas d’offre là où vous vendez déjà bien · Une offre ciblée sur vos heures creuses · Le bilan de chaque offre, pour garder celles qui ramènent des commandes.
-- [La fraude client](https://www.deliview.fr/solution/#fraude) : Contestez un remboursement Uber Eats en un clic. Le montant et la date limite, commande par commande · Le suivi de chaque contestation · Récupérez l’argent de la fraude.
+- [La fraude client](https://www.deliview.fr/solution/#fraude) : Contestez un remboursement Uber Eats ou Deliveroo en un clic. Le montant et la date limite, commande par commande · Le suivi de chaque contestation · Récupérez l’argent de la fraude.
 - [Vos prix](https://www.deliview.fr/solution/#prix) : Deliview compare chaque plat de votre menu au même plat chez vos concurrents. Votre Margherita face à celles des restaurants autour de vous · Le prix conseillé, et ce qu’il vous rapporte · Vous validez, Deliview le met en ligne.
 - [Fermé en plein service](https://www.deliview.fr/solution/#fermeture) : Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.
 - [Vos avis](https://www.deliview.fr/solution/#avis) : Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.
@@ -47,7 +47,7 @@ Le partenaire des restaurants en livraison. Logiciel français, pour les restaur
 - [Questions fréquentes](https://www.deliview.fr/questions-frequentes/) : ce que fait Deliview, pour qui, prix, engagement, fondateur.
 - [Qui sommes-nous](https://www.deliview.fr/qui-sommes-nous/) : le projet, Tom Voisin, fondateur, et la construction de Deliview.
 - [Deliview est-il fiable ?](https://www.deliview.fr/deliview-est-il-fiable/) : éditeur (DELIVIEW SAS, SIREN 102 681 509), prix publics, contrats, hébergement des données, accès aux comptes, contact. Chaque fait avec son lien.
-- [Demander une démo](https://www.deliview.fr/demo/) : 30 minutes sur le restaurant du prospect.
+- [Demander une démo](https://www.deliview.fr/demo/) : 30 minutes avec Tom, sur le restaurant du restaurateur.
 - E-mail : tom.voisin@deliview.fr
 
 ## Optional
