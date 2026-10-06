@@ -1594,11 +1594,31 @@
     border-color: var(--color-white);
     box-shadow: 0 3px 0 color-mix(in srgb, var(--color-grey-2) 25%, transparent);
   }
-  /* Blanc sur Bleu 1 : grand texte uniquement (24 px, ou 19 px gras). */
+  /* Le texte se pose sur une carte blanche (Gris 2 sur Blanc, 8,6:1) : le blanc sur Bleu 1 avec la trame de points
+     se lisait mal (demande de Tom, 6 octobre 2026). */
+  .dv-bascule-texte {
+    padding: 28px 24px 32px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 24px;
+    background: var(--color-white);
+    box-shadow: 0 6px 0 color-mix(in srgb, var(--color-grey-2) 22%, transparent), 0 24px 48px color-mix(in srgb, var(--color-grey-2) 18%, transparent);
+    color: var(--color-grey-2);
+  }
+  .dv-bande-bleue .dv-bascule-texte .dv-pastille {
+    border-color: var(--dv-bord);
+    box-shadow: 0 3px 0 var(--dv-levre);
+  }
   .dv-bascule-lead {
-    max-width: 30ch;
-    font-size: 24px;
-    line-height: 1.4;
+    max-width: 34ch;
+    font-size: 19px;
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--color-grey-2) 88%, transparent);
+  }
+  @media (min-width: 768px) {
+    .dv-bascule-texte {
+      padding: 40px 40px 44px;
+      border-radius: 28px;
+    }
   }
   .dv-bascule {
     display: grid;
@@ -1616,12 +1636,12 @@
   }
   @media (min-width: 768px) {
     .dv-bascule-lead {
-      font-size: 26px;
+      font-size: 20px;
     }
   }
   @media (min-width: 1024px) {
     .dv-bascule {
-      grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 460px) minmax(0, 1fr);
       grid-template-areas: "texte tablette";
       column-gap: 48px;
       row-gap: 24px;
