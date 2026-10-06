@@ -1,9 +1,10 @@
 ---
-// Carte d'un levier de rentabilité (accueil, 6 octobre 2026, demande de Tom : présenter chaque fonction clairement,
-// sans trop de texte). En haut, le ticket de la fonction posé sur un plateau à points : on lit l'essentiel en un coup
-// d'œil. Dessous, le nom, une phrase et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au
-// survol, elle se soulève et le ticket se redresse.
-import TicketFonction from './TicketFonction.astro';
+// Carte d'un levier de rentabilité (accueil, 6 octobre 2026). En haut, la vitrine : l'écran de l'app qui fait le
+// travail, sur l'appareil où le restaurateur le voit (tablette, téléphone, ordinateur), et une bulle avec le chiffre qui
+// compte. Chaque levier a son appareil, pour que les trois cartes ne se ressemblent pas (demande de Tom). Dessous, le nom,
+// une phrase et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au survol, elle se soulève et
+// l'appareil monte un peu.
+import Vitrine from './Vitrine.astro';
 import Fleche from '../icons/fleche.astro';
 import { ICONES } from '../lib/registre-icones';
 import { lien, type Levier } from '../lib/site';
@@ -17,11 +18,21 @@ interface Props {
 const { levier: l, href, niveau = 'h3' } = Astro.props;
 const Titre = niveau;
 const Icone = ICONES[l.icone];
+const v = l.vitrine;
 ---
 
 <li class="dv-relief dv-relief-lien dv-levier">
   <div class="dv-levier-plateau">
-    <TicketFonction t={l.ticket} />
+    <Vitrine
+      type={v.appareil}
+      capture={v.capture}
+      ratio={1.3}
+      place={v.carte.place}
+      bulles={[v.carte.bulle]}
+      coupe
+      coins="haut"
+      sizes={v.appareil === 'navigateur' ? '(min-width: 1024px) 420px, 100vw' : '(min-width: 1024px) 230px, 60vw'}
+    />
   </div>
   <div class="dv-levier-corps">
     <Titre class="flex items-center gap-3 font-accent text-[21px] font-bold leading-[1.25] md:text-[23px]">

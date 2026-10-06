@@ -1,0 +1,57 @@
+---
+// Vitrine d'une fonction (6 octobre 2026) : un appareil (téléphone, tablette ou navigateur) avec une vraie capture de
+// l'app, posé sur un plateau à points Bleu 1 à 8 %, et des bulles qui ne reprennent que des chiffres visibles sur la
+// capture. « coupe » : l'appareil sort par le bas du plateau, on n'en voit que le haut, en plus grand (cartes).
+// Positions en % du plateau ; sous 768 px, `placeMobile` si elle est donnée.
+import Appareil from './Appareil.astro';
+import Bulle from './Bulle.astro';
+import Flottant from './Flottant.astro';
+import type { BullePlacee, CaptureApp, PlaceAppareil, TypeAppareil } from '../lib/site';
+
+interface Props {
+  type: TypeAppareil;
+  capture: CaptureApp;
+  // Largeur / hauteur du plateau.
+  ratio: number;
+  ratioMobile?: number;
+  place: PlaceAppareil;
+  placeMobile?: PlaceAppareil;
+  bulles?: BullePlacee[];
+  coupe?: boolean;
+  sizes?: string;
+  decoratif?: boolean;
+  // Coins du plateau : tous (section) ou seulement ceux du haut (en tête de carte).
+  coins?: 'tous' | 'haut';
+  class?: string;
+}
+
+const { type, capture, ratio, ratioMobile, place, placeMobile, bulles = [], coupe = false, sizes, decoratif = false, coins = 'tous', class: classe = '' } = Astro.props;
+const m = placeMobile ?? place;
+const style = [
+  `--ratio:${ratio}`,
+  `--ratio-m:${ratioMobile ?? ratio}`,
+  `--vx:${place.x}%`,
+  `--vy:${place.y}%`,
+  `--vw:${place.largeur}%`,
+  `--vr:${place.rotation ?? 0}deg`,
+  `--vxm:${m.x}%`,
+  `--vym:${m.y}%`,
+  `--vwm:${m.largeur}%`,
+  `--vrm:${m.rotation ?? 0}deg`,
+].join(';');
+---
+
+<figure class={`dv-vitrine dv-vitrine-${type} ${coupe ? 'dv-vitrine-coupe' : ''} dv-vitrine-coins-${coins} ${classe}`} style={style}>
+  <div class="dv-vitrine-cadre">
+    <div class="dv-vitrine-appareil">
+      <Appareil type={type} capture={capture} sizes={sizes} decoratif={decoratif} />
+    </div>
+    {
+      bulles.map((b, i) => (
+        <Flottant x={b.x} y={b.y} xm={b.xm} ym={b.ym} droite={b.droite} bureau={b.bureau} duree={6 + i * 0.8} delai={-i * 2}>
+          <Bulle {...b.bulle} />
+        </Flottant>
+      ))
+    }
+  </div>
+</figure>

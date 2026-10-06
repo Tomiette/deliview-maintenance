@@ -901,10 +901,6 @@
 .dv-mouvement [data-apparition=""] {
   transition: opacity 0.5s ease-out, translate 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-/* Tickets des cartes de leviers (accueil) : ils se redressent aussi en douceur au survol. */
-.dv-mouvement .dv-levier-plateau [data-apparition=""] {
-  transition: opacity 0.5s ease-out, translate 0.5s cubic-bezier(0.2, 0.7, 0.3, 1), rotate 0.3s ease;
-}
 .dv-mouvement .dv-attente {
   opacity: 0;
   translate: 0 12px;
@@ -1718,56 +1714,14 @@
     outline-offset: 2px;
   }
 
-  /* Ticket d'une fonction (TicketFonction.astro, 6 octobre 2026) : le ticket Margherita, en-tête avec la plateforme,
-     titre, deux lignes, le chiffre qui compte en grand. */
-  .dv-tf {
-    max-width: 330px;
-  }
-  .dv-tf-entete {
-    flex-wrap: wrap;
-    align-items: center;
-    row-gap: 6px;
-  }
-  @media (min-width: 400px) {
-    .dv-levier-plateau {
-      padding-inline: 20px;
-    }
-  }
-  .dv-tf-plateforme {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-    font-size: 14px;
-    letter-spacing: 0;
-    text-transform: none;
-  }
-  .dv-tf-plateforme img {
-    width: 20px;
-    height: 20px;
-    border-radius: 5px;
-  }
-  .dv-tc .dv-tf-titre {
-    margin-top: 8px;
-    font-size: 23px;
-    line-height: 1.2;
-    text-wrap: balance;
-  }
-  .dv-tf .dv-tc-chiffre {
-    padding-inline: 0;
-  }
-  .dv-tf .dv-tc-chiffre:has(.dv-mq) {
-    padding-inline: 10px;
-  }
-
-  /* Accueil : une carte par levier (CarteLevier.astro) ; le ticket sur un plateau Bleu 1 à 8 % à points, légèrement
-     incliné, qui se redresse au survol de la carte. */
+  /* Accueil : une carte par levier (CarteLevier.astro), et les cartes des piliers : en haut, la vitrine (un appareil
+     avec une vraie capture) ; dessous, le nom, une phrase et le lien. */
   .dv-levier {
     display: flex;
     flex-direction: column;
     min-width: 0;
   }
-  /* Côte à côte, les plateaux et les textes s'alignent d'une carte à l'autre (sous-grille sur deux rangées). */
+  /* Côte à côte, les vitrines et les textes s'alignent d'une carte à l'autre (sous-grille sur deux rangées). */
   @media (min-width: 768px) {
     .dv-levier {
       display: grid;
@@ -1777,25 +1731,7 @@
     }
   }
   .dv-levier-plateau {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 12px 28px;
-    border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0;
     border-bottom: 1px solid var(--dv-bord);
-    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
-    background-image: var(--dv-points);
-    background-size: 24px 24px;
-  }
-  .dv-levier-plateau .dv-ticket {
-    rotate: -1.5deg;
-  }
-  .dv-levier:nth-child(even) .dv-levier-plateau .dv-ticket {
-    rotate: 1.5deg;
-  }
-  .dv-levier:hover .dv-levier-plateau .dv-ticket,
-  .dv-levier:focus-within .dv-levier-plateau .dv-ticket {
-    rotate: 0deg;
   }
   .dv-levier-corps {
     display: flex;
@@ -1808,11 +1744,6 @@
       padding: 24px 24px 18px;
     }
   }
-  /* Vraie carte de l'app posée à plat sur le plateau (cartes des piliers). */
-  .dv-levier-fragment {
-    width: 100%;
-    max-width: 320px;
-  }
   /* Ce que Deliview surveille : une ligne chacun, l'icône à gauche. */
   .dv-veille {
     display: flex;
@@ -1821,43 +1752,186 @@
     padding: 18px;
   }
 
-  /* Page Solution : le ticket de la fonction devant la vraie capture de l'app, à plat (6 octobre 2026). Sur téléphone,
-     le ticket seul : la capture y serait trop petite pour être lue. */
-  .dv-compo {
+  /* ── Appareils (Appareil.astro, 6 octobre 2026) : téléphone, tablette, navigateur. Tailles en cqi de l'appareil. ── */
+  .dv-ap {
+    container-type: inline-size;
+  }
+  .dv-ap-corps {
     position: relative;
+  }
+  .dv-ap-ecran {
+    overflow: hidden;
+    background: var(--color-white);
+  }
+  .dv-ap-ecran img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Téléphone : corps Gris 2, coins très arrondis, îlot en haut de l'écran, deux boutons sur la tranche. */
+  .dv-ap-telephone .dv-ap-corps {
+    padding: 3.4cqi;
+    border-radius: 15cqi;
+    background: var(--color-grey-2);
+    box-shadow: 0 2.2cqi 0 var(--dv-levre-forte), var(--dv-ombre-flottante);
+  }
+  .dv-ap-telephone .dv-ap-corps::before,
+  .dv-ap-telephone .dv-ap-corps::after {
+    content: "";
+    position: absolute;
+    top: 24%;
+    width: 1.3cqi;
+    height: 13cqi;
+    border-radius: 1cqi;
+    background: var(--color-grey-2);
+  }
+  .dv-ap-telephone .dv-ap-corps::before {
+    left: -1cqi;
+  }
+  .dv-ap-telephone .dv-ap-corps::after {
+    right: -1cqi;
+    top: 30%;
+    height: 19cqi;
+  }
+  /* Barre d'état blanche en haut de l'écran : l'îlot s'y loge, l'app commence dessous comme sur un vrai téléphone. */
+  .dv-ap-telephone .dv-ap-ecran {
+    padding-top: 13cqi;
+    border-radius: 11.6cqi;
+  }
+  .dv-ap-telephone .dv-ap-camera {
+    position: absolute;
+    z-index: 1;
+    top: 6.4cqi;
+    left: 50%;
+    width: 26cqi;
+    height: 7.4cqi;
+    margin-left: -13cqi;
+    border-radius: 999px;
+    background: var(--color-grey-2);
+  }
+  /* Tablette : corps Gris 2 comme les tablettes en relief du site, caméra dans le cadre ; couchée si la capture est en
+     largeur. */
+  .dv-ap-tablette .dv-ap-corps {
+    padding: 3.6cqi;
+    border-radius: 6.4cqi;
+    background: var(--color-grey-2);
+    box-shadow: 0 1.6cqi 0 var(--dv-levre-forte), var(--dv-ombre-flottante);
+  }
+  .dv-ap-tablette .dv-ap-ecran {
+    border-radius: 2.6cqi;
+  }
+  .dv-ap-tablette .dv-ap-camera {
+    position: absolute;
+    top: 1.4cqi;
+    left: 50%;
+    width: 1.1cqi;
+    height: 1.1cqi;
+    margin-left: -0.55cqi;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-white) 35%, transparent);
+  }
+  .dv-ap-couchee .dv-ap-corps {
+    padding: 2.4cqi;
+    border-radius: 3.6cqi;
+  }
+  .dv-ap-couchee .dv-ap-camera {
+    top: 50%;
+    left: 0.8cqi;
+    margin: -0.4cqi 0 0;
+    width: 0.8cqi;
+    height: 0.8cqi;
+  }
+  .dv-ap-couchee .dv-ap-ecran {
+    border-radius: 1.6cqi;
+  }
+  /* Navigateur : fenêtre blanche, barre grise avec ses trois points et l'adresse de l'app. */
+  .dv-ap-navigateur .dv-ap-corps {
+    overflow: hidden;
+    border: 1px solid var(--dv-bord);
+    border-radius: 2cqi;
+    background: var(--color-white);
+    box-shadow: 0 1.2cqi 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-ap-barre {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 5.6cqi;
+    padding: 0 2cqi;
+    border-bottom: 1px solid var(--dv-bord);
+    background: var(--color-grey);
+  }
+  .dv-ap-points {
     display: flex;
-    justify-content: center;
-    padding: 28px 16px 32px;
+    gap: 0.9cqi;
+  }
+  .dv-ap-points i {
+    width: 1.3cqi;
+    height: 1.3cqi;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--color-grey-2) 24%, transparent);
+  }
+  .dv-ap-adresse {
+    min-width: 30cqi;
+    padding: 0.6cqi 3cqi;
+    border-radius: 999px;
+    background: var(--color-white);
+    font-size: max(8px, 1.7cqi);
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+    color: color-mix(in srgb, var(--color-grey-2) 80%, transparent);
+  }
+
+  /* ── Vitrine (Vitrine.astro) : l'appareil posé sur un plateau à points, avec ses bulles. ── */
+  .dv-vitrine {
+    margin: 0;
+    container-type: inline-size;
+  }
+  .dv-vitrine-cadre {
+    position: relative;
+    aspect-ratio: var(--ratio-m, 1.2);
     border-radius: 24px;
     background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
     background-image: var(--dv-points);
     background-size: 24px 24px;
   }
-  .dv-compo-capture {
-    display: none;
+  .dv-vitrine-coins-haut .dv-vitrine-cadre {
+    border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0;
   }
-  @media (min-width: 1024px) {
-    .dv-compo {
-      display: block;
-      padding: 32px 32px 64px;
+  .dv-vitrine-coupe .dv-vitrine-cadre {
+    overflow: hidden;
+  }
+  .dv-vitrine-appareil {
+    position: absolute;
+    left: var(--vxm);
+    top: var(--vym);
+    width: var(--vwm);
+    rotate: var(--vrm);
+  }
+  @media (min-width: 768px) {
+    .dv-vitrine-cadre {
+      aspect-ratio: var(--ratio, 1.2);
     }
-    .dv-compo-capture {
-      display: block;
-      width: 84%;
+    .dv-vitrine-appareil {
+      left: var(--vx);
+      top: var(--vy);
+      width: var(--vw);
+      rotate: var(--vr);
     }
-    .dv-compo-capture img {
-      display: block;
-      width: 100%;
-      height: auto;
-      filter: drop-shadow(0 4px 0 var(--dv-levre-forte)) drop-shadow(0 14px 18px color-mix(in srgb, var(--color-grey-2) 12%, transparent));
-    }
-    .dv-compo .dv-ticket {
-      position: absolute;
-      right: -24px;
-      bottom: -36px;
-      width: 300px;
-      rotate: 2deg;
-    }
+  }
+  /* Au survol d'une carte, l'appareil monte un peu. */
+  .dv-relief-lien .dv-vitrine-appareil {
+    transition: translate 0.3s ease;
+  }
+  .dv-relief-lien:hover .dv-vitrine-appareil,
+  .dv-relief-lien:focus-within .dv-vitrine-appareil {
+    translate: 0 -6px;
+  }
+  /* Ce que Deliview surveille (page Solution) : une carte par point, le haut de l'écran du téléphone. */
+  .dv-veille-carte {
+    display: flex;
+    flex-direction: column;
   }
 
   /* Puce-lien (thèmes des ressources, rubriques des questions) : pastille blanche en relief, 48 px de haut. */

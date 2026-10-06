@@ -1,0 +1,53 @@
+---
+// Appareil (6 octobre 2026, demande de Tom : « des écrans sur des tablettes, des captures, varier ») : une vraie capture
+// de l'app dans un téléphone (corps Gris 2, îlot en haut de l'écran), une tablette (blanche, debout ou couchée selon la
+// capture) ou une fenêtre de navigateur (barre grise, adresse de l'app). Toutes les tailles en unités de conteneur
+// (cqi) : l'appareil garde ses proportions à toutes les largeurs. Couleurs de la charte seulement, aucun dégradé.
+import { lien, type CaptureApp, type TypeAppareil } from '../lib/site';
+
+interface Props {
+  type: TypeAppareil;
+  capture: CaptureApp;
+  sizes?: string;
+  // Adresse affichée dans la barre du navigateur.
+  adresse?: string;
+  priorite?: boolean;
+  // Capture décorative : le texte à côté dit déjà ce qu'elle montre.
+  decoratif?: boolean;
+  class?: string;
+}
+
+const { type, capture, sizes = '(min-width: 1024px) 420px, 70vw', adresse = 'deliview.fr/app', priorite = false, decoratif = false, class: classe = '' } = Astro.props;
+const base = lien(capture.src);
+const couchee = type === 'tablette' && capture.largeur > capture.hauteur;
+---
+
+<div class={`dv-ap dv-ap-${type} ${couchee ? 'dv-ap-couchee' : ''} ${classe}`}>
+  <div class="dv-ap-corps">
+    {
+      type === 'navigateur' && (
+        <div class="dv-ap-barre" aria-hidden="true">
+          <span class="dv-ap-points">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span class="dv-ap-adresse">{adresse}</span>
+        </div>
+      )
+    }
+    {type !== 'navigateur' && <span class="dv-ap-camera" aria-hidden="true" />}
+    <div class="dv-ap-ecran">
+      <img
+        src={`${base}-${capture.largeurs[capture.largeurs.length - 1]}.webp`}
+        srcset={capture.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
+        sizes={sizes}
+        alt={decoratif ? '' : capture.alt}
+        width={capture.largeur}
+        height={capture.hauteur}
+        loading={priorite ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    </div>
+  </div>
+</div>

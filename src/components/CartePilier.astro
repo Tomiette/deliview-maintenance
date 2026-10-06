@@ -1,39 +1,40 @@
 ---
-// Carte d'un pilier (pages Solution détaillées, « Le reste de Deliview »). 6 octobre 2026 : la même carte que les leviers
-// de l'accueil (CarteLevier), pour la cohérence : en haut, une vraie carte de l'app (restaurant anonymisé) posée à plat
-// sur le plateau à points ; dessous, le nom, une phrase et « Voir comment ça marche ». Les 3 points ont été retirés
-// (moins de texte, demande de Tom). Toute la carte est cliquable (lien étiré) ; au survol, elle se soulève.
+// Carte d'un pilier (pages Solution détaillées, « Le reste de Deliview ») : la même carte que les leviers de l'accueil
+// (CarteLevier). En haut, la vitrine du pilier, chacun sur son appareil (6 octobre 2026, demande de Tom : varier) :
+// l'ordinateur pour la carte, la tablette couchée pour la zone, le téléphone pour les avis. Dessous, le nom, une phrase
+// et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au survol, elle se soulève.
+import Vitrine from './Vitrine.astro';
 import Fleche from '../icons/fleche.astro';
 import { ICONES, type NomIcone } from '../lib/registre-icones';
-import { lien, type CaptureApp } from '../lib/site';
+import { VISUELS_PILIERS, lien } from '../lib/site';
 
 interface Props {
+  slug: string;
   icone: NomIcone;
   nom: string;
   benefice: string;
-  fragment: CaptureApp;
   href: string;
   niveau?: 'h2' | 'h3';
 }
 
-const { icone, nom, benefice, fragment, href, niveau = 'h3' } = Astro.props;
+const { slug, icone, nom, benefice, href, niveau = 'h3' } = Astro.props;
 const Icone = ICONES[icone];
 const Titre = niveau;
-const base = lien(fragment.src);
+const v = VISUELS_PILIERS[slug];
 ---
 
 <li class="dv-relief dv-relief-lien dv-levier">
   <div class="dv-levier-plateau">
-    <img
-      class="dv-fragment dv-levier-fragment"
-      src={`${base}-${fragment.largeurs[fragment.largeurs.length - 1]}.webp`}
-      srcset={fragment.largeurs.map((w) => `${base}-${w}.webp ${w}w`).join(', ')}
-      sizes="(min-width: 1024px) 320px, (min-width: 640px) 46vw, 86vw"
-      alt={fragment.alt}
-      width={fragment.largeur}
-      height={fragment.hauteur}
-      loading="lazy"
-      decoding="async"
+    <Vitrine
+      type={v.appareil}
+      capture={v.capture}
+      ratio={1.45}
+      ratioMobile={1.3}
+      place={v.place}
+      bulles={[v.bulle]}
+      coupe
+      coins="haut"
+      sizes={v.appareil === 'telephone' ? '(min-width: 768px) 260px, 50vw' : '(min-width: 768px) 600px, 100vw'}
     />
   </div>
   <div class="dv-levier-corps">

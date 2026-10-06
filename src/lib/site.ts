@@ -323,6 +323,95 @@ FRAGMENTS.campagnes = {
   alt: `Vos campagnes sur Uber Eats dans Deliview : la meilleure offre, le retour des annonces, puis chaque offre avec ses ventes, ses commandes et ses nouveaux clients. ${DEMO}`,
 };
 
+// Écrans de l'app sur appareils (6 octobre 2026, demande de Tom : « des écrans sur des tablettes, des captures, varier ») :
+// téléphones et tablette du compte de démonstration « Pizza Démo » (app du 6 octobre, chiffres fictifs) ; écrans
+// d'ordinateur (scene-*) tirés de l'analyse réelle anonymisée. Les bulles ne reprennent que des chiffres de leur écran.
+export const ECRANS: Record<string, CaptureApp> = {
+  contestations: {
+    src: '/images/ecrans/telephone-contestations',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1731,
+    alt: `Écran Contestations de Deliview sur téléphone : 86,40 € à récupérer sur 3 remboursements Uber Eats, premier délai le 30 octobre, bouton « Tout contester », puis chaque commande à contester. ${DEMO}`,
+  },
+  avis: {
+    src: '/images/ecrans/telephone-avis',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1731,
+    alt: `Écran Avis de Deliview sur téléphone : un avis 2 étoiles sur Deliveroo (« La pizza est arrivée froide ») et la réponse préparée par Deliview, à relire puis envoyer. ${DEMO}`,
+  },
+  assistant: {
+    src: '/images/ecrans/telephone-assistant',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1731,
+    alt: `Écran Assistant de Deliview sur téléphone : des questions prêtes (« Combien j’ai vendu la semaine dernière ? », « Quels sont mes creux ? ») et le champ pour poser la vôtre. ${DEMO}`,
+  },
+  objectifs: {
+    src: '/images/ecrans/telephone-objectifs',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1731,
+    alt: `Écran Objectifs de Deliview sur téléphone : 5 458 € de ventes sur 6 000 € visés (90 %), 216 commandes sur 230, panier moyen 25,27 € sur 26 €. ${DEMO}`,
+  },
+  fermeture: {
+    src: '/images/ecrans/telephone-fermeture',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1731,
+    alt: `Accueil de Deliview sur téléphone : bandeau « Fermé sur Deliveroo depuis 19 h 42 » avec le bouton « Relancer mon restaurant », puis les ventes de la semaine. ${DEMO}`,
+  },
+  avisTablette: {
+    src: '/images/ecrans/tablette-avis',
+    largeurs: [700, 1200],
+    largeur: 1200,
+    hauteur: 834,
+    alt: `Écran Avis de Deliview sur tablette : les avis à répondre, les moins bonnes notes d’abord, chacun avec la réponse préparée par Deliview et le bouton Envoyer. ${DEMO}`,
+  },
+  objectifsOrdinateur: {
+    src: '/images/ecrans/navigateur-objectifs',
+    largeurs: [800, 1400],
+    largeur: 1400,
+    hauteur: 875,
+    alt: `Écran Objectifs de Deliview sur ordinateur : 5 458 € de ventes sur 6 000 € visés cette semaine (90 %), 216 commandes sur 230 (93 %), panier moyen 25,27 € sur 26 € (97 %). ${DEMO}`,
+  },
+  promotions: {
+    src: '/images/ecrans/tablette-promotions',
+    largeurs: [600, 1100],
+    largeur: 1100,
+    hauteur: 1583,
+    alt: `Écran Promotions de Deliview sur tablette : vos campagnes Uber Eats, la meilleure offre (article gratuit dès 20 €, 1 100 € de ventes, 20 nouveaux clients) et le bilan de chaque offre. ${DEMO}`,
+  },
+};
+
+// Vitrine d'une fonction : un appareil avec une vraie capture, posé sur un plateau, et des bulles. Positions en % du
+// plateau (x depuis la droite si `droite`) ; `bureau` : bulle masquée sous 768 px.
+export type TypeAppareil = 'telephone' | 'tablette' | 'navigateur';
+export interface PlaceAppareil {
+  x: number;
+  y: number;
+  largeur: number;
+  rotation?: number;
+}
+export interface BullePlacee {
+  bulle: BulleCapture;
+  x: number;
+  y: number;
+  xm?: number;
+  ym?: number;
+  droite?: boolean;
+  bureau?: boolean;
+}
+export interface VitrineFonction {
+  appareil: TypeAppareil;
+  capture: CaptureApp;
+  // Carte de l'accueil : l'appareil sort du bas du plateau, une bulle.
+  carte: { place: PlaceAppareil; bulle: BullePlacee };
+  // Page Solution : l'appareil entier, deux bulles au plus.
+  page: { ratio: number; ratioMobile?: number; place: PlaceAppareil; placeMobile?: PlaceAppareil; bulles: BullePlacee[] };
+}
+
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : trois leviers de rentabilité, puis ce que Deliview surveille
 // pour vous. Repris dans l'accueil, le menu Solution, la page Solution et le pied de page. Uniquement ce que l'app fait.
 // Contestations : Uber Eats seulement (l'app ne conteste pas encore sur Deliveroo).
@@ -335,26 +424,12 @@ export interface Levier {
   benefice: string;
   points: string[];
   fragment: CaptureApp;
-  // La fonction en un coup d'œil (accueil, page Solution).
-  ticket: TicketFonction;
+  // La fonction sur un appareil (accueil, page Solution).
+  vitrine: VitrineFonction;
   // Page qui détaille le levier, s'il y en a une.
   detail?: { href: string; libelle: string };
 }
 
-// Ticket d'une fonction (6 octobre 2026, demande de Tom : présenter chaque fonction clairement, sans trop de texte) :
-// le même ticket que l'exemple Margherita. Chiffres repris des vraies captures de l'app (FRAGMENTS : analyse réelle
-// anonymisée ou compte de démonstration), jamais inventés ; la note dit d'où ils viennent.
-export interface TicketFonction {
-  entete: string;
-  plateforme?: 'uber-eats' | 'deliveroo';
-  titre: string;
-  lignes: { libelle: string; valeur: string }[];
-  // Le chiffre qui compte, en grand.
-  cle: { libelle: string; valeur: string };
-  // Ce que ça change, en une ligne (HTML court : <strong> seulement).
-  gain?: string;
-  note: string;
-}
 export const LEVIERS: Levier[] = [
   {
     id: 'promotions',
@@ -364,17 +439,18 @@ export const LEVIERS: Levier[] = [
     benefice: 'Une stratégie de promotion intelligente, alimentée par l’IA.',
     points: ['Pas d’offre là où vous vendez déjà bien', 'Une offre ciblée sur vos heures creuses', 'Le bilan de chaque offre, pour garder celles qui ramènent des commandes'],
     fragment: FRAGMENTS.campagnes,
-    ticket: {
-      entete: 'Bilan de l’offre',
-      plateforme: 'uber-eats',
-      titre: 'Article gratuit dès 20 € d’achat',
-      lignes: [
-        { libelle: 'Commandes', valeur: '22' },
-        { libelle: 'Nouveaux clients', valeur: '20' },
-      ],
-      cle: { libelle: 'Ventes', valeur: '1 100 €' },
-      gain: 'Une offre qui ramène de <strong>nouveaux clients</strong> : vous la gardez.',
-      note: 'Offre du 1er au 7 septembre 2026 · compte de démonstration, chiffres fictifs',
+    vitrine: {
+      appareil: 'tablette',
+      capture: ECRANS.promotions,
+      carte: { place: { x: 8, y: 11, largeur: 60 }, bulle: { bulle: { sur: 'Meilleure offre', titre: 'Article gratuit dès 20 €', gain: '20 nouveaux clients' }, x: 4, y: 48, droite: true } },
+      page: {
+        ratio: 1.02,
+        place: { x: 21, y: 7, largeur: 58, rotation: -2 },
+        bulles: [
+          { bulle: { sur: 'Meilleure offre', titre: 'Article gratuit dès 20 €', gain: '20 nouveaux clients' }, x: 1, y: 62, xm: 2, ym: 66 },
+          { bulle: { sur: 'Annonces Uber Eats', titre: '15,5 € de ventes', texte: 'pour 1 € dépensé' }, x: 1, y: 14, droite: true, bureau: true },
+        ],
+      },
     },
     detail: { href: '/solution/prix-et-concurrence/', libelle: 'Voir les promos de votre zone' },
   },
@@ -386,17 +462,20 @@ export const LEVIERS: Levier[] = [
     benefice: 'Contestez un remboursement Uber Eats en un clic.',
     points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
     fragment: FRAGMENTS.contestations,
-    ticket: {
-      entete: 'Fraude client',
-      plateforme: 'uber-eats',
-      titre: '3 remboursements à contester',
-      lignes: [
-        { libelle: 'Premier délai', valeur: '30 octobre' },
-        { libelle: 'Contestation en cours', valeur: '9,90 €' },
-      ],
-      cle: { libelle: 'À récupérer', valeur: '86,40 €' },
-      gain: 'Vous contestez en un clic, <strong>Deliview suit la réponse</strong>.',
-      note: 'Compte de démonstration, chiffres fictifs',
+    vitrine: {
+      appareil: 'telephone',
+      capture: ECRANS.contestations,
+      carte: { place: { x: 11, y: 9, largeur: 45 }, bulle: { bulle: { chiffre: '86,40 €', texte: 'à récupérer sur Uber Eats' }, x: 5, y: 26, droite: true } },
+      page: {
+        ratio: 1.06,
+        ratioMobile: 0.88,
+        place: { x: 32, y: 6, largeur: 37 },
+        placeMobile: { x: 42, y: 6, largeur: 46 },
+        bulles: [
+          { bulle: { chiffre: '86,40 €', texte: 'à récupérer sur Uber Eats' }, x: 2, y: 22, xm: 2, ym: 56 },
+          { bulle: { sur: 'Premier délai', titre: '30 octobre', texte: '3 remboursements à contester' }, x: 1, y: 60, droite: true, bureau: true },
+        ],
+      },
     },
   },
   {
@@ -407,17 +486,18 @@ export const LEVIERS: Levier[] = [
     benefice: 'Deliview compare chaque plat de votre menu au même plat chez vos concurrents.',
     points: ['Votre Margherita face à celles des restaurants autour de vous', 'Le prix conseillé, et ce qu’il vous rapporte', 'Vous validez, Deliview le met en ligne'],
     fragment: FRAGMENTS['carte-et-marge'],
-    ticket: {
-      entete: 'Prix conseillé',
-      plateforme: 'uber-eats',
-      titre: 'Milkshake Vanille',
-      lignes: [
-        { libelle: 'Votre prix', valeur: '6,40 €' },
-        { libelle: '3 concurrents', valeur: '7,73 € à 8,75 €' },
-      ],
-      cle: { libelle: 'Prix proposé', valeur: '7,60 €' },
-      gain: '<strong>+1,20 € par commande</strong>, toujours moins cher que vos voisins.',
-      note: 'Restaurant de burgers à Paris, anonymisé · analyse du 2 octobre 2026',
+    vitrine: {
+      appareil: 'navigateur',
+      capture: FONCTIONNALITES['pricing-menu'].capture,
+      carte: { place: { x: 8, y: 12, largeur: 112 }, bulle: { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 6, y: 56 } },
+      page: {
+        ratio: 1.15,
+        place: { x: 5, y: 14, largeur: 92 },
+        bulles: [
+          { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 0, y: 62, xm: 2, ym: 64 },
+          { bulle: { chiffre: '21 plats', texte: 'moins chers que chez vos concurrents' }, x: 0, y: 2, droite: true, bureau: true },
+        ],
+      },
     },
     detail: { href: '/solution/carte-et-marge/', libelle: 'Voir vos prix en détail' },
   },
@@ -429,6 +509,8 @@ export interface Veille {
   nom: string;
   phrase: string;
   texte: string;
+  // L'écran de l'app qui le montre, chacun sur son appareil (page Solution).
+  vitrine: { appareil: TypeAppareil; capture: CaptureApp; place: PlaceAppareil; placeMobile: PlaceAppareil; bulle?: BullePlacee };
   detail?: { href: string; libelle: string };
 }
 export const VEILLE: Veille[] = [
@@ -438,6 +520,7 @@ export const VEILLE: Veille[] = [
     nom: 'Fermé en plein service ?',
     phrase: 'Prévenu tout de suite, relancé en un clic.',
     texte: 'Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.',
+    vitrine: { appareil: 'telephone', capture: ECRANS.fermeture, place: { x: 30, y: 12, largeur: 40 }, placeMobile: { x: 22, y: 10, largeur: 56 } },
   },
   {
     id: 'avis',
@@ -445,6 +528,7 @@ export const VEILLE: Veille[] = [
     nom: 'Vos avis',
     phrase: 'Une réponse prête pour chaque avis.',
     texte: 'Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.',
+    vitrine: { appareil: 'tablette', capture: ECRANS.avisTablette, place: { x: 9, y: 14, largeur: 98 }, placeMobile: { x: 6, y: 12, largeur: 124 } },
     detail: { href: '/solution/reputation/', libelle: 'Votre note face à votre zone' },
   },
   {
@@ -453,6 +537,13 @@ export const VEILLE: Veille[] = [
     nom: 'Votre assistant IA',
     phrase: 'Vos questions, répondues avec vos chiffres.',
     texte: 'Une question sur vos ventes, vos prix ou vos concurrents ? Il répond avec vos chiffres et prépare le rapport pour vos équipes.',
+    vitrine: {
+      appareil: 'telephone',
+      capture: ECRANS.assistant,
+      place: { x: 52, y: 12, largeur: 38, rotation: 4 },
+      placeMobile: { x: 44, y: 10, largeur: 50, rotation: 4 },
+      bulle: { bulle: { sur: 'Votre question', titre: 'Quels sont mes creux ?' }, x: 5, y: 34, xm: 3, ym: 30 },
+    },
   },
   {
     id: 'objectifs',
@@ -460,6 +551,13 @@ export const VEILLE: Veille[] = [
     nom: 'Vos objectifs',
     phrase: 'Le point chaque lundi sur votre téléphone.',
     texte: 'Par semaine ou par mois, restaurant par restaurant. Et chaque lundi, le point sur votre téléphone.',
+    vitrine: {
+      appareil: 'navigateur',
+      capture: ECRANS.objectifsOrdinateur,
+      place: { x: 8, y: 13, largeur: 110 },
+      placeMobile: { x: 6, y: 12, largeur: 130 },
+      bulle: { bulle: { chiffre: '90 %', texte: 'de l’objectif de ventes' }, x: 5, y: 44, xm: 4, ym: 50, droite: true },
+    },
   },
 ];
 
@@ -470,6 +568,29 @@ export const CAPTURE_POSITION: CaptureApp = {
   largeur: 1600,
   hauteur: 1000,
   alt: `Accueil de Deliview : la position du restaurant face à sa zone, Uber Eats et Deliveroo côte à côte (note, prix médian, offres), puis ce qui a changé chez les concurrents cette semaine. ${ANONYME}`,
+};
+
+// Cartes des piliers (« Le reste de Deliview », pages Solution détaillées) : un appareil différent par pilier
+// (6 octobre 2026) : l'ordinateur pour la carte, la tablette couchée pour la zone, le téléphone pour les avis.
+export const VISUELS_PILIERS: Record<string, { appareil: TypeAppareil; capture: CaptureApp; place: PlaceAppareil; bulle: BullePlacee }> = {
+  'carte-et-marge': {
+    appareil: 'navigateur',
+    capture: FONCTIONNALITES['pricing-menu'].capture,
+    place: { x: 8, y: 13, largeur: 112 },
+    bulle: { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 6, y: 54 },
+  },
+  'prix-et-concurrence': {
+    appareil: 'tablette',
+    capture: CAPTURE_POSITION,
+    place: { x: 9, y: 14, largeur: 100 },
+    bulle: { bulle: { sur: 'Uber Eats · prix médian', titre: '14,40 €', texte: '52 % au-dessus de la zone' }, x: 4, y: 50, droite: true },
+  },
+  reputation: {
+    appareil: 'telephone',
+    capture: ECRANS.avis,
+    place: { x: 12, y: 9, largeur: 44 },
+    bulle: { bulle: { sur: 'Avis 2 étoiles · Deliveroo', titre: 'Réponse prête', texte: 'à relire, puis envoyer' }, x: 4, y: 30, droite: true },
+  },
 };
 
 // « Ressources » ouvre un menu : articles, questions fréquentes, Qui sommes-nous (décision de Tom, 2 octobre 2026).

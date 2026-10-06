@@ -3,12 +3,13 @@
 // client, prix), chacun dans sa section avec une vraie carte de l'app, puis ce que Deliview surveille pour vous
 // (fermeture, avis, assistant, objectifs). Chaque section a son ancre, reprise par le menu Solution et le pied de page.
 // Les pages détaillées (carte et marge, prix et concurrence, réputation) restent liées depuis leur levier.
-// 6 octobre 2026 (demande de Tom : des présentations claires) : pour chaque levier, le ticket de la fonction (l'essentiel
-// en un coup d'œil) posé devant la vraie capture de l'app, à plat ; sur téléphone, le ticket seul.
+// 6 octobre 2026 (demande de Tom : des visuels variés, des écrans sur des appareils) : chaque levier sur son appareil
+// (tablette, téléphone, ordinateur) avec ses bulles ; ce que Deliview surveille, chacun avec le haut de son écran sur
+// téléphone.
 import Base from '../../layouts/Base.astro';
 import BoutonDemo from '../../components/BoutonDemo.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
-import TicketFonction from '../../components/TicketFonction.astro';
+import Vitrine from '../../components/Vitrine.astro';
 import Pastille from '../../components/Pastille.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Coche from '../../icons/coche.astro';
@@ -79,21 +80,17 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
                 </a>
               )}
             </div>
-            <div class="dv-compo mx-auto w-full max-w-[600px]">
-              <div class="dv-compo-capture">
-                <img
-                  src={lien(`${l.fragment.src}-${l.fragment.largeurs[l.fragment.largeurs.length - 1]}.webp`)}
-                  srcset={l.fragment.largeurs.map((w) => `${lien(l.fragment.src)}-${w}.webp ${w}w`).join(', ')}
-                  sizes="(min-width: 1024px) 440px, 1px"
-                  alt={l.fragment.alt}
-                  width={l.fragment.largeur}
-                  height={l.fragment.hauteur}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <TicketFonction t={l.ticket} marqueur />
-            </div>
+            <Vitrine
+              type={l.vitrine.appareil}
+              capture={l.vitrine.capture}
+              ratio={l.vitrine.page.ratio}
+              ratioMobile={l.vitrine.page.ratioMobile}
+              place={l.vitrine.page.place}
+              placeMobile={l.vitrine.page.placeMobile}
+              bulles={l.vitrine.page.bulles}
+              class="mx-auto w-full max-w-[600px]"
+              sizes={l.vitrine.appareil === 'navigateur' ? '(min-width: 1024px) 560px, 92vw' : '(min-width: 1024px) 300px, 50vw'}
+            />
           </div>
         </section>
       );
@@ -109,18 +106,34 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
           VEILLE.map((v) => {
             const Icone = ICONES[v.icone];
             return (
-              <li id={v.id} class="dv-relief dv-constat scroll-mt-24">
-                <span class="dv-tuile">
-                  <Icone taille={32} />
-                </span>
-                <h3 class="mt-4 font-accent text-[20px] font-bold leading-[1.3] md:mt-5 md:text-[22px]">{v.nom}</h3>
-                <p class="mt-2 text-[16px] leading-[1.55] dv-muted md:text-[17px]">{v.texte}</p>
-                {v.detail && (
-                  <a href={lien(v.detail.href)} class="dv-lien-fort mt-3">
-                    {v.detail.libelle}
-                    <Fleche taille={24} />
-                  </a>
-                )}
+              <li id={v.id} class="dv-relief dv-veille-carte scroll-mt-24">
+                <Vitrine
+                  type={v.vitrine.appareil}
+                  capture={v.vitrine.capture}
+                  ratio={1.7}
+                  ratioMobile={1.25}
+                  place={v.vitrine.place}
+                  placeMobile={v.vitrine.placeMobile}
+                  bulles={v.vitrine.bulle ? [v.vitrine.bulle] : []}
+                  coupe
+                  coins="haut"
+                  sizes={v.vitrine.appareil === 'telephone' ? '(min-width: 768px) 230px, 56vw' : '(min-width: 768px) 560px, 100vw'}
+                />
+                <div class="flex flex-1 flex-col border-t border-grey-2/15 p-5 md:p-6">
+                  <h3 class="flex items-center gap-3 font-accent text-[20px] font-bold leading-[1.3] md:text-[22px]">
+                    <span class="dv-tuile dv-tuile-petite">
+                      <Icone taille={24} />
+                    </span>
+                    {v.nom}
+                  </h3>
+                  <p class="mt-3 text-[16px] leading-[1.55] dv-muted md:text-[17px]">{v.texte}</p>
+                  {v.detail && (
+                    <a href={lien(v.detail.href)} class="dv-lien-fort mt-auto self-start pt-2">
+                      {v.detail.libelle}
+                      <Fleche taille={24} />
+                    </a>
+                  )}
+                </div>
               </li>
             );
           })

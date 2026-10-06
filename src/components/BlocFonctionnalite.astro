@@ -5,7 +5,10 @@
 // Refonte en relief (3 octobre 2026) : la capture dans une tablette inclinée en 3D, une bulle reprend un chiffre de
 // la capture ; ou, quand le haut de page montre déjà cet écran, une carte de l'app qui flotte (fragment).
 // Le slot accueille un bouton utile à cet endroit (ex. le simulateur sous Pricing Menu).
+// 6 octobre 2026 (demande de Tom : varier les visuels) : la capture peut aussi s'afficher dans une fenêtre de navigateur
+// ou dans une tablette posée à plat (Vitrine), pour que les blocs d'une page ne répètent pas la tablette du haut.
 import Scene3D from './Scene3D.astro';
+import Vitrine from './Vitrine.astro';
 import Flottant from './Flottant.astro';
 import FragmentFlottant from './FragmentFlottant.astro';
 import Bulle from './Bulle.astro';
@@ -22,8 +25,10 @@ interface Props {
   niveau?: 'h2' | 'h3';
   // Carte de l'app à montrer à la place de la tablette.
   fragment?: CaptureApp;
+  // Appareil de la capture : tablette inclinée en 3D (par défaut), fenêtre de navigateur ou tablette à plat.
+  visuel?: 'tablette3d' | 'navigateur' | 'tablette';
 }
-const { f, inverse = false, fond = 'blanc', niveau = 'h2', fragment } = Astro.props;
+const { f, inverse = false, fond = 'blanc', niveau = 'h2', fragment, visuel = 'tablette3d' } = Astro.props;
 const Titre = niveau;
 const Icone = ICONES[f.icone];
 const sens = inverse ? 'gauche' : 'droite';
@@ -56,6 +61,17 @@ const sens = inverse ? 'gauche' : 'droite';
       {
         fragment ? (
           <FragmentFlottant fragment={fragment} sens={sens} class="mx-auto max-w-[520px]" />
+        ) : visuel !== 'tablette3d' ? (
+          <Vitrine
+            type={visuel}
+            capture={f.capture}
+            ratio={1.14}
+            ratioMobile={1.0}
+            place={visuel === 'navigateur' ? { x: 4, y: 13, largeur: 92 } : { x: 6, y: 16, largeur: 88, rotation: inverse ? 2 : -2 }}
+            bulles={[{ bulle: f.bulle, x: 1, y: 64, xm: 2, ym: 66, droite: !inverse }]}
+            class="mx-auto w-full max-w-[560px]"
+            sizes="(min-width: 1200px) 520px, (min-width: 1024px) 44vw, 92vw"
+          />
         ) : (
           <Scene3D capture={f.capture} sens={sens} ratio={1.14} ratioMobile={1.02} appareil={{ x: 5, y: 12, largeur: 90 }} sizes="(min-width: 1200px) 520px, (min-width: 1024px) 44vw, 92vw">
             <Flottant x={-3} y={66} xm={0} ym={68} droite={!inverse} z={14} duree={6.6}>

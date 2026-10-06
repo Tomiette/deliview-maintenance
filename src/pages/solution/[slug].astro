@@ -199,7 +199,7 @@ const fondAutres = fond();
 
   {
     pilier.fonctionnalites.map((f, i) => (
-      <BlocFonctionnalite f={f} fond={fondsBlocs[i]} inverse={i % 2 === 1} fragment={f.capture.src === haut.capture.src ? FRAGMENTS[pilier.slug] : undefined}>
+      <BlocFonctionnalite f={f} fond={fondsBlocs[i]} inverse={i % 2 === 1} fragment={f.capture.src === haut.capture.src ? FRAGMENTS[pilier.slug] : undefined} visuel={i % 2 === 0 ? 'navigateur' : 'tablette'}>
         {f.id === 'pricing-menu' && (
           <p class="mt-8">
             <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour w-full sm:w-auto" data-cta="pilier-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
@@ -256,7 +256,7 @@ const fondAutres = fond();
       <Pastille>Solution</Pastille>
       <h2 id="autres-titre" class="dv-h2 mt-4 md:mt-5">Le reste de Deliview</h2>
       <ul class="mt-8 grid gap-6 md:grid-cols-2">
-        {autres.map((p) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} />)}
+        {autres.map((p) => <CartePilier slug={p.slug} icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} href={`/solution/${p.slug}/`} />)}
       </ul>
     </div>
   </section>
