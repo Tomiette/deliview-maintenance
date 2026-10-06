@@ -5,6 +5,7 @@
 // 4 octobre 2026 (accord de Tom) : Deliview applique les prix et promos validés et importe les ventes chaque semaine
 // (app, 3 octobre) ; les réponses « Non » d'avant sont remplacées. Délai repris de l'app (lib/promesse.ts : 10 minutes).
 // 6 octobre 2026 (demande de Tom) : questions écrites à la première personne, comme le restaurateur les pose.
+// 6 octobre 2026, soir (décision de Tom) : ventes ajoutées chaque jour à 7 h, deux semaines d'historique au départ.
 // Réponse directe dans la première phrase ; HTML limité aux liens et aux espaces insécables.
 import { OFFRES, SITE, lien } from './site';
 
@@ -70,7 +71,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Est-ce que je vois mes ventes et mon chiffre d’affaires ?',
-        r: 'Oui, semaine par semaine. Deliview ajoute vos ventes Uber&nbsp;Eats et Deliveroo chaque semaine, avec trois mois d’historique au départ. Vous voyez vos ventes, vos commandes, votre panier moyen et vos créneaux creux. Vous n’avez rien à importer. Les commandes en direct restent sur vos tablettes.',
+        r: 'Oui, au jour, à la semaine et au mois. Deliview ajoute vos ventes Uber&nbsp;Eats et Deliveroo chaque jour à 7&nbsp;h. Au départ, vous avez vos deux dernières semaines. Vous voyez vos ventes, vos commandes, votre panier moyen et vos créneaux creux. Vous n’avez rien à importer. Les commandes en direct restent sur vos tablettes.',
       },
       {
         q: 'Est-ce que je dois installer quelque chose ?',
