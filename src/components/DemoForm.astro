@@ -305,11 +305,11 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
           avecErreur.forEach((c) => afficher(c, corps.erreurs![c.name]));
           avecErreur[0]?.focus();
         } else {
-          generale.textContent = corps.message || 'Votre demande n’a pas pu partir. Réessayez, ou écrivez à Tom : tom.voisin@deliview.fr.';
+          generale.textContent = corps.message || 'Votre demande n’a pas pu partir. Réessayez, ou écrivez à Tom\u00a0: tom.voisin@deliview.fr.';
           generale.classList.remove('hidden');
         }
       } catch {
-        generale.textContent = 'La connexion a été coupée. Réessayez, ou écrivez à Tom : tom.voisin@deliview.fr.';
+        generale.textContent = 'La connexion a été coupée. Réessayez, ou écrivez à Tom\u00a0: tom.voisin@deliview.fr.';
         generale.classList.remove('hidden');
       }
       bouton.disabled = false;

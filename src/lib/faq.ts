@@ -23,7 +23,7 @@ export interface RubriqueFaq {
 
 const prix = OFFRES.map((o) => `${o.nom}&nbsp;: ${o.prix}&nbsp;€&nbsp;HT par mois, ${o.restaurants.toLowerCase()}`).join('. ');
 
-export const FAQ_MAJ = '2026-10-06';
+export const FAQ_MAJ = '2026-10-07';
 
 export const FAQ: RubriqueFaq[] = [
   {
@@ -37,7 +37,7 @@ export const FAQ: RubriqueFaq[] = [
       {
         id: 'pour-qui',
         q: 'Est-ce que Deliview est fait pour mon restaurant ?',
-        r: 'Oui, si vous vendez sur Uber&nbsp;Eats et Deliveroo, avec 1 à 10&nbsp;restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.',
+        r: 'Oui, si vous vendez sur Uber&nbsp;Eats, sur Deliveroo ou sur les deux, avec 1 à 10&nbsp;restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.',
       },
       {
         q: 'Sur quelles plateformes est-ce que je peux utiliser Deliview ?',
@@ -59,11 +59,11 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Combien de concurrents est-ce que je peux suivre ?',
-        r: 'Jusqu’à 20&nbsp;restaurants de votre secteur, sur Uber&nbsp;Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. Vous pouvez aussi ajouter 3&nbsp;concurrents de votre choix par restaurant.',
+        r: 'Jusqu’à 20&nbsp;restaurants de votre secteur, sur Uber&nbsp;Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des concurrents de votre choix, par restaurant.',
       },
       {
         q: 'Est-ce que Deliview peut changer mes prix sur les plateformes ?',
-        r: 'Oui, quand vous le décidez. Deliview propose un prix avec ses sources. Vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Même chose pour vos promotions. Rien ne change sans votre accord.',
+        r: 'Oui, avec l’offre Pro ou Groupe, et seulement quand vous le décidez. Deliview propose un prix avec ses sources. Vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Même chose pour vos promotions. Rien ne change sans votre accord.',
       },
       {
         q: 'Comment je donne accès à Deliview ?',
@@ -111,7 +111,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Comment je vérifie que Deliview est sérieux avant de m’abonner ?',
-        r: `La démo se fait sur votre restaurant. Chaque prix comparé cite ses sources. L’abonnement est sans engagement. Deliview est éditée par DELIVIEW SAS, immatriculée en France (SIREN 102&nbsp;681&nbsp;509). Tous les faits à vérifier, avec leurs liens&nbsp;: <a href="${lien('/deliview-est-il-fiable/')}">Deliview est-il fiable&nbsp;?</a>`,
+        r: `La démo se fait sur votre restaurant. Chaque prix comparé cite ses sources. L’abonnement est sans engagement. Deliview est édité par DELIVIEW SAS, immatriculée en France (SIREN 102&nbsp;681&nbsp;509). Tous les faits à vérifier, avec leurs liens&nbsp;: <a href="${lien('/deliview-est-il-fiable/')}">Deliview est-il fiable&nbsp;?</a>`,
       },
       {
         q: 'Où sont hébergées mes données ?',

@@ -302,7 +302,7 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
     id="demo"
     surtitre="Vous êtes recommandé"
     titre="Un restaurateur vous a parlé de Deliview ?"
-    sousTitre={'Demandez votre démo gratuite de 30 minutes. Indiquez qui vous recommande : c’est ce qui lui offre son mois.'}
+    sousTitre={'Demandez votre démo gratuite de 30 minutes. Indiquez qui vous recommande : c’est ainsi que son parrainage compte.'}
   />
 </Base>
 
@@ -325,7 +325,7 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
     const m = Math.floor(n / PAR_MOIS);
     valeur.textContent = String(n);
     mois.textContent = String(m);
-    euros.textContent = nf.format(m * prixPro) + ' €';
+    euros.textContent = nf.format(m * prixPro) + '\u00a0€';
     const pct = (n / Number(curseur.max)) * 100;
     curseur.style.setProperty('--parr-rempli', pct + '%');
     bulle.lastChild.textContent = n > 1 ? ' parrainages' : ' parrainage';
@@ -377,7 +377,7 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
       const s = getSelection();
       s.removeAllRanges();
       s.addRange(r);
-      statut.textContent = 'Le lien est sélectionné : copiez-le avec votre appareil.';
+      statut.textContent = 'Le lien est sélectionné\u00a0: copiez-le avec votre appareil.';
     }
   });
 </script>

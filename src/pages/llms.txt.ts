@@ -38,7 +38,7 @@ export const GET: APIRoute = async () => {
     `- [Questions fréquentes](${u('/questions-frequentes/')}) : ce que fait Deliview, pour qui, prix, engagement, fondateur.`,
     `- [Qui sommes-nous](${u('/qui-sommes-nous/')}) : le projet, Tom Voisin, fondateur, et la construction de Deliview.`,
     `- [Deliview est-il fiable ?](${u('/deliview-est-il-fiable/')}) : éditeur (DELIVIEW SAS, SIREN 102 681 509), prix publics, contrats, hébergement des données, accès aux comptes, contact. Chaque fait avec son lien.`,
-    `- [Demander une démo](${u('/demo/')}) : 30 minutes sur le restaurant du prospect.`,
+    `- [Demander une démo](${u('/demo/')}) : 30 minutes avec Tom, sur le restaurant du restaurateur.`,
     `- E-mail : ${SITE.email}`,
     '',
     '## Optional',

@@ -153,7 +153,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
     points: [
       'Photos et descriptions passées en revue, plat par plat',
       'Comparées aux restaurants de votre zone',
-      'Un modèle de description à suivre pour chaque plat',
+      'Une description proposée par l’IA pour chaque plat',
     ],
     capture: { src: '/images/scene-presentation', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Présentation de la carte dans Deliview : 24 plats sur 37 à retravailler sur Uber Eats, par lesquels commencer, puis chaque plat avec ce qui lui manque (description absente ou trop courte). ${ANONYME}` },
     bulle: { chiffre: '24 plats sur 37', texte: 'à retravailler sur Uber Eats' },
@@ -167,7 +167,7 @@ export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
     points: [
       'Jusqu’à 20 restaurants de votre secteur, avec leur distance',
       'Chaque plat face au même plat, à taille égale',
-      'Jusqu’à 3 concurrents de votre choix en plus',
+      'Avec l’offre Pro, 3 de ces concurrents choisis par vous',
     ],
     capture: { src: '/images/scene-actions', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Actions proposées par Deliview : chaque plat moins cher que chez les concurrents, avec le prix des concurrents pour le même plat et le gain par article ou par commande. ${ANONYME}` },
     bulle: { sur: 'Milkshake Vanille · Uber Eats', fleche: ['6,40 €', '7,60 €'], gain: '+1,20 € par commande' },
@@ -414,7 +414,7 @@ export interface VitrineFonction {
 
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : trois leviers de rentabilité, puis ce que Deliview surveille
 // pour vous. Repris dans l'accueil, le menu Solution, la page Solution et le pied de page. Uniquement ce que l'app fait.
-// Contestations : Uber Eats seulement (l'app ne conteste pas encore sur Deliveroo).
+// Contestations : Uber Eats et Deliveroo depuis le 6 octobre 2026 (offre Pro).
 export interface Levier {
   id: string;
   icone: NomIcone;
@@ -459,7 +459,7 @@ export const LEVIERS: Levier[] = [
     icone: 'bouclier',
     nom: 'La fraude client',
     phrase: 'Les remboursements injustifiés, contestés en un clic.',
-    benefice: 'Contestez un remboursement Uber Eats en un clic.',
+    benefice: 'Contestez un remboursement Uber Eats ou Deliveroo en un clic.',
     points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
     fragment: FRAGMENTS.contestations,
     vitrine: {
@@ -518,7 +518,7 @@ export const VEILLE: Veille[] = [
     id: 'fermeture',
     icone: 'boutique-arret',
     nom: 'Fermé en plein service ?',
-    phrase: 'Prévenu tout de suite, relancé en un clic.',
+    phrase: 'Prévenu dans les 10 minutes, relancé en un clic.',
     texte: 'Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.',
     vitrine: { appareil: 'telephone', capture: ECRANS.fermeture, place: { x: 30, y: 12, largeur: 40 }, placeMobile: { x: 22, y: 10, largeur: 56 } },
   },
@@ -535,7 +535,7 @@ export const VEILLE: Veille[] = [
     id: 'assistant',
     icone: 'robot',
     nom: 'Votre assistant IA',
-    phrase: 'Vos questions, répondues avec vos chiffres.',
+    phrase: 'La réponse à vos questions, tirée de vos chiffres.',
     texte: 'Une question sur vos ventes, vos prix ou vos concurrents ? Il répond avec vos chiffres et prépare le rapport pour vos équipes.',
     vitrine: {
       appareil: 'telephone',
@@ -615,14 +615,14 @@ export const PLATEFORMES = [
     nom: 'Uber Eats',
     statut: 'disponible' as Statut,
     resume: 'Vos prix, votre note et vos offres face à vos concurrents Uber Eats.',
-    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les plats à revoir, avec un prix proposé'],
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les plats à revoir, avec un prix proposé', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
   },
   {
     slug: 'deliveroo',
     nom: 'Deliveroo',
     statut: 'disponible' as Statut,
     resume: 'Les mêmes analyses que sur Uber Eats, et les écarts entre vos deux cartes.',
-    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les écarts de prix entre vos cartes Deliveroo et Uber Eats'],
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les écarts de prix entre vos cartes Deliveroo et Uber Eats', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
   },
 ];
 
@@ -633,6 +633,8 @@ export interface Offre {
   nom: string;
   prix: number;
   restaurants: string;
+  // Nombre de restaurants au plus (simulateur : l'offre qui correspond au nombre saisi).
+  maxRestaurants: number;
   pour: string;
   recommandee?: boolean;
   base?: string;
@@ -648,6 +650,7 @@ export const OFFRES: Offre[] = [
     nom: 'Essentiel',
     prix: 59,
     restaurants: '1 restaurant',
+    maxRestaurants: 1,
     pour: 'Suivez et améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo',
     inclus: [
       'Vos ventes Uber Eats et Deliveroo sur un seul écran',
@@ -664,13 +667,14 @@ export const OFFRES: Offre[] = [
     nom: 'Pro',
     prix: 199,
     restaurants: 'Jusqu’à 3 restaurants',
+    maxRestaurants: 3,
     pour: 'Pilotez et améliorez votre rentabilité : Deliview agit pour vous sur les promos, les prix et la fraude client',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     inclus: [
       'Promos conseillées, mises en ligne pour vous',
       'Nouveaux prix mis en ligne pour vous',
-      'Remboursements Uber Eats contestés en un clic',
+      'Remboursements Uber Eats et Deliveroo contestés en un clic',
       'Restaurant fermé relancé en un clic',
       'Assistant IA et rapport pour vos équipes',
       '10 accès',
@@ -681,6 +685,7 @@ export const OFFRES: Offre[] = [
     nom: 'Groupe',
     prix: 399,
     restaurants: 'Jusqu’à 10 restaurants',
+    maxRestaurants: 10,
     pour: 'Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom',
     base: 'Tout Pro, plus :',
     inclus: ['Un point chaque mois avec Tom', 'L’historique de vos décisions de prix', 'Accès illimités'],

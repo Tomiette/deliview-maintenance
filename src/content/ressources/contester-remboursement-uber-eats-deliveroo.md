@@ -5,7 +5,7 @@ description: "Un client remboursé, et c’est vous qui payez ? Uber Eats laisse
 theme: commandes
 enBref: "Quand un client signale un article manquant ou faux, la plateforme peut le rembourser et retirer ce montant de vos versements. Sur Uber Eats, contestez depuis l’onglet Commandes d’Uber Eats Manager, dans les 30 jours suivant la commande. Sur Deliveroo, passez par l’onglet Remboursements du Portail Partenaire, dans les 7 jours suivant l’e-mail. Joignez une preuve datée."
 publieLe: 2026-10-06
-misAJourLe: 2026-10-06
+misAJourLe: 2026-10-07
 image:
   src: "/images/ressources/contester-remboursement-uber-eats-deliveroo"
   largeurs: [800, 1200, 1600]
@@ -133,4 +133,4 @@ Commencez par les remboursements encore contestables, puis installez la routine 
 3. Sur Deliveroo, ouvrez l’onglet Remboursements tous les deux ou trois jours : sept jours passent vite.
 4. Notez les plats qui reviennent souvent dans les réclamations, et revoyez leur emballage.
 
-Deliview liste vos remboursements Uber Eats commande par commande, avec le montant retiré et la date limite pour contester. Voyez ce que Deliview fait contre [la fraude client](/solution/#fraude).
+Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Pro, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/#fraude).

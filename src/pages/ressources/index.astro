@@ -60,7 +60,7 @@ const description =
             {/* Thème sans page pilier (« Gestion au quotidien », identifiant commandes) : Deliview ne gère pas les commandes, le lien mène à la vue d'ensemble. */}
             {PILIERS.some((p) => p.slug === t.slug) ? (
               <a href={lien(`/solution/${t.slug}/`)} class="dv-lien-fort">
-                Voir {t.nom.toLowerCase()} dans Deliview<Fleche taille={24} />
+                Voir la solution «&nbsp;{t.nom}&nbsp;»<Fleche taille={24} />
               </a>
             ) : (
               <a href={lien('/solution/')} class="dv-lien-fort">

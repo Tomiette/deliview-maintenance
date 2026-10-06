@@ -14,9 +14,10 @@ import Courbe from '../icons/courbe.astro';
 import Enveloppe from '../icons/enveloppe.astro';
 import Fleche from '../icons/fleche.astro';
 import { SITE, lien } from '../lib/site';
+import { CHRONOLOGIE } from '../lib/chronologie';
 
 const description =
-  'Le projet Deliview, son fondateur Tom Voisin et la construction du logiciel, étape par étape, pour les restaurants sur Uber Eats et Deliveroo.';
+  'Le projet Deliview, son fondateur Tom Voisin et la construction du logiciel, suivie en public, pour les restaurants sur Uber Eats et Deliveroo.';
 
 const personne = {
   '@context': 'https://schema.org',
@@ -71,7 +72,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
   <section class="dv-section bg-grey dv-points" aria-labelledby="chronologie-titre">
     <div class="dv-container max-w-[880px]">
       <Pastille icone={Courbe}>En public, sur LinkedIn</Pastille>
-      <h2 id="chronologie-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">La construction de Deliview, étape par étape</h2>
+      <h2 id="chronologie-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">{CHRONOLOGIE.length ? 'La construction de Deliview, étape par étape' : 'Suivez la construction de Deliview'}</h2>
       <p class="mt-4 max-w-[60ch]">Je partage chaque étape sur LinkedIn&nbsp;: ce qui marche, ce qui ne marche pas.</p>
       <Frise />
       <p class="mt-8">
