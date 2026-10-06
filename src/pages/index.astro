@@ -89,18 +89,17 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
-  <!-- Ils testent Deliview depuis le début (6 octobre 2026, demande de Tom) : le logo de Pizza Cosy, premier restaurant
-       pilote. Logo affiché avec l'accord du restaurant (à confirmer par écrit par Tom). -->
+  <!-- Premier restaurant pilote (6 octobre 2026, demandes de Tom ; bandeau refait à 11 h 22) : le logo de Pizza Cosy, sa
+       ville et une phrase. Logo affiché avec l'accord du restaurant (à confirmer par écrit par Tom). -->
   <section class="bg-white pb-10 md:pb-14" aria-labelledby="pilotes-titre">
     <div class="dv-container">
-      <div class="dv-relief dv-pilotes mx-auto w-fit max-w-full">
-        <p id="pilotes-titre" class="dv-pilotes-titre">Ils testent Deliview depuis le début</p>
-        <ul class="dv-pilotes-liste">
-          <li class="dv-pilote">
-            <img src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
-            <span>Pizza Cosy</span>
-          </li>
-        </ul>
+      <div class="dv-relief dv-pilotes mx-auto">
+        <img class="dv-pilotes-logo" src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
+        <div class="min-w-0">
+          <p id="pilotes-titre" class="dv-pilotes-titre"><span class="dv-pastille-point" aria-hidden="true"></span>Premier restaurant pilote</p>
+          <p class="dv-pilotes-nom">Pizza Cosy<span class="dv-pilotes-ville">, Lyon</span></p>
+          <p class="dv-pilotes-phrase">Utilise Deliview depuis le premier jour.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -142,8 +141,8 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     <div class="dv-container dv-bascule">
       <div class="dv-bascule-texte">
         <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>La bascule</p>
-        <h2 id="bascule-titre" class="mt-4 font-accent text-[36px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-5 md:text-[44px]">Toutes vos données de livraison centralisées</h2>
-        <p class="dv-bascule-lead mt-4 md:mt-6">Vos chiffres Uber&nbsp;Eats et Deliveroo sur un seul écran. Vous voyez où part votre marge, vous décidez, Deliview l’applique.</p>
+        <h2 id="bascule-titre" class="mt-4 font-accent text-[36px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-5 md:text-[44px]">Toutes vos données livraison centralisées</h2>
+        <p class="dv-bascule-lead mt-4 md:mt-6">Un prix mal placé, une promo au mauvais moment, un remboursement à contester, un restaurant fermé en plein service&nbsp;: Deliview le repère. Vous validez, il l’applique.</p>
       </div>
       <div class="dv-bascule-tablette">
         <Scene3D capture={captureAccueil} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
@@ -172,7 +171,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Ce que fait Deliview</p>
       <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Plus de rentabilité sur votre activité livraison</h2>
-      <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Deliview repère où part votre marge. Vous validez, Deliview l’applique.</p>
+      <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Chaque action est chiffrée, restaurant par restaurant. Vous savez ce qu’elle vous rapporte avant de la lancer.</p>
       <ul class="mt-8 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
         {LEVIERS.map((l) => <CarteLevier levier={l} href={`/solution/#${l.id}`} />)}
       </ul>
@@ -265,8 +264,16 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
           ))
         }
       </ul>
-      <p class="mt-6 text-[17px] font-semibold leading-[1.5] md:mt-8 md:text-[18px]">Plus de 10&nbsp;restaurants&nbsp;? <a href="#demo" class="dv-lien" data-cta="accueil-plus-de-10">Parlons-en.</a></p>
-      <a href={lien('/tarifs/')} class="dv-lien-fort mt-2">Voir le détail des offres<Fleche taille={24} /></a>
+      <!-- Plus de 10 restaurants (6 octobre 2026, demande de Tom : « sous forme de bulle ») : un message de Tom, sa photo à
+           côté de la bulle. -->
+      <div class="dv-bulle-groupe mt-8 md:mt-10">
+        <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
+        <p class="dv-bulle-groupe-message">
+          <span class="dv-bulle-groupe-question">Plus de 10&nbsp;restaurants&nbsp;?</span>
+          <a href="#demo" class="dv-lien-fort" data-cta="accueil-plus-de-10">Parlons-en<Fleche taille={24} /></a>
+        </p>
+      </div>
+      <a href={lien('/tarifs/')} class="dv-lien-fort mt-4 md:mt-5">Voir le détail des offres<Fleche taille={24} /></a>
     </div>
   </section>
 
