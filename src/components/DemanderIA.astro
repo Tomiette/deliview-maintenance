@@ -12,10 +12,13 @@
 // ChatGPT s'ouvre avec la recherche activée (hints=search). Claude est retiré tant que ses robots n'arrivent pas à se
 // connecter au site (délai dépassé sur robots.txt, 3 essais le 6 octobre ; le site répond depuis d'autres réseaux en IPv4
 // et IPv6) : un prospect verrait Claude dire qu'il ne sait rien de Deliview.
+// 6 octobre 2026, 15 h 28 (demande de Tom) : Gemini ajouté (logo officiel du même paquet). Gemini n'accepte pas de
+// question dans son adresse : le clic copie la question, Gemini s'ouvre, et la page dit de la coller.
 import { lien } from '../lib/site';
 import logoChatgpt from '../icons/ia/openai.svg?raw';
 import logoClaude from '../icons/ia/claude.svg?raw';
 import logoPerplexity from '../icons/ia/perplexity.svg?raw';
+import logoGemini from '../icons/ia/gemini.svg?raw';
 
 const QUESTION =
   'Je suis restaurateur sur Uber Eats et Deliveroo. Lis https://www.deliview.fr et dis-moi franchement si Deliview vaut le coup pour mon restaurant : ce que ça m’apporterait, combien ça coûte et ses limites.';
@@ -24,7 +27,8 @@ const ia = [
   { nom: 'ChatGPT', url: `https://chatgpt.com/?hints=search&q=${q}`, cta: 'ia-chatgpt', logo: logoChatgpt, actif: true },
   { nom: 'Claude', url: `https://claude.ai/new?q=${q}`, cta: 'ia-claude', logo: logoClaude, actif: false },
   { nom: 'Perplexity', url: `https://www.perplexity.ai/search?q=${q}`, cta: 'ia-perplexity', logo: logoPerplexity, actif: true },
-].filter((x) => x.actif);
+  { nom: 'Gemini', url: 'https://gemini.google.com/app', cta: 'ia-gemini', logo: logoGemini, actif: true, copie: true },
+].filter((x) => x.actif) as { nom: string; url: string; cta: string; logo: string; copie?: boolean }[];
 ---
 
 <section class="bg-white pb-16 pt-4 md:pb-[96px] md:pt-6" aria-labelledby="ia-titre">
@@ -33,11 +37,11 @@ const ia = [
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="166" height="32" class="mx-auto h-8 w-auto" loading="lazy" />
       <h2 id="ia-titre" class="dv-h2 mx-auto mt-5 max-w-[22ch]">Pas encore sûr que Deliview soit fait pour vous&nbsp;?</h2>
       <p class="dv-lead mx-auto mt-4 max-w-[46ch]">Demandez à votre IA préférée ce qu’elle pense de Deliview.</p>
-      <ul class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+      <ul class="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         {
           ia.map((x) => (
             <li>
-              <a href={x.url} target="_blank" rel="noopener" class="dv-btn-sombre dv-ia-bouton w-full sm:w-auto" data-cta={x.cta}>
+              <a href={x.url} target="_blank" rel="noopener" class="dv-btn-sombre dv-ia-bouton w-full sm:w-auto" data-cta={x.cta} data-copie={x.copie ? QUESTION : undefined}>
                 <span class="dv-ia-logo" set:html={x.logo} />
                 Demander à {x.nom}
                 <span class="sr-only"> (nouvel onglet)</span>
@@ -46,9 +50,25 @@ const ia = [
           ))
         }
       </ul>
+      <p class="dv-ia-copie mt-4 text-[15px]" role="status" aria-live="polite"></p>
     </div>
   </div>
 </section>
+
+<script>
+  // Gemini : la question est copiée avant d'ouvrir l'onglet, puis la page dit de la coller.
+  for (const a of document.querySelectorAll<HTMLAnchorElement>('a[data-copie]')) {
+    a.addEventListener('click', () => {
+      const etat = a.closest('.dv-ia')?.querySelector('.dv-ia-copie');
+      navigator.clipboard
+        ?.writeText(a.dataset.copie || '')
+        .then(() => {
+          if (etat) etat.textContent = 'Question copiée : collez-la dans Gemini (Ctrl+V, ou appui long sur téléphone).';
+        })
+        .catch(() => undefined);
+    });
+  }
+</script>
 
 <style>
   .dv-ia {
@@ -63,6 +83,9 @@ const ia = [
     min-height: 48px;
     padding-inline: 20px;
     font-size: 17px;
+  }
+  .dv-ia-copie:empty {
+    display: none;
   }
   .dv-ia-logo {
     display: inline-flex;
