@@ -56,7 +56,7 @@ Oui, quand vous le décidez. Deliview propose un prix avec ses sources. Vous le 
 Vous invitez Deliview comme utilisateur, une fois, dans Uber Eats Manager et dans le Partner Hub de Deliveroo. Jamais avec votre mot de passe. Vous retirez cet accès quand vous voulez, depuis la plateforme.
 
 **Est-ce que je vois mes ventes et mon chiffre d’affaires ?**
-Oui, semaine par semaine. Deliview ajoute vos ventes Uber Eats et Deliveroo chaque semaine, avec trois mois d’historique au départ. Vous voyez vos ventes, vos commandes, votre panier moyen et vos créneaux creux. Vous n’avez rien à importer. Les commandes en direct restent sur vos tablettes.
+Oui, au jour, à la semaine et au mois. Deliview ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h. Au départ, vous avez vos deux dernières semaines. Vous voyez vos ventes, vos commandes, votre panier moyen et vos créneaux creux. Vous n’avez rien à importer. Les commandes en direct restent sur vos tablettes.
 
 **Est-ce que je dois installer quelque chose ?**
 Non. Deliview s’ouvre dans le navigateur, sur tablette, ordinateur ou téléphone. Vos tablettes Uber Eats et Deliveroo restent là pour les commandes.
