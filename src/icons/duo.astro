@@ -1,0 +1,9 @@
+---
+// Icône « duo » : deux personnes qui se parlent (le bouche-à-oreille, de vive voix). Style de la planche : trait Gris 2,
+// une touche de Bleu 1 (la bulle).
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M14.6 17.2c2.5 0 4.5 2 4.5 4.5s-2 4.5-4.5 4.5-4.5-2-4.5-4.5 2-4.5 4.5-4.5zM33.4 17.2c2.5 0 4.5 2 4.5 4.5s-2 4.5-4.5 4.5-4.5-2-4.5-4.5 2-4.5 4.5-4.5z" /><path d="M6.4 40c.9-5.4 4.1-8.4 8.2-8.4s7.3 3 8.2 8.4M25.2 40c.9-5.4 4.1-8.4 8.2-8.4s7.3 3 8.2 8.4" /><path class="b r15" d="M19.6 5.4h8.8c.9 0 1.6.7 1.6 1.6v4.4c0 .9-.7 1.6-1.6 1.6h-2.6L24 15.2 22.2 13h-2.6c-.9 0-1.6-.7-1.6-1.6V7c0-.9.7-1.6 1.6-1.6z" /></Trace>

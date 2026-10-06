@@ -1,0 +1,9 @@
+---
+// Icône « message » : bulle de discussion (WhatsApp, messages). Dessinée dans le style de la planche : trait Gris 2,
+// une touche de Bleu 1 (les trois points). Pas de logo de marque redessiné.
+import Trace from '../components/Trace.astro';
+import type { ProprietesIcone } from '../lib/icones';
+type Props = ProprietesIcone;
+---
+
+<Trace {...Astro.props}><path d="M8 12.6c0-1.3 1.1-2.4 2.4-2.4h27.2c1.3 0 2.4 1.1 2.4 2.4v16.8c0 1.3-1.1 2.4-2.4 2.4H20.2l-7.4 6.2c-.6.5-1.5.1-1.5-.7v-5.5h-.9C9.1 31.8 8 30.7 8 29.4z" /><path class="b" d="M17.4 21.2h.2M24 21.2h.2M30.6 21.2h.2" stroke-width="3.6" /></Trace>
