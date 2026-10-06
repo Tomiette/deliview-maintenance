@@ -6,6 +6,14 @@ theme: prix-et-concurrence
 enBref: "Partez de vos coûts : matière, emballage, TVA et commission. Calculez le prix sous lequel vous perdez de l’argent, puis comparez-le au prix médian du même plat dans votre zone. Les prix sont libres, mais Uber Eats peut tenir compte des vôtres pour votre mise en avant. Changez quelques plats à la fois et mesurez."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/fixer-prix-uber-eats-deliveroo"
+  largeurs: [800, 1200, 1600]
+  alt: "Pizza tout juste sortie d’un four à bois, sur sa pelle."
+  credit:
+    nom: "Ari Kurniawan"
+    profil: "https://unsplash.com/@arikurniawan"
+    page: "https://unsplash.com/photos/pizza-being-removed-from-a-wood-fired-oven-zyvkmq1yJBs"
 sources:
   - titre: "Code de commerce, titre Ier : dispositions générales (articles L410-1 à L410-6)"
     url: "https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000005634379/LEGISCTA000006133183/"

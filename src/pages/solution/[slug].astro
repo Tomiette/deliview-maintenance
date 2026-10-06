@@ -12,6 +12,7 @@ import Bulle from '../../components/Bulle.astro';
 import Pastille from '../../components/Pastille.astro';
 import CartePilier from '../../components/CartePilier.astro';
 import BlocFonctionnalite from '../../components/BlocFonctionnalite.astro';
+import CarteArticle from '../../components/CarteArticle.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -242,14 +243,7 @@ const fondAutres = fond();
           <h2 id="articles-titre" class="dv-h2 mt-4 md:mt-5">Pour aller plus loin</h2>
           <ul class="mt-8 grid gap-6 md:grid-cols-3">
             {articles.slice(0, 3).map((a) => (
-              <li class="dv-card dv-carte-lien flex flex-col p-6">
-                <h3 class="dv-h3 !text-[20px]">
-                  <a href={lien(`/ressources/${a.id}/`)} class="dv-etire hover:underline">
-                    {a.data.titre}
-                  </a>
-                </h3>
-                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
-              </li>
+              <CarteArticle article={a} infos={false} />
             ))}
           </ul>
         </div>
@@ -262,7 +256,7 @@ const fondAutres = fond();
       <Pastille>Solution</Pastille>
       <h2 id="autres-titre" class="dv-h2 mt-4 md:mt-5">Le reste de Deliview</h2>
       <ul class="mt-8 grid gap-6 md:grid-cols-2">
-        {autres.map((p, i) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} points={p.carte.points} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} sens={i % 2 ? 'gauche' : 'droite'} />)}
+        {autres.map((p) => <CartePilier icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} fragment={FRAGMENTS[p.slug]} href={`/solution/${p.slug}/`} />)}
       </ul>
     </div>
   </section>

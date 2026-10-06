@@ -6,6 +6,14 @@ theme: reputation
 enBref: "Sur Uber Eats comme sur Deliveroo, la note est une moyenne d’étoiles de 1 à 5 qui privilégie les notes récentes. Pour la faire monter, traitez d’abord ce qui la fait baisser : plats manquants, erreurs, retards et emballage. Répondez aux avis, comparez-vous aux restaurants de votre zone, et ne publiez ni n’achetez jamais de faux avis : c’est un délit."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/ameliorer-note-uber-eats-deliveroo"
+  largeurs: [800, 1040]
+  alt: "Pizza posée sur la pelle, à l’entrée d’un four à bois."
+  credit:
+    nom: "Brad"
+    profil: "https://unsplash.com/@minimdesignco"
+    page: "https://unsplash.com/photos/a-chef-cooks-pizza-in-a-wood-fired-oven-7TAG9wlv1uw"
 sources:
   - titre: "Les notes et évaluations sur Uber Eats"
     url: "https://www.uber.com/fr/fr/legal/ratings-and-reviews-on-uber-eats/"

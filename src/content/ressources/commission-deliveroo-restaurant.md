@@ -6,6 +6,14 @@ theme: carte-et-marge
 enBref: "Deliveroo ne publie pas de taux de commission pour les restaurants en France. Le vôtre figure dans votre contrat et sur vos factures hebdomadaires. Deliveroo déduit sa commission et la TVA éventuelle sur celle-ci, puis les offres, la publicité, les annulations et certains remboursements. Calculez votre marge en hors taxes, plat par plat."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/commission-deliveroo-restaurant"
+  largeurs: [800, 1200, 1600]
+  alt: "Pizza dans sa boîte en carton, ouverte à la livraison."
+  credit:
+    nom: "Arantxa Aniorte"
+    profil: "https://unsplash.com/@arantxa_aniorte"
+    page: "https://unsplash.com/photos/person-holding-pizza-in-box-pHzyr-doErc"
 sources:
   - titre: "Foire aux questions"
     url: "https://merchants.deliveroo.com/fr-FR/faqs"

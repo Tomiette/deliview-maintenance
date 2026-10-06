@@ -6,6 +6,14 @@ theme: prix-et-concurrence
 enBref: "Une promo est rentable si elle apporte assez de commandes en plus pour compenser la marge perdue. Sur Uber Eats comme sur Deliveroo, vous payez la remise et la commission porte sur le prix remisé. Dans notre exemple, 20 % de remise sur une pizza imposent 52 % de ventes en plus pour garder la même marge."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-01
+image:
+  src: "/images/ressources/promotion-uber-eats-deliveroo-rentable"
+  largeurs: [800, 1200, 1600]
+  alt: "Boîtes à pizza empilées sur un comptoir, prêtes à partir en livraison."
+  credit:
+    nom: "Mathias Reding"
+    profil: "https://unsplash.com/@matreding"
+    page: "https://unsplash.com/photos/a-stack-of-pizza-boxes-sitting-on-top-of-a-counter-6rrX2JIsnQs"
 sources:
   - titre: "Rendre votre établissement plus visible grâce aux outils marketing"
     url: "https://merchants.ubereats.com/fr/fr/resources/learning-center/marketing/"

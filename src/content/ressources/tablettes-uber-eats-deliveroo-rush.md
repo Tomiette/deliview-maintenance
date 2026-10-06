@@ -6,6 +6,14 @@ theme: commandes
 enBref: "Préparez les tablettes avant le service : ruptures à jour, imprimante testée, son bien audible. En plein rush, ajoutez du temps de préparation avec le mode Occupé ou suspendez les commandes, et retirez aussitôt chaque plat épuisé. Confiez les tablettes à une seule personne et vérifiez chaque sac avant de le remettre au livreur."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/tablettes-uber-eats-deliveroo-rush"
+  largeurs: [800, 1200, 1600]
+  alt: "Cuisine de restaurant en plein service, cuisiniers aux fourneaux."
+  credit:
+    nom: "blackieshoot"
+    profil: "https://unsplash.com/@blackieshoot"
+    page: "https://unsplash.com/photos/chefs-preparing-food-in-a-busy-kitchen-fuR0Iwu5dkk"
 sources:
   - titre: "Guide des commerçants : Utilisez l’application Commandes sur Uber Eats"
     url: "https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/"

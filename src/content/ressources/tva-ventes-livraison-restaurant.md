@@ -6,6 +6,14 @@ theme: commandes
 enBref: "En livraison et à emporter, la nourriture préparée pour être mangée tout de suite relève du taux de 10 %. Les boissons sans alcool en bouteille ou en canette, les pâtisseries sucrées, les chips et les yaourts relèvent de 5,5 %. L’alcool relève toujours de 20 %. Sur une commande mixte, appliquez à chaque produit son taux."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/tva-ventes-livraison-restaurant"
+  largeurs: [800, 1200]
+  alt: "Terrasse de café parisienne au soleil, chaises en rotin et tables rondes."
+  credit:
+    nom: "Pavel Abramiankou"
+    profil: "https://unsplash.com/@brmnkv"
+    page: "https://unsplash.com/photos/people-sit-at-tables-outside-a-parisian-restaurant-yzh7B-9sOhc"
 sources:
   - titre: "ANNEXE - TVA - Tableau récapitulatif des taux applicables pour les ventes à emporter ou à livrer de produits alimentaires préparés en vue d’une consommation immédiate, en fonction des produits et des situations"
     url: "https://bofip.impots.gouv.fr/bofip/7204-PGP.html/identifiant=BOI-ANNX-000495-20240821"

@@ -6,6 +6,14 @@ theme: carte-et-marge
 enBref: "Uber Eats prélève un pourcentage du prix TTC de vos plats, plus la TVA éventuelle sur ces frais. Votre taux figure sur votre bon de commande. Sa page tarifs affiche 15 %, 30 % ou 33 %, avec une note qui les réserve au Japon. Exemple : à 30 %, une pizza à 14 € vous laisse 8,53 € HT avant matière."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/commission-uber-eats-restaurant"
+  largeurs: [800, 1200, 1600]
+  alt: "Burger et frites dans une boîte en carton kraft, prêts pour la livraison."
+  credit:
+    nom: "Quin Engle"
+    profil: "https://unsplash.com/@twistsandzests"
+    page: "https://unsplash.com/photos/PnCuMQITM3c"
 sources:
   - titre: "Une tarification adaptée à votre entreprise"
     url: "https://merchants.ubereats.com/fr/fr/pricing/"

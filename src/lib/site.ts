@@ -335,8 +335,25 @@ export interface Levier {
   benefice: string;
   points: string[];
   fragment: CaptureApp;
+  // La fonction en un coup d'œil (accueil, page Solution).
+  ticket: TicketFonction;
   // Page qui détaille le levier, s'il y en a une.
   detail?: { href: string; libelle: string };
+}
+
+// Ticket d'une fonction (6 octobre 2026, demande de Tom : présenter chaque fonction clairement, sans trop de texte) :
+// le même ticket que l'exemple Margherita. Chiffres repris des vraies captures de l'app (FRAGMENTS : analyse réelle
+// anonymisée ou compte de démonstration), jamais inventés ; la note dit d'où ils viennent.
+export interface TicketFonction {
+  entete: string;
+  plateforme?: 'uber-eats' | 'deliveroo';
+  titre: string;
+  lignes: { libelle: string; valeur: string }[];
+  // Le chiffre qui compte, en grand.
+  cle: { libelle: string; valeur: string };
+  // Ce que ça change, en une ligne (HTML court : <strong> seulement).
+  gain?: string;
+  note: string;
 }
 export const LEVIERS: Levier[] = [
   {
@@ -347,6 +364,18 @@ export const LEVIERS: Levier[] = [
     benefice: 'Une stratégie de promotion intelligente, alimentée par l’IA.',
     points: ['Pas d’offre là où vous vendez déjà bien', 'Une offre ciblée sur vos heures creuses', 'Le bilan de chaque offre, pour garder celles qui ramènent des commandes'],
     fragment: FRAGMENTS.campagnes,
+    ticket: {
+      entete: 'Bilan de l’offre',
+      plateforme: 'uber-eats',
+      titre: 'Article gratuit dès 20 € d’achat',
+      lignes: [
+        { libelle: 'Commandes', valeur: '22' },
+        { libelle: 'Nouveaux clients', valeur: '20' },
+      ],
+      cle: { libelle: 'Ventes', valeur: '1 100 €' },
+      gain: 'Une offre qui ramène de <strong>nouveaux clients</strong> : vous la gardez.',
+      note: 'Offre du 1er au 7 septembre 2026 · compte de démonstration, chiffres fictifs',
+    },
     detail: { href: '/solution/prix-et-concurrence/', libelle: 'Voir les promos de votre zone' },
   },
   {
@@ -357,6 +386,18 @@ export const LEVIERS: Levier[] = [
     benefice: 'Contestez un remboursement Uber Eats en un clic.',
     points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
     fragment: FRAGMENTS.contestations,
+    ticket: {
+      entete: 'Fraude client',
+      plateforme: 'uber-eats',
+      titre: '3 remboursements à contester',
+      lignes: [
+        { libelle: 'Premier délai', valeur: '30 octobre' },
+        { libelle: 'Contestation en cours', valeur: '9,90 €' },
+      ],
+      cle: { libelle: 'À récupérer', valeur: '86,40 €' },
+      gain: 'Vous contestez en un clic, <strong>Deliview suit la réponse</strong>.',
+      note: 'Compte de démonstration, chiffres fictifs',
+    },
   },
   {
     id: 'prix',
@@ -366,6 +407,18 @@ export const LEVIERS: Levier[] = [
     benefice: 'Deliview compare chaque plat de votre menu au même plat chez vos concurrents.',
     points: ['Votre Margherita face à celles des restaurants autour de vous', 'Le prix conseillé, et ce qu’il vous rapporte', 'Vous validez, Deliview le met en ligne'],
     fragment: FRAGMENTS['carte-et-marge'],
+    ticket: {
+      entete: 'Prix conseillé',
+      plateforme: 'uber-eats',
+      titre: 'Milkshake Vanille',
+      lignes: [
+        { libelle: 'Votre prix', valeur: '6,40 €' },
+        { libelle: '3 concurrents', valeur: '7,73 € à 8,75 €' },
+      ],
+      cle: { libelle: 'Prix proposé', valeur: '7,60 €' },
+      gain: '<strong>+1,20 € par commande</strong>, toujours moins cher que vos voisins.',
+      note: 'Restaurant de burgers à Paris, anonymisé · analyse du 2 octobre 2026',
+    },
     detail: { href: '/solution/carte-et-marge/', libelle: 'Voir vos prix en détail' },
   },
 ];

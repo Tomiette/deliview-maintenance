@@ -17,6 +17,16 @@ const ressources = defineCollection({
     publieLe: z.coerce.date(),
     misAJourLe: z.coerce.date(),
     auteur: z.string().default('Tom Voisin'),
+    // Photo de l'article (6 octobre 2026) : photo Unsplash (licence Unsplash, gratuite), sans visage ni marque
+    // reconnaissable, recadrée en 16:9 et déclinée en WebP (public/images/ressources/<slug>-<largeur>.webp).
+    image: z
+      .object({
+        src: z.string().regex(/^\/images\/ressources\/[a-z0-9-]+$/),
+        largeurs: z.array(z.number().int().min(400).max(2000)).min(1),
+        alt: z.string().min(15).max(160),
+        credit: z.object({ nom: z.string().min(2), profil: z.url(), page: z.url() }),
+      })
+      .optional(),
     sources: z
       .array(z.object({ titre: z.string(), url: z.url(), editeur: z.string(), consulteLe: z.string() }))
       .min(1),

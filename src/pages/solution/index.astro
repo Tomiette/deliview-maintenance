@@ -3,10 +3,12 @@
 // client, prix), chacun dans sa section avec une vraie carte de l'app, puis ce que Deliview surveille pour vous
 // (fermeture, avis, assistant, objectifs). Chaque section a son ancre, reprise par le menu Solution et le pied de page.
 // Les pages détaillées (carte et marge, prix et concurrence, réputation) restent liées depuis leur levier.
+// 6 octobre 2026 (demande de Tom : des présentations claires) : pour chaque levier, le ticket de la fonction (l'essentiel
+// en un coup d'œil) posé devant la vraie capture de l'app, à plat ; sur téléphone, le ticket seul.
 import Base from '../../layouts/Base.astro';
 import BoutonDemo from '../../components/BoutonDemo.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
-import FragmentFlottant from '../../components/FragmentFlottant.astro';
+import TicketFonction from '../../components/TicketFonction.astro';
 import Pastille from '../../components/Pastille.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Coche from '../../icons/coche.astro';
@@ -77,7 +79,21 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
                 </a>
               )}
             </div>
-            <FragmentFlottant fragment={l.fragment} sens={i % 2 ? 'gauche' : 'droite'} class="mx-auto w-full max-w-[580px]" sizes="(min-width: 1024px) 540px, 86vw" />
+            <div class="dv-compo mx-auto w-full max-w-[600px]">
+              <div class="dv-compo-capture">
+                <img
+                  src={lien(`${l.fragment.src}-${l.fragment.largeurs[l.fragment.largeurs.length - 1]}.webp`)}
+                  srcset={l.fragment.largeurs.map((w) => `${lien(l.fragment.src)}-${w}.webp ${w}w`).join(', ')}
+                  sizes="(min-width: 1024px) 440px, 1px"
+                  alt={l.fragment.alt}
+                  width={l.fragment.largeur}
+                  height={l.fragment.hauteur}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <TicketFonction t={l.ticket} marqueur />
+            </div>
           </div>
         </section>
       );

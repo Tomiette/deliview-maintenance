@@ -6,6 +6,14 @@ theme: prix-et-concurrence
 enBref: "Choisissez cinq à dix restaurants de votre cuisine qui livrent vos clients. Comparez le même plat à taille égale et notez prix et promos dans un tableau daté. Calculez la médiane plutôt que la moyenne. Un écart de plus de 10 %, sur au moins deux comparaisons, est un signal. Refaites l’exercice chaque mois."
 publieLe: 2026-10-01
 misAJourLe: 2026-10-02
+image:
+  src: "/images/ressources/analyser-prix-concurrents-livraison"
+  largeurs: [800, 1200, 1600]
+  alt: "Ardoise des prix d’un café, chaque boisson avec son prix."
+  credit:
+    nom: "Nathan Dumlao"
+    profil: "https://unsplash.com/@nate_dumlao"
+    page: "https://unsplash.com/photos/black-and-white-menu-board-pnFPbmcWB7g"
 sources:
   - titre: "En août 2026, les prix à la consommation augmentent de 2,4 % sur un an (Informations rapides n° 218)"
     url: "https://www.insee.fr/fr/statistiques/9051406"

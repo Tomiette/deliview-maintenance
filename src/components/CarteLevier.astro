@@ -1,0 +1,36 @@
+---
+// Carte d'un levier de rentabilité (accueil, 6 octobre 2026, demande de Tom : présenter chaque fonction clairement,
+// sans trop de texte). En haut, le ticket de la fonction posé sur un plateau à points : on lit l'essentiel en un coup
+// d'œil. Dessous, le nom, une phrase et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au
+// survol, elle se soulève et le ticket se redresse.
+import TicketFonction from './TicketFonction.astro';
+import Fleche from '../icons/fleche.astro';
+import { ICONES } from '../lib/registre-icones';
+import { lien, type Levier } from '../lib/site';
+
+interface Props {
+  levier: Levier;
+  href: string;
+  niveau?: 'h2' | 'h3';
+}
+
+const { levier: l, href, niveau = 'h3' } = Astro.props;
+const Titre = niveau;
+const Icone = ICONES[l.icone];
+---
+
+<li class="dv-relief dv-relief-lien dv-levier">
+  <div class="dv-levier-plateau">
+    <TicketFonction t={l.ticket} />
+  </div>
+  <div class="dv-levier-corps">
+    <Titre class="flex items-center gap-3 font-accent text-[21px] font-bold leading-[1.25] md:text-[23px]">
+      <span class="dv-tuile dv-tuile-petite"><Icone taille={24} /></span>
+      {l.nom}
+    </Titre>
+    <p class="mt-3 text-[17px] leading-[1.5] dv-muted">{l.phrase}</p>
+    <a href={lien(href)} class="dv-lien-fort dv-pilier-lien mt-auto self-start pt-3" aria-label={`Voir comment ça marche : ${l.nom.toLowerCase()}`}>
+      Voir comment ça marche<Fleche taille={24} />
+    </a>
+  </div>
+</li>

@@ -1,11 +1,13 @@
 ---
-// Ressources : articles classés par thème, du plus récent au plus ancien. Refonte en relief du 3 octobre 2026.
+// Ressources : articles classés par thème, du plus récent au plus ancien. Refonte en relief du 3 octobre 2026 ;
+// 6 octobre 2026 : une photo par article sur chaque carte (CarteArticle, la même carte partout sur le site).
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Pastille from '../../components/Pastille.astro';
+import CarteArticle from '../../components/CarteArticle.astro';
 import Fleche from '../../icons/fleche.astro';
-import { PILIERS, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+import { PILIERS, THEMES, lien } from '../../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
 const parTheme = Object.entries(THEMES)
@@ -68,17 +70,7 @@ const description =
           </div>
           <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {t.articles.map((a) => (
-              <li class="dv-card dv-carte-lien flex flex-col p-6">
-                <h3 class="font-accent text-[20px] font-bold leading-[1.3] md:text-[22px]">
-                  <a href={lien(`/ressources/${a.id}/`)} class="dv-etire hover:underline">
-                    {a.data.titre}
-                  </a>
-                </h3>
-                <p class="mt-2 flex-1 text-[16px] dv-muted">{a.data.description}</p>
-                <p class="mt-4 text-[14px] dv-muted">
-                  Mis à jour le {dateFr(a.data.misAJourLe)} · {tempsLecture(a.body || '')}&nbsp;min de lecture
-                </p>
-              </li>
+              <CarteArticle article={a} />
             ))}
           </ul>
         </div>

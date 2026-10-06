@@ -901,6 +901,10 @@
 .dv-mouvement [data-apparition=""] {
   transition: opacity 0.5s ease-out, translate 0.5s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
+/* Tickets des cartes de leviers (accueil) : ils se redressent aussi en douceur au survol. */
+.dv-mouvement .dv-levier-plateau [data-apparition=""] {
+  transition: opacity 0.5s ease-out, translate 0.5s cubic-bezier(0.2, 0.7, 0.3, 1), rotate 0.3s ease;
+}
 .dv-mouvement .dv-attente {
   opacity: 0;
   translate: 0 12px;
@@ -1714,6 +1718,148 @@
     outline-offset: 2px;
   }
 
+  /* Ticket d'une fonction (TicketFonction.astro, 6 octobre 2026) : le ticket Margherita, en-tête avec la plateforme,
+     titre, deux lignes, le chiffre qui compte en grand. */
+  .dv-tf {
+    max-width: 330px;
+  }
+  .dv-tf-entete {
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 6px;
+  }
+  @media (min-width: 400px) {
+    .dv-levier-plateau {
+      padding-inline: 20px;
+    }
+  }
+  .dv-tf-plateforme {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .dv-tf-plateforme img {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+  }
+  .dv-tc .dv-tf-titre {
+    margin-top: 8px;
+    font-size: 23px;
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  .dv-tf .dv-tc-chiffre {
+    padding-inline: 0;
+  }
+  .dv-tf .dv-tc-chiffre:has(.dv-mq) {
+    padding-inline: 10px;
+  }
+
+  /* Accueil : une carte par levier (CarteLevier.astro) ; le ticket sur un plateau Bleu 1 à 8 % à points, légèrement
+     incliné, qui se redresse au survol de la carte. */
+  .dv-levier {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  /* Côte à côte, les plateaux et les textes s'alignent d'une carte à l'autre (sous-grille sur deux rangées). */
+  @media (min-width: 768px) {
+    .dv-levier {
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+      row-gap: 0;
+    }
+  }
+  .dv-levier-plateau {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 12px 28px;
+    border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0;
+    border-bottom: 1px solid var(--dv-bord);
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+  .dv-levier-plateau .dv-ticket {
+    rotate: -1.5deg;
+  }
+  .dv-levier:nth-child(even) .dv-levier-plateau .dv-ticket {
+    rotate: 1.5deg;
+  }
+  .dv-levier:hover .dv-levier-plateau .dv-ticket,
+  .dv-levier:focus-within .dv-levier-plateau .dv-ticket {
+    rotate: 0deg;
+  }
+  .dv-levier-corps {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 20px 14px;
+  }
+  @media (min-width: 768px) {
+    .dv-levier-corps {
+      padding: 24px 24px 18px;
+    }
+  }
+  /* Vraie carte de l'app posée à plat sur le plateau (cartes des piliers). */
+  .dv-levier-fragment {
+    width: 100%;
+    max-width: 320px;
+  }
+  /* Ce que Deliview surveille : une ligne chacun, l'icône à gauche. */
+  .dv-veille {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  /* Page Solution : le ticket de la fonction devant la vraie capture de l'app, à plat (6 octobre 2026). Sur téléphone,
+     le ticket seul : la capture y serait trop petite pour être lue. */
+  .dv-compo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 28px 16px 32px;
+    border-radius: 24px;
+    background-color: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    background-image: var(--dv-points);
+    background-size: 24px 24px;
+  }
+  .dv-compo-capture {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .dv-compo {
+      display: block;
+      padding: 32px 32px 64px;
+    }
+    .dv-compo-capture {
+      display: block;
+      width: 84%;
+    }
+    .dv-compo-capture img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 4px 0 var(--dv-levre-forte)) drop-shadow(0 14px 18px color-mix(in srgb, var(--color-grey-2) 12%, transparent));
+    }
+    .dv-compo .dv-ticket {
+      position: absolute;
+      right: -24px;
+      bottom: -36px;
+      width: 300px;
+      rotate: 2deg;
+    }
+  }
+
   /* Puce-lien (thèmes des ressources, rubriques des questions) : pastille blanche en relief, 48 px de haut. */
   .dv-puce-lien {
     display: inline-flex;
@@ -1733,6 +1879,42 @@
     translate: 0 1px;
     box-shadow: inset 0 0 0 100vmax color-mix(in srgb, var(--color-blue) 8%, transparent), 0 2px 0 var(--dv-levre-forte);
     text-decoration: none;
+  }
+
+  /* Photos des articles (6 octobre 2026) : sous le titre, à cheval sur le haut de page gris et le texte ; en haut de
+     chaque carte d'article. Coins de la carte, liseré très fin, fond gris le temps du chargement. */
+  .dv-photo-article {
+    position: relative;
+  }
+  .dv-photo-article img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-card);
+    background: var(--color-grey);
+    box-shadow: 0 0 0 1px var(--dv-bord), var(--dv-ombre-flottante);
+  }
+  .dv-photo-credit {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-photo-credit a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .dv-carte-article-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--color-grey);
+    border-radius: calc(var(--radius-card) - 1px) calc(var(--radius-card) - 1px) 0 0;
+    border-bottom: 1px solid var(--dv-bord);
   }
 
   /* Article : l'encadré « Dans Deliview », la carte de l'app du pilier inclinée à droite. */
