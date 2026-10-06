@@ -91,6 +91,283 @@ Par e-mail à tom.voisin@deliview.fr, ou en demandant une démo. C’est Tom qui
 
 ## Guides pour les restaurateurs
 
+### Remboursement Uber Eats ou Deliveroo : comment contester et récupérer votre argent
+
+Adresse : https://www.deliview.fr/ressources/contester-remboursement-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-06, mis à jour le 2026-10-06
+
+En bref : Quand un client signale un article manquant ou faux, la plateforme peut le rembourser et retirer ce montant de vos versements. Sur Uber Eats, contestez depuis l’onglet Commandes d’Uber Eats Manager, dans les 30 jours suivant la commande. Sur Deliveroo, passez par l’onglet Remboursements du Portail Partenaire, dans les 7 jours suivant l’e-mail. Joignez une preuve datée.
+
+Un client signale un plat manquant, la plateforme le rembourse, et la somme sort de votre versement. Ce n’est pas une fatalité : Uber Eats et Deliveroo prévoient tous les deux une contestation. Voici leurs règles, lues dans leurs pages d’aide le 6 octobre 2026.
+
+## Pourquoi Uber Eats ou Deliveroo vous retire-t-il de l’argent ?
+
+Parce que le client a été remboursé d’un article manquant, faux ou mal préparé, et que la plateforme vous en impute le coût. Les deux plateformes le prévoient par écrit.
+
+Chez Uber Eats, le contrat français est clair : « Le Partenaire est redevable des coûts liés au remboursement effectué en faveur de Clients ». Le guide d’Uber Eats France parle de « déductions appliquées à vos versements pour couvrir le coût des remboursements ». La [page d’aide d’Uber](https://help.uber.com/fr-FR/merchants-and-restaurants/article/gestion-des-remboursements-en-cas-de-commandes-incorrectes-ou-incompl%C3%A8tes-?nodeId=abc0c3e7-9687-4a00-a956-2c8a16cf0b7e) précise que le montant retiré porte sur le prix des articles concernés, « y compris la TVA ». Il apparaît sur votre relevé de paiement une à deux semaines après la commande.
+
+Chez Deliveroo, vous ne payez que si le problème relève de vous, selon sa [page sur les remboursements à votre charge](https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge). Elle cite trois cas : des articles manquants ou indisponibles, de mauvais articles dans la commande, une commande incorrecte remise au livreur. Deliveroo vous prévient par e-mail le jour où il traite le remboursement.
+
+| | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Ce qui est retiré | Le prix des articles concernés, TVA comprise | Le remboursement, quand le problème relève de vous |
+| Où le voir | Uber Eats Manager, onglet Commandes, et le relevé de paiement | Portail Partenaire, page Ventes, onglet Remboursements |
+| Quand le voir | Sur le relevé, une à deux semaines après la commande | Par e-mail, le jour du remboursement |
+
+Ces retenues s’ajoutent à la commission. Notre article sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) montre comment elles pèsent sur ce qu’il vous reste.
+
+## Combien de temps avez-vous pour contester ?
+
+Trente jours après la commande sur Uber Eats, sept jours après l’e-mail de remboursement sur Deliveroo. Le délai de Deliveroo est le plus court, et c’est lui qui fixe votre rythme.
+
+- **Uber Eats** : ses pages d’aide disent « dans les 30 jours suivant la date de la commande ». Comme la retenue n’apparaît sur le relevé qu’une à deux semaines plus tard, il vous reste en pratique deux à trois semaines.
+- **Deliveroo** : « Vous devez soumettre un litige dans les 7 jours suivant la date d’émission du remboursement. » Si la contestation est refusée, vous pouvez répondre à l’e-mail de décision dans les 72 heures.
+
+Le contrat Uber Eats prévoit aussi un délai de quatorze jours pour contester une baisse de vos recettes, à partir du moment où vous la découvrez. Il ne dit pas si ce délai vise les remboursements de clients : contestez donc dès que vous voyez la retenue.
+
+## Comment contester un remboursement sur Uber Eats ?
+
+Depuis Uber Eats Manager, commande par commande. Le [guide d’Uber Eats France sur les erreurs de commande](https://merchants.ubereats.com/fr/fr/resources/learning-center/order-errors/) décrit ces étapes :
+
+1. Ouvrez l’onglet Commandes.
+2. Filtrez avec « Remboursements effectués par l’établissement » ou « Déduction potentielle ».
+3. Ouvrez la commande, puis sélectionnez « Contester ».
+4. Choisissez un motif et décrivez ce qui s’est passé.
+5. Joignez une photo ou une vidéo.
+6. Suivez votre demande grâce à la balise « Remboursement contesté ».
+
+Il faut un accès administrateur à Uber Eats Manager. Le guide d’Uber Eats France ne cite que ce niveau, sa page d’aide accepte aussi le gestionnaire. Uber vous tient ensuite informé par e-mail, sans annoncer de délai de réponse.
+
+Uber ne promet rien : « L’annulation des ajustements n’est jamais garantie. » Il interdit aussi de partager vos identifiants Uber Eats Manager, y compris avec un service extérieur. Contestez vous-même, ou avec un membre de votre équipe qui a son propre accès.
+
+## Comment contester un remboursement sur Deliveroo ?
+
+Depuis le Portail Partenaire, article par article. La [page d’aide de Deliveroo](https://help.deliveroo.com/fr/articles/6457561-comment-gerer-et-contester-les-remboursements-dans-le-portail-partenaire) donne ce chemin :
+
+1. Allez à la page Ventes, puis ouvrez l’onglet Remboursements.
+2. Ouvrez la commande concernée.
+3. Sélectionnez le ou les articles à contester.
+4. Choisissez votre raison dans le menu déroulant.
+5. Joignez vos preuves, puis soumettez la contestation.
+
+La contestation passe ensuite « En cours d’examen », puis « Approuvé » ou « Refusé ». Si elle est approuvée, l’ajustement apparaît sur votre prochain relevé de paiement et votre facture. Ne répondez pas à l’e-mail quotidien des remboursements : Deliveroo indique dans [ses politiques](https://merchants.deliveroo.com/fr-FR/legal/policies) qu’il ne lit plus ces réponses.
+
+Un point pour vos formules : un article sans prix propre était remboursé au forfait, 0,90 € en France. Deliveroo calcule désormais sa valeur avec un système d’IA. Il conseille d’afficher un prix pour chaque article de la formule, pour un remboursement calculé au plus juste.
+
+## Quelles preuves envoyer ?
+
+Une preuve qui relie la commande à ce que vous avez remis. Le numéro de commande visible convient aux deux plateformes. Deliveroo accepte aussi une heure visible, proche de la préparation.
+
+| Preuve | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Photo du sac scellé | Avec le numéro de commande | Avec le numéro ou le reçu de commande visible |
+| Vidéo de surveillance | De la préparation ou de l’emballage | Acceptée, aux mêmes conditions que les photos |
+| Ticket | Photo du ticket validé, avec le numéro de commande | Le reçu de commande |
+| Heure visible | Pas d’exigence publiée | À défaut du numéro : dans les 20 minutes suivant l’heure de préparation ou de commande prête |
+
+Le plus simple est d’en faire une habitude. Au moment de fermer chaque sac, prenez une photo avec le ticket agrafé et le numéro bien lisible. Gardez ces photos un mois : elles couvrent le délai d’Uber Eats et celui de Deliveroo.
+
+## Comment éviter ces retenues ?
+
+En vérifiant chaque sac avant de le remettre. Les deux plateformes donnent des conseils proches dans leurs pages d’aide :
+
+- Contrôlez chaque article avec le ticket imprimé, puis fermez et scellez le sac
+- Écrivez le numéro de commande sur le sac, ou agrafez-y le ticket
+- Numérotez les sacs quand une commande en compte plusieurs
+- Confirmez le numéro de commande avec le livreur au moment de la remise
+- Retirez aussitôt de la carte un plat épuisé
+- Affichez au poste d’emballage la liste des oublis les plus fréquents, comme les boissons
+
+Deliveroo cite cette dernière idée dans ses politiques. Notre guide pour [gérer les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) détaille l’organisation du poste qui limite ces oublis.
+
+## Par où commencer cette semaine ?
+
+Commencez par les remboursements encore contestables, puis installez la routine du sac photographié.
+
+1. Dans Uber Eats Manager, filtrez les remboursements effectués par l’établissement sur les 30 derniers jours.
+2. Contestez ceux pour lesquels vous avez une preuve, du plus ancien au plus récent.
+3. Sur Deliveroo, ouvrez l’onglet Remboursements tous les deux ou trois jours : sept jours passent vite.
+4. Notez les plats qui reviennent souvent dans les réclamations, et revoyez leur emballage.
+
+Deliview liste vos remboursements Uber Eats commande par commande, avec le montant retiré et la date limite pour contester. Voyez ce que Deliview fait contre [la fraude client](/solution/#fraude).
+
+Sources : Gestion des remboursements en cas de commandes incorrectes ou incomplètes (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/gestion-des-remboursements-en-cas-de-commandes-incorrectes-ou-incompl%C3%A8tes-?nodeId=abc0c3e7-9687-4a00-a956-2c8a16cf0b7e, consulté le 6 octobre 2026) ; Comment résoudre les erreurs de commande (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/order-errors/, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; Comment gérer et contester les remboursements dans le Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/6457561-comment-gerer-et-contester-les-remboursements-dans-le-portail-partenaire, consulté le 6 octobre 2026) ; Pourquoi ce remboursement est-il à ma charge ? (Deliveroo, https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge, consulté le 6 octobre 2026) ; Politiques des partenaires : remboursement des clients et annulation des commandes (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 6 octobre 2026) ; Pourquoi mes frais de remboursement pour les produits inclus dans une formule ont-ils changé ? (Deliveroo, https://help.deliveroo.com/fr/articles/12058685-pourquoi-mes-frais-de-remboursement-pour-les-produits-inclus-dans-une-formule-ont-ils-change, consulté le 6 octobre 2026)
+
+### Photos de plats sur Uber Eats et Deliveroo : les règles, et comment les refaire au téléphone
+
+Adresse : https://www.deliview.fr/ressources/photos-plats-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-06, mis à jour le 2026-10-06
+
+En bref : Uber Eats veut un seul plat, centré et net, sans texte ni logo, idéalement entre 5:4 et 6:4. Deliveroo demande un JPEG de 8 Mo au plus et d’au moins 1200 × 675 pixels, recadré ensuite en carré, sans mains ni texte. Photographiez à la lumière du jour, juste après le dressage, et gardez les droits sur vos images.
+
+Une photo refusée, c’est un plat qui reste sans image, et une photo floue fait passer le client au restaurant suivant. Uber Eats et Deliveroo publient leurs règles : les voici, lues le 6 octobre 2026, puis la méthode pour refaire vos photos avec un téléphone.
+
+## Quelles photos Uber Eats accepte-t-il ?
+
+Une photo nette d’un seul plat, centré, sans texte ni logo. Le [guide photo d’Uber](https://help.uber.com/fr-FR/merchants-and-restaurants/article/restaurants%C2%A0-guide-pour-bien-photographier-vos-menus?nodeId=6985355b-0426-4523-94f2-89bb9b0566e9) fixe ces règles :
+
+| Point | Règle d’Uber Eats |
+| --- | --- |
+| Fichier | JPG, PNG ou GIF, 10 Mo au plus |
+| Taille | Largeur de 550 à 10 000 pixels, hauteur de 440 à 10 000 pixels |
+| Format | Entre 5:4 et 6:4, recommandé |
+| Cadrage | Un seul plat, centré, ni dans un angle ni coupé par le cadre |
+| Qualité | Nette, sans ombres trop marquées ni éclairage trop faible, hygiène respectée |
+| Interdit | Plusieurs plats, des personnes (les mains sont tolérées), un logo, un filigrane, du texte |
+
+Le texte imprimé sur le plat, l’emballage ou l’assiette reste accepté. La photo doit surtout « représenter fidèlement » le plat de votre carte.
+
+Les mains posent question. Le guide photo les tolère, mais [un autre guide d’Uber](https://merchants.ubereats.com/fr/fr/resources/articles/how-to-make-a-restaurant-menu/) demande de vérifier qu’aucune main ni personne étrangère à votre maison n’apparaît. Deliveroo les interdit : pour une photo valable partout, laissez-les hors du cadre.
+
+Après l’envoi, la photo part en validation : elle est « examinée sous 72 heures », selon [la page d’aide sur le menu](https://help.uber.com/fr-FR/merchants-and-restaurants/article/modifier-votre-menu-uber%C2%A0eats?nodeId=156909ff-4025-44c7-a200-20b339f9fa93). En cas de refus, Uber vous envoie un e-mail avec la marche à suivre.
+
+## Quelles photos Deliveroo accepte-t-il ?
+
+Un JPEG d’un seul plat, en paysage, assez grand pour être recadré en carré. La [page d’aide de Deliveroo](https://help.deliveroo.com/fr/articles/3295699-envoyer-vos-propres-photos-de-plats) donne ces règles :
+
+| Point | Règle de Deliveroo |
+| --- | --- |
+| Fichier | JPEG, 8 Mo au plus |
+| Taille | Au moins 1200 × 675 pixels pour un plat, 1920 × 1080 pour la photo de couverture |
+| Format | Paysage, puis recadré au format carré par la plateforme |
+| Cadrage | Un seul plat, au centre, sur un arrière-plan simple et uniforme |
+| Qualité | Mise au point nette, sans grain visible, à la lumière naturelle |
+| Interdit | Mains, visages, texte, filigranes, ingrédients bruts autour du plat, collages, retouches trop visibles |
+
+Deliveroo refuse aussi les images de banques d’images ou de moteurs de recherche, sauf si vous en avez les droits. Chaque photo est ensuite approuvée, rejetée ou relue par une personne. Elle n’est publiée qu’une fois approuvée.
+
+Sa [page d’aide en anglais](https://help.deliveroo.com/en/articles/3295699-how-to-upload-your-own-photos-in-menu-manager), mise à jour le 2 septembre 2026, ajoute une règle : « AI-generated images are not permitted on Deliveroo ». Les images générées par IA y sont interdites. La version française, plus ancienne, n’en parle pas encore : suivez la règle la plus récente.
+
+Pour envoyer une photo, ouvrez Menu Manager dans le Portail Partenaire, puis « Modifier le menu ». Choisissez le plat, cliquez sur « Importer une photo », puis « Enregistrer » et « Publier ».
+
+## Vos photos Deliveroo vous appartiennent-elles ?
+
+Pas si elles viennent du service photo de Deliveroo. Ses [conditions du service photographies](https://merchants.deliveroo.com/fr-FR/legal/terms), mises à jour le 23 août 2024, le disent sans détour : « Nous détenons les droits de propriété intellectuelle sur les Images. »
+
+- Vous les utilisez sur Deliveroo seulement, pour la durée de votre contrat
+- Vous ne pouvez pas les mettre sur une plateforme concurrente, comme Uber Eats
+- Vous ne pouvez ni les modifier ni les retoucher
+- Deliveroo peut les réutiliser, y compris pour d’autres restaurants
+
+Le service coûte de 79 € TTC pour 15 images à 478 € TTC pour 125 images. Du côté d’Uber Eats, nous n’avons trouvé aucune séance photo gratuite proposée aux restaurants en France.
+
+Pour une carte identique sur les deux plateformes, faites donc vos photos vous-même, ou payez un photographe qui vous cède les droits. Uber le rappelle aussi : vous devez être propriétaire des images ou en détenir les droits.
+
+## Comment refaire vos photos avec un téléphone ?
+
+À la lumière du jour, juste après le dressage, sur un fond simple. Les [conseils photo d’Uber Eats](https://merchants.ubereats.com/fr/fr/restaurant-submitted-photos/) et ceux de Deliveroo se rejoignent :
+
+1. **La lumière** : près d’une fenêtre, en lumière naturelle et indirecte. Uber déconseille l’éclairage fluorescent.
+2. **Le fond** : une table ou une surface unie, sans objets autour. Gardez le même fond pour toute la carte.
+3. **L’angle** : de dessus pour un plat en assiette ou un bol, à 45 degrés pour un burger ou un sandwich.
+4. **Le plat** : coupez en deux les burgers, sandwichs, wraps et burritos, comme le conseille Uber. Ajoutez une garniture seulement si le client la reçoit.
+5. **Le moment** : photographiez dès le dressage, avant que le plat ne retombe.
+6. **Le cadre** : en paysage, le plat au centre, avec une marge autour. Deliveroo recadre en carré et Uber veut un plat centré : la marge protège les deux.
+7. **Le format** : gardez le format 4:3 des téléphones, en paysage. Il entre dans la fourchette d’Uber et dépasse le minimum de Deliveroo. Vérifiez seulement le poids : 8 Mo au plus pour Deliveroo. Sur iPhone, choisissez « Le plus compatible » dans Réglages, Appareil photo, Formats : les photos s’enregistrent alors en JPEG, le seul format que Deliveroo accepte.
+
+Évitez les plans trop serrés, qui cachent le plat, et les filtres qui changent ses couleurs. Deliveroo refuse les retouches trop visibles, et une photo trop flatteuse expose aux plaintes des clients.
+
+## Et la description du plat ?
+
+Elle compte autant que la photo, et ses premiers mots surtout. La documentation de Deliveroo pour les logiciels connectés limite la description à 500 caractères, mais seuls les 60 premiers s’affichent sur la page du menu.
+
+Mettez donc l’essentiel en tête : ce qu’il y a dans le plat, et sa taille. Uber demande d’indiquer « précisément le contenu de chaque plat » et les allergènes possibles. Deliveroo rappelle que « la réglementation vous impose d’afficher les allergènes », et demande de les renseigner même pour un plat qui n’en contient pas.
+
+## Les photos font-elles vraiment vendre ?
+
+Les deux plateformes l’affirment, mais avec des chiffres mesurés hors de France. Deliveroo annonce jusqu’à 25 % de commandes en plus, d’après une enquête menée auprès de clients britanniques. Uber cite des données de restaurants des États-Unis et du Canada.
+
+Le plus sûr est de mesurer chez vous. Notez les ventes d’un plat sur les quatre semaines avant sa nouvelle photo, puis sur les quatre semaines suivantes, à prix égal.
+
+## Par où commencer cette semaine ?
+
+Commencez par les plats qui vendent le plus, puis par ceux qui n’ont pas de photo.
+
+1. Listez vos dix plats les plus vendus et vos plats sans photo, sur chaque plateforme.
+2. Repérez les photos qui enfreignent une règle : texte, logo, plusieurs plats, plat coupé par le cadre.
+3. Refaites-les en une séance, avec la même lumière et le même fond.
+4. Réécrivez les 60 premiers caractères de chaque description.
+5. Envoyez les photos sur Uber Eats et sur Deliveroo, puis vérifiez leur publication quelques jours plus tard.
+
+Deliview passe en revue chaque photo et chaque description de votre carte, sur Uber Eats et Deliveroo, et vous dit lesquelles reprendre en premier. Voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+
+Sources : Restaurants : guide pour bien photographier vos menus (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/restaurants%C2%A0-guide-pour-bien-photographier-vos-menus?nodeId=6985355b-0426-4523-94f2-89bb9b0566e9, consulté le 6 octobre 2026) ; Conseils pour bien photographier vos plats (Uber, https://merchants.ubereats.com/fr/fr/restaurant-submitted-photos/, consulté le 6 octobre 2026) ; Editer votre menu (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/modifier-votre-menu-uber%C2%A0eats?nodeId=156909ff-4025-44c7-a200-20b339f9fa93, consulté le 6 octobre 2026) ; Comment préparer un menu de restaurant exceptionnel (Uber, https://merchants.ubereats.com/fr/fr/resources/articles/how-to-make-a-restaurant-menu/, consulté le 6 octobre 2026) ; De nouvelles façons de gagner en visibilité sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/articles/product-highlights/get-discovered/, consulté le 6 octobre 2026) ; Envoyer vos propres photos de plats (Deliveroo, https://help.deliveroo.com/fr/articles/3295699-envoyer-vos-propres-photos-de-plats, consulté le 6 octobre 2026) ; How to upload your own photos in Menu Manager (Deliveroo, https://help.deliveroo.com/en/articles/3295699-how-to-upload-your-own-photos-in-menu-manager, consulté le 6 octobre 2026) ; Ajouter, modifier et supprimer des photos de produit dans Menu Manager (Deliveroo, https://help.deliveroo.com/fr/articles/6060334-ajouter-modifier-et-supprimer-des-photos-de-produit-dans-menu-manager, consulté le 6 octobre 2026) ; Conditions Générales du Service Photographies (Deliveroo France, mises à jour le 23 août 2024) (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 6 octobre 2026) ; Nouveautés des menus (Deliveroo, https://merchants.deliveroo.com/fr-FR/whats-new-in-menus, consulté le 6 octobre 2026) ; Menu API : Guidelines (documentation technique) (Deliveroo, https://api-docs.deliveroo.com/docs/menu-api-guidelines, consulté le 6 octobre 2026) ; Afficher les allergènes sur votre menu (Deliveroo, https://help.deliveroo.com/fr/articles/4322531-afficher-les-allergenes-sur-votre-menu, consulté le 6 octobre 2026)
+
+### Restaurant fermé sur Uber Eats ou Deliveroo en plein service : pourquoi, et comment l’éviter
+
+Adresse : https://www.deliview.fr/ressources/restaurant-ferme-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-06, mis à jour le 2026-10-06
+
+En bref : Uber Eats met vos commandes en pause quand vous en refusez plusieurs d’affilée ou que vous tardez à les accepter. Deliveroo refuse une commande sans réponse au bout de 10 minutes, et votre restaurant y reste fermé tant que vous ne l’ouvrez pas. Gardez la tablette branchée sur l’application, vérifiez vos horaires et regardez votre fiche à chaque début de service.
+
+Votre cuisine tourne, mais votre fiche affiche « indisponible » et les commandes n’arrivent plus. Le plus souvent, la cause est un réglage ou une règle de la plateforme, pas une panne. Voici celles que décrivent Uber Eats et Deliveroo, lues le 6 octobre 2026, et les réflexes qui évitent de perdre un service.
+
+## Pourquoi Uber Eats met-il vos commandes en pause tout seul ?
+
+Parce que vous avez refusé plusieurs commandes d’affilée, ou que vous mettez plus de temps que d’habitude à les accepter. La [page d’aide d’Uber](https://help.uber.com/fr-FR/merchants-and-restaurants/article/pourquoi-les-commandes-sont-elles-interrompues-automatiquement-?nodeId=ef70e506-60c4-45e4-b21e-0adca9efe8fe) cite ces deux cas, sans donner de nombre de refus.
+
+Vos clients voient alors votre restaurant « actuellement indisponible ». Sur la tablette, un bandeau rouge affiche « Commandes interrompues ». Si vous ne faites rien, les commandes reprennent seules « le lendemain à 6 h du matin » : tout le reste du service est perdu.
+
+Uber peut aussi suspendre votre restaurant lui-même. C’est le cas quand un coursier le signale fermé et que personne ne répond au téléphone : la pause dure alors le reste de la journée.
+
+Pour rouvrir, touchez « Commandes interrompues », puis « Ouvrir », comme l’indique le [guide de l’application Commandes](https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/). La page d’aide parle de « Reprendre », puis « Confirmer » : le libellé change selon la version de l’application.
+
+## Pourquoi votre restaurant reste-t-il fermé sur Deliveroo ?
+
+Parce que Deliveroo ne vous ouvre pas tout seul. Sa règle est simple : « Pour recevoir des commandes, vous devrez ouvrir votre restaurant tous les jours. » Vous le faites avec « Ouvrir maintenant » dans le Portail Partenaire ou sur la tablette.
+
+- **L’oubli d’ouverture** : la tablette envoie un rappel avant l’heure prévue, avec deux choix, « Prêt à ouvrir à l’heure prévue » ou « Rester fermé ». Sans réponse, précise Deliveroo, votre établissement reste fermé.
+- **Les commandes sans réponse** : Deliveroo refuse une commande automatiquement au bout de 10 minutes. Sa documentation technique ajoute qu’un restaurant est fermé après trois refus automatiques en 15 minutes. Sa page d’aide pour les restaurants n’en parle pas.
+- **Les horaires ponctuels** : un jour marqué par erreur « Fermé toute la journée » vous ferme jusqu’au lendemain. Seuls les utilisateurs administrateurs peuvent modifier ces horaires.
+
+Deliveroo propose aussi une ouverture automatique. D’après [sa page d’aide en anglais](https://help.deliveroo.com/en/articles/13652989-how-can-i-start-using-auto-open), elle demande au moins 95 % de disponibilité.
+
+## Combien vous coûte une fermeture en plein service ?
+
+Les commandes du soir, d’abord, et une partie de votre visibilité ensuite. Les règles écrites des deux plateformes le montrent.
+
+| | Uber Eats | Deliveroo |
+| --- | --- | --- |
+| Classement | La disponibilité et le taux d’acceptation comptent parmi ses critères | Rester fermé pendant vos horaires peut réduire vos commandes après la réouverture |
+| Commande en cours | Uber peut réduire vos recettes pour une commande non honorée | Fermé moins de 15 minutes après l’heure de récupération : pas de paiement, et des frais en plus |
+| En cas de répétition | Accès à l’application limité pour un temps, outils d’offre et d’annonce restreints si votre score baisse | Pas de règle propre aux fermetures dans les pages lues |
+
+Chez Uber Eats, la page qui explique le classement en France cite « La disponibilité » et « l’expérience relative aux commandes passées », comme « le taux d’acceptation des commandes ». Le contrat permet à Uber de limiter votre accès à l’application pour éviter les commandes non honorées. Et sa politique de score suit le « Taux de commandes non honorées » : un score faible peut restreindre vos outils d’offre et d’annonce.
+
+Chez Deliveroo, la [politique d’annulation](https://merchants.deliveroo.com/fr-FR/legal/policies), en vigueur depuis le 9 octobre 2025, vise le restaurant qui ferme trop tôt. Le partenaire doit rester ouvert jusqu’à 15 minutes après l’heure de récupération de la commande. Sinon, il en est responsable : il n’est pas payé pour la commande et paie des frais égaux aux frais de service TTC, et aux autres frais applicables. Deliveroo prévient aussi, dans sa page d’aide en anglais sur l’état des restaurants, que rester fermé pendant vos horaires peut réduire vos commandes après la réouverture.
+
+## Comment garder la tablette en ligne pendant tout le service ?
+
+Branchée, sur l’application, avec le son. Uber le dit en une phrase : gardez la tablette rechargée et l’application ouverte en permanence « pour que votre établissement soit visible ».
+
+- Laissez l’application au premier plan, sans autre application par-dessus
+- Vérifiez le réseau : certaines tablettes ne prennent pas en charge le Wi-Fi à 5 GHz, prévient Uber
+- Réglez la mise en veille sur « Jamais » et le volume à 50 % au moins, comme le demande Deliveroo
+- Autorisez la tablette à passer outre le mode Ne pas déranger, et laissez les mises à jour se faire seules
+- Gardez une solution de secours : Uber Eats propose une version web de l’application Commandes
+
+Notre guide sur [les tablettes Uber Eats et Deliveroo en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) détaille les autres réglages du poste.
+
+## Comment savoir si vous avez été fermé sans le savoir ?
+
+Regardez les chiffres que les plateformes tiennent déjà, puis votre fiche à chaque service. Chaque plateforme mesure vos heures perdues :
+
+- **Uber Eats Manager** : le « Temps d’inactivité », soit la « durée pendant laquelle votre restaurant n’a pas été disponible pendant les horaires d’ouverture ».
+- **Deliveroo** : dans les rapports du Hub, le pourcentage de vos heures d’ouverture réelles par rapport aux heures prévues, et la valeur de vos commandes refusées.
+
+Ces chiffres arrivent après coup. Pendant le service, le seul contrôle fiable est de regarder votre fiche. Ouvrez Uber Eats et Deliveroo comme un client, avec une adresse de votre zone de livraison, dix minutes après l’ouverture. Votre restaurant doit apparaître ouvert sur les deux.
+
+## Par où commencer cette semaine ?
+
+Commencez par vos horaires, puis par la tablette.
+
+1. Relisez vos horaires habituels et vos horaires ponctuels sur Uber Eats et sur Deliveroo, jusqu’aux prochains jours fériés.
+2. Sur Deliveroo, répondez au rappel d’ouverture chaque jour, ou demandez l’ouverture automatique si vous y avez droit.
+3. Branchez les tablettes à demeure, et testez le son avant chaque service.
+4. Notez votre temps d’inactivité sur Uber Eats et votre taux d’ouverture sur Deliveroo pour la semaine passée.
+5. Pendant deux semaines, vérifiez votre fiche client au début de chaque service.
+
+Deliview vous prévient quand votre restaurant est fermé sur Uber Eats ou Deliveroo pendant vos heures de service habituelles. Voyez comment fonctionne l’alerte [Fermé en plein service](/solution/#fermeture).
+
+Sources : Pourquoi les commandes sont-elles suspendues automatiquement ? (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/pourquoi-les-commandes-sont-elles-interrompues-automatiquement-?nodeId=ef70e506-60c4-45e4-b21e-0adca9efe8fe, consulté le 6 octobre 2026) ; Quelles initiatives Uber Eats peut-il mettre en œuvre pour promouvoir la fiabilité des commandes ? (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/quelles-initiatives-uber%C2%A0eats-peut-il-mettre-en-%C5%93uvre-pour-promouvoir-la-fiabilit%C3%A9-des-commandes?nodeId=d693ab32-0520-414c-9d1c-0daf931e4676, consulté le 6 octobre 2026) ; Guide des commerçants : Utilisez l’application Commandes sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/, consulté le 6 octobre 2026) ; Premiers pas avec votre imprimante et votre tablette (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/equipment/, consulté le 6 octobre 2026) ; FAQ Uber Eats Manager (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/faq-di-uber-eats-manager?nodeId=cc435128-5551-47b9-a935-646ef20590a0, consulté le 6 octobre 2026) ; How the Uber and Uber Eats Apps and Websites Work (version française, modifiée le 6 juillet 2026) (Uber, https://www.uber.com/legal/fr/document/?country=france&lang=fr&name=how-the-uber-and-uber-eats-apps-and-websites-work, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; Politique de Score de Réussite Partenaire (1er décembre 2025) (Uber, https://www.uber.com/legal/en/document/?country=france&lang=fr&name=merchant-success-score-policy, consulté le 6 octobre 2026) ; Comment éviter de refuser des commandes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3198713, consulté le 6 octobre 2026) ; Gérer les commandes en cours dans Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/3815200-gerer-les-commandes-en-cours-dans-portail-partenaire, consulté le 6 octobre 2026) ; Comprendre la Notification de Rappel d’Ouverture (Deliveroo, https://help.deliveroo.com/fr/articles/11002244-comprendre-la-notification-de-rappel-d-ouverture, consulté le 6 octobre 2026) ; How can I start using auto-open (Deliveroo, https://help.deliveroo.com/en/articles/13652989-how-can-i-start-using-auto-open, consulté le 6 octobre 2026) ; Effectuer des modifications ponctuelles de vos horaires d’ouverture (Deliveroo, https://help.deliveroo.com/fr/articles/9657836, consulté le 6 octobre 2026) ; How to view and use Reports in Hub (excluding Deliveroo Express partners) (Deliveroo, https://help.deliveroo.com/en/articles/6463245-how-to-view-and-use-reports-in-hub-excluding-signature-partners, consulté le 6 octobre 2026) ; Bulk open and close sites with Site Status (Deliveroo, https://help.deliveroo.com/en/articles/9515066-bulk-open-and-close-sites-with-site-status, consulté le 6 octobre 2026) ; Site API : Overview (documentation technique) (Deliveroo, https://api-docs.deliveroo.com/docs/site, consulté le 6 octobre 2026) ; Politiques des partenaires : annulation des commandes (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 6 octobre 2026) ; How to set up and troubleshoot your Deliveroo tablet (Deliveroo, https://help.deliveroo.com/en/articles/3823992-how-to-set-up-and-troubleshoot-your-deliveroo-tablet, consulté le 6 octobre 2026)
+
 ### Améliorer sa note sur Uber Eats et Deliveroo : comment elle est calculée, ce qu’il faut corriger
 
 Adresse : https://www.deliview.fr/ressources/ameliorer-note-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-01, mis à jour le 2026-10-02
