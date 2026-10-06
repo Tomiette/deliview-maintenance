@@ -159,7 +159,7 @@ const jsonArticle = {
           <h2 id="pilier-titre" class="dv-h3 mt-4">{pilier.titre}</h2>
           <p class="mt-2 dv-muted">{pilier.phrase}</p>
           <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">{pilier.slug ? `Voir la solution « ${pilier.surtitre} »` : 'Voir la solution'}</a>
+            <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">{pilier.slug ? `Voir la solution « ${pilier.surtitre} »` : 'Voir la solution'}</a>
             <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
               Demander une démo<Fleche taille={24} />
             </a>

@@ -518,7 +518,7 @@ export const VEILLE: Veille[] = [
     id: 'fermeture',
     icone: 'boutique-arret',
     nom: 'Fermé en plein service ?',
-    phrase: 'Prévenu dans les 10 minutes, relancé en un clic.',
+    phrase: 'Vérifié toutes les 10 minutes, relancé en un clic.',
     texte: 'Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.',
     vitrine: { appareil: 'telephone', capture: ECRANS.fermeture, place: { x: 30, y: 12, largeur: 40 }, placeMobile: { x: 22, y: 10, largeur: 56 } },
   },
@@ -615,14 +615,14 @@ export const PLATEFORMES = [
     nom: 'Uber Eats',
     statut: 'disponible' as Statut,
     resume: 'Vos prix, votre note et vos offres face à vos concurrents Uber Eats.',
-    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les plats à revoir, avec un prix proposé', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les plats à revoir, avec un prix proposé', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
   },
   {
     slug: 'deliveroo',
     nom: 'Deliveroo',
     statut: 'disponible' as Statut,
     resume: 'Les mêmes analyses que sur Uber Eats, et les écarts entre vos deux cartes.',
-    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les écarts de prix entre vos cartes Deliveroo et Uber Eats', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
+    disponible: ['Prix de toute votre carte, note, nombre d’avis, offres', 'Les mêmes données chez vos concurrents, avec leur distance', 'Les écarts de prix entre vos cartes Deliveroo et Uber Eats', 'Vos ventes de la veille chaque jour à 7 h, vos avis et vos remboursements'],
   },
 ];
 
