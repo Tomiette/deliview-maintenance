@@ -107,9 +107,11 @@ const jsonArticle = {
               fetchpriority="high"
               decoding="async"
             />
-            <figcaption class="dv-photo-credit">
-              Photo&nbsp;: <a href={photo.credit.profil} rel="noopener">{photo.credit.nom}</a> sur <a href={photo.credit.page} rel="noopener">Unsplash</a>
-            </figcaption>
+            {photo.credit && (
+              <figcaption class="dv-photo-credit">
+                Photo&nbsp;: <a href={photo.credit.profil} rel="noopener">{photo.credit.nom}</a> sur <a href={photo.credit.page} rel="noopener">Unsplash</a>
+              </figcaption>
+            )}
           </figure>
         )
       }

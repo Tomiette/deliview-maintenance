@@ -19,12 +19,13 @@ const ressources = defineCollection({
     auteur: z.string().default('Tom Voisin'),
     // Photo de l'article (6 octobre 2026) : photo Unsplash (licence Unsplash, gratuite), sans visage ni marque
     // reconnaissable, recadrée en 16:9 et déclinée en WebP (public/images/ressources/<slug>-<largeur>.webp).
+    // Depuis le 6 octobre 2026 (10 h 40) : ou visuel créé par Deliview aux couleurs de la charte, sans crédit.
     image: z
       .object({
         src: z.string().regex(/^\/images\/ressources\/[a-z0-9-]+$/),
         largeurs: z.array(z.number().int().min(400).max(2000)).min(1),
-        alt: z.string().min(15).max(160),
-        credit: z.object({ nom: z.string().min(2), profil: z.url(), page: z.url() }),
+        alt: z.string().min(15).max(220),
+        credit: z.object({ nom: z.string().min(2), profil: z.url(), page: z.url() }).optional(),
       })
       .optional(),
     sources: z
