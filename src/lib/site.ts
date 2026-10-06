@@ -597,7 +597,7 @@ export const VISUELS_PILIERS: Record<string, { appareil: TypeAppareil; capture: 
 export const NAV = [
   { libelle: 'Solution', href: '/solution/', menu: 'solution' },
   { libelle: 'Tarifs', href: '/tarifs/' },
-  { libelle: 'Parrainage', href: '/parrainage/' },
+  { libelle: 'Affiliation', href: '/parrainage/' },
   { libelle: 'Ressources', href: '/ressources/', menu: 'ressources' },
 ];
 

@@ -59,7 +59,7 @@ const pageUrl = SITE.url + '/parrainage/';
 const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
 ---
 
-<Base title="Parrainage : 2 restaurateurs, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Parrainage', chemin: '/parrainage/' }]} fondHaut="blanc">
+<Base title="Affiliation : 2 parrainages, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Affiliation', chemin: '/parrainage/' }]} fondHaut="blanc">
   {
     erreurs.map((e) => (
       <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">
@@ -75,10 +75,10 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
   <section class="dv-parr-hero overflow-x-clip pb-16 pt-6 md:pb-[104px] md:pt-12" aria-labelledby="parrainage-titre" data-haut-de-page>
     <div class="dv-container max-w-[1100px] text-center">
       <h1 id="parrainage-titre" class="dv-h1 mx-auto max-w-[20ch]">
-        <span class="text-blue">2&nbsp;parrainages</span> = 1&nbsp;mois offert.<br class="hidden sm:block" /> Sans limite.
+        <span class="text-blue">2&nbsp;parrainages</span> = 1&nbsp;mois offert.
       </h1>
       <p class="dv-lead mx-auto mt-4 max-w-[38ch] md:mt-5">
-        Vos amis restaurateurs. Notre produit. Un mois d’abonnement offert tous les 2&nbsp;filleuls abonnés.
+        Vos amis restaurateurs. Notre produit. Un mois d’abonnement offert tous les 2&nbsp;parrainages.
       </p>
       <a href="#lien" class="dv-btn-sombre mt-7 md:mt-8">Créer mon lien de parrainage</a>
 
