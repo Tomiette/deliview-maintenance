@@ -138,7 +138,13 @@ const pageUrl = SITE.url + '/parrainage/';
   />
 </Base>
 
-<script define:vars={{ PAR_MOIS, prixPro: pro.prix, pageUrl }}>
+<!-- Valeurs du script en JSON (jamais exécuté) : un script à variables injectées (define:vars) n'aurait pas d'empreinte
+     dans la politique de sécurité des contenus (6 octobre 2026). -->
+<script type="application/json" id="dv-vars-parrainage" set:html={JSON.stringify({ PAR_MOIS, prixPro: pro.prix, pageUrl })} />
+
+<script>
+  // @ts-nocheck : script repris tel quel, valeurs lues dans le bloc JSON ci-dessus.
+  const { PAR_MOIS, prixPro, pageUrl } = JSON.parse(document.getElementById('dv-vars-parrainage')?.textContent || '{}');
   // Curseur : mois offerts = parrainages ÷ 2 (arrondi en dessous), et leur valeur sur l'offre Pro.
   const curseur = document.getElementById('parr-nombre');
   const valeur = document.getElementById('parr-nombre-valeur');

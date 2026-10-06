@@ -51,7 +51,9 @@ AddDefaultCharset utf-8
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+  # Isolement de la fenêtre (6 octobre 2026) : une page d'un autre site ouverte depuis Deliview ne peut pas agir sur elle.
+  Header always set Cross-Origin-Opener-Policy "same-origin"
   # HTTPS imposé par le navigateur pendant un an après la première visite (ignoré en HTTP, sans les sous-domaines).
   Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>

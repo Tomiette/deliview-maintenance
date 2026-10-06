@@ -416,7 +416,13 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
   }
 </style>
 
-<script define:vars={{ partSousZone: 21, hausse: 10, tva: 0.1, prixEntree: PRIX_ENTREE }}>
+<!-- Valeurs du script en JSON (jamais exécuté) : un script à variables injectées (define:vars) n'aurait pas d'empreinte
+     dans la politique de sécurité des contenus (6 octobre 2026). -->
+<script type="application/json" id="dv-vars-simulateur" set:html={JSON.stringify({ partSousZone: 21, hausse: 10, tva: 0.1, prixEntree: PRIX_ENTREE })} />
+
+<script>
+  // @ts-nocheck : script repris tel quel, valeurs lues dans le bloc JSON ci-dessus.
+  const { partSousZone, hausse, tva, prixEntree } = JSON.parse(document.getElementById('dv-vars-simulateur')?.textContent || '{}');
   // Une question à la fois, barre de progression, retour arrière ; puis envoi des coordonnées et résultats sur place.
   const form = document.getElementById('simulateur');
   const carte = form?.closest('.dv-sim');

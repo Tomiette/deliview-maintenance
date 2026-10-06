@@ -88,4 +88,27 @@ export default defineConfig({
   markdown: { processor: satteri({ hastPlugins: [liens, tableaux, entetesVides] }) },
   integrations: [typographie],
   vite: { plugins: [tailwindcss()] },
+  // Politique de sécurité des contenus (6 octobre 2026, audit de sécurité) : une balise par page, avec l'empreinte de
+  // chaque script et style écrit dans la page (Astro les calcule). Rien d'autre que le site lui-même, sauf le
+  // formulaire de démo envoyé à la fonction « lead » de Supabase. Le cadrage par d'autres sites reste interdit par
+  // l'en-tête X-Frame-Options du .htaccess (frame-ancestors n'est pas lu dans une balise).
+  security: {
+    csp: {
+      algorithm: 'SHA-256',
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data:",
+        "font-src 'self'",
+        "connect-src 'self' https://osczxtxtxrjbjnozreun.supabase.co",
+        "media-src 'self'",
+        "form-action 'self' https://osczxtxtxrjbjnozreun.supabase.co",
+        "frame-src 'none'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        'upgrade-insecure-requests',
+      ],
+      scriptDirective: { resources: ["'self'"] },
+      styleDirective: { resources: ["'self'", { resource: "'unsafe-inline'", kind: 'attribute' }] },
+    },
+  },
 });

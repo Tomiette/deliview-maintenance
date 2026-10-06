@@ -38,6 +38,8 @@ const PAGES: { loc: string; sources: string[] }[] = [
   { loc: '/questions-frequentes/', sources: ['src/pages/questions-frequentes.astro', FAQ_TS] },
   { loc: '/deliview-est-il-fiable/', sources: ['src/pages/deliview-est-il-fiable.astro', SITE_TS] },
   { loc: '/demo/', sources: ['src/pages/demo.astro'] },
+  // Page publique liée depuis le pied de page (6 octobre 2026 : elle manquait au plan du site).
+  { loc: '/parrainage/', sources: ['src/pages/parrainage/index.astro', SITE_TS] },
   { loc: '/mentions-legales/', sources: ['src/pages/mentions-legales.astro'] },
   { loc: '/confidentialite/', sources: ['src/pages/confidentialite.astro'] },
   { loc: '/cgv/', sources: ['src/pages/cgv.astro', 'src/legal/cgv.md'] },
