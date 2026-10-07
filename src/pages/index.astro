@@ -10,7 +10,7 @@ import Base from '../layouts/Base.astro';
 import BoutonDemo from '../components/BoutonDemo.astro';
 import Scene3D from '../components/Scene3D.astro';
 import Flottant from '../components/Flottant.astro';
-import TablettesRelief from '../components/TablettesRelief.astro';
+import PhotoCadre from '../components/PhotoCadre.astro';
 import CarteLevier from '../components/CarteLevier.astro';
 import TicketComparaison from '../components/TicketComparaison.astro';
 import HeroVideo from '../components/HeroVideo.astro';
@@ -111,7 +111,9 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
-  <!-- Le quotidien : les deux appareils qui sonnent, en relief, et trois constats dans leurs cartes. -->
+  <!-- Le quotidien : la vraie photo des tablettes d'un restaurateur (post LinkedIn de Tom du 1er mars 2026, recadrée en carré
+       sans le haut du mur ; 7 octobre 2026, demande de Tom : « c'est plus authentique » que les appareils dessinés), et trois
+       constats dans leurs cartes. -->
   <section class="dv-section bg-grey dv-points overflow-x-clip" aria-labelledby="quotidien-titre">
     <div class="dv-container dv-quotidien">
       <div class="dv-quotidien-intro">
@@ -119,8 +121,18 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
         <h2 id="quotidien-titre" class="dv-h2 mt-4 max-w-[16ch] md:mt-5">Plusieurs tablettes. Des chiffres éparpillés partout.</h2>
         <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Le rapport de vos ventes livraison arrive. Vous avez des commandes, et pourtant, la rentabilité n’est pas au <span class="whitespace-nowrap">rendez-vous…</span></p>
       </div>
-      <div class="dv-quotidien-dessin">
-        <TablettesRelief />
+      <div class="dv-quotidien-dessin flex justify-center">
+        <PhotoCadre
+          fichier="quatre-tablettes"
+          dossier="terrain"
+          tailles={[480, 720]}
+          largeurMax={440}
+          largeur={720}
+          hauteur={710}
+          alt="Deux tablettes et deux terminaux Deliveroo sur le plan de travail d’une cuisine, barrés d’une croix rouge"
+          legende="Quatre tablettes, un seul restaurant"
+          inclinaison={2}
+        />
       </div>
       <ul class="dv-quotidien-bons grid gap-5 md:grid-cols-3 md:gap-6">
         {
