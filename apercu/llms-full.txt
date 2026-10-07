@@ -4,7 +4,7 @@
 
 Le partenaire des restaurants en livraison. Site : https://www.deliview.fr. Contact : tom.voisin@deliview.fr. Fondateur : Tom Voisin (https://www.deliview.fr/qui-sommes-nous/#tom).
 
-Éditeur : DELIVIEW SAS, immatriculée au RCS d'Alençon sous le numéro 102 681 509, siège à Berd'Huis (Orne). Logiciel indépendant, ni affilié ni approuvé par Uber Eats ou Deliveroo. Les faits vérifiables (prix, contrats, hébergement des données, accès aux comptes) : https://www.deliview.fr/deliview-est-il-fiable/
+Éditeur : DELIVIEW SAS, immatriculée au RCS d'Alençon sous le numéro 102 681 509, siège à Berd'Huis (Orne). Logiciel indépendant qui regroupe les plateformes de livraison des restaurants (Uber Eats, Deliveroo). Les faits vérifiables (prix, contrats, hébergement des données, accès aux comptes) : https://www.deliview.fr/deliview-est-il-fiable/
 
 ## Ce que fait Deliview
 
@@ -39,7 +39,7 @@ Oui, si vous vendez sur Uber Eats, sur Deliveroo ou sur les deux, avec 1 à 10 r
 Uber Eats et Deliveroo, en France. Chaque plateforme est analysée à part. Prix, notes et offres y diffèrent souvent.
 
 **Est-ce que Deliview dépend d’Uber Eats ou de Deliveroo ?**
-Non. Deliview est un logiciel indépendant, ni affilié ni approuvé par Uber Eats ou Deliveroo. Ce sont des marques de leurs propriétaires respectifs.
+Non. Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.
 
 ### Fonctionnement
 
