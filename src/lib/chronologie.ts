@@ -11,8 +11,8 @@
 // Écartés le 7 octobre 2026 (choix de Claude, à confirmer par Tom) : « la plus grosse arnaque par mon développeur »
 // et « la santé mentale » (la page rassure un restaurateur qui va confier ses comptes), « 20 % de son CA perdus à
 // cause de la fraude client » (même sujet que l'arnaque à l'IA, image d'Uber Eats qui n'est pas celle de Tom).
-// Sans photo en attendant : la classe de l'INSEEC (accord des étudiants pour le site à demander), l'arnaque à l'IA
-// (photo du burger : à confirmer qu'elle est à Tom). Recadrages prêts dans le dossier de travail de Claude.
+// Photos de la classe de l'INSEEC et du burger ajoutées à la demande de Tom (7 octobre, 11 h 52), après le rappel
+// sur l'accord des étudiants pour un site commercial et sur l'origine de la photo du burger.
 
 export interface PhotoPost {
   fichier: string; // nom de base : public/images/linkedin/<fichier>-360.webp et -720.webp
@@ -54,10 +54,12 @@ const POSTS: PostLinkedIn[] = [
   {
     titre: 'Un cas d’école à l’INSEEC',
     extrait: 'Parce que si ton projet n’est pas compréhensible dans une salle de classe, il ne le sera pas non plus pour un restaurateur.',
+    photo: { fichier: 'cas-d-ecole-inseec', largeur: 586, hauteur: 766, alt: 'Les étudiants de l’INSEEC devant un écran affichant le logo Deliview' },
   },
   {
     titre: 'L’arnaque aux photos retouchées par l’IA',
     extrait: 'Le client reçoit sa commande. Il prend une photo du plat puis la retouche avec l’IA. Le plat devient brûlé.',
+    photo: { fichier: 'arnaque-photos-ia', largeur: 626, hauteur: 776, alt: 'Le même burger photographié deux fois : intact, puis retouché pour paraître brûlé' },
   },
   {
     titre: 'Une promo oubliée en plein rush',
