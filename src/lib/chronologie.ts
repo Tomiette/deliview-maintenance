@@ -13,11 +13,10 @@
 // Aperçu : tous les posts ; un post sans lien (date et lien « [À REMPLACER] ») se place juste avant le post daté qui
 // le suit dans la liste.
 //
-// Aperçu seulement, en attendant le feu vert de Tom pour le site public : « la plus grosse arnaque par mon
-// développeur » et « la santé mentale » (la page rassure un restaurateur qui va confier ses comptes), « un
-// restaurateur près de chez moi perd 20 % de son CA » (même sujet que l'arnaque à l'IA ; chiffre sans source et image
-// d'Uber Eats qui n'est pas celle de Tom). Photos de la classe de l'INSEEC et du burger mises à la demande de Tom
-// (7 octobre, 11 h 52), après le rappel sur l'accord des étudiants et sur l'origine de la photo du burger.
+// Décisions de Tom (7 octobre 2026) : « la plus grosse arnaque par mon développeur » et « la santé mentale » retirés
+// (la page rassure un restaurateur qui va confier ses comptes) ; « un restaurateur près de chez moi perd 20 % de son
+// CA » validé pour le site public, extrait sans le chiffre. Photos de la classe de l'INSEEC, du burger et de l'e-mail
+// d'Uber Eats mises à sa demande, après le rappel sur l'accord des étudiants et sur l'origine des images.
 
 export interface PhotoPost {
   fichier: string; // nom de base : public/images/linkedin/<fichier>-360.webp et -720.webp
@@ -68,7 +67,6 @@ const POSTS: PostLinkedIn[] = [
     titre: 'Une fonctionnalité contre la fraude client',
     extrait: 'C’est pour ça qu’on a construit une fonctionnalité de gestion des plaintes sur Deliview.',
     photo: { fichier: 'gestion-des-plaintes', largeur: 522, hauteur: 769, alt: 'Un e-mail d’Uber Eats annonçant un remboursement en Uber Cash' },
-    apercuSeulement: true,
   },
   {
     // 1er mars 2026
@@ -76,14 +74,6 @@ const POSTS: PostLinkedIn[] = [
     titre: 'Quatre tablettes pour un seul restaurant',
     extrait: 'Chaque produit en rupture ? Il doit le mettre en indisponible sur chaque tablette. Une par une, à la main, et tout ça, en plein rush.',
     photo: { fichier: 'quatre-tablettes', largeur: 588, hauteur: 769, alt: 'Deux tablettes et deux terminaux Deliveroo sur le plan de travail d’une cuisine, barrés d’une croix rouge' },
-  },
-  {
-    // 11 mars 2026
-    lien: 'https://www.linkedin.com/posts/tomvoisin_il-y-a-quelque-chose-dont-on-parle-trop-peu-share-7437577848309161984-r_JG/',
-    titre: 'Tenir entre l’école et le projet',
-    extrait: 'Et parfois je me retrouve à prendre des décisions à 1h du matin puis à me lever le lendemain pour aller à l’école.',
-    photo: { fichier: 'entre-l-ecole-et-le-projet', largeur: 586, hauteur: 772, alt: 'Tom de dos, la tête dans la main, devant son ordinateur' },
-    apercuSeulement: true,
   },
   {
     // 12 mars 2026
@@ -98,14 +88,6 @@ const POSTS: PostLinkedIn[] = [
     titre: 'Une promo oubliée en plein rush',
     extrait: 'Une promo active un samedi soir en plein rush, la cuisine débordée et les notes qui chutent car personne n’avait pensé à la couper.',
     photo: { fichier: 'promo-en-plein-rush', largeur: 586, hauteur: 765, alt: 'Une borne de commande dans un restaurant aux murs roses' },
-  },
-  {
-    // 31 mars 2026
-    lien: 'https://www.linkedin.com/posts/tomvoisin_jai-pris-la-plus-grosse-arnaque-de-ma-vie-share-7444738165996748816-eqDe/',
-    titre: 'Un développeur parti, le projet continue',
-    extrait: 'Parce que ce n’est que du code. Le problème que Deliview résout, lui, est réel.',
-    photo: { fichier: 'un-developpeur-parti', largeur: 588, hauteur: 781, alt: 'Tom assis sur un canapé jaune, la tête dans la main, devant son ordinateur' },
-    apercuSeulement: true,
   },
   {
     // 7 avril 2026
