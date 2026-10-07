@@ -1,80 +1,156 @@
 ---
-// Tarifs : 3 abonnements selon le nombre de restaurants (OFFRES dans src/lib/site.ts), trois cartes en relief côte à côte
-// (empilées sur téléphone), Pro mise en avant (bord Bleu 1, bandeau « Recommandé », légèrement surélevée), tableau
-// comparatif, lien vers le simulateur, questions (FAQPage), bandeau final. Uniquement ce que Deliview fait aujourd'hui.
-// 6 octobre 2026 (demande de Tom) : Essentiel 59 €, Pro 199 € (3 restaurants), Groupe 399 € (10 restaurants), offres
-// et comparatif récrits en mots simples, questions à la première personne.
-// Refonte en relief du 3 octobre 2026 (les tickets et la flèche au marqueur de la direction « le passe » sont retirés).
-// 4 octobre 2026 (logique de taap.it, choix de Tom) : chaque offre a son bouton « Commencer maintenant » vers le
-// formulaire de départ /commencer/?offre=… (pas de paiement sur le site) ; prix en Inter ; la démo reste proposée
-// juste sous les offres et en bas de page, pour qui veut voir avant de choisir.
+// Tarifs, refaite le 7 octobre 2026 (demande de Tom : « améliore toute la page pricing… répartit les features de manière
+// simple, écrite de manière concise… le restaurateur doit se sentir concerné… reprendre la technique d'autres SaaS »).
+// Techniques reprises d'autres pages de tarifs (la structure seulement, aucun texte copié) :
+// - « pour qui » sous chaque offre, écrit comme la situation du client (Zenchef, Otter) : « Pour vous si… » ;
+// - listes qui s'additionnent : « Tout Essentiel, plus : », « Tout Pro, plus : » (Linear, Otter) ;
+// - prix ramené au restaurant pour les offres à plusieurs restaurants (prix par établissement : Otter, Deliverect) ;
+// - ce qui est inclus quoi qu'il arrive, dont « aucun frais caché » (Sunday) ;
+// - le coût de ne rien faire, relié aux offres, puis le simulateur (Sunday, Zenchef : calculateur) ;
+// - offre sur mesure au-delà de 10 restaurants (Linear : « Contact sales ») ;
+// - tableau comparatif à en-tête collant (Linear), lisible sur téléphone sans défilement horizontal ;
+// - questions sur les objections : frais, paiement, arrêt, changement d'offre (Otter).
+// Uniquement ce que Deliview fait aujourd'hui (OFFRES dans src/lib/site.ts, annexe 1 des CGV). Aucun chiffre inventé :
+// l'exemple de prix est la vraie analyse de l'accueil (EXEMPLE_MARGHERITA), les engagements viennent des CGV (3.4, 9,
+// 10, 12.2), l'argent rapporté est la carte de l'accueil de l'app (5 octobre 2026).
+// Gardé : chaque offre mène au formulaire de départ /commencer/?offre=… (4 octobre, logique de taap.it) ; la démo reste
+// proposée sous les offres et en bas de page ; « Plus de 10 restaurants ? » dans la bulle de Tom, comme sur l'accueil.
 import Base from '../layouts/Base.astro';
 import BoutonDemo from '../components/BoutonDemo.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
 import Coche from '../icons/coche.astro';
-import Pieces from '../icons/pieces.astro';
-import Enveloppe from '../icons/enveloppe.astro';
 import Fleche from '../icons/fleche.astro';
-import { OFFRES, PRIX_ENTREE, SITE, jsonldLogiciel, lien } from '../lib/site';
+import Plus from '../icons/plus.astro';
+import Moins from '../icons/moins.astro';
+import Courbe from '../icons/courbe.astro';
+import Pieces from '../icons/pieces.astro';
+import Duo from '../icons/duo.astro';
+import Toque from '../icons/toque.astro';
+import CadenasOuvert from '../icons/cadenas-ouvert.astro';
+import EtiquettePrix from '../icons/etiquette-prix.astro';
+import Bouclier from '../icons/bouclier.astro';
+import Message from '../icons/message.astro';
+import Telephone from '../icons/telephone.astro';
+import BoutiqueArret from '../icons/boutique-arret.astro';
+import TicketIcone from '../icons/ticket.astro';
+import LoupeZone from '../icons/loupe-zone.astro';
+import Chef from '../icons/chef.astro';
+import { EXEMPLE_MARGHERITA as ex, OFFRES, PRIX_ENTREE, SITE, dateFr, euros, jsonldLogiciel, lien } from '../lib/site';
 
-const description = `Trois offres selon votre nombre de restaurants, dès ${PRIX_ENTREE} € HT par mois : sans engagement, mise en place offerte. Comparez Essentiel, Pro et Groupe.`;
+const description = `Trois offres selon vos restaurants sur Uber Eats et Deliveroo, dès ${PRIX_ENTREE} € HT par mois. Sans engagement, mise en place offerte, aucun frais caché.`;
 
-type Case = 'oui' | 'non' | string;
-// Comparatif en trois blocs (6 octobre 2026, demande de Tom) : ce que vous suivez, ce que Deliview fait pour vous,
-// l'accompagnement. Mêmes mots que les cartes des offres.
+// Une icône par offre : vos chiffres (Essentiel), l'argent que Deliview va chercher (Pro), le point avec Tom (Groupe).
+const ICONES_OFFRES: Record<string, typeof Courbe> = { essentiel: Courbe, pro: Pieces, premium: Duo };
+
+// Prix ramené au restaurant, pour les offres à plusieurs restaurants (« soit 66,33 € par restaurant si vous en avez 3 »).
+const parRestaurant = (o: (typeof OFFRES)[number]) =>
+  o.maxRestaurants > 1 ? `soit ${euros(o.prix / o.maxRestaurants)} par restaurant si vous en avez ${o.maxRestaurants}` : '';
+
+// Inclus dans toutes les offres : CGV 3.4 (mise en place), 8.2 (prix), 10.1 et 10.2 (durée, arrêt), 12.2 (réponses) ;
+// accès par invitation (mêmes mots que la page Qui sommes-nous).
+const inclusPartout = [
+  { icone: Toque, titre: 'Mise en place offerte', texte: 'Tom crée votre compte avec vous et vous présente vos premiers résultats.' },
+  { icone: CadenasOuvert, titre: 'Sans engagement', texte: 'Un abonnement au mois. Vous arrêtez quand vous voulez.' },
+  { icone: EtiquettePrix, titre: 'Aucun frais caché', texte: 'Pas de frais de mise en place, pas d’option payante.' },
+  { icone: Bouclier, titre: 'Jamais votre mot de passe', texte: 'Vous invitez Deliview dans Uber&nbsp;Eats et Deliveroo. Votre mot de passe reste à vous.' },
+  { icone: Message, titre: 'Un humain qui répond', texte: 'Messagerie, <span class="whitespace-nowrap">e-mail</span> ou téléphone, les jours ouvrés de 9&nbsp;h à 18&nbsp;h.' },
+  { icone: Telephone, titre: 'Rien à installer', texte: 'Deliview s’ouvre dans votre navigateur. Vos tablettes restent en place.' },
+];
+
+// Là où le restaurateur perd de l'argent, et ce que fait chaque offre. Toutes les offres repèrent ; Pro et Groupe agissent
+// (même partage que l'app depuis le 7 octobre : en Essentiel, remboursements et prix proposés restent visibles).
+const releve = dateFr(new Date(ex.releve + 'T12:00:00Z')).replace(/^1er /, '1<sup>er</sup> ');
+const fuites = [
+  {
+    icone: BoutiqueArret,
+    titre: 'Fermé en plein service',
+    constat: 'Votre restaurant passe fermé sur Uber&nbsp;Eats ou Deliveroo, et personne ne le voit.',
+    toutes: 'Deliview vous prévient.',
+    pro: 'Deliview le relance en un clic.',
+  },
+  {
+    icone: TicketIcone,
+    titre: 'Un remboursement retenu',
+    constat: 'Un client se plaint&nbsp;: la plateforme le rembourse et retire la somme de votre versement.',
+    toutes: 'Deliview repère vos remboursements.',
+    pro: 'Vous les contestez en un clic.',
+  },
+  {
+    icone: LoupeZone,
+    titre: 'Un plat sous le prix de sa zone',
+    constat: `Exemple réel&nbsp;: une ${ex.plat} à ${euros(ex.votrePrix)} sur ${ex.plateforme.replace(' ', '&nbsp;')}, quand ${ex.concurrents} concurrents la vendent autour de ${euros(ex.mediane)}.`,
+    source: `Relevé du ${releve}, restaurant anonymisé.`,
+    toutes: 'Deliview compare chaque plat à votre zone.',
+    pro: 'Votre nouveau prix est mis en ligne après votre accord.',
+  },
+];
+
+// Case du comparatif : « oui » (coche), « non » (tiret), « bientot » (étiquette « Bientôt »), ou un texte court.
+type Case = 'oui' | 'non' | 'bientot' | string;
+// Comparatif en trois blocs, mêmes mots que les cartes des offres (OFFRES) : vos chiffres et votre zone, ce que Deliview
+// fait pour vous, vos restaurants et votre équipe. Ce qui est pareil partout (mise en place, engagement) est dans « Dans
+// toutes les offres ». Fréquence des analyses et concurrents choisis : règles de l'app (app/src/lib/offre.ts).
 const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, Case, Case] }[] }[] = [
   {
-    groupe: 'Suivre votre rentabilité',
+    groupe: 'Vos chiffres et votre zone',
     lignes: [
-      { libelle: 'Restaurants', valeurs: ['1', 'Jusqu’à 3', 'Jusqu’à 10'] },
-      { libelle: 'Vos ventes Uber Eats et Deliveroo sur un seul écran', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Vos prix comparés à ceux de vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos prix face à vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
       { libelle: 'Les promos et les notes de votre zone', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Une réponse rédigée par l’IA pour chaque avis', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Alerte si vous êtes fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Vos objectifs, et le point chaque lundi', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Votre zone analysée', valeurs: ['Chaque semaine', 'À la demande', 'À la demande'] },
+      { libelle: 'Les concurrents de votre choix', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Une réponse IA pour chaque avis', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Une alerte si vous êtes fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos objectifs et le point du lundi', valeurs: ['oui', 'oui', 'oui'] },
     ],
   },
   {
     groupe: 'Deliview agit pour vous',
     lignes: [
-      { libelle: 'Promos conseillées, mises en ligne pour vous', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Nouveaux prix mis en ligne pour vous', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Remboursements Uber Eats et Deliveroo contestés en un clic', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Promos et prix mis en ligne, après votre accord', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Remboursements contestés en un clic', valeurs: ['non', 'oui', 'oui'] },
       { libelle: 'Restaurant fermé relancé en un clic', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Assistant IA et rapport pour vos équipes', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Assistant IA et rapport d’équipe', valeurs: ['non', 'oui', 'oui'] },
     ],
   },
   {
-    groupe: 'Accompagnement',
+    groupe: 'Vos restaurants et votre équipe',
     lignes: [
-      { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
-      { libelle: 'L’historique de vos décisions de prix', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'Restaurants', valeurs: ['1', 'Jusqu’à 3', 'Jusqu’à 10'] },
       { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
-      { libelle: 'Mise en place avec Tom', valeurs: ['Offerte', 'Offerte', 'Offerte'] },
-      { libelle: 'Engagement', valeurs: ['Aucun', 'Aucun', 'Aucun'] },
+      { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'L’historique de vos décisions de prix', valeurs: ['non', 'non', 'bientot'] },
     ],
   },
 ];
 
-// Questions à la première personne (6 octobre 2026, demande de Tom).
+// Questions sur ce qui fait hésiter avant de payer : engagement et arrêt (CGV 10.1, 10.2), frais (3.4, 8.2), moment du
+// paiement (/commencer/), moyens de paiement (9.1, 9.2), changement d'offre (5.3), tablettes, réseau, données.
 const faq = [
   {
     q: 'Est-ce que je m’engage sur une durée ?',
-    r: 'Non. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.',
+    r: 'Non. L’abonnement est mensuel et sans engagement. Pour arrêter, écrivez à Tom ou passez par votre espace de facturation&nbsp;: l’arrêt prend effet à la fin du mois d’abonnement en cours.',
   },
   {
-    q: 'Est-ce que je paie la mise en place ?',
-    r: 'Non, elle est offerte. Tom crée votre compte avec vous et vous montre comment lire les résultats. Rien à installer&nbsp;: Deliview s’ouvre dans le navigateur.',
+    q: 'Est-ce que je paie des frais en plus de l’abonnement ?',
+    r: 'Non. La mise en place est offerte et aucune option n’est payante. Vous payez chaque mois le prix de votre offre, plus la TVA.',
   },
   {
-    q: 'J’ai un seul restaurant : est-ce que je peux choisir Pro ou Groupe ?',
-    r: 'Oui. Le nombre de restaurants de chaque offre est un maximum, pas un minimum. Vous pouvez changer d’offre à tout moment.',
+    q: 'Est-ce que je paie aujourd’hui ?',
+    r: 'Non. Tom vous appelle d’abord et ouvre votre compte avec vous. Vous vous abonnez ensuite en ligne, avec le lien de paiement qu’il vous envoie.',
+  },
+  {
+    q: 'Comment se passe le paiement ?',
+    r: 'Par carte bancaire ou par prélèvement SEPA, avec Stripe. La facture arrive chaque mois par e-mail.',
+  },
+  {
+    q: 'J’ai un seul restaurant : je peux choisir Pro ?',
+    r: 'Oui. Le nombre de restaurants de chaque offre est un maximum, pas un minimum. Vous changez d’offre quand vous voulez&nbsp;: une offre supérieure s’applique tout de suite, et la différence est facturée au prorata.',
   },
   {
     q: 'Est-ce que je garde mes tablettes Uber Eats et Deliveroo ?',
-    r: 'Oui. Vos tablettes restent là pour recevoir les commandes. Deliview réunit vos chiffres, vos prix et ceux de vos concurrents sur un seul écran.',
+    r: 'Oui. Vos tablettes restent là pour recevoir les commandes, et rien n’est à installer&nbsp;: Deliview s’ouvre dans votre navigateur.',
   },
   {
     q: 'J’ai plus de 10 restaurants : comment je fais ?',
@@ -112,125 +188,250 @@ const logiciel = {
 };
 ---
 
-<Base title="Tarifs : 3 offres selon vos restaurants | Deliview" description={description} ariane={[{ nom: 'Tarifs', chemin: '/tarifs/' }]} jsonld={[logiciel, faqPage]}>
+<Base title={`Tarifs : dès ${PRIX_ENTREE} € HT par mois, sans engagement | Deliview`} description={description} ariane={[{ nom: 'Tarifs', chemin: '/tarifs/' }]} jsonld={[logiciel, faqPage]}>
   <section id="offres" class="bg-grey pb-16 pt-8 md:pb-[104px] md:pt-12" aria-labelledby="tarifs-titre" data-haut-de-page>
     <div class="dv-container">
       <div class="text-center">
         <Pastille>Tarifs</Pastille>
-        <h1 id="tarifs-titre" class="dv-h1 mx-auto mt-5 max-w-[20ch] md:mt-6">Un prix clair, selon le nombre de vos restaurants</h1>
-        <p class="dv-lead mx-auto mt-4 max-w-[52ch] md:mt-5">Trois offres, selon le nombre de restaurants que vous suivez. Les prix sont HT, par mois.</p>
+        <h1 id="tarifs-titre" class="dv-h1 mx-auto mt-5 max-w-[20ch] md:mt-6 md:max-w-[27ch]">Plus de rentabilité en livraison, dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</h1>
+        <p class="dv-lead mx-auto mt-4 max-w-[52ch] md:mt-5">
+          Avec Essentiel, vous suivez vos chiffres et votre zone. Avec Pro et Groupe, Deliview agit aussi pour vous&nbsp;: promos, prix, remboursements.
+        </p>
+        <ul class="dv-rassurances mt-5 md:mt-6" aria-label="Pour toutes les offres">
+          <li><Coche taille={24} />Sans engagement</li>
+          <li><Coche taille={24} />Mise en place offerte</li>
+          <li><Coche taille={24} />Rien à payer aujourd’hui</li>
+        </ul>
       </div>
 
-      <ul class="dv-offres-page mt-12 grid items-stretch gap-6 md:mt-16 lg:mt-20 lg:grid-cols-3">
+      <!-- Téléphone et tablette : les trois offres d'un coup d'œil, chacune mène à sa carte (les cartes sont empilées). -->
+      <nav class="mt-8 lg:hidden" aria-label="Aller à une offre">
+        <ul class="grid grid-cols-3 gap-2.5 sm:gap-4">
+          {
+            OFFRES.map((o) => (
+              <li>
+                <a href={`#${o.slug}`} class={`dv-raccourci ${o.recommandee ? 'dv-raccourci-pro' : ''}`} data-cta={`tarifs-raccourci-${o.slug}`}>
+                  <span class="dv-raccourci-nom">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</span>
+                  <span class="dv-raccourci-prix">{o.prix}&nbsp;€</span>
+                  <span class="dv-raccourci-detail">{o.restaurants}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <ul class="dv-offres-page mt-12 grid items-stretch gap-6 md:mt-14 lg:mt-20 lg:grid-cols-3">
         {
-          OFFRES.map((o) => (
-            <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-32 flex-col ${o.recommandee ? 'dv-offre-pro' : ''}`}>
-              {o.recommandee && (
-                <p class="dv-offre-bandeau" aria-hidden="true">
-                  Recommandé
-                </p>
-              )}
-              <h2 class="font-accent text-[26px] font-bold leading-[1.2] md:text-[28px]">
-                {o.nom}
-                {o.recommandee && <span class="sr-only">, offre recommandée</span>}
-              </h2>
-              <p class="mt-1.5 text-[16px] font-semibold leading-[1.4]">{o.restaurants}</p>
-              <p class="mt-1 text-[16px] leading-[1.5] dv-muted lg:min-h-[72px]">{o.pour}.</p>
-              <p class="mt-5 flex items-baseline gap-2 border-t border-grey-2/15 pt-5">
-                <span class="dv-offre-prix text-[46px] md:text-[54px]">{o.prix}&nbsp;€</span>
-                <span class="text-[16px] leading-[1.3]">HT par mois</span>
-              </p>
-              <a
-                href={lien(`/commencer/?offre=${o.slug}`)}
-                class={`dv-btn mt-6 w-full ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
-                data-cta={`tarifs-${o.slug}`}
-                {...(o.recommandee ? { 'data-cta-principal': '' } : {})}
-              >
-                Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
-              </a>
-              <p class="mt-3 text-center text-[15px] leading-[1.4] dv-muted">Rien à payer aujourd’hui</p>
-              <div class="mt-6 border-t border-grey-2/15" aria-hidden="true" />
-              {o.base && <p class="mt-5 text-[16px] font-bold leading-[1.4]">{o.base.replace(' :', ' :')}</p>}
-              <ul class={`${o.base ? 'mt-3' : 'mt-5'} grid gap-3 text-[16px] leading-[1.5]`}>
-                {o.inclus.map((x) => (
-                  <li class="flex gap-2.5">
-                    <Coche taille={24} />
-                    <span>{x}</span>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))
+          OFFRES.map((o) => {
+            const Icone = ICONES_OFFRES[o.slug] ?? Courbe;
+            const soit = parRestaurant(o);
+            return (
+              <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-12 flex-col ${o.recommandee ? 'dv-offre-pro' : ''}`}>
+                {o.recommandee && (
+                  <p class="dv-offre-bandeau" aria-hidden="true">
+                    Recommandé
+                  </p>
+                )}
+                <div class="flex items-center gap-3.5">
+                  <span class="dv-tuile dv-tuile-petite">
+                    <Icone taille={32} />
+                  </span>
+                  <div class="min-w-0">
+                    <h2 class="font-accent text-[26px] font-bold leading-[1.15] md:text-[28px]">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</h2>
+                    <p class="mt-0.5 text-[16px] font-semibold leading-[1.4]">{o.restaurants}</p>
+                  </div>
+                </div>
+                <p class="dv-overline mt-6">Pour vous si</p>
+                <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[72px]">{o.pourVous}</p>
+                <div class="mt-5 border-t border-grey-2/15 pt-5">
+                  <p class="flex items-baseline gap-2">
+                    <span class="dv-offre-prix text-[46px] md:text-[54px]">{o.prix}&nbsp;€</span>
+                    <span class="text-[16px] leading-[1.3]">HT par mois</span>
+                  </p>
+                  {soit ? <p class="dv-offre-soit">{soit}</p> : <p class="dv-offre-soit hidden lg:block" aria-hidden="true" />}
+                </div>
+                <a
+                  href={lien(`/commencer/?offre=${o.slug}`)}
+                  class={`dv-btn mt-5 w-full ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
+                  data-cta={`tarifs-${o.slug}`}
+                  {...(o.recommandee ? { 'data-cta-principal': '' } : {})}
+                >
+                  Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
+                </a>
+                <p class="mt-3 text-center text-[15px] leading-[1.4] dv-muted">Rien à payer aujourd’hui</p>
+                <div class="mt-6 border-t border-grey-2/15" aria-hidden="true" />
+                <p class="mt-5 text-balance text-[16px] font-bold leading-[1.4]">{o.base}</p>
+                <ul class="dv-offre-liste mt-3 grid gap-2.5 text-[16px] leading-[1.45]">
+                  {o.inclus.map((x) => (
+                    <li class="flex gap-2.5">
+                      <Coche taille={24} />
+                      {typeof x === 'string' ? (
+                        <span class="text-pretty">{x}</span>
+                      ) : (
+                        <span class="text-pretty">
+                          {x.texte} <span class="dv-bientot">Bientôt</span>
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            );
+          })
         }
       </ul>
 
-      <!-- Autre chemin, pour qui veut voir avant de choisir (le bouton de chaque offre mène au formulaire de départ). -->
-      <div class="mt-10 flex flex-col items-center gap-1 text-center md:mt-12">
-        <p class="text-[17px] leading-[1.5] md:text-[18px]">Vous préférez voir Deliview sur votre restaurant avant de choisir&nbsp;?</p>
-        <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
+      <!-- Au-delà de 10 restaurants : la bulle de Tom, comme sur l'accueil ; puis l'autre chemin, voir avant de choisir. -->
+      <div class="mt-12 flex flex-col items-center gap-7 md:mt-14">
+        <div class="dv-bulle-groupe">
+          <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
+          <p class="dv-bulle-groupe-message">
+            <span class="dv-bulle-groupe-question">Plus de 10&nbsp;restaurants&nbsp;?</span>
+            <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-plus-de-10">Parlons-en<Fleche taille={24} /></a>
+          </p>
+        </div>
+        <p class="flex max-w-[640px] flex-col items-center text-center text-[17px] leading-[1.5] md:text-[18px]">
+          Vous préférez voir Deliview sur votre restaurant avant de choisir&nbsp;?
+          <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
+        </p>
       </div>
-
-      <p class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-[17px] font-semibold leading-[1.5] md:mt-10 md:text-[18px]">
-        <span class="dv-tuile"><Pieces taille={32} /></span>
-        <span>Plus de 10&nbsp;restaurants&nbsp;? <a href={lien('/demo/')} class="dv-lien" data-cta="tarifs-plus-de-10">Parlons-en.</a></span>
-      </p>
-      <p class="mt-5 text-center text-[14px] dv-muted">
+      <p class="mt-6 text-center text-[14px] dv-muted">
         Prix HT. Abonnement soumis aux <a href={lien('/cgv/')}>conditions générales de vente</a>.
       </p>
     </div>
   </section>
 
+  <section class="dv-section bg-white" aria-labelledby="inclus-titre">
+    <div class="dv-container max-w-[1100px]">
+      <h2 id="inclus-titre" class="dv-h2">Dans toutes les offres</h2>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 md:gap-5 lg:grid-cols-3">
+        {
+          inclusPartout.map(({ icone: Icone, titre, texte }) => (
+            <li class="flex gap-4 rounded-[16px] bg-grey p-4 md:p-6">
+              <span class="dv-tuile dv-tuile-petite">
+                <Icone taille={24} />
+              </span>
+              <div class="min-w-0">
+                <h3 class="font-accent text-[19px] font-bold leading-[1.3]">{titre}</h3>
+                <p class="mt-1.5 text-[16px] leading-[1.55]" set:html={texte} />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey dv-points" aria-labelledby="fuites-titre">
+    <div class="dv-container max-w-[1100px]">
+      <h2 id="fuites-titre" class="dv-h2 max-w-[22ch]">Là où vous perdez de l’argent sans le voir</h2>
+      <p class="dv-lead mt-3 max-w-[56ch] md:mt-4">Deliview repère ces pertes dans toutes les offres. Avec Pro et Groupe, il agit aussi.</p>
+      <ul class="mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-6">
+        {
+          fuites.map(({ icone: Icone, titre, constat, source, toutes, pro }) => (
+            <li class="dv-relief flex flex-col p-5 md:p-7">
+              <div class="flex items-center gap-3.5">
+                <span class="dv-tuile dv-tuile-petite">
+                  <Icone taille={32} />
+                </span>
+                <h3 class="dv-h3">{titre}</h3>
+              </div>
+              <p class="mt-4 text-[16px] leading-[1.55]" set:html={constat} />
+              {source && <p class="mt-2 text-[14px] leading-[1.45] dv-muted" set:html={source} />}
+              <div class="mt-auto pt-5">
+                <dl class="dv-fuite-offres">
+                  <div>
+                    <dt>Toutes les offres</dt>
+                    <dd>{toutes}</dd>
+                  </div>
+                  <div>
+                    <dt>Pro et Groupe</dt>
+                    <dd>{pro}</dd>
+                  </div>
+                </dl>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-8 flex flex-col items-start gap-2 md:mt-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <p class="max-w-[62ch] text-[17px] leading-[1.55] md:text-[18px]">
+          Avec Pro et Groupe, l’accueil de l’app additionne ce que Deliview vous a rapporté&nbsp;: remboursements Uber&nbsp;Eats récupérés, ventes après une relance.
+        </p>
+        <a href={lien('/simulateur/')} class="dv-lien-fort shrink-0" data-cta="tarifs-simulateur">Calculer ce qui vous reste<Fleche taille={24} /></a>
+      </div>
+    </div>
+  </section>
+
   <section class="dv-section bg-white" aria-labelledby="comparatif-titre">
-    <div class="dv-container">
+    <div class="dv-container max-w-[1100px]">
       <h2 id="comparatif-titre" class="dv-h2">Comparer les offres</h2>
-      <div class="dv-card mt-8 overflow-x-auto md:mt-9" tabindex="0" role="region" aria-label="Comparatif des offres, défile horizontalement">
-        <table class="w-full min-w-[740px] border-collapse text-[16px] leading-[1.45] tabular-nums" aria-labelledby="comparatif-titre">
-          <thead class="bg-grey">
-            <tr>
-              <th scope="col" class="px-6 py-[18px] text-left font-bold">Ce qui est inclus</th>
-              {OFFRES.map((o) => (
-                <th scope="col" class={`w-[150px] px-4 py-[18px] text-center font-accent md:w-[200px] text-[20px] font-bold leading-[1.2] ${o.recommandee ? 'bg-blue/10' : ''}`}>
-                  {o.nom}
-                  <span class="mt-1 block font-sans text-[15px] font-normal">{o.prix}&nbsp;€&nbsp;HT</span>
-                </th>
-              ))}
+      <!-- Tableau replié sur téléphone (les cartes disent déjà tout, il s'ouvre d'un geste), ouvert d'office sur ordinateur
+           par le script en bas de page ; sans JavaScript, il reste à ouvrir partout. Rôles ARIA explicites : sur téléphone,
+           chaque ligne passe en grille (intitulé au-dessus, trois cases dessous), et certains navigateurs perdent alors la
+           structure du tableau pour les lecteurs d'écran. -->
+      <details class="dv-comparatif-details mt-6 md:mt-10" data-ouvert-ordinateur>
+        <summary class="dv-relief dv-comparatif-bouton">
+          <span>Voir le tableau complet</span>
+          <Plus taille={24} class="dv-comparatif-plus" />
+          <Moins taille={24} class="dv-comparatif-moins" />
+        </summary>
+      <div class="dv-comparatif-cadre mt-5 md:mt-0">
+        <table class="dv-comparatif" role="table" aria-labelledby="comparatif-titre">
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader" class="dv-comparatif-coin">Ce qui est inclus</th>
+              {
+                OFFRES.map((o) => (
+                  <th scope="col" role="columnheader" class={o.recommandee ? 'dv-comparatif-pro' : ''}>
+                    <span class="dv-comparatif-nom">{o.nom}</span>
+                    <span class="dv-comparatif-prix">{o.prix}&nbsp;€&nbsp;HT</span>
+                  </th>
+                ))
+              }
             </tr>
           </thead>
-          <tbody>
-            {
-              comparatif.map((g) => (
-                <>
-                  <tr class="border-t border-grey-2/12 bg-grey/60">
-                    <th scope="colgroup" colspan={4} class="px-6 pb-3 pt-6 text-left font-accent text-[17px] font-bold">{g.groupe}</th>
+          {
+            comparatif.map((g) => (
+              <tbody role="rowgroup">
+                <tr role="row" class="dv-comparatif-groupe">
+                  <th scope="rowgroup" role="rowheader" colspan={4}>
+                    {g.groupe}
+                  </th>
+                </tr>
+                {g.lignes.map((l) => (
+                  <tr role="row">
+                    <th scope="row" role="rowheader">
+                      {l.libelle}
+                    </th>
+                    {l.valeurs.map((c, i) => (
+                      <td role="cell" class={OFFRES[i].recommandee ? 'dv-comparatif-pro' : ''}>
+                        {c === 'oui' ? (
+                          <span class="dv-comparatif-oui">
+                            <Coche taille={24} />
+                            <span class="sr-only">Inclus</span>
+                          </span>
+                        ) : c === 'non' ? (
+                          <span class="dv-comparatif-non">
+                            <span aria-hidden="true">—</span>
+                            <span class="sr-only">Non inclus</span>
+                          </span>
+                        ) : c === 'bientot' ? (
+                          <span class="dv-bientot">Bientôt</span>
+                        ) : (
+                          <span>{c}</span>
+                        )}
+                      </td>
+                    ))}
                   </tr>
-                  {g.lignes.map((l) => (
-                    <tr class="border-t border-grey-2/12">
-                      <th scope="row" class="px-6 py-4 text-left font-normal">{l.libelle}</th>
-                      {l.valeurs.map((c, i) => (
-                        <td class={`px-4 py-4 text-center ${OFFRES[i].recommandee ? 'bg-blue/10' : ''}`}>
-                          {c === 'oui' ? (
-                            <span class="inline-flex justify-center">
-                              <Coche taille={24} />
-                              <span class="sr-only">Inclus</span>
-                            </span>
-                          ) : c === 'non' ? (
-                            <span>
-                              <span aria-hidden="true">—</span>
-                              <span class="sr-only">Non inclus</span>
-                            </span>
-                          ) : (
-                            <span>{c}</span>
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </>
-              ))
-            }
-          </tbody>
+                ))}
+              </tbody>
+            ))
+          }
         </table>
       </div>
+      </details>
     </div>
   </section>
 
@@ -238,10 +439,300 @@ const logiciel = {
 
   <section id="demo" class="dv-section bg-white" aria-labelledby="final-titre">
     <div class="dv-container max-w-[760px] text-center">
-      <span class="dv-tuile"><Enveloppe taille={32} /></span>
-      <h2 id="final-titre" class="dv-h2 mt-5">Voyez d’abord ce que vos prix peuvent vous rapporter</h2>
-      <p class="dv-lead mt-4">30&nbsp;minutes avec Tom, sur votre restaurant, avant tout paiement.</p>
+      <span class="dv-tuile dv-tuile-chef"><Chef taille={48} /></span>
+      <h2 id="final-titre" class="dv-h2 mt-5">Voyez Deliview sur votre restaurant avant de choisir</h2>
+      <p class="dv-lead mt-4">Une démo de 30&nbsp;minutes avec Tom, avant tout paiement.</p>
       <BoutonDemo href={lien('/demo/')} cta="tarifs-final" principal class="mt-7 w-full sm:w-auto" />
     </div>
   </section>
 </Base>
+
+<script>
+  // Ordinateur et tablette : le tableau comparatif est ouvert d'office, sans le bouton qui le replie.
+  const comparatif = document.querySelector<HTMLDetailsElement>('details[data-ouvert-ordinateur]');
+  if (comparatif && window.matchMedia('(min-width: 768px)').matches) {
+    comparatif.open = true;
+    comparatif.classList.add('dv-comparatif-ouvert');
+  }
+</script>
+
+<style>
+  /* Rassurances du haut : trois coches Bleu 1, sur une ligne quand la place le permet. */
+  .dv-rassurances {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .dv-rassurances li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dv-rassurances :global(svg),
+  .dv-offre-liste :global(svg),
+  .dv-comparatif-oui :global(svg) {
+    color: var(--color-blue);
+  }
+  @media (min-width: 768px) {
+    .dv-rassurances {
+      font-size: 17px;
+    }
+  }
+
+  /* Raccourcis vers les offres (téléphone et tablette) : trois pastilles en relief, Pro au contour Bleu 1. */
+  .dv-raccourci {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 12px 6px 13px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 14px;
+    background: var(--color-white);
+    box-shadow: 0 4px 0 var(--dv-levre);
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    transition: translate 0.12s ease, box-shadow 0.12s ease;
+  }
+  .dv-raccourci:hover {
+    translate: 0 1px;
+    box-shadow: 0 3px 0 var(--dv-levre);
+  }
+  .dv-raccourci-pro {
+    border: 2px solid var(--color-blue);
+    padding: 11px 5px 12px;
+  }
+  .dv-raccourci-nom {
+    font-family: var(--font-accent);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .dv-raccourci-prix {
+    font-family: var(--font-chiffres);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+  .dv-raccourci-detail {
+    font-size: 14px;
+    line-height: 1.3;
+    text-wrap: balance;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+
+  /* Étiquette « Bientôt » : promis par l'offre, pas encore dans l'app (Bleu 1 à 12 %, texte Gris 2). */
+  .dv-bientot {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-blue) 12%, transparent);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+    white-space: nowrap;
+    vertical-align: 1px;
+  }
+
+  /* Prix ramené au restaurant, sous le prix (place réservée sur ordinateur pour aligner les boutons). */
+  .dv-offre-soit {
+    margin-top: 8px;
+    min-height: 21px;
+    font-size: 15px;
+    line-height: 1.4;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+
+  /* Ce que fait chaque offre face à une perte : deux lignes sous un trait. */
+  .dv-fuite-offres {
+    display: grid;
+    gap: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--dv-bord);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .dv-fuite-offres dt {
+    font-weight: 700;
+  }
+
+  /* ── Comparatif ──
+     Bouton qui ouvre le tableau (téléphone, ou sans JavaScript) : carte en relief, signe plus ou moins dessiné. */
+  .dv-comparatif-bouton {
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    font-family: var(--font-accent);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    list-style: none;
+    cursor: pointer;
+  }
+  .dv-comparatif-bouton::-webkit-details-marker {
+    display: none;
+  }
+  .dv-comparatif-details :global(.dv-comparatif-moins),
+  .dv-comparatif-details[open] :global(.dv-comparatif-plus) {
+    display: none;
+  }
+  .dv-comparatif-details[open] :global(.dv-comparatif-moins) {
+    display: block;
+  }
+  .dv-comparatif-ouvert > summary {
+    display: none;
+  }
+
+  /* Ordinateur : vrai tableau, en-tête collant sous la barre du site (Linear), colonne Pro teintée de Bleu 1 à 8 %.
+     Le cadre coupe ses coins avec overflow: clip, qui ne crée pas de zone de défilement : l'en-tête reste collant. */
+  .dv-comparatif-cadre {
+    border: 1px solid var(--dv-bord);
+    border-radius: var(--radius-card);
+    background: var(--color-white);
+    box-shadow: 0 5px 0 var(--dv-levre);
+    overflow: clip;
+  }
+  .dv-comparatif {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+  .dv-comparatif thead th {
+    position: sticky;
+    top: 72px;
+    z-index: 1;
+    padding: 16px 12px;
+    background: var(--color-grey);
+    text-align: center;
+    vertical-align: bottom;
+    box-shadow: inset 0 -1px 0 var(--dv-bord);
+  }
+  .dv-comparatif thead .dv-comparatif-coin {
+    padding-left: 24px;
+    text-align: left;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .dv-comparatif-nom {
+    display: block;
+    font-family: var(--font-accent);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .dv-comparatif-prix {
+    display: block;
+    margin-top: 2px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+  .dv-comparatif .dv-comparatif-pro {
+    background: color-mix(in srgb, var(--color-blue) 8%, var(--color-white));
+  }
+  .dv-comparatif thead .dv-comparatif-pro {
+    background: color-mix(in srgb, var(--color-blue) 14%, var(--color-white));
+  }
+  .dv-comparatif-groupe th {
+    padding: 26px 24px 10px;
+    text-align: left;
+    font-family: var(--font-accent);
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .dv-comparatif tbody tr:not(.dv-comparatif-groupe) {
+    border-top: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
+  }
+  .dv-comparatif tbody th[scope="row"] {
+    padding: 14px 16px 14px 24px;
+    text-align: left;
+    font-weight: 400;
+  }
+  .dv-comparatif td {
+    width: 17%;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .dv-comparatif-oui {
+    display: inline-flex;
+    justify-content: center;
+  }
+  @media (min-width: 1280px) {
+    .dv-comparatif thead th {
+      top: 80px;
+    }
+  }
+
+  /* Téléphone : chaque ligne devient une grille de trois colonnes, l'intitulé sur toute la largeur au-dessus de ses
+     trois cases ; l'en-tête (les trois offres) reste collé en haut. Aucun défilement horizontal. */
+  @media (max-width: 767px) {
+    .dv-comparatif,
+    .dv-comparatif thead,
+    .dv-comparatif tbody {
+      display: block;
+    }
+    .dv-comparatif tr {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .dv-comparatif thead {
+      position: sticky;
+      top: 72px;
+      z-index: 1;
+    }
+    .dv-comparatif thead th {
+      position: static;
+      padding: 12px 4px;
+    }
+    .dv-comparatif thead .dv-comparatif-coin {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+    .dv-comparatif-nom {
+      font-size: 17px;
+    }
+    .dv-comparatif-prix {
+      font-size: 14px;
+    }
+    .dv-comparatif-groupe th,
+    .dv-comparatif tbody th[scope="row"] {
+      grid-column: 1 / -1;
+    }
+    .dv-comparatif-groupe th {
+      padding: 20px 16px 6px;
+    }
+    .dv-comparatif tbody th[scope="row"] {
+      padding: 12px 16px 2px;
+    }
+    .dv-comparatif td {
+      width: auto;
+      padding: 4px 4px 12px;
+    }
+  }
+
+  /* Le chef de l'appel final : une tuile plus grande, l'icône en 48 px (comme la page Qui sommes-nous). */
+  .dv-tuile-chef {
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
+  }
+</style>

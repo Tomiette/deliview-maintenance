@@ -636,15 +636,24 @@ export interface Offre {
   // Nombre de restaurants au plus (simulateur : l'offre qui correspond au nombre saisi).
   maxRestaurants: number;
   pour: string;
+  // Page Tarifs (7 octobre 2026) : la situation du restaurateur à qui l'offre s'adresse, sous « Pour vous si ».
+  pourVous: string;
   recommandee?: boolean;
-  base?: string;
-  inclus: string[];
+  // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).
+  base: string;
+  inclus: LigneOffre[];
 }
+
+// Une ligne de la carte d'une offre ; `bientot` : promise par l'offre mais pas encore dans l'app (étiquette « Bientôt »).
+export type LigneOffre = string | { texte: string; bientot: true };
 
 export const OFFRES: Offre[] = [
   // Répartition revue le 6 octobre 2026 (demande de Tom) : Essentiel pour suivre et améliorer un restaurant ; Pro pour que
   // Deliview agisse (promos, prix, fraude client) sur 3 restaurants ; Groupe (identifiant « premium », gardé par l'app et
   // Stripe) pour un réseau, avec un point chaque mois avec Tom. Les limites ne sont pas encore appliquées dans l'app.
+  // Page Tarifs refaite le 7 octobre 2026 (demande de Tom : « répartit les features de manière simple, écrite de manière
+  // concise ») : mêmes fonctionnalités, en lignes courtes ; Essentiel = vous suivez tout, Pro = Deliview agit pour vous,
+  // Groupe = un point chaque mois avec Tom. `pour` reste le texte de l'accueil et de llms.txt.
   {
     slug: 'essentiel',
     nom: 'Essentiel',
@@ -652,13 +661,15 @@ export const OFFRES: Offre[] = [
     restaurants: '1 restaurant',
     maxRestaurants: 1,
     pour: 'Suivez et améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo',
+    pourVous: 'Vous avez un restaurant et voulez voir où vous perdez de l’argent.',
+    base: 'Inclus :',
     inclus: [
-      'Vos ventes Uber Eats et Deliveroo sur un seul écran',
-      'Vos prix comparés à ceux de vos concurrents',
+      'Vos ventes Uber Eats et Deliveroo réunies',
+      'Vos prix face à vos concurrents',
       'Les promos et les notes de votre zone',
-      'Une réponse rédigée par l’IA pour chaque avis',
-      'Alerte si vous êtes fermé en plein service',
-      'Vos objectifs, et le point chaque lundi',
+      'Une réponse IA pour chaque avis',
+      'Une alerte si vous êtes fermé en plein service',
+      'Vos objectifs et le point du lundi',
       '2 accès',
     ],
   },
@@ -669,14 +680,18 @@ export const OFFRES: Offre[] = [
     restaurants: 'Jusqu’à 3 restaurants',
     maxRestaurants: 3,
     pour: 'Pilotez et améliorez votre rentabilité : Deliview agit pour vous sur les promos, les prix et la fraude client',
+    pourVous: 'Vous n’avez pas le temps de gérer vos promos, vos prix et vos remboursements.',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
+    // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
+    // Essentiel, une analyse par semaine), ajoutés à la page le 7 octobre pour qu'aucune limite ne soit cachée.
     inclus: [
-      'Promos conseillées, mises en ligne pour vous',
-      'Nouveaux prix mis en ligne pour vous',
-      'Remboursements Uber Eats et Deliveroo contestés en un clic',
+      'Promos et prix mis en ligne, après votre accord',
+      'Remboursements contestés en un clic',
       'Restaurant fermé relancé en un clic',
-      'Assistant IA et rapport pour vos équipes',
+      'Votre zone analysée à la demande',
+      'Les concurrents de votre choix',
+      'Assistant IA et rapport d’équipe',
       '10 accès',
     ],
   },
@@ -687,8 +702,10 @@ export const OFFRES: Offre[] = [
     restaurants: 'Jusqu’à 10 restaurants',
     maxRestaurants: 10,
     pour: 'Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom',
+    pourVous: 'Vous gérez plusieurs restaurants et voulez faire le point chaque mois avec Tom.',
     base: 'Tout Pro, plus :',
-    inclus: ['Un point chaque mois avec Tom', 'L’historique de vos décisions de prix', 'Accès illimités'],
+    // L'historique des décisions de prix n'a pas encore d'écran dans l'app (offres-app-2026-10-04) : « Bientôt ».
+    inclus: ['Un point chaque mois avec Tom', { texte: 'L’historique de vos décisions de prix', bientot: true }, 'Des accès illimités'],
   },
 ];
 
