@@ -227,12 +227,14 @@ const logiciel = {
             const Icone = ICONES_OFFRES[o.slug] ?? Courbe;
             const soit = parRestaurant(o);
             return (
-              <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-12 flex-col ${o.recommandee ? 'dv-offre-pro' : ''}`}>
+              <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-12 flex-col md:grid md:grid-cols-[1fr_1.15fr] lg:flex ${o.recommandee ? 'dv-offre-pro' : ''}`}>
                 {o.recommandee && (
                   <p class="dv-offre-bandeau" aria-hidden="true">
                     Recommandé
                   </p>
                 )}
+                {/* Tablette (cartes empilées, larges) : l'offre à gauche, ce qu'elle contient à droite. */}
+                <div class="flex flex-col">
                 <div class="flex items-center gap-3.5">
                   <span class="dv-tuile dv-tuile-petite">
                     <Icone taille={32} />
@@ -260,8 +262,9 @@ const logiciel = {
                   Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
                 </a>
                 <p class="mt-3 text-center text-[15px] leading-[1.4] dv-muted">Rien à payer aujourd’hui</p>
-                <div class="mt-6 border-t border-grey-2/15" aria-hidden="true" />
-                <p class="mt-5 text-balance text-[16px] font-bold leading-[1.4]">{o.base}</p>
+                </div>
+                <div class="dv-offre-contenu">
+                <p class="text-balance text-[16px] font-bold leading-[1.4]">{o.base}</p>
                 <ul class="dv-offre-liste mt-3 grid gap-2.5 text-[16px] leading-[1.45]">
                   {o.inclus.map((x) => (
                     <li class="flex gap-2.5">
@@ -276,6 +279,7 @@ const logiciel = {
                     </li>
                   ))}
                 </ul>
+                </div>
               </li>
             );
           })
@@ -331,13 +335,14 @@ const logiciel = {
         {
           fuites.map(({ icone: Icone, titre, constat, source, toutes, pro }) => (
             <li class="dv-relief flex flex-col p-5 md:p-7">
-              <div class="flex items-center gap-3.5">
+              <!-- Téléphone : l'icône à côté du titre (carte plus courte) ; à partir de 768 px, au-dessus (cartes étroites). -->
+              <div class="flex items-center gap-3.5 md:flex-col md:items-start md:gap-5">
                 <span class="dv-tuile dv-tuile-petite">
                   <Icone taille={32} />
                 </span>
                 <h3 class="dv-h3">{titre}</h3>
               </div>
-              <p class="mt-4 text-[16px] leading-[1.55]" set:html={constat} />
+              <p class="mt-4 text-[16px] leading-[1.55] md:mt-3" set:html={constat} />
               {source && <p class="mt-2 text-[14px] leading-[1.45] dv-muted" set:html={source} />}
               <div class="mt-auto pt-5">
                 <dl class="dv-fuite-offres">
@@ -540,6 +545,23 @@ const logiciel = {
     line-height: 1.5;
     white-space: nowrap;
     vertical-align: 1px;
+  }
+
+  /* Contenu de l'offre : sous un trait (téléphone, ordinateur) ; à droite d'un trait vertical sur tablette. */
+  .dv-offre-contenu {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--dv-bord);
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .dv-offre-contenu {
+      margin-top: 0;
+      margin-left: 28px;
+      padding-top: 0;
+      padding-left: 28px;
+      border-top: 0;
+      border-left: 1px solid var(--dv-bord);
+    }
   }
 
   /* Prix ramené au restaurant, sous le prix (place réservée sur ordinateur pour aligner les boutons). */
