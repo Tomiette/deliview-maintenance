@@ -284,19 +284,22 @@ const logiciel = {
         }
       </ul>
 
-      <!-- Au-delà de 10 restaurants : la bulle de Tom, comme sur l'accueil ; puis l'autre chemin, voir avant de choisir. -->
-      <div class="mt-12 flex flex-col items-center gap-7 md:mt-14">
-        <div class="dv-bulle-groupe">
-          <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
-          <p class="dv-bulle-groupe-message">
-            <span class="dv-bulle-groupe-question">Plus de 10&nbsp;restaurants&nbsp;?</span>
-            <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-plus-de-10">Parlons-en<Fleche taille={24} /></a>
-          </p>
+      <!-- Sous les offres (7 octobre 2026, demande de Tom : « qu'on comprenne mieux ») : deux cas, deux cartes de même poids,
+           chacune avec sa question, une phrase qui dit ce qui se passe, et son lien. -->
+      <div class="mx-auto mt-12 grid max-w-[880px] gap-4 md:mt-14 md:grid-cols-2 md:gap-5">
+        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
+          <div class="flex items-center gap-3">
+            <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
+            <h2 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Plus de 10&nbsp;restaurants&nbsp;?</h2>
+          </div>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre sur mesure pour tout votre groupe.</p>
+          <a href={lien('/demo/')} class="dv-lien-fort mt-4 self-start" data-cta="tarifs-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
         </div>
-        <p class="flex max-w-[640px] flex-col items-center text-center text-[17px] leading-[1.5] md:text-[18px]">
-          Vous préférez voir Deliview sur votre restaurant avant de choisir&nbsp;?
-          <a href={lien('/demo/')} class="dv-lien-fort" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
-        </p>
+        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
+          <h2 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Pas encore décidé&nbsp;?</h2>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Voyez Deliview sur votre propre restaurant avant de choisir une offre.</p>
+          <a href={lien('/demo/')} class="dv-lien-fort mt-4 self-start" data-cta="tarifs-voir-avant">Demander une démo gratuite<Fleche taille={24} /></a>
+        </div>
       </div>
       <p class="mt-6 text-center text-[14px] dv-muted">
         Prix HT. Abonnement soumis aux <a href={lien('/cgv/')}>conditions générales de vente</a>.
