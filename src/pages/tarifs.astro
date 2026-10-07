@@ -104,14 +104,15 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
   {
     groupe: 'Vos chiffres et votre zone',
     lignes: [
-      { libelle: 'Vos ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Vos prix face à vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Les promos et les notes de votre zone', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Votre zone analysée', valeurs: ['Jusqu’à 1 fois par semaine', 'À la demande', 'À la demande'] },
-      { libelle: 'Les concurrents de votre choix', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Une réponse IA pour chaque avis', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Une alerte si vous êtes fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Vos objectifs et le point du lundi', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Vos prix face aux concurrents', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Promos et notes de votre zone', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Remboursements et dates limites', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Analyses de zone', valeurs: ['1 par semaine', 'À la demande', 'À la demande'] },
+      { libelle: 'Concurrents de votre choix', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Réponses IA à vos avis', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Alerte si fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Objectifs et point du lundi', valeurs: ['oui', 'oui', 'oui'] },
     ],
   },
   {
@@ -128,8 +129,7 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
     lignes: [
       { libelle: 'Restaurants', valeurs: ['1', 'Jusqu’à 3', 'Jusqu’à 10'] },
       { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
-      { libelle: 'Un point chaque mois avec Tom', valeurs: ['non', 'non', 'oui'] },
-      { libelle: 'L’historique de vos décisions de prix', valeurs: ['non', 'non', 'bientot'] },
+      { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'non', 'oui'] },
     ],
   },
 ];
@@ -146,8 +146,8 @@ const faq = [
     r: 'Non. La mise en place est offerte et aucune option n’est payante. Vous payez chaque mois le prix de votre offre, plus la TVA.',
   },
   {
-    q: 'Est-ce que je paie aujourd’hui ?',
-    r: 'Non. Tom vous appelle d’abord et ouvre votre compte avec vous. Vous vous abonnez ensuite en ligne, avec le lien de paiement qu’il vous envoie.',
+    q: 'Quand est-ce que je paie ?',
+    r: 'Une fois votre compte ouvert avec Tom. Il vous envoie le lien de paiement et vous vous abonnez en ligne.',
   },
   {
     q: 'Comment se passe le paiement ?',

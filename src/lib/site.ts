@@ -532,6 +532,10 @@ export const OFFRES: Offre[] = [
   // Page Tarifs refaite le 7 octobre 2026 (demande de Tom : « répartit les features de manière simple, écrite de manière
   // concise ») : mêmes fonctionnalités, en lignes courtes ; Essentiel = vous suivez tout, Pro = Deliview agit pour vous,
   // Groupe = un point chaque mois avec Tom. `pour` reste le texte de l'accueil et de llms.txt.
+  // 7 octobre 2026, 19 h 21 (demande de Tom : « répartis correctement les features de l'app, simple, concis, pas de
+  // features bientôt ») : la répartition de l'app (app/src/lib/offre.ts), une ligne courte par fonction ; Essentiel
+  // montre aussi ses remboursements et sa limite d'analyse (1 par semaine) ; l'historique des prix, pas encore dans
+  // l'app, est retiré.
   {
     slug: 'essentiel',
     nom: 'Essentiel',
@@ -542,12 +546,14 @@ export const OFFRES: Offre[] = [
     pourVous: 'Vous avez un restaurant et voulez voir où vous perdez de l’argent.',
     base: 'Inclus :',
     inclus: [
-      'Vos ventes Uber Eats et Deliveroo réunies',
-      'Vos prix face à vos concurrents',
-      'Les promos et les notes de votre zone',
-      'Une réponse IA pour chaque avis',
-      'Une alerte si vous êtes fermé en plein service',
-      'Vos objectifs et le point du lundi',
+      'Ventes Uber Eats et Deliveroo réunies',
+      'Vos prix face aux concurrents',
+      'Promos et notes de votre zone',
+      'Remboursements et dates limites',
+      'Réponses IA à vos avis',
+      'Alerte si fermé en plein service',
+      'Objectifs et point du lundi',
+      '1 analyse de zone par semaine',
       '2 accès',
     ],
   },
@@ -567,8 +573,8 @@ export const OFFRES: Offre[] = [
       'Promos et prix mis en ligne, après votre accord',
       'Remboursements contestés en un clic',
       'Restaurant fermé relancé en un clic',
-      'Votre zone analysée à la demande',
-      'Les concurrents de votre choix',
+      'Analyses de zone à la demande',
+      'Concurrents de votre choix',
       'Assistant IA et rapport d’équipe',
       '10 accès',
     ],
@@ -582,8 +588,7 @@ export const OFFRES: Offre[] = [
     pour: 'Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom',
     pourVous: 'Vous gérez plusieurs restaurants et voulez faire le point chaque mois avec Tom.',
     base: 'Tout Pro, plus :',
-    // L'historique des décisions de prix n'a pas encore d'écran dans l'app (offres-app-2026-10-04) : « Bientôt ».
-    inclus: ['Un point chaque mois avec Tom', { texte: 'L’historique de vos décisions de prix', bientot: true }, 'Des accès illimités'],
+    inclus: ['Point mensuel avec Tom', 'Accès illimités'],
   },
 ];
 

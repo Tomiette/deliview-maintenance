@@ -1,4 +1,4 @@
-Version du 6 octobre 2026.
+Version du 7 octobre 2026.
 
 DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
@@ -244,7 +244,6 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 | Contestation des remboursements Uber Eats | Non | Oui | Oui |
 | Réouverture du restaurant à la demande du Client | Non | Oui | Oui |
 | Assistant et rapport | Non | Oui | Oui |
-| Historique des décisions de prix | Non | Non | Oui |
 | Utilisateurs | 2 | 10 | Sans limite fixe |
 | Point mensuel avec Deliview | Non | Non | Oui |
 | Mise en place | Offerte | Offerte | Offerte |
