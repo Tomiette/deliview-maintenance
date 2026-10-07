@@ -34,8 +34,6 @@ import BoutiqueArret from '../icons/boutique-arret.astro';
 import TicketIcone from '../icons/ticket.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
 import Chef from '../icons/chef.astro';
-import Pieces from '../icons/pieces.astro';
-import Duo from '../icons/duo.astro';
 import OffreEssentiel from '../icons/offre-essentiel.astro';
 import OffrePro from '../icons/offre-pro.astro';
 import OffreGroupe from '../icons/offre-groupe.astro';
@@ -46,11 +44,8 @@ const description = `Trois offres selon vos restaurants sur Uber Eats et Deliver
 // Une icône par offre, dessinée pour Deliview (7 octobre 2026, demande de Tom) : la même boutique, et ce que l'offre
 // ajoute en bleu. Essentiel : la loupe (vous voyez) ; Pro : deux boutiques et l'étincelle de l'IA (Deliview agit) ;
 // Groupe : deux boutiques et la bulle (le point chaque mois avec Tom).
-// Sur l'aperçu seulement tant que Tom ne les a pas validés ; le site en ligne garde les anciennes icônes.
-const apercu = import.meta.env.BASE_URL !== '/';
-const ICONES_OFFRES: Record<string, typeof Courbe> = apercu
-  ? { essentiel: OffreEssentiel, pro: OffrePro, premium: OffreGroupe }
-  : { essentiel: Courbe, pro: Pieces, premium: Duo };
+// Validées par Tom le 7 octobre 2026 (21 h 58) : en ligne partout.
+const ICONES_OFFRES: Record<string, typeof Courbe> = { essentiel: OffreEssentiel, pro: OffrePro, premium: OffreGroupe };
 
 // Prix ramené au restaurant, pour les offres à plusieurs restaurants (« soit 66,33 € par restaurant si vous en avez 3 »).
 const parRestaurant = (o: (typeof OFFRES)[number]) =>
