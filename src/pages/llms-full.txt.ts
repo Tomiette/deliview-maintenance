@@ -3,7 +3,8 @@
 // Généré au build à partir des mêmes données que les pages.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { LEVIERS, OFFRES, PILIERS, SITE, VEILLE } from '../lib/site';
+import { LEVIERS, OFFRES, SITE, VEILLE, cheminFonction } from '../lib/site';
+import { PAGES } from '../lib/fonctions';
 import { FAQ, FAQ_MAJ, texteBrut } from '../lib/faq';
 
 export const GET: APIRoute = async () => {
@@ -23,9 +24,28 @@ export const GET: APIRoute = async () => {
     '',
     '## Ce que fait Deliview',
     '',
-    ...LEVIERS.map((l) => `- ${l.nom} (${u(`/solution/#${l.id}`)}) : ${l.benefice} ${l.points.join(' · ')}.`),
-    ...VEILLE.map((v) => `- ${v.nom.replace(/ \?$/, '')} (${u(`/solution/#${v.id}`)}) : ${v.texte}`),
-    ...PILIERS.map((p) => `- ${p.surtitre} (${u(`/solution/${p.slug}/`)}) : ${p.phrase}`),
+    ...LEVIERS.map((l) => `- ${l.nom} (${u(cheminFonction(l.id))}) : ${l.benefice} ${l.points.join(' · ')}.`),
+    ...VEILLE.map((v) => `- ${v.nom.replace(/ \?$/, '')} (${u(cheminFonction(v.id))}) : ${v.texte}`),
+    '',
+    '## Les fonctions en détail',
+    '',
+    ...[...LEVIERS.map((l) => ({ id: l.id, nom: l.nom })), ...VEILLE.map((v) => ({ id: v.id, nom: v.nom.replace(/ \?$/, '') }))].flatMap(({ id, nom }) => {
+      const p = PAGES[id];
+      const offre = [p.offres.toutes && `Toutes les offres : ${p.offres.toutes}`, p.offres.pro && `${p.offres.toutes ? 'En plus avec Pro et Groupe' : 'Avec Pro et Groupe'} : ${p.offres.pro}`].filter(Boolean).join(' ');
+      return [
+        `### ${nom} (${u(cheminFonction(id))})`,
+        '',
+        `${p.h1}. ${p.lead}`,
+        '',
+        ...p.etapes.map((e, i) => `${i + 1}. ${e.titre} : ${e.texte}`),
+        '',
+        `${texteBrut(p.regles.titre)} : ${texteBrut(p.regles.points.join(' '))}`,
+        '',
+        offre,
+        '',
+        ...p.faq.flatMap((x) => [`**${x.q}**`, texteBrut(x.r), '']),
+      ];
+    }),
     '',
     '## Tarifs (HT par mois, sans engagement, mise en place offerte)',
     '',

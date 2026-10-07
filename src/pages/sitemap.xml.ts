@@ -5,7 +5,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { execFileSync } from 'node:child_process';
-import { PILIERS, PLATEFORMES, SITE } from '../lib/site';
+import { FONCTIONS, PLATEFORMES, SITE, cheminFonction } from '../lib/site';
 
 const aujourdhui = () => new Date().toISOString().slice(0, 10);
 
@@ -52,7 +52,8 @@ export const GET: APIRoute = async () => {
   const repli = aujourdhui();
   const urls = [
     ...PAGES.map((p) => ({ loc: p.loc, lastmod: dateDe(p.sources) || repli })),
-    ...PILIERS.map((p) => ({ loc: `/solution/${p.slug}/`, lastmod: dateDe(['src/pages/solution/[slug].astro', SITE_TS]) || repli })),
+    // Pages des fonctions (7 octobre 2026) : le gabarit, leur contenu et les données du site.
+    ...FONCTIONS.map((f) => ({ loc: cheminFonction(f.id), lastmod: dateDe(['src/pages/solution/[slug].astro', 'src/lib/fonctions.ts', SITE_TS]) || repli })),
     ...PLATEFORMES.map((p) => ({ loc: `/integrations/${p.slug}/`, lastmod: dateDe(['src/pages/integrations/[slug].astro', SITE_TS]) || repli })),
     ...articles.map((a) => ({ loc: `/ressources/${a.id}/`, lastmod: a.data.misAJourLe.toISOString().slice(0, 10) })),
   ];

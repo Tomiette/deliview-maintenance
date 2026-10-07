@@ -24,7 +24,7 @@ import Fleche from '../icons/fleche.astro';
 import Coche from '../icons/coche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
-import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
+import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, cheminFonction, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
 
 // Le quotidien : trois constats du terrain (textes de Tom, 6 octobre 2026 : promo, fraude client, prix).
 const constats = [
@@ -33,13 +33,14 @@ const constats = [
   { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent direct vend la même pizza plus cher, et vous ne le voyez pas. Vous perdez de la marge sur chaque commande.' },
 ];
 
-// La bascule : l'accueil de l'app (compte de démonstration « Pizza Démo », 6 octobre 2026, demande de Tom).
+// La bascule : l'accueil de l'app (compte de démonstration « Pizza Démo », 6 octobre 2026, demande de Tom). Refaite le
+// 7 octobre sur l'app du jour (l'ancienne montrait une contestation « demandée il y a 37 h », contraire à « sous 10 min »).
 const captureAccueil: CaptureApp = {
   src: '/images/scene-accueil',
   largeurs: [800, 1200, 1600],
   largeur: 1600,
   hauteur: 1000,
-  alt: `Accueil de Deliview : ce que Deliview vous a rapporté (443 €, Uber Eats et Deliveroo), puis À faire : récupérez 86,40 € retirés par Uber Eats, 3 remboursements, et ce que Deliview applique pour vous. ${DEMO}`,
+  alt: `Accueil de Deliview : 961 € de ventes du jour, dont 670 € sur Uber Eats et 291 € sur Deliveroo, les ventes au fil de la journée, puis À faire : récupérez 86,40 € retirés par Uber Eats ; en cours, un prix validé que Deliview applique sous 10 min. ${DEMO}`,
 };
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : les trois leviers (LEVIERS) avec une vraie carte de l'app
 // chacun, puis ce que Deliview surveille pour vous (VEILLE). Uniquement des fonctions en ligne dans l'app.
@@ -166,16 +167,17 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
       <div class="dv-bascule-tablette">
         <Scene3D capture={captureAccueil} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
           <Flottant x={2} y={2} xm={0} ym={2} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
-          <Flottant x={-3} y={60} xm={0} ym={68} droite z={15} duree={6.8} delai={-2}>
+          <!-- Chaque bulle sur sa carte : À faire (86,40 €) en bas à gauche, En cours (le prix validé) à droite. -->
+          <Flottant x={-4} y={72} xm={-2} ym={70} z={15} duree={6.8} delai={-2}>
             <div class="dv-bulle">
               <p class="dv-bulle-chiffre">86,40&nbsp;€</p>
               <p class="dv-bulle-texte">à contester</p>
             </div>
           </Flottant>
-          <Flottant x={-4} y={74} xm={0} ym={76} z={12} duree={7.2} delai={-4} bureau>
+          <Flottant x={-3} y={64} xm={0} ym={76} droite z={12} duree={7.2} delai={-4} bureau>
             <div class="dv-bulle">
-              <p class="dv-bulle-sur">Votre creux</p>
-              <p class="dv-bulle-titre">le mardi midi</p>
+              <p class="dv-bulle-sur">Prix validé</p>
+              <p class="dv-bulle-titre">appliqué sous 10&nbsp;min</p>
             </div>
           </Flottant>
         </Scene3D>
@@ -185,14 +187,15 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
 
   <!-- Fonctionnalités (refaites le 6 octobre 2026, demande de Tom : claires, simples, sans trop de texte) : les trois
        leviers de rentabilité, chacun avec son ticket (l'essentiel en un coup d'œil, chiffres des vraies captures),
-       puis ce que Deliview surveille pour vous, une ligne chacun. -->
+       puis ce que Deliview surveille pour vous, une ligne chacun. Depuis le 7 octobre 2026, chaque carte mène à la page
+       de sa fonction. -->
   <section class="dv-section bg-grey dv-points" aria-labelledby="fonctions-titre">
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Ce que fait Deliview</p>
       <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Plus de rentabilité sur votre activité livraison</h2>
       <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Chaque action est chiffrée, restaurant par restaurant. Vous savez ce qu’elle vous rapporte avant de la lancer.</p>
       <ul class="mt-8 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
-        {LEVIERS.map((l) => <CarteLevier levier={l} href={`/solution/#${l.id}`} />)}
+        {LEVIERS.map((l) => <CarteLevier levier={l} href={cheminFonction(l.id)} />)}
       </ul>
       <h3 class="mt-12 font-accent text-[21px] font-bold leading-[1.25] md:mt-16 md:text-[24px]">Et Deliview surveille le reste</h3>
       <ul class="mt-5 grid gap-4 sm:grid-cols-2 md:mt-6 lg:grid-cols-4">
@@ -200,12 +203,14 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
           VEILLE.map((v) => {
             const Icone = ICONES[v.icone];
             return (
-              <li class="dv-relief dv-veille">
+              <li class="dv-relief dv-relief-lien dv-veille">
                 <span class="dv-tuile dv-tuile-petite">
                   <Icone taille={24} />
                 </span>
                 <div class="min-w-0">
-                  <h4 class="font-accent text-[18px] font-bold leading-[1.3]">{v.nom}</h4>
+                  <h4 class="font-accent text-[18px] font-bold leading-[1.3]">
+                    <a href={lien(cheminFonction(v.id))} class="dv-pilier-lien">{v.nom}</a>
+                  </h4>
                   <p class="mt-1 text-[16px] leading-[1.45] dv-muted">{v.phrase}</p>
                 </div>
               </li>

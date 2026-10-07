@@ -9,14 +9,14 @@ import BoutonDemo from './BoutonDemo.astro';
 import Menu from '../icons/menu.astro';
 import { ICONES, type NomIcone } from '../lib/registre-icones';
 import Fleche from '../icons/fleche.astro';
-import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, lien } from '../lib/site';
+import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, cheminFonction, lien } from '../lib/site';
 
 // Menu Solution (6 octobre 2026, demande de Tom) : à gauche les trois leviers de rentabilité en grand, à droite ce que
-// Deliview surveille pour vous, en compact ; en bas, toute la solution et le simulateur. Chaque entrée mène à sa section
-// de la page Solution.
+// Deliview surveille pour vous, en compact ; en bas, toute la solution et le simulateur. Depuis le 7 octobre 2026, chaque
+// entrée mène à la page de sa fonction (/solution/<slug>/).
 const ressources = MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase, icone: r.icone as NomIcone }));
-const leviers = LEVIERS.map((l) => ({ href: `/solution/#${l.id}`, titre: l.nom, phrase: l.menu, icone: l.icone }));
-const veille = VEILLE.map((v) => ({ href: `/solution/#${v.id}`, titre: v.nom.replace(/ \?$/, ''), phrase: v.menu, icone: v.icone }));
+const leviers = LEVIERS.map((l) => ({ href: cheminFonction(l.id), titre: l.nom, phrase: l.menu, icone: l.icone }));
+const veille = VEILLE.map((v) => ({ href: cheminFonction(v.id), titre: v.nom.replace(/ \?$/, ''), phrase: v.menu, icone: v.icone }));
 // Page en cours (sans la base de l'aperçu), pour marquer l'entrée active de la navigation.
 const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
 const actif = (href: string) => chemin === href;
@@ -52,7 +52,7 @@ const dansMenu = (menu: string) =>
                               const Icone = ICONES[x.icone];
                               return (
                                 <li>
-                                  <a href={lien(x.href)} class="flex gap-3 rounded-xl p-3 hover:bg-grey">
+                                  <a href={lien(x.href)} class="flex gap-3 rounded-xl p-3 hover:bg-grey" aria-current={actif(x.href) ? 'page' : undefined}>
                                     <span class="dv-tuile dv-tuile-petite"><Icone taille={32} /></span>
                                     <span class="whitespace-normal">
                                       <span class="block font-semibold leading-snug">{x.titre}</span>
@@ -71,7 +71,7 @@ const dansMenu = (menu: string) =>
                               const Icone = ICONES[x.icone];
                               return (
                                 <li>
-                                  <a href={lien(x.href)} class="flex items-start gap-3 rounded-xl px-3 py-2.5 hover:bg-white">
+                                  <a href={lien(x.href)} class="flex items-start gap-3 rounded-xl px-3 py-2.5 hover:bg-white" aria-current={actif(x.href) ? 'page' : undefined}>
                                     <Icone taille={24} />
                                     <span class="whitespace-normal">
                                       <span class="block font-semibold leading-snug">{x.titre}</span>
@@ -139,7 +139,7 @@ const dansMenu = (menu: string) =>
                 const Icone = ICONES[x.icone];
                 return (
                   <li>
-                    <a href={lien(x.href)} class="flex min-h-12 items-center gap-3 border-b border-grey-2/10 py-2 font-semibold">
+                    <a href={lien(x.href)} class="flex min-h-12 items-center gap-3 border-b border-grey-2/10 py-2 font-semibold" aria-current={actif(x.href) ? 'page' : undefined}>
                       <Icone taille={32} />
                       {x.titre}
                     </a>
@@ -154,7 +154,7 @@ const dansMenu = (menu: string) =>
                 const Icone = ICONES[x.icone];
                 return (
                   <li>
-                    <a href={lien(x.href)} class="flex min-h-12 items-center gap-2 rounded-[12px] bg-grey px-3 py-2 text-[15px] font-semibold leading-snug">
+                    <a href={lien(x.href)} class="flex min-h-12 items-center gap-2 rounded-[12px] bg-grey px-3 py-2 text-[15px] font-semibold leading-snug" aria-current={actif(x.href) ? 'page' : undefined}>
                       <Icone taille={24} />
                       {x.titre}
                     </a>

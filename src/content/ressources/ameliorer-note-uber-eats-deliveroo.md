@@ -149,7 +149,7 @@ Deliveroo met en avant ceux qui ont reçu « les meilleurs avis des utilisateur
 
 Regardez aussi le nombre de notes : une moyenne établie sur 15 notes bouge bien plus vite qu’une moyenne sur 500. Et gardez un œil sur les seuils propres aux plateformes, comme le score de réussite d’Uber Eats ou le Score Confiance de Deliveroo.
 
-Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme : voir [votre note face à celles de votre zone](/solution/reputation/).
+Deliview compare votre note et votre nombre d’avis à ceux des restaurants de votre zone, plateforme par plateforme : voir [votre note face à celles de votre zone](/solution/avis/#note).
 
 ## Par où commencer cette semaine ?
 

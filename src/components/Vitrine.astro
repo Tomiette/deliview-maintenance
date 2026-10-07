@@ -22,10 +22,12 @@ interface Props {
   decoratif?: boolean;
   // Coins du plateau : tous (section) ou seulement ceux du haut (en tête de carte).
   coins?: 'tous' | 'haut';
+  // Image du haut de page (pages des fonctions) : chargée tout de suite.
+  priorite?: boolean;
   class?: string;
 }
 
-const { type, capture, ratio, ratioMobile, place, placeMobile, bulles = [], coupe = false, sizes, decoratif = false, coins = 'tous', class: classe = '' } = Astro.props;
+const { type, capture, ratio, ratioMobile, place, placeMobile, bulles = [], coupe = false, sizes, decoratif = false, coins = 'tous', priorite = false, class: classe = '' } = Astro.props;
 const m = placeMobile ?? place;
 const style = [
   `--ratio:${ratio}`,
@@ -44,7 +46,7 @@ const style = [
 <figure class={`dv-vitrine dv-vitrine-${type} ${coupe ? 'dv-vitrine-coupe' : ''} dv-vitrine-coins-${coins} ${classe}`} style={style}>
   <div class="dv-vitrine-cadre">
     <div class="dv-vitrine-appareil">
-      <Appareil type={type} capture={capture} sizes={sizes} decoratif={decoratif} />
+      <Appareil type={type} capture={capture} sizes={sizes} decoratif={decoratif} priorite={priorite} />
     </div>
     {
       bulles.map((b, i) => (

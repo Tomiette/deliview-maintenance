@@ -110,7 +110,7 @@ Chez Deliveroo, le fait qu’un restaurant « propose actuellement une promotio
 
 Si tous vos voisins affichent 30 % de remise, vos 10 % risquent de passer inaperçus. Si aucun n’affiche d’offre, une remise modeste peut suffire à vous distinguer. Regardez aussi leurs prix de base : une remise sur un plat déjà plus cher que ceux du quartier peut ne pas suffire. Pour cette comparaison, voir [comment analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
 
-Deliview repère les promos affichées par les restaurants de votre secteur, sur Uber Eats et Deliveroo. Il vous montre ce qui a changé depuis l’analyse précédente : nouvelle promo, prix modifié, nouveau concurrent. Voir [vos prix et les promos de votre zone](/solution/prix-et-concurrence/).
+Deliview repère les promos affichées par les restaurants de votre secteur, sur Uber Eats et Deliveroo. Il vous montre ce qui a changé depuis l’analyse précédente : nouvelle promo, prix modifié, nouveau concurrent. Voir [comment Deliview choisit vos promos](/solution/promotions/).
 
 ## Comment tester une promo sans y laisser votre marge ?
 

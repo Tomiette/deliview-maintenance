@@ -1,11 +1,12 @@
 ---
-// Page introuvable : liens utiles vers les piliers et la démo. Refonte en relief du 3 octobre 2026.
+// Page introuvable : liens utiles vers les fonctions et la démo. Refonte en relief du 3 octobre 2026 ; depuis le
+// 7 octobre 2026, les sept fonctions, chacune vers sa page.
 import Base from '../layouts/Base.astro';
 import BoutonDemo from '../components/BoutonDemo.astro';
 import Fleche from '../icons/fleche.astro';
 import Pastille from '../components/Pastille.astro';
 import { ICONES } from '../lib/registre-icones';
-import { PILIERS, lien } from '../lib/site';
+import { FONCTIONS, cheminFonction, lien } from '../lib/site';
 ---
 
 <Base title="Page introuvable | Deliview" description="Cette page n’existe pas ou plus. Retrouvez les fonctionnalités de Deliview ou demandez une démo de 30 minutes." noindex>
@@ -14,17 +15,17 @@ import { PILIERS, lien } from '../lib/site';
       <Pastille>Erreur 404</Pastille>
       <h1 id="introuvable-titre" class="dv-h1 mt-5 md:mt-6">Cette page n’existe pas</h1>
       <p class="dv-lead mt-5">Le lien est peut-être ancien ou mal recopié. Voici où aller.</p>
-      <ul class="mt-8 grid gap-3">
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2">
         {
-          PILIERS.map((p) => {
-            const Icone = ICONES[p.icone];
+          FONCTIONS.map((x) => {
+            const Icone = ICONES[x.icone];
             return (
               <li>
-                <a href={lien(`/solution/${p.slug}/`)} class="dv-card dv-carte-lien flex min-h-12 items-center gap-4 p-4 font-semibold hover:underline">
+                <a href={lien(cheminFonction(x.id))} class="dv-card dv-carte-lien flex min-h-12 items-center gap-4 p-4 font-semibold hover:underline">
                   <span class="dv-tuile dv-tuile-petite">
                     <Icone taille={24} />
                   </span>
-                  {p.surtitre}
+                  {x.nom}
                 </a>
               </li>
             );
@@ -32,7 +33,7 @@ import { PILIERS, lien } from '../lib/site';
         }
       </ul>
       <ul class="mt-6 grid gap-1">
-        <li><a href={lien('/ressources/')} class="dv-lien-fort">Ressources<Fleche taille={24} /></a></li>
+        <li><a href={lien('/ressources/')} class="dv-lien-fort">Blog<Fleche taille={24} /></a></li>
         <li><a href={lien('/')} class="dv-lien-fort">Accueil<Fleche taille={24} /></a></li>
       </ul>
       <BoutonDemo href={lien('/demo/')} cta="404" principal class="mt-10 w-full sm:w-auto" />

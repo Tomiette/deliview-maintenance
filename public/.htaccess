@@ -18,6 +18,10 @@ AddDefaultCharset utf-8
   # Les pages de renvoi restent dans public/ en secours.
   RewriteRule ^integrations/uber-direct/?$ https://www.deliview.fr/integrations/ [R=301,L]
   RewriteRule ^solution/commandes/?$ https://www.deliview.fr/solution/ [R=301,L]
+  # Pages détaillées remplacées par les pages des fonctions (7 octobre 2026).
+  RewriteRule ^solution/carte-et-marge/?$ https://www.deliview.fr/solution/prix/ [R=301,L]
+  RewriteRule ^solution/prix-et-concurrence/?$ https://www.deliview.fr/solution/prix/ [R=301,L]
+  RewriteRule ^solution/reputation/?$ https://www.deliview.fr/solution/avis/ [R=301,L]
 
   # Adresse d'un dossier sans barre finale (/tarifs) : une seule redirection, vers l'adresse publique exacte
   # (la redirection automatique d'Apache ajoutait « :443 » à l'adresse, 4 octobre 2026).

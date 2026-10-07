@@ -85,8 +85,6 @@ export interface CaptureApp {
   alt: string;
 }
 
-// Modèle unique de fonctionnalité (décision de Tom, 2 octobre 2026) : nom, bénéfice en une phrase, 3 points au plus,
-// une vraie capture et un exemple chiffré tiré d'une vraie analyse, anonymisé (restaurant, ville, plateforme, date).
 // Bulle flottante devant une capture : uniquement des chiffres visibles sur cette capture.
 export interface BulleCapture {
   sur?: string;
@@ -98,248 +96,84 @@ export interface BulleCapture {
   texte?: string;
 }
 
-export interface Fonctionnalite {
-  id: string;
-  icone: NomIcone;
-  nom: string;
-  benefice: string;
-  points: string[];
-  capture: CaptureApp;
-  bulle: BulleCapture;
-  exemple: { texte: string; contexte: string };
-}
-
-export interface Pilier {
-  slug: string;
-  // Icône du méga-menu et des cartes.
-  icone: NomIcone;
-  surtitre: string;
-  titre: string;
-  phrase: string;
-  statut: Statut | 'partiel';
-  description: string;
-  meta: { title: string; description: string };
-  fonctionnalites: Fonctionnalite[];
-  // Carte fonctionnalité du pilier (accueil, page Solution) : bénéfice en une phrase, 3 points, vraie capture.
-  // Textes repris des maquettes validées le 2 octobre 2026.
-  carte: { benefice: string; points: string[]; capture: CaptureApp };
-}
-
-const ANALYSE_DU = 'analyse du 1er octobre 2026';
-// Captures de l'app (refonte en relief, 3 octobre 2026) : compte d'essai, analyse réelle d'un restaurant de burgers
-// à Paris (2 octobre 2026), noms anonymisés (« Burger Démo », « Concurrent A, B… »), aucune vente affichée.
+// Captures de l'app : analyse réelle d'un restaurant de burgers à Paris (2 octobre 2026), noms anonymisés
+// (« Burger Démo », « Concurrent A, B… », produits de marque renommés).
 export const ANONYME = 'Restaurant anonymisé.';
 
-export const FONCTIONNALITES: Record<string, Fonctionnalite> = {
-  'pricing-menu': {
-    id: 'pricing-menu',
-    icone: 'etiquette-prix',
-    nom: 'Pricing Menu',
-    benefice: 'Repérez les plats vendus trop bas et ce qu’un meilleur prix rapporte.',
-    points: [
-      'Chaque plat classé : sous-évalué, bien placé ou trop cher',
-      'Un prix proposé dès que 2 concurrents vendent le même plat',
-      'Le gain calculé pour 100 ventes du plat',
-    ],
-    capture: { src: '/images/scene-carte', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Ma carte dans Deliview : 21 plats moins chers que chez les concurrents, 17 plus chers que la zone, puis les plats à monter avec le prix conseillé et le gain, Uber Eats et Deliveroo dans la même liste. ${ANONYME}` },
-    bulle: { sur: 'Dips Bacon · Deliveroo', fleche: ['4,30 €', '5,60 €'], gain: '+1,30 €' },
-    exemple: { texte: 'Margherita à 10,50 €. Médiane de la zone : 15,00 € chez 5 concurrents.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
-  },
-  'optimiseur-menu': {
-    id: 'optimiseur-menu',
-    icone: 'appareil-photo',
-    nom: 'Optimiseur menu',
-    benefice: 'Des fiches de plats qui donnent envie de commander.',
-    points: [
-      'Photos et descriptions passées en revue, plat par plat',
-      'Comparées aux restaurants de votre zone',
-      'Une description proposée par l’IA pour chaque plat',
-    ],
-    capture: { src: '/images/scene-presentation', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Présentation de la carte dans Deliview : 24 plats sur 37 à retravailler sur Uber Eats, par lesquels commencer, puis chaque plat avec ce qui lui manque (description absente ou trop courte). ${ANONYME}` },
-    bulle: { chiffre: '24 plats sur 37', texte: 'à retravailler sur Uber Eats' },
-    exemple: { texte: '8 plats sur 33 sans description, soit 24 %. Chez 9 concurrents : 5 %.', contexte: `Restaurant de burgers à Paris, Deliveroo, ${ANALYSE_DU}` },
-  },
-  'prix-concurrents': {
-    id: 'prix-concurrents',
-    icone: 'loupe-zone',
-    nom: 'Prix des concurrents',
-    benefice: 'Vos prix face à ceux des restaurants qui livrent les mêmes rues.',
-    points: [
-      'Jusqu’à 20 restaurants de votre secteur, avec leur distance',
-      'Chaque plat face au même plat, à taille égale',
-      'Avec l’offre Pro, 3 de ces concurrents choisis par vous',
-    ],
-    capture: { src: '/images/scene-actions', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Actions proposées par Deliview : chaque plat moins cher que chez les concurrents, avec le prix des concurrents pour le même plat et le gain par article ou par commande. ${ANONYME}` },
-    bulle: { sur: 'Milkshake Vanille · Uber Eats', fleche: ['6,40 €', '7,60 €'], gain: '+1,20 € par commande' },
-    exemple: { texte: 'Burger à 14,90 €. Médiane de la zone : 11,15 € chez 9 concurrents.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
-  },
-  'promos-zone': {
-    id: 'promos-zone',
-    icone: 'ticket',
-    nom: 'Promos de la zone',
-    benefice: 'Voyez les offres de vos voisins avant de lancer les vôtres.',
-    points: [
-      'Chaque offre affichée par vos concurrents',
-      'Le prix réellement payé quand la remise est chiffrée',
-      'Ce qui a changé depuis la dernière analyse',
-    ],
-    capture: { src: '/images/scene-promos', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Promotions de la zone dans Deliview : 11 restaurants sur 15 en promo sur Uber Eats, 4 sur 10 sur Deliveroo, les offres les plus courantes et qui les affiche. ${ANONYME}` },
-    bulle: { chiffre: '11 sur 15', texte: 'restaurants en promo sur Uber Eats' },
-    exemple: { texte: '10 concurrents sur 14 affichaient une promo. Le restaurant n’en avait aucune.', contexte: `Restaurant de burgers à Paris, Uber Eats, ${ANALYSE_DU}` },
-  },
-  'note-avis': {
-    id: 'note-avis',
-    icone: 'etoile',
-    nom: 'Note et avis',
-    benefice: 'Votre note face à celle de vos voisins, sur chaque plateforme.',
-    points: [
-      'Votre place au classement des notes de la zone',
-      'Votre nombre d’avis face au leur',
-      'Uber Eats et Deliveroo, chacun de son côté',
-    ],
-    capture: { src: '/images/scene-notes', largeurs: [800, 1200, 1600], largeur: 1600, hauteur: 1000, alt: `Notes de la zone dans Deliview : 4,2 sur Uber Eats (8e sur 14, moyenne de la zone 4,1) et 4,3 sur Deliveroo (4e sur 8), l’écart et le classement par note. ${ANONYME}` },
-    bulle: { chiffre: '4,2', etoile: true, texte: '8e sur 14 · Uber Eats' },
-    exemple: { texte: '4,4 sur 169 avis, pour 4,2 en moyenne dans la zone : 2e sur 5.', contexte: `Pizzeria à Chartres, Deliveroo, ${ANALYSE_DU}` },
-  },
-};
+// Compte de démonstration de l'app (« Pizza Démo », chiffres fictifs) : écrans du 6 octobre 2026.
+export const DEMO = 'Compte de démonstration, chiffres fictifs.';
+// Captures du 7 octobre 2026 qui montrent des ventes : ventes inventées, ajoutées à l'analyse réelle anonymisée.
+export const VENTES_FICTIVES = 'Ventes fictives, concurrents réels anonymisés.';
 
-export const PILIERS: Pilier[] = [
-  {
-    slug: 'carte-et-marge',
-    icone: 'ardoise',
-    surtitre: 'Carte et marge',
-    titre: 'Vendez chaque plat au bon prix',
-    phrase: 'Les plats vendus trop bas repérés, avec un prix proposé et ses sources.',
-    statut: 'disponible',
-    description: 'Chaque plat de votre carte face au même plat dans votre zone. Vous voyez ce qu’un meilleur prix vous rapporte.',
-    meta: {
-      title: 'Optimiser vos prix sur Uber Eats et Deliveroo | Deliview',
-      description:
-        'Chaque plat de votre carte face aux prix de votre zone : sous-évalué, bien placé ou trop cher, avec un prix proposé et ses sources. Demandez une démo.',
-    },
-    fonctionnalites: [FONCTIONNALITES['pricing-menu'], FONCTIONNALITES['optimiseur-menu']],
-    carte: {
-      benefice: FONCTIONNALITES['pricing-menu'].benefice,
-      points: [FONCTIONNALITES['pricing-menu'].points[0], FONCTIONNALITES['pricing-menu'].points[1], 'Photos et descriptions de vos plats passées en revue'],
-      capture: FONCTIONNALITES['pricing-menu'].capture,
-    },
-  },
-  {
-    slug: 'prix-et-concurrence',
-    icone: 'loupe-zone',
-    surtitre: 'Prix et concurrence',
-    titre: 'Vos prix et vos promos face à votre quartier',
-    phrase: 'Les prix et les offres des restaurants autour de vous, plat par plat.',
-    statut: 'disponible',
-    description: 'Jusqu’à 20 restaurants de votre secteur, sur Uber Eats et Deliveroo. Vous voyez leurs prix et leurs promos avant de fixer les vôtres.',
-    meta: {
-      title: 'Prix des concurrents Uber Eats et Deliveroo | Deliview',
-      description:
-        'Vos prix et vos promos face à ceux des restaurants de votre quartier, plat par plat, sur Uber Eats et Deliveroo. Demandez une démo.',
-    },
-    fonctionnalites: [FONCTIONNALITES['prix-concurrents'], FONCTIONNALITES['promos-zone']],
-    carte: {
-      benefice: FONCTIONNALITES['prix-concurrents'].benefice,
-      points: [FONCTIONNALITES['prix-concurrents'].points[0], FONCTIONNALITES['prix-concurrents'].points[1], 'Les promos de vos voisins, avant de lancer les vôtres'],
-      capture: FONCTIONNALITES['prix-concurrents'].capture,
-    },
-  },
-  {
-    slug: 'reputation',
-    icone: 'etoile',
-    surtitre: 'Réputation',
-    titre: 'Votre note face à celles de votre zone',
-    phrase: 'Votre place au classement des notes, sur Uber Eats comme sur Deliveroo.',
-    statut: 'disponible',
-    description: 'Votre note et votre nombre d’avis face aux restaurants autour de vous, plateforme par plateforme.',
-    meta: {
-      title: 'Note Uber Eats et Deliveroo face à votre zone | Deliview',
-      description:
-        'Votre note et votre nombre d’avis comparés aux restaurants de votre zone, sur Uber Eats et Deliveroo. Demandez une démo.',
-    },
-    fonctionnalites: [FONCTIONNALITES['note-avis']],
-    carte: {
-      benefice: FONCTIONNALITES['note-avis'].benefice,
-      points: FONCTIONNALITES['note-avis'].points,
-      capture: FONCTIONNALITES['note-avis'].capture,
-    },
-  },
-];
-
-// Une vraie carte de l'app par pilier (cartes des piliers, articles) et par plateforme (pages Intégrations).
+// Une vraie carte de l'app par fonction (pages des fonctions, articles) et par plateforme (pages Intégrations).
+// Refaites le 7 octobre 2026 sur l'app du jour (demande de Tom : « met à jour […] les photos si c'est nécessaire ») :
+// les cartes du 3 octobre montraient encore l'ancienne app (« Ma carte », « Noter »).
 export const FRAGMENTS: Record<string, CaptureApp> = {
-  'prix-et-concurrence': {
-    src: '/images/frag-action-milkshake',
+  prix: {
+    src: '/images/frag-prix-a-monter',
     largeurs: [400, 800],
     largeur: 800,
-    hauteur: 610,
-    alt: `Action proposée par Deliview : passer un milkshake de 6,40 € à 7,60 €, entre 7,73 € et 8,75 € chez 3 concurrents, soit 1,20 € de plus par commande. ${ANONYME}`,
+    hauteur: 849,
+    alt: `Plats à monter dans Deliview, prix conseillé à mi-chemin de la zone : dips bacon de 4,30 € à 5,60 € sur Deliveroo, soit 1,30 € de plus ; milkshake vanille de 6,40 € à 7,60 € ; sodas de 3,50 € à 4,50 €, avec les prix des concurrents. ${ANONYME}`,
   },
-  'carte-et-marge': {
-    src: '/images/frag-a-monter',
+  promotions: {
+    src: '/images/frag-promo-creux',
     largeurs: [400, 800],
     largeur: 800,
-    hauteur: 596,
-    alt: `Plats à monter dans Deliview, avec les prix des concurrents : dips bacon de 4,30 € à 5,60 €, 1,30 € de plus ; milkshake de 6,40 € à 7,60 €, 1,20 € de plus. ${ANONYME}`,
+    hauteur: 784,
+    alt: `Offre conseillée par Deliview pour remplir un creux : « 1 acheté = 1 offert » le mardi midi, où le restaurant fait 2,8 commandes par jour contre 13,2 les autres midis, avec son coût, les plateformes où elle existe et l’objectif à suivre. ${VENTES_FICTIVES}`,
   },
-  reputation: {
-    src: '/images/frag-notes-ue',
+  avis: {
+    src: '/images/frag-notes-zone',
     largeurs: [400, 800],
     largeur: 800,
-    hauteur: 557,
-    alt: `Note Uber Eats dans Deliview : 4,2 sur plus de 2 000 avis, moyenne de la zone 4,1, 8e sur 14, et la note à atteindre pour entrer dans le top 3. ${ANONYME}`,
+    hauteur: 755,
+    alt: `Note Uber Eats dans Deliview : 4,2 pour plus de 2 000 avis, moyenne de la zone 4,1, à 0,4 point du top 3, puis le classement des restaurants de la zone par note. ${ANONYME}`,
   },
   'uber-eats': {
-    src: '/images/frag-position-ue',
+    src: '/images/frag-classement-ue',
     largeurs: [400, 800],
     largeur: 800,
-    hauteur: 538,
-    alt: `Position Uber Eats dans Deliview : note 4,2, 8e sur 14 (moyenne de la zone 4,1), prix médian 14,40 €, 52 % au-dessus de la zone, aucune offre quand 10 concurrents sur 14 en ont une. ${ANONYME}`,
+    hauteur: 562,
+    alt: `Classement Uber Eats dans Deliview : 8e sur 14 par note dans la zone, note 4,2 pour une moyenne de 4,1, aucune offre quand 10 concurrents sur 14 en ont une, prix 52 % au-dessus de la zone. ${ANONYME}`,
   },
   deliveroo: {
-    src: '/images/frag-position-dr',
+    src: '/images/frag-classement-dr',
     largeurs: [400, 800],
     largeur: 800,
-    hauteur: 538,
-    alt: `Position Deliveroo dans Deliview : note 4,3, 4e sur 8 (moyenne de la zone 4,3), prix médian 12,90 €, 30 % au-dessus de la zone, aucune offre quand 4 concurrents sur 9 en ont une. ${ANONYME}`,
+    hauteur: 562,
+    alt: `Classement Deliveroo dans Deliview : 4e sur 8 par note dans la zone, note 4,3 pour une moyenne de 4,3, aucune offre quand 4 concurrents sur 9 en ont une, prix 30 % au-dessus de la zone. ${ANONYME}`,
   },
-};
-
-// Compte de démonstration de l'app (« Pizza Démo », chiffres fictifs) : captures des écrans qui n'ont pas d'analyse réelle
-// anonymisée (accueil, contestations, résultats des campagnes), 6 octobre 2026.
-export const DEMO = 'Compte de démonstration, chiffres fictifs.';
-FRAGMENTS.contestations = {
-  src: '/images/frag-contestations',
-  largeurs: [400, 800],
-  largeur: 800,
-  hauteur: 677,
-  alt: `À faire dans Deliview : récupérez 86,40 € retirés par Uber Eats, 3 remboursements, premier délai le 30 octobre ; en cours, la contestation d’une commande de 9,90 €. ${DEMO}`,
-};
-FRAGMENTS.campagnes = {
-  src: '/images/frag-campagnes',
-  largeurs: [400, 800],
-  largeur: 800,
-  hauteur: 656,
-  alt: `Vos campagnes sur Uber Eats dans Deliview : la meilleure offre, le retour des annonces, puis chaque offre avec ses ventes, ses commandes et ses nouveaux clients. ${DEMO}`,
+  // Contestations › En cours et Terminées (7 octobre 2026) : envoyées à Uber 5 et 6 min après la demande, une refusée.
+  contestations: {
+    src: '/images/frag-contestations',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 928,
+    alt: `Suivi des contestations dans Deliview : 2 envoyées à Uber Eats, réponse à venir ; 3 terminées, 2 acceptées et 1 refusée par Uber, 41,50 € récupérés. ${DEMO}`,
+  },
+  // Rapport PDF de l'équipe (app du 3 octobre 2026), première page sans son pied de page : restaurant exemple, ventes fictives.
+  rapport: {
+    src: '/images/frag-rapport',
+    largeurs: [400, 800],
+    largeur: 800,
+    hauteur: 1051,
+    alt: 'Rapport de la semaine préparé par Deliview, en PDF : 5 716 € de ventes TTC, 219 commandes, panier moyen 26,10 €, part d’Uber Eats et de Deliveroo, ventes jour par jour, ce qui reste après commission et offres, meilleurs moments et notes des clients. Restaurant exemple, ventes fictives.',
+  },
 };
 
 // Écrans de l'app sur appareils (6 octobre 2026, demande de Tom : « des écrans sur des tablettes, des captures, varier ») :
-// téléphones et tablette du compte de démonstration « Pizza Démo » (app du 6 octobre, chiffres fictifs) ; écrans
-// d'ordinateur (scene-*) tirés de l'analyse réelle anonymisée. Les bulles ne reprennent que des chiffres de leur écran.
+// téléphones et tablette du compte de démonstration « Pizza Démo » (app du 6 octobre, chiffres fictifs). 7 octobre 2026 :
+// Menu › Prix, Promotions (À lancer, La zone), Concurrents › Notes et le classement de l'accueil refaits sur l'app du
+// jour, avec l'analyse réelle anonymisée (« Burger Démo ») ; les anciens écrans d'ordinateur (scene-*) montraient
+// l'app du 3 octobre. Les bulles ne reprennent que des chiffres de leur écran.
 export const ECRANS: Record<string, CaptureApp> = {
   contestations: {
     src: '/images/ecrans/telephone-contestations',
     largeurs: [400, 800],
     largeur: 800,
     hauteur: 1731,
-    alt: `Écran Contestations de Deliview sur téléphone : 86,40 € à récupérer sur 3 remboursements Uber Eats, premier délai le 30 octobre, bouton « Tout contester », puis chaque commande à contester. ${DEMO}`,
-  },
-  avis: {
-    src: '/images/ecrans/telephone-avis',
-    largeurs: [400, 800],
-    largeur: 800,
-    hauteur: 1731,
-    alt: `Écran Avis de Deliview sur téléphone : un avis 2 étoiles sur Deliveroo (« La pizza est arrivée froide ») et la réponse préparée par Deliview, à relire puis envoyer. ${DEMO}`,
+    alt: `Écran Contestations de Deliview sur téléphone : 86,40 € à récupérer sur 3 remboursements Uber Eats, premier délai le 30 octobre, bouton « Tout contester », envoi sous 10 min, puis chaque commande à contester. ${DEMO}`,
   },
   assistant: {
     src: '/images/ecrans/telephone-assistant',
@@ -376,12 +210,40 @@ export const ECRANS: Record<string, CaptureApp> = {
     hauteur: 875,
     alt: `Écran Objectifs de Deliview sur ordinateur : 5 458 € de ventes sur 6 000 € visés cette semaine (90 %), 216 commandes sur 230 (93 %), panier moyen 25,27 € sur 26 € (97 %). ${DEMO}`,
   },
-  promotions: {
-    src: '/images/ecrans/tablette-promotions',
+  prix: {
+    src: '/images/ecrans/navigateur-prix',
+    largeurs: [800, 1200, 1600],
+    largeur: 1600,
+    hauteur: 1000,
+    alt: `Écran Menu › Prix de Deliview sur ordinateur : 21 plats moins chers que la zone, jusqu’à 1,30 € de plus par commande ; en premier, passez 4 boissons à 4,50 €. Puis chaque plat à monter, avec le prix de la zone, celui des concurrents et le prix conseillé, Uber Eats et Deliveroo dans la même liste. ${ANONYME}`,
+  },
+  promotionsLancer: {
+    src: '/images/ecrans/tablette-promotions-lancer',
     largeurs: [600, 1100],
     largeur: 1100,
-    hauteur: 1583,
-    alt: `Écran Promotions de Deliview sur tablette : vos campagnes Uber Eats, la meilleure offre (article gratuit dès 20 €, 1 100 € de ventes, 20 nouveaux clients) et le bilan de chaque offre. ${DEMO}`,
+    hauteur: 1467,
+    alt: `Écran Promotions de Deliview sur tablette : l’offre à lancer pour remplir un creux, « 1 acheté = 1 offert » le mardi midi (2,8 commandes par jour contre 13,2 les autres midis), son coût, les plateformes où elle existe, l’objectif à suivre et le bouton « Programmer cette offre ». ${VENTES_FICTIVES}`,
+  },
+  promotionsZone: {
+    src: '/images/ecrans/navigateur-promotions-zone',
+    largeurs: [800, 1200, 1600],
+    largeur: 1600,
+    hauteur: 1000,
+    alt: `Écran Promotions › La zone de Deliview sur ordinateur : sur Uber Eats, 11 restaurants sur 15 ont une offre, le plus souvent « 1 acheté = 1 offert » ; sur Deliveroo, 4 sur 10 ; chaque type d’offre avec les concurrents qui l’affichent. ${ANONYME}`,
+  },
+  notes: {
+    src: '/images/ecrans/navigateur-notes',
+    largeurs: [800, 1200, 1600],
+    largeur: 1600,
+    hauteur: 1000,
+    alt: `Écran Concurrents › Notes de Deliview sur ordinateur : 4,2 sur Uber Eats (8e sur 14, moyenne de la zone 4,1) et 4,3 sur Deliveroo (4e sur 8), l’écart avec le top 3 et le classement des restaurants par note. ${ANONYME}`,
+  },
+  classement: {
+    src: '/images/ecrans/navigateur-classement',
+    largeurs: [800, 1200, 1600],
+    largeur: 1600,
+    hauteur: 1000,
+    alt: `Accueil de Deliview sur ordinateur : votre classement par note sur Uber Eats (8e sur 14) et sur Deliveroo (4e sur 8), côte à côte, avec la note du top 3, les offres et les prix face à la zone, puis ce qui a changé chez vos concurrents. ${ANONYME}`,
   },
 };
 
@@ -415,8 +277,12 @@ export interface VitrineFonction {
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : trois leviers de rentabilité, puis ce que Deliview surveille
 // pour vous. Repris dans l'accueil, le menu Solution, la page Solution et le pied de page. Uniquement ce que l'app fait.
 // Contestations : Uber Eats et Deliveroo depuis le 6 octobre 2026 (offre Pro).
+// 7 octobre 2026 (demande de Tom : « fait leur page chacune, tu dois avoir une cohérence ») : chaque fonction a sa page,
+// /solution/<slug>/ (contenu dans src/lib/fonctions.ts), et la même capture partout où elle apparaît.
 export interface Levier {
   id: string;
+  // Adresse de sa page : /solution/<slug>/.
+  slug: string;
   icone: NomIcone;
   nom: string;
   // Une ligne (cartes de l'accueil et de la page Solution).
@@ -425,47 +291,46 @@ export interface Levier {
   menu: string;
   benefice: string;
   points: string[];
-  fragment: CaptureApp;
-  // La fonction sur un appareil (accueil, page Solution).
+  // La fonction sur un appareil (accueil, page Solution, haut de sa page).
   vitrine: VitrineFonction;
-  // Page qui détaille le levier, s'il y en a une.
-  detail?: { href: string; libelle: string };
 }
+
+const BULLE_CREUX: BulleCapture = { sur: 'Votre creux', titre: 'Le mardi midi', texte: '2,8 commandes par jour, contre 13,2' };
+const BULLE_PRIX: BulleCapture = { sur: 'Dips Bacon · Deliveroo', fleche: ['4,30 €', '5,60 €'], gain: '+1,30 €' };
 
 export const LEVIERS: Levier[] = [
   {
     id: 'promotions',
+    slug: 'promotions',
     icone: 'ticket',
     nom: 'Vos promotions',
     phrase: 'Des offres sur vos heures creuses, et le bilan de chacune.',
     menu: 'Sur vos heures creuses',
     benefice: 'Une stratégie de promotion intelligente, alimentée par l’IA.',
     points: ['Pas d’offre là où vous vendez déjà bien', 'Une offre ciblée sur vos heures creuses', 'Le bilan de chaque offre, pour garder celles qui ramènent des commandes'],
-    fragment: FRAGMENTS.campagnes,
     vitrine: {
       appareil: 'tablette',
-      capture: ECRANS.promotions,
-      carte: { place: { x: 8, y: 11, largeur: 60 }, bulle: { bulle: { sur: 'Meilleure offre', titre: 'Article gratuit dès 20 €', gain: '20 nouveaux clients' }, x: 4, y: 48, droite: true } },
+      capture: ECRANS.promotionsLancer,
+      carte: { place: { x: 8, y: 11, largeur: 60 }, bulle: { bulle: BULLE_CREUX, x: 4, y: 46, droite: true } },
       page: {
         ratio: 1.02,
         place: { x: 21, y: 7, largeur: 58, rotation: -2 },
         bulles: [
-          { bulle: { sur: 'Meilleure offre', titre: 'Article gratuit dès 20 €', gain: '20 nouveaux clients' }, x: 1, y: 62, xm: 2, ym: 66 },
-          { bulle: { sur: 'Annonces Uber Eats', titre: '15,5 € de ventes', texte: 'pour 1 € dépensé' }, x: 1, y: 14, droite: true, bureau: true },
+          { bulle: BULLE_CREUX, x: 1, y: 62, xm: 2, ym: 66 },
+          { bulle: { sur: 'Objectif', titre: '6 commandes par jour', texte: 'au lieu de 2,8' }, x: 1, y: 14, droite: true, bureau: true },
         ],
       },
     },
-    detail: { href: '/solution/prix-et-concurrence/', libelle: 'Voir les promos de votre zone' },
   },
   {
     id: 'fraude',
+    slug: 'fraude-client',
     icone: 'bouclier',
     nom: 'La fraude client',
     phrase: 'Les remboursements injustifiés, contestés en un clic.',
     menu: 'Contestez en un clic',
     benefice: 'Contestez un remboursement Uber Eats ou Deliveroo en un clic.',
     points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
-    fragment: FRAGMENTS.contestations,
     vitrine: {
       appareil: 'telephone',
       capture: ECRANS.contestations,
@@ -484,32 +349,33 @@ export const LEVIERS: Levier[] = [
   },
   {
     id: 'prix',
+    slug: 'prix',
     icone: 'etiquette-prix',
     nom: 'Vos prix',
     phrase: 'Chaque plat face au même plat chez vos concurrents.',
     menu: 'Face à vos concurrents',
     benefice: 'Deliview compare chaque plat de votre menu au même plat chez vos concurrents.',
     points: ['Votre Margherita face à celles des restaurants autour de vous', 'Le prix conseillé, et ce qu’il vous rapporte', 'Vous validez, Deliview le met en ligne'],
-    fragment: FRAGMENTS['carte-et-marge'],
     vitrine: {
       appareil: 'navigateur',
-      capture: FONCTIONNALITES['pricing-menu'].capture,
-      carte: { place: { x: 8, y: 12, largeur: 112 }, bulle: { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 6, y: 56 } },
+      capture: ECRANS.prix,
+      carte: { place: { x: 8, y: 12, largeur: 112 }, bulle: { bulle: BULLE_PRIX, x: 6, y: 56 } },
       page: {
         ratio: 1.15,
         place: { x: 5, y: 14, largeur: 92 },
         bulles: [
-          { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 0, y: 62, xm: 2, ym: 64 },
-          { bulle: { chiffre: '21 plats', texte: 'moins chers que chez vos concurrents' }, x: 0, y: 2, droite: true, bureau: true },
+          { bulle: BULLE_PRIX, x: 0, y: 62, xm: 2, ym: 64 },
+          { bulle: { chiffre: '21 plats', texte: 'moins chers que la zone' }, x: 0, y: 2, droite: true, bureau: true },
         ],
       },
     },
-    detail: { href: '/solution/carte-et-marge/', libelle: 'Voir vos prix en détail' },
   },
 ];
 
 export interface Veille {
   id: string;
+  // Adresse de sa page : /solution/<slug>/.
+  slug: string;
   icone: NomIcone;
   nom: string;
   phrase: string;
@@ -518,11 +384,11 @@ export interface Veille {
   texte: string;
   // L'écran de l'app qui le montre, chacun sur son appareil (page Solution).
   vitrine: { appareil: TypeAppareil; capture: CaptureApp; place: PlaceAppareil; placeMobile: PlaceAppareil; bulle?: BullePlacee };
-  detail?: { href: string; libelle: string };
 }
 export const VEILLE: Veille[] = [
   {
     id: 'fermeture',
+    slug: 'fermeture',
     icone: 'boutique-arret',
     nom: 'Fermé en plein service ?',
     phrase: 'Vérifié toutes les 10 minutes, relancé en un clic.',
@@ -532,16 +398,17 @@ export const VEILLE: Veille[] = [
   },
   {
     id: 'avis',
+    slug: 'avis',
     icone: 'bulle-etoile',
     nom: 'Vos avis',
     phrase: 'Une réponse prête pour chaque avis.',
     menu: 'Une réponse IA par avis',
     texte: 'Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.',
     vitrine: { appareil: 'tablette', capture: ECRANS.avisTablette, place: { x: 9, y: 14, largeur: 98 }, placeMobile: { x: 6, y: 12, largeur: 124 } },
-    detail: { href: '/solution/reputation/', libelle: 'Votre note face à votre zone' },
   },
   {
     id: 'assistant',
+    slug: 'assistant-ia',
     icone: 'robot',
     nom: 'Votre assistant IA',
     phrase: 'La réponse à vos questions, tirée de vos chiffres.',
@@ -557,6 +424,7 @@ export const VEILLE: Veille[] = [
   },
   {
     id: 'objectifs',
+    slug: 'objectifs',
     icone: 'cible',
     nom: 'Vos objectifs',
     phrase: 'Le point chaque lundi sur votre téléphone.',
@@ -572,37 +440,32 @@ export const VEILLE: Veille[] = [
   },
 ];
 
-// Accueil de l'app, Uber Eats et Deliveroo côte à côte (page Intégrations, pilier Prix et concurrence).
-export const CAPTURE_POSITION: CaptureApp = {
-  src: '/images/scene-position',
-  largeurs: [800, 1200, 1600],
-  largeur: 1600,
-  hauteur: 1000,
-  alt: `Accueil de Deliview : la position du restaurant face à sa zone, Uber Eats et Deliveroo côte à côte (note, prix médian, offres), puis ce qui a changé chez les concurrents cette semaine. ${ANONYME}`,
-};
+// Les sept fonctions, chacune avec sa page (7 octobre 2026) : menu Solution, pied de page, accueil, page 404, articles,
+// plan du site et llms.txt.
+export interface FonctionResume {
+  id: string;
+  slug: string;
+  // Nom sans point d'interrogation (« Fermé en plein service »).
+  nom: string;
+  icone: NomIcone;
+  menu: string;
+  phrase: string;
+  groupe: 'levier' | 'veille';
+}
+export const FONCTIONS: FonctionResume[] = [
+  ...LEVIERS.map((l) => ({ id: l.id, slug: l.slug, nom: l.nom, icone: l.icone, menu: l.menu, phrase: l.phrase, groupe: 'levier' as const })),
+  ...VEILLE.map((v) => ({ id: v.id, slug: v.slug, nom: v.nom.replace(/ \?$/, ''), icone: v.icone, menu: v.menu, phrase: v.phrase, groupe: 'veille' as const })),
+];
+// Adresse de la page d'une fonction, depuis son identifiant (« fraude ») ou son slug (« fraude-client »).
+export function cheminFonction(id: string): string {
+  const f = FONCTIONS.find((x) => x.id === id || x.slug === id);
+  if (!f) throw new Error(`Fonction inconnue : ${id}`);
+  return `/solution/${f.slug}/`;
+}
 
-// Cartes des piliers (« Le reste de Deliview », pages Solution détaillées) : un appareil différent par pilier
-// (6 octobre 2026) : l'ordinateur pour la carte, la tablette couchée pour la zone, le téléphone pour les avis.
-export const VISUELS_PILIERS: Record<string, { appareil: TypeAppareil; capture: CaptureApp; place: PlaceAppareil; bulle: BullePlacee }> = {
-  'carte-et-marge': {
-    appareil: 'navigateur',
-    capture: FONCTIONNALITES['pricing-menu'].capture,
-    place: { x: 8, y: 13, largeur: 112 },
-    bulle: { bulle: FONCTIONNALITES['pricing-menu'].bulle, x: 6, y: 54 },
-  },
-  'prix-et-concurrence': {
-    appareil: 'tablette',
-    capture: CAPTURE_POSITION,
-    place: { x: 9, y: 14, largeur: 100 },
-    bulle: { bulle: { sur: 'Uber Eats · prix médian', titre: '14,40 €', texte: '52 % au-dessus de la zone' }, x: 4, y: 50, droite: true },
-  },
-  reputation: {
-    appareil: 'telephone',
-    capture: ECRANS.avis,
-    place: { x: 12, y: 9, largeur: 44 },
-    bulle: { bulle: { sur: 'Avis 2 étoiles · Deliveroo', titre: 'Réponse prête', texte: 'à relire, puis envoyer' }, x: 4, y: 30, droite: true },
-  },
-};
+// Accueil de l'app, Uber Eats et Deliveroo côte à côte (page Intégrations) ; Menu › Prix (page Uber Eats et Deliveroo).
+export const CAPTURE_POSITION: CaptureApp = ECRANS.classement;
+export const CAPTURE_PRIX: CaptureApp = ECRANS.prix;
 
 // « Ressources » ouvre un menu : articles, questions fréquentes, Qui sommes-nous (décision de Tom, 2 octobre 2026).
 export const NAV = [
@@ -737,6 +600,24 @@ export const THEMES: Record<string, string> = {
   // Thème d'articles (service, tablettes, TVA) : ce n'est pas une fonctionnalité de Deliview.
   commandes: 'Gestion au quotidien',
 };
+// Page de fonction liée à chaque article (encadré « Dans Deliview ») : d'abord l'article, sinon son thème.
+// Un article sans fonction proche (TVA) mène à la page Solution.
+const FONCTION_DU_THEME: Record<string, string | null> = { 'prix-et-concurrence': 'prix', 'carte-et-marge': 'prix', reputation: 'avis', commandes: null };
+const FONCTION_DE_L_ARTICLE: Record<string, string | null> = {
+  'promotion-uber-eats-deliveroo-rentable': 'promotions',
+  'contester-remboursement-uber-eats-deliveroo': 'fraude',
+  'restaurant-ferme-uber-eats-deliveroo': 'fermeture',
+  'tablettes-uber-eats-deliveroo-rush': 'fermeture',
+  'tva-ventes-livraison-restaurant': null,
+};
+export function fonctionDeLArticle(id: string, theme: string): FonctionResume | null {
+  const f = id in FONCTION_DE_L_ARTICLE ? FONCTION_DE_L_ARTICLE[id] : FONCTION_DU_THEME[theme] ?? null;
+  return f ? FONCTIONS.find((x) => x.id === f) ?? null : null;
+}
+export function fonctionDuTheme(theme: string): FonctionResume | null {
+  const f = FONCTION_DU_THEME[theme] ?? null;
+  return f ? FONCTIONS.find((x) => x.id === f) ?? null : null;
+}
 
 // Données structurées du logiciel, avec la fourchette des offres publiques (la page Tarifs détaille chaque offre).
 export function jsonldLogiciel(description: string, url: string): Record<string, unknown> {

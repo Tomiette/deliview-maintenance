@@ -142,4 +142,4 @@ Le contrat vous laisse la main : il « incombe au Partenaire de déterminer et
 
 Faites ensuite le même exercice sur Deliveroo, qui ne publie pas ses taux. Notre article sur [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/) explique où trouver le vôtre.
 
-Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il signale les plats trop chers ou sous-évalués, et ceux vendus à des prix différents sur Uber Eats et Deliveroo : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il signale les plats trop chers ou sous-évalués, et ceux vendus à des prix différents sur Uber Eats et Deliveroo : voyez ce que Deliview fait pour [vos prix face à vos concurrents](/solution/prix/).

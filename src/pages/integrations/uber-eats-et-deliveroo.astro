@@ -10,7 +10,7 @@ import Pastille from '../../components/Pastille.astro';
 import Coche from '../../icons/coche.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
-import { FONCTIONNALITES, SITE, jsonldLogiciel } from '../../lib/site';
+import { CAPTURE_PRIX, SITE, jsonldLogiciel } from '../../lib/site';
 
 const description =
   'Uber Eats et Deliveroo sur un seul écran : écarts de prix entre vos deux cartes, concurrents et note sur chaque plateforme.';
@@ -57,10 +57,10 @@ const faq = [
         </div>
       </div>
       <div class="w-full">
-        <Scene3D capture={FONCTIONNALITES['pricing-menu'].capture} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
+        <Scene3D capture={CAPTURE_PRIX} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
           <Flottant x={2} y={4} xm={0} ym={3} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
           <Flottant x={-4} y={60} xm={0} ym={66} droite z={15} duree={6.8} delai={-2}><Bulle sur="Dips Bacon · Deliveroo" fleche={['4,30 €', '5,60 €']} gain="+1,30 €" /></Flottant>
-          <Flottant x={-4} y={72} z={12} duree={7.2} delai={-4} bureau><Bulle chiffre="21 plats" texte="moins chers que chez vos concurrents" /></Flottant>
+          <Flottant x={-4} y={72} z={12} duree={7.2} delai={-4} bureau><Bulle chiffre="21 plats" texte="moins chers que la zone" /></Flottant>
         </Scene3D>
       </div>
     </div>

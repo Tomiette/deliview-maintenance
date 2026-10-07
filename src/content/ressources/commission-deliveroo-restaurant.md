@@ -181,4 +181,4 @@ Quand il le peut, Deliveroo mesure l’écart entre vos prix sur l’application
 
 Pour choisir le bon niveau de prix, lisez notre guide pour [fixer vos prix sur Uber Eats et Deliveroo](/ressources/fixer-prix-uber-eats-deliveroo/).
 
-Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il liste aussi les plats vendus à un prix différent sur Deliveroo et sur Uber Eats : voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+Deliview compare déjà chaque plat au même plat, à taille égale, chez jusqu’à 20 restaurants voisins. Il liste aussi les plats vendus à un prix différent sur Deliveroo et sur Uber Eats : voyez ce que Deliview fait pour [vos prix face à vos concurrents](/solution/prix/).

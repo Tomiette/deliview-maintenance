@@ -55,7 +55,7 @@ export const FAQ: RubriqueFaq[] = [
     questions: [
       {
         q: 'Comment je sais si mes prix sont bien placés face à mes concurrents ?',
-        r: 'Deliview les compare plat par plat, à taille égale. Votre pizza 33&nbsp;cm face aux pizzas 33&nbsp;cm du quartier. Deliview calcule la médiane de la zone et l’écart avec votre prix. Sous 2&nbsp;concurrents, il ne conclut pas et le dit.',
+        r: 'Deliview les compare plat par plat, à taille égale. Votre pizza 33&nbsp;cm face aux pizzas 33&nbsp;cm du quartier. Deliview calcule la médiane de la zone et l’écart avec votre prix. Sous 2&nbsp;concurrents, il ne propose pas de prix.',
       },
       {
         q: 'Combien de concurrents est-ce que je peux suivre ?',

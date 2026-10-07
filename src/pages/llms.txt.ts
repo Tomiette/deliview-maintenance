@@ -1,8 +1,10 @@
 // llms.txt : résumé du site pour les moteurs de réponse IA (format llmstxt.org), généré à partir des mêmes
-// données que les pages, pour ne jamais diverger du site (offres, piliers, articles).
+// données que les pages, pour ne jamais diverger du site (offres, fonctions, articles). 7 octobre 2026 : chaque fonction
+// avec sa page, son bénéfice et, quand il y en a un, son exemple réel.
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
-import { LEVIERS, OFFRES, PILIERS, SITE, VEILLE } from '../lib/site';
+import { LEVIERS, OFFRES, SITE, VEILLE, cheminFonction } from '../lib/site';
+import { PAGES } from '../lib/fonctions';
 
 export const GET: APIRoute = async () => {
   const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort(
@@ -18,9 +20,11 @@ export const GET: APIRoute = async () => {
     '',
     '## Ce que fait Deliview',
     '',
-    ...LEVIERS.map((l) => `- [${l.nom}](${u(`/solution/#${l.id}`)}) : ${l.benefice} ${l.points.join(' · ')}.`),
-    ...VEILLE.map((v) => `- [${v.nom.replace(/ \?$/, '')}](${u(`/solution/#${v.id}`)}) : ${v.texte}`),
-    ...PILIERS.flatMap((p) => p.fonctionnalites.map((f) => `- [${f.nom}](${u(`/solution/${p.slug}/#${f.id}`)}) : ${f.benefice} Exemple réel : ${f.exemple.texte} (${f.exemple.contexte}).`)),
+    ...[...LEVIERS.map((l) => ({ id: l.id, nom: l.nom })), ...VEILLE.map((v) => ({ id: v.id, nom: v.nom.replace(/ \?$/, '') }))].map(({ id, nom }) => {
+      const p = PAGES[id];
+      const exemple = [p.zoom, p.complement].find((b) => b?.exemple)?.exemple;
+      return `- [${nom}](${u(cheminFonction(id))}) : ${p.h1}. ${p.lead} ${p.points.join(' · ')}.${exemple ? ` Exemple réel : ${exemple.texte} (${exemple.contexte}).` : ''}`;
+    }),
     `- [Simulateur de rentabilité](${u('/simulateur/')}) : ce que rapporte un prix mieux placé, calculé dans le navigateur.`,
     `- [Intégrations](${u('/integrations/')}) : Uber Eats et Deliveroo, plateformes analysées en France.`,
     '',

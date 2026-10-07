@@ -101,7 +101,7 @@ Si votre prix s’écarte de plus de 10 % de la médiane, sur au moins deux com
 
 Mettez ensuite la médiane face à votre prix plancher. Si elle passe sous votre plancher, ne vous alignez pas : revoyez plutôt la recette, la portion ou l’emballage. Si elle dépasse nettement votre prix, vous avez de la place pour monter.
 
-Deliview fait ce relevé pour vous : il retient jusqu’à 20 restaurants de votre secteur et compare chaque plat au même plat chez eux. Quand un plat est trop cher ou sous-évalué, il propose un prix, cite les plats comparés et montre l’impact pour 100 ventes. Voir [vos prix face à ceux de votre quartier](/solution/prix-et-concurrence/) et [le prix proposé pour chaque plat de votre carte](/solution/carte-et-marge/).
+Deliview fait ce relevé pour vous : il retient jusqu’à 20 restaurants de votre secteur et compare chaque plat au même plat chez eux. Quand un plat est trop cher ou sous-évalué, il propose un prix, cite les plats comparés et montre l’impact pour 100 ventes. Voir [vos prix face à ceux de votre quartier, avec le prix proposé pour chaque plat](/solution/prix/).
 
 ## Avez-vous le droit de vendre plus cher en livraison qu’en salle ?
 

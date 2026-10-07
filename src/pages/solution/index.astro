@@ -2,7 +2,8 @@
 // Page Solution, refaite le 6 octobre 2026 (demande de Tom) : les trois leviers de rentabilité (promotions, fraude
 // client, prix), chacun dans sa section avec une vraie carte de l'app, puis ce que Deliview surveille pour vous
 // (fermeture, avis, assistant, objectifs). Chaque section a son ancre, reprise par le menu Solution et le pied de page.
-// Les pages détaillées (carte et marge, prix et concurrence, réputation) restent liées depuis leur levier.
+// 7 octobre 2026 (demande de Tom : « fait leur page chacune ») : chaque fonction a sa page, /solution/<slug>/, liée
+// depuis sa section (« Voir comment ça marche ») ; les anciennes pages détaillées sont redirigées vers ces pages.
 // 6 octobre 2026 (demande de Tom : des visuels variés, des écrans sur des appareils) : chaque levier sur son appareil
 // (tablette, téléphone, ordinateur) avec ses bulles ; ce que Deliview surveille, chacun avec le haut de son écran sur
 // téléphone.
@@ -15,7 +16,7 @@ import SectionDemo from '../../components/SectionDemo.astro';
 import Coche from '../../icons/coche.astro';
 import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
-import { LEVIERS, SITE, VEILLE, jsonldLogiciel, lien } from '../../lib/site';
+import { LEVIERS, SITE, VEILLE, cheminFonction, jsonldLogiciel, lien } from '../../lib/site';
 
 const description =
   'Promotions, fraude client, prix : Deliview repère où part votre marge sur Uber Eats et Deliveroo. Vous validez, Deliview l’applique. Demandez une démo.';
@@ -73,12 +74,10 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
                   </li>
                 ))}
               </ul>
-              {l.detail && (
-                <a href={lien(l.detail.href)} class="dv-lien-fort mt-6 md:mt-8">
-                  {l.detail.libelle}
-                  <Fleche taille={24} />
-                </a>
-              )}
+              <a href={lien(cheminFonction(l.id))} class="dv-lien-fort mt-6 md:mt-8" aria-label={`Voir comment ça marche : ${l.nom.toLowerCase()}`}>
+                Voir comment ça marche
+                <Fleche taille={24} />
+              </a>
             </div>
             <Vitrine
               type={l.vitrine.appareil}
@@ -106,7 +105,7 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
           VEILLE.map((v) => {
             const Icone = ICONES[v.icone];
             return (
-              <li id={v.id} class="dv-relief dv-veille-carte scroll-mt-24">
+              <li id={v.id} class="dv-relief dv-relief-lien dv-veille-carte scroll-mt-24">
                 <Vitrine
                   type={v.vitrine.appareil}
                   capture={v.vitrine.capture}
@@ -127,12 +126,10 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
                     {v.nom}
                   </h3>
                   <p class="mt-3 text-[16px] leading-[1.55] dv-muted md:text-[17px]">{v.texte}</p>
-                  {v.detail && (
-                    <a href={lien(v.detail.href)} class="dv-lien-fort mt-auto self-start pt-2">
-                      {v.detail.libelle}
-                      <Fleche taille={24} />
-                    </a>
-                  )}
+                  <a href={lien(cheminFonction(v.id))} class="dv-lien-fort dv-pilier-lien mt-auto self-start pt-2" aria-label={`Voir comment ça marche : ${v.nom.replace(/ \?$/, '').toLowerCase()}`}>
+                    Voir comment ça marche
+                    <Fleche taille={24} />
+                  </a>
                 </div>
               </li>
             );

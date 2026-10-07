@@ -153,4 +153,4 @@ Commencez par vos horaires, puis par la tablette.
 4. Notez votre temps d’inactivité sur Uber Eats et votre taux d’ouverture sur Deliveroo pour la semaine passée.
 5. Pendant deux semaines, vérifiez votre fiche client au début de chaque service.
 
-Deliview vous prévient quand votre restaurant est fermé sur Uber Eats ou Deliveroo pendant vos heures de service habituelles. Voyez comment fonctionne l’alerte [Fermé en plein service](/solution/#fermeture).
+Deliview vous prévient quand votre restaurant est fermé sur Uber Eats ou Deliveroo pendant vos heures de service habituelles. Voyez comment fonctionne l’alerte [Fermé en plein service](/solution/fermeture/).

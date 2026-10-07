@@ -6,7 +6,7 @@
 // Sur téléphone : bouton « Demander une démo » fixé en bas de l'écran une fois le haut de page dépassé.
 import BoutonDemo from './BoutonDemo.astro';
 import LogoContact from './LogoContact.astro';
-import { LEVIERS, SITE, lien } from '../lib/site';
+import { FONCTIONS, SITE, cheminFonction, lien } from '../lib/site';
 
 interface Props {
   // Bouton démo fixé en bas de l'écran du téléphone (retiré sur la page de départ : un seul chemin à l'écran).
@@ -20,10 +20,8 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
     id: 'pied-solution',
     titre: 'Solution',
     liens: [
-      // Les trois leviers et les avis (6 octobre 2026), comme le menu Solution.
-      ...LEVIERS.map((l) => ({ libelle: l.nom, href: lien(`/solution/#${l.id}`) })),
-      { libelle: 'Vos avis', href: lien('/solution/#avis') },
-      { libelle: 'Intégrations', href: lien('/integrations/') },
+      // Les sept fonctions, chacune vers sa page (7 octobre 2026), comme le menu Solution.
+      ...FONCTIONS.map((x) => ({ libelle: x.nom, href: lien(cheminFonction(x.id)) })),
       { libelle: 'Simulateur de rentabilité', href: lien('/simulateur/') },
       { libelle: 'Tarifs', href: lien('/tarifs/') },
     ],
@@ -41,6 +39,8 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
     liens: [
       { libelle: 'Qui suis-je', href: lien('/qui-sommes-nous/') },
       { libelle: 'Blog', href: lien('/ressources/') },
+      // Intégrations : dans Ressources, comme le menu du haut (7 octobre 2026).
+      { libelle: 'Intégrations', href: lien('/integrations/') },
       { libelle: 'Questions fréquentes', href: lien('/questions-frequentes/') },
       { libelle: 'Affiliation', href: lien('/parrainage/') },
       { libelle: 'Deliview est-il fiable ?', href: lien('/deliview-est-il-fiable/') },

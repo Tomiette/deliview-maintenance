@@ -1,170 +1,85 @@
 ---
-// Page pilier, gabarit unique pour les 3 piliers : icône, bénéfice, 3 points, vraie capture, un bloc par fonctionnalité
-// (exemple réel en ticket), la méthode, les questions du pilier, les autres piliers et le bon de démo.
-// Refonte en relief (3 octobre 2026) : en haut, un autre écran de l'app que ceux des blocs, incliné en 3D, avec des
-// bulles qui reprennent ses chiffres ; les autres piliers en cartes avec leur carte de l'app.
+// Page d'une fonction (7 octobre 2026, demande de Tom : « fait leur page chacune, tu dois avoir une cohérence ») :
+// un seul gabarit pour les sept fonctions du menu Solution, contenu dans src/lib/fonctions.ts.
+// En haut, l'écran de l'app sur son appareil (le même que sur l'accueil et la page Solution) ; comment ça marche en
+// 3 étapes ; un autre écran en plus grand, avec un exemple réel quand il y en a un ; les règles de Deliview ; dans
+// quelle offre (comme la page Tarifs) ; les questions ; les articles du blog ; les autres fonctions ; le bon de démo.
+// Remplace les pages « Carte et marge », « Prix et concurrence » et « Réputation », redirigées dans le .htaccess.
 import { getCollection } from 'astro:content';
-import BoutonDemo from '../../components/BoutonDemo.astro';
 import Base from '../../layouts/Base.astro';
-import Scene3D from '../../components/Scene3D.astro';
-import Flottant from '../../components/Flottant.astro';
-import Bulle from '../../components/Bulle.astro';
+import BoutonDemo from '../../components/BoutonDemo.astro';
+import Vitrine from '../../components/Vitrine.astro';
+import FragmentFlottant from '../../components/FragmentFlottant.astro';
 import Pastille from '../../components/Pastille.astro';
-import CartePilier from '../../components/CartePilier.astro';
-import BlocFonctionnalite from '../../components/BlocFonctionnalite.astro';
+import Ticket from '../../components/Ticket.astro';
+import TicketComparaison from '../../components/TicketComparaison.astro';
 import CarteArticle from '../../components/CarteArticle.astro';
 import BandeauPlateformes from '../../components/BandeauPlateformes.astro';
-import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
+import SectionDemo from '../../components/SectionDemo.astro';
 import Coche from '../../icons/coche.astro';
+import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
-import { CAPTURE_POSITION, FONCTIONNALITES, FRAGMENTS, PILIERS, SITE, jsonldLogiciel, lien, type BulleCapture, type CaptureApp, type Pilier } from '../../lib/site';
+import { PAGES, type Bloc } from '../../lib/fonctions';
+import { texteBrut } from '../../lib/faq';
+import { EXEMPLE_MARGHERITA as ex, FONCTIONS, OFFRES, SITE, cheminFonction, euros, exposants, jsonldLogiciel, lien, type FonctionResume } from '../../lib/site';
 
 export function getStaticPaths() {
-  return PILIERS.map((p) => ({ params: { slug: p.slug }, props: { pilier: p } }));
+  return FONCTIONS.map((f) => ({ params: { slug: f.slug }, props: { f } }));
 }
 
-const { pilier } = Astro.props as { pilier: Pilier };
-const autres = PILIERS.filter((p) => p.slug !== pilier.slug);
-// Articles d'un autre thème qui servent aussi ce pilier (ex. la méthode pour fixer ses prix sous Carte et marge).
-const ARTICLES_LIES: Record<string, string[]> = { 'carte-et-marge': ['fixer-prix-uber-eats-deliveroo'] };
-const articles = (
-  await getCollection('ressources', (a) => !a.data.brouillon && (a.data.theme === pilier.slug || (ARTICLES_LIES[pilier.slug] ?? []).includes(a.id)))
-).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
+const { f } = Astro.props as { f: FonctionResume };
+const p = PAGES[f.id];
+if (!p) throw new Error(`Page de fonction absente : ${f.id}`);
+const Icone = ICONES[f.icone];
+const url = SITE.url + cheminFonction(f.id);
+const autres = FONCTIONS.filter((x) => x.id !== f.id);
+const tous = await getCollection('ressources', (a) => !a.data.brouillon);
+const articles = p.articles.map((id) => tous.find((a) => a.id === id)).filter((a) => a !== undefined);
 
-// Méthode (réponse directe d'abord) et questions propres à chaque pilier. Rien sur la façon dont les données sont obtenues.
-const CONTENU: Record<string, { methodeTitre: string; reponse: string; points: string[]; faq: { q: string; r: string }[] }> = {
-  'prix-et-concurrence': {
-    methodeTitre: 'Comment Deliview compare vos prix',
-    reponse:
-      'Deliview ne compare que des plats comparables&nbsp;: même type, même taille. Il calcule la médiane des prix de la zone, puis l’écart avec votre prix.',
-    points: [
-      'Au moins 2 concurrents pour conclure. Sinon, Deliview le dit.',
-      'Plus de 10&nbsp;% au-dessus de la médiane&nbsp;: trop cher. Plus de 10&nbsp;% en dessous&nbsp;: sous-évalué.',
-      'Une recette unique est située parmi les plats de sa famille&nbsp;: pizzas, pâtes, desserts.',
-      'Chaque prix comparé cite ses sources.',
-    ],
-    faq: [
-      {
-        q: 'Comment je sais quels concurrents Deliview suit ?',
-        r: 'Deliview retient jusqu’à 20 restaurants de votre secteur, les plus proches. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des restaurants de votre choix, même plus loin.',
-      },
-      {
-        q: 'Est-ce que je vois les prix à jour ?',
-        r: 'Oui, à chaque analyse, au moins une fois par semaine. Deliview montre ce qui a changé depuis la précédente.',
-      },
-      {
-        q: 'Mes prix en livraison sont plus chers qu’en salle. Est-ce que c’est un problème ?',
-        r: 'Non. Deliview compare vos prix de livraison à ceux de vos voisins, sur la même plateforme.',
-      },
-    ],
-  },
-  'carte-et-marge': {
-    methodeTitre: 'Comment Deliview propose un prix',
-    reponse:
-      'Deliview propose un prix dès que 2 concurrents vendent le même plat, à taille égale. Trop cher&nbsp;: il propose la médiane. Sous-évalué&nbsp;: une hausse en deux temps.',
-    points: [
-      'Chaque proposition cite les plats comparés et leur prix.',
-      'Le gain est donné pour 100 ventes du plat. Vous l’appliquez à vos volumes.',
-      'Une recette unique n’a pas de prix proposé, seulement un repère.',
-      'Vous validez ou écartez chaque proposition. Deliview garde votre décision.',
-    ],
-    faq: [
-      {
-        q: 'Est-ce que Deliview peut changer mes prix sur Uber Eats ou Deliveroo ?',
-        r: 'Oui, avec l’offre Pro ou Groupe, quand vous le décidez. Vous validez le prix dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Rien ne change sans votre accord.',
-      },
-      {
-        q: 'Que faire d’un plat que je suis le seul à vendre ?',
-        r: 'Deliview le compare aux plats de la même famille dans votre zone. C’est un repère, pas un prix conseillé.',
-      },
-    ],
-  },
-  reputation: {
-    methodeTitre: 'Comment lire votre place au classement',
-    reponse:
-      'Deliview classe les restaurants de votre zone par note, plateforme par plateforme. Vous voyez votre rang et la note moyenne de la zone.',
-    points: [
-      'Uber Eats et Deliveroo sont classés à part&nbsp;: les clients n’y sont pas les mêmes.',
-      'Le nombre d’avis compte. Un 4,8 sur 12 avis ne vaut pas un 4,6 sur 900.',
-      'Les concurrents que vous suivez entrent aussi dans le classement.',
-    ],
-    faq: [
-      {
-        q: 'Est-ce que Deliview m’aide à répondre à mes avis ?',
-        r: 'Oui. Pour chaque avis, Deliview prépare une réponse rédigée par l’IA. Vous relisez, vous envoyez. Il compare aussi votre note à celles de votre zone, plateforme par plateforme.',
-      },
-      {
-        q: 'Pourquoi est-ce que je compare ma note à celle de mes voisins ?',
-        r: 'Parce que le client choisit parmi les restaurants qu’il voit. Un 4,5 ne pèse pas pareil si vos voisins sont à 4,7.',
-      },
-    ],
-  },
-};
-
-// Écran du haut de page et bulles (chiffres lus sur cet écran). Réputation : l'écran des notes est en haut,
-// le bloc de la fonctionnalité montre alors la carte de l'app (fragment).
-type Flot = { x: number; y: number; xm?: number; ym?: number; droite?: boolean; z: number; bureau?: boolean } & ({ puce: string } | { bulle: BulleCapture });
-const HAUT: Record<string, { capture: CaptureApp; flottants: Flot[] }> = {
-  'prix-et-concurrence': {
-    capture: CAPTURE_POSITION,
-    flottants: [
-      { x: 2, y: 5, xm: 2, ym: 5, z: 9, puce: 'Uber Eats' },
-      { x: -3, y: 18, xm: 0, ym: 10, droite: true, z: 14, puce: 'Deliveroo' },
-      { x: -4, y: 58, xm: 0, ym: 64, z: 16, bulle: { sur: 'Prix · Uber Eats', chiffre: '14,40 €', texte: '52 % au-dessus de la zone' } },
-      { x: -2, y: 72, droite: true, z: 11, bureau: true, bulle: { chiffre: '10 sur 14', texte: 'concurrents avec une offre' } },
-    ],
-  },
-  'carte-et-marge': {
-    capture: FONCTIONNALITES['prix-concurrents'].capture,
-    flottants: [
-      { x: 2, y: 5, xm: 2, ym: 5, z: 9, puce: 'Uber Eats' },
-      { x: -3, y: 18, xm: 0, ym: 10, droite: true, z: 14, puce: 'Deliveroo' },
-      { x: -4, y: 56, xm: 0, ym: 64, z: 16, bulle: { sur: 'Uber Eats', titre: 'Passez 4 boissons à 4,50 €', gain: '+1,00 € par article vendu' } },
-      { x: -2, y: 72, droite: true, z: 11, bureau: true, bulle: { chiffre: '16 à faire', texte: 'jusqu’à +1,30 € par commande' } },
-    ],
-  },
-  reputation: {
-    capture: FONCTIONNALITES['note-avis'].capture,
-    flottants: [
-      { x: -4, y: 52, xm: 0, ym: 62, z: 16, bulle: { chiffre: '4,2', etoile: true, texte: '8e sur 14 · Uber Eats' } },
-      { x: -3, y: 66, xm: 0, ym: 66, droite: true, z: 12, bulle: { chiffre: '4,3', etoile: true, texte: '4e sur 8 · Deliveroo' } },
-      { x: 4, y: 4, z: 8, bureau: true, puce: 'Moyenne de la zone : 4,1 sur Uber Eats' },
-    ],
-  },
-};
-const haut = HAUT[pilier.slug];
-const c = CONTENU[pilier.slug];
-const url = `${SITE.url}/solution/${pilier.slug}/`;
-const Icone = ICONES[pilier.icone];
-// Fonds alternés après le haut de page (gris) : blanc, gris, blanc…
+// Fonds alternés après le haut de page (gris) : blanc, gris à points, blanc…
 let n = 0;
 const fond = (): 'blanc' | 'gris' => (n++ % 2 === 0 ? 'blanc' : 'gris');
-const fondsBlocs = pilier.fonctionnalites.map(() => fond());
-const fondMethode = fond();
+const classeFond = (x: 'blanc' | 'gris') => (x === 'gris' ? 'bg-grey dv-points' : 'bg-white');
+const fondEtapes = fond();
+const blocs = [p.zoom, p.complement].filter((b): b is Bloc => b !== undefined).map((b) => ({ b, fond: fond() }));
+const fondRegles = fond();
+const fondOffre = fond();
 const fondFaq = fond();
-const fondArticles = articles.length > 0 ? fond() : fondFaq;
+const fondArticles = articles.length ? fond() : fondFaq;
 const fondAutres = fond();
+
+// Dans quelle offre : comme la page Tarifs (Essentiel, Pro, Groupe).
+const [essentiel, pro] = OFFRES;
+const offreCourte = p.offres.toutes && p.offres.pro ? 'Dans toutes les offres, et plus avec Pro' : p.offres.toutes ? 'Inclus dans toutes les offres' : 'Avec les offres Pro et Groupe';
+const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
+
+const faqJsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: p.faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
+};
+const sizesVitrine = (appareil: string) => (appareil === 'telephone' ? '(min-width: 1024px) 230px, 46vw' : '(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw');
 ---
 
 <Base
-  title={pilier.meta.title}
-  description={pilier.meta.description}
+  title={p.meta.title}
+  description={p.meta.description}
   ariane={[
     { nom: 'Solution', chemin: '/solution/' },
-    { nom: pilier.surtitre, chemin: `/solution/${pilier.slug}/` },
+    { nom: f.nom, chemin: cheminFonction(f.id) },
   ]}
-  jsonld={[jsonldLogiciel(pilier.description, url)]}
+  jsonld={[jsonldLogiciel(p.meta.description, url), faqJsonld]}
 >
-  <section class="overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="pilier-titre" data-haut-de-page>
+  <section class="overflow-x-clip bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="fonction-titre" data-haut-de-page>
     <div class="dv-container grid items-center gap-x-12 gap-y-10 lg:grid-cols-[1fr_1.05fr]">
       <div>
-        <Pastille icone={Icone}>{pilier.surtitre}</Pastille>
-        <h1 id="pilier-titre" class="dv-h1 mt-5 max-w-[16ch] md:mt-6">{pilier.titre}</h1>
-        <p class="dv-lead mt-4 max-w-[54ch] md:mt-6">{pilier.description}</p>
+        <Pastille icone={Icone}>{f.nom}</Pastille>
+        <h1 id="fonction-titre" class="dv-h1 mt-5 max-w-[17ch] md:mt-6">{p.h1}</h1>
+        <p class="dv-lead mt-4 max-w-[54ch] md:mt-6">{p.lead}</p>
         <ul class="mt-6 grid gap-2.5 text-[16px] leading-[1.5] md:text-[17px]">
           {
-            pilier.carte.points.map((x) => (
+            p.points.map((x) => (
               <li class="flex gap-2.5">
                 <Coche taille={24} />
                 <span>{x}</span>
@@ -172,58 +87,41 @@ const fondAutres = fond();
             ))
           }
         </ul>
-        <div class="mt-7 md:mt-8">
-          <BoutonDemo href="#demo" cta={`pilier-${pilier.slug}`} principal class="w-full sm:w-auto" />
+        <div class="mt-7 flex flex-col items-start gap-2 md:mt-8">
+          <BoutonDemo href="#demo" cta={`fonction-${f.id}`} principal class="w-full sm:w-auto" />
+          <a href="#offre" class="dv-lien">{offreCourte}</a>
         </div>
       </div>
       <div class="w-full">
-        <Scene3D capture={haut.capture} priorite suiviPointeur ratio={1.14} ratioMobile={1.02} appareil={{ x: 4, y: 14, largeur: 92 }} sizes="(min-width: 1200px) 540px, (min-width: 1024px) 46vw, 92vw">
-          {
-            haut.flottants.map((f, i) => (
-              <Flottant x={f.x} y={f.y} xm={f.xm} ym={f.ym} droite={f.droite} z={f.z} bureau={f.bureau} duree={5.6 + i * 0.6} delai={-i * 1.3}>
-                {'puce' in f ? (
-                  <span class="dv-puce">
-                    <i />
-                    {f.puce}
-                  </span>
-                ) : (
-                  <Bulle {...f.bulle} />
-                )}
-              </Flottant>
-            ))
-          }
-        </Scene3D>
+        <Vitrine
+          type={p.hero.appareil}
+          capture={p.hero.capture}
+          ratio={p.hero.ratio}
+          ratioMobile={p.hero.ratioMobile}
+          place={p.hero.place}
+          placeMobile={p.hero.placeMobile}
+          bulles={p.hero.bulles}
+          priorite
+          class="mx-auto w-full max-w-[600px]"
+          sizes={sizesVitrine(p.hero.appareil)}
+        />
       </div>
     </div>
   </section>
 
-  {
-    pilier.fonctionnalites.map((f, i) => (
-      <BlocFonctionnalite f={f} fond={fondsBlocs[i]} inverse={i % 2 === 1} fragment={f.capture.src === haut.capture.src ? FRAGMENTS[pilier.slug] : undefined} visuel={i % 2 === 0 ? 'navigateur' : 'tablette'}>
-        {f.id === 'pricing-menu' && (
-          <p class="mt-8">
-            <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour w-full sm:w-auto" data-cta="pilier-simulateur">Combien vous rapporte un prix bien placé&nbsp;?</a>
-          </p>
-        )}
-      </BlocFonctionnalite>
-    ))
-  }
-
-  <section class={`dv-section ${fondMethode === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} aria-labelledby="methode-titre">
-    <div class="dv-container grid gap-10 lg:grid-cols-2 lg:gap-14">
-      <div>
-        <Pastille>La méthode</Pastille>
-        <h2 id="methode-titre" class="dv-h2 mt-4 max-w-[20ch] md:mt-5">{c.methodeTitre}</h2>
-        <p class="dv-lead mt-4 dv-texte md:mt-5" set:html={c.reponse} />
-      </div>
-      <ol class="dv-card grid self-center p-2 md:p-3">
+  <section class={`dv-section ${classeFond(fondEtapes)}`} aria-labelledby="etapes-titre">
+    <div class="dv-container">
+      <Pastille>Comment ça marche</Pastille>
+      <h2 id="etapes-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">{p.etapesTitre}</h2>
+      <ol class="mt-8 grid gap-5 md:mt-12 md:grid-cols-3 md:gap-6">
         {
-          c.points.map((p, i) => (
-            <li class="flex items-start gap-4 border-t border-grey-2/12 p-4 first:border-t-0 md:p-5">
-              <span class="dv-tuile dv-tuile-numero dv-tuile-petite" aria-hidden="true">
+          p.etapes.map((e, i) => (
+            <li class="dv-relief flex flex-col p-5 md:p-6">
+              <span class="dv-tuile dv-tuile-numero" aria-hidden="true">
                 {i + 1}
               </span>
-              <span class="pt-1.5" set:html={p} />
+              <h3 class="mt-5 font-accent text-[20px] font-bold leading-[1.3] md:text-[22px]">{e.titre}</h3>
+              <p class="mt-2 text-[16px] leading-[1.55] dv-muted md:text-[17px]">{e.texte}</p>
             </li>
           ))
         }
@@ -231,17 +129,204 @@ const fondAutres = fond();
     </div>
   </section>
 
-  <BandeauPlateformes fond={fondMethode} />
+  {
+    blocs.map(({ b, fond: fb }, i) => {
+      const IconeBloc = ICONES[b.icone];
+      const inverse = i % 2 === 1;
+      // L'exemple réel de l'accueil (ticket Margherita) : même mise en page que sur l'accueil.
+      if (b.visuel?.type === 'margherita')
+        return (
+          <section id={b.id} class={`dv-section scroll-mt-24 overflow-x-clip ${classeFond(fb)}`} aria-labelledby={`${b.id}-titre`}>
+            <div class="dv-container dv-exemple">
+              <div class="dv-exemple-intro">
+                <Pastille icone={IconeBloc}>{b.nom}</Pastille>
+                <h2 id={`${b.id}-titre`} class="dv-h2 mt-4 max-w-[18ch] md:mt-5">
+                  {b.titre}
+                </h2>
+                {b.texte && <p class="dv-lead mt-3.5 max-w-[48ch] md:mt-5">{b.texte}</p>}
+              </div>
+              <div class="dv-exemple-plateau" data-apparition="">
+                <span class="dv-exemple-sol" aria-hidden="true" />
+                <span class="dv-exemple-ombre" aria-hidden="true" />
+                <div class="dv-exemple-ticket">
+                  <div class="dv-flotte">
+                    <TicketComparaison exemple={ex} />
+                  </div>
+                </div>
+                <p class="dv-exemple-annotation max-w-full">
+                  <span class="dv-puce dv-puce-bleue">{sousLaZone} sous la zone, sur chaque pizza</span>
+                </p>
+              </div>
+              {b.lien && (
+                <div class="dv-exemple-suite">
+                  <a href={lien(b.lien.href)} class="dv-btn dv-btn-contour w-full sm:w-auto" data-cta={`fonction-${f.id}-${b.id}`}>
+                    {b.lien.libelle}
+                  </a>
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      return (
+        <section id={b.id} class={`dv-section scroll-mt-24 overflow-x-clip ${classeFond(fb)}`} aria-labelledby={`${b.id}-titre`}>
+          <div class="dv-container grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div class={inverse ? 'lg:order-2' : ''}>
+              <Pastille icone={IconeBloc}>{b.nom}</Pastille>
+              <h2 id={`${b.id}-titre`} class="dv-h2 mt-4 max-w-[20ch] md:mt-5">
+                {b.titre}
+              </h2>
+              {b.texte && <p class="dv-lead mt-4 max-w-[52ch]">{b.texte}</p>}
+              <ul class="mt-6 grid gap-2.5 text-[16px] leading-[1.5] md:text-[17px]">
+                {b.points.map((x) => (
+                  <li class="flex gap-2.5">
+                    <Coche taille={24} />
+                    <span>{x}</span>
+                  </li>
+                ))}
+              </ul>
+              {b.exemple && b.visuel && (
+                <Ticket class="mt-8 max-w-[440px]" inclinaison={inverse ? 1 : -1} papier="px-5 pb-5 pt-4 md:px-6 md:pb-6 md:pt-5" apparition="defilement">
+                  <p class="dv-ticket-entete">
+                    <span>Exemple réel</span>
+                  </p>
+                  <p class="mt-3 font-accent text-[19px] font-bold leading-[1.35] md:text-[21px]">{b.exemple.texte}</p>
+                  <div class="dv-pointilles my-3.5" aria-hidden="true" />
+                  <p class="text-[14px] leading-[1.45] dv-muted md:text-[15px]" set:html={exposants(b.exemple.contexte) + '. Nom du restaurant masqué.'} />
+                </Ticket>
+              )}
+            </div>
+            <div class={`w-full ${inverse ? 'lg:order-1' : ''}`}>
+              {b.visuel?.type === 'vitrine' ? (
+                <Vitrine
+                  type={b.visuel.appareil}
+                  capture={b.visuel.capture}
+                  ratio={b.visuel.ratio}
+                  ratioMobile={b.visuel.ratioMobile}
+                  place={b.visuel.place}
+                  placeMobile={b.visuel.placeMobile}
+                  bulles={b.visuel.bulles}
+                  class="mx-auto w-full max-w-[560px]"
+                  sizes={sizesVitrine(b.visuel.appareil)}
+                />
+              ) : b.visuel?.type === 'fragment' ? (
+                b.visuel.puce ? (
+                  <FragmentFlottant fragment={b.visuel.fragment} sens={inverse ? 'gauche' : 'droite'} class="mx-auto max-w-[520px]" sizes="(min-width: 1024px) 440px, 84vw">
+                    <span slot="puce" class="dv-puce">
+                      <i />
+                      {b.visuel.puce}
+                    </span>
+                  </FragmentFlottant>
+                ) : (
+                  <FragmentFlottant fragment={b.visuel.fragment} sens={inverse ? 'gauche' : 'droite'} class="mx-auto max-w-[520px]" sizes="(min-width: 1024px) 440px, 84vw" />
+                )
+              ) : (
+                b.exemple && (
+                  <div class="dv-fonction-ticket">
+                    <Ticket class="w-full max-w-[420px]" inclinaison={inverse ? 1.5 : -1.5} papier="px-6 pb-6 pt-5 md:px-7 md:pb-7 md:pt-6" apparition="defilement">
+                      <p class="dv-ticket-entete">
+                        <span>Exemple réel</span>
+                      </p>
+                      <p class="mt-3 font-accent text-[21px] font-bold leading-[1.35] md:text-[24px]">{b.exemple.texte}</p>
+                      <div class="dv-pointilles my-4" aria-hidden="true" />
+                      <p class="text-[14px] leading-[1.45] dv-muted md:text-[15px]" set:html={exposants(b.exemple.contexte) + '. Nom du restaurant masqué.'} />
+                    </Ticket>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+        </section>
+      );
+    })
+  }
 
-  <Faq questions={c.faq} fond={fondFaq} />
+  <section class={`dv-section ${classeFond(fondRegles)}`} aria-labelledby="regles-titre">
+    <div class="dv-container grid gap-10 lg:grid-cols-2 lg:gap-14">
+      <div>
+        <Pastille>{p.regles.surtitre}</Pastille>
+        <h2 id="regles-titre" class="dv-h2 mt-4 max-w-[20ch] md:mt-5">{p.regles.titre}</h2>
+        <p class="dv-lead mt-4 dv-texte md:mt-5" set:html={p.regles.reponse} />
+        {
+          p.regles.sources && (
+            <p class="mt-5 text-[15px] leading-[1.5] dv-muted">
+              Sources&nbsp;:{' '}
+              {p.regles.sources.map((s, i) => (
+                <>
+                  {i > 0 && ' ; '}
+                  <a href={s.url} rel="noopener" class="underline underline-offset-2">
+                    {s.titre}
+                  </a>
+                  , {s.editeur}, consulté le {s.consulteLe}
+                </>
+              ))}
+              .
+            </p>
+          )
+        }
+      </div>
+      <ol class="dv-card grid self-center p-2 md:p-3">
+        {
+          p.regles.points.map((x, i) => (
+            <li class="flex items-start gap-4 border-t border-grey-2/12 p-4 first:border-t-0 md:p-5">
+              <span class="dv-tuile dv-tuile-numero dv-tuile-petite" aria-hidden="true">
+                {i + 1}
+              </span>
+              <span class="pt-1.5" set:html={x} />
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <BandeauPlateformes fond={fondRegles} />
+
+  <section id="offre" class={`dv-section scroll-mt-24 ${classeFond(fondOffre)}`} aria-labelledby="offre-titre">
+    <div class="dv-container">
+      <Pastille>Tarifs</Pastille>
+      <h2 id="offre-titre" class="dv-h2 mt-4 md:mt-5">Dans quelle offre ?</h2>
+      <ul class={`mt-8 grid gap-5 md:mt-10 md:gap-6 ${p.offres.toutes && p.offres.pro ? 'md:grid-cols-2' : 'max-w-[640px]'}`}>
+        {
+          p.offres.toutes && (
+            <li class="dv-relief dv-fonction-offre">
+              <p class="dv-fonction-offre-nom">Toutes les offres</p>
+              <p class="dv-fonction-offre-qui">Essentiel, Pro et Groupe · dès {essentiel.prix}&nbsp;€ HT par mois</p>
+              <p class="dv-fonction-offre-texte">
+                <Coche taille={24} />
+                <span>{p.offres.toutes}</span>
+              </p>
+            </li>
+          )
+        }
+        {
+          p.offres.pro && (
+            <li class="dv-relief dv-fonction-offre dv-fonction-offre-pro">
+              <p class="dv-fonction-offre-nom">{p.offres.toutes ? 'En plus avec Pro et Groupe' : 'Avec Pro et Groupe'}</p>
+              <p class="dv-fonction-offre-qui">Dès {pro.prix}&nbsp;€ HT par mois, jusqu’à 3 restaurants avec Pro</p>
+              <p class="dv-fonction-offre-texte">
+                <Coche taille={24} />
+                <span>{p.offres.pro}</span>
+              </p>
+            </li>
+          )
+        }
+      </ul>
+      <p class="mt-6 text-[16px] leading-[1.5] dv-muted md:mt-8">Sans engagement, mise en place offerte.</p>
+      <a href={lien('/tarifs/')} class="dv-lien-fort mt-1">Voir les tarifs<Fleche taille={24} /></a>
+    </div>
+  </section>
+
+  <Faq questions={p.faq} fond={fondFaq} />
 
   {
     articles.length > 0 && (
-      <section class={`dv-section ${fondArticles === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} aria-labelledby="articles-titre">
+      <section class={`dv-section ${classeFond(fondArticles)}`} aria-labelledby="articles-titre">
         <div class="dv-container">
-          <Pastille>Ressources</Pastille>
-          <h2 id="articles-titre" class="dv-h2 mt-4 md:mt-5">Pour aller plus loin</h2>
-          <ul class="mt-8 grid gap-6 md:grid-cols-3">
+          <Pastille>Blog</Pastille>
+          <h2 id="articles-titre" class="dv-h2 mt-4 md:mt-5">
+            Pour aller plus loin
+          </h2>
+          <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.slice(0, 3).map((a) => (
               <CarteArticle article={a} infos={false} />
             ))}
@@ -251,15 +336,89 @@ const fondAutres = fond();
     )
   }
 
-  <section class={`dv-section ${fondAutres === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} aria-labelledby="autres-titre">
+  <section class={`dv-section ${classeFond(fondAutres)}`} aria-labelledby="autres-titre">
     <div class="dv-container">
       <Pastille>Solution</Pastille>
       <h2 id="autres-titre" class="dv-h2 mt-4 md:mt-5">Le reste de Deliview</h2>
-      <ul class="mt-8 grid gap-6 md:grid-cols-2">
-        {autres.map((p) => <CartePilier slug={p.slug} icone={p.icone} nom={p.surtitre} benefice={p.carte.benefice} href={`/solution/${p.slug}/`} />)}
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3 lg:gap-5">
+        {
+          autres.map((x) => {
+            const IconeAutre = ICONES[x.icone];
+            return (
+              <li class="dv-relief dv-relief-lien dv-fonction-autre">
+                <span class="dv-tuile dv-tuile-petite">
+                  <IconeAutre taille={24} />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <a href={lien(cheminFonction(x.id))} class="dv-pilier-lien block font-accent text-[18px] font-bold leading-[1.3]">
+                    {x.nom}
+                  </a>
+                  <span class="mt-1 block text-[16px] leading-[1.45] dv-muted">{x.phrase}</span>
+                </span>
+                <Fleche taille={24} class="dv-fonction-autre-fleche" />
+              </li>
+            );
+          })
+        }
       </ul>
+      <a href={lien('/solution/')} class="dv-lien-fort mt-6 md:mt-8">Voir toute la solution<Fleche taille={24} /></a>
     </div>
   </section>
 
-  <SectionDemo section={`pilier-${pilier.slug}-formulaire`} />
+  <SectionDemo section={`fonction-${f.id}-formulaire`} />
 </Base>
+
+<style>
+  .dv-fonction-ticket {
+    display: flex;
+    justify-content: center;
+    padding: 12px 8px 20px;
+  }
+  .dv-fonction-offre {
+    display: flex;
+    flex-direction: column;
+    padding: 22px 22px 24px;
+  }
+  @media (min-width: 768px) {
+    .dv-fonction-offre {
+      padding: 28px 28px 30px;
+    }
+  }
+  .dv-fonction-offre-pro {
+    border-color: color-mix(in srgb, var(--color-blue) 55%, transparent);
+  }
+  .dv-fonction-offre-nom {
+    font-family: var(--font-accent);
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .dv-fonction-offre-qui {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-fonction-offre-texte {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid color-mix(in srgb, var(--color-grey-2) 15%, transparent);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .dv-fonction-offre-texte > :global(svg) {
+    flex-shrink: 0;
+  }
+  .dv-fonction-autre {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 16px 16px 16px;
+  }
+  .dv-fonction-autre :global(.dv-fonction-autre-fleche) {
+    flex-shrink: 0;
+    color: var(--color-blue);
+  }
+</style>

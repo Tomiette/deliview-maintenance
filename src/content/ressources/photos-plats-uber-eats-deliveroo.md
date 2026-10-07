@@ -151,4 +151,4 @@ Commencez par les plats qui vendent le plus, puis par ceux qui n’ont pas de ph
 4. Réécrivez les 60 premiers caractères de chaque description.
 5. Envoyez les photos sur Uber Eats et sur Deliveroo, puis vérifiez leur publication quelques jours plus tard.
 
-Deliview passe en revue chaque photo et chaque description de votre carte, sur Uber Eats et Deliveroo, et vous dit lesquelles reprendre en premier. Voyez ce que Deliview fait pour [votre carte et votre marge](/solution/carte-et-marge/).
+Deliview passe en revue chaque photo et chaque description de votre carte, sur Uber Eats et Deliveroo, et vous dit lesquelles reprendre en premier. Voyez ce que Deliview fait pour [vos fiches de plats](/solution/prix/#fiches).

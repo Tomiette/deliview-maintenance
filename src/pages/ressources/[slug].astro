@@ -1,15 +1,17 @@
 ---
-// Article : réponse directe en tête (ticket « En bref »), sommaire, contenu, sources datées, liens vers le pilier
+// Article : réponse directe en tête (ticket « En bref »), sommaire, contenu, sources datées, liens vers la fonction
 // et la démo. Refonte en relief (3 octobre 2026) : pastille du thème, encadré « Dans Deliview » avec la vraie carte
-// de l'app du pilier, inclinée en 3D. 6 octobre 2026 : la photo de l'article sous le titre (crédit Unsplash visible),
-// reprise dans les données structurées ; « À lire aussi » avec la carte commune (CarteArticle).
+// de l'app, inclinée en 3D. 6 octobre 2026 : la photo de l'article sous le titre (crédit Unsplash visible),
+// reprise dans les données structurées ; « À lire aussi » avec la carte commune (CarteArticle). 7 octobre 2026 :
+// l'encadré mène à la page de la fonction la plus proche de l'article (src/lib/site.ts, fonctionDeLArticle).
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Ticket from '../../components/Ticket.astro';
 import CarteArticle from '../../components/CarteArticle.astro';
 import Fleche from '../../icons/fleche.astro';
-import { FRAGMENTS, PILIERS, SITE, THEMES, dateFr, lien, tempsLecture } from '../../lib/site';
+import { FRAGMENTS, SITE, THEMES, cheminFonction, dateFr, fonctionDeLArticle, lien, tempsLecture } from '../../lib/site';
+import { PAGES } from '../../lib/fonctions';
 
 export async function getStaticPaths() {
   const articles = await getCollection('ressources', (a) => !a.data.brouillon);
@@ -19,16 +21,21 @@ export async function getStaticPaths() {
 const { article } = Astro.props as { article: CollectionEntry<'ressources'> };
 const { Content, headings } = await render(article);
 const d = article.data;
-// Thème sans pilier (« Gestion au quotidien », identifiant commandes) : l'encadré présente Deliview dans son ensemble.
-const pilier: { slug: string; titre: string; phrase: string; surtitre: string } = PILIERS.find((p) => p.slug === d.theme) ?? {
-  slug: '',
-  titre: 'Vos données Uber Eats et Deliveroo sur un seul écran',
-  phrase: 'Vos ventes, vos prix face à ceux de votre zone, vos avis et vos remboursements à contester.',
-  surtitre: 'La solution',
-};
+// Fonction la plus proche de l'article ; sans fonction proche (TVA), l'encadré présente Deliview dans son ensemble.
+const fonction = fonctionDeLArticle(article.id, d.theme);
+const encadre = fonction
+  ? { href: cheminFonction(fonction.id), titre: PAGES[fonction.id].h1, phrase: PAGES[fonction.id].lead, bouton: 'Voir comment ça marche', nom: `Voir comment ça marche : ${fonction.nom.toLowerCase()}` }
+  : {
+      href: '/solution/',
+      titre: 'Vos données Uber Eats et Deliveroo sur un seul écran',
+      phrase: 'Vos ventes, vos prix face à ceux de votre zone, vos avis et vos remboursements à contester.',
+      bouton: 'Voir la solution',
+      nom: undefined,
+    };
 const sommaire = headings.filter((h) => h.depth === 2);
-// Vraie carte de l'app du pilier (décorative ici : le texte de l'encadré dit déjà ce qu'elle montre).
-const fragment = pilier.slug ? FRAGMENTS[pilier.slug] : undefined;
+// Vraie carte de l'app de la fonction (décorative ici : le texte de l'encadré dit déjà ce qu'elle montre).
+const CARTE_DE_LA_FONCTION: Record<string, string> = { prix: 'prix', promotions: 'promotions', fraude: 'contestations', avis: 'avis' };
+const fragment = fonction && CARTE_DE_LA_FONCTION[fonction.id] ? FRAGMENTS[CARTE_DE_LA_FONCTION[fonction.id]] : undefined;
 const autres = (await getCollection('ressources', (a) => !a.data.brouillon && a.id !== article.id))
   .sort((a, b) => Number(b.data.theme === d.theme) - Number(a.data.theme === d.theme) || b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime())
   .slice(0, 3);
@@ -156,10 +163,10 @@ const jsonArticle = {
       <section class={`dv-card dv-article-pilier mt-14 ${fragment ? 'dv-article-pilier-image' : ''}`} aria-labelledby="pilier-titre">
         <div class="p-6 md:p-8">
           <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Dans Deliview</p>
-          <h2 id="pilier-titre" class="dv-h3 mt-4">{pilier.titre}</h2>
-          <p class="mt-2 dv-muted">{pilier.phrase}</p>
+          <h2 id="pilier-titre" class="dv-h3 mt-4">{encadre.titre}</h2>
+          <p class="mt-2 dv-muted">{encadre.phrase}</p>
           <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <a href={lien(pilier.slug ? `/solution/${pilier.slug}/` : '/solution/')} class="dv-btn dv-btn-contour">{pilier.slug ? `Voir la solution « ${pilier.surtitre} »` : 'Voir la solution'}</a>
+            <a href={lien(encadre.href)} class="dv-btn dv-btn-contour" aria-label={encadre.nom}>{encadre.bouton}</a>
             <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
               Demander une démo<Fleche taille={24} />
             </a>

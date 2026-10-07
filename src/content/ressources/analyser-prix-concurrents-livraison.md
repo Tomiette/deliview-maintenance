@@ -89,7 +89,7 @@ L’écart se calcule ainsi : (votre prix − médiane) ÷ médiane. Dans l’e
 - **Plus de 10 % en dessous** : vous laissez sans doute de la marge. Montez par étapes et suivez vos ventes après chaque hausse.
 - **Une seule comparaison** : ne concluez pas. Élargissez la zone ou attendez le relevé suivant.
 
-[Deliview compare vos prix à ceux de votre quartier](/solution/prix-et-concurrence/) sur Uber Eats et Deliveroo. Il retient jusqu’à 20 restaurants de votre secteur, dont jusqu’à 3 de votre choix, et compare chaque plat au même plat à taille égale. Il calcule la médiane et l’écart, et ne conclut qu’avec au moins 2 concurrents. Il signale aussi les promos affichées et ce qui a changé depuis l’analyse précédente.
+[Deliview compare vos prix à ceux de votre quartier](/solution/prix/) sur Uber Eats et Deliveroo. Il retient jusqu’à 20 restaurants de votre secteur, dont jusqu’à 3 de votre choix, et compare chaque plat au même plat à taille égale. Il calcule la médiane et l’écart, et ne conclut qu’avec au moins 2 concurrents. Il signale aussi les promos affichées et ce qui a changé depuis l’analyse précédente.
 
 ## À quelle fréquence refaire l’exercice ?
 

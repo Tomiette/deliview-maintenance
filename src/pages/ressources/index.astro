@@ -7,7 +7,7 @@ import SectionDemo from '../../components/SectionDemo.astro';
 import Pastille from '../../components/Pastille.astro';
 import CarteArticle from '../../components/CarteArticle.astro';
 import Fleche from '../../icons/fleche.astro';
-import { PILIERS, THEMES, lien } from '../../lib/site';
+import { THEMES, cheminFonction, fonctionDuTheme, lien } from '../../lib/site';
 
 const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort((a, b) => b.data.misAJourLe.getTime() - a.data.misAJourLe.getTime());
 const parTheme = Object.entries(THEMES)
@@ -57,10 +57,11 @@ const description =
         <div class="dv-container">
           <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
             <h2 id={`theme-${t.slug}`} class="dv-h2">{t.nom}</h2>
-            {/* Thème sans page pilier (« Gestion au quotidien », identifiant commandes) : Deliview ne gère pas les commandes, le lien mène à la vue d'ensemble. */}
-            {PILIERS.some((p) => p.slug === t.slug) ? (
-              <a href={lien(`/solution/${t.slug}/`)} class="dv-lien-fort">
-                Voir la solution «&nbsp;{t.nom}&nbsp;»<Fleche taille={24} />
+            {/* Chaque thème mène à la page de la fonction la plus proche (7 octobre 2026) ; « Gestion au quotidien » (identifiant
+                commandes) n'a pas de fonction proche : le lien mène à la vue d'ensemble. */}
+            {fonctionDuTheme(t.slug) ? (
+              <a href={lien(cheminFonction(fonctionDuTheme(t.slug)!.id))} class="dv-lien-fort">
+                Voir «&nbsp;{fonctionDuTheme(t.slug)!.nom}&nbsp;»<Fleche taille={24} />
               </a>
             ) : (
               <a href={lien('/solution/')} class="dv-lien-fort">
