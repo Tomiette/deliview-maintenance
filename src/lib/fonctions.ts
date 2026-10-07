@@ -161,7 +161,7 @@ export const PAGES: Record<string, PageFonction> = {
         r: 'Oui, dans toutes les offres. Chaque offre affichée par vos concurrents, plateforme par plateforme, et ce qui a changé chez eux ces derniers jours.',
       },
     ],
-    articles: ['promotion-uber-eats-deliveroo-rentable', 'analyser-prix-concurrents-livraison'],
+    articles: ['promotion-uber-eats-deliveroo-rentable', 'augmenter-ventes-uber-eats-deliveroo', 'analyser-prix-concurrents-livraison'],
   },
 
   fraude: {
@@ -450,7 +450,7 @@ export const PAGES: Record<string, PageFonction> = {
         r: 'Parce que le client choisit parmi les restaurants qu’il voit. Un 4,5 ne pèse pas pareil si vos voisins sont à 4,7.',
       },
     ],
-    articles: ['ameliorer-note-uber-eats-deliveroo'],
+    articles: ['algorithme-classement-uber-eats-deliveroo', 'ameliorer-note-uber-eats-deliveroo'],
   },
 
   assistant: {
@@ -586,6 +586,6 @@ export const PAGES: Record<string, PageFonction> = {
         r: 'Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arrive sur votre téléphone. Sur iPhone, ajoutez d’abord Deliview à l’écran d’accueil.',
       },
     ],
-    articles: [],
+    articles: ['augmenter-ventes-uber-eats-deliveroo', 'gerer-uber-eats-deliveroo-ensemble'],
   },
 };
