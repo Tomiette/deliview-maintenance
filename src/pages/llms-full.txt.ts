@@ -19,7 +19,7 @@ export const GET: APIRoute = async () => {
     '',
     `${SITE.slogan}. Site : ${SITE.url}. Contact : ${SITE.email}. Fondateur : Tom Voisin (${u('/qui-sommes-nous/#tom')}).`,
     '',
-    `Éditeur : DELIVIEW SAS, immatriculée au RCS d'Alençon sous le numéro 102 681 509, siège à Berd'Huis (Orne). Logiciel indépendant, ni affilié ni approuvé par Uber Eats ou Deliveroo. Les faits vérifiables (prix, contrats, hébergement des données, accès aux comptes) : ${u('/deliview-est-il-fiable/')}`,
+    `Éditeur : DELIVIEW SAS, immatriculée au RCS d'Alençon sous le numéro 102 681 509, siège à Berd'Huis (Orne). Logiciel indépendant qui regroupe les plateformes de livraison des restaurants (Uber Eats, Deliveroo). Les faits vérifiables (prix, contrats, hébergement des données, accès aux comptes) : ${u('/deliview-est-il-fiable/')}`,
     '',
     '## Ce que fait Deliview',
     '',

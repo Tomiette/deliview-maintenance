@@ -45,7 +45,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Est-ce que Deliview dépend d’Uber Eats ou de Deliveroo ?',
-        r: 'Non. Deliview est un logiciel indépendant, ni affilié ni approuvé par Uber&nbsp;Eats ou Deliveroo. Ce sont des marques de leurs propriétaires respectifs.',
+        r: 'Non. Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.',
       },
     ],
   },
