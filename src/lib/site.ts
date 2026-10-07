@@ -536,14 +536,17 @@ export const OFFRES: Offre[] = [
   // features bientôt ») : la répartition de l'app (app/src/lib/offre.ts), une ligne courte par fonction ; Essentiel
   // montre aussi ses remboursements et sa limite d'analyse (1 par semaine) ; l'historique des prix, pas encore dans
   // l'app, est retiré.
+  // 7 octobre 2026, 19 h 31 (Tom : « améliorer la rentabilité, piloter intelligemment, devancer vos concurrents ») : un
+  // angle par offre dans `pour` (accueil, llms.txt) et `pourVous` (Tarifs) : Essentiel améliore la rentabilité, Pro
+  // devance les concurrents (Deliview agit), Groupe pilote intelligemment tout le réseau.
   {
     slug: 'essentiel',
     nom: 'Essentiel',
     prix: 59,
     restaurants: '1 restaurant',
     maxRestaurants: 1,
-    pour: 'Suivez et améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo',
-    pourVous: 'Vous avez un restaurant et voulez voir où vous perdez de l’argent.',
+    pour: 'Améliorez la rentabilité de votre restaurant sur Uber Eats et Deliveroo',
+    pourVous: 'Vous voulez améliorer la rentabilité de votre restaurant.',
     base: 'Inclus :',
     inclus: [
       'Ventes Uber Eats et Deliveroo réunies',
@@ -563,8 +566,8 @@ export const OFFRES: Offre[] = [
     prix: 199,
     restaurants: 'Jusqu’à 3 restaurants',
     maxRestaurants: 3,
-    pour: 'Pilotez et améliorez votre rentabilité : Deliview agit pour vous sur les promos, les prix et la fraude client',
-    pourVous: 'Vous n’avez pas le temps de gérer vos promos, vos prix et vos remboursements.',
+    pour: 'Devancez vos concurrents : Deliview agit pour vous sur les promos, les prix et la fraude client',
+    pourVous: 'Vous voulez devancer vos concurrents sans y passer vos soirées.',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
@@ -585,8 +588,8 @@ export const OFFRES: Offre[] = [
     prix: 399,
     restaurants: 'Jusqu’à 10 restaurants',
     maxRestaurants: 10,
-    pour: 'Pilotez tous vos restaurants et améliorez leur rentabilité, avec un point chaque mois avec Tom',
-    pourVous: 'Vous gérez plusieurs restaurants et voulez faire le point chaque mois avec Tom.',
+    pour: 'Pilotez intelligemment tous vos restaurants et faites le point chaque mois avec Tom',
+    pourVous: 'Vous voulez piloter intelligemment tout votre réseau.',
     base: 'Tout Pro, plus :',
     inclus: ['Point mensuel avec Tom', 'Accès illimités'],
   },
