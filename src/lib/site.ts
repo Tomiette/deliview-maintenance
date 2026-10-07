@@ -146,7 +146,7 @@ export const FRAGMENTS: Record<string, CaptureApp> = {
   },
   // Contestations › En cours et Terminées (7 octobre 2026) : envoyées à Uber 5 et 6 min après la demande, une refusée.
   contestations: {
-    src: '/images/frag-contestations',
+    src: '/images/frag-suivi-contestations',
     largeurs: [400, 800],
     largeur: 800,
     hauteur: 928,
@@ -162,6 +162,8 @@ export const FRAGMENTS: Record<string, CaptureApp> = {
   },
 };
 
+// Une image refaite change de nom de fichier : les navigateurs gardent les images 7 jours (.htaccess), un même nom
+// garderait l'ancienne version chez les visiteurs déjà venus (7 octobre 2026, photo des tablettes restée barrée).
 // Écrans de l'app sur appareils (6 octobre 2026, demande de Tom : « des écrans sur des tablettes, des captures, varier ») :
 // téléphones et tablette du compte de démonstration « Pizza Démo » (app du 6 octobre, chiffres fictifs). 7 octobre 2026 :
 // Menu › Prix, Promotions (À lancer, La zone), Concurrents › Notes et le classement de l'accueil refaits sur l'app du
@@ -169,7 +171,7 @@ export const FRAGMENTS: Record<string, CaptureApp> = {
 // l'app du 3 octobre. Les bulles ne reprennent que des chiffres de leur écran.
 export const ECRANS: Record<string, CaptureApp> = {
   contestations: {
-    src: '/images/ecrans/telephone-contestations',
+    src: '/images/ecrans/telephone-contester',
     largeurs: [400, 800],
     largeur: 800,
     hauteur: 1731,
