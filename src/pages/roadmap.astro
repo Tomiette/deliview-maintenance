@@ -1,0 +1,96 @@
+---
+// Roadmap publique (7 octobre 2026, demande de Tom, sur le modèle de celle de taap.it) : trois colonnes, Fait,
+// Prochainement, Plus tard. Aucune date promise : « Fait » liste ce qui est déjà dans l'app ; « Prochainement » ne
+// contient que ce qui est en chantier ; « Plus tard » reste une direction, pas un engagement. À mettre à jour à chaque sortie.
+import Base from '../layouts/Base.astro';
+import Pastille from '../components/Pastille.astro';
+import LogoContact from '../components/LogoContact.astro';
+import { SITE } from '../lib/site';
+
+const MAJ = '7 octobre 2026';
+
+type Element = { titre: string; texte: string; offre?: string };
+const colonnes: { id: string; titre: string; pastille: string; elements: Element[] }[] = [
+  {
+    id: 'fait',
+    titre: 'Fait',
+    pastille: 'Dans l’app',
+    elements: [
+      { titre: 'Vos ventes de la veille à 7 h', texte: 'Uber Eats et Deliveroo réunis, chaque matin.' },
+      { titre: 'Remboursements à contester', texte: 'Sur Uber Eats et Deliveroo, avec la date limite de chacun.' },
+      { titre: 'Contestation en un clic', texte: 'Deliview envoie la contestation, vous suivez la réponse.', offre: 'Pro' },
+      { titre: 'Alerte restaurant fermé', texte: 'Vérifié toutes les 10 minutes pendant le service.' },
+      { titre: 'Réponses IA à vos avis', texte: 'Une réponse prête pour chaque avis, à relire.' },
+      { titre: 'Promos et prix mis en ligne', texte: 'Préparés avec vous, appliqués après votre accord.', offre: 'Pro' },
+      { titre: 'Assistant IA', texte: 'Vos questions sur vos chiffres, et un rapport pour l’équipe.', offre: 'Pro' },
+      { titre: 'Objectifs et point du lundi', texte: 'Où vous en êtes de vos objectifs, chaque semaine.' },
+      { titre: 'Jour, semaine ou mois', texte: 'Vos chiffres sur la période de votre choix, comparés à la précédente.' },
+      { titre: 'Envoi à l’équipe par WhatsApp', texte: 'Un point à corriger part à votre équipe en un clic.' },
+      { titre: 'Photos de plats passées en revue', texte: 'Ce qui manque ou se voit mal sur votre carte.' },
+      { titre: 'L’app à vos couleurs', texte: 'Le logo et les couleurs de votre restaurant.' },
+    ],
+  },
+  {
+    id: 'prochainement',
+    titre: 'Prochainement',
+    pastille: 'En chantier',
+    elements: [
+      { titre: 'Votre classement dans votre zone', texte: 'Votre place face aux restaurants voisins, sur chaque plateforme.' },
+      { titre: 'Le journal de vos concurrents', texte: 'Leurs changements de prix et de promos, jour après jour.' },
+    ],
+  },
+  {
+    id: 'plus-tard',
+    titre: 'Plus tard',
+    pastille: 'À l’étude',
+    elements: [
+      { titre: 'La livraison depuis votre site', texte: 'Vos clients commandent chez vous, Uber Direct livre.' },
+    ],
+  },
+];
+---
+
+<Base
+  title="Roadmap : ce qu’on construit | Deliview"
+  description="La roadmap publique de Deliview : ce qui est déjà dans l’app, ce qui est en chantier et ce qui viendra plus tard pour les restaurants qui livrent."
+  ariane={[{ nom: 'Roadmap', chemin: '/roadmap/' }]}
+>
+  <section class="bg-grey pb-16 pt-6 md:pb-24 md:pt-10" aria-labelledby="roadmap-titre" data-haut-de-page>
+    <div class="dv-container">
+      <Pastille>Roadmap publique</Pastille>
+      <h1 id="roadmap-titre" class="dv-h1 mt-5 max-w-[22ch] md:mt-6">Ce qu’on construit pour vous</h1>
+      <p class="dv-lead mt-4 max-w-[62ch] md:mt-6">Ce qui est déjà dans l’app, ce qui est en chantier, et ce qui viendra plus tard. Mise à jour le {MAJ}.</p>
+
+      <div class="mt-10 grid items-start gap-5 md:mt-12 lg:grid-cols-3">
+        {colonnes.map((c) => (
+          <section class="rounded-[20px] border border-grey-2/10 bg-white p-4 md:p-5" aria-labelledby={`col-${c.id}`}>
+            <div class="flex items-center justify-between gap-3 px-1">
+              <h2 id={`col-${c.id}`} class="font-accent text-[20px] font-bold md:text-[22px]">{c.titre}</h2>
+              <span class="rounded-full bg-grey px-3 py-1 text-[14px] font-semibold">{c.elements.length}</span>
+            </div>
+            <ul class="mt-4 grid gap-3">
+              {c.elements.map((e) => (
+                <li class="rounded-[14px] border border-grey-2/10 bg-grey p-4">
+                  <p class="flex flex-wrap items-center gap-2 text-[16px] font-semibold leading-[1.35]">
+                    {e.titre}
+                    {e.offre && <span class="rounded-full border border-grey-2/20 bg-white px-2 py-0.5 text-[13px] font-semibold">Offre {e.offre}</span>}
+                  </p>
+                  <p class="mt-1 text-[15px] leading-[1.45] dv-muted">{e.texte}</p>
+                </li>
+              ))}
+            </ul>
+            <p class="mt-4 px-1 text-[14px] dv-muted">{c.pastille}</p>
+          </section>
+        ))}
+      </div>
+
+      <div class="mt-10 rounded-[20px] border border-grey-2/10 bg-white p-6 md:mt-12 md:p-8">
+        <h2 class="font-accent text-[20px] font-bold md:text-[22px]">Une fonction vous manque&nbsp;?</h2>
+        <p class="mt-2 max-w-[62ch] text-[16px] leading-[1.5]">Dites-le à Tom. Les demandes des restaurateurs décident de ce qui passe en chantier.</p>
+        <p class="mt-4 text-[16px] font-semibold">
+          <a href={`mailto:${SITE.email}?subject=${encodeURIComponent('Idée pour la roadmap Deliview')}`} class="dv-lien gap-2.5"><LogoContact type="email" />{SITE.email}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

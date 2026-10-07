@@ -56,7 +56,7 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
   },
 ];
 // Roadmap : sur le site en ligne dès que SITE.roadmap est rempli ; avant, sur l'aperçu seulement, pour validation.
-const roadmap = SITE.roadmap || (import.meta.env.BASE_URL !== '/' ? '#roadmap' : '');
+const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap : lien(SITE.roadmap)) : import.meta.env.BASE_URL !== '/' ? '#roadmap' : '';
 ---
 
 <footer id="pied" class="bg-grey px-3 pb-6 pt-10 md:px-6 md:pt-16">
