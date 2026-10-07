@@ -20,7 +20,7 @@ Le partenaire des restaurants en livraison. Site : https://www.deliview.fr. Cont
 
 ### Vos promotions (https://www.deliview.fr/solution/promotions/)
 
-Des promos pour vos heures creuses, chiffrées avant le lancement. Deliview repère les services où vous vendez peu et vous propose l’offre à lancer, avec son coût et son objectif.
+Une stratégie de promotion intelligente, alimentée par l’IA. Deliview repère les services où vous vendez peu et vous propose l’offre à lancer, avec son coût et son objectif.
 
 1. Deliview trouve vos creux : Il compare chaque service à vos autres services, sur vos ventes Uber Eats et Deliveroo. Par exemple, le mardi midi face aux autres midis.
 2. Il choisit l’offre et la chiffre : Une offre que la plateforme propose, au niveau de celles de votre zone. Avec son coût par commande, commission Uber Eats comprise, et un objectif à suivre.
@@ -32,6 +32,9 @@ Toutes les offres : Les offres de vos concurrents, plateforme par plateforme, et
 
 **Est-ce que Deliview lance une promo sans mon accord ?**
 Non. Deliview vous propose l’offre, avec son coût et son objectif. Elle ne passe en ligne que si vous la validez, avec l’offre Pro ou Groupe.
+
+**Où intervient l’IA dans mes promos ?**
+Dans l’assistant IA, avec l’offre Pro ou Groupe. Demandez-lui quelle promo lancer sur un creux : il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.
 
 **Quelles promos est-ce que Deliview peut me proposer ?**
 Uniquement celles qu’Uber Eats et Deliveroo permettent : une remise sur des plats, « 1 acheté = 1 offert », une remise dès un montant, une offre réservée aux nouveaux clients.
