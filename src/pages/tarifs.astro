@@ -16,7 +16,6 @@
 // Gardé : chaque offre mène au formulaire de départ /commencer/?offre=… (4 octobre, logique de taap.it) ; la démo reste
 // proposée sous les offres et en bas de page ; « Plus de 10 restaurants ? » dans la bulle de Tom, comme sur l'accueil.
 import Base from '../layouts/Base.astro';
-import BoutonDemo from '../components/BoutonDemo.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
 import Coche from '../icons/coche.astro';
@@ -33,7 +32,6 @@ import Telephone from '../icons/telephone.astro';
 import BoutiqueArret from '../icons/boutique-arret.astro';
 import TicketIcone from '../icons/ticket.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
-import Chef from '../icons/chef.astro';
 import OffreEssentiel from '../icons/offre-essentiel.astro';
 import OffrePro from '../icons/offre-pro.astro';
 import OffreGroupe from '../icons/offre-groupe.astro';
@@ -442,15 +440,6 @@ const logiciel = {
   </section>
 
   <Faq questions={faq} titre="Avant de choisir une offre" />
-
-  <section id="demo" class="dv-section bg-white" aria-labelledby="final-titre">
-    <div class="dv-container max-w-[760px] text-center">
-      <span class="dv-tuile dv-tuile-chef"><Chef taille={48} /></span>
-      <h2 id="final-titre" class="dv-h2 mt-5">Voyez Deliview sur votre restaurant avant de choisir</h2>
-      <p class="dv-lead mt-4">Une démo de 30&nbsp;minutes avec Tom, avant tout paiement.</p>
-      <BoutonDemo href={lien('/demo/')} cta="tarifs-final" principal class="mt-7 w-full sm:w-auto" />
-    </div>
-  </section>
 </Base>
 
 <script>
