@@ -259,6 +259,166 @@ Par e-mail à tom.voisin@deliview.fr, ou en demandant une démo. C’est Tom qui
 
 ## Guides pour les restaurateurs
 
+### Algorithme Uber Eats et Deliveroo : comment votre restaurant est classé dans l’application
+
+Adresse : https://www.deliview.fr/ressources/algorithme-classement-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-07
+
+En bref : Deliveroo classe d’abord les restaurants selon la probabilité qu’un client y commande : ses habitudes, l’heure, l’attente et la distance. Votre note et vos promos comptent aussi. Uber Eats regarde notamment votre disponibilité et les commandes acceptées. Son score de réussite, recalculé chaque mois, ouvre l’accès aux offres, aux annonces et au badge Top Eats.
+
+## Uber Eats et Deliveroo publient-ils leurs critères de classement ?
+
+Oui, dans les grandes lignes. L’algorithme lui-même reste secret, mais Deliveroo a une page « Classement et référencement de nos partenaires ». Uber décrit le fonctionnement de ses applications dans un document dédié, et précise dans son contrat et sa politique de score ce qui pèse sur votre visibilité.
+
+Aucune des deux ne donne sa formule : vous connaissez les ingrédients, pas les dosages. Chaque critère de cet article vient d’une de ces pages officielles, listées en bas de page.
+
+## Comment Deliveroo classe-t-il les restaurants ?
+
+Deliveroo classe d’abord selon la probabilité qu’un client commande chez vous. Pour l’estimer, sa [page sur le classement](https://deliveroo.fr/fr/partner-ranking) regarde trois choses :
+
+- **le client** : ses commandes passées, s’il a déjà commandé chez vous, la cuisine qu’il préfère ;
+- **la commande en cours** : l’heure, l’attente prévue jusqu’à la livraison, la distance entre votre restaurant et l’adresse du client ;
+- **votre restaurant** : la note donnée par ce client et par les autres, l’appartenance à une chaîne, et le fait qu’il « propose actuellement une promotion ».
+
+D’autres éléments affinent ensuite l’ordre : les cuisines du moment, la disponibilité de vos articles, et des considérations financières pour Deliveroo, comme ses revenus et ses coûts.
+
+Les places payantes existent aussi. Un restaurant peut payer pour être mis en avant à certains endroits de l’application, et ces emplacements sont signalés comme sponsorisés.
+
+**Ce que vous pouvez changer chez Deliveroo** : votre note, vos promos, votre temps de préparation, qui pèse sur l’attente, et la disponibilité de vos plats. La distance et les habitudes du client ne dépendent pas de vous.
+
+## Comment Uber Eats classe-t-il les restaurants ?
+
+Dans la page qui explique ses applications en France, Uber cite « La disponibilité » et « l’expérience relative aux commandes passées », comme « le taux d’acceptation des commandes ». Son contrat avec les restaurants cite aussi le prix parmi les critères de classement.
+
+Le levier le plus concret reste le score de réussite. Uber Eats le recalcule le 1er de chaque mois, établissement par établissement, sur les 28 derniers jours. Il regarde :
+
+- **la fiabilité** de vos commandes : acceptées, prêtes à l’heure, sans erreur ;
+- **votre menu** : la part de vos plats avec une photo ou une description ;
+- **vos notes** clients ;
+- **la majoration de vos prix** ;
+- selon les pays, **vos emballages**.
+
+Le score vous range dans l’un des cinq niveaux. Les niveaux du haut donnent accès aux offres et aux annonces, à des carrousels de l’application et à des réductions sur les frais d’offre. Les deux premiers niveaux ouvrent aussi Top Eats : un badge sur votre fiche, et des places dans les sections réservées aux restaurants les mieux évalués.
+
+Le dernier niveau ne donne aucun avantage et peut couper vos outils marketing. Un restaurant qui y reste plusieurs mois est contacté par Uber, puis risque d’être retiré de l’application.
+
+## Quels leviers comptent sur les deux plateformes ?
+
+Les deux plateformes ne pèsent pas les mêmes choses, mais cinq leviers reviennent. Le tableau dit où chacun compte, et renvoie au guide qui le détaille.
+
+| Levier | Uber Eats | Deliveroo | Notre guide |
+| --- | --- | --- | --- |
+| Note des clients | Dans le score de réussite | Critère de classement | [Améliorer sa note](/ressources/ameliorer-note-uber-eats-deliveroo/) |
+| Commandes prêtes à l’heure, sans erreur | Dans le score de réussite | L’attente prévue est un critère | [Tenir le rush](/ressources/tablettes-uber-eats-deliveroo-rush/) |
+| Ouverture et disponibilité | Critère cité par Uber | Disponibilité des articles | [Restaurant fermé en plein service](/ressources/restaurant-ferme-uber-eats-deliveroo/) |
+| Photos et descriptions | Dans le score de réussite | Non cité | [Photos de plats](/ressources/photos-plats-uber-eats-deliveroo/) |
+| Prix | Critère du contrat, majoration dans le score | Fortes majorations signalées aux clients | [Fixer ses prix](/ressources/fixer-prix-uber-eats-deliveroo/) |
+| Promotions | Accès selon votre score | Critère de classement | [Une promo rentable](/ressources/promotion-uber-eats-deliveroo-rentable/) |
+
+Sur Deliveroo, la majoration de vos prix ne fait pas partie des critères de classement publiés. Mais la plateforme mesure l’écart entre vos prix dans l’application et au restaurant, et rend visibles aux clients les majorations élevées. Notre article sur [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/) détaille ce point.
+
+## Exemple réel : ce qu’une fiche montre en trente secondes
+
+Voici un restaurant de burgers à Paris, analysé par Deliview le 2 octobre 2026 (nom anonymisé).
+
+- **Sur Uber Eats** : 8e sur 14 par note dans sa zone, avec 4,2 pour une moyenne de 4,1. Aucune offre, quand 10 concurrents sur 14 en ont une. Des prix 52 % au-dessus de ceux de sa zone.
+- **Sur Deliveroo** : 4e sur 8 par note, avec 4,3, comme la moyenne. Aucune offre, quand 4 concurrents sur 9 en ont une. Des prix 30 % au-dessus de sa zone.
+
+Sa note est dans la moyenne : ce n’est pas elle qui le freine. Les écarts sont ailleurs : pas de promo, alors que Deliveroo en tient compte, et des prix bien plus hauts que ses voisins. **Deux leviers à tester d’abord, pas vingt.**
+
+## Quelles erreurs font perdre des places ?
+
+**Payer des annonces avant de régler la note et la fiabilité.** Chez Uber Eats, un score trop faible peut vous couper l’accès aux offres et aux annonces. La visibilité payée ne compense pas des commandes refusées.
+
+**Lancer des promos sur vos services déjà pleins.** La promo compte dans le classement de Deliveroo, mais elle coûte sur chaque commande. Gardez-la pour vos heures creuses : notre article sur [les promos rentables](/ressources/promotion-uber-eats-deliveroo-rentable/) donne le calcul.
+
+**Monter tous vos prix d’un coup pour couvrir la commission.** Uber Eats suit votre majoration dans son score, et Deliveroo signale les fortes majorations aux clients. Montez plat par plat, en vous comparant à votre zone : voir [comment analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
+
+**Laisser la tablette se mettre en pause en plein service.** Un restaurant fermé ne reçoit aucune commande, et Uber cite la disponibilité parmi ses critères de classement.
+
+**Croire aux astuces sans source.** Si une méthode ne s’appuie sur aucune règle publiée par la plateforme, testez-la sur deux semaines avant d’y croire.
+
+## Comment suivre votre classement ?
+
+Dans Uber Eats Manager, vous voyez vos objectifs pour chaque critère du score de réussite, et vous savez où vous en êtes avant le 1er du mois. Dans le Portail Partenaire de Deliveroo, vos notes sont dans la section dédiée.
+
+Ce que les deux outils ne montrent pas, c’est votre place face aux restaurants de votre zone. Pour cela, relevez chaque semaine la note, les offres et quelques prix de cinq à dix concurrents, sur les deux plateformes.
+
+Deliview fait ce relevé pour vous : [votre note et votre rang dans votre zone](/solution/avis/), sur Uber Eats et Deliveroo, avec les offres de vos voisins et l’écart de prix plat par plat.
+
+Sources : Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 7 octobre 2026) ; Success score (France) (Uber, https://merchants.ubereats.com/fr/en/success-score/, consulté le 7 octobre 2026) ; Top Eats (France) (Uber, https://merchants.ubereats.com/fr/en/technology/reach-customers/top-eats/, consulté le 7 octobre 2026) ; Politique de Score de Réussite Partenaire - Restaurants Partenaires (Uber, https://www.uber.com/fr/fr/legal/merchant-success-score-policy/, consulté le 6 octobre 2026) ; How the Uber and Uber Eats Apps and Websites Work (version française, modifiée le 6 juillet 2026) (Uber, https://www.uber.com/legal/fr/document/?country=france&lang=fr&name=how-the-uber-and-uber-eats-apps-and-websites-work, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Transparence des prix sur Deliveroo : Prix Vérifiés et visibilité des majorations élevées (France) (Deliveroo, https://help.deliveroo.com/fr/articles/14686799-transparence-des-prix-sur-deliveroo-prix-verifies-et-visibilite-des-majorations-elevees-france, consulté le 6 octobre 2026) ; Où puis-je voir mes notes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3215325-ou-puis-je-voir-mes-notes, consulté le 6 octobre 2026)
+
+### Augmenter ses ventes sur Uber Eats et Deliveroo : les leviers qui comptent, dans le bon ordre
+
+Adresse : https://www.deliview.fr/ressources/augmenter-ventes-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-07
+
+En bref : Commencez par ce qui vous fait perdre des commandes sans que vous le voyiez : un restaurant fermé en plein service, des commandes refusées, une note qui baisse. Travaillez ensuite votre fiche : photos, descriptions, prix au niveau de votre zone. Gardez les promos pour vos heures creuses, et mesurez chaque changement sur plusieurs semaines.
+
+## Par où commencer pour vendre plus sur Uber Eats et Deliveroo ?
+
+Par ce qui vous fait perdre des commandes sans que vous le voyiez. Une promo ou une annonce ne sert à rien si le restaurant est fermé, refuse des commandes ou affiche une note qui fait fuir.
+
+Les leviers se rangent en trois étapes. D’abord, ne plus perdre de commandes : ouverture, acceptation, note. Ensuite, mieux vous présenter : photos, descriptions, prix. Enfin, aller chercher des clients : promos, puis publicité. Chaque levier a son guide détaillé, en lien.
+
+## 1. Rester ouvert pendant tout le service
+
+Un restaurant fermé ne reçoit rien, et c’est le levier le plus souvent oublié. Uber Eats met vos commandes en pause quand vous en refusez plusieurs d’affilée ou que vous tardez à les accepter. Chez Deliveroo, une commande sans réponse au bout de 10 minutes est refusée, et votre restaurant reste fermé tant que vous ne l’ouvrez pas.
+
+Vérifiez vos horaires sur les deux plateformes, gardez la tablette branchée et regardez votre fiche à chaque début de service. Tout est détaillé dans notre article sur [le restaurant fermé en plein service](/ressources/restaurant-ferme-uber-eats-deliveroo/).
+
+## 2. Accepter vite et préparer à l’heure
+
+Les deux plateformes surveillent votre fiabilité. Chez Uber Eats, le score de réussite regarde si vos commandes sont fiables, prêtes à l’heure et justes. Chez Deliveroo, l’attente prévue pour le client compte dans le classement : un temps de préparation trop long vous fait descendre.
+
+Le soir du rush, ce sont les réglages qui comptent : mode Occupé, ruptures signalées tout de suite, une personne dédiée aux tablettes. Notre guide pour [gérer les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) les détaille.
+
+## 3. Faire monter votre note
+
+Votre note pèse partout : dans le classement de Deliveroo, dans le score de réussite d’Uber Eats, et dans la décision du client qui hésite entre deux restaurants. Les causes sont presque toujours les mêmes : un article oublié, une commande en retard, un emballage qui fuit.
+
+Répondez aux avis, surtout aux mauvais, et corrigez ce qu’ils pointent. Voir notre article sur [la note Uber Eats et Deliveroo](/ressources/ameliorer-note-uber-eats-deliveroo/).
+
+## 4. Mettre une photo et une description sur chaque plat
+
+Le client choisit avec les yeux, et Uber Eats le sait : la part de votre menu avec photos ou descriptions entre dans votre score de réussite.
+
+**Exemple réel** : dans un restaurant de burgers à Paris, analysé par Deliview le 2 octobre 2026, 8 plats sur 33 n’avaient pas de description sur Deliveroo, soit 24 %. Chez ses 9 concurrents, la part tombait à 5 %. Ce retard se rattrape sans dépenser un euro.
+
+Pour refaire vos photos avec un téléphone, en respectant les règles des deux plateformes, lisez notre guide sur [les photos de plats](/ressources/photos-plats-uber-eats-deliveroo/).
+
+## 5. Placer vos prix au niveau de votre zone
+
+Le client compare en quelques secondes. Un plat bien plus cher que chez les voisins se vend moins, et un plat trop bas vous fait perdre de la marge sur chaque commande. Uber Eats suit aussi la majoration de vos prix dans son score de réussite.
+
+Comparez le même plat, à taille égale, chez cinq à dix concurrents, puis situez-vous face au prix du milieu. La méthode est dans notre article pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/), et le calcul du prix plancher dans celui pour [fixer vos prix](/ressources/fixer-prix-uber-eats-deliveroo/).
+
+## 6. Garder les promos pour vos heures creuses
+
+Chez Deliveroo, un restaurant qui « propose actuellement une promotion » remonte dans le classement. Mais une promo coûte sur chaque commande : lancée sur un service déjà plein, elle rogne votre marge sans rien vous rapporter.
+
+Repérez vos services les plus faibles, le mardi midi face aux autres midis par exemple, et ciblez-les. Chez Uber Eats, vérifiez d’abord que votre score de réussite vous laisse l’accès aux offres. Le calcul complet est dans notre article sur [les promos rentables](/ressources/promotion-uber-eats-deliveroo-rentable/).
+
+## 7. Passer à la publicité en dernier
+
+Les deux plateformes vendent de la visibilité. Uber Eats propose des campagnes d’annonces dans Uber Eats Manager. Chez Deliveroo, vous fixez un budget et un coût par vue de votre menu, retirés chaque semaine de votre facture.
+
+La publicité amène des clients sur votre fiche : si la fiche, la note ou les prix ne suivent pas, vous payez pour qu’ils repartent. Gardez-la pour la fin, et lisez avant [comment Uber Eats et Deliveroo classent les restaurants](/ressources/algorithme-classement-uber-eats-deliveroo/).
+
+## 8. Ne pas perdre ce que vous avez vendu
+
+Vendre plus ne sert à rien si l’argent repart ensuite. Un client remboursé à tort vous coûte la commande : vous avez 30 jours pour contester chez Uber Eats, et 7 jours chez Deliveroo. Voir notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
+
+Regardez aussi ce que chaque plateforme vous laisse vraiment, commission, offres et TVA comprises, avec nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+## Comment savoir si un changement a marché ?
+
+Changez une chose à la fois, et comparez les mêmes services avant et après : le mardi midi à d’autres mardis midi, pas à un samedi soir. Laissez au moins deux semaines à chaque changement avant de conclure.
+
+Uber Eats Manager affiche vos ventes, votre nombre de commandes et votre panier moyen. Chez Deliveroo, vos factures hebdomadaires donnent vos ventes semaine par semaine. Pour suivre les deux au même endroit, notre article pour [gérer Uber Eats et Deliveroo ensemble](/ressources/gerer-uber-eats-deliveroo-ensemble/) compare les solutions, du tableur gratuit aux outils.
+
+Deliview suit vos ventes chaque jour, sur les deux plateformes, et vous dit où vous en êtes de [vos objectifs de ventes](/solution/objectifs/), semaine après semaine.
+
+Sources : Success score (France) (Uber, https://merchants.ubereats.com/fr/en/success-score/, consulté le 7 octobre 2026) ; How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Pourquoi les commandes sont-elles suspendues automatiquement ? (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/pourquoi-les-commandes-sont-elles-interrompues-automatiquement-?nodeId=ef70e506-60c4-45e4-b21e-0adca9efe8fe, consulté le 6 octobre 2026) ; Comment éviter de refuser des commandes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3198713, consulté le 6 octobre 2026) ; Comprendre la Notification de Rappel d’Ouverture (Deliveroo, https://help.deliveroo.com/fr/articles/11002244-comprendre-la-notification-de-rappel-d-ouverture, consulté le 6 octobre 2026) ; Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 7 octobre 2026) ; Foire aux questions sur les publicités (Deliveroo, https://help.deliveroo.com/fr/articles/4840108-foire-aux-questions-sur-les-publicites, consulté le 6 octobre 2026)
+
 ### Remboursement Uber Eats ou Deliveroo : comment contester et récupérer votre argent
 
 Adresse : https://www.deliview.fr/ressources/contester-remboursement-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-06, mis à jour le 2026-10-07
@@ -359,6 +519,81 @@ Commencez par les remboursements encore contestables, puis installez la routine 
 Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Pro, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
 
 Sources : Gestion des remboursements en cas de commandes incorrectes ou incomplètes (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/gestion-des-remboursements-en-cas-de-commandes-incorrectes-ou-incompl%C3%A8tes-?nodeId=abc0c3e7-9687-4a00-a956-2c8a16cf0b7e, consulté le 6 octobre 2026) ; Comment résoudre les erreurs de commande (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/order-errors/, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; Comment gérer et contester les remboursements dans le Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/6457561-comment-gerer-et-contester-les-remboursements-dans-le-portail-partenaire, consulté le 6 octobre 2026) ; Pourquoi ce remboursement est-il à ma charge ? (Deliveroo, https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge, consulté le 6 octobre 2026) ; Politiques des partenaires : remboursement des clients et annulation des commandes (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 6 octobre 2026) ; Pourquoi mes frais de remboursement pour les produits inclus dans une formule ont-ils changé ? (Deliveroo, https://help.deliveroo.com/fr/articles/12058685-pourquoi-mes-frais-de-remboursement-pour-les-produits-inclus-dans-une-formule-ont-ils-change, consulté le 6 octobre 2026)
+
+### Gérer Uber Eats et Deliveroo en même temps : tablettes, caisse ou logiciel ?
+
+Adresse : https://www.deliview.fr/ressources/gerer-uber-eats-deliveroo-ensemble/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-07
+
+En bref : Il y a deux choses à réunir : les commandes et les chiffres. Pour les commandes, un connecteur comme Deliverect ou HubRise les envoie dans votre caisse et remplace les tablettes. Pour les chiffres, un outil comme Deliview réunit vos ventes, vos prix, vos avis et vos remboursements. Sans budget, les exports des deux plateformes et un tableur suffisent pour démarrer.
+
+## Pourquoi c’est si lourd de gérer Uber Eats et Deliveroo ensemble ?
+
+Parce que chaque plateforme a ses outils, et qu’aucune ne parle à l’autre. Chez Uber Eats, les commandes arrivent sur l’application Commandes, et le reste se passe dans Uber Eats Manager : ventes, paiements, menus, avis. Chez Deliveroo, c’est sa tablette, puis le Portail Partenaire.
+
+Résultat, tout se fait en double : deux menus à tenir à jour, deux ruptures à signaler, deux séries d’avis, deux factures. Même les règles diffèrent. Deliveroo vous paie chaque semaine les ventes de la semaine précédente, avec une facture à télécharger. Uber Eats verse aussi chaque semaine, avec un relevé commande par commande. Pour contester un remboursement, vous avez 30 jours chez Uber Eats et 7 jours chez Deliveroo, comme le détaille notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
+
+Avant de choisir une solution, posez-vous une question : que voulez-vous réunir ? **Les commandes**, pour ne plus courir d’une tablette à l’autre ? **Ou les chiffres**, pour savoir ce que chaque plateforme vous rapporte vraiment ? Ce ne sont pas les mêmes outils.
+
+## Solution 1 : garder les tablettes et les back-offices
+
+C’est gratuit et c’est déjà en place. Pour que ça tienne, organisez-vous :
+
+- **une personne par service** tient les deux tablettes, branchées et rangées côte à côte ;
+- **les ruptures** se signalent sur les deux plateformes en même temps ;
+- **le lundi**, un quart d’heure pour lire les ventes, les avis et les remboursements de la semaine, plateforme par plateforme.
+
+Donnez aussi accès à votre équipe sans partager votre mot de passe. Uber Eats Manager propose quatre niveaux d’accès, de la consultation des chiffres à l’administration du compte : vous ajoutez la personne avec son nom et son e-mail. Dans le Portail Partenaire de Deliveroo, vous invitez un membre depuis la gestion de l’équipe, en choisissant son rôle et ses restaurants.
+
+**La limite** : vous ne voyez jamais vos deux plateformes ensemble, et le suivi dépend de votre temps. Notre article sur [les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) donne les réglages pour les soirs chargés.
+
+## Solution 2 : un tableur avec les exports des deux plateformes
+
+Si vous voulez vos chiffres réunis sans dépenser, un tableur suffit. Uber Eats Manager vous laisse choisir un rapport (paiements, opérations ou avis), un restaurant et une période. Le Portail Partenaire de Deliveroo propose vos factures en PDF ou en CSV, sur la dernière année.
+
+Une fois par semaine, reportez sur une même ligne, pour chaque plateforme :
+
+| Colonne | Où la trouver |
+| --- | --- |
+| Ventes TTC | Rapport de paiements Uber Eats, facture Deliveroo |
+| Commission | Les deux, ligne par ligne |
+| Offres et publicité | Les deux, en déduction |
+| Remboursements | Les deux, à repérer commande par commande |
+| Montant versé | Votre relevé bancaire, pour vérifier |
+
+En un mois, vous voyez quelle plateforme vous coûte le plus cher, et sur quoi. Pour le calcul, appuyez-vous sur nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+**La limite** : du temps chaque semaine, des erreurs de saisie, et rien sur vos concurrents.
+
+## Solution 3 : un connecteur qui envoie les commandes dans la caisse
+
+C’est la solution pour **ne plus avoir de tablettes**. Un connecteur reçoit les commandes d’Uber Eats et de Deliveroo et les envoie dans votre logiciel de caisse, où elles s’affichent comme vos commandes sur place.
+
+Deliverect est le plus connu. D’après sa page sur Uber Eats, il intègre les commandes dans la caisse, synchronise les menus, renvoie le statut des commandes à la plateforme et propose des statistiques de ventes. HubRise, connecteur français, relie de son côté les caisses, les plateformes de livraison et les sites de commande.
+
+**La limite** : un abonnement en plus de votre caisse, une caisse compatible, et une mise en place à prévoir. Le rôle premier de ces outils, ce sont les commandes et les menus.
+
+## Solution 4 : un outil de pilotage pour réunir les chiffres
+
+C’est la solution pour **savoir où part votre marge**, sans toucher à vos tablettes. Un outil de pilotage réunit les ventes des deux plateformes, et ce qu’elles ne montrent pas : vos prix face à ceux de votre zone, les promos de vos voisins, vos remboursements à contester.
+
+Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe.
+
+**Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et l’offre de base démarre à 59 € HT par mois.
+
+## Quelle solution choisir ?
+
+| Solution | Ce qu’elle réunit | Coût | Pour qui |
+| --- | --- | --- | --- |
+| Tablettes et back-offices | Rien, mais tout est déjà là | Gratuit | Peu de commandes, un seul restaurant |
+| Tableur et exports | Vos chiffres, à la main | Gratuit, mais du temps chaque semaine | Pour démarrer un suivi sans budget |
+| Connecteur vers la caisse | Les commandes et les menus | Abonnement en plus de la caisse | Beaucoup de commandes, caisse compatible |
+| Outil de pilotage | Vos chiffres, vos prix, vos remboursements | Abonnement mensuel | Vous voulez savoir où part votre marge |
+
+Les solutions se combinent. Un restaurant qui croule sous les commandes commence par un connecteur. Un restaurant qui vend bien mais garde peu commence par ses chiffres : un tableur d’abord, puis un outil quand le temps manque.
+
+Dans tous les cas, regardez une fois par mois ce que chaque plateforme vous rapporte, et pas seulement ce qu’elle vend. Pour voir ce que Deliview réunit, [toutes les fonctions sont sur une page](/solution/).
+
+Sources : How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Guide des commerçants : Utilisez l’application Commandes sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/, consulté le 6 octobre 2026) ; How to add or remove users in Partner Hub (Deliveroo, https://help.deliveroo.com/en/articles/13871159-how-to-add-or-remove-users-in-partner-hub, consulté le 7 octobre 2026) ; Factures et paiements (Deliveroo, https://help.deliveroo.com/fr/articles/2037435-factures-et-paiements, consulté le 6 octobre 2026) ; FAQ des partenaires (Deliveroo, https://merchants.deliveroo.com/fr-FR/faqs, consulté le 6 octobre 2026) ; Get your Uber Eats orders integrated to your POS (Deliverect, https://deliverect.com/en-ca/integrations/uber-eats, consulté le 7 octobre 2026) ; HubRise : avis, tarifs et fonctionnalités (La Fabrique du Net, https://www.lafabriquedunet.fr/logiciel/hubrise, consulté le 7 octobre 2026)
 
 ### Photos de plats sur Uber Eats et Deliveroo : les règles, et comment les refaire au téléphone
 
