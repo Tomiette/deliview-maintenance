@@ -1,32 +1,41 @@
 ---
-// Qui sommes-nous (décisions de Tom, 2 octobre 2026 ; direction « le passe ») : le projet en 3 phrases, la vraie photo
-// de Tom, la frise de la construction (ses vrais posts LinkedIn, envoyés par lui, du plus ancien au plus récent ;
-// masquée tant qu'il n'y en a pas), les liens LinkedIn, puis un bouton démo et l'e-mail de Tom. Ancre #tom : page
-// auteur des articles.
-// Refonte en relief (3 octobre 2026) : pastilles, photo dans un cadre incliné en 3D, « Deliview en bref » en carte.
+// Qui sommes-nous : l'histoire de Deliview (7 octobre 2026, demande de Tom : « adopte la même stratégie que la page
+// Qui sommes-nous de Flynt, crée un storytelling, ajoute des images »). On reprend la structure de Flynt (origine,
+// constat, solution, valeurs, équipe, appels), jamais ses textes ni ses visuels : Flynt est un concurrent direct.
+// Ordre : la mission et une vraie photo ; 01 le fondateur (ancre #tom : page auteur des articles) ; 02 le terrain ;
+// 03 le constat ; 04 Deliview ; 05 la frise des vrais posts LinkedIn ; les engagements ; Deliview en bref ; la démo.
+// Chaque fait vient des posts LinkedIn de Tom, des textes qu'il a validés ou de ce qu'il a dit le 7 octobre (passionné
+// de foodtech, restaurateurs de toutes les tailles). Aucune scène, aucun chiffre ni aucun client inventé.
 import Profil from '../icons/profil.astro';
 import BoutonDemo from '../components/BoutonDemo.astro';
 import Base from '../layouts/Base.astro';
 import PhotoTom from '../components/PhotoTom.astro';
+import PhotoCadre from '../components/PhotoCadre.astro';
 import Pastille from '../components/Pastille.astro';
+import Scene3D from '../components/Scene3D.astro';
 import Frise from '../components/Frise.astro';
 import Toque from '../icons/toque.astro';
 import Courbe from '../icons/courbe.astro';
 import Enveloppe from '../icons/enveloppe.astro';
 import Fleche from '../icons/fleche.astro';
-import { SITE, lien } from '../lib/site';
+import Coche from '../icons/coche.astro';
+import Cadenas from '../icons/cadenas.astro';
+import Message from '../icons/message.astro';
+import EtiquettePrix from '../icons/etiquette-prix.astro';
+import { SITE, DEMO, lien, type CaptureApp } from '../lib/site';
 import { CHRONOLOGIE, CHRONOLOGIE_APERCU } from '../lib/chronologie';
 
 const description =
-  'Le projet Deliview, son fondateur Tom Voisin et la construction du logiciel, suivie en public, pour les restaurants sur Uber Eats et Deliveroo.';
+  'L’histoire de Deliview : un an sur le terrain auprès des restaurants qui livrent, un logiciel construit en public, et les engagements de son fondateur.';
 
 const personne = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Tom Voisin',
   jobTitle: 'Fondateur de Deliview',
-  description: 'Fondateur de Deliview. A lui-même été sur Uber Eats et Deliveroo, et a passé un an sur le terrain auprès des restaurants qui livrent.',
-  knowsAbout: ['Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison'],
+  description:
+    'Fondateur de Deliview, entrepreneur depuis ses 17 ans, passionné par la foodtech. A lui-même été sur Uber Eats et Deliveroo, et a passé un an sur le terrain auprès des restaurants qui livrent.',
+  knowsAbout: ['Foodtech', 'Uber Eats', 'Deliveroo', 'Livraison de repas', 'Prix des restaurants en livraison'],
   url: SITE.url + '/qui-sommes-nous/#tom',
   image: SITE.url + '/images/tom-voisin.jpg',
   email: SITE.email,
@@ -36,18 +45,49 @@ const personne = {
 // Le titre de la frise suit ce qu'elle montre : le site public n'a que les posts dont on a le lien.
 const posts = (import.meta.env.BASE_URL !== '/' ? CHRONOLOGIE_APERCU : CHRONOLOGIE).length;
 const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui sommes-nous', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR' };
+
+// La même capture que la bascule de l'accueil (compte de démonstration « Pizza Démo »).
+const captureAccueil: CaptureApp = {
+  src: '/images/scene-accueil',
+  largeurs: [800, 1200, 1600],
+  largeur: 1600,
+  hauteur: 1000,
+  alt: `Accueil de Deliview : ce que Deliview vous a rapporté sur Uber Eats et Deliveroo, puis ce qu’il reste à faire. ${DEMO}`,
+};
+
+// Ce qu'il a entendu partout (texte validé par Tom pour l'accueil et la vidéo, 6 octobre 2026).
+const paroles = ['Des commissions trop élevées', 'Des promos qui mangent la marge', 'Pas le temps de tout suivre'];
+
+// Engagements : uniquement des promesses déjà tenues par le service (FAQ, Tarifs, « Deliview est-il fiable ? »).
+const engagements = [
+  { icone: Coche, titre: 'Rien ne change sans vous', texte: 'Deliview propose, vous validez. Aucun prix ni aucune promo ne bouge sans votre accord.' },
+  { icone: Cadenas, titre: 'Jamais votre mot de passe', texte: 'Vous invitez Deliview dans Uber Eats et Deliveroo. Votre mot de passe reste à vous.' },
+  { icone: Message, titre: 'Un humain qui répond', texte: 'Je fais la mise en place avec chaque restaurant. Quand vous écrivez, c’est moi qui réponds.' },
+  { icone: EtiquettePrix, titre: 'Sans engagement', texte: 'Un prix fixe par mois. Vous arrêtez quand vous voulez.' },
+];
 ---
 
 <Base title="Qui sommes-nous : Tom Voisin, fondateur | Deliview" description={description} ariane={[{ nom: 'Qui sommes-nous', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
-  <section class="bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="projet-titre" data-haut-de-page>
-    <div class="dv-container">
-      <Pastille>{SITE.slogan}</Pastille>
-      <h1 id="projet-titre" class="dv-h1 mt-5 max-w-[18ch] md:mt-6">Rendre la livraison rentable pour chaque restaurant</h1>
-      <div class="dv-lead mt-5 max-w-[60ch] space-y-3 md:mt-6">
-        <p>Sur Uber Eats et Deliveroo, les commissions pèsent sur chaque plat vendu.</p>
-        <p>Les chiffres utiles sont éparpillés entre une tablette et un espace par plateforme.</p>
-        <p>Deliview les réunit, pour que chaque restaurant vende au bon prix.</p>
+  <section class="bg-grey pb-16 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="projet-titre" data-haut-de-page>
+    <div class="dv-container flex max-w-[1100px] flex-col items-center gap-x-20 gap-y-14 md:flex-row">
+      <div class="flex-1">
+        <Pastille icone={Toque}>Notre histoire</Pastille>
+        <h1 id="projet-titre" class="dv-h1 mt-5 max-w-[18ch] md:mt-6">Rendre la livraison rentable pour chaque restaurant</h1>
+        <div class="dv-lead mt-5 max-w-[52ch] space-y-3 md:mt-6">
+          <p>Deliview est né sur le terrain, au contact des restaurants qui livrent.</p>
+          <p>Voici son histoire, du premier restaurant visité au logiciel d’aujourd’hui.</p>
+        </div>
       </div>
+      <PhotoCadre
+        fichier="le-projet-devient-public"
+        largeur={522}
+        hauteur={768}
+        alt="Tom devant un grand écran où s’affiche une première version du logiciel"
+        legende="Janvier 2026"
+        inclinaison={3}
+        priorite
+        class="shrink-0"
+      />
     </div>
   </section>
 
@@ -55,13 +95,12 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
       <PhotoTom />
       <div class="max-w-[620px] flex-1">
-        <Pastille icone={Toque}>Qui je suis</Pastille>
-        <h2 id="tom-titre" class="dv-h2 mt-4 md:mt-5">Tom Voisin, fondateur de Deliview</h2>
-        <div class="mt-4 space-y-3 text-[17px] leading-[1.6] [text-wrap:pretty] md:mt-5 md:text-[19px]">
-          <p>J’ai moi-même été sur Uber Eats et Deliveroo.</p>
-          <p>J’ai passé un&nbsp;an sur le terrain, auprès des restaurants qui livrent.</p>
-          <p>Partout, deux tablettes en plein rush et des prix fixés à l’instinct.</p>
-          <p>Deliview est le résultat de cette année. Je fais la mise en place avec chaque restaurant.</p>
+        <Pastille>01 · Le fondateur</Pastille>
+        <h2 id="tom-titre" class="dv-h2 mt-4 md:mt-5">Tom Voisin, entrepreneur depuis ses 17&nbsp;ans</h2>
+        <div class="dv-histoire-texte mt-4 md:mt-5">
+          <p>J’ai commencé à entreprendre à 17&nbsp;ans. Aucune expérience, aucun réseau, zéro budget.</p>
+          <p>Beaucoup d’erreurs, des projets lancés trop vite. J’en ai gardé une règle&nbsp;: comprendre le terrain avant de construire.</p>
+          <p>Ma passion, c’est la foodtech&nbsp;: la technologie au service des restaurants.</p>
         </div>
         <ul class="mt-4 flex flex-col gap-0.5 text-[16px] md:mt-6 md:text-[17px]">
           <li><a href={`mailto:${SITE.email}`} class="dv-lien gap-2"><Enveloppe taille={24} />{SITE.email}</a></li>
@@ -72,11 +111,79 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 
+  <section class="dv-section bg-grey dv-points" aria-labelledby="terrain-titre">
+    <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-14 md:flex-row">
+      <div class="max-w-[620px] flex-1">
+        <Pastille>02 · Le terrain</Pastille>
+        <h2 id="terrain-titre" class="dv-h2 mt-4 md:mt-5">Un&nbsp;an sur le terrain, au culot</h2>
+        <div class="dv-histoire-texte mt-4 md:mt-5">
+          <p>J’ai moi-même été sur Uber&nbsp;Eats et Deliveroo. Ensuite, je suis allé voir les restaurateurs, au culot.</p>
+          <p>Du petit indépendant à la chaîne, des restaurants de toutes les tailles.</p>
+          <p>Je leur posais des questions sur la livraison&nbsp;: ce qui leur prenait du temps, de l’énergie, et ce qui rapportait vraiment.</p>
+        </div>
+      </div>
+      <PhotoCadre
+        fichier="le-meme-probleme-partout"
+        largeur={588}
+        hauteur={773}
+        alt="Le comptoir d’un restaurant visité sur le terrain"
+        legende="Sur le terrain"
+        inclinaison={-3}
+        class="shrink-0 md:order-first"
+      />
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey dv-points !pt-4 md:!pt-6" aria-labelledby="constat-titre">
+    <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
+      <div class="max-w-[560px] flex-1">
+        <Pastille>03 · Le constat</Pastille>
+        <h2 id="constat-titre" class="dv-h2 mt-4 md:mt-5">Partout, la même histoire</h2>
+        <div class="dv-histoire-texte mt-4 md:mt-5">
+          <p>Un restaurateur qui jongle avec deux tablettes Deliveroo et deux tablettes Uber&nbsp;Eats, en plein service.</p>
+          <p>Une promo encore active un samedi soir, en plein rush, la cuisine débordée.</p>
+          <p>Un client qui dit qu’il manque un produit, et une plateforme qui rembourse sans vérifier.</p>
+          <p>La livraison leur ramène des clients. Mais à la fin du mois, ils se demandent où est passé l’argent.</p>
+        </div>
+      </div>
+      <div class="dv-relief dv-paroles w-full max-w-[400px] shrink-0">
+        <p class="dv-overline">Ce que j’ai entendu, partout</p>
+        <ul class="mt-5 space-y-3.5">
+          {
+            paroles.map((p) => (
+              <li>
+                <span class="dv-parole">
+                  <Message taille={24} />
+                  «&nbsp;{p}&nbsp;»
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-section bg-white" aria-labelledby="deliview-titre">
+    <div class="dv-container grid max-w-[1100px] items-center gap-x-16 gap-y-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+      <div class="max-w-[560px]">
+        <Pastille>04 · Deliview</Pastille>
+        <h2 id="deliview-titre" class="dv-h2 mt-4 md:mt-5">Alors j’ai construit l’outil qui leur manquait</h2>
+        <div class="dv-histoire-texte mt-4 md:mt-5">
+          <p>Je commence à le construire à l’été 2025. Il s’appelle d’abord Viewly, puis devient Deliview début 2026.</p>
+          <p>{SITE.definition.replace(/^Deliview est un logiciel français qui/, 'Deliview')}</p>
+          <p>Mon ambition&nbsp;: qu’aucun restaurant ne perde de la marge sans le savoir.</p>
+        </div>
+      </div>
+      <Scene3D capture={captureAccueil} sens="gauche" ratio={1.3} ratioMobile={1.4} appareil={{ x: 6, y: 10, largeur: 88 }} sizes="(min-width: 1200px) 600px, (min-width: 768px) 52vw, 92vw" />
+    </div>
+  </section>
+
   <section class="dv-section bg-grey dv-points" aria-labelledby="chronologie-titre">
     <div class="dv-container max-w-[880px]">
-      <Pastille icone={Courbe}>En public, sur LinkedIn</Pastille>
+      <Pastille icone={Courbe}>05 · En public, sur LinkedIn</Pastille>
       <h2 id="chronologie-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">{posts ? 'La construction de Deliview, étape par étape' : 'Suivez la construction de Deliview'}</h2>
-      <p class="mt-4 max-w-[60ch]">Je partage chaque étape sur LinkedIn&nbsp;: ce qui marche, ce qui ne marche pas.</p>
+      <p class="mt-4 max-w-[60ch]">Je construis Deliview en public, avec les restaurateurs. Chaque étape est sur LinkedIn&nbsp;: ce qui marche, ce qui ne marche pas.</p>
       <Frise />
       <p class="mt-8">
         <a href={SITE.linkedinTom} class="dv-lien-fort dv-lien-fort-ligne" rel="noopener">Suivre la construction sur <span class="whitespace-nowrap">LinkedIn<Fleche taille={24} /></span></a>
@@ -84,7 +191,27 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 
-  <section class="dv-section bg-white" aria-labelledby="bref-titre">
+  <section class="dv-section bg-white" aria-labelledby="engagements-titre">
+    <div class="dv-container max-w-[1100px]">
+      <Pastille>Mes engagements</Pastille>
+      <h2 id="engagements-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Ce qui ne changera pas</h2>
+      <ul class="mt-8 grid gap-5 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
+        {
+          engagements.map(({ icone: Icone, titre, texte }) => (
+            <li class="flex flex-col rounded-[16px] bg-grey p-6">
+              <span class="dv-tuile dv-tuile-petite">
+                <Icone taille={24} />
+              </span>
+              <h3 class="dv-h3 mt-4">{titre}</h3>
+              <p class="mt-2 text-[16px] leading-[1.55]">{texte}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="dv-section bg-grey" aria-labelledby="bref-titre">
     <div class="dv-container max-w-[880px]">
       <h2 id="bref-titre" class="dv-h2">Deliview en bref</h2>
       <dl class="dv-card mt-8 divide-y divide-grey-2/15 px-6 md:px-8">
@@ -116,7 +243,7 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 
-  <section id="demo" class="dv-section bg-grey dv-points" aria-labelledby="contact-titre">
+  <section id="demo" class="dv-section bg-white" aria-labelledby="contact-titre">
     <div class="dv-container max-w-[760px] text-center">
       <span class="dv-tuile"><Enveloppe taille={32} /></span>
       <h2 id="contact-titre" class="dv-h2 mx-auto mt-5 max-w-[20ch]">Parlons de votre restaurant</h2>
@@ -126,3 +253,46 @@ const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 
     </div>
   </section>
 </Base>
+
+<style>
+  /* Récit : paragraphes courts, aérés, un peu plus grands que le texte courant. */
+  .dv-histoire-texte {
+    display: grid;
+    gap: 12px;
+    font-size: 17px;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+  @media (min-width: 768px) {
+    .dv-histoire-texte {
+      gap: 14px;
+      font-size: 19px;
+    }
+  }
+  /* « Ce que j'ai entendu, partout » : trois paroles en bulles blanches, décalées comme une conversation. */
+  .dv-paroles {
+    padding: 26px 24px 30px;
+  }
+  .dv-paroles li:nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .dv-parole {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px 12px 14px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 18px 18px 18px 6px;
+    background: var(--color-grey);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .dv-paroles li:nth-child(2) .dv-parole {
+    border-radius: 18px 18px 6px 18px;
+  }
+  .dv-parole :global(svg) {
+    flex-shrink: 0;
+  }
+</style>

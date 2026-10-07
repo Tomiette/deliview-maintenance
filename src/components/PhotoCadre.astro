@@ -1,0 +1,78 @@
+---
+// Vraie photo dans un cadre blanc en relief, légèrement incliné, sa légende en puce posée devant (Qui sommes-nous,
+// histoire de Deliview, 7 octobre 2026). Photos des posts LinkedIn de Tom (public/images/linkedin/, 360 et 720 px).
+import { lien } from '../lib/site';
+
+interface Props {
+  fichier: string; // nom de base dans public/images/linkedin/
+  largeur: number;
+  hauteur: number;
+  alt: string;
+  legende?: string;
+  inclinaison?: number; // en degrés
+  priorite?: boolean; // image du haut de page
+  class?: string;
+}
+const { fichier, largeur, hauteur, alt, legende, inclinaison = -2, priorite = false, class: classe = '' } = Astro.props;
+const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
+---
+
+<figure class={`dv-photo-cadre ${classe}`} style={`--incl:${inclinaison}deg`}>
+  <img
+    src={src(720)}
+    srcset={`${src(360)} 360w, ${src(720)} 720w`}
+    sizes="(min-width: 768px) 300px, 72vw"
+    width={largeur}
+    height={hauteur}
+    alt={alt}
+    loading={priorite ? 'eager' : 'lazy'}
+    fetchpriority={priorite ? 'high' : undefined}
+    decoding="async"
+  />
+  {
+    legende && (
+      <figcaption class="dv-photo-cadre-legende">
+        <span class="dv-puce">
+          <i />
+          {legende}
+        </span>
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .dv-photo-cadre {
+    position: relative;
+    margin: 0;
+    width: min(100%, 300px);
+    padding: 10px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 22px;
+    background: var(--color-white);
+    box-shadow: 0 5px 0 var(--dv-levre), var(--dv-ombre-flottante);
+    rotate: var(--incl);
+  }
+  .dv-photo-cadre img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 13px;
+  }
+  .dv-photo-cadre-legende {
+    position: absolute;
+    left: -16px;
+    bottom: -20px;
+    rotate: calc(var(--incl) * -1);
+  }
+  .dv-photo-cadre-legende .dv-puce {
+    gap: 8px;
+    padding: 9px 16px;
+    font-size: 15px;
+    box-shadow: 0 4px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-photo-cadre-legende .dv-puce i {
+    width: 8px;
+    height: 8px;
+  }
+</style>
