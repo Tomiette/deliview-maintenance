@@ -4,8 +4,9 @@
 // deux phrases mot pour mot, la photo du post (hébergée ici : pas d'intégration LinkedIn, donc aucun cookie tiers),
 // le lien vers le post. Le point bleu marque le post le plus récent.
 // Uniquement les posts envoyés par Tom (src/lib/chronologie.ts). Site public : les posts dont on a le lien (donc la
-// vraie date) ; sans aucun, la frise n'apparaît pas. Aperçu : tous les posts, date et lien « [À REMPLACER] » tant que
-// le lien manque ; trois cartes vides si la liste l'est.
+// vraie date), sauf ceux « aperçu seulement » ; sans aucun, la frise n'apparaît pas. Aperçu : tous les posts, date et
+// lien « [À REMPLACER] » tant que le lien manque, « [À VALIDER PAR TOM] » sur ceux qui attendent son feu vert ; trois
+// cartes vides si la liste l'est.
 import Fleche from '../icons/fleche.astro';
 import { dateFr, lien } from '../lib/site';
 import { CHRONOLOGIE, CHRONOLOGIE_APERCU, type EtapeChronologie } from '../lib/chronologie';
@@ -40,6 +41,11 @@ const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-
               </span>
             </p>
             <div class="dv-post-texte">
+              {e?.apercuSeulement && (
+                <p class="mt-4 text-[14px] font-semibold">
+                  <span class="dv-a-remplacer">[À VALIDER PAR TOM : pas sur le site public pour l’instant]</span>
+                </p>
+              )}
               <h3 class="dv-post-titre">{e ? e.titre : <span class="dv-a-remplacer">[À REMPLACER : l’étape]</span>}</h3>
               <blockquote class="dv-post-extrait">
                 <p>{e ? <>«&nbsp;{e.extrait}&nbsp;»</> : <span class="dv-a-remplacer">[À REMPLACER : une ou deux phrases du post]</span>}</p>

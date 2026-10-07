@@ -1,18 +1,22 @@
 // Chronologie de la construction de Deliview, partagée en build in public sur LinkedIn (page Qui sommes-nous).
-// Uniquement de vrais posts de Tom, repris de ses captures d'écran du 7 octobre 2026 : extraits mot pour mot, photo du
-// post recadrée depuis la capture (scripts/photo-linkedin.py). Rien n'est inventé.
+// Uniquement de vrais posts de Tom, repris de ses captures d'écran et de ses liens du 7 octobre 2026 : extraits mot
+// pour mot, photo du post recadrée depuis la capture (scripts/photo-linkedin.py). Rien n'est inventé.
 //
 // La date n'est jamais saisie à la main : elle vient du lien. L'identifiant d'un post LinkedIn (19 chiffres, dans
-// « …-activity-7381…-AbCd » ou « urn:li:activity:7381… ») commence par l'instant de publication : ses 41 premiers bits
-// en binaire sont des millisecondes depuis le 1er janvier 1970.
-// Un post sans lien n'apparaît que sur l'aperçu (date et lien « [À REMPLACER] »), dans l'ordre de la liste ; sur le
-// site public, seulement les posts dont on a le lien, triés par date.
+// « …-share-7441…-iTSM » ou « urn:li:activity:7447… ») commence par l'instant de publication : ses 41 premiers bits
+// en binaire sont des millisecondes depuis le 1er janvier 1970. Vérifié le 7 octobre 2026 : les 9 dates tirées des
+// liens tombent toutes dans l'ancienneté affichée par LinkedIn sur les captures (« 8 mois », « 7 mois »…).
+// Les liens sont gardés sans leurs paramètres de suivi (utm_*, rcm, propre au compte de Tom).
 //
-// Écartés le 7 octobre 2026 (choix de Claude, à confirmer par Tom) : « la plus grosse arnaque par mon développeur »
-// et « la santé mentale » (la page rassure un restaurateur qui va confier ses comptes), « 20 % de son CA perdus à
-// cause de la fraude client » (même sujet que l'arnaque à l'IA, image d'Uber Eats qui n'est pas celle de Tom).
-// Photos de la classe de l'INSEEC et du burger ajoutées à la demande de Tom (7 octobre, 11 h 52), après le rappel
-// sur l'accord des étudiants pour un site commercial et sur l'origine de la photo du burger.
+// Site public : les posts qui ont un lien, sauf ceux marqués « aperçu seulement », du plus ancien au plus récent.
+// Aperçu : tous les posts ; un post sans lien (date et lien « [À REMPLACER] ») se place juste avant le post daté qui
+// le suit dans la liste.
+//
+// Aperçu seulement, en attendant le feu vert de Tom pour le site public : « la plus grosse arnaque par mon
+// développeur » et « la santé mentale » (la page rassure un restaurateur qui va confier ses comptes), « un
+// restaurateur près de chez moi perd 20 % de son CA » (même sujet que l'arnaque à l'IA ; chiffre sans source et image
+// d'Uber Eats qui n'est pas celle de Tom). Photos de la classe de l'INSEEC et du burger mises à la demande de Tom
+// (7 octobre, 11 h 52), après le rappel sur l'accord des étudiants et sur l'origine de la photo du burger.
 
 export interface PhotoPost {
   fichier: string; // nom de base : public/images/linkedin/<fichier>-360.webp et -720.webp
@@ -22,10 +26,11 @@ export interface PhotoPost {
 }
 
 export interface PostLinkedIn {
-  lien?: string; // « … › Copier le lien » sur le post ; sans lien, aperçu seulement
+  lien?: string; // « … › Copier le lien vers le post », ou l'adresse du post ouvert ; sans lien, aperçu seulement
   titre: string; // l'étape, en quelques mots
   extrait: string; // une ou deux phrases du post, mot pour mot
   photo?: PhotoPost;
+  apercuSeulement?: boolean; // pas sur le site public tant que Tom ne l'a pas validé
 }
 
 export interface EtapeChronologie extends PostLinkedIn {
@@ -33,40 +38,76 @@ export interface EtapeChronologie extends PostLinkedIn {
   lienPropre: string | null; // le lien sans les paramètres de suivi de LinkedIn
 }
 
-// Dans l'ordre de publication indiqué par LinkedIn sur les captures (il y a 8, 7, 6 puis 5 mois) ; le lien donne
-// ensuite la date exacte et l'ordre précis.
+// Du plus ancien au plus récent (dates tirées des liens, en commentaire pour la relecture).
 const POSTS: PostLinkedIn[] = [
   {
+    // Lien à recevoir (« J'ai commencé à entreprendre à 17 ans », il y a 8 mois au 7 octobre 2026).
     titre: 'Le projet devient public',
     extrait: 'Une plateforme pensée pour simplifier la gestion de la livraison et redonner de la rentabilité aux restaurateurs.',
     photo: { fichier: 'le-projet-devient-public', largeur: 522, hauteur: 768, alt: 'Tom devant un grand écran où s’affiche la première version du logiciel' },
   },
   {
+    // 22 janvier 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_je-suis-all%C3%A9-parler-%C3%A0-des-restaurateurs-et-share-7420061925973336064-7gHJ/',
     titre: 'Sur le terrain, le même problème partout',
     extrait: 'Trop de tablettes. Trop de gestion. Sur chaque plateforme. Pour chaque établissement.',
     photo: { fichier: 'le-meme-probleme-partout', largeur: 588, hauteur: 773, alt: 'Le comptoir d’un restaurant visité sur le terrain' },
   },
   {
-    titre: 'Quatre tablettes pour un seul restaurant',
-    extrait: 'Chaque produit en rupture ? Il doit le mettre en indisponible sur chaque tablette. Une par une, à la main, et tout ça, en plein rush.',
-    photo: { fichier: 'quatre-tablettes', largeur: 588, hauteur: 769, alt: 'Deux tablettes et deux terminaux Deliveroo sur le plan de travail d’une cuisine, barrés d’une croix rouge' },
-  },
-  {
+    // 20 février 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_des-%C3%A9tudiants-ont-travaill%C3%A9-sur-mon-projet-share-7430559091888062464-KkIf/',
     titre: 'Un cas d’école à l’INSEEC',
     extrait: 'Parce que si ton projet n’est pas compréhensible dans une salle de classe, il ne le sera pas non plus pour un restaurateur.',
     photo: { fichier: 'cas-d-ecole-inseec', largeur: 586, hauteur: 766, alt: 'Les étudiants de l’INSEEC devant un écran affichant le logo Deliview' },
   },
   {
+    // 25 février 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_un-restaurateur-pr%C3%A8s-de-chez-moi-perd-20-share-7432491508085399552-jpXL/',
+    titre: 'Une fonctionnalité contre la fraude client',
+    extrait: 'C’est pour ça qu’on a construit une fonctionnalité de gestion des plaintes sur Deliview.',
+    photo: { fichier: 'gestion-des-plaintes', largeur: 522, hauteur: 769, alt: 'Un e-mail d’Uber Eats annonçant un remboursement en Uber Cash' },
+    apercuSeulement: true,
+  },
+  {
+    // 1er mars 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_ce-restaurateur-jongle-avec-2-tablettes-deliveroo-share-7433916105896882176-ASbM/',
+    titre: 'Quatre tablettes pour un seul restaurant',
+    extrait: 'Chaque produit en rupture ? Il doit le mettre en indisponible sur chaque tablette. Une par une, à la main, et tout ça, en plein rush.',
+    photo: { fichier: 'quatre-tablettes', largeur: 588, hauteur: 769, alt: 'Deux tablettes et deux terminaux Deliveroo sur le plan de travail d’une cuisine, barrés d’une croix rouge' },
+  },
+  {
+    // 11 mars 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_il-y-a-quelque-chose-dont-on-parle-trop-peu-share-7437577848309161984-r_JG/',
+    titre: 'Tenir entre l’école et le projet',
+    extrait: 'Et parfois je me retrouve à prendre des décisions à 1h du matin puis à me lever le lendemain pour aller à l’école.',
+    photo: { fichier: 'entre-l-ecole-et-le-projet', largeur: 586, hauteur: 772, alt: 'Tom de dos, la tête dans la main, devant son ordinateur' },
+    apercuSeulement: true,
+  },
+  {
+    // 12 mars 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_la-nouvelle-arnaque-qui-touche-les-restaurateurs-share-7437900794659721216-935j/',
     titre: 'L’arnaque aux photos retouchées par l’IA',
     extrait: 'Le client reçoit sa commande. Il prend une photo du plat puis la retouche avec l’IA. Le plat devient brûlé.',
     photo: { fichier: 'arnaque-photos-ia', largeur: 626, hauteur: 776, alt: 'Le même burger photographié deux fois : intact, puis retouché pour paraître brûlé' },
   },
   {
+    // 23 mars 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_95-des-restaurants-g%C3%A8rent-leurs-promotions-share-7441815089713844224-iTSM/',
     titre: 'Une promo oubliée en plein rush',
     extrait: 'Une promo active un samedi soir en plein rush, la cuisine débordée et les notes qui chutent car personne n’avait pensé à la couper.',
     photo: { fichier: 'promo-en-plein-rush', largeur: 586, hauteur: 765, alt: 'Une borne de commande dans un restaurant aux murs roses' },
   },
   {
+    // 31 mars 2026
+    lien: 'https://www.linkedin.com/posts/tomvoisin_jai-pris-la-plus-grosse-arnaque-de-ma-vie-share-7444738165996748816-eqDe/',
+    titre: 'Un développeur parti, le projet continue',
+    extrait: 'Parce que ce n’est que du code. Le problème que Deliview résout, lui, est réel.',
+    photo: { fichier: 'un-developpeur-parti', largeur: 588, hauteur: 781, alt: 'Tom assis sur un canapé jaune, la tête dans la main, devant son ordinateur' },
+    apercuSeulement: true,
+  },
+  {
+    // 7 avril 2026
+    lien: 'https://www.linkedin.com/feed/update/urn:li:activity:7447246551132975104/',
     titre: 'Un comparateur de prix offert aux restaurateurs',
     extrait: 'J’ai créé un comparateur de prix Uber Eats et Deliveroo pour les restaurateurs et je le donne gratuitement',
     photo: { fichier: 'comparateur-de-prix', largeur: 569, hauteur: 314, alt: 'Le comparateur : « Tes prix sont-ils bien positionnés sur Uber Eats & Deliveroo ? »' },
@@ -92,6 +133,13 @@ function jourDeParis(d: Date): string {
   return new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit', timeZone: 'Europe/Paris' }).format(d);
 }
 
+// Lien affiché : l'adresse publique du post (/posts/…) sans paramètres ; sinon l'adresse du fil reconstruite.
+function lienPropre(lien: string, id: { type: string; id: string }): string {
+  const u = new URL(lien);
+  if (u.hostname.endsWith('linkedin.com') && u.pathname.startsWith('/posts/')) return `https://www.linkedin.com${u.pathname}`;
+  return `https://www.linkedin.com/feed/update/urn:li:${id.type}:${id.id}/`;
+}
+
 // Un lien donné mais illisible, ou une date hors de la vie du projet, arrête le build : jamais de carte sans vraie date.
 function etape(p: PostLinkedIn): EtapeChronologie {
   if (!p.lien) return { ...p, date: null, lienPropre: null };
@@ -99,15 +147,23 @@ function etape(p: PostLinkedIn): EtapeChronologie {
   const instant = instantDuPost(p.lien);
   if (!id || !instant || instant.getUTCFullYear() < 2025 || instant.getTime() > Date.now() + 864e5)
     throw new Error(`Chronologie : lien de post illisible ou date improbable (« ${p.lien} »)`);
-  return { ...p, date: jourDeParis(instant), lienPropre: `https://www.linkedin.com/feed/update/urn:li:${id.type}:${id.id}/` };
+  return { ...p, date: jourDeParis(instant), lienPropre: lienPropre(p.lien, id) };
 }
 
 const ETAPES = POSTS.map(etape);
 
-// Site public : les posts dont on a le lien, du plus ancien au plus récent (la frise se lit comme l'histoire du projet).
-export const CHRONOLOGIE: EtapeChronologie[] = ETAPES.filter((e) => e.lien).sort(
-  (a, b) => instantDuPost(a.lien!)!.getTime() - instantDuPost(b.lien!)!.getTime(),
-);
+// Clé de tri : l'instant du post ; sans lien, juste avant le post daté qui le suit dans la liste.
+const CLES = new Map<EtapeChronologie, number>();
+let suivante = Number.MAX_SAFE_INTEGER;
+for (let i = ETAPES.length - 1; i >= 0; i--) {
+  const e = ETAPES[i];
+  if (e.lien) suivante = instantDuPost(e.lien)!.getTime();
+  CLES.set(e, e.lien ? suivante : suivante - 1);
+}
+const parDate = (a: EtapeChronologie, b: EtapeChronologie) => CLES.get(a)! - CLES.get(b)!;
 
-// Aperçu : tous les posts ; tant qu'un lien manque, dans l'ordre de la liste.
-export const CHRONOLOGIE_APERCU: EtapeChronologie[] = ETAPES.every((e) => e.lien) ? CHRONOLOGIE : ETAPES;
+// Site public : du plus ancien au plus récent (la frise se lit comme l'histoire du projet).
+export const CHRONOLOGIE: EtapeChronologie[] = ETAPES.filter((e) => e.lien && !e.apercuSeulement).sort(parDate);
+
+// Aperçu : tous les posts, y compris ceux qui attendent leur lien ou le feu vert de Tom.
+export const CHRONOLOGIE_APERCU: EtapeChronologie[] = [...ETAPES].sort(parDate);
