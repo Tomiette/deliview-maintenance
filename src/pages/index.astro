@@ -289,16 +289,23 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
           ))
         }
       </ul>
-      <!-- Plus de 10 restaurants (6 octobre 2026, demande de Tom : « sous forme de bulle ») : un message de Tom, sa photo à
-           côté de la bulle. -->
-      <div class="dv-bulle-groupe mt-8 md:mt-10">
-        <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
-        <p class="dv-bulle-groupe-message">
-          <span class="dv-bulle-groupe-question">Plus de 10&nbsp;restaurants&nbsp;?</span>
-          <a href="#demo" class="dv-lien-fort" data-cta="accueil-plus-de-10">Parlons-en<Fleche taille={24} /></a>
-        </p>
+      <!-- Sous les offres (7 octobre 2026, demande de Tom : même format que Tarifs) : deux cartes de même poids, chacune avec
+           sa question, une phrase qui dit ce qui se passe, et son lien. -->
+      <div class="mt-8 grid max-w-[880px] gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
+        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
+          <div class="flex items-center gap-3">
+            <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
+            <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Plus de 10&nbsp;restaurants&nbsp;?</h3>
+          </div>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre sur mesure pour tout votre groupe.</p>
+          <a href="#demo" class="dv-lien-fort mt-4 self-start" data-cta="accueil-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
+        </div>
+        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
+          <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Besoin de comparer&nbsp;?</h3>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Toutes les fonctions de chaque offre, côte à côte, sur la page Tarifs.</p>
+          <a href={lien('/tarifs/')} class="dv-lien-fort mt-4 self-start" data-cta="accueil-detail-offres">Voir le détail des offres<Fleche taille={24} /></a>
+        </div>
       </div>
-      <a href={lien('/tarifs/')} class="dv-lien-fort mt-4 md:mt-5">Voir le détail des offres<Fleche taille={24} /></a>
     </div>
   </section>
 
