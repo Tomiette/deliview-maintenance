@@ -92,9 +92,11 @@ export const PAGES: Record<string, PageFonction> = {
       description:
         'Deliview repère vos heures creuses et propose l’offre à lancer sur Uber Eats et Deliveroo, chiffrée. Vous validez, il la met en ligne. Demandez une démo.',
     },
-    h1: 'Des promos pour vos heures creuses, chiffrées avant le lancement',
+    // Titre du PDF de Tom, le même que la carte de l'accueil (7 octobre 2026, 18 h 47 : « tu dois garder une stratégie de
+    // promotion alimentée par l'IA »). L'IA : l'assistant prépare l'offre programmée (outil programmer_offre), vous validez.
+    h1: 'Une stratégie de promotion intelligente, alimentée par l’IA',
     lead: 'Deliview repère les services où vous vendez peu et vous propose l’offre à lancer, avec son coût et son objectif.',
-    points: ['Vos creux mesurés sur vos ventes, service par service', 'Uniquement des offres que proposent Uber Eats et Deliveroo', 'Le bilan de chaque offre, pour garder celles qui marchent'],
+    points: ['Vos creux mesurés sur vos ventes, service par service', 'L’assistant IA prépare l’offre, vous la validez', 'Le bilan de chaque offre, pour garder celles qui marchent'],
     hero: heroLevier('promotions'),
     etapesTitre: 'De vos ventes à l’offre en ligne',
     etapes: [
@@ -141,6 +143,10 @@ export const PAGES: Record<string, PageFonction> = {
       {
         q: 'Est-ce que Deliview lance une promo sans mon accord ?',
         r: 'Non. Deliview vous propose l’offre, avec son coût et son objectif. Elle ne passe en ligne que si vous la validez, avec l’offre Pro ou Groupe.',
+      },
+      {
+        q: 'Où intervient l’IA dans mes promos ?',
+        r: 'Dans l’assistant IA, avec l’offre Pro ou Groupe. Demandez-lui quelle promo lancer sur un creux&nbsp;: il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.',
       },
       {
         q: 'Quelles promos est-ce que Deliview peut me proposer ?',
