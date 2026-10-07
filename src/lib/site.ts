@@ -24,6 +24,9 @@ export const SITE = {
   verificationBing: '',
   // Clé IndexNow (Bing, Yandex, Seznam, Naver…) : publiée dans public/<clé>.txt, utilisée par scripts/indexnow.mjs.
   indexNowCle: '74123aaa61c2c6e91a57994f5aed762b',
+  // Roadmap publique (7 octobre 2026, demande de Tom) : coller ici son adresse quand elle est publique. Vide = bouton
+  // « Voir la roadmap » visible seulement sur l'aperçu.
+  roadmap: '',
   app: '/app/',
   // Fonction Supabase qui enregistre les demandes de démo (validation côté serveur).
   formulaire: 'https://osczxtxtxrjbjnozreun.supabase.co/functions/v1/lead',
