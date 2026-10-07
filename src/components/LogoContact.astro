@@ -1,0 +1,45 @@
+---
+// Logos des liens de contact (7 octobre 2026, demande de Tom : « les vrais logos ») : une enveloppe pleine pour
+// l'e-mail (dessin générique, Gris 2, d'après l'exemple envoyé par Tom), le logo officiel de LinkedIn (fichier
+// fourni par Tom, src/assets/logos/linkedin.png, seulement détouré et réduit) et le logo de Deliview (favicon).
+// Décoratifs : le texte du lien dit déjà où il mène.
+import { lien } from '../lib/site';
+import { logoPlateforme } from '../lib/logos';
+
+interface Props {
+  type: 'email' | 'linkedin' | 'deliview';
+  taille?: 24 | 32;
+  class?: string;
+}
+const { type, taille = 24, class: classe = '' } = Astro.props;
+const linkedin = logoPlateforme('linkedin');
+---
+
+{
+  type === 'email' ? (
+    <svg class={`dv-logo-contact dv-logo-email ${classe}`} width={taille} height={taille} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <rect x="1" y="4" width="22" height="16" rx="2.4" />
+      <path d="M2.6 5.6 12 13.2l9.4-7.6M2.6 18.4l6.9-6.6M21.4 18.4l-6.9-6.6" />
+    </svg>
+  ) : type === 'linkedin' && linkedin ? (
+    <img class={`dv-logo-contact ${classe}`} src={linkedin.src} alt="" width={taille} height={taille} loading="lazy" decoding="async" />
+  ) : (
+    <img class={`dv-logo-contact ${classe}`} src={lien('/favicon.svg')} alt="" width={taille} height={taille} loading="lazy" decoding="async" />
+  )
+}
+
+<style>
+  .dv-logo-contact {
+    flex-shrink: 0;
+  }
+  .dv-logo-email rect {
+    fill: var(--color-grey-2);
+  }
+  .dv-logo-email path {
+    fill: none;
+    stroke: var(--color-white);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

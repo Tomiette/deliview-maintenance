@@ -9,6 +9,7 @@ import Pastille from '../components/Pastille.astro';
 import Fleche from '../icons/fleche.astro';
 import { OFFRES, SITE, dateFr, lien } from '../lib/site';
 import { texteBrut } from '../lib/faq';
+import LogoContact from '../components/LogoContact.astro';
 
 const MAJ = '2026-10-06';
 // Fiche officielle de l'entreprise (registre national, data.gouv.fr).
@@ -138,7 +139,8 @@ const faqPage = {
               <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1">
                 {x.liens.map((l) => (
                   <li>
-                    <a href={l.href} class="dv-lien inline-flex min-h-11 items-center" rel={l.href.startsWith('http') ? 'noopener' : undefined}>
+                    <a href={l.href} class="dv-lien inline-flex min-h-11 items-center gap-2" rel={l.href.startsWith('http') ? 'noopener' : undefined}>
+                      {l.href === SITE.linkedinTom && <LogoContact type="linkedin" />}
                       {l.libelle}
                     </a>
                   </li>

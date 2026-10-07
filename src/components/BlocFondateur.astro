@@ -2,9 +2,9 @@
 // « Qui est derrière » (accueil) : la vraie photo de Tom, trois phrases, son e-mail, LinkedIn et Qui sommes-nous.
 // Aucun faux témoignage : la preuve humaine, c'est quelqu'un de réel avec son e-mail.
 // Les trois liens sur une seule ligne, sous le texte (6 octobre 2026, demande de Tom). Texte de Tom du 6 octobre, 11 h 22.
+// Logos réels pour l'e-mail et LinkedIn (LogoContact, 7 octobre 2026, demande de Tom).
 // Refonte en relief (3 octobre 2026) : la photo dans un cadre blanc incliné en 3D, sa légende flotte devant.
-import Enveloppe from '../icons/enveloppe.astro';
-import Profil from '../icons/profil.astro';
+import LogoContact from './LogoContact.astro';
 import Toque from '../icons/toque.astro';
 import PhotoTom from './PhotoTom.astro';
 import { SITE, lien } from '../lib/site';
@@ -22,8 +22,8 @@ import { SITE, lien } from '../lib/site';
         <p>Alors j’ai créé l’outil qui leur manquait&nbsp;: Deliview.</p>
       </div>
       <ul class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1 text-[16px] md:mt-6 lg:flex-nowrap lg:whitespace-nowrap">
-        <li><a href={`mailto:${SITE.email}`} class="dv-lien gap-2"><Enveloppe taille={24} />{SITE.email}</a></li>
-        <li><a href={SITE.linkedinTom} class="dv-lien gap-2" rel="noopener"><Profil taille={24} />Tom sur LinkedIn</a></li>
+        <li><a href={`mailto:${SITE.email}`} class="dv-lien gap-2.5"><LogoContact type="email" />{SITE.email}</a></li>
+        <li><a href={SITE.linkedinTom} class="dv-lien gap-2.5" rel="noopener"><LogoContact type="linkedin" />Tom sur LinkedIn</a></li>
         <li><a href={lien('/qui-sommes-nous/')} class="dv-lien gap-2"><Toque taille={24} />Qui sommes-nous</a></li>
       </ul>
     </div>

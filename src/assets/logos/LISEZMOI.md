@@ -9,3 +9,7 @@ Ils s’affichent dans le bandeau « Fonctionne avec » (pages Solution ; plus s
 
 Avant tout autre usage, vérifier les conditions d'usage de chaque marque : Deliview n'est pas partenaire officiel.
 La mention « marques de leurs propriétaires, logiciel indépendant » reste affichée en pied de page.
+
+Ajouté le 7 octobre 2026 :
+
+- `linkedin.png` : logo LinkedIn (« in » blanc sur carré bleu), fichier fourni par Tom, seulement détouré (coins blancs rendus transparents) et réduit à 96 px. Sert aux liens vers les profils LinkedIn (composant `LogoContact`), usage prévu par LinkedIn pour renvoyer vers un profil.

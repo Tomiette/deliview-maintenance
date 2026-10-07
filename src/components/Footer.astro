@@ -1,9 +1,11 @@
 ---
-// Pied de page (maquettes « le passe ») : logo, slogan, e-mail (sans pictogramme depuis le 6 octobre 2026), puis colonnes
+// Pied de page (maquettes « le passe ») : logo, slogan, e-mail (avec le logo de l'e-mail depuis le 7 octobre 2026, demande
+// de Tom : « les vrais logos sur toutes les pages » ; le pictogramme au trait avait été retiré le 6), puis colonnes
 // Solution, Pour qui, Ressources (avec Qui sommes-nous et LinkedIn) et Légal. Plus de bandeau photo :
 // chaque page finit par son propre écran de démo. Contact : l'e-mail de Tom seulement, aucun numéro de téléphone.
 // Sur téléphone : bouton « Demander une démo » fixé en bas de l'écran une fois le haut de page dépassé.
 import BoutonDemo from './BoutonDemo.astro';
+import LogoContact from './LogoContact.astro';
 import { LEVIERS, SITE, lien } from '../lib/site';
 
 interface Props {
@@ -13,7 +15,7 @@ interface Props {
 const { barreDemo = true } = Astro.props;
 const annee = new Date().getFullYear();
 
-const colonnes: { id: string; titre: string; liens: { libelle: string; href: string }[] }[] = [
+const colonnes: { id: string; titre: string; liens: { libelle: string; href: string; logo?: 'linkedin' | 'deliview' }[] }[] = [
   {
     id: 'pied-solution',
     titre: 'Solution',
@@ -42,8 +44,8 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
       { libelle: 'Affiliation', href: lien('/parrainage/') },
       { libelle: 'Qui sommes-nous', href: lien('/qui-sommes-nous/') },
       { libelle: 'Deliview est-il fiable ?', href: lien('/deliview-est-il-fiable/') },
-      { libelle: 'Tom sur LinkedIn', href: SITE.linkedinTom },
-      { libelle: 'Deliview sur LinkedIn', href: SITE.linkedinEntreprise },
+      { libelle: 'Tom sur LinkedIn', href: SITE.linkedinTom, logo: 'linkedin' },
+      { libelle: 'Deliview sur LinkedIn', href: SITE.linkedinEntreprise, logo: 'deliview' },
       { libelle: 'Se connecter', href: SITE.app },
     ],
   },
@@ -67,7 +69,7 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
         <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" loading="lazy" decoding="async" />
         <p class="mt-4 max-w-[22ch] font-accent text-[17px] font-bold leading-[1.35] md:text-[18px]">{SITE.slogan}.</p>
         <p class="mt-3 text-[16px] font-semibold">
-          <a href={`mailto:${SITE.email}`} class="dv-lien">{SITE.email}</a>
+          <a href={`mailto:${SITE.email}`} class="dv-lien gap-2.5"><LogoContact type="email" />{SITE.email}</a>
         </p>
       </div>
       {
@@ -77,7 +79,8 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
             <ul class="mt-2 grid gap-0.5 text-[16px] leading-[1.4] md:mt-3.5 md:gap-1">
               {c.liens.map((x) => (
                 <li>
-                  <a href={x.href} class="inline-flex min-h-11 items-center hover:underline" rel={x.href.startsWith('http') ? 'noopener' : undefined}>
+                  <a href={x.href} class="inline-flex min-h-11 items-center gap-2 hover:underline" rel={x.href.startsWith('http') ? 'noopener' : undefined}>
+                    {x.logo && <LogoContact type={x.logo} />}
                     {x.libelle}
                   </a>
                 </li>
