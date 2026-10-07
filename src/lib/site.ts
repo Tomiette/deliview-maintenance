@@ -536,6 +536,8 @@ export const OFFRES: Offre[] = [
   // features bientôt ») : la répartition de l'app (app/src/lib/offre.ts), une ligne courte par fonction ; Essentiel
   // montre aussi ses remboursements et sa limite d'analyse (1 par semaine) ; l'historique des prix, pas encore dans
   // l'app, est retiré.
+  // 7 octobre 2026, 21 h 51 (demande de Tom) : le nombre de restaurants passe du titre de la carte Tarifs à la liste,
+  // à la place des accès (les accès restent dans le tableau comparatif).
   // 7 octobre 2026, 19 h 44 : textes de Tom, mot pour mot (« Pour vous si » de Tarifs : « Vous voulez… » ; cartes de
   // l'accueil et llms.txt : la même phrase à l'impératif).
   {
@@ -556,7 +558,7 @@ export const OFFRES: Offre[] = [
       'Alerte si fermé en plein service',
       'Objectifs et point du lundi',
       '1 analyse de zone par semaine',
-      '2 accès',
+      '1 restaurant',
     ],
   },
   {
@@ -578,7 +580,7 @@ export const OFFRES: Offre[] = [
       'Analyses de zone à la demande',
       'Concurrents de votre choix',
       'Assistant IA et rapport d’équipe',
-      '10 accès',
+      'Jusqu’à 3 restaurants',
     ],
   },
   {
@@ -590,7 +592,7 @@ export const OFFRES: Offre[] = [
     pour: 'Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison',
     pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
     base: 'Tout Pro, plus :',
-    inclus: ['Point mensuel avec Tom', 'Accès illimités'],
+    inclus: ['Point mensuel avec Tom', 'Jusqu’à 10 restaurants'],
   },
 ];
 
