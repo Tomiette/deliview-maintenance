@@ -16,13 +16,13 @@ import Scene3D from '../components/Scene3D.astro';
 import Frise from '../components/Frise.astro';
 import Toque from '../icons/toque.astro';
 import Courbe from '../icons/courbe.astro';
-import Enveloppe from '../icons/enveloppe.astro';
+import Chef from '../icons/chef.astro';
 import Fleche from '../icons/fleche.astro';
 import Coche from '../icons/coche.astro';
 import Cadenas from '../icons/cadenas.astro';
 import Message from '../icons/message.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
-import { SITE, DEMO, lien, type CaptureApp } from '../lib/site';
+import { SITE, DEMO, PRIX_ENTREE, lien, type CaptureApp } from '../lib/site';
 import { CHRONOLOGIE, CHRONOLOGIE_APERCU } from '../lib/chronologie';
 
 const description =
@@ -57,6 +57,17 @@ const captureAccueil: CaptureApp = {
 
 // Ce qu'il a entendu partout (texte validé par Tom pour l'accueil et la vidéo, 6 octobre 2026).
 const paroles = ['Des commissions trop élevées', 'Des promos qui mangent la marge', 'Pas le temps de tout suivre'];
+
+// Deliview en bref (7 octobre 2026, demande de Tom : « ajuste avec ce que tu sais, sois simple ») : six faits, chacun
+// déjà affiché ailleurs sur le site (accueil, Tarifs, FAQ, mentions légales).
+const bref = [
+  { titre: 'Ce que fait Deliview', texte: 'Vos chiffres Uber&nbsp;Eats et Deliveroo sur un seul écran&nbsp;: promos, prix, fraude client et avis.' },
+  { titre: 'Pour qui', texte: 'Les restaurants qui livrent en France, du petit indépendant à la chaîne.' },
+  { titre: 'Fondateur', texte: 'Tom Voisin, qui fait votre mise en place.' },
+  { titre: 'Prix', texte: `Dès ${PRIX_ENTREE}&nbsp;€&nbsp;HT par mois, sans engagement.` },
+  { titre: 'Vos données', texte: 'Hébergées dans l’Union européenne (Irlande).' },
+  { titre: 'Société', texte: `DELIVIEW&nbsp;SAS, <a href="${lien('/mentions-legales/')}" class="underline underline-offset-2">mentions légales</a>` },
+];
 
 // Engagements : uniquement des promesses déjà tenues par le service (FAQ, Tarifs, « Deliview est-il fiable ? »).
 const engagements = [
@@ -215,41 +226,24 @@ const engagements = [
     <div class="dv-container max-w-[880px]">
       <h2 id="bref-titre" class="dv-h2">Deliview en bref</h2>
       <dl class="dv-card mt-8 divide-y divide-grey-2/15 px-6 md:px-8">
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Ce que fait Deliview</dt>
-          <dd>{SITE.argument} Vos prix, votre carte et votre note face à votre zone.</dd>
-        </div>
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Fondateur</dt>
-          <dd>Tom Voisin</dd>
-        </div>
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Origine</dt>
-          <dd>Un&nbsp;an sur le terrain, auprès des restaurants qui livrent</dd>
-        </div>
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Plateformes</dt>
-          <dd>Uber Eats et Deliveroo, en France</dd>
-        </div>
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Hébergement des données</dt>
-          <dd>Union européenne (Irlande)</dd>
-        </div>
-        <div class="grid gap-1 py-4 sm:grid-cols-[220px_1fr]">
-          <dt class="font-semibold">Société</dt>
-          <dd>DELIVIEW SAS, <a href={lien('/mentions-legales/')} class="underline underline-offset-2">mentions légales</a></dd>
-        </div>
+        {
+          bref.map((x) => (
+            <div class="grid gap-1 py-4 sm:grid-cols-[200px_1fr]">
+              <dt class="font-semibold">{x.titre}</dt>
+              <dd set:html={x.texte} />
+            </div>
+          ))
+        }
       </dl>
     </div>
   </section>
 
   <section id="demo" class="dv-section bg-white" aria-labelledby="contact-titre">
     <div class="dv-container max-w-[760px] text-center">
-      <span class="dv-tuile"><Enveloppe taille={32} /></span>
+      <span class="dv-tuile dv-tuile-chef"><Chef taille={48} /></span>
       <h2 id="contact-titre" class="dv-h2 mx-auto mt-5 max-w-[20ch]">Parlons de votre restaurant</h2>
-      <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Une démo de 30&nbsp;minutes, sur vos prix et votre zone.</p>
+      <p class="dv-lead mx-auto mt-4 max-w-[48ch]">Une démo de 30&nbsp;minutes, sur votre restaurant.</p>
       <p class="mt-7"><BoutonDemo href={lien('/demo/')} cta="qui-sommes-nous" principal class="w-full sm:w-auto" /></p>
-      <p class="mt-5">Ou écrivez-moi&nbsp;: <a href={`mailto:${SITE.email}`} class="font-semibold">{SITE.email}</a></p>
     </div>
   </section>
 </Base>
@@ -294,5 +288,11 @@ const engagements = [
   }
   .dv-parole :global(svg) {
     flex-shrink: 0;
+  }
+  /* Le chef de l'appel final : une tuile plus grande, l'icône en 48 px. */
+  .dv-tuile-chef {
+    width: 84px;
+    height: 84px;
+    border-radius: 22px;
   }
 </style>
