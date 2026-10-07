@@ -2496,27 +2496,61 @@
   }
 }
 
-/* Premier restaurant pilote (accueil, 6 octobre 2026, refait à 11 h 22) : une carte en relief, le logo du restaurant
-   cerclé de blanc, le sur-titre, son nom et sa ville, une phrase. Logos des restaurants affichés avec leur accord. */
+/* Premier restaurant pilote (accueil, 6 octobre 2026 ; refait le 7 octobre, demande de Tom : « plus design, simple ») :
+   une carte en relief en deux parties. À gauche, le logo du restaurant cerclé de blanc sur un fond Bleu 1 à 8 % à points,
+   avec une coche Bleu 1 de client réel ; à droite, le sur-titre, le nom et la ville, une phrase. Sur téléphone, le logo
+   passe au-dessus et le texte se centre. Logos des restaurants affichés avec leur accord. */
 @layer components {
   .dv-pilotes {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    width: fit-content;
-    max-width: 100%;
-    padding: 16px 22px 16px 16px;
-    text-align: left;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    text-align: center;
+  }
+  .dv-pilotes-visuel {
+    display: grid;
+    place-items: center;
+    padding: 22px 24px 24px;
+    border-bottom: 1px solid var(--dv-bord);
+  }
+  .dv-pilotes-medaillon {
+    position: relative;
+    display: block;
   }
   .dv-pilotes-logo {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
+    display: block;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
     box-shadow:
       0 0 0 4px var(--color-white),
       0 0 0 5px var(--dv-bord),
-      0 4px 0 5px var(--dv-levre);
+      0 5px 0 5px var(--dv-levre);
+  }
+  /* Coche de client réel : pastille Bleu 1, coche blanche, cerclée de blanc. */
+  .dv-pilotes-coche {
+    position: absolute;
+    right: -7px;
+    bottom: -3px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--color-blue);
+    color: var(--color-white);
+    box-shadow: 0 0 0 3px var(--color-white);
+  }
+  .dv-pilotes-texte {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: 18px 22px 22px;
   }
   .dv-pilotes-titre {
     display: flex;
@@ -2531,9 +2565,9 @@
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
   .dv-pilotes-nom {
-    margin-top: 4px;
+    margin-top: 6px;
     font-family: var(--font-accent);
-    font-size: 21px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.2;
   }
@@ -2542,25 +2576,38 @@
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
   .dv-pilotes-phrase {
-    margin-top: 2px;
+    margin-top: 4px;
     font-size: 16px;
     line-height: 1.45;
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 640px) {
     .dv-pilotes {
-      gap: 22px;
-      padding: 18px 32px 18px 20px;
+      grid-template-columns: auto minmax(0, 1fr);
+      width: fit-content;
+      max-width: 100%;
+      text-align: left;
     }
+    .dv-pilotes-visuel {
+      padding: 22px 30px;
+      border-bottom: 0;
+      border-right: 1px solid var(--dv-bord);
+    }
+    .dv-pilotes-texte {
+      align-items: flex-start;
+      padding: 18px 36px 20px 28px;
+    }
+  }
+  @media (min-width: 768px) {
     .dv-pilotes-logo {
-      width: 76px;
-      height: 76px;
+      width: 84px;
+      height: 84px;
     }
     .dv-pilotes-titre {
       font-size: 14px;
     }
     .dv-pilotes-nom {
-      font-size: 24px;
+      font-size: 26px;
     }
     .dv-pilotes-phrase {
       font-size: 17px;

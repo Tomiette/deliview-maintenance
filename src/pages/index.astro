@@ -21,6 +21,7 @@ import EtiquettePrix from '../icons/etiquette-prix.astro';
 import Bouclier from '../icons/bouclier.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
 import Fleche from '../icons/fleche.astro';
+import Coche from '../icons/coche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
 import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
@@ -89,13 +90,20 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
     </div>
   </section>
 
-  <!-- Premier restaurant pilote (6 octobre 2026, demandes de Tom ; bandeau refait à 11 h 22) : le logo de Pizza Cosy, sa
-       ville et une phrase. Logo et phrase affichés avec l'accord du restaurant (confirmé par Tom le 6 octobre, 12 h 20). -->
+  <!-- Premier restaurant pilote (6 octobre 2026, demandes de Tom ; refait le 7 octobre à 11 h, « plus design, simple ») :
+       une carte en deux parties, le logo de Pizza Cosy sur un fond Bleu 1 à 8 % à points, coche de client réel ; à côté,
+       le sur-titre, son nom et sa ville, une phrase. Logo et phrase affichés avec l'accord du restaurant (confirmé par Tom
+       le 6 octobre, 12 h 20). -->
   <section class="bg-white pb-10 md:pb-14" aria-labelledby="pilotes-titre">
     <div class="dv-container">
       <div class="dv-relief dv-pilotes mx-auto">
-        <img class="dv-pilotes-logo" src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
-        <div class="min-w-0">
+        <div class="dv-pilotes-visuel dv-points-bleus">
+          <span class="dv-pilotes-medaillon">
+            <img class="dv-pilotes-logo" src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
+            <span class="dv-pilotes-coche"><Coche taille={24} /></span>
+          </span>
+        </div>
+        <div class="dv-pilotes-texte">
           <p id="pilotes-titre" class="dv-pilotes-titre"><span class="dv-pastille-point" aria-hidden="true"></span>Premier restaurant pilote</p>
           <p class="dv-pilotes-nom">Pizza Cosy<span class="dv-pilotes-ville">, Lyon</span></p>
           <p class="dv-pilotes-phrase">Utilise Deliview depuis le premier jour.</p>
