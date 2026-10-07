@@ -60,7 +60,7 @@ const jsonArticle = {
   ogType="article"
   precharger={photo ? { srcset: photo.largeurs.map((w) => `${photoBase}-${w}.webp ${w}w`).join(', '), sizes: '(min-width: 860px) 820px, calc(100vw - 32px)' } : undefined}
   ariane={[
-    { nom: 'Ressources', chemin: '/ressources/' },
+    { nom: 'Blog', chemin: '/ressources/' },
     { nom: d.titre, chemin: `/ressources/${article.id}/` },
   ]}
   jsonld={[jsonArticle]}

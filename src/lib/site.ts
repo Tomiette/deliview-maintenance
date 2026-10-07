@@ -419,8 +419,10 @@ export interface Levier {
   id: string;
   icone: NomIcone;
   nom: string;
-  // Une ligne pour le menu Solution.
+  // Une ligne (cartes de l'accueil et de la page Solution).
   phrase: string;
+  // Quelques mots sous le nom, dans le menu Solution (7 octobre 2026, demande de Tom : « simplifie les sous-menus »).
+  menu: string;
   benefice: string;
   points: string[];
   fragment: CaptureApp;
@@ -436,6 +438,7 @@ export const LEVIERS: Levier[] = [
     icone: 'ticket',
     nom: 'Vos promotions',
     phrase: 'Des offres sur vos heures creuses, et le bilan de chacune.',
+    menu: 'Sur vos heures creuses',
     benefice: 'Une stratégie de promotion intelligente, alimentée par l’IA.',
     points: ['Pas d’offre là où vous vendez déjà bien', 'Une offre ciblée sur vos heures creuses', 'Le bilan de chaque offre, pour garder celles qui ramènent des commandes'],
     fragment: FRAGMENTS.campagnes,
@@ -459,6 +462,7 @@ export const LEVIERS: Levier[] = [
     icone: 'bouclier',
     nom: 'La fraude client',
     phrase: 'Les remboursements injustifiés, contestés en un clic.',
+    menu: 'Contestez en un clic',
     benefice: 'Contestez un remboursement Uber Eats ou Deliveroo en un clic.',
     points: ['Le montant et la date limite, commande par commande', 'Le suivi de chaque contestation', 'Récupérez l’argent de la fraude'],
     fragment: FRAGMENTS.contestations,
@@ -483,6 +487,7 @@ export const LEVIERS: Levier[] = [
     icone: 'etiquette-prix',
     nom: 'Vos prix',
     phrase: 'Chaque plat face au même plat chez vos concurrents.',
+    menu: 'Face à vos concurrents',
     benefice: 'Deliview compare chaque plat de votre menu au même plat chez vos concurrents.',
     points: ['Votre Margherita face à celles des restaurants autour de vous', 'Le prix conseillé, et ce qu’il vous rapporte', 'Vous validez, Deliview le met en ligne'],
     fragment: FRAGMENTS['carte-et-marge'],
@@ -508,6 +513,8 @@ export interface Veille {
   icone: NomIcone;
   nom: string;
   phrase: string;
+  // Quelques mots sous le nom, dans le menu Solution.
+  menu: string;
   texte: string;
   // L'écran de l'app qui le montre, chacun sur son appareil (page Solution).
   vitrine: { appareil: TypeAppareil; capture: CaptureApp; place: PlaceAppareil; placeMobile: PlaceAppareil; bulle?: BullePlacee };
@@ -519,6 +526,7 @@ export const VEILLE: Veille[] = [
     icone: 'boutique-arret',
     nom: 'Fermé en plein service ?',
     phrase: 'Vérifié toutes les 10 minutes, relancé en un clic.',
+    menu: 'Relancé en un clic',
     texte: 'Deliview vous prévient, et relance votre restaurant sur Uber Eats et Deliveroo en un clic.',
     vitrine: { appareil: 'telephone', capture: ECRANS.fermeture, place: { x: 30, y: 12, largeur: 40 }, placeMobile: { x: 22, y: 10, largeur: 56 } },
   },
@@ -527,6 +535,7 @@ export const VEILLE: Veille[] = [
     icone: 'bulle-etoile',
     nom: 'Vos avis',
     phrase: 'Une réponse prête pour chaque avis.',
+    menu: 'Une réponse IA par avis',
     texte: 'Une réponse rédigée par l’IA pour chaque avis. Vous relisez, vous envoyez.',
     vitrine: { appareil: 'tablette', capture: ECRANS.avisTablette, place: { x: 9, y: 14, largeur: 98 }, placeMobile: { x: 6, y: 12, largeur: 124 } },
     detail: { href: '/solution/reputation/', libelle: 'Votre note face à votre zone' },
@@ -536,6 +545,7 @@ export const VEILLE: Veille[] = [
     icone: 'robot',
     nom: 'Votre assistant IA',
     phrase: 'La réponse à vos questions, tirée de vos chiffres.',
+    menu: 'Répond avec vos chiffres',
     texte: 'Une question sur vos ventes, vos prix ou vos concurrents ? Il répond avec vos chiffres et prépare le rapport pour vos équipes.',
     vitrine: {
       appareil: 'telephone',
@@ -550,6 +560,7 @@ export const VEILLE: Veille[] = [
     icone: 'cible',
     nom: 'Vos objectifs',
     phrase: 'Le point chaque lundi sur votre téléphone.',
+    menu: 'Le point chaque lundi',
     texte: 'Par semaine ou par mois, restaurant par restaurant. Et chaque lundi, le point sur votre téléphone.',
     vitrine: {
       appareil: 'navigateur',
@@ -602,11 +613,13 @@ export const NAV = [
 ];
 
 // Icônes dessinées du registre (src/lib/registre-icones.ts), affichées à côté de chaque entrée du menu.
+// 7 octobre 2026 (demande de Tom) : « Qui suis-je » en premier, « Blog » à la place de « Articles et guides », phrases
+// courtes. Les adresses ne changent pas (/qui-sommes-nous/, /ressources/).
 export const MENU_RESSOURCES = [
-  { libelle: 'Articles et guides', phrase: 'Prix, commissions, promos, notes : des guides sourcés.', href: '/ressources/', icone: 'ardoise' },
-  { libelle: 'Intégrations', phrase: 'Les plateformes qui fonctionnent avec Deliview.', href: '/integrations/', icone: 'tablette-qui-sonne' },
-  { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement.', href: '/questions-frequentes/', icone: 'enveloppe' },
-  { libelle: 'Qui sommes-nous', phrase: 'Le projet, le fondateur et la construction de Deliview.', href: '/qui-sommes-nous/', icone: 'toque' },
+  { libelle: 'Qui suis-je', phrase: 'Le fondateur et l’histoire', href: '/qui-sommes-nous/', icone: 'toque' },
+  { libelle: 'Blog', phrase: 'Guides pour restaurateurs', href: '/ressources/', icone: 'ardoise' },
+  { libelle: 'Intégrations', phrase: 'Uber Eats et Deliveroo', href: '/integrations/', icone: 'tablette-qui-sonne' },
+  { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement', href: '/questions-frequentes/', icone: 'enveloppe' },
 ] as const;
 
 export const PLATEFORMES = [

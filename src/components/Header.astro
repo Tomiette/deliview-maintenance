@@ -15,8 +15,8 @@ import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, lien } from '../lib/site';
 // Deliview surveille pour vous, en compact ; en bas, toute la solution et le simulateur. Chaque entrée mène à sa section
 // de la page Solution.
 const ressources = MENU_RESSOURCES.map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase, icone: r.icone as NomIcone }));
-const leviers = LEVIERS.map((l) => ({ href: `/solution/#${l.id}`, titre: l.nom, phrase: l.phrase, icone: l.icone }));
-const veille = VEILLE.map((v) => ({ href: `/solution/#${v.id}`, titre: v.nom.replace(/ \?$/, ''), phrase: v.phrase, icone: v.icone }));
+const leviers = LEVIERS.map((l) => ({ href: `/solution/#${l.id}`, titre: l.nom, phrase: l.menu, icone: l.icone }));
+const veille = VEILLE.map((v) => ({ href: `/solution/#${v.id}`, titre: v.nom.replace(/ \?$/, ''), phrase: v.menu, icone: v.icone }));
 // Page en cours (sans la base de l'aperçu), pour marquer l'entrée active de la navigation.
 const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
 const actif = (href: string) => chemin === href;
@@ -43,7 +43,7 @@ const dansMenu = (menu: string) =>
                     <Chevron taille={24} class="transition-transform group-open:rotate-180" />
                   </summary>
                   {item.menu === 'solution' ? (
-                    <div class="dv-menu-solution absolute left-0 top-full mt-2 w-[720px] rounded-[18px] border border-grey-2/15 bg-white shadow-[0_8px_24px_rgba(76,76,76,0.1)]">
+                    <div class="dv-menu-solution absolute left-0 top-full mt-2 w-[640px] rounded-[18px] border border-grey-2/15 bg-white shadow-[0_8px_24px_rgba(76,76,76,0.1)]">
                       <div class="grid grid-cols-[1.15fr_1fr] gap-2 p-3">
                         <div>
                           <p class="dv-menu-titre">Gagnez en rentabilité</p>

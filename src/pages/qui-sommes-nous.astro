@@ -44,7 +44,7 @@ const personne = {
 };
 // Le titre de la frise suit ce qu'elle montre : le site public n'a que les posts dont on a le lien.
 const posts = (import.meta.env.BASE_URL !== '/' ? CHRONOLOGIE_APERCU : CHRONOLOGIE).length;
-const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui sommes-nous', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR' };
+const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui suis-je', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR' };
 
 // La même capture que la bascule de l'accueil (compte de démonstration « Pizza Démo »).
 const captureAccueil: CaptureApp = {
@@ -75,7 +75,7 @@ const engagements = [
 ];
 ---
 
-<Base title="Qui sommes-nous : Tom Voisin, fondateur | Deliview" description={description} ariane={[{ nom: 'Qui sommes-nous', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
+<Base title="Qui suis-je : Tom Voisin, fondateur | Deliview" description={description} ariane={[{ nom: 'Qui suis-je', chemin: '/qui-sommes-nous/' }]} jsonld={[aPropos, personne]}>
   <section class="bg-grey pb-16 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="projet-titre" data-haut-de-page>
     <div class="dv-container flex max-w-[1100px] flex-col items-center gap-x-20 gap-y-14 md:flex-row">
       <div class="flex-1">
