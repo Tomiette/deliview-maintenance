@@ -167,17 +167,18 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
       <div class="dv-bascule-tablette">
         <Scene3D capture={captureAccueil} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
           <Flottant x={2} y={2} xm={0} ym={2} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
-          <!-- Chaque bulle sur sa carte : À faire (86,40 €) en bas à gauche, En cours (le prix validé) à droite. -->
+          <!-- Étiquettes du PDF validé par Tom (6 octobre 2026). « 86,40 € » près de sa carte À faire, en bas à gauche ;
+               « Votre creux » à droite, au niveau du graphique, sans cacher la carte En cours. -->
           <Flottant x={-4} y={72} xm={-2} ym={70} z={15} duree={6.8} delai={-2}>
             <div class="dv-bulle">
               <p class="dv-bulle-chiffre">86,40&nbsp;€</p>
               <p class="dv-bulle-texte">à contester</p>
             </div>
           </Flottant>
-          <Flottant x={-3} y={64} xm={0} ym={76} droite z={12} duree={7.2} delai={-4} bureau>
+          <Flottant x={-3} y={44} xm={0} ym={76} droite z={12} duree={7.2} delai={-4} bureau>
             <div class="dv-bulle">
-              <p class="dv-bulle-sur">Prix validé</p>
-              <p class="dv-bulle-titre">appliqué sous 10&nbsp;min</p>
+              <p class="dv-bulle-sur">Votre creux</p>
+              <p class="dv-bulle-titre">le mardi midi</p>
             </div>
           </Flottant>
         </Scene3D>
