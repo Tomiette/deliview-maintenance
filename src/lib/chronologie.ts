@@ -9,6 +9,7 @@
 // Les liens sont gardés sans leurs paramètres de suivi (utm_*, rcm, propre au compte de Tom).
 //
 // Site public : les posts qui ont un lien, sauf ceux marqués « aperçu seulement », du plus ancien au plus récent.
+// Les captures ne donnent que l'ancienneté (« 8 mois ») ; le lien donne le jour exact.
 // Aperçu : tous les posts ; un post sans lien (date et lien « [À REMPLACER] ») se place juste avant le post daté qui
 // le suit dans la liste.
 //
@@ -41,7 +42,8 @@ export interface EtapeChronologie extends PostLinkedIn {
 // Du plus ancien au plus récent (dates tirées des liens, en commentaire pour la relecture).
 const POSTS: PostLinkedIn[] = [
   {
-    // Lien à recevoir (« J'ai commencé à entreprendre à 17 ans », il y a 8 mois au 7 octobre 2026).
+    // 21 janvier 2026 (« J'ai commencé à entreprendre à 17 ans »)
+    lien: 'https://www.linkedin.com/posts/tomvoisin_jai-commenc%C3%A9-%C3%A0-entreprendre-%C3%A0-17-ans-aucune-share-7419649860712259584-ilF2/',
     titre: 'Le projet devient public',
     extrait: 'Une plateforme pensée pour simplifier la gestion de la livraison et redonner de la rentabilité aux restaurateurs.',
     photo: { fichier: 'le-projet-devient-public', largeur: 522, hauteur: 768, alt: 'Tom devant un grand écran où s’affiche la première version du logiciel' },
