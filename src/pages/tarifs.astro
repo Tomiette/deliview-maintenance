@@ -24,8 +24,6 @@ import Fleche from '../icons/fleche.astro';
 import Plus from '../icons/plus.astro';
 import Moins from '../icons/moins.astro';
 import Courbe from '../icons/courbe.astro';
-import Pieces from '../icons/pieces.astro';
-import Duo from '../icons/duo.astro';
 import Toque from '../icons/toque.astro';
 import CadenasOuvert from '../icons/cadenas-ouvert.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
@@ -36,12 +34,23 @@ import BoutiqueArret from '../icons/boutique-arret.astro';
 import TicketIcone from '../icons/ticket.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
 import Chef from '../icons/chef.astro';
+import Pieces from '../icons/pieces.astro';
+import Duo from '../icons/duo.astro';
+import OffreEssentiel from '../icons/offre-essentiel.astro';
+import OffrePro from '../icons/offre-pro.astro';
+import OffreGroupe from '../icons/offre-groupe.astro';
 import { EXEMPLE_MARGHERITA as ex, OFFRES, PRIX_ENTREE, SITE, dateFr, euros, jsonldLogiciel, lien } from '../lib/site';
 
 const description = `Trois offres selon vos restaurants sur Uber Eats et Deliveroo, dès ${PRIX_ENTREE} € HT par mois. Sans engagement, mise en place offerte, aucun frais caché.`;
 
-// Une icône par offre : vos chiffres (Essentiel), l'argent que Deliview va chercher (Pro), le point avec Tom (Groupe).
-const ICONES_OFFRES: Record<string, typeof Courbe> = { essentiel: Courbe, pro: Pieces, premium: Duo };
+// Une icône par offre, dessinée pour Deliview (7 octobre 2026, demande de Tom) : la même boutique, et ce que l'offre
+// ajoute en bleu. Essentiel : la loupe (vous voyez) ; Pro : deux boutiques et l'étincelle de l'IA (Deliview agit) ;
+// Groupe : deux boutiques et la bulle (le point chaque mois avec Tom).
+// Sur l'aperçu seulement tant que Tom ne les a pas validés ; le site en ligne garde les anciennes icônes.
+const apercu = import.meta.env.BASE_URL !== '/';
+const ICONES_OFFRES: Record<string, typeof Courbe> = apercu
+  ? { essentiel: OffreEssentiel, pro: OffrePro, premium: OffreGroupe }
+  : { essentiel: Courbe, pro: Pieces, premium: Duo };
 
 // Prix ramené au restaurant, pour les offres à plusieurs restaurants (« soit 66,33 € par restaurant si vous en avez 3 »).
 const parRestaurant = (o: (typeof OFFRES)[number]) =>
@@ -257,7 +266,6 @@ const logiciel = {
                 >
                   Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
                 </a>
-                <p class="mt-3 text-center text-[15px] leading-[1.4] dv-muted">Rien à payer aujourd’hui</p>
                 </div>
                 <div class="dv-offre-contenu">
                 <p class="text-balance text-[16px] font-bold leading-[1.4]">{o.base}</p>
