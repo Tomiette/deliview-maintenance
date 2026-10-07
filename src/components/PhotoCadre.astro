@@ -112,7 +112,7 @@ const logoDeliveroo = logoPlateforme('deliveroo');
   }
   .dv-photo-logo {
     position: absolute;
-    right: -22px;
+    right: -6px;
     gap: 8px;
     padding: 8px 14px 8px 8px;
     font-size: 15px;
@@ -130,17 +130,18 @@ const logoDeliveroo = logoPlateforme('deliveroo');
   }
   .dv-photo-logo-deliveroo {
     top: 31%;
-    right: -40px;
+    right: -12px;
     --duree: 7.4s;
     --delai: -3.5s;
   }
-  /* Téléphone : moins en débord, pour ne jamais dépasser de l'écran. */
-  @media (max-width: 767.98px) {
+  /* Grand écran seulement : les logos débordent davantage du cadre (en dessous, la photo touche presque le bord de
+     l'écran et ils le dépasseraient). */
+  @media (min-width: 1200px) {
     .dv-photo-logo {
-      right: -6px;
+      right: -22px;
     }
     .dv-photo-logo-deliveroo {
-      right: -12px;
+      right: -40px;
     }
   }
   :global(.dv-mouvement) .dv-photo-logo {
