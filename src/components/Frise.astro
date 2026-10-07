@@ -3,14 +3,16 @@
 // du plus ancien au plus récent, sur un fil vertical. Chaque carte reprend le post : auteur et date, l'étape, une ou
 // deux phrases mot pour mot, la photo du post (hébergée ici : pas d'intégration LinkedIn, donc aucun cookie tiers),
 // le lien vers le post. Le point bleu marque le post le plus récent.
-// Uniquement les posts envoyés par Tom (src/lib/chronologie.ts) : tant que la liste est vide, la frise n'apparaît pas
-// sur le site public ; sur l'aperçu seulement, trois cartes « [À REMPLACER] » montrent sa place.
+// Uniquement les posts envoyés par Tom (src/lib/chronologie.ts). Site public : les posts dont on a le lien (donc la
+// vraie date) ; sans aucun, la frise n'apparaît pas. Aperçu : tous les posts, date et lien « [À REMPLACER] » tant que
+// le lien manque ; trois cartes vides si la liste l'est.
 import Fleche from '../icons/fleche.astro';
 import { dateFr, lien } from '../lib/site';
-import { CHRONOLOGIE, type EtapeChronologie } from '../lib/chronologie';
+import { CHRONOLOGIE, CHRONOLOGIE_APERCU, type EtapeChronologie } from '../lib/chronologie';
 
 const apercu = import.meta.env.BASE_URL !== '/';
-const etapes: (EtapeChronologie | null)[] = CHRONOLOGIE.length ? CHRONOLOGIE : apercu ? [null, null, null] : [];
+const liste = apercu ? CHRONOLOGIE_APERCU : CHRONOLOGIE;
+const etapes: (EtapeChronologie | null)[] = liste.length ? liste : apercu ? [null, null, null] : [];
 const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
 ---
 
@@ -30,10 +32,10 @@ const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-
               <img src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
               <span>
                 <span class="block font-semibold">Tom Voisin</span>
-                {e ? (
+                {e?.date ? (
                   <time datetime={e.date} class="dv-post-date">{dateFr(new Date(e.date + 'T12:00:00Z'))}</time>
                 ) : (
-                  <span class="dv-post-date"><span class="dv-a-remplacer">[À REMPLACER : date]</span></span>
+                  <span class="dv-post-date"><span class="dv-a-remplacer">[À REMPLACER : date, avec le lien]</span></span>
                 )}
               </span>
             </p>
@@ -62,7 +64,7 @@ const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-
                 </span>
               )
             )}
-            {e ? (
+            {e?.lienPropre ? (
               <a href={e.lienPropre} class="dv-lien dv-post-lien" rel="noopener">
                 Voir le post sur LinkedIn<span class="sr-only"> : {e.titre}</span>
                 <Fleche taille={24} class="ml-1.5" />
@@ -204,6 +206,13 @@ const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-
     border: 1px solid var(--dv-bord);
     border-radius: 12px;
     background: var(--color-grey);
+  }
+  /* Téléphone : photo en portrait au format du fil LinkedIn (4:5), recadrée au centre si elle est plus haute. */
+  @media (max-width: 767.98px) {
+    .dv-post-portrait .dv-post-photo:not(.dv-post-photo-vide) {
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
   }
   .dv-post-photo-vide {
     display: grid;
