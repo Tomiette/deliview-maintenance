@@ -193,15 +193,11 @@ const logiciel = {
     <div class="dv-container">
       <div class="text-center">
         <Pastille>Tarifs</Pastille>
-        <h1 id="tarifs-titre" class="dv-h1 mx-auto mt-5 max-w-[20ch] md:mt-6 md:max-w-[27ch]">Plus de rentabilité en livraison, dès {PRIX_ENTREE}&nbsp;€&nbsp;HT par mois</h1>
+        <!-- Titre et sans les trois coches du dessous (7 octobre 2026, 15 h 14, demande de Tom). -->
+        <h1 id="tarifs-titre" class="dv-h1 mx-auto mt-5 max-w-[20ch] md:mt-6 md:max-w-[27ch]">Améliorez la rentabilité de votre activité livraison</h1>
         <p class="dv-lead mx-auto mt-4 max-w-[52ch] md:mt-5">
           Avec Essentiel, vous suivez vos chiffres et votre zone. Avec Pro et Groupe, Deliview agit aussi pour vous&nbsp;: promos, prix, remboursements.
         </p>
-        <ul class="dv-rassurances mt-5 md:mt-6" aria-label="Pour toutes les offres">
-          <li><Coche taille={24} />Sans engagement</li>
-          <li><Coche taille={24} />Mise en place offerte</li>
-          <li><Coche taille={24} />Rien à payer aujourd’hui</li>
-        </ul>
       </div>
 
       <!-- Téléphone et tablette : les trois offres d'un coup d'œil, chacune mène à sa carte (les cartes sont empilées). -->
@@ -462,30 +458,10 @@ const logiciel = {
 </script>
 
 <style>
-  /* Rassurances du haut : trois coches Bleu 1, sur une ligne quand la place le permet. */
-  .dv-rassurances {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2px 22px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-  .dv-rassurances li {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .dv-rassurances :global(svg),
+  /* Coches Bleu 1 dans les cartes et le comparatif. */
   .dv-offre-liste :global(svg),
   .dv-comparatif-oui :global(svg) {
     color: var(--color-blue);
-  }
-  @media (min-width: 768px) {
-    .dv-rassurances {
-      font-size: 17px;
-    }
   }
 
   /* Raccourcis vers les offres (téléphone et tablette) : trois pastilles en relief, Pro au contour Bleu 1. */
