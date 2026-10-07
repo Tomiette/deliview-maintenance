@@ -278,19 +278,20 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
               </p>
               <p class="mt-4 grow border-t border-grey-2/15 pt-4 text-[16px] leading-[1.5] md:mt-5 md:pt-5">{o.pour}.</p>
               <a
-                href={lien(`/commencer/?offre=${o.slug}`)}
+                href={lien(`/tarifs/#${o.slug}`)}
                 class={`dv-btn mt-5 w-full md:mt-6 ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
                 data-cta={`accueil-tarifs-${o.slug}`}
                 {...(o.recommandee ? { 'data-cta-principal': '' } : {})}
               >
-                Commencer maintenant<span class="sr-only"> avec l’offre {o.nom}</span>
+                Voir le détail<span class="sr-only"> de l’offre {o.nom}</span>
               </a>
             </li>
           ))
         }
       </ul>
-      <!-- Sous les offres (7 octobre 2026, demande de Tom : même format que Tarifs) : deux cartes de même poids, chacune avec
-           sa question, une phrase qui dit ce qui se passe, et son lien. -->
+      <!-- 7 octobre 2026, 23 h 06 (accord de Tom) : sur l'accueil, chaque offre mène à son détail sur Tarifs (« Voir le
+           détail ») ; « Commencer maintenant » reste sur Tarifs, à côté de la liste complète. Sous les offres, seule la carte
+           « Plus de 10 restaurants ? » reste (la carte « Besoin de comparer ? » faisait doublon avec les boutons). -->
       <div class="mt-8 grid max-w-[880px] gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
         <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
           <div class="flex items-center gap-3">
@@ -299,11 +300,6 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
           </div>
           <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre sur mesure pour tout votre groupe.</p>
           <a href="#demo" class="dv-lien-fort mt-4 self-start" data-cta="accueil-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
-        </div>
-        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
-          <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Besoin de comparer&nbsp;?</h3>
-          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Toutes les fonctions de chaque offre, côte à côte, sur la page Tarifs.</p>
-          <a href={lien('/tarifs/')} class="dv-lien-fort mt-4 self-start" data-cta="accueil-detail-offres">Voir le détail des offres<Fleche taille={24} /></a>
         </div>
       </div>
     </div>
