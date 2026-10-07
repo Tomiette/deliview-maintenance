@@ -1,7 +1,10 @@
 ---
 // Vraie photo dans un cadre blanc en relief, légèrement incliné, sa légende en puce posée devant (Qui sommes-nous,
 // histoire de Deliview, 7 octobre 2026). Photos des posts LinkedIn de Tom (public/images/linkedin/, 360 et 720 px).
+// Option `plateformes` (demande de Tom, 7 octobre, 13 h 12) : les logos officiels d'Uber Eats et de Deliveroo
+// flottent sur le côté droit de la photo, comme sur la page Affiliation. Décoratifs (masqués aux lecteurs d'écran).
 import { lien } from '../lib/site';
+import { logoPlateforme } from '../lib/logos';
 
 interface Props {
   fichier: string; // nom de base dans public/images/linkedin/
@@ -11,13 +14,17 @@ interface Props {
   legende?: string;
   inclinaison?: number; // en degrés
   priorite?: boolean; // image du haut de page
+  plateformes?: boolean; // logos d'Uber Eats et de Deliveroo qui flottent à droite
   class?: string;
 }
-const { fichier, largeur, hauteur, alt, legende, inclinaison = -2, priorite = false, class: classe = '' } = Astro.props;
+const { fichier, largeur, hauteur, alt, legende, inclinaison = -2, priorite = false, plateformes = false, class: classe = '' } = Astro.props;
 const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
+const logoUber = logoPlateforme('uber-eats');
+const logoDeliveroo = logoPlateforme('deliveroo');
 ---
 
-<figure class={`dv-photo-cadre ${classe}`} style={`--incl:${inclinaison}deg`}>
+<div class={`dv-photo-scene ${classe}`}>
+<figure class="dv-photo-cadre" style={`--incl:${inclinaison}deg`}>
   <img
     src={src(720)}
     srcset={`${src(360)} 360w, ${src(720)} 720w`}
@@ -40,12 +47,32 @@ const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
     )
   }
 </figure>
+{
+  plateformes && (
+    <div class="dv-photo-plateformes" aria-hidden="true">
+      <span class="dv-puce dv-photo-logo dv-photo-logo-uber">
+        {logoUber ? <img class="dv-puce-logo" src={logoUber.src} alt="" width={logoUber.largeur} height={logoUber.hauteur} /> : <i />}
+        Uber&nbsp;Eats
+      </span>
+      <span class="dv-puce dv-photo-logo dv-photo-logo-deliveroo">
+        {logoDeliveroo ? <img class="dv-puce-logo" src={logoDeliveroo.src} alt="" width={logoDeliveroo.largeur} height={logoDeliveroo.hauteur} /> : <i />}
+        Deliveroo
+      </span>
+    </div>
+  )
+}
+</div>
 
 <style>
+  /* Scène : le cadre incliné, et à côté les logos (droits, hors du cadre : pas de transformations imbriquées). */
+  .dv-photo-scene {
+    position: relative;
+    width: min(100%, 300px);
+  }
   .dv-photo-cadre {
     position: relative;
     margin: 0;
-    width: min(100%, 300px);
+    width: 100%;
     padding: 10px;
     border: 1px solid var(--dv-bord);
     border-radius: 22px;
@@ -53,7 +80,8 @@ const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
     box-shadow: 0 5px 0 var(--dv-levre), var(--dv-ombre-flottante);
     rotate: var(--incl);
   }
-  .dv-photo-cadre img {
+  /* La photo seulement (pas les logos des puces). */
+  .dv-photo-cadre > img {
     display: block;
     width: 100%;
     height: auto;
@@ -74,5 +102,48 @@ const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
   .dv-photo-cadre-legende .dv-puce i {
     width: 8px;
     height: 8px;
+  }
+  /* Logos des plateformes : à cheval sur le bord droit du cadre, ils montent et descendent doucement, chacun à son
+     rythme (sauf si le visiteur a demandé moins d'animations). */
+  .dv-photo-plateformes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .dv-photo-logo {
+    position: absolute;
+    right: -22px;
+    gap: 8px;
+    padding: 8px 14px 8px 8px;
+    font-size: 15px;
+    box-shadow: 0 4px 0 var(--dv-levre), var(--dv-ombre-flottante);
+  }
+  .dv-photo-logo :global(.dv-puce-logo) {
+    width: auto;
+    height: 26px;
+    border-radius: 7px;
+  }
+  .dv-photo-logo-uber {
+    top: 12%;
+    --duree: 6.4s;
+    --delai: -1s;
+  }
+  .dv-photo-logo-deliveroo {
+    top: 31%;
+    right: -40px;
+    --duree: 7.4s;
+    --delai: -3.5s;
+  }
+  /* Téléphone : moins en débord, pour ne jamais dépasser de l'écran. */
+  @media (max-width: 767.98px) {
+    .dv-photo-logo {
+      right: -6px;
+    }
+    .dv-photo-logo-deliveroo {
+      right: -12px;
+    }
+  }
+  :global(.dv-mouvement) .dv-photo-logo {
+    animation: dv-flotte-px var(--duree) ease-in-out var(--delai) infinite alternate;
   }
 </style>
