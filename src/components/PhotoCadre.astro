@@ -7,7 +7,10 @@ import { lien } from '../lib/site';
 import { logoPlateforme } from '../lib/logos';
 
 interface Props {
-  fichier: string; // nom de base dans public/images/linkedin/
+  fichier: string; // nom de base dans public/images/<dossier>/
+  dossier?: string; // « linkedin » par défaut (photos des posts) ; « terrain » pour les captures du terrain
+  tailles?: [number, number]; // largeurs des deux fichiers WebP (360 et 720 par défaut)
+  largeurMax?: number; // largeur affichée au plus, en pixels (300 par défaut)
   largeur: number;
   hauteur: number;
   alt: string;
@@ -17,18 +20,34 @@ interface Props {
   plateformes?: boolean; // logos d'Uber Eats et de Deliveroo qui flottent à droite
   class?: string;
 }
-const { fichier, largeur, hauteur, alt, legende, inclinaison = -2, priorite = false, plateformes = false, class: classe = '' } = Astro.props;
-const src = (l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
+const {
+  fichier,
+  dossier = 'linkedin',
+  tailles = [360, 720],
+  largeurMax = 300,
+  largeur,
+  hauteur,
+  alt,
+  legende,
+  inclinaison = -2,
+  priorite = false,
+  plateformes = false,
+  class: classe = '',
+} = Astro.props;
+const src = (l: number) => lien(`/images/${dossier}/${fichier}-${l}.webp`);
+const [petite, grande] = tailles;
+// Largeur affichée : 300 px au plus par défaut ; une capture plus large (conversation) peut aller au-delà.
+const sizes = largeurMax === 300 ? '(min-width: 768px) 300px, 72vw' : `(min-width: 768px) ${largeurMax}px, 92vw`;
 const logoUber = logoPlateforme('uber-eats');
 const logoDeliveroo = logoPlateforme('deliveroo');
 ---
 
-<div class={`dv-photo-scene ${classe}`}>
+<div class={`dv-photo-scene ${classe}`} style={largeurMax === 300 ? undefined : `--largeur-max:${largeurMax}px`}>
 <figure class="dv-photo-cadre" style={`--incl:${inclinaison}deg`}>
   <img
-    src={src(720)}
-    srcset={`${src(360)} 360w, ${src(720)} 720w`}
-    sizes="(min-width: 768px) 300px, 72vw"
+    src={src(grande)}
+    srcset={`${src(petite)} ${petite}w, ${src(grande)} ${grande}w`}
+    sizes={sizes}
     width={largeur}
     height={hauteur}
     alt={alt}
@@ -65,9 +84,10 @@ const logoDeliveroo = logoPlateforme('deliveroo');
 
 <style>
   /* Scène : le cadre incliné, et à côté les logos (droits, hors du cadre : pas de transformations imbriquées). */
+  /* 16 px de marge sur le côté : la légende déborde de 16 px à gauche du cadre et ne doit pas toucher le bord de l'écran. */
   .dv-photo-scene {
     position: relative;
-    width: min(100%, 300px);
+    width: min(100% - 16px, var(--largeur-max, 300px));
   }
   .dv-photo-cadre {
     position: relative;

@@ -55,9 +55,6 @@ const captureAccueil: CaptureApp = {
   alt: `Accueil de Deliview : ce que Deliview vous a rapporté sur Uber Eats et Deliveroo, puis ce qu’il reste à faire. ${DEMO}`,
 };
 
-// Ce qu'il a entendu partout (texte validé par Tom pour l'accueil et la vidéo, 6 octobre 2026).
-const paroles = ['Des commissions trop élevées', 'Des promos qui mangent la marge', 'Pas le temps de tout suivre'];
-
 // Deliview en bref (7 octobre 2026, demande de Tom : « ajuste avec ce que tu sais, sois simple ») : six faits, chacun
 // déjà affiché ailleurs sur le site (accueil, Tarifs, FAQ, mentions légales).
 const bref = [
@@ -146,7 +143,7 @@ const engagements = [
   </section>
 
   <section class="dv-section bg-grey dv-points !pt-4 md:!pt-6" aria-labelledby="constat-titre">
-    <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 md:flex-row">
+    <div class="dv-container flex max-w-[1000px] flex-col items-center gap-x-[88px] gap-y-12 lg:flex-row">
       <div class="max-w-[560px] flex-1">
         <Pastille>03 · Le constat</Pastille>
         <h2 id="constat-titre" class="dv-h2 mt-4 md:mt-5">Partout, la même histoire</h2>
@@ -157,21 +154,20 @@ const engagements = [
           <p>La livraison leur ramène des clients. Mais à la fin du mois, ils se demandent où est passé l’argent.</p>
         </div>
       </div>
-      <div class="dv-relief dv-paroles w-full max-w-[400px] shrink-0">
-        <p class="dv-overline">Ce que j’ai entendu, partout</p>
-        <ul class="mt-5 space-y-3.5">
-          {
-            paroles.map((p) => (
-              <li>
-                <span class="dv-parole">
-                  <Message taille={24} />
-                  «&nbsp;{p}&nbsp;»
-                </span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <!-- Vrai message reçu par Tom sur WhatsApp (capture envoyée par Tom le 7 octobre 2026, 15 h 31, à la place de « Ce que
+           j'ai entendu, partout ») : aucun nom ni numéro visible, barre de saisie retirée. -->
+      <PhotoCadre
+        fichier="whatsapp-fraude"
+        dossier="terrain"
+        tailles={[480, 960]}
+        largeurMax={440}
+        largeur={1156}
+        hauteur={673}
+        alt="Capture d’une conversation WhatsApp. Un restaurateur écrit à Tom : « tom j’en ai marre, les clients demandent le remboursement alors que la commande était complète et bien livré, je perds trop de chiffres à cause de ces fraudes... » Tom répond : « hello, oui je comprends... on a déjà posé le sujet avec deliview, ça arrive bientôt ! »"
+        legende="Message d’un restaurateur"
+        inclinaison={2}
+        class="shrink-0"
+      />
     </div>
   </section>
 
@@ -262,32 +258,6 @@ const engagements = [
       gap: 14px;
       font-size: 19px;
     }
-  }
-  /* « Ce que j'ai entendu, partout » : trois paroles en bulles blanches, décalées comme une conversation. */
-  .dv-paroles {
-    padding: 26px 24px 30px;
-  }
-  .dv-paroles li:nth-child(2) {
-    display: flex;
-    justify-content: flex-end;
-  }
-  .dv-parole {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px 12px 14px;
-    border: 1px solid var(--dv-bord);
-    border-radius: 18px 18px 18px 6px;
-    background: var(--color-grey);
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 1.35;
-  }
-  .dv-paroles li:nth-child(2) .dv-parole {
-    border-radius: 18px 18px 6px 18px;
-  }
-  .dv-parole :global(svg) {
-    flex-shrink: 0;
   }
   /* Le chef de l'appel final : une tuile plus grande, l'icône en 48 px. */
   .dv-tuile-chef {
