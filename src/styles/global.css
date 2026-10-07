@@ -428,6 +428,17 @@
     text-decoration: underline;
     text-underline-offset: 4px;
   }
+  /* Lien fort qui peut passer sur deux lignes (téléphone) : la flèche reste collée au dernier mot (les deux dans un
+     span « whitespace-nowrap ») au lieu de partir au bord droit de la colonne ou seule à la ligne. */
+  .dv-lien-fort-ligne {
+    display: inline-block;
+    padding-block: 12px;
+  }
+  .dv-lien-fort-ligne svg {
+    display: inline;
+    margin-left: 8px;
+    vertical-align: -6px;
+  }
   /* Lien souligné en Gris 2 (e-mail, LinkedIn…), cible de 44 px. */
   .dv-lien {
     display: inline-flex;

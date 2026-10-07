@@ -1,41 +1,78 @@
 ---
-// Frise de la construction de Deliview (Qui sommes-nous) : verticale, points dessinés au trait, date en Aspekta 600,
-// titre en Aspekta, une phrase, lien vers le post LinkedIn. Le point bleu marque l'étape la plus récente.
-// Uniquement les étapes fournies par Tom (src/lib/chronologie.ts) : tant que la liste est vide, la frise n'apparaît
-// pas sur le site public ; sur l'aperçu seulement, trois étapes « [À REMPLACER] » montrent sa place.
+// Frise de la construction de Deliview (Qui sommes-nous, refonte du 7 octobre 2026) : les vrais posts LinkedIn de Tom,
+// du plus ancien au plus récent, sur un fil vertical. Chaque carte reprend le post : auteur et date, l'étape, une ou
+// deux phrases mot pour mot, la photo du post (hébergée ici : pas d'intégration LinkedIn, donc aucun cookie tiers),
+// le lien vers le post. Le point bleu marque le post le plus récent.
+// Uniquement les posts envoyés par Tom (src/lib/chronologie.ts) : tant que la liste est vide, la frise n'apparaît pas
+// sur le site public ; sur l'aperçu seulement, trois cartes « [À REMPLACER] » montrent sa place.
 import Fleche from '../icons/fleche.astro';
-import { dateFr } from '../lib/site';
-import { CHRONOLOGIE } from '../lib/chronologie';
+import { dateFr, lien } from '../lib/site';
+import { CHRONOLOGIE, type EtapeChronologie } from '../lib/chronologie';
 
 const apercu = import.meta.env.BASE_URL !== '/';
-const etapes = CHRONOLOGIE.length
-  ? CHRONOLOGIE
-  : apercu
-    ? [1, 2, 3].map((n) => ({ date: '', titre: `[À REMPLACER : titre de l’étape ${n}]`, phrase: '[À REMPLACER : une phrase sur ce qui a été construit]', lien: '' }))
-    : [];
+const etapes: (EtapeChronologie | null)[] = CHRONOLOGIE.length ? CHRONOLOGIE : apercu ? [null, null, null] : [];
+const photo = (fichier: string, l: number) => lien(`/images/linkedin/${fichier}-${l}.webp`);
 ---
 
 {
   etapes.length > 0 && (
-    <ol class="dv-frise">
+    <ol class="dv-frise" aria-label="Posts LinkedIn, du plus ancien au plus récent">
       {etapes.map((e, i) => (
-        <li class={i === etapes.length - 1 ? 'dv-frise-en-cours' : ''}>
+        <li class:list={['dv-frise-etape', { 'dv-frise-en-cours': i === etapes.length - 1 }]}>
           <span class="dv-frise-point" aria-hidden="true" />
-          <p class="text-[15px] font-semibold leading-[1.3]">
-            {e.date ? <time datetime={e.date}>{dateFr(new Date(e.date + 'T12:00:00Z'))}</time> : <span class="dv-a-remplacer">[À REMPLACER : date]</span>}
-          </p>
-          <h3 class="mt-1 font-accent text-[20px] font-bold leading-[1.3]">{e.titre}</h3>
-          <p class="mt-1 max-w-[60ch] text-[16px] leading-[1.5]">{e.phrase}</p>
-          {e.lien ? (
-            <a href={e.lien} class="dv-lien text-[15px]" rel="noopener">
-              Voir sur LinkedIn<span class="sr-only"> : {e.titre}</span>
-              <Fleche taille={24} class="ml-1.5" />
-            </a>
-          ) : (
-            <p class="mt-2 text-[15px] font-semibold">
-              <span class="dv-a-remplacer">[À REMPLACER : lien du post LinkedIn]</span>
+          <article
+            class:list={[
+              'dv-relief dv-post',
+              e && !e.photo ? 'dv-post-sans-photo' : e && e.photo && e.photo.largeur > e.photo.hauteur ? 'dv-post-paysage' : 'dv-post-portrait',
+            ]}
+          >
+            <p class="dv-post-auteur">
+              <img src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
+              <span>
+                <span class="block font-semibold">Tom Voisin</span>
+                {e ? (
+                  <time datetime={e.date} class="dv-post-date">{dateFr(new Date(e.date + 'T12:00:00Z'))}</time>
+                ) : (
+                  <span class="dv-post-date"><span class="dv-a-remplacer">[À REMPLACER : date]</span></span>
+                )}
+              </span>
             </p>
-          )}
+            <div class="dv-post-texte">
+              <h3 class="dv-post-titre">{e ? e.titre : <span class="dv-a-remplacer">[À REMPLACER : l’étape]</span>}</h3>
+              <blockquote class="dv-post-extrait">
+                <p>{e ? <>«&nbsp;{e.extrait}&nbsp;»</> : <span class="dv-a-remplacer">[À REMPLACER : une ou deux phrases du post]</span>}</p>
+              </blockquote>
+            </div>
+            {e?.photo ? (
+              <img
+                class="dv-post-photo"
+                src={photo(e.photo.fichier, 720)}
+                srcset={`${photo(e.photo.fichier, 360)} 360w, ${photo(e.photo.fichier, 720)} 720w`}
+                sizes={`(min-width: 768px) ${e.photo.largeur > e.photo.hauteur ? 300 : 208}px, calc(100vw - 104px)`}
+                width={e.photo.largeur}
+                height={e.photo.hauteur}
+                alt={e.photo.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              !e && (
+                <span class="dv-post-photo dv-post-photo-vide">
+                  <span class="dv-a-remplacer">[À REMPLACER : photo du post]</span>
+                </span>
+              )
+            )}
+            {e ? (
+              <a href={e.lienPropre} class="dv-lien dv-post-lien" rel="noopener">
+                Voir le post sur LinkedIn<span class="sr-only"> : {e.titre}</span>
+                <Fleche taille={24} class="ml-1.5" />
+              </a>
+            ) : (
+              <p class="dv-post-lien font-semibold">
+                <span class="dv-a-remplacer">[À REMPLACER : lien du post]</span>
+              </p>
+            )}
+          </article>
         </li>
       ))}
     </ol>
@@ -43,29 +80,155 @@ const etapes = CHRONOLOGIE.length
 }
 
 <style>
+  /* Fil : de point en point (il ne dépasse ni le premier ni le dernier post). Le point est centré sur la photo de Tom. */
   .dv-frise {
+    --rail: 30px; /* place du fil à gauche des cartes */
+    --ecart: 24px; /* entre deux cartes */
+    --pad: 20px; /* marge intérieure des cartes */
+    --point: 18px;
+    --haut: calc(var(--pad) + 20px - var(--point) / 2); /* milieu de la photo de Tom (40 px) */
     display: grid;
-    gap: 28px;
+    gap: var(--ecart);
     margin-top: 40px;
-    padding-left: 36px;
-    border-left: 2px solid color-mix(in srgb, var(--color-grey-2) 30%, transparent);
+    padding-left: var(--rail);
   }
-  li {
+  @media (min-width: 768px) {
+    .dv-frise {
+      --rail: 44px;
+      --ecart: 32px;
+      --pad: 28px;
+    }
+  }
+  .dv-frise-etape {
     position: relative;
+  }
+  .dv-frise-etape:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--rail) + var(--point) / 2 - 1px);
+    top: calc(var(--haut) + var(--point) / 2);
+    bottom: calc(-1 * (var(--ecart) + var(--haut) + var(--point) / 2));
+    width: 2px;
+    background: color-mix(in srgb, var(--color-grey-2) 30%, transparent);
   }
   .dv-frise-point {
     position: absolute;
-    left: -46px;
-    top: 2px;
-    width: 16px;
-    height: 16px;
+    z-index: 1;
+    left: calc(-1 * var(--rail));
+    top: var(--haut);
+    width: var(--point);
+    height: var(--point);
     border: 2.2px solid var(--color-grey-2);
     border-radius: 50%;
     background: var(--color-white);
   }
   .dv-frise-en-cours .dv-frise-point {
     border-color: var(--color-blue);
-    /* Bleu 1 à 15 % posé sur le blanc du point (le trait de la frise ne doit pas transparaître). */
+    /* Bleu 1 à 15 % posé sur le blanc du point (le fil ne doit pas transparaître). */
     box-shadow: inset 0 0 0 10px color-mix(in srgb, var(--color-blue) 15%, transparent);
+  }
+
+  /* Carte du post. Téléphone : auteur, texte, photo, lien. Ordinateur : la photo à droite, sur toute la hauteur. */
+  .dv-post {
+    display: grid;
+    grid-template-areas: 'auteur' 'texte' 'photo' 'lien';
+    padding: var(--pad);
+  }
+  /* Colonne de la photo : plus étroite en portrait (carrousel, photo de téléphone), plus large en paysage, pour que
+     la carte garde une hauteur proche de celle du texte. */
+  @media (min-width: 768px) {
+    .dv-post {
+      grid-template-columns: minmax(0, 1fr) 208px;
+      grid-template-rows: auto auto 1fr;
+      grid-template-areas: 'auteur photo' 'texte photo' 'lien photo';
+      column-gap: 32px;
+    }
+    .dv-post-paysage {
+      grid-template-columns: minmax(0, 1fr) 300px;
+    }
+    .dv-post-sans-photo {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'auteur' 'texte' 'lien';
+    }
+  }
+  .dv-post-auteur {
+    grid-area: auteur;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .dv-post-auteur img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .dv-post-date {
+    display: block;
+    margin-top: 2px;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+  .dv-post-date .dv-a-remplacer {
+    display: inline-block;
+    margin-top: 6px;
+  }
+  .dv-post-texte {
+    grid-area: texte;
+  }
+  .dv-post-titre {
+    margin-top: 16px;
+    font-family: var(--font-accent);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .dv-post-extrait {
+    margin-top: 10px;
+    padding-left: 14px;
+    border-left: 3px solid var(--color-blue);
+    font-size: 16px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .dv-post-photo {
+    grid-area: photo;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 18px;
+    border: 1px solid var(--dv-bord);
+    border-radius: 12px;
+    background: var(--color-grey);
+  }
+  .dv-post-photo-vide {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 5;
+    padding: 16px;
+    text-align: center;
+  }
+  .dv-post-lien {
+    grid-area: lien;
+    justify-self: start;
+    align-self: start;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  /* Ordinateur : le lien se pose en bas de la carte, au niveau du bas de la photo. */
+  @media (min-width: 768px) {
+    .dv-post-photo {
+      margin-top: 0;
+      align-self: start;
+    }
+    .dv-post-lien {
+      align-self: end;
+      margin-top: 12px;
+      margin-bottom: -10px; /* la cible de 44 px dépasse sous le texte, pas sous la carte */
+    }
   }
 </style>
