@@ -184,17 +184,17 @@ Toutes les offres : Vos objectifs par semaine ou par mois, et le point du lundi.
 Non. Vos ventes Uber Eats et Deliveroo s’ajoutent chaque jour. Vous fixez seulement vos objectifs.
 
 **J’ai plusieurs restaurants. Comment ça se passe ?**
-Avec Pro (jusqu’à 3 restaurants) ou Groupe (jusqu’à 10), chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.
+Avec Pro ou Groupe, chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.
 
 **Comment je reçois le point du lundi ?**
 Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arrive sur votre téléphone. Sur iPhone, ajoutez d’abord Deliview à l’écran d’accueil.
 
 
-## Offres (prix selon vos restaurants et vos besoins, fixé avec Tom avant tout paiement ; sans engagement, mise en place offerte)
+## Offres (prix et nombre de restaurants selon vos besoins, fixés avec Tom avant tout paiement ; sans engagement, mise en place offerte)
 
-- Essentiel : 1 restaurant. Améliorez la rentabilité de votre activité livraison.
-- Pro : jusqu’à 3 restaurants. Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison.
-- Groupe : jusqu’à 10 restaurants. Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison.
+- Essentiel : Améliorez la rentabilité de votre activité livraison.
+- Pro : Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison.
+- Groupe : Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison.
 
 ## Questions fréquentes (mises à jour le 2026-10-08, https://www.deliview.fr/questions-frequentes/)
 
@@ -204,7 +204,7 @@ Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arri
 Deliview est un logiciel français qui centralise vos chiffres Uber Eats et Deliveroo sur un seul écran. Vous voyez ce que font vos concurrents, vous ajustez vos prix, vos promos, et votre activité livraison devient plus rentable. Deliview est conçu pour les restaurants en France présents sur Uber Eats et Deliveroo.
 
 **Est-ce que Deliview est fait pour mon restaurant ?**
-Oui, si vous vendez sur Uber Eats, sur Deliveroo ou sur les deux, avec 1 à 10 restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.
+Oui, si vous vendez sur Uber Eats, sur Deliveroo ou sur les deux, avec un restaurant ou plusieurs. Pizzerias, burgers, snacks, dark kitchens et petites chaînes.
 
 **Sur quelles plateformes est-ce que je peux utiliser Deliview ?**
 Uber Eats et Deliveroo, en France. Chaque plateforme est analysée à part. Prix, notes et offres y diffèrent souvent.
