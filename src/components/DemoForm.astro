@@ -39,19 +39,18 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     {
       depart && (
         <fieldset class="dv-choix-offre">
-          <legend class={libelle}>
-            Votre offre <span class="font-normal dv-muted">· prix HT par mois</span>
-          </legend>
+          <legend class={libelle}>Votre offre</legend>
           <div class="mt-2 grid gap-2.5">
             {OFFRES.map((o) => (
               <label class="dv-choix-offre-carte">
                 <input type="radio" name="offre" value={o.slug} checked={o.slug === offreParDefaut.slug} data-nom={o.nom} />
                 <span class="dv-choix-offre-nom">{o.nom}</span>
                 <span class="dv-choix-offre-detail dv-muted">{o.restaurants}</span>
-                <span class="dv-choix-offre-prix">{o.prix}&nbsp;€</span>
               </label>
             ))}
           </div>
+          {/* Plus de prix sur le site (8 octobre 2026, demande de Tom) : il est fixé pendant l'appel. */}
+          <p class="mt-2.5 text-[15px] leading-[1.45] dv-muted">Tom fixe votre prix avec vous pendant l’appel, avant tout paiement.</p>
         </fieldset>
       )
     }

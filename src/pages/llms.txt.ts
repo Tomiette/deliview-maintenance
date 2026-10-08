@@ -33,8 +33,9 @@ export const GET: APIRoute = async () => {
     '',
     '## Tarifs',
     '',
-    ...OFFRES.map((o) => `- ${o.nom} : ${o.prix} € HT par mois, ${o.restaurants.toLowerCase()}. ${o.pour}.`),
-    `- Sans engagement, mise en place offerte. Détail : ${u('/tarifs/')}`,
+    // Plus aucun prix public depuis le 8 octobre 2026 (demande de Tom) : le prix est fixé avec Tom, avant tout paiement.
+    ...OFFRES.map((o) => `- ${o.nom} : ${o.restaurants.toLowerCase()}. ${o.pour}.`),
+    `- Prix selon les restaurants et les besoins, fixé avec Tom avant tout paiement. Sans engagement, mise en place offerte. Détail des offres : ${u('/tarifs/')}`,
     '',
     '## Guides pour les restaurateurs',
     '',

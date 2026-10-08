@@ -3,6 +3,7 @@
 // offres. Le restaurateur choisit son offre (celle du bouton cliqué, ?offre=…) et laisse ses coordonnées ; Tom l'appelle
 // sous 3 h pour ouvrir le compte avec lui. Aucun paiement sur le site : Tom envoie ensuite le lien de paiement Stripe.
 // Hors des moteurs (noindex, absente du plan du site). Messages d'erreur sans JavaScript via #erreur-… (:target).
+// 8 octobre 2026 (plus aucun prix sur le site, demande de Tom) : Tom fixe le prix avec le restaurateur pendant l'appel.
 import Base from '../../layouts/Base.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
 import Faq from '../../components/Faq.astro';
@@ -11,7 +12,7 @@ import { SITE, lien } from '../../lib/site';
 const faq = [
   {
     q: 'Quand est-ce que je paie ?',
-    r: 'Une fois votre compte ouvert avec Tom. Il vous envoie le lien de paiement et vous vous abonnez en ligne.',
+    r: 'Une fois votre prix fixé et votre compte ouvert avec Tom. Il vous envoie le lien de paiement et vous vous abonnez en ligne.',
   },
   {
     q: 'Est-ce que je peux changer d’offre plus tard ?',
@@ -35,7 +36,7 @@ const erreurs = [
 
 <Base
   title="Commencer : choisissez votre offre | Deliview"
-  description={'Choisissez votre offre Deliview et laissez vos coordonnées\u00a0: Tom vous appelle sous 3\u00a0h pour ouvrir votre compte avec vous. Sans engagement.'}
+  description={'Choisissez votre offre Deliview et laissez vos coordonnées\u00a0: Tom vous appelle sous 3\u00a0h, fixe votre prix avec vous et ouvre votre compte. Sans engagement.'}
   ariane={[
     { nom: 'Tarifs', chemin: '/tarifs/' },
     { nom: 'Commencer', chemin: '/commencer/' },
@@ -60,7 +61,7 @@ const erreurs = [
     id="commencer"
     surtitre="Ouverture de compte"
     titre="Commencez avec Deliview"
-    sousTitre={'Choisissez votre offre et laissez vos coordonnées. Tom vous appelle sous 3\u00a0h pour ouvrir votre compte avec vous.'}
+    sousTitre={'Choisissez votre offre et laissez vos coordonnées. Tom vous appelle sous 3\u00a0h, fixe votre prix avec vous et ouvre votre compte.'}
   />
   <Faq questions={faq} titre="Avant de commencer" fond="gris" />
 </Base>

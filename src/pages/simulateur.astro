@@ -7,6 +7,8 @@
 // dans les notes de la demande) ; Tom n'appelle que si la case de rappel est cochée. Chaque valeur proposée est un
 // exemple affiché comme tel, ou une valeur sourcée.
 // Sans JavaScript : toutes les questions s'affichent à la suite et l'envoi passe par la fonction (page merci).
+// 8 octobre 2026 (demande de Tom : plus aucun prix sur le site) : la ligne « l'abonnement est couvert N fois » laisse
+// place à une phrase sur le prix, fixé avec Tom avant tout paiement.
 import Base from '../layouts/Base.astro';
 import BoutonDemo from '../components/BoutonDemo.astro';
 import Pastille from '../components/Pastille.astro';
@@ -14,7 +16,7 @@ import Pieces from '../icons/pieces.astro';
 import Toque from '../icons/toque.astro';
 import SacLivraison from '../icons/sac-livraison.astro';
 import Chevron from '../icons/chevron.astro';
-import { IDS, OFFRES, PRIX_ENTREE, SITE, lien } from '../lib/site';
+import { IDS, SITE, lien } from '../lib/site';
 
 // Hypothèses du gain de prix : exemple réel d'analyse (burgers, Paris, 1er octobre 2026), signalées sous le résultat.
 const PART_SOUS_ZONE = 21;
@@ -197,8 +199,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
           <div class="dv-sim-gain mt-8">
             <p class="dv-overline">Avec des prix bien placés</p>
             <p class="mt-2 text-[22px] font-bold leading-[1.3] md:text-[26px]"><span data-r="gain"></span> de plus par mois, <span data-r="gain-an"></span> par an</p>
-            <p class="mt-2 text-[16px] leading-[1.5]" data-r-offre-ligne>L’abonnement <span data-r="offre-nom">{OFFRES[0].nom}</span> (<span data-r="offre-prix">{PRIX_ENTREE}&nbsp;€</span>&nbsp;HT par mois) <span data-r="fois"></span>.</p>
-            <p class="mt-2 text-[16px] leading-[1.5]" data-r-sur-mesure hidden>Au-delà de {OFFRES[OFFRES.length - 1].maxRestaurants}&nbsp;restaurants, Tom vous fait une offre sur mesure.</p>
+            <p class="mt-2 text-[16px] leading-[1.5]">Le prix de Deliview dépend de vos restaurants et de vos besoins&nbsp;: Tom le fixe avec vous, avant tout paiement.</p>
             <p class="mt-3 text-[15px] leading-[1.5] dv-muted">
               Hypothèse tirée d’une vraie analyse (burgers, Paris, 1<sup>er</sup>&nbsp;octobre 2026)&nbsp;: {PART_SOUS_ZONE}&nbsp;% des plats de la carte sous le prix médian du quartier, remontés de {HAUSSE}&nbsp;%, à ventes égales. Deliview calcule ce chiffre plat par plat pour votre restaurant.
             </p>
@@ -419,11 +420,11 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
 <!-- Valeurs du script en JSON (jamais exécuté) : un script à variables injectées (define:vars) n'aurait pas d'empreinte
      dans la politique de sécurité des contenus (6 octobre 2026). -->
-<script type="application/json" id="dv-vars-simulateur" set:html={JSON.stringify({ partSousZone: 21, hausse: 10, tva: 0.1, offres: OFFRES.map((o) => ({ nom: o.nom, prix: o.prix, max: o.maxRestaurants })) })} />
+<script type="application/json" id="dv-vars-simulateur" set:html={JSON.stringify({ partSousZone: 21, hausse: 10, tva: 0.1 })} />
 
 <script>
   // @ts-nocheck : script repris tel quel, valeurs lues dans le bloc JSON ci-dessus.
-  const { partSousZone, hausse, tva, offres } = JSON.parse(document.getElementById('dv-vars-simulateur')?.textContent || '{}');
+  const { partSousZone, hausse, tva } = JSON.parse(document.getElementById('dv-vars-simulateur')?.textContent || '{}');
   // Une question à la fois, barre de progression, retour arrière ; puis envoi des coordonnées et résultats sur place.
   const form = document.getElementById('simulateur');
   const carte = form?.closest('.dv-sim');
@@ -545,17 +546,6 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       ecrire('part', pourcent(r.ventes > 0 ? (r.reste / r.ventes) * 100 : 0));
       ecrire('gain', '+ ' + euros(r.gain));
       ecrire('gain-an', euros(r.gain * 12));
-      // L'offre qui correspond au nombre de restaurants saisi (Essentiel 1, Pro 3, Groupe 10 ; au-delà, sur mesure).
-      const nbRestos = Math.max(1, parseInt(form.elements.namedItem('etablissements').value, 10) || 1);
-      const offre = (offres || []).find((o) => nbRestos <= o.max);
-      resultats.querySelector('[data-r-offre-ligne]').hidden = !offre;
-      resultats.querySelector('[data-r-sur-mesure]').hidden = !!offre;
-      if (offre) {
-        const fois = r.gain / offre.prix;
-        ecrire('offre-nom', offre.nom);
-        ecrire('offre-prix', new Intl.NumberFormat('fr-FR').format(offre.prix) + '\u00a0€');
-        ecrire('fois', fois >= 1 ? `est couvert ${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 1 }).format(fois)}\u00a0fois` : 'n’est pas couvert avec ces chiffres');
-      }
       ecrire('tel', tel);
       resultats.querySelector('[data-r-rappel]').hidden = !rappel;
       resultats.querySelector('[data-r-sans-rappel]').hidden = rappel;

@@ -2310,13 +2310,6 @@
     font-weight: 700;
     line-height: 1.2;
   }
-  .dv-offre-prix {
-    font-family: var(--font-chiffres);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
   @media (min-width: 768px) {
     .dv-offre {
       padding: 26px 28px 30px;
@@ -2356,8 +2349,8 @@
   }
   .dv-choix-offre-carte {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: "radio nom prix" "radio detail prix";
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas: "radio nom" "radio detail";
     align-items: center;
     column-gap: 12px;
     row-gap: 2px;
@@ -2387,16 +2380,6 @@
     grid-area: detail;
     font-size: 15px;
     line-height: 1.35;
-  }
-  .dv-choix-offre-prix {
-    grid-area: prix;
-    font-family: var(--font-chiffres);
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    text-align: right;
-    white-space: nowrap;
   }
   .dv-choix-offre-carte:hover {
     border-color: var(--color-grey-2);

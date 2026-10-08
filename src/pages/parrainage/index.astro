@@ -58,7 +58,6 @@ const erreurs = [
 const pageUrl = SITE.url + '/parrainage/';
 // Sans la barre « Demander une démo » du téléphone (8 octobre 2026, audit responsive) : l'action de la page est le lien
 // de parrainage ; la barre ajoutait un second bouton plein vers une autre action.
-const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
 ---
 
 <Base title="Affiliation : 2 parrainages, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Affiliation', chemin: '/parrainage/' }]} fondHaut="blanc" barreDemo={false}>
@@ -93,7 +92,6 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
         <div id="parr-resultat" class="dv-parr-gain" aria-live="polite">
           <p class="dv-parr-chiffre"><span data-parr-mois>5</span>&nbsp;mois</p>
           <p class="dv-parr-sous">offerts</p>
-          <p class="mt-1 text-[15px] leading-[1.4] dv-muted">soit <strong class="font-chiffres font-semibold text-grey-2" data-parr-euros>{5 * pro.prix}&nbsp;€</strong> HT en offre {pro.nom}</p>
         </div>
       </div>
     </div>
@@ -135,9 +133,10 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
         <li class="dv-parr-carte">
           <div class="dv-parr-illu" aria-hidden="true">
             <div class="dv-parr-facture">
-              <p class="dv-parr-facture-tete"><span>Prochaine facture</span><span>HT</span></p>
-              <p class="dv-parr-facture-ligne"><span>Abonnement {pro.nom}</span><span>{euros(pro.prix)}</span></p>
-              <p class="dv-parr-facture-ligne text-blue"><span>Parrainage · 2 filleuls</span><span>−{euros(pro.prix)}</span></p>
+              <!-- Sans montant depuis le 8 octobre 2026 (plus de prix sur le site, demande de Tom) : le mois, puis le mois offert. -->
+              <p class="dv-parr-facture-tete"><span>Prochaine facture</span></p>
+              <p class="dv-parr-facture-ligne"><span>Abonnement {pro.nom}</span><span>1 mois</span></p>
+              <p class="dv-parr-facture-ligne text-blue"><span>Parrainage · 2 filleuls</span><span>−1 mois</span></p>
               <p class="dv-parr-facture-total"><span>À payer</span><span>0&nbsp;€</span></p>
             </div>
           </div>
@@ -310,24 +309,21 @@ const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
 
 <!-- Valeurs du script en JSON (jamais exécuté) : un script à variables injectées (define:vars) n'aurait pas d'empreinte
      dans la politique de sécurité des contenus (6 octobre 2026). -->
-<script type="application/json" id="dv-vars-parrainage" set:html={JSON.stringify({ PAR_MOIS, prixPro: pro.prix, pageUrl })} />
+<script type="application/json" id="dv-vars-parrainage" set:html={JSON.stringify({ PAR_MOIS, pageUrl })} />
 
 <script>
   // @ts-nocheck : script repris tel quel, valeurs lues dans le bloc JSON ci-dessus.
-  const { PAR_MOIS, prixPro, pageUrl } = JSON.parse(document.getElementById('dv-vars-parrainage')?.textContent || '{}');
-  // Curseur : mois offerts = parrainages ÷ 2 (arrondi en dessous), et leur valeur sur l'offre Pro.
+  const { PAR_MOIS, pageUrl } = JSON.parse(document.getElementById('dv-vars-parrainage')?.textContent || '{}');
+  // Curseur : mois offerts = parrainages ÷ 2 (arrondi en dessous).
   const curseur = document.getElementById('parr-nombre');
   const valeur = document.getElementById('parr-nombre-valeur');
   const mois = document.querySelector('[data-parr-mois]');
-  const euros = document.querySelector('[data-parr-euros]');
   const bulle = document.querySelector('[data-parr-bulle]');
-  const nf = new Intl.NumberFormat('fr-FR');
   function majCurseur() {
     const n = Number(curseur.value);
     const m = Math.floor(n / PAR_MOIS);
     valeur.textContent = String(n);
     mois.textContent = String(m);
-    euros.textContent = nf.format(m * prixPro) + '\u00a0€';
     const pct = (n / Number(curseur.max)) * 100;
     curseur.style.setProperty('--parr-rempli', pct + '%');
     bulle.lastChild.textContent = n > 1 ? ' parrainages' : ' parrainage';

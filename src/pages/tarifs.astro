@@ -4,7 +4,6 @@
 // Techniques reprises d'autres pages de tarifs (la structure seulement, aucun texte copié) :
 // - « pour qui » sous chaque offre, écrit comme la situation du client (Zenchef, Otter) : « Pour vous si… » ;
 // - listes qui s'additionnent : « Tout Essentiel, plus : », « Tout Pro, plus : » (Linear, Otter) ;
-// - prix ramené au restaurant pour les offres à plusieurs restaurants (prix par établissement : Otter, Deliverect) ;
 // - ce qui est inclus quoi qu'il arrive, dont « aucun frais caché » (Sunday) ;
 // - le coût de ne rien faire, relié aux offres, puis le simulateur (Sunday, Zenchef : calculateur) ;
 // - offre sur mesure au-delà de 10 restaurants (Linear : « Contact sales ») ;
@@ -15,6 +14,9 @@
 // 10, 12.2), l'argent rapporté est la carte de l'accueil de l'app (5 octobre 2026).
 // Gardé : chaque offre mène au formulaire de départ /commencer/?offre=… (4 octobre, logique de taap.it) ; la démo reste
 // proposée sous les offres et en bas de page ; « Plus de 10 restaurants ? » dans la bulle de Tom, comme sur l'accueil.
+// 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut avoir des besoins différents ») : plus
+// aucun prix sur la page. À la place du prix, « Prix selon vos besoins, fixé avec Tom, avant tout paiement » (CGV 8.1
+// et 8.2) ; « Combien me coûte Deliview ? » en tête des questions ; plus de données structurées d'offres.
 import Base from '../layouts/Base.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
@@ -35,9 +37,9 @@ import LoupeZone from '../icons/loupe-zone.astro';
 import OffreEssentiel from '../icons/offre-essentiel.astro';
 import OffrePro from '../icons/offre-pro.astro';
 import OffreGroupe from '../icons/offre-groupe.astro';
-import { EXEMPLE_MARGHERITA as ex, OFFRES, PRIX_ENTREE, SITE, dateFr, euros, jsonldLogiciel, lien } from '../lib/site';
+import { EXEMPLE_MARGHERITA as ex, OFFRES, SITE, dateFr, euros, jsonldLogiciel, lien } from '../lib/site';
 
-const description = `Trois offres selon vos restaurants sur Uber Eats et Deliveroo, dès ${PRIX_ENTREE} € HT par mois. Sans engagement, mise en place offerte, aucun frais caché.`;
+const description = 'Trois offres pour vos restaurants sur Uber Eats et Deliveroo, au prix fixé avec vous selon vos besoins. Sans engagement, mise en place offerte.';
 
 // Une icône par offre, dessinée pour Deliview (7 octobre 2026, demande de Tom) : la même boutique, et ce que l'offre
 // ajoute en bleu. Essentiel : la loupe (vous voyez) ; Pro : deux boutiques et l'étincelle de l'IA (Deliview agit) ;
@@ -45,11 +47,7 @@ const description = `Trois offres selon vos restaurants sur Uber Eats et Deliver
 // Validées par Tom le 7 octobre 2026 (21 h 58) : en ligne partout.
 const ICONES_OFFRES: Record<string, typeof Courbe> = { essentiel: OffreEssentiel, pro: OffrePro, premium: OffreGroupe };
 
-// Prix ramené au restaurant, pour les offres à plusieurs restaurants (« soit 66,33 € par restaurant si vous en avez 3 »).
-const parRestaurant = (o: (typeof OFFRES)[number]) =>
-  o.maxRestaurants > 1 ? `soit ${euros(o.prix / o.maxRestaurants)} par restaurant si vous en avez ${o.maxRestaurants}` : '';
-
-// Inclus dans toutes les offres : CGV 3.4 (mise en place), 8.2 (prix), 10.1 et 10.2 (durée, arrêt), 12.2 (réponses) ;
+// Inclus dans toutes les offres : CGV 3.4 (mise en place), 8.2 (mise en place offerte), 10.1 et 10.2 (durée, arrêt), 12.2 (réponses) ;
 // accès par invitation (mêmes mots que la page Qui sommes-nous).
 const inclusPartout = [
   { icone: Toque, titre: 'Mise en place offerte', texte: 'Tom crée votre compte avec vous et vous présente vos premiers résultats.' },
@@ -131,16 +129,20 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
 // paiement (/commencer/), moyens de paiement (9.1, 9.2), changement d'offre (5.3), tablettes, réseau, données.
 const faq = [
   {
+    q: 'Combien me coûte Deliview ?',
+    r: 'Le prix dépend de vos restaurants et de vos besoins. Tom le fixe avec vous, avant tout paiement. L’abonnement est mensuel et sans engagement, et la mise en place est offerte.',
+  },
+  {
     q: 'Est-ce que je m’engage sur une durée ?',
     r: 'Non. L’abonnement est mensuel et sans engagement. Pour arrêter, écrivez à Tom ou passez par votre espace de facturation&nbsp;: l’arrêt prend effet à la fin du mois d’abonnement en cours.',
   },
   {
     q: 'Est-ce que je paie des frais en plus de l’abonnement ?',
-    r: 'Non. La mise en place est offerte et aucune option n’est payante. Vous payez chaque mois le prix de votre offre, plus la TVA.',
+    r: 'Non. La mise en place est offerte et aucune option n’est payante. Vous payez chaque mois le prix fixé avec Tom, plus la TVA.',
   },
   {
     q: 'Quand est-ce que je paie ?',
-    r: 'Une fois votre compte ouvert avec Tom. Il vous envoie le lien de paiement et vous vous abonnez en ligne.',
+    r: 'Une fois votre prix fixé et votre compte ouvert avec Tom. Il vous envoie le lien de paiement et vous vous abonnez en ligne.',
   },
   {
     q: 'Comment se passe le paiement ?',
@@ -165,9 +167,9 @@ const faq = [
 ];
 
 const texteBrut = (h: string) => h.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
-// Deux questions sont aussi sur /questions-frequentes/ : elles restent affichées ici, mais ne sont balisées (FAQPage)
+// Trois questions sont aussi sur /questions-frequentes/ : elles restent affichées ici, mais ne sont balisées (FAQPage)
 // qu'une fois sur le site, sur la page des questions fréquentes (8 octobre 2026, audit SEO, règle de Google).
-const BALISEES_AILLEURS = ['Est-ce que je m’engage sur une durée ?', 'Où sont hébergées mes données ?'];
+const BALISEES_AILLEURS = ['Combien me coûte Deliview ?', 'Est-ce que je m’engage sur une durée ?', 'Où sont hébergées mes données ?'];
 const faqPage = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -175,27 +177,10 @@ const faqPage = {
     .filter((x) => !BALISEES_AILLEURS.includes(x.q))
     .map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
 };
-const logiciel = {
-  ...jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/'),
-  offers: OFFRES.map((o) => ({
-    '@type': 'Offer',
-    name: `Deliview ${o.nom}`,
-    description: `${o.restaurants}. ${o.pour}.`,
-    price: o.prix.toFixed(2),
-    priceCurrency: 'EUR',
-    url: `${SITE.url}/tarifs/#${o.slug}`,
-    priceSpecification: {
-      '@type': 'UnitPriceSpecification',
-      price: o.prix,
-      priceCurrency: 'EUR',
-      unitText: 'mois',
-      valueAddedTaxIncluded: false,
-    },
-  })),
-};
+const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
 ---
 
-<Base title={`Tarifs : dès ${PRIX_ENTREE} € HT par mois, sans engagement | Deliview`} description={description} ariane={[{ nom: 'Tarifs', chemin: '/tarifs/' }]} jsonld={[logiciel, faqPage]}>
+<Base title="Tarifs : un prix selon vos besoins, sans engagement | Deliview" description={description} ariane={[{ nom: 'Tarifs', chemin: '/tarifs/' }]} jsonld={[logiciel, faqPage]}>
   <section id="offres" class="bg-grey pb-16 pt-8 md:pb-[104px] md:pt-12" aria-labelledby="tarifs-titre" data-haut-de-page>
     <div class="dv-container">
       <div class="text-center">
@@ -215,7 +200,6 @@ const logiciel = {
               <li>
                 <a href={`#${o.slug}`} class={`dv-raccourci ${o.recommandee ? 'dv-raccourci-pro' : ''}`} data-cta={`tarifs-raccourci-${o.slug}`}>
                   <span class="dv-raccourci-nom">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</span>
-                  <span class="dv-raccourci-prix">{o.prix}&nbsp;€</span>
                   <span class="dv-raccourci-detail">{o.restaurants}</span>
                 </a>
               </li>
@@ -228,7 +212,6 @@ const logiciel = {
         {
           OFFRES.map((o) => {
             const Icone = ICONES_OFFRES[o.slug] ?? Courbe;
-            const soit = parRestaurant(o);
             return (
               <li id={o.slug} class={`dv-relief dv-offre flex scroll-mt-12 flex-col md:grid md:grid-cols-[1fr_1.15fr] lg:flex ${o.recommandee ? 'dv-offre-pro' : ''}`}>
                 {o.recommandee && (
@@ -248,12 +231,10 @@ const logiciel = {
                 </div>
                 <p class="dv-overline mt-6">Pour vous si</p>
                 <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[72px]">{o.pourVous}</p>
+                {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
                 <div class="mt-5 border-t border-grey-2/15 pt-5">
-                  <p class="flex items-baseline gap-2">
-                    <span class="dv-offre-prix text-[46px] md:text-[54px]">{o.prix}&nbsp;€</span>
-                    <span class="text-[16px] leading-[1.3]">HT par mois</span>
-                  </p>
-                  {soit ? <p class="dv-offre-soit">{soit}</p> : <p class="dv-offre-soit hidden lg:block" aria-hidden="true" />}
+                  <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
+                  <p class="dv-offre-fixe">Fixé avec Tom, avant tout paiement</p>
                 </div>
                 <a
                   href={lien(`/commencer/?offre=${o.slug}`)}
@@ -305,7 +286,7 @@ const logiciel = {
         </div>
       </div>
       <p class="mt-6 text-center text-[14px] dv-muted">
-        Prix HT. Abonnement soumis aux <a href={lien('/cgv/')}>conditions générales de vente</a>.
+        Abonnement mensuel soumis aux <a href={lien('/cgv/')}>conditions générales de vente</a>.
       </p>
     </div>
   </section>
@@ -395,7 +376,6 @@ const logiciel = {
                 OFFRES.map((o) => (
                   <th scope="col" role="columnheader" class={o.recommandee ? 'dv-comparatif-pro' : ''}>
                     <span class="dv-comparatif-nom">{o.nom}</span>
-                    <span class="dv-comparatif-prix">{o.prix}&nbsp;€&nbsp;HT</span>
                   </th>
                 ))
               }
@@ -494,14 +474,6 @@ const logiciel = {
     font-weight: 700;
     line-height: 1.25;
   }
-  .dv-raccourci-prix {
-    font-family: var(--font-chiffres);
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    font-variant-numeric: tabular-nums;
-  }
   .dv-raccourci-detail {
     font-size: 14px;
     line-height: 1.3;
@@ -539,10 +511,15 @@ const logiciel = {
     }
   }
 
-  /* Prix ramené au restaurant, sous le prix (place réservée sur ordinateur pour aligner les boutons). */
-  .dv-offre-soit {
-    margin-top: 8px;
-    min-height: 21px;
+  /* À la place du prix (8 octobre 2026) : une ligne en Aspekta, puis comment il est fixé. */
+  .dv-offre-sur-mesure {
+    font-family: var(--font-accent);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .dv-offre-fixe {
+    margin-top: 6px;
     font-size: 15px;
     line-height: 1.4;
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
@@ -631,13 +608,6 @@ const logiciel = {
     font-weight: 700;
     line-height: 1.2;
   }
-  .dv-comparatif-prix {
-    display: block;
-    margin-top: 2px;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.3;
-  }
   .dv-comparatif .dv-comparatif-pro {
     background: color-mix(in srgb, var(--color-blue) 8%, var(--color-white));
   }
@@ -706,9 +676,6 @@ const logiciel = {
     }
     .dv-comparatif-nom {
       font-size: 17px;
-    }
-    .dv-comparatif-prix {
-      font-size: 14px;
     }
     .dv-comparatif-groupe th,
     .dv-comparatif tbody th[scope="row"] {

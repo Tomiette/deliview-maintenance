@@ -517,12 +517,14 @@ export const PLATEFORMES = [
   },
 ];
 
-// Les 3 abonnements, selon le nombre de restaurants. Prix HT par mois, sans engagement, mise en place offerte.
+// Les 3 abonnements, selon le nombre de restaurants. Sans engagement, mise en place offerte.
 // Benchmark (1er octobre 2026) : Otter 34/49/89 €, Fooderise 49/99 €, HubRise 35 €, Deliverect 79/119/199 € par établissement.
+// Plus aucun prix sur le site depuis le 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut
+// avoir des besoins différents ») : le prix est fixé avec Tom, avant tout paiement (CGV 8.1 et 8.2). Les prix de base
+// restent dans l'app (app/src/lib/offre.ts) et dans Stripe, pour les clients déjà abonnés.
 export interface Offre {
   slug: string;
   nom: string;
-  prix: number;
   restaurants: string;
   // Nombre de restaurants au plus (simulateur : l'offre qui correspond au nombre saisi).
   maxRestaurants: number;
@@ -556,7 +558,6 @@ export const OFFRES: Offre[] = [
   {
     slug: 'essentiel',
     nom: 'Essentiel',
-    prix: 59,
     restaurants: '1 restaurant',
     maxRestaurants: 1,
     pour: 'Améliorez la rentabilité de votre activité livraison',
@@ -577,7 +578,6 @@ export const OFFRES: Offre[] = [
   {
     slug: 'pro',
     nom: 'Pro',
-    prix: 199,
     restaurants: 'Jusqu’à 3 restaurants',
     maxRestaurants: 3,
     pour: 'Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison',
@@ -599,7 +599,6 @@ export const OFFRES: Offre[] = [
   {
     slug: 'premium',
     nom: 'Groupe',
-    prix: 399,
     restaurants: 'Jusqu’à 10 restaurants',
     maxRestaurants: 10,
     pour: 'Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison',
@@ -608,9 +607,6 @@ export const OFFRES: Offre[] = [
     inclus: ['Point mensuel avec Tom', 'Jusqu’à 10 restaurants'],
   },
 ];
-
-// Prix d'entrée, repris dans le hero, le simulateur et les métas.
-export const PRIX_ENTREE = OFFRES[0].prix;
 
 // Étiquette affichée pour le statut d'un pilier ou d'une fonctionnalité.
 export function libelleStatut(s: Statut | 'partiel'): string {
@@ -645,9 +641,8 @@ export function fonctionDuTheme(theme: string): FonctionResume | null {
   return f ? FONCTIONS.find((x) => x.id === f) ?? null : null;
 }
 
-// Données structurées du logiciel, avec la fourchette des offres publiques (la page Tarifs détaille chaque offre).
+// Données structurées du logiciel. Sans « offers » depuis le 8 octobre 2026 : aucun prix public (fixé avec Tom).
 export function jsonldLogiciel(description: string, url: string): Record<string, unknown> {
-  const prix = OFFRES.map((o) => o.prix);
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
@@ -661,14 +656,6 @@ export function jsonldLogiciel(description: string, url: string): Record<string,
     description,
     url,
     publisher: { '@type': 'Organization', '@id': IDS.organisation, name: 'Deliview', url: SITE.url },
-    offers: {
-      '@type': 'AggregateOffer',
-      priceCurrency: 'EUR',
-      lowPrice: Math.min(...prix),
-      highPrice: Math.max(...prix),
-      offerCount: OFFRES.length,
-      url: SITE.url + '/tarifs/',
-    },
   };
 }
 

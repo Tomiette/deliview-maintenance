@@ -1,23 +1,24 @@
 ---
 // « Deliview est-il fiable ? » (4 octobre 2026, demande de Tom) : les faits vérifiables sur l'éditeur, les prix, les
-// contrats, les données, l'accès aux comptes et le contact, chacun avec son lien. Page de marque pour les recherches
+// contrats, les données, l'accès aux comptes et le contact, chacun avec son lien. Prix : plus de montant depuis le
+// 8 octobre 2026 (demande de Tom), il est fixé avec Tom avant tout paiement, et une hausse est annoncée 30 jours avant
+// (CGV 8.3). Page de marque pour les recherches
 // « Deliview avis », « Deliview fiable », « Deliview arnaque » et pour les moteurs IA : réponse directe en tête,
 // une question par titre, FAQPage en données structurées. Aucun concurrent cité, aucun chiffre non vérifiable.
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Pastille from '../components/Pastille.astro';
 import Fleche from '../icons/fleche.astro';
-import { IDS, OFFRES, SITE, dateFr, lien } from '../lib/site';
+import { IDS, SITE, dateFr, lien } from '../lib/site';
 import { NE_FAIT_PAS, texteBrut } from '../lib/faq';
 import LogoContact from '../components/LogoContact.astro';
 
 const MAJ = '2026-10-08';
 // Fiche officielle de l'entreprise (registre national, data.gouv.fr).
 const ANNUAIRE = 'https://annuaire-entreprises.data.gouv.fr/entreprise/102681509';
-const prix = OFFRES.map((o) => `${o.nom}&nbsp;: ${o.prix}&nbsp;€&nbsp;HT par mois, ${o.restaurants.toLowerCase()}`).join(' ; ');
 
 const reponse =
-  'Deliview est édité par DELIVIEW SAS, une société française immatriculée au registre du commerce d’Alençon (SIREN 102&nbsp;681&nbsp;509) et présidée par son fondateur, Tom Voisin. Ses prix, ses contrats et l’hébergement de vos données sont publics. Deliview est un logiciel jeune&nbsp;: la démo se fait donc sur votre propre restaurant, avant tout paiement.';
+  'Deliview est édité par DELIVIEW SAS, une société française immatriculée au registre du commerce d’Alençon (SIREN 102&nbsp;681&nbsp;509) et présidée par son fondateur, Tom Voisin. Ses contrats et l’hébergement de vos données sont publics. Deliview est un logiciel jeune&nbsp;: la démo se fait donc sur votre propre restaurant, avant tout paiement.';
 
 const questions: { id: string; q: string; r: string; liens: { libelle: string; href: string }[] }[] = [
   {
@@ -51,7 +52,7 @@ const questions: { id: string; q: string; r: string; liens: { libelle: string; h
   {
     id: 'prix',
     q: 'Combien me coûte Deliview, sans surprise ?',
-    r: `Les prix sont publics&nbsp;: ${prix}. Au-delà de 10&nbsp;restaurants, Tom fait une offre sur mesure. La mise en place est offerte. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.`,
+    r: 'Le prix dépend de vos restaurants et de vos besoins. Tom le fixe avec vous, et vous le connaissez avant tout paiement. Aucun frais de mise en place, aucune option payante. Une hausse vous est annoncée par e-mail au moins 30&nbsp;jours avant. L’abonnement est mensuel et sans engagement&nbsp;: vous arrêtez quand vous voulez.',
     liens: [
       { libelle: 'Voir les tarifs', href: lien('/tarifs/') },
       { libelle: 'Conditions générales de vente', href: lien('/cgv/') },
@@ -111,7 +112,7 @@ const faqPage = {
 
 <Base
   title="Deliview est-il fiable ? Les faits à vérifier | Deliview"
-  description="Société, SIREN, prix, contrats, hébergement des données et contact : tout ce que vous pouvez vérifier sur Deliview avant une démo, avec les liens."
+  description="Société, SIREN, contrats, hébergement des données et contact : tout ce que vous pouvez vérifier sur Deliview avant une démo, avec les liens."
   ariane={[{ nom: 'Deliview est-il fiable ?', chemin: '/deliview-est-il-fiable/' }]}
   jsonld={[faqPage]}
 >

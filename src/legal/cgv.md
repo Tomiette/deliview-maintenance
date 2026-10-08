@@ -1,4 +1,4 @@
-Version du 7 octobre 2026.
+Version du 8 octobre 2026.
 
 DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
@@ -92,9 +92,9 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 
 ## Article 8. Prix
 
-8.1. Les prix sont ceux de l’Offre choisie, en euros hors taxes, par mois, pour l’ensemble des Établissements couverts. La TVA est facturée en sus au taux en vigueur.
+8.1. Le prix est fixé pour chaque Client selon l’Offre choisie et les Établissements couverts. Il est exprimé en euros hors taxes, par mois, pour l’ensemble des Établissements couverts. La TVA est facturée en sus au taux en vigueur.
 
-8.2. Les prix applicables sont ceux affichés sur www.deliview.fr/tarifs/ ou indiqués dans le Bon de commande à la date de la commande. La mise en place est offerte.
+8.2. Le prix applicable est celui indiqué dans le Bon de commande ou dans le lien de paiement adressé au Client avant la commande (article 6.1). La mise en place est offerte. Le barème des prix est communiqué à tout professionnel qui en fait la demande.
 
 8.3. Deliview peut modifier ses prix. Elle en informe le Client par e-mail au moins 30 jours avant leur entrée en vigueur. Le Client qui refuse le nouveau prix peut résilier le Contrat avant cette date, sans frais.
 
@@ -232,7 +232,6 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 |  | Essentiel | Pro | Groupe |
 | --- | --- | --- | --- |
-| Prix hors taxes par mois | 59 € | 199 € | 399 € |
 | Établissements couverts | 1 | Jusqu’à 3 | Jusqu’à 10 |
 | Ventes Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
 | Prix comparés à ceux des concurrents, plat par plat | Oui | Oui | Oui |

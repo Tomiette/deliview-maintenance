@@ -51,9 +51,10 @@ export const GET: APIRoute = async () => {
       ];
     }),
     '',
-    '## Tarifs (HT par mois, sans engagement, mise en place offerte)',
+    // Plus aucun prix public depuis le 8 octobre 2026 (demande de Tom) : le prix est fixé avec Tom, avant tout paiement.
+    '## Offres (prix selon vos restaurants et vos besoins, fixé avec Tom avant tout paiement ; sans engagement, mise en place offerte)',
     '',
-    ...OFFRES.map((o) => `- ${o.nom} : ${o.prix} €, ${o.restaurants.toLowerCase()}. ${o.pour}.`),
+    ...OFFRES.map((o) => `- ${o.nom} : ${o.restaurants.toLowerCase()}. ${o.pour}.`),
     '',
     `## Questions fréquentes (mises à jour le ${FAQ_MAJ}, ${u('/questions-frequentes/')})`,
     '',

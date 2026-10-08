@@ -23,7 +23,7 @@ import LoupeZone from '../icons/loupe-zone.astro';
 import Fleche from '../icons/fleche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
-import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, cheminFonction, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
+import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, SITE, VEILLE, cheminFonction, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
 
 // Le quotidien : trois constats du terrain (textes de Tom, 6 octobre 2026 : promo, fraude client, prix).
 const constats = [
@@ -44,7 +44,7 @@ const captureAccueil: CaptureApp = {
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : les trois leviers (LEVIERS) avec une vraie carte de l'app
 // chacun, puis ce que Deliview surveille pour vous (VEILLE). Uniquement des fonctions en ligne dans l'app.
 
-const description = `Deliview centralise vos chiffres Uber Eats et Deliveroo : promos, fraude client et prix, pour une livraison plus rentable. Dès ${PRIX_ENTREE} € HT par mois.`;
+const description = 'Deliview centralise vos chiffres Uber Eats et Deliveroo : promos, fraude client et prix, pour une livraison plus rentable. Sans engagement.';
 
 const video = {
   '@context': 'https://schema.org',
@@ -271,12 +271,14 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
   <BlocFondateur />
 
   <!-- Tarifs en bref : trois offres en relief, Pro mise en avant ; chaque offre mène au formulaire de départ
-       (4 octobre 2026, logique de taap.it, choix de Tom), le détail reste sur la page Tarifs. -->
+       (4 octobre 2026, logique de taap.it, choix de Tom), le détail reste sur la page Tarifs.
+       8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut avoir des besoins différents ») :
+       plus de prix sur les cartes ; Tom fixe le prix avec chaque restaurateur, avant tout paiement. -->
   <section class="dv-section bg-white" aria-labelledby="tarifs-titre">
     <div class="dv-container">
       <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Tarifs</p>
       <h2 id="tarifs-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">Un prix fixe, sans engagement</h2>
-      <p class="dv-lead mt-3 md:mt-4">Mise en place offerte.</p>
+      <p class="dv-lead mt-3 md:mt-4">Tom l’adapte à vos restaurants et à vos besoins. Mise en place offerte.</p>
       <ul class="dv-offres mt-8 grid items-stretch gap-5 md:mt-[72px] md:grid-cols-3 md:gap-6">
         {
           OFFRES.map((o) => (
@@ -291,10 +293,6 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
                 {o.recommandee && <span class="sr-only">, offre recommandée</span>}
               </h3>
               <p class="mt-1.5 text-[15px] leading-[1.4] dv-muted md:text-[16px]">{o.restaurants}</p>
-              <p class="mt-5 flex items-baseline gap-2 md:mt-6">
-                <span class="dv-offre-prix text-[42px] md:text-[50px]">{o.prix}&nbsp;€</span>
-                <span class="text-[15px] leading-[1.3] md:text-[16px]">HT par mois</span>
-              </p>
               <p class="mt-4 grow border-t border-grey-2/15 pt-4 text-[16px] leading-[1.5] md:mt-5 md:pt-5">{o.pour}.</p>
               <a
                 href={lien(`/tarifs/#${o.slug}`)}

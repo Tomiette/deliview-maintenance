@@ -7,7 +7,9 @@
 // 6 octobre 2026 (demande de Tom) : questions écrites à la première personne, comme le restaurateur les pose.
 // 6 octobre 2026, soir (décision de Tom) : ventes ajoutées chaque jour à 7 h, deux semaines d'historique au départ.
 // Réponse directe dans la première phrase ; HTML limité aux liens et aux espaces insécables.
-import { OFFRES, SITE, lien } from './site';
+// 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut avoir des besoins différents ») : plus
+// aucun prix ; le prix est fixé avec Tom, avant tout paiement (CGV 8.1 et 8.2).
+import { SITE, lien } from './site';
 
 export interface QuestionFaq {
   q: string;
@@ -21,9 +23,7 @@ export interface RubriqueFaq {
   questions: QuestionFaq[];
 }
 
-const prix = OFFRES.map((o) => `${o.nom}&nbsp;: ${o.prix}&nbsp;€&nbsp;HT par mois, ${o.restaurants.toLowerCase()}`).join('. ');
-
-export const FAQ_MAJ = '2026-10-07';
+export const FAQ_MAJ = '2026-10-08';
 
 export const FAQ: RubriqueFaq[] = [
   {
@@ -85,7 +85,7 @@ export const FAQ: RubriqueFaq[] = [
     questions: [
       {
         q: 'Combien me coûte Deliview ?',
-        r: `Trois offres, selon votre nombre de restaurants. ${prix}. Le détail est sur la <a href="${lien('/tarifs/')}">page Tarifs</a>.`,
+        r: `Le prix dépend de vos restaurants et de vos besoins. Tom le fixe avec vous, avant tout paiement. Ce que contient chaque offre est sur la <a href="${lien('/tarifs/')}">page Tarifs</a>.`,
       },
       {
         q: 'Est-ce que je m’engage sur une durée ?',
@@ -97,7 +97,7 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Comment je peux ouvrir un compte ?',
-        r: `Deliview s’utilise sur abonnement. Choisissez votre offre sur la page <a href="${lien('/tarifs/')}">Tarifs</a> et cliquez sur «&nbsp;Commencer maintenant&nbsp;»&nbsp;: Tom vous appelle sous 3&nbsp;h, crée votre compte et fait la mise en place avec vous. Vous pouvez aussi <a href="${lien('/demo/')}">demander une démo</a> avant de choisir.`,
+        r: `Deliview s’utilise sur abonnement. Choisissez votre offre sur la page <a href="${lien('/tarifs/')}">Tarifs</a> et cliquez sur «&nbsp;Commencer maintenant&nbsp;»&nbsp;: Tom vous appelle sous 3&nbsp;h, fixe votre prix, crée votre compte et fait la mise en place avec vous. Vous pouvez aussi <a href="${lien('/demo/')}">demander une démo</a> avant de choisir.`,
       },
     ],
   },

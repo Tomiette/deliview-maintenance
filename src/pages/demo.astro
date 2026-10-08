@@ -4,7 +4,7 @@
 import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Faq from '../components/Faq.astro';
-import { PRIX_ENTREE, SITE, lien } from '../lib/site';
+import { SITE, lien } from '../lib/site';
 
 const description =
   'Une démo de 30 minutes sur votre restaurant, avec vos vrais prix, vos vrais concurrents et votre note. Tom vous rappelle sous 3 h pour la fixer.';
@@ -24,7 +24,7 @@ const faq = [
   },
   {
     q: 'Combien me coûte Deliview ?',
-    r: `Dès ${PRIX_ENTREE}&nbsp;€ HT par mois, sans engagement. La mise en place est offerte. Le détail est sur la page <a href="${lien('/tarifs/')}">Tarifs</a>.`,
+    r: `Le prix dépend de vos restaurants et de vos besoins. Tom le fixe avec vous, avant tout paiement. L’abonnement est sans engagement et la mise en place est offerte. Les offres sont sur la page <a href="${lien('/tarifs/')}">Tarifs</a>.`,
   },
 ];
 const erreurs = [

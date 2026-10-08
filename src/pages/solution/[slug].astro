@@ -22,7 +22,7 @@ import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
 import { PAGES, type Bloc } from '../../lib/fonctions';
 import { texteBrut } from '../../lib/faq';
-import { EXEMPLE_MARGHERITA as ex, FONCTIONS, OFFRES, SITE, cheminFonction, euros, exposants, jsonldLogiciel, lien, type FonctionResume } from '../../lib/site';
+import { EXEMPLE_MARGHERITA as ex, FONCTIONS, SITE, cheminFonction, euros, exposants, jsonldLogiciel, lien, type FonctionResume } from '../../lib/site';
 
 export function getStaticPaths() {
   return FONCTIONS.map((f) => ({ params: { slug: f.slug }, props: { f } }));
@@ -49,8 +49,7 @@ const fondFaq = fond();
 const fondArticles = articles.length ? fond() : fondFaq;
 const fondAutres = fond();
 
-// Dans quelle offre : comme la page Tarifs (Essentiel, Pro, Groupe).
-const [essentiel, pro] = OFFRES;
+// Dans quelle offre : comme la page Tarifs (Essentiel, Pro, Groupe), sans prix depuis le 8 octobre 2026.
 const offreCourte = p.offres.toutes && p.offres.pro ? 'Dans toutes les offres, et plus avec Pro' : p.offres.toutes ? 'Inclus dans toutes les offres' : 'Avec les offres Pro et Groupe';
 const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 
@@ -290,7 +289,7 @@ const sizesVitrine = (appareil: string) => (appareil === 'telephone' ? '(min-wid
           p.offres.toutes && (
             <li class="dv-relief dv-fonction-offre">
               <p class="dv-fonction-offre-nom">Toutes les offres</p>
-              <p class="dv-fonction-offre-qui">Essentiel, Pro et Groupe · dès {essentiel.prix}&nbsp;€ HT par mois</p>
+              <p class="dv-fonction-offre-qui">Essentiel, Pro et Groupe</p>
               <p class="dv-fonction-offre-texte">
                 <Coche taille={24} />
                 <span>{p.offres.toutes}</span>
@@ -302,7 +301,7 @@ const sizesVitrine = (appareil: string) => (appareil === 'telephone' ? '(min-wid
           p.offres.pro && (
             <li class="dv-relief dv-fonction-offre dv-fonction-offre-pro">
               <p class="dv-fonction-offre-nom">{p.offres.toutes ? 'En plus avec Pro et Groupe' : 'Avec Pro et Groupe'}</p>
-              <p class="dv-fonction-offre-qui">Dès {pro.prix}&nbsp;€ HT par mois, jusqu’à 3 restaurants avec Pro</p>
+              <p class="dv-fonction-offre-qui">Jusqu’à 3 restaurants avec Pro, 10 avec Groupe</p>
               <p class="dv-fonction-offre-texte">
                 <Coche taille={24} />
                 <span>{p.offres.pro}</span>

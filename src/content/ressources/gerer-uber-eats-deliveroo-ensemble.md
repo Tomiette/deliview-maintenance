@@ -5,7 +5,7 @@ description: "Deux tablettes, deux back-offices, deux factures. Les quatre faço
 theme: commandes
 enBref: "Il y a deux choses à réunir : les commandes et les chiffres. Pour les commandes, un connecteur comme Deliverect ou HubRise les envoie dans votre caisse et remplace les tablettes. Pour les chiffres, un outil comme Deliview réunit vos ventes, vos prix, vos avis et vos remboursements. Sans budget, les exports des deux plateformes et un tableur suffisent pour démarrer."
 publieLe: 2026-10-07
-misAJourLe: 2026-10-07
+misAJourLe: 2026-10-08
 image:
   src: "/images/ressources/gerer-uber-eats-deliveroo-ensemble"
   largeurs: [800, 1200, 1600]
@@ -94,7 +94,7 @@ C’est la solution pour **savoir où part votre marge**, sans toucher à vos ta
 
 Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe. [Voir Uber Eats et Deliveroo côte à côte dans Deliview](/integrations/uber-eats-et-deliveroo/).
 
-**Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et l’offre de base démarre à 59 € HT par mois.
+**Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et c’est un abonnement payant, dont le prix dépend de vos restaurants.
 
 ## Quelle solution choisir ?
 
