@@ -1,5 +1,7 @@
 ---
-// Page combinée (requête qui décrit exactement le produit) : gérer Uber Eats et Deliveroo ensemble.
+// Page combinée : Uber Eats et Deliveroo côte à côte dans Deliview. 8 octobre 2026 (audit SEO, cannibalisation) : la
+// requête « gérer Uber Eats et Deliveroo ensemble » est laissée à l'article du blog, qui renvoie ici ; cette page vise
+// « intégration Uber Eats et Deliveroo » (title, H1 et description).
 // Refonte en relief (3 octobre 2026) : en haut, l'écran Ma carte (les deux plateformes dans la même liste) incliné en 3D.
 import Base from '../../layouts/Base.astro';
 import BoutonDemo from '../../components/BoutonDemo.astro';
@@ -13,7 +15,7 @@ import Faq from '../../components/Faq.astro';
 import { CAPTURE_PRIX, SITE, jsonldLogiciel } from '../../lib/site';
 
 const description =
-  'Uber Eats et Deliveroo sur un seul écran : écarts de prix entre vos deux cartes, concurrents et note sur chaque plateforme.';
+  'Vos cartes Uber Eats et Deliveroo côte à côte : écarts de prix entre les deux, concurrents et note sur chaque plateforme. Mise en place sans mot de passe.';
 
 const aujourdhui = [
   { titre: 'Les écarts de prix entre vos deux cartes', texte: 'Les plats vendus plus cher sur une plateforme que sur l’autre, avec les deux prix.' },
@@ -38,7 +40,7 @@ const faq = [
 ---
 
 <Base
-  title="Gérer Uber Eats et Deliveroo ensemble | Deliview"
+  title="Intégration Uber Eats et Deliveroo côte à côte | Deliview"
   description={description}
   ariane={[
     { nom: 'Intégrations', chemin: '/integrations/' },
@@ -50,7 +52,7 @@ const faq = [
     <div class="dv-container grid items-center gap-x-12 gap-y-10 lg:grid-cols-[1fr_1.05fr]">
       <div>
         <Pastille>Intégration</Pastille>
-        <h1 id="ensemble-titre" class="dv-h1 mt-5 max-w-[16ch] md:mt-6">Gérer Uber Eats et Deliveroo ensemble</h1>
+        <h1 id="ensemble-titre" class="dv-h1 mt-5 max-w-[16ch] md:mt-6">Uber Eats et Deliveroo côte à côte</h1>
         <p class="dv-lead mt-4 max-w-[56ch] md:mt-6">{SITE.argument} Vos deux cartes côte à côte, vos concurrents et votre note sur chaque plateforme.</p>
         <div class="mt-7 md:mt-8">
           <BoutonDemo href="#demo" cta="integration-combinee" principal class="w-full sm:w-auto" />

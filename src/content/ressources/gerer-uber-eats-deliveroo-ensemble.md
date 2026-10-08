@@ -92,7 +92,7 @@ Deliverect est le plus connu. D’après sa page sur Uber Eats, il intègre les 
 
 C’est la solution pour **savoir où part votre marge**, sans toucher à vos tablettes. Un outil de pilotage réunit les ventes des deux plateformes, et ce qu’elles ne montrent pas : vos prix face à ceux de votre zone, les promos de vos voisins, vos remboursements à contester.
 
-Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe.
+Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe. [Voir Uber Eats et Deliveroo côte à côte dans Deliview](/integrations/uber-eats-et-deliveroo/).
 
 **Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et l’offre de base démarre à 59 € HT par mois.
 
