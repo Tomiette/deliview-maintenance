@@ -12,8 +12,9 @@
 // mis en avant, et les menus centrés sous la barre. Photos : public/images/menu/ (recadrées dans les images du site).
 // 8 octobre 2026, 16 h 52 (demande de Tom : « montre juste de manière simple l'app Deliview », « enlève le fondateur,
 // sois plus simple ») : la carte Solution montre l'écran d'accueil de l'app à plat et « Lire la vidéo » ouvre la vidéo
-// dans une fenêtre (VideoDialogue, sur toutes les pages) ; plus de carte Tom ni de « Qui suis-je » dans les menus (reste
-// dans le pied de page) ; Ressources en deux colonnes, trois guides présentés de la même façon.
+// dans une fenêtre (VideoDialogue, sur toutes les pages) ; plus de carte Tom ; Ressources en deux colonnes, trois guides
+// présentés de la même façon. 17 h 13 (Tom : « remets la page Qui suis-je, elle est super importante ») : « Qui suis-je »
+// revient en tête de la colonne de droite, renommée « Avant de vous lancer », et en tête de Ressources sur téléphone.
 import Cadenas from '../icons/cadenas.astro';
 import Chevron from '../icons/chevron.astro';
 import BoutonDemo from './BoutonDemo.astro';
@@ -31,8 +32,8 @@ import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, cheminFonction, lien } fro
 const PHOTO_LEVIER: Record<string, string> = { promotions: 'promotions', fraude: 'fraude', prix: 'prix' };
 const vignette = (nom: string) => lien(`/images/menu/${nom}-128.webp`);
 const leviers = LEVIERS.map((l) => ({ href: cheminFonction(l.id), titre: l.nom, phrase: l.menu, icone: l.icone, photo: PHOTO_LEVIER[l.id] }));
-// Ressources : trois guides avec leur photo (le guide complet en premier), puis les outils et réponses en compact. Le blog
-// est dans le pied du menu (« Voir tous les guides »).
+// Ressources : trois guides avec leur photo (le guide complet en premier), puis « Avant de vous lancer » en compact (Qui
+// suis-je, simulateur, intégrations, questions fréquentes). Le blog est dans le pied du menu (« Voir tous les guides »).
 const GUIDES = [
   { href: '/ressources/augmenter-ventes-uber-eats-deliveroo/', titre: 'Augmenter vos ventes', phrase: 'Les leviers qui comptent, dans le bon ordre', photo: 'ventes' },
   { href: '/ressources/commission-uber-eats-restaurant/', titre: 'Commission Uber Eats', phrase: 'Le vrai calcul, commande par commande', photo: 'commission' },
@@ -133,7 +134,7 @@ const dansMenu = (menu: string) =>
                           </ul>
                         </div>
                         <div class="dv-mega-gris">
-                          <p class="dv-menu-titre">Outils et réponses</p>
+                          <p class="dv-menu-titre">Avant de vous lancer</p>
                           <ul class="mt-1 grid gap-0.5">
                             {OUTILS.map((x) => {
                               const Icone = ICONES[x.icone];
