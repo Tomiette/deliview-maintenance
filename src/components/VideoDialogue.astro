@@ -32,9 +32,9 @@ import Plus from '../icons/plus.astro';
         retour = b.closest('details')?.querySelector('summary') ?? b;
         // La couverture ne se télécharge qu'à la première ouverture.
         if (video && !video.poster && video.dataset.couverture) video.poster = video.dataset.couverture;
-        // Une seule vidéo à la fois (accueil : celle du haut de page peut être en cours).
+        // Un seul son à la fois (accueil : le film du haut de page peut être en cours ; la bannière, muette, continue).
         document.querySelectorAll('video').forEach((v) => {
-          if (v !== video) v.pause();
+          if (v !== video && !v.muted) v.pause();
         });
         if (!dialogue.open) dialogue.showModal();
         // Même geste que le clic : la lecture démarre avec le son.

@@ -1,11 +1,18 @@
 ---
-// Vidéo de présentation (V15, 16:9, 1 min 10, sans voix off, avec musique), dans le cadre tablette dessiné au trait,
-// en haut de l'accueil (demande de Tom, 2 octobre 2026). Seule la couverture (21 Ko) se charge avec la page ;
-// la vidéo (5 à 7 Mo) ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
+// Vidéo de présentation : le film Deliview (V29, 16:9, 55 s, voix de PADG, musique et bruitages), dans le cadre tablette
+// dessiné au trait, en haut de l'accueil et dans la fenêtre vidéo de toutes les pages (8 octobre 2026, à la place de la
+// V15 de 1 min 10). Le film ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
+// Bannière animée (8 octobre 2026, 17 h 24, demande de Tom : « la bannière dynamique, visible uniquement quand on ne
+// clique pas sur la vidéo ») : sur l'accueil (prop « banniere »), 9 s en boucle, sans son, à la place de l'image fixe tant
+// que le film n'est pas lancé : l'app, « Uber Eats et Deliveroo côte à côte », « 86,40 € à contester », « Vous validez,
+// Deliview l'applique ». Au clic, elle disparaît et le film démarre ; à la fin du film, elle revient.
+// Sa première image (fixe) s'affiche d'abord ; la boucle ne démarre qu'une fois la page chargée (640 px de large sur
+// téléphone, 1280 px au-delà) et se met en pause hors de l'écran. Avec « moins d'animations » ou l'économiseur de
+// données, elle reste fixe.
 // Toute l'image est cliquable, avec au centre le signe « lecture » dessiné. Tout bouton [data-video-lire] placé dans le
 // même bloc [data-video-zone] lance aussi la lecture ; pendant la lecture, ce bloc porte la classe « dv-video-en-lecture ».
-// Sans JavaScript, les contrôles natifs restent affichés. Le contenu de la vidéo reste disponible pour les lecteurs
-// d'écran (bloc masqué, relié par aria-describedby).
+// Sans JavaScript, les contrôles natifs restent affichés. Le contenu du film reste disponible pour les lecteurs d'écran
+// (bloc masqué, relié par aria-describedby).
 import Lecture from '../icons/lecture.astro';
 import { lien } from '../lib/site';
 
@@ -16,25 +23,29 @@ interface Props {
   // Identifiant de la vidéo (8 octobre 2026) : la fenêtre vidéo est sur toutes les pages, accueil compris, où la vidéo
   // du haut de page garde « video-deliview » (lien d'ancre sans JavaScript).
   ident?: string;
+  // Bannière animée à la place de l'image fixe, tant que le film n'est pas lancé (accueil).
+  banniere?: boolean;
 }
-const { class: classe = '', couvertureDifferee = false, ident = 'video-deliview' } = Astro.props;
+const { class: classe = '', couvertureDifferee = false, ident = 'video-deliview', banniere = false } = Astro.props;
 const legende = `${ident}-legende`;
-// Couverture en 1280 × 720 (8 octobre 2026, audit SEO : c'est l'image la plus lourde du premier écran sur téléphone ;
-// la version 1920 × 1080 reste l'image de la vidéo dans les données structurées).
-const couverture = lien('/video/deliview-video-couverture-v2-16x9-1280.webp');
+// Image fixe : la première image de la bannière (accueil), sinon la fin du film (logo et « Le partenaire des
+// restaurants en livraison »). La version 1920 × 1080 de la fin du film est l'image de la vidéo dans les données
+// structurées.
+const couverture = lien(banniere ? '/video/deliview-banniere-1280.webp' : '/video/deliview-film-couverture-1280.webp');
 
+// Ce que dit et montre le film (voix de PADG, textes à l'écran).
 const texte = [
-  'Bon, j’ai 1 minute pour vous convaincre. Alors je vous la fais courte.',
+  'Bon, OK. J’ai 60 secondes pour vous convaincre, alors je vous la fais courte.',
   'Restaurateur, on vous a promis que la livraison serait rentable. Eh oui.',
-  'Mais au quotidien ? Trop de tablettes. Pas le temps de tout analyser. Trop de concurrents. Trop de promos.',
-  'Et surtout : être présent, mais être rentable… non.',
-  'Alors on a créé Deliview. Toutes vos données livraison centralisées : votre carte, vos avis, vos concurrents, leurs prix.',
+  'Mais au quotidien ? Trop de tablettes. Trop de commissions. Et surtout, très peu de visibilité.',
+  'Être présent, c’est super facile. Mais être rentable… Non !',
+  'Alors on a créé Deliview. Toutes vos données livraison, centralisées.',
   'Deliview surveille vos concurrents : leurs prix, leurs notes, leurs promos.',
-  'Et surtout, Deliview vous dit quoi faire : un prix suggéré pour chaque plat, face au prix de la zone.',
-  'L’IA Deliview vous rend plus visible, plus rentable. À la question « Que font mes concurrents dans ma zone ? », elle répond par exemple : « Napoli Express lance −30 % sur ses pizzas. Passez votre Margherita à 10,90 € pour rester bien référencé et compétitif. »',
-  'Et dès que ça bouge, Deliview vous alerte : promotions des concurrents, changements de prix, nouveau concurrent, avis négatif reçu.',
-  'Résultat : vous réagissez immédiatement. Pas la semaine d’après.',
-  'Deliview, le partenaire des restaurants en livraison. Demandez une démo sur deliview.fr.',
+  'Et vous dit quoi faire pour améliorer votre rentabilité. À l’écran : la Margherita d’un concurrent à 14 €, la vôtre à 11 €, et la question « Pourquoi pas 13 € ? », que vous validez.',
+  'Un remboursement injuste ? Contestez-le en un clic. À l’écran : un remboursement client de 31,20 €, puis « Contestation envoyée ».',
+  'Notre IA soigne votre image et vous accompagne au quotidien. À l’écran : une réponse proposée à un avis 2 étoiles, puis un rapport livraison pour votre équipe.',
+  'Et chaque lundi, vous voyez combien on vous a rapporté. À l’écran : votre point de la semaine, 443 € rapportés.',
+  'Eh ouais. C’est ça, la sauce Deliview. Le partenaire des restaurants en livraison : deliview.fr.',
 ];
 ---
 
@@ -50,21 +61,41 @@ const texte = [
       height="1080"
       poster={couvertureDifferee ? undefined : couverture}
       data-couverture={couvertureDifferee ? couverture : undefined}
-      aria-label="Vidéo de présentation de Deliview, 1 minute 10, sans voix off"
+      aria-label="Vidéo de présentation de Deliview, 55 secondes, avec voix off"
       aria-describedby={legende}
     >
-      <source src={lien('/video/deliview-video-v2-16x9.webm')} type='video/webm; codecs="vp9, opus"' />
-      <source src={lien('/video/deliview-video-v2-16x9.mp4')} type="video/mp4" />
-      <a href={lien('/video/deliview-video-v2-16x9.mp4')}>Télécharger la vidéo de présentation (MP4, 7 Mo)</a>
+      <source src={lien('/video/deliview-film.webm')} type='video/webm; codecs="vp9, opus"' />
+      <source src={lien('/video/deliview-film.mp4')} type="video/mp4" />
+      <a href={lien('/video/deliview-film.mp4')}>Télécharger la vidéo de présentation (MP4, 9 Mo)</a>
     </video>
-    <button class="hv-lire" type="button" aria-label="Lancer la vidéo de présentation de Deliview, 1 minute 10" tabindex="-1" hidden>
+    {
+      banniere && (
+        <video
+          class="hv-banniere"
+          muted
+          loop
+          playsinline
+          preload="none"
+          width="1280"
+          height="720"
+          aria-hidden="true"
+          tabindex="-1"
+          hidden
+          data-webm={lien('/video/deliview-banniere-1280.webm')}
+          data-webm-petit={lien('/video/deliview-banniere-640.webm')}
+          data-mp4={lien('/video/deliview-banniere-1280.mp4')}
+          data-mp4-petit={lien('/video/deliview-banniere-640.mp4')}
+        />
+      )
+    }
+    <button class="hv-lire" type="button" aria-label="Lancer la vidéo de présentation de Deliview, 55 secondes" tabindex="-1" hidden>
       <span class="hv-pastille" aria-hidden="true">
         <Lecture taille={48} class="hv-icone-grande" />
         <Lecture taille={32} class="hv-icone-petite" />
       </span>
     </button>
   </div>
-  <!-- Contenu de la vidéo pour les lecteurs d'écran uniquement. -->
+  <!-- Contenu du film pour les lecteurs d'écran uniquement. -->
   <div id={legende} class="sr-only">
     <p>Restaurants et chiffres d’exemple. Contenu de la vidéo&nbsp;:</p>
     <ol>
@@ -74,18 +105,72 @@ const texte = [
 </div>
 
 <script>
-  // Lecture au clic, avec le son. À la fin, retour à la couverture et à la pastille.
+  // Lecture au clic, avec le son. À la fin, retour à l'image fixe (ou à la bannière animée) et à la pastille.
+  const calme = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const economie = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+  let pageChargee = document.readyState === 'complete';
+
   document.querySelectorAll<HTMLElement>('.hv-cadre').forEach((cadre) => {
-    const video = cadre.querySelector('video');
+    const video = cadre.querySelector<HTMLVideoElement>('video.hv-lecteur');
     const pastille = cadre.querySelector<HTMLButtonElement>('.hv-lire');
     if (!video || !pastille) return;
+    const banniere = cadre.querySelector<HTMLVideoElement>('video.hv-banniere');
     const zone = cadre.closest<HTMLElement>('[data-video-zone]');
     const boutons = zone ? Array.from(zone.querySelectorAll<HTMLElement>('[data-video-lire]')) : [];
     video.controls = false;
     pastille.hidden = false;
     // Avec un bouton visible sous la vidéo, la pastille reste un raccourci à la souris (hors tabulation).
     if (!boutons.length) pastille.tabIndex = 0;
+
+    // Bannière animée : en boucle tant que le film n'est pas lancé, que la page est chargée et que le cadre est à l'écran.
+    let filmLance = false;
+    let aLEcran = true;
+    const lancerBanniere = () => {
+      if (!banniere || calme || economie || filmLance || !aLEcran || !pageChargee) return;
+      if (!banniere.getAttribute('src')) {
+        const format = banniere.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
+        const petit = window.matchMedia('(max-width: 767px)').matches;
+        const source = banniere.dataset[petit ? `${format}Petit` : format];
+        if (!source) return;
+        banniere.src = source;
+      }
+      banniere.muted = true;
+      banniere.hidden = false;
+      banniere.play().catch(() => undefined);
+    };
+    const arreterBanniere = () => {
+      if (!banniere) return;
+      banniere.pause();
+      banniere.hidden = true;
+      cadre.classList.remove('hv-banniere-active');
+    };
+    if (banniere) {
+      // Fondu sur la première image, identique à l'image fixe.
+      banniere.addEventListener('playing', () => {
+        if (!filmLance) cadre.classList.add('hv-banniere-active');
+      });
+      if (pageChargee) lancerBanniere();
+      else
+        window.addEventListener(
+          'load',
+          () => {
+            pageChargee = true;
+            lancerBanniere();
+          },
+          { once: true },
+        );
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(([e]) => {
+          aLEcran = e.isIntersecting;
+          if (aLEcran) lancerBanniere();
+          else banniere.pause();
+        }).observe(cadre);
+      }
+    }
+
     const lire = () => {
+      filmLance = true;
+      arreterBanniere();
       pastille.hidden = true;
       video.controls = true;
       zone?.classList.add('dv-video-en-lecture');
@@ -101,12 +186,18 @@ const texte = [
         cadre.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       }),
     );
-    video.addEventListener('play', () => zone?.classList.add('dv-video-en-lecture'));
+    video.addEventListener('play', () => {
+      filmLance = true;
+      arreterBanniere();
+      zone?.classList.add('dv-video-en-lecture');
+    });
     video.addEventListener('ended', () => {
+      filmLance = false;
       video.controls = false;
       video.load();
       pastille.hidden = false;
       zone?.classList.remove('dv-video-en-lecture');
+      lancerBanniere();
       (boutons[0] ?? pastille).focus({ preventScroll: true });
     });
   });
@@ -132,6 +223,22 @@ const texte = [
     border-radius: 10px;
     object-fit: cover;
     background: var(--color-blue);
+  }
+  /* Bannière posée exactement sur le film, visible une fois sa boucle lancée (fondu). Elle ne prend jamais le clic. */
+  .hv-banniere {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    border-radius: 10px;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .hv-banniere-active .hv-banniere {
+    opacity: 1;
   }
   .hv-lire {
     position: absolute;
@@ -180,6 +287,13 @@ const texte = [
     .hv-lecteur {
       border-radius: 13px;
     }
+    .hv-banniere {
+      top: 10px;
+      left: 10px;
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      border-radius: 13px;
+    }
     .hv-lire {
       border-radius: 22px;
     }
@@ -195,7 +309,8 @@ const texte = [
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hv-pastille {
+    .hv-pastille,
+    .hv-banniere {
       transition: none;
     }
   }
