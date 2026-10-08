@@ -49,6 +49,13 @@ jobs:
         if: steps.acces.outputs.pret == 'oui'
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
+      # Envoi en trois passes (8 octobre 2026, des visiteurs voyaient « Forbidden ») :
+      #   1. tout sauf les pages HTML : nouveaux styles, scripts et images d'abord ;
+      #   2. les pages HTML, qui ne pointent ainsi que vers des fichiers déjà en ligne ;
+      #   3. l'effacement des fichiers retirés du site, sans rien renvoyer (--only-missing).
+      # Le dossier .git du dépôt n'est plus envoyé (--exclude ^\.git/ : « .git* » ne l'écartait pas, il partait à chaque envoi).
+      # --overwrite : un fichier est remplacé sur place. Avant, lftp l'effaçait puis le renvoyait : pendant ce temps une page
+      # n'avait plus son index.html et le serveur répondait « Forbidden ».
       - name: Envoyer le site chez OVH
         if: steps.acces.outputs.pret == 'oui'
         run: |
@@ -61,7 +68,9 @@ jobs:
           set ftp:ssl-protect-data yes
           set net:max-retries 3
           set net:timeout 30
-          mirror --reverse --delete --parallel=4 --verbose=1 --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ ./ $DOSSIER/
+          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --exclude-glob *.html ./ $DOSSIER/
+          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --include-glob *.html ./ $DOSSIER/
+          mirror --reverse --delete --only-missing --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ ./ $DOSSIER/
           quit
           FIN
 

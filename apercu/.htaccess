@@ -1,29 +1,30 @@
-# www.deliview.fr sur l'hébergement web OVH (fichier versionné dans la branche site-source,
-# copié tel quel à la racine du site par le build, puis envoyé par le déploiement GitHub Actions).
+# Aperçu de www.deliview.fr (dossier apercu/ : le site tel qu'il sera, avant sa mise en ligne). Ce fichier remplace, pour
+# ce dossier, les règles de réécriture du .htaccess de la racine : les adresses de redirection gardent donc « /apercu/ ».
+# Mis à jour le 8 octobre 2026 : dossier sans page en 404 (plus de « Forbidden »), redirection sans barre finale vers
+# l'aperçu (elle menait au site public), polices WOFF2 typées comme à la racine.
 
 Options -Indexes
 DirectoryIndex index.html
-ErrorDocument 404 /404.html
+ErrorDocument 404 /apercu/404.html
+ErrorDocument 403 /apercu/404.html
 AddDefaultCharset utf-8
+AddType font/woff2 .woff2
 
-# Une seule adresse publique : https://www.deliview.fr
-# (méthode recommandée par OVH : le port 80 signale une requête en HTTP).
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{SERVER_PORT} 80 [OR]
   RewriteCond %{HTTP_HOST} !^www\.deliview\.fr$ [NC]
-  RewriteRule ^(.*)$ https://www.deliview.fr/$1 [R=301,L]
+  RewriteRule ^ https://www.deliview.fr%{REQUEST_URI} [R=301,L]
 
-  # Anciennes pages retirées (2 octobre 2026) : redirection définitive vers la page qui les remplace.
-  # Les pages de renvoi restent dans public/ en secours.
-  RewriteRule ^integrations/uber-direct/?$ https://www.deliview.fr/integrations/ [R=301,L]
-  RewriteRule ^solution/commandes/?$ https://www.deliview.fr/solution/ [R=301,L]
+  # Dossier sans page (images, polices, vidéo…) : la page 404 de l'aperçu, jamais le « Forbidden » brut d'Apache.
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html !-f
+  RewriteRule ^ - [R=404,L]
 
-  # Adresse d'un dossier sans barre finale (/tarifs) : une seule redirection, vers l'adresse publique exacte
-  # (la redirection automatique d'Apache ajoutait « :443 » à l'adresse, 4 octobre 2026).
+  # Adresse d'un dossier sans barre finale (/apercu/tarifs) : une seule redirection, vers l'adresse exacte de l'aperçu.
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteCond %{REQUEST_URI} !/$
-  RewriteRule ^(.*)$ https://www.deliview.fr/$1/ [R=301,L]
+  RewriteRule ^ https://www.deliview.fr%{REQUEST_URI}/ [R=301,L]
 </IfModule>
 
 # Pages HTML toujours fraîches ; fichiers à nom versionné (assets/) gardés un an.
@@ -52,8 +53,6 @@ AddDefaultCharset utf-8
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-  # Isolement de la fenêtre (6 octobre 2026) : une page d'un autre site ouverte depuis Deliview ne peut pas agir sur elle.
   Header always set Cross-Origin-Opener-Policy "same-origin"
-  # HTTPS imposé par le navigateur pendant un an après la première visite (ignoré en HTTP, sans les sous-domaines).
   Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
