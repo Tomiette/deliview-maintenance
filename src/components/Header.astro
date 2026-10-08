@@ -3,10 +3,14 @@
 // page, le logo, la navigation au centre avec les méga-menus « Solution » et « Ressources » (Intégrations rangée dans Ressources, 4 octobre 2026), « Se connecter » en
 // lien souligné et « Demander une démo » en bouton sombre. Menu Solution refait le 6 octobre 2026 (leviers et veille). Le bouton bleu en pastille reste celui des pages.
 // Menus en <details> : utilisables sans JavaScript et au clavier (Entrée ou Espace pour ouvrir) ; Échap les ferme.
+// 8 octobre 2026 (audit responsive) : navigation complète dès 1024 px (avant : 1280 px) ; en dessous, le menu du
+// téléphone montre une croix et « Fermer le menu » quand il est ouvert, bloque la page derrière et garde « Demander une
+// démo » collé en bas du panneau.
 import Cadenas from '../icons/cadenas.astro';
 import Chevron from '../icons/chevron.astro';
 import BoutonDemo from './BoutonDemo.astro';
 import Menu from '../icons/menu.astro';
+import Plus from '../icons/plus.astro';
 import { ICONES, type NomIcone } from '../lib/registre-icones';
 import Fleche from '../icons/fleche.astro';
 import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, cheminFonction, lien } from '../lib/site';
@@ -31,7 +35,7 @@ const dansMenu = (menu: string) =>
       <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" />
     </a>
 
-    <nav aria-label="Navigation principale" class="hidden flex-1 xl:block">
+    <nav aria-label="Navigation principale" class="hidden flex-1 lg:block">
       <ul class="flex items-center justify-center gap-0 whitespace-nowrap text-[16px] font-medium leading-none">
         {
           NAV.map((item) =>
@@ -127,11 +131,12 @@ const dansMenu = (menu: string) =>
       <a href={SITE.app} class="hidden min-h-12 items-center px-2 text-[17px] font-medium leading-none whitespace-nowrap rounded-[10px] px-3 hover:bg-grey sm:inline-flex">Connexion</a>
       <a href={lien('/demo/')} class="dv-btn-sombre hidden sm:inline-flex" data-cta="header">Demander une démo</a>
 
-      <details class="dv-menu xl:hidden">
-        <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu">
-          <Menu taille={32} />
+      <details class="dv-menu dv-burger lg:hidden">
+        <summary class="flex h-12 w-12 cursor-pointer list-none items-center justify-center rounded-[12px] hover:bg-grey [&::-webkit-details-marker]:hidden" aria-label="Ouvrir le menu" data-burger>
+          <span class="dv-burger-ouvrir"><Menu taille={32} /></span>
+          <span class="dv-burger-fermer"><Plus taille={32} class="rotate-45" /></span>
         </summary>
-        <div class="fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-6 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
+        <div class="dv-burger-panneau fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-6 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
           <p class="dv-overline pt-3 pb-1">Solution</p>
           <ul>
             {
@@ -197,7 +202,10 @@ const dansMenu = (menu: string) =>
               <a href={SITE.app} class="flex min-h-12 items-center gap-2 py-2 font-semibold"><Cadenas taille={24} />Connexion</a>
             </li>
           </ul>
-          <BoutonDemo href={lien('/demo/')} cta="menu-mobile" class="mt-5 w-full" />
+          <!-- Action principale collée en bas du panneau : visible dès l'ouverture, même quand le panneau défile. -->
+          <div class="sticky bottom-0 -mx-4 -mb-6 mt-5 border-t border-grey-2/10 bg-white px-4 pb-4 pt-3">
+            <BoutonDemo href={lien('/demo/')} cta="menu-mobile" class="w-full" />
+          </div>
         </div>
       </details>
     </div>
@@ -235,6 +243,18 @@ const dansMenu = (menu: string) =>
     width: 44px;
     height: 44px;
   }
+  /* Bouton du menu (sous 1024 px) : trois traits fermé, croix ouvert (8 octobre 2026, audit responsive). */
+  .dv-burger-ouvrir,
+  .dv-burger-fermer {
+    display: inline-flex;
+  }
+  .dv-burger-fermer,
+  details[open] > summary .dv-burger-ouvrir {
+    display: none;
+  }
+  details[open] > summary .dv-burger-fermer {
+    display: inline-flex;
+  }
   /* Entrée de la navigation correspondant à la page : soulignée en Bleu 1. */
   .dv-nav-actif {
     text-decoration: underline;
@@ -245,11 +265,13 @@ const dansMenu = (menu: string) =>
 </style>
 
 <script>
-  // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme.
+  // Un seul menu ouvert à la fois ; Échap ou un clic ailleurs le referme. Le bouton du menu du téléphone dit ce qu'il
+  // fait : « Ouvrir le menu », puis « Fermer le menu » (la page derrière est bloquée par global.css tant qu'il est ouvert).
   const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('details.dv-menu'));
   menus.forEach((m) =>
     m.addEventListener('toggle', () => {
       if (m.open) menus.filter((x) => x !== m).forEach((x) => (x.open = false));
+      m.querySelector('summary[data-burger]')?.setAttribute('aria-label', m.open ? 'Fermer le menu' : 'Ouvrir le menu');
     }),
   );
   document.addEventListener('keydown', (e) => {

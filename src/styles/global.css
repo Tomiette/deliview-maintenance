@@ -2659,3 +2659,18 @@
   }
 }
 
+/* ───────────────── Corrections responsive (audit du 8 octobre 2026) ─────────────────
+   Hors de toute couche (@layer) : ces règles passent devant les utilitaires Tailwind posés dans le HTML.
+   Sauf mention contraire, elles ne s'appliquent que sous 1280 px : l'affichage à 1280 px et au-delà ne change pas. */
+
+/* Menu du téléphone ouvert (sous 1024 px) : la page derrière ne défile plus ; le panneau garde son propre défilement,
+   sans entraîner la page quand il arrive en bout de course. */
+@media (max-width: 1023.98px) {
+  html:has(.dv-entete details.dv-burger[open]) {
+    overflow: hidden;
+  }
+  .dv-entete details.dv-burger[open] > .dv-burger-panneau {
+    overscroll-behavior: contain;
+  }
+}
+
