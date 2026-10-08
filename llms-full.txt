@@ -105,14 +105,14 @@ Fermé en plein service ? Deliview vous prévient. Une tablette éteinte, une pa
 
 1. Il connaît vos heures de service : Vos horaires affichés, corrigés par l’habitude : une pause que vous faites chaque après-midi n’est plus signalée une fois apprise.
 2. Il vérifie pendant le service : Toutes les 10 minutes, sur Uber Eats et Deliveroo. Une fermeture est vérifiée une seconde fois avant l’alerte.
-3. Il vous prévient : Un bandeau rouge en haut de l’accueil dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».
+3. Il vous prévient : Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».
 
 Pas d’alerte pour rien : Rien en dehors de vos heures de service habituelles. Rien dans les 20 premières ni dans les 20 dernières minutes du service. Fermé depuis plus de 24 h, pour des congés par exemple : pas d’alerte à chaque service. De nouveau ouvert : Deliview vous dit combien de temps la fermeture a duré.
 
 Toutes les offres : Une alerte quand votre restaurant est fermé pendant vos heures de service. En plus avec Pro et Groupe : « Relancer mon restaurant » : Deliview le relance sous 5 min.
 
 **Comment je suis prévenu ?**
-Dans Deliview : un bandeau rouge en haut de l’accueil tant que la fermeture dure, et une notification dans la cloche.
+Sur votre téléphone, par une notification, si vous avez installé l’app Deliview et activé les alertes. Dans Deliview aussi : un bandeau rouge en haut de l’accueil tant que la fermeture dure, et une alerte dans la cloche.
 
 **Je ferme parfois exprès l’après-midi. Est-ce que je vais recevoir des alertes ?**
 Non. Deliview apprend vos habitudes : une pause que vous faites souvent au même moment n’est plus signalée au bout de 2 à 3 semaines.
