@@ -60,7 +60,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       parrainage && (
         <div>
           <label for="dv-parrain" class={libelle}>Qui vous recommande&nbsp;?</label>
-          <input id="dv-parrain" name="parrain" type="text" autocomplete="off" required minlength="2" maxlength="160" placeholder="Exemple : Karim, Burger Factory Lyon" class={champ + ' mt-2'} aria-describedby="dv-parrain-erreur" />
+          <input id="dv-parrain" name="parrain" type="text" autocomplete="off" required minlength="2" maxlength="160" placeholder="Exemple : Karim, Burger Factory Lyon" data-exemple-court="Karim, Burger Factory" class={champ + ' mt-2'} aria-describedby="dv-parrain-erreur" />
           <p id="dv-parrain-erreur" class={erreur} data-message="Indiquez le prénom et le restaurant de la personne qui vous recommande."></p>
         </div>
       )
@@ -74,7 +74,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
     <div>
       <label for="dv-restaurant" class={libelle}>Nom du restaurant et ville</label>
-      <input id="dv-restaurant" name="restaurant" type="text" autocomplete="organization" required minlength="2" maxlength="200" placeholder="Exemple : Pizzeria Roma, Lyon 6e" class={champ + ' mt-2'} aria-describedby="dv-restaurant-erreur" />
+      <input id="dv-restaurant" name="restaurant" type="text" autocomplete="organization" required minlength="2" maxlength="200" placeholder="Exemple : Pizzeria Roma, Lyon 6e" data-exemple-court="Pizzeria Roma, Lyon 6e" class={champ + ' mt-2'} aria-describedby="dv-restaurant-erreur" />
       <p id="dv-restaurant-erreur" class={erreur} data-message="Indiquez le nom de votre restaurant et sa ville."></p>
     </div>
 
@@ -176,6 +176,16 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       /* stockage indisponible : on garde seulement la page en cours */
     }
   }
+
+  // Exemples des champs (8 octobre 2026, audit responsive) : sous 1280 px, la version courte (data-exemple-court), car
+  // l'exemple complet était coupé dans les champs étroits (téléphone, cartes de /parrainage/ à 1024 px).
+  const exempleCourt = window.matchMedia('(max-width: 1279.98px)');
+  const exemples = Array.from(document.querySelectorAll<HTMLInputElement>('input[data-exemple-court]'));
+  exemples.forEach((c) => (c.dataset.exempleLong = c.placeholder));
+  const placerExemples = () =>
+    exemples.forEach((c) => (c.placeholder = (exempleCourt.matches ? c.dataset.exempleCourt : c.dataset.exempleLong) || c.placeholder));
+  placerExemples();
+  exempleCourt.addEventListener('change', placerExemples);
 
   // UTM de la page d'arrivée, gardés le temps de la visite (pas de cookie).
   const params = new URLSearchParams(location.search);

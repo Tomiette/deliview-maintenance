@@ -607,8 +607,10 @@
     vertical-align: middle;
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
+  /* Logo officiel de la plateforme : 24 px de haut, largeur selon ses proportions (8 octobre 2026 : il était forcé en
+     24 × 24 px et le logo Uber Eats, 131 × 112, était écrasé de 15 %). */
   .dv-tc-plateforme img {
-    width: 24px;
+    width: auto;
     height: 24px;
     border-radius: 6px;
   }
@@ -2331,6 +2333,18 @@
       translate: 0 -14px;
     }
   }
+  /* Entre 1024 et 1279 px, cartes plus étroites : marges intérieures réduites pour que « Commencer maintenant » tienne sur
+     une ligne et que les prix restent alignés d'une carte à l'autre (8 octobre 2026, audit responsive). */
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    .dv-offres-page .dv-offre {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .dv-offres-page .dv-offre .dv-btn {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
 
   /* Formulaire « Commencer » : l'offre se choisit dans une liste de cartes (vrais boutons radio, coche Bleu 1). La carte
      choisie prend un contour Bleu 1 et un voile Bleu 1 à 8 % ; le focus clavier entoure la carte. */
@@ -2794,5 +2808,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+}
+
+/* Sur-titres en pastille du contenu (sous 640 px) : lignes équilibrées, plus de mot seul en deuxième ligne. */
+@media (max-width: 639.98px) {
+  main .dv-pastille {
+    text-wrap: balance;
   }
 }

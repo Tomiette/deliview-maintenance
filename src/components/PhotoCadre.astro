@@ -113,6 +113,12 @@ const logoDeliveroo = logoPlateforme('deliveroo');
     bottom: -20px;
     rotate: calc(var(--incl) * -1);
   }
+  /* 320 px : la légende touchait le bord de l'écran (8 octobre 2026, audit responsive). */
+  @media (max-width: 359.98px) {
+    .dv-photo-cadre-legende {
+      left: -6px;
+    }
+  }
   .dv-photo-cadre-legende .dv-puce {
     gap: 8px;
     padding: 9px 16px;
