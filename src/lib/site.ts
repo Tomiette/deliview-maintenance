@@ -496,6 +496,8 @@ export const NAV = [
 export const MENU_RESSOURCES = [
   { libelle: 'Qui suis-je', phrase: 'Le fondateur et l’histoire', href: '/qui-sommes-nous/', icone: 'toque' },
   { libelle: 'Blog', phrase: 'Guides pour restaurateurs', href: '/ressources/', icone: 'ardoise' },
+  // 8 octobre 2026 (méga-menus refaits) : le simulateur passe du pied du menu Solution aux outils de Ressources.
+  { libelle: 'Simulateur de rentabilité', phrase: 'Ce qui vous reste chaque mois', href: '/simulateur/', icone: 'pieces' },
   { libelle: 'Intégrations', phrase: 'Uber Eats et Deliveroo', href: '/integrations/', icone: 'tablette-qui-sonne' },
   { libelle: 'Questions fréquentes', phrase: 'Prix, fonctionnement, engagement', href: '/questions-frequentes/', icone: 'enveloppe' },
 ] as const;
