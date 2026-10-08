@@ -5,6 +5,9 @@ Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 AddDefaultCharset utf-8
+# Polices WOFF2 servies avec leur type (8 octobre 2026, audit SEO) : sans lui, la règle ExpiresByType font/woff2 (1 an)
+# ne s'appliquait pas et les polices étaient retéléchargées après 1 h.
+AddType font/woff2 .woff2
 
 # Une seule adresse publique : https://www.deliview.fr
 # (méthode recommandée par OVH : le port 80 signale une requête en HTTP).
