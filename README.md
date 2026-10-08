@@ -29,7 +29,8 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Vidéo de présentation 16:9 (`HeroVideo.astro`, fichiers dans `public/video/`), dans la section « Comment ça marche », chargée au clic seulement
 - Simulateur de rentabilité : `src/pages/simulateur.astro` (calcul dans le navigateur, rien n'est envoyé)
 - Pied de page : colonnes Solution / Pour qui / Ressources / Légal, e-mail (`Footer.astro`) ; sur téléphone, bouton démo fixé en bas
-  une fois le haut de page dépassé (marqué `data-haut-de-page`), caché quand le formulaire de démo est à l'écran
+  dès qu'aucun bouton principal (`data-cta-principal`), formulaire, vidéo, bloc « Demandez à votre IA » ou pied de page n'est à
+  l'écran (8 octobre 2026) ; absent de /commencer/, /merci/, /parrainage/ et /simulateur/ (`barreDemo={false}`)
 - Articles : un fichier Markdown par article dans `src/content/ressources/` (format dans `src/content.config.ts`)
 - Captures : `public/images/capture-*.webp` (données de démonstration, noms de restaurants modifiés), toujours dans le cadre
   tablette (`CadreTablette.astro`). `capture-tableau-*` : Uber Eats et Deliveroo côte à côte ; `capture-hero-*` : Pricing Menu
