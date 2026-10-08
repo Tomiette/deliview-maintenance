@@ -56,10 +56,12 @@ const erreurs = [
   { id: 'erreur-serveur', texte: `Votre demande n’a pas pu être enregistrée. Écrivez à Tom : ${SITE.email}.` },
 ];
 const pageUrl = SITE.url + '/parrainage/';
+// Sans la barre « Demander une démo » du téléphone (8 octobre 2026, audit responsive) : l'action de la page est le lien
+// de parrainage ; la barre ajoutait un second bouton plein vers une autre action.
 const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
 ---
 
-<Base title="Affiliation : 2 parrainages, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Affiliation', chemin: '/parrainage/' }]} fondHaut="blanc">
+<Base title="Affiliation : 2 parrainages, 1 mois offert | Deliview" description={description} ariane={[{ nom: 'Affiliation', chemin: '/parrainage/' }]} fondHaut="blanc" barreDemo={false}>
   {
     erreurs.map((e) => (
       <div id={e.id} class="dv-erreur-ancre dv-container pt-6" role="alert">

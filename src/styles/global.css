@@ -2674,3 +2674,12 @@
   }
 }
 
+/* Téléphone (sous 640 px) : « Demander à ChatGPT », « Demander à Claude » et « Voir la roadmap » passent en boutons au
+   contour, pour qu'un seul bouton plein reste à l'écran (la barre « Demander une démo »). */
+@media (max-width: 639.98px) {
+  .dv-ia-bouton,
+  #pied .dv-btn-sombre {
+    background: var(--color-white);
+    color: var(--color-grey-2);
+  }
+}

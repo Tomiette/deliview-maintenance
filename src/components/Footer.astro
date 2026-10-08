@@ -5,7 +5,9 @@
 // carte blanche arrondie, marque et roadmap à gauche, colonnes à droite, LinkedIn en bas à droite. « Pour qui » retiré :
 // ses quatre liens menaient tous à la même réponse. Plus de bandeau photo :
 // chaque page finit par son propre écran de démo. Contact : l'e-mail de Tom seulement, aucun numéro de téléphone.
-// Sur téléphone : bouton « Demander une démo » fixé en bas de l'écran une fois le haut de page dépassé.
+// Sur téléphone : bouton « Demander une démo » fixé en bas de l'écran dès qu'aucun bouton principal n'est à l'écran.
+// 8 octobre 2026 (audit responsive) : barre moins haute (69 px), masquée aussi devant « Demandez à votre IA » ; liens du pied
+// de page de 44 px de haut sur toute la largeur de leur colonne sous 1280 px ; marges réduites sur téléphone.
 import BoutonDemo from './BoutonDemo.astro';
 import LogoContact from './LogoContact.astro';
 import { FONCTIONS, SITE, cheminFonction, lien } from '../lib/site';
@@ -59,9 +61,9 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
 const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap : lien(SITE.roadmap)) : import.meta.env.BASE_URL !== '/' ? '#roadmap' : '';
 ---
 
-<footer id="pied" class="bg-grey px-3 pb-6 pt-10 md:px-6 md:pt-16">
+<footer id="pied" class="bg-grey px-0 pb-6 pt-10 sm:px-3 md:px-6 md:pt-16">
   <div class="dv-container">
-    <div class="rounded-[24px] border border-grey-2/10 bg-white px-6 py-10 shadow-[0_4px_16px_rgba(76,76,76,0.04)] md:px-12 md:py-12">
+    <div class="rounded-[24px] border border-grey-2/10 bg-white px-5 py-10 shadow-[0_4px_16px_rgba(76,76,76,0.04)] sm:px-6 md:px-12 md:py-12">
       <div class="grid gap-10 lg:grid-cols-[1fr_auto] lg:gap-16">
         <div class="max-w-[340px]">
           <img src={lien('/images/logo-deliview.svg')} alt="Deliview" width="140" height="27" loading="lazy" decoding="async" />
@@ -83,7 +85,7 @@ const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap :
               <ul class="mt-3 grid text-[15px] leading-[1.4] md:mt-4">
                 {c.liens.map((x) => (
                   <li>
-                    <a href={x.href} class="dv-muted inline-flex min-h-11 items-center hover:underline lg:min-h-9">{x.libelle}</a>
+                    <a href={x.href} class="dv-muted flex min-h-11 items-center hover:underline xl:inline-flex xl:min-h-9">{x.libelle}</a>
                   </li>
                 ))}
               </ul>
@@ -100,48 +102,48 @@ const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap :
         </ul>
       </div>
     </div>
-    <p class="mx-auto mt-5 max-w-[80ch] text-center text-[13px] leading-[1.5] dv-muted">Uber&nbsp;Eats et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.</p>
+    <p class="mx-auto mt-5 max-w-[80ch] text-center text-[14px] leading-[1.5] dv-muted md:text-[13px]">Uber&nbsp;Eats et Deliveroo sont des marques de leurs propriétaires. Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.</p>
   </div>
 </footer>
 
 {
   barreDemo && (
-    <aside id="dv-barre-demo" aria-label="Raccourci vers la démo" class="fixed inset-x-0 bottom-0 z-30 hidden border-t border-grey-2/15 bg-white px-4 pb-4 pt-3 shadow-[0_-4px_16px_rgba(76,76,76,0.06)] sm:hidden" aria-hidden="true">
-      <BoutonDemo href={lien('/demo/')} cta="barre-mobile" class="w-full" tabindex={-1} />
+    <aside id="dv-barre-demo" aria-label="Raccourci vers la démo" class="fixed inset-x-0 bottom-0 z-30 hidden border-t border-grey-2/15 bg-white px-4 pb-2 pt-2 shadow-[0_-4px_16px_rgba(76,76,76,0.06)] sm:hidden" aria-hidden="true">
+      <BoutonDemo href={lien('/demo/')} cta="barre-mobile" class="min-h-[52px] w-full" tabindex={-1} />
     </aside>
   )
 }
 
 <script>
-  // Téléphone : bouton démo fixé en bas de l'écran, seulement une fois le haut de page dépassé, et caché dès qu'un
-  // autre bouton démo plein, le formulaire de démo, la vidéo ou le pied de page sont à l'écran.
+  // Téléphone : bouton démo fixé en bas de l'écran dès qu'aucun autre bouton démo plein (haut de page compris), le
+  // formulaire de démo, la vidéo, le bloc « Demandez à votre IA » ou le pied de page n'est à l'écran : un seul bouton
+  // bleu à la fois. Depuis le 8 octobre 2026 (audit responsive), il ne faut plus avoir dépassé le haut de page : les
+  // pages sans bouton dans leur premier écran (articles, Tarifs, pages légales…) ont leur bouton dès l'arrivée.
+  // Un bouton principal qui n'apparaît que dans les 69 px du bas de l'écran (place de la barre) ne compte pas : la barre
+  // le recouvrirait, elle prend sa place (accueil à 320 px, bouton du haut juste sous le pli).
+  const HAUTEUR_BARRE = 69;
   const barre = document.getElementById('dv-barre-demo');
-  const haut = document.querySelector('[data-haut-de-page]');
-  const cibles = Array.from(document.querySelectorAll('[data-cta-principal], #demo, .dv-form, .hv-cadre, #pied'));
+  const principaux = Array.from(document.querySelectorAll('[data-cta-principal]'));
+  const cibles = Array.from(document.querySelectorAll('#demo, .dv-form, .hv-cadre, .dv-ia, #pied'));
   if (barre && 'IntersectionObserver' in window) {
     const visibles = new Set<Element>();
-    let hautDepasse = !haut;
     const maj = () => {
-      const montrer = hautDepasse && visibles.size === 0 && window.scrollY > 200;
+      const montrer = visibles.size === 0;
       barre.classList.toggle('hidden', !montrer);
       barre.setAttribute('aria-hidden', String(!montrer));
       barre.querySelector('a')?.setAttribute('tabindex', montrer ? '0' : '-1');
     };
-    const obs = new IntersectionObserver((entrees) => {
+    const suivre = (entrees: IntersectionObserverEntry[]) => {
       entrees.forEach((e) => {
-        if (e.target === haut) {
-          // Le haut de page est dépassé quand il est sorti de l'écran par le haut.
-          hautDepasse = !e.isIntersecting && e.boundingClientRect.top < 0;
-          return;
-        }
         if (e.isIntersecting) visibles.add(e.target);
         else visibles.delete(e.target);
       });
       maj();
-    });
-    if (haut) obs.observe(haut);
+    };
+    const obsPrincipaux = new IntersectionObserver(suivre, { rootMargin: `0px 0px -${HAUTEUR_BARRE}px 0px` });
+    const obs = new IntersectionObserver(suivre);
+    principaux.forEach((c) => obsPrincipaux.observe(c));
     cibles.forEach((c) => obs.observe(c));
-    window.addEventListener('scroll', maj, { passive: true });
   }
   // Clic sur un bouton démo : section d'origine gardée pour le formulaire (mesure, sans traceur).
   document.addEventListener('click', (e) => {
