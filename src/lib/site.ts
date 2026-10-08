@@ -34,6 +34,16 @@ export const SITE = {
   rendezVous: '',
 };
 
+// Identifiants stables des données structurées (8 octobre 2026, audit GEO) : la même entité porte le même @id sur toutes
+// les pages, pour que les moteurs relient l'éditeur, son fondateur et le logiciel. Aucune date de création : elle ne figure
+// pas dans le dépôt (mentions légales).
+export const IDS = {
+  organisation: `${SITE.url}/#organisation`,
+  site: `${SITE.url}/#site`,
+  tom: `${SITE.url}/#tom-voisin`,
+  logiciel: `${SITE.url}/#logiciel`,
+};
+
 // Adresse d'une page du site, préfixée par la base (aperçu publié sous /apercu/).
 export function lien(chemin: string): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -641,6 +651,7 @@ export function jsonldLogiciel(description: string, url: string): Record<string,
   return {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
+    '@id': IDS.logiciel,
     name: 'Deliview',
     applicationCategory: 'BusinessApplication',
     applicationSubCategory: 'Logiciel pour restaurants sur Uber Eats et Deliveroo',
@@ -649,7 +660,7 @@ export function jsonldLogiciel(description: string, url: string): Record<string,
     countriesSupported: 'FR',
     description,
     url,
-    publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+    publisher: { '@type': 'Organization', '@id': IDS.organisation, name: 'Deliview', url: SITE.url },
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'EUR',

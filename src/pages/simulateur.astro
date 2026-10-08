@@ -14,7 +14,7 @@ import Pieces from '../icons/pieces.astro';
 import Toque from '../icons/toque.astro';
 import SacLivraison from '../icons/sac-livraison.astro';
 import Chevron from '../icons/chevron.astro';
-import { OFFRES, PRIX_ENTREE, SITE, lien } from '../lib/site';
+import { IDS, OFFRES, PRIX_ENTREE, SITE, lien } from '../lib/site';
 
 // Hypothèses du gain de prix : exemple réel d'analyse (burgers, Paris, 1er octobre 2026), signalées sous le résultat.
 const PART_SOUS_ZONE = 21;
@@ -34,7 +34,7 @@ const outil = {
   inLanguage: 'fr-FR',
   isAccessibleForFree: true,
   description,
-  publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+  publisher: { '@type': 'Organization', '@id': IDS.organisation, name: 'Deliview', url: SITE.url },
 };
 const libelle = 'block text-[16px] font-semibold leading-[1.3]';
 const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';

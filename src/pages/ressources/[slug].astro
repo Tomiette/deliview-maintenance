@@ -10,7 +10,7 @@ import SectionDemo from '../../components/SectionDemo.astro';
 import Ticket from '../../components/Ticket.astro';
 import CarteArticle from '../../components/CarteArticle.astro';
 import Fleche from '../../icons/fleche.astro';
-import { FRAGMENTS, SITE, THEMES, cheminFonction, dateFr, fonctionDeLArticle, lien, tempsLecture } from '../../lib/site';
+import { FRAGMENTS, IDS, SITE, THEMES, cheminFonction, dateFr, fonctionDeLArticle, lien, tempsLecture } from '../../lib/site';
 import { PAGES } from '../../lib/fonctions';
 
 export async function getStaticPaths() {
@@ -55,8 +55,8 @@ const jsonArticle = {
   dateModified: iso(d.misAJourLe),
   mainEntityOfPage: url,
   image: photo ? [SITE.url + photo.src + `-${photoMax}.webp`, SITE.url + '/images/partage.png'] : SITE.url + '/images/partage.png',
-  author: { '@type': 'Person', name: d.auteur, url: SITE.url + '/qui-sommes-nous/#tom', sameAs: [SITE.linkedinTom] },
-  publisher: { '@type': 'Organization', name: 'Deliview', url: SITE.url, logo: { '@type': 'ImageObject', url: SITE.url + '/images/logo-deliview.png' } },
+  author: { '@type': 'Person', '@id': IDS.tom, name: d.auteur, url: SITE.url + '/qui-sommes-nous/#tom', sameAs: [SITE.linkedinTom] },
+  publisher: { '@type': 'Organization', '@id': IDS.organisation, name: 'Deliview', url: SITE.url, logo: { '@type': 'ImageObject', url: SITE.url + '/images/logo-deliview.png' } },
   citation: d.sources.map((s) => s.url),
 };
 ---

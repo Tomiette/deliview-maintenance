@@ -22,7 +22,7 @@ import Coche from '../icons/coche.astro';
 import Cadenas from '../icons/cadenas.astro';
 import Message from '../icons/message.astro';
 import EtiquettePrix from '../icons/etiquette-prix.astro';
-import { SITE, DEMO, PRIX_ENTREE, lien, type CaptureApp } from '../lib/site';
+import { IDS, SITE, DEMO, PRIX_ENTREE, lien, type CaptureApp } from '../lib/site';
 import { CHRONOLOGIE, CHRONOLOGIE_APERCU } from '../lib/chronologie';
 
 const description =
@@ -31,6 +31,7 @@ const description =
 const personne = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': IDS.tom,
   name: 'Tom Voisin',
   jobTitle: 'Fondateur de Deliview',
   description:
@@ -40,11 +41,11 @@ const personne = {
   image: SITE.url + '/images/tom-voisin.jpg',
   email: SITE.email,
   sameAs: [SITE.linkedinTom],
-  worksFor: { '@type': 'Organization', name: 'Deliview', url: SITE.url },
+  worksFor: { '@type': 'Organization', '@id': IDS.organisation, name: 'Deliview', url: SITE.url },
 };
 // Le titre de la frise suit ce qu'elle montre : le site public n'a que les posts dont on a le lien.
 const posts = (import.meta.env.BASE_URL !== '/' ? CHRONOLOGIE_APERCU : CHRONOLOGIE).length;
-const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui suis-je', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR' };
+const aPropos = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'Qui suis-je', url: SITE.url + '/qui-sommes-nous/', inLanguage: 'fr-FR', mainEntity: { '@id': IDS.organisation } };
 
 // La même capture que la bascule de l'accueil (compte de démonstration « Pizza Démo »).
 const captureAccueil: CaptureApp = {

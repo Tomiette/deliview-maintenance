@@ -7,7 +7,7 @@ import Base from '../layouts/Base.astro';
 import SectionDemo from '../components/SectionDemo.astro';
 import Pastille from '../components/Pastille.astro';
 import Fleche from '../icons/fleche.astro';
-import { OFFRES, SITE, dateFr, lien } from '../lib/site';
+import { IDS, OFFRES, SITE, dateFr, lien } from '../lib/site';
 import { NE_FAIT_PAS, texteBrut } from '../lib/faq';
 import LogoContact from '../components/LogoContact.astro';
 
@@ -99,7 +99,7 @@ const faqPage = {
   '@type': 'FAQPage',
   inLanguage: 'fr-FR',
   dateModified: MAJ,
-  about: { '@type': 'Organization', name: SITE.nom, url: SITE.url },
+  about: { '@type': 'Organization', '@id': IDS.organisation, name: SITE.nom, url: SITE.url },
   // « Où sont hébergées mes données ? » est balisée sur /questions-frequentes/ seulement (une seule occurrence par site,
   // règle de Google) ; elle reste affichée ici.
   mainEntity: [

@@ -56,7 +56,9 @@ for chemin in sorted(pages):
     d = p.desc or ''
     if not (110 <= len(d) <= 160): problemes.append((nom, f'description {len(d)} car.'))
     if p.h1 != 1: problemes.append((nom, f'{p.h1} h1'))
-    if not p.canon: problemes.append((nom, 'canonical manquant'))
+    # Lien canonique obligatoire, sauf sur une page non indexée (la 404 n'en a pas depuis le 8 octobre 2026 : elle est
+    # servie à toute adresse inconnue).
+    if not p.canon and 'noindex' not in (p.robots or ''): problemes.append((nom, 'canonical manquant'))
     for j in p.jsonld:
         try: json.loads(j)
         except Exception as e: problemes.append((nom, 'JSON-LD invalide'))
