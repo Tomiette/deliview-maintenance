@@ -533,14 +533,17 @@ export const PLATEFORMES = [
 // « Pour vous si » ; des lignes courtes ; ce que Deliview faisait sans le dire est ajouté (score de la fiche Uber Eats,
 // photos et descriptions revues, rapports PDF), et pour Groupe la réponse prioritaire sur WhatsApp et les accès
 // illimités (app/src/lib/offre.ts : accès illimités en Groupe).
-// 8 octobre 2026, 17 h 47 (demande de Tom : « garde ces sous-textes pour les offres sur la page pricing ») : sous le
-// titre court, la phrase de Tom « Vous voulez… » revient sur les cartes de Tarifs (sans l'étiquette « Pour vous si »).
+// 8 octobre 2026, 17 h 47 puis 17 h 56 (demandes de Tom : « garde ces sous-textes pour les offres sur la page pricing »,
+// « laisse le titre des offres qu'il y avait au début, Pour vous si ») : les cartes de Tarifs reprennent « Pour vous si »
+// et la phrase de Tom « Vous voulez… », à la place du titre court.
 export interface Offre {
   slug: string;
   nom: string;
-  // Titre court sous le nom de l'offre (Tarifs, accueil, formulaire « Commencer », llms.txt).
+  // Titre court sous le nom de l'offre (accueil, formulaire « Commencer », llms.txt ; plus sur Tarifs depuis le
+  // 8 octobre 2026, 17 h 56).
   titre: string;
-  // Sous-texte des cartes de Tarifs : la situation du restaurateur, textes de Tom mot pour mot (7 octobre 2026, 19 h 44).
+  // Cartes de Tarifs, sous « Pour vous si » : la situation du restaurateur, textes de Tom mot pour mot (7 octobre 2026,
+  // 19 h 44).
   pourVous: string;
   recommandee?: boolean;
   // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).

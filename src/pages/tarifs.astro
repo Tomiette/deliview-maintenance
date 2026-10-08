@@ -19,8 +19,10 @@
 // et 8.2) ; « Combien me coûte Deliview ? » en tête des questions ; plus de données structurées d'offres.
 // 8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre (cartes, raccourcis, comparatif,
 // questions), et « Prix selon vos besoins » seul, sans « Fixé avec Tom, avant tout paiement ».
-// 8 octobre 2026, 17 h 47 (demande de Tom) : sous chaque titre, sa phrase « Vous voulez… » revient (OFFRES.pourVous) ;
+// 8 octobre 2026, 17 h 47 (demande de Tom) : sa phrase « Vous voulez… » revient sur chaque carte (OFFRES.pourVous) ;
 // chapeau raccourci : « Avec Essentiel, vous voyez tout. Avec Pro et Groupe, Deliview agit pour vous. »
+// 17 h 56 (Tom : « laisse le titre des offres qu'il y avait au début, Pour vous si ») : les cartes reprennent « Pour vous
+// si » au-dessus de la phrase, à la place du titre court (qui reste sur l'accueil, « Commencer » et llms.txt).
 // 8 octobre 2026, 15 h 50 (demande de Tom : « des titres simples, concis ») : un titre court par offre à la place de
 // « Pour vous si », lignes plus courtes, et le comparatif avec les mêmes mots (OFFRES dans src/lib/site.ts).
 import Base from '../layouts/Base.astro';
@@ -237,11 +239,9 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
                     <h2 class="font-accent text-[26px] font-bold leading-[1.15] md:text-[28px]">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</h2>
                   </div>
                 </div>
-                {/* Titre et sous-texte collés ; la hauteur commune (ordinateur) aligne le trait et le bouton des trois cartes. */}
-                <div class="mt-4 lg:min-h-[134px]">
-                  <p class="dv-offre-titre">{o.titre}</p>
-                  <p class="dv-offre-pour mt-2">{o.pourVous}</p>
-                </div>
+                {/* « Pour vous si » et la phrase de Tom, comme au début (8 octobre 2026, 17 h 56, demande de Tom). */}
+                <p class="dv-overline mt-6">Pour vous si</p>
+                <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[72px]">{o.pourVous}</p>
                 {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
                 <div class="mt-5 border-t border-grey-2/15 pt-5">
                   <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
@@ -518,20 +518,6 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
   }
 
-  /* Titre court de l'offre (8 octobre 2026) : ce qu'elle change, juste sous son nom. */
-  .dv-offre-titre {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.35;
-    text-wrap: balance;
-  }
-  /* Sous-texte de l'offre (8 octobre 2026, 17 h 47, textes de Tom) : la situation du restaurateur, sous le titre. */
-  .dv-offre-pour {
-    font-size: 16px;
-    line-height: 1.5;
-    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
-    text-wrap: pretty;
-  }
   /* À la place du prix (8 octobre 2026) : la même ligne sur les trois offres, donc plus discrète que le titre. */
   .dv-offre-sur-mesure {
     font-size: 17px;
