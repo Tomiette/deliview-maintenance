@@ -2559,20 +2559,6 @@
       0 0 0 5px var(--dv-bord),
       0 5px 0 5px var(--dv-levre);
   }
-  /* Coche de client réel : pastille Bleu 1, coche blanche, cerclée de blanc. */
-  .dv-pilotes-coche {
-    position: absolute;
-    right: -7px;
-    bottom: -3px;
-    display: grid;
-    place-items: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--color-blue);
-    color: var(--color-white);
-    box-shadow: 0 0 0 3px var(--color-white);
-  }
   .dv-pilotes-texte {
     display: flex;
     flex-direction: column;

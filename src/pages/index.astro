@@ -21,7 +21,6 @@ import EtiquettePrix from '../icons/etiquette-prix.astro';
 import Bouclier from '../icons/bouclier.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
 import Fleche from '../icons/fleche.astro';
-import Coche from '../icons/coche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
 import { ICONES } from '../lib/registre-icones';
 import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, PRIX_ENTREE, SITE, VEILLE, cheminFonction, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
@@ -93,7 +92,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
 
   <!-- Premier restaurant client (6 octobre 2026, demandes de Tom ; refait le 7 octobre à 11 h, « plus design, simple »,
        puis sans sur-titre ni ville à 11 h 03) : une carte en deux parties, le logo de Pizza Cosy sur un fond Bleu 1 à 8 %
-       à points, coche de client réel ; à côté, son nom et une phrase. Logo et phrase affichés avec l'accord du restaurant
+       à points (la coche bleue a été retirée le 8 octobre 2026 à la demande de Tom) ; à côté, son nom et une phrase. Logo et phrase affichés avec l'accord du restaurant
        (confirmé par Tom le 6 octobre, 12 h 20). -->
   <section class="bg-white pb-10 md:pb-14">
     <div class="dv-container">
@@ -110,7 +109,6 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
               height="160"
               decoding="async"
             />
-            <span class="dv-pilotes-coche"><Coche taille={24} /></span>
           </span>
         </div>
         <div class="dv-pilotes-texte">
