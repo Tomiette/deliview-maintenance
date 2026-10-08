@@ -10,7 +10,8 @@ const ressources = defineCollection({
     titre: z.string().min(10).max(110),
     // Balise <title>, sans « | Deliview » (ajouté automatiquement) : 60 caractères au plus en tout.
     titreSeo: z.string().min(10).max(49),
-    description: z.string().min(110).max(160),
+    // Meta description : 155 caractères au plus (8 octobre 2026, audit SEO : au-delà, Google la coupe).
+    description: z.string().min(110).max(155),
     theme: z.enum(['prix-et-concurrence', 'carte-et-marge', 'reputation', 'commandes']),
     // Réponse directe en tête d'article (40 à 60 mots).
     enBref: z.string().min(120).max(520),

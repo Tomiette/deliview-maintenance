@@ -3,7 +3,9 @@
 // travail, sur l'appareil où le restaurateur le voit (tablette, téléphone, ordinateur), et une bulle avec le chiffre qui
 // compte. Chaque levier a son appareil, pour que les trois cartes ne se ressemblent pas (demande de Tom). Dessous, le nom,
 // une phrase et « Voir comment ça marche ». Toute la carte est cliquable (lien étiré) ; au survol, elle se soulève et
-// l'appareil monte un peu.
+// l'appareil monte un peu. 8 octobre 2026 (audit SEO, ancre descriptive) : sous 1280 px, le lien dit où il mène
+// (« Voir « Vos promotions » ») ; à partir de 1280 px, « Voir comment ça marche » reste affiché, complété pour les
+// lecteurs d'écran et les moteurs par le nom de la fonction.
 import Vitrine from './Vitrine.astro';
 import Fleche from '../icons/fleche.astro';
 import { ICONES } from '../lib/registre-icones';
@@ -40,8 +42,8 @@ const v = l.vitrine;
       {l.nom}
     </Titre>
     <p class="mt-3 text-[17px] leading-[1.5] dv-muted">{l.phrase}</p>
-    <a href={lien(href)} class="dv-lien-fort dv-pilier-lien mt-auto self-start pt-3" aria-label={`Voir comment ça marche : ${l.nom.toLowerCase()}`}>
-      Voir comment ça marche<Fleche taille={24} />
+    <a href={lien(href)} class="dv-lien-fort dv-pilier-lien mt-auto self-start pt-3">
+      <span class="xl:hidden">Voir «&nbsp;{l.nom}&nbsp;»</span><span class="hidden xl:inline">Voir comment ça marche<span class="sr-only"> : {l.nom}</span></span><Fleche taille={24} />
     </a>
   </div>
 </li>

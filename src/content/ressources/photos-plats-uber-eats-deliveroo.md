@@ -1,7 +1,7 @@
 ---
 titre: "Photos de plats sur Uber Eats et Deliveroo : les règles, et comment les refaire au téléphone"
 titreSeo: "Photos de plats Uber Eats et Deliveroo : règles"
-description: "Format, taille, cadrage, retouches, droits : les règles photo d’Uber Eats et de Deliveroo, et la méthode pour refaire vos photos de plats avec un téléphone."
+description: "Format, taille, cadrage, droits : les règles photo d’Uber Eats et de Deliveroo, et la méthode pour refaire vos photos de plats avec un téléphone."
 theme: carte-et-marge
 enBref: "Uber Eats veut un seul plat, centré et net, sans texte ni logo, idéalement entre 5:4 et 6:4. Deliveroo demande un JPEG de 8 Mo au plus et d’au moins 1200 × 675 pixels, recadré ensuite en carré, sans mains ni texte. Photographiez à la lumière du jour, juste après le dressage, et gardez les droits sur vos images."
 publieLe: 2026-10-06

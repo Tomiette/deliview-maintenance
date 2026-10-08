@@ -165,10 +165,15 @@ const faq = [
 ];
 
 const texteBrut = (h: string) => h.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
+// Deux questions sont aussi sur /questions-frequentes/ : elles restent affichées ici, mais ne sont balisées (FAQPage)
+// qu'une fois sur le site, sur la page des questions fréquentes (8 octobre 2026, audit SEO, règle de Google).
+const BALISEES_AILLEURS = ['Est-ce que je m’engage sur une durée ?', 'Où sont hébergées mes données ?'];
 const faqPage = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: faq.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
+  mainEntity: faq
+    .filter((x) => !BALISEES_AILLEURS.includes(x.q))
+    .map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
 };
 const logiciel = {
   ...jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/'),

@@ -24,13 +24,13 @@ const d = article.data;
 // Fonction la plus proche de l'article ; sans fonction proche (TVA), l'encadré présente Deliview dans son ensemble.
 const fonction = fonctionDeLArticle(article.id, d.theme);
 const encadre = fonction
-  ? { href: cheminFonction(fonction.id), titre: PAGES[fonction.id].h1, phrase: PAGES[fonction.id].lead, bouton: 'Voir comment ça marche', nom: `Voir comment ça marche : ${fonction.nom.toLowerCase()}` }
+  ? { href: cheminFonction(fonction.id), titre: PAGES[fonction.id].h1, phrase: PAGES[fonction.id].lead, bouton: 'Voir comment ça marche', fonction: fonction.nom }
   : {
       href: '/solution/',
       titre: 'Vos données Uber Eats et Deliveroo sur un seul écran',
       phrase: 'Vos ventes, vos prix face à ceux de votre zone, vos avis et vos remboursements à contester.',
       bouton: 'Voir la solution',
-      nom: undefined,
+      fonction: undefined,
     };
 const sommaire = headings.filter((h) => h.depth === 2);
 // Vraie carte de l'app de la fonction (décorative ici : le texte de l'encadré dit déjà ce qu'elle montre).
@@ -166,7 +166,13 @@ const jsonArticle = {
           <h2 id="pilier-titre" class="dv-h3 mt-4">{encadre.titre}</h2>
           <p class="mt-2 dv-muted">{encadre.phrase}</p>
           <div class="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <a href={lien(encadre.href)} class="dv-btn dv-btn-contour" aria-label={encadre.nom}>{encadre.bouton}</a>
+            {/* Ancre descriptive sous 1280 px (8 octobre 2026, audit SEO) : « Voir « Vos prix » » ; au-delà, le texte d'avant,
+                complété pour les lecteurs d'écran et les moteurs par le nom de la fonction. */}
+            {encadre.fonction ? (
+              <a href={lien(encadre.href)} class="dv-btn dv-btn-contour"><span class="xl:hidden">Voir «&nbsp;{encadre.fonction}&nbsp;»</span><span class="hidden xl:inline">{encadre.bouton}<span class="sr-only"> : {encadre.fonction}</span></span></a>
+            ) : (
+              <a href={lien(encadre.href)} class="dv-btn dv-btn-contour">{encadre.bouton}</a>
+            )}
             <a href="#demo" class="dv-lien-fort" data-cta={`article-${article.id}`}>
               Demander une démo<Fleche taille={24} />
             </a>

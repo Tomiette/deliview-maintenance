@@ -1,7 +1,7 @@
 ---
 titre: "Restaurant fermé sur Uber Eats ou Deliveroo en plein service : pourquoi, et comment l’éviter"
 titreSeo: "Restaurant fermé sur Uber Eats ou Deliveroo"
-description: "Pause automatique, ouverture oubliée, tablette éteinte : pourquoi votre restaurant disparaît d’Uber Eats ou de Deliveroo en plein service, et comment l’éviter."
+description: "Pause automatique, ouverture oubliée, tablette éteinte : pourquoi votre restaurant disparaît d’Uber Eats ou de Deliveroo en service, et comment l’éviter."
 theme: commandes
 enBref: "Uber Eats met vos commandes en pause quand vous en refusez plusieurs d’affilée ou que vous tardez à les accepter. Deliveroo refuse une commande sans réponse au bout de 10 minutes, et votre restaurant y reste fermé tant que vous ne l’ouvrez pas. Gardez la tablette branchée sur l’application, vérifiez vos horaires et regardez votre fiche à chaque début de service."
 publieLe: 2026-10-06
