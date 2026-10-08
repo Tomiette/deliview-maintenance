@@ -262,6 +262,360 @@ Par e-mail à tom.voisin@deliview.fr, ou en demandant une démo. C’est Tom qui
 
 ## Guides pour les restaurateurs
 
+### Augmenter ses ventes sur Uber Eats et Deliveroo : les leviers qui comptent, dans le bon ordre
+
+Adresse : https://www.deliview.fr/ressources/augmenter-ventes-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-09
+
+En bref : Commencez par ce qui vous fait perdre des commandes sans que vous le voyiez : un restaurant fermé en plein service, des commandes refusées, une note qui baisse. Travaillez ensuite votre fiche : photos, descriptions, prix au niveau de votre zone. Gardez les promos pour vos heures creuses, et mesurez chaque changement sur plusieurs semaines.
+
+## Par où commencer pour vendre plus sur Uber Eats et Deliveroo ?
+
+Par ce qui vous fait perdre des commandes sans que vous le voyiez. Une promo ou une annonce ne sert à rien si le restaurant est fermé, refuse des commandes ou affiche une note qui fait fuir.
+
+Les leviers se rangent en trois étapes. D’abord, ne plus perdre de commandes : ouverture, acceptation, note. Ensuite, mieux vous présenter : photos, descriptions, prix. Enfin, aller chercher des clients : promos, puis publicité. Chaque levier a son guide détaillé, en lien.
+
+## 1. Rester ouvert pendant tout le service
+
+Un restaurant fermé ne reçoit rien, et c’est le levier le plus souvent oublié. Uber Eats met vos commandes en pause quand vous en refusez plusieurs d’affilée ou que vous tardez à les accepter. Chez Deliveroo, une commande sans réponse au bout de 10 minutes est refusée, et votre restaurant reste fermé tant que vous ne l’ouvrez pas.
+
+Vérifiez vos horaires sur les deux plateformes, gardez la tablette branchée et regardez votre fiche à chaque début de service. Tout est détaillé dans notre article sur [le restaurant fermé en plein service](/ressources/restaurant-ferme-uber-eats-deliveroo/).
+
+## 2. Accepter vite et préparer à l’heure
+
+Les deux plateformes surveillent votre fiabilité. Chez Uber Eats, le score de réussite regarde si vos commandes sont fiables, prêtes à l’heure et justes. Chez Deliveroo, l’attente prévue pour le client compte dans le classement : un temps de préparation trop long vous fait descendre.
+
+Le soir du rush, ce sont les réglages qui comptent : mode Occupé, ruptures signalées tout de suite, une personne dédiée aux tablettes. Notre guide pour [gérer les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) les détaille.
+
+## 3. Faire monter votre note
+
+Votre note pèse partout : dans le classement de Deliveroo, dans le score de réussite d’Uber Eats, et dans la décision du client qui hésite entre deux restaurants. Les causes sont presque toujours les mêmes : un article oublié, une commande en retard, un emballage qui fuit.
+
+Répondez aux avis, surtout aux mauvais, et corrigez ce qu’ils pointent. Voir notre article sur [la note Uber Eats et Deliveroo](/ressources/ameliorer-note-uber-eats-deliveroo/).
+
+## 4. Mettre une photo et une description sur chaque plat
+
+Le client choisit avec les yeux, et Uber Eats le sait : la part de votre menu avec photos ou descriptions entre dans votre score de réussite.
+
+**Exemple réel** : dans un restaurant de burgers à Paris, analysé par Deliview le 2 octobre 2026, 8 plats sur 33 n’avaient pas de description sur Deliveroo, soit 24 %. Chez ses 9 concurrents, la part tombait à 5 %. Ce retard se rattrape sans dépenser un euro.
+
+Pour refaire vos photos avec un téléphone, en respectant les règles des deux plateformes, lisez notre guide sur [les photos de plats](/ressources/photos-plats-uber-eats-deliveroo/).
+
+Pour faire évoluer la carte elle-même, regardez ce que les Français commandent en 2026 dans notre article sur [les tendances de la livraison](/ressources/tendances-restauration-livraison-2026/), puis testez un plat avant de tout changer.
+
+## 5. Placer vos prix au niveau de votre zone
+
+Le client compare en quelques secondes. Un plat bien plus cher que chez les voisins se vend moins, et un plat trop bas vous fait perdre de la marge sur chaque commande. Uber Eats suit aussi la majoration de vos prix dans son score de réussite.
+
+Comparez le même plat, à taille égale, chez cinq à dix concurrents, puis situez-vous face au prix du milieu. La méthode est dans notre article pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/), et le calcul du prix plancher dans celui pour [fixer vos prix](/ressources/fixer-prix-uber-eats-deliveroo/).
+
+## 6. Garder les promos pour vos heures creuses
+
+Chez Deliveroo, un restaurant qui « propose actuellement une promotion » remonte dans le classement. Mais une promo coûte sur chaque commande : lancée sur un service déjà plein, elle rogne votre marge sans rien vous rapporter.
+
+Repérez vos services les plus faibles, le mardi midi face aux autres midis par exemple, et ciblez-les. Chez Uber Eats, vérifiez d’abord que votre score de réussite vous laisse l’accès aux offres. Le calcul complet est dans notre article sur [les promos rentables](/ressources/promotion-uber-eats-deliveroo-rentable/).
+
+## 7. Passer à la publicité en dernier
+
+Les deux plateformes vendent de la visibilité. Uber Eats propose des campagnes d’annonces dans Uber Eats Manager. Chez Deliveroo, vous fixez un budget et un coût par vue de votre menu, retirés chaque semaine de votre facture.
+
+La publicité amène des clients sur votre fiche : si la fiche, la note ou les prix ne suivent pas, vous payez pour qu’ils repartent. Gardez-la pour la fin, et lisez avant [comment Uber Eats et Deliveroo classent les restaurants](/ressources/algorithme-classement-uber-eats-deliveroo/).
+
+## 8. Ne pas perdre ce que vous avez vendu
+
+Vendre plus ne sert à rien si l’argent repart ensuite. Un client remboursé à tort vous coûte la commande : vous avez 30 jours pour contester chez Uber Eats, et 7 jours chez Deliveroo. Voir notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
+
+Regardez aussi ce que chaque plateforme vous laisse vraiment, commission, offres et TVA comprises, avec nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+## Comment savoir si un changement a marché ?
+
+Changez une chose à la fois, et comparez les mêmes services avant et après : le mardi midi à d’autres mardis midi, pas à un samedi soir. Laissez au moins deux semaines à chaque changement avant de conclure.
+
+Uber Eats Manager affiche vos ventes, votre nombre de commandes et votre panier moyen. Chez Deliveroo, vos factures hebdomadaires donnent vos ventes semaine par semaine. Pour suivre les deux au même endroit, notre article pour [gérer Uber Eats et Deliveroo ensemble](/ressources/gerer-uber-eats-deliveroo-ensemble/) compare les solutions, du tableur gratuit aux outils.
+
+Deliview suit vos ventes chaque jour, sur les deux plateformes, et vous dit où vous en êtes de [vos objectifs de ventes](/solution/objectifs/), semaine après semaine.
+
+Sources : Success score (France) (Uber, https://merchants.ubereats.com/fr/en/success-score/, consulté le 7 octobre 2026) ; How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Pourquoi les commandes sont-elles suspendues automatiquement ? (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/pourquoi-les-commandes-sont-elles-interrompues-automatiquement-?nodeId=ef70e506-60c4-45e4-b21e-0adca9efe8fe, consulté le 6 octobre 2026) ; Comment éviter de refuser des commandes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3198713, consulté le 6 octobre 2026) ; Comprendre la Notification de Rappel d’Ouverture (Deliveroo, https://help.deliveroo.com/fr/articles/11002244-comprendre-la-notification-de-rappel-d-ouverture, consulté le 6 octobre 2026) ; Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 7 octobre 2026) ; Foire aux questions sur les publicités (Deliveroo, https://help.deliveroo.com/fr/articles/4840108-foire-aux-questions-sur-les-publicites, consulté le 6 octobre 2026)
+
+### Ouvrir un crousty ou l’ajouter à votre carte : franchise, prix et marge en livraison
+
+Adresse : https://www.deliview.fr/ressources/ouvrir-crousty-livraison/ · Auteur : Tom Voisin · Publié le 2026-10-09, mis à jour le 2026-10-09
+
+En bref : Le crousty est une barquette de riz garnie de poulet pané et frit et de sauces. Ses commandes ont bondi de 323 % sur Uber Eats entre janvier 2025 et janvier 2026, selon l’AFP. Il se vend entre 7,50 et 12 €. Avant de vous lancer, calculez votre marge après commission et comptez les restaurants qui en vendent déjà près de chez vous.
+
+## Qu’est-ce qu’un crousty, et d’où vient la mode ?
+
+Un crousty, c’est une barquette de riz recouverte de morceaux de poulet pané et frit, nappée d’une ou deux sauces et souvent d’oignons frits. Il se prépare à la chaîne et se mange vite, à emporter ou en livraison.
+
+Selon [Time Out](https://www.timeout.fr/paris/restaurants/le-krousty-peut-il-detroner-le-kebab-au-sommet-de-la-street-food), le plat est né en 2012 dans la banlieue de Bordeaux, puis a trouvé son public dans toute la France fin 2023. L’enseigne Krousty Sabaïdi en revendique la création.
+
+La demande se lit dans les chiffres des plateformes :
+
+- **Uber Eats** : les commandes de crousty ont bondi de 323 % entre janvier 2025 et janvier 2026, selon une [dépêche de l’AFP](https://www.linfodurable.fr/le-crousty-phenomene-francais-de-la-street-food-la-sauce-tiktok-55471).
+- **Deliveroo** : deux crousty figurent dans son [classement 2025](https://deliveroo.fr/fr/more/news-articles/deliveroo-100-2025-des-classiques-francais-font-leur-apparition-dans-le-classement-mondial-tandis-que-les-specialites-entre-deux-pains-sont-couronnees-reines-des-tendances-food-en-livraison-en-2025) des 50 plats qui ont le plus gagné en popularité en France, aux 9e et 50e places.
+- **Les clients** : 29 % des Français interrogés ont déjà testé ces offres de poulet frit ou rôti, et 72 % d’entre eux en sont satisfaits, selon une [enquête Ipsos bva](https://www.ipsos.com/fr-fr/les-francais-les-fast-foods-et-le-phenomene-crousty-et-master-poulet) de mai 2026.
+
+## Franchise ou concept maison : que choisir ?
+
+Une franchise vous apporte un nom connu, des recettes et des fournisseurs. En échange, vous payez un droit d’entrée puis une part de votre chiffre d’affaires. Un concept maison coûte moins cher, mais il démarre sans notoriété.
+
+Les réseaux grandissent vite. Tasty Crousty comptait 57 restaurants en France en août 2026, et 66 ouvertures programmées, selon [Mesinfos](https://mesinfos.fr/13300-salon-de-provence/restauration-l-enseigne-tasty-crousty-debarque-a-salon-de-provence-337236.html).
+
+Peu d’enseignes publient leurs conditions. Krousty Factory annonce les siennes sur [L’Express Franchise](https://lexpress-franchise.com/franchise/krousty-factory/) :
+
+| Condition annoncée | Krousty Factory |
+| --- | --- |
+| Investissement global moyen | 100 000 €, droit d’entrée compris |
+| Droit d’entrée | 25 000 € HT |
+| Redevances | 5 % du chiffre d’affaires mensuel, plus 2 % pour le marketing |
+| Durée du contrat | 7 ans |
+| Surface | À partir de 30 m² |
+
+Ce sont les chiffres de l’enseigne. Elle annonce aussi 1 million d’euros de chiffre d’affaires annuel moyen : c’est une moyenne déclarée, pas une garantie pour votre adresse.
+
+Avant de signer, le franchiseur doit vous remettre un document d’information précontractuelle au moins 20 jours avant la signature, rappelle [Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F37342). Lisez-le en entier, et appelez plusieurs franchisés installés depuis plus d’un an.
+
+Vous tenez déjà un snack, un kebab ou un burger ? Ajouter un crousty à votre carte demande surtout une friteuse, un cuiseur à riz et des sauces. Pas de droit d’entrée ni de redevance : seulement un plat de plus à tenir en cuisine.
+
+## À quel prix vendre un crousty en livraison ?
+
+En boutique, la barquette se vend entre 7,50 et 12 €, selon l’AFP. Sur Uber Eats et Deliveroo, vous pouvez afficher un autre prix qu’au comptoir, mais les deux plateformes regardent l’écart.
+
+Deliveroo compare vos prix dans l’application et au restaurant, et signale aux clients les fortes majorations. Uber Eats peut se servir de vos prix en boutique pour mesurer votre majoration. Notre guide pour [fixer vos prix sur Uber Eats et Deliveroo](/ressources/fixer-prix-uber-eats-deliveroo/) détaille ces règles et le calcul du prix plancher.
+
+Situez-vous ensuite face à votre zone. Un crousty à 13 € entouré de concurrents à 10 € se vendra mal, même s’il est meilleur.
+
+## Combien vous reste-t-il sur une barquette ?
+
+Prenons un exemple, avec des hypothèses à remplacer par les vôtres : un crousty vendu 10,90 € TTC sur Uber Eats, une TVA à 10 % et des frais de service de 30 % du prix TTC. Votre vrai taux figure sur votre bon de commande.
+
+| Ligne | Montant |
+| --- | --- |
+| Prix payé par le client | 10,90 € TTC |
+| TVA à 10 % | − 0,99 € |
+| Prix hors taxe | 9,91 € HT |
+| Frais de service à 30 % du prix TTC | − 3,27 € HT |
+| Reste avant matière, emballage et salaires | 6,64 € HT |
+
+Avec ces 6,64 €, vous payez le poulet, le riz, les sauces, la barquette, l’équipe et le loyer. Si vous récupérez la TVA, celle payée sur les frais de service sort du calcul, comme l’explique notre article sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/).
+
+Méfiez-vous des offres « 1 acheté = 1 offert » que vous financez : vous servez deux barquettes pour un seul prix payé. La matière double, pas le chiffre d’affaires. Faites le calcul avant de lancer une promo, avec notre méthode pour savoir [si une promo est rentable](/ressources/promotion-uber-eats-deliveroo-rentable/).
+
+## Combien de restaurants vendent déjà du crousty près de chez vous ?
+
+Faites le test en cinq minutes. Ouvrez Uber Eats et Deliveroo avec l’adresse d’un client habituel, tapez « crousty » et comptez les restaurants qui s’affichent. Notez leurs prix, leurs promos et leurs notes.
+
+Plus ils sont nombreux, plus vous devez vous distinguer : une sauce, une portion, un prix ou un délai. Notre méthode pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/) s’applique telle quelle.
+
+[Deliview fait ce relevé pour vous](/solution/prix/) : il compare chaque plat au même plat chez jusqu’à 20 restaurants de votre secteur, sur Uber Eats et sur Deliveroo.
+
+## Quelles règles respecter pour vendre du crousty ?
+
+Quatre points méritent votre attention, car le crousty attire aussi l’attention des contrôles.
+
+- **Allergènes** : vos sauces maison en contiennent souvent. Tous les allergènes doivent être indiqués au client avant l’achat ou avant la consommation, rappelle [Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F32192). En livraison, le plus simple est de les écrire dans la description de chaque plat.
+- **Origine du poulet** : depuis un décret du 13 février 2025, les restaurants indiquent le pays d’origine de toutes les viandes, volailles comprises. La règle vaut sur place, à emporter et en livraison, et aussi pour la viande achetée déjà cuite, selon [Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F22387).
+- **Barquettes** : les boîtes en polystyrène expansé sont interdites depuis le 1er janvier 2021, rappelle le [ministère de la Transition écologique](https://www.ecologie.gouv.fr/loi-anti-gaspillage-economie-circulaire).
+- **Hygiène** : la formation à l’hygiène alimentaire est obligatoire en restauration rapide et en vente à emporter, et une personne formée par établissement suffit, selon [Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F32189).
+
+Les contrôles suivent le succès. En avril 2026, un restaurant de crousty de Melun a été fermé par arrêté préfectoral après des problèmes de températures et une saisie de viandes, selon [Sud Radio](https://www.sudradio.fr/societe/fermeture-dun-tasty-crousty-manque-dhygiene-ou-acharnement). L’enseigne a démenti ces irrégularités.
+
+## Le crousty est-il une mode passagère ?
+
+Personne ne peut le dire aujourd’hui. Les plats lancés par les réseaux sociaux montent vite et peuvent retomber aussi vite, comme le montre notre article sur [les tendances de la livraison en 2026](/ressources/tendances-restauration-livraison-2026/).
+
+Limitez donc le risque. Ajouter un crousty à une carte qui tourne déjà coûte peu. Investir 100 000 € sur un seul produit suppose que la mode dure au moins le temps de rembourser.
+
+## Par où commencer cette semaine ?
+
+1. Comptez les restaurants qui vendent du crousty dans votre zone, sur les deux plateformes, et notez leurs prix.
+2. Calculez votre marge avec votre vrai taux de commission et votre coût matière.
+3. Testez un seul crousty pendant quatre semaines, sur votre carte ou sous une [marque virtuelle](/ressources/restaurant-virtuel-uber-eats-deliveroo/).
+4. Suivez vos ventes, vos avis et votre temps de préparation en plein rush.
+5. Si vous visez une franchise, demandez le document d’information précontractuelle et appelez des franchisés.
+
+Sources : Le crousty, phénomène français de la street food (dépêche AFP) (AFP, repris par L’Info Durable, https://www.linfodurable.fr/le-crousty-phenomene-francais-de-la-street-food-la-sauce-tiktok-55471, consulté le 9 octobre 2026) ; Deliveroo 100 2025 : les plats qui ont le plus progressé sur l’app en France (Deliveroo, https://deliveroo.fr/fr/more/news-articles/deliveroo-100-2025-des-classiques-francais-font-leur-apparition-dans-le-classement-mondial-tandis-que-les-specialites-entre-deux-pains-sont-couronnees-reines-des-tendances-food-en-livraison-en-2025, consulté le 9 octobre 2026) ; Le krousty peut-il détrôner le kebab au sommet de la street food ? (Time Out Paris, https://www.timeout.fr/paris/restaurants/le-krousty-peut-il-detroner-le-kebab-au-sommet-de-la-street-food, consulté le 9 octobre 2026) ; Les Français, les fast-foods et le phénomène Crousty et Master Poulet (Ipsos bva, https://www.ipsos.com/fr-fr/les-francais-les-fast-foods-et-le-phenomene-crousty-et-master-poulet, consulté le 9 octobre 2026) ; Restauration : l’enseigne Tasty Crousty débarque à Salon-de-Provence (Mesinfos, https://mesinfos.fr/13300-salon-de-provence/restauration-l-enseigne-tasty-crousty-debarque-a-salon-de-provence-337236.html, consulté le 9 octobre 2026) ; Franchise Krousty Factory (L’Express Franchise, https://lexpress-franchise.com/franchise/krousty-factory/, consulté le 9 octobre 2026) ; Contrat de franchise : document d’information précontractuelle (Service Public Entreprendre, https://entreprendre.service-public.gouv.fr/vosdroits/F37342, consulté le 9 octobre 2026) ; Allergènes : quelles obligations pour les professionnels ? (Service Public Entreprendre, https://entreprendre.service-public.gouv.fr/vosdroits/F32192, consulté le 9 octobre 2026) ; Restauration : informations à afficher, dont l’origine des viandes (Service Public Entreprendre, https://entreprendre.service-public.gouv.fr/vosdroits/F22387, consulté le 9 octobre 2026) ; Formation obligatoire à l’hygiène alimentaire en restauration commerciale (Service Public Entreprendre, https://entreprendre.service-public.gouv.fr/vosdroits/F32189, consulté le 9 octobre 2026) ; La loi anti-gaspillage pour une économie circulaire (Ministère de la Transition écologique, https://www.ecologie.gouv.fr/loi-anti-gaspillage-economie-circulaire, consulté le 9 octobre 2026) ; Fermeture d’un Tasty Crousty : manque d’hygiène ou acharnement ? (Sud Radio, https://www.sudradio.fr/societe/fermeture-dun-tasty-crousty-manque-dhygiene-ou-acharnement, consulté le 9 octobre 2026)
+
+### Restaurant virtuel sur Uber Eats et Deliveroo : les règles pour lancer une deuxième marque dans votre cuisine
+
+Adresse : https://www.deliview.fr/ressources/restaurant-virtuel-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-09, mis à jour le 2026-10-09
+
+En bref : Un restaurant virtuel est une marque vendue seulement en livraison, préparée dans la cuisine d’un restaurant existant. Uber Eats l’autorise « dans certaines conditions », dans vos locaux. Deliveroo exige un menu « substantiellement différent » et son accord préalable, sinon le compte est traité comme un doublon et suspendu. Une dark kitchen sans salle relève, elle, de règles d’urbanisme propres.
+
+## Restaurant virtuel, marque virtuelle, dark kitchen : quelle différence ?
+
+Un restaurant virtuel, ou marque virtuelle, est une enseigne vendue uniquement en livraison, préparée dans la cuisine d’un restaurant qui existe déjà. Uber Eats le définit comme [« un concept qui n’accepte et ne livre que des commandes numériques passées hors de l’établissement, et qui fonctionne à partir d’une vitrine physique »](https://merchants.ubereats.com/fr/fr/services/virtual-restaurants/).
+
+Une dark kitchen est un local sans salle, dédié aux commandes en ligne. Depuis le 1er juillet 2023, l’urbanisme lui donne une catégorie à part, la « cuisine dédiée à la vente en ligne ». Elle recouvre « les constructions destinées à la préparation de repas commandés par voie télématique », livrés ou retirés sur place, rappelle le [cabinet Landot](https://blog.landot-avocats.net/2023/03/24/toilettage-dans-les-destinations-et-sous-destinations-reglementees-dans-le-plu-ou-equivalent-et-ajout-de-nouvelles-annexes/).
+
+| | Marque virtuelle | Dark kitchen |
+| --- | --- | --- |
+| Où cuisinez-vous ? | Dans la cuisine de votre restaurant | Dans un local dédié, sans salle |
+| Ce qu’il faut créer | Un nom, une carte, des photos | Un local équipé, puis une ou plusieurs marques |
+| Urbanisme | Rien de nouveau, en principe | Catégorie « cuisine dédiée à la vente en ligne » |
+
+Entre les deux, Deliveroo loue des cuisines partagées, ses sites « Editions » : la plateforme en annonce [5 en France](https://merchants.deliveroo.com/fr-FR/what-we-offer/editions).
+
+## Ce qu’autorise Uber Eats
+
+Uber Eats [soutient](https://merchants.ubereats.com/fr/fr/services/virtual-restaurants/) « les restaurants qui exploitent plusieurs marques à partir d’une même cuisine ». Ses [conditions pour les commerçants](https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/), modifiées le 10 septembre 2026, posent quatre règles :
+
+- un partenaire qui vend déjà sur Uber Eats « peut, dans certaines conditions, exploiter un Restaurant virtuel » ;
+- il prépare et vend tous les repas de la marque « dans les locaux du restaurant du Partenaire » ;
+- s’il déménage, il prévient Uber par écrit au moins 7 jours avant ;
+- Uber peut retirer la marque s’il « croit raisonnablement » qu’elle contrefait des droits de propriété intellectuelle, le nom d’une enseigne connue par exemple.
+
+Uber Eats ne publie pas ces « certaines conditions ». Demandez-les à votre contact Uber Eats avant de créer la carte. Demandez aussi si des frais d’activation s’appliquent au nouvel établissement : la [page d’inscription](https://merchants.ubereats.com/fr/fr/s/signup/) parle de frais d’activation à régler une fois, sans en donner le montant.
+
+## Ce qu’autorise Deliveroo
+
+Deliveroo est plus précis. Selon ses [politiques pour les partenaires](https://merchants.deliveroo.com/fr-FR/legal/policies), mises à jour le 21 mai 2025 :
+
+- le menu de la marque virtuelle doit être « substantiellement différent » de celui de l’enseigne d’origine ;
+- vous demandez l’autorisation de Deliveroo depuis Restaurant Hub, avant de lancer la marque ;
+- sans ce statut, quand deux établissements partagent une adresse, « l’établissement le plus récent sera automatiquement considéré comme un compte en double » ;
+- « tout compte en double sera suspendu ».
+
+Prévoyez aussi les photos de la nouvelle carte. Deliveroo propose un forfait de 25 photos professionnelles à 119 € TTC, selon ses [conditions](https://merchants.deliveroo.com/fr-FR/legal/terms), dans une version de 2024. Vous pouvez aussi les faire vous-même en suivant [les règles photo des deux plateformes](/ressources/photos-plats-uber-eats-deliveroo/).
+
+## Faut-il l’accord de la mairie ?
+
+Pour une marque virtuelle préparée dans votre restaurant, en principe non : vous ne changez pas l’usage de votre local.
+
+Pour une dark kitchen, vérifiez le plan local d’urbanisme de votre commune avant de signer un bail. Paris est l’exemple le plus strict. Selon la [Ville de Paris](https://www.paris.fr/pages/plan-local-d-urbanisme-bioclimatique-vers-un-paris-plus-vert-et-plus-solidaire-23805), son PLU bioclimatique, approuvé le 20 novembre 2024, encadre « fortement » les dark kitchens.
+
+Dans la version de son [règlement](https://regles-urbanisme.paris.fr/plu-bioclimatique/servlet/plugins/document/resource?id=191&id_attribute=93&working_content=true) que nous avons consultée, deux règles s’appliquent. Une dark kitchen n’est admise que sur un terrain sans logement, hors logement de gardien. Transformer en dark kitchen un local en rez-de-chaussée sur rue est interdit. Le PLU évolue : faites confirmer la règle par le service de l’urbanisme.
+
+## Quelles règles d’hygiène pour une deuxième marque ?
+
+Les mêmes que pour votre restaurant. La formation à l’hygiène alimentaire reste obligatoire en restauration rapide et en vente à emporter, et une personne formée par établissement suffit, selon [Service Public](https://entreprendre.service-public.gouv.fr/vosdroits/F32189).
+
+Tout établissement qui prépare des denrées d’origine animale doit aussi être déclaré à la DDPP avant de démarrer, avec le formulaire Cerfa 13984, selon le [ministère de l’Agriculture](https://mesdemarches.agriculture.gouv.fr/alimentation/d%C3%A9clarer-la-manipulation-de-denr%C3%A9es-alimentaires-dorigine-animale/). Votre restaurant l’a déjà fait. Une dark kitchen ouverte dans un nouveau local doit être déclarée à son tour.
+
+La nouvelle carte indique aussi ses allergènes et l’origine de ses viandes, comme la première. Notre article sur [le crousty](/ressources/ouvrir-crousty-livraison/) rappelle ces deux obligations.
+
+## Combien coûte une marque virtuelle ?
+
+Aucune plateforme ne publie de chiffre. Le cabinet d’expertise comptable [Extencia](https://www.extencia.fr/dark-kitchen-cuisine-fantome-opportunite-piege-restaurateur) estime, en juin 2026, qu’une marque virtuelle lancée depuis une cuisine existante démarre avec 3 000 à 15 000 €. Il compte 10 000 à 40 000 € pour une cuisine partagée, et 40 000 à 120 000 € pour une dark kitchen équipée. Ce sont des ordres de grandeur, sans méthode publiée.
+
+Listez plutôt vos propres dépenses :
+
+- les photos de la nouvelle carte ;
+- les emballages au nom de la marque ;
+- les ingrédients que vous n’utilisez pas encore ;
+- les éventuels frais d’activation ;
+- les promos de lancement, car une nouvelle marque démarre sans note ni avis.
+
+## Comment tester une marque virtuelle sans désorganiser votre cuisine ?
+
+1. Choisissez un concept qui réutilise vos ingrédients et vos machines. Un snack qui a déjà une friteuse peut tester [un crousty](/ressources/ouvrir-crousty-livraison/), par exemple.
+2. Vérifiez la concurrence dans votre zone, prix compris, avec notre méthode pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
+3. Écrivez une carte vraiment différente de la première, sous un nom qui vous appartient.
+4. Demandez l’accord de chaque plateforme avant la mise en ligne.
+5. Préparez le rush : deux marques, c’est plus de commandes pour la même équipe. Réglez vos temps de préparation et le mode Occupé, comme dans notre guide pour [gérer les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/).
+6. Faites le bilan après quatre à six semaines : ventes, notes, temps de préparation, annulations.
+
+Surveillez les annulations. Depuis le 9 octobre 2025, Deliveroo facture au restaurant chaque commande qu’il annule, au montant des frais de service TTC, selon ses [politiques](https://merchants.deliveroo.com/fr-FR/legal/policies).
+
+Avec une deuxième marque, vous avez deux fois plus de ventes, d’avis et de remboursements à suivre. [Deliview réunit vos ventes Uber Eats et Deliveroo sur un seul écran](/solution/), avec vos avis et vos remboursements à contester.
+
+## Quelles erreurs font suspendre une marque virtuelle ?
+
+- **Reprendre la même carte sous un autre nom** : Deliveroo traite le nouvel établissement comme un compte en double et le suspend.
+- **Emprunter le nom ou le logo d’une enseigne connue** : Uber peut retirer une marque qui contrefait des droits de propriété intellectuelle.
+- **Cuisiner ailleurs que dans le restaurant déclaré** : chez Uber Eats, la marque se prépare dans vos locaux, et un déménagement se signale 7 jours avant.
+- **Laisser la marque fermée en plein service** : vos clients ne la trouvent plus. Notre article sur [le restaurant fermé en plein service](/ressources/restaurant-ferme-uber-eats-deliveroo/) explique comment l’éviter.
+
+Sources : Conditions générales Uber Eats pour les commerçants (France), modifiées le 10 septembre 2026 (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 9 octobre 2026) ; Restaurants virtuels (Uber, https://merchants.ubereats.com/fr/fr/services/virtual-restaurants/, consulté le 9 octobre 2026) ; Devenez partenaire d’Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/s/signup/, consulté le 9 octobre 2026) ; Politiques Deliveroo pour les partenaires (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 9 octobre 2026) ; Conditions générales des partenaires Deliveroo (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/terms, consulté le 9 octobre 2026) ; Deliveroo Editions (Deliveroo, https://merchants.deliveroo.com/fr-FR/what-we-offer/editions, consulté le 9 octobre 2026) ; Toilettage dans les destinations et sous-destinations réglementées dans le PLU (Landot & associés, https://blog.landot-avocats.net/2023/03/24/toilettage-dans-les-destinations-et-sous-destinations-reglementees-dans-le-plu-ou-equivalent-et-ajout-de-nouvelles-annexes/, consulté le 9 octobre 2026) ; Plan local d’urbanisme bioclimatique : vers un Paris plus vert et plus solidaire (Ville de Paris, https://www.paris.fr/pages/plan-local-d-urbanisme-bioclimatique-vers-un-paris-plus-vert-et-plus-solidaire-23805, consulté le 9 octobre 2026) ; Règlement du PLU bioclimatique de Paris, tome 1 (Ville de Paris, https://regles-urbanisme.paris.fr/plu-bioclimatique/servlet/plugins/document/resource?id=191&id_attribute=93&working_content=true, consulté le 9 octobre 2026) ; Formation obligatoire à l’hygiène alimentaire en restauration commerciale (Service Public Entreprendre, https://entreprendre.service-public.gouv.fr/vosdroits/F32189, consulté le 9 octobre 2026) ; Déclarer la manipulation de denrées alimentaires d’origine animale (Ministère de l’Agriculture, https://mesdemarches.agriculture.gouv.fr/alimentation/d%C3%A9clarer-la-manipulation-de-denr%C3%A9es-alimentaires-dorigine-animale/, consulté le 9 octobre 2026) ; Dark kitchen et cuisine fantôme : opportunité ou piège pour le restaurateur ? (Extencia, https://www.extencia.fr/dark-kitchen-cuisine-fantome-opportunite-piege-restaurateur, consulté le 9 octobre 2026)
+
+### Tendances de la restauration rapide en 2026 : ce que les Français commandent en livraison
+
+Adresse : https://www.deliview.fr/ressources/tendances-restauration-livraison-2026/ · Auteur : Tom Voisin · Publié le 2026-10-09, mis à jour le 2026-10-09
+
+En bref : En 2025, le burger est devenu le plat le plus commandé sur Uber Eats en France, devant la pizza et les sushis. Le kebab, premier ex aequo en 2024, recule à la 4e place. Le poulet, le flan et l’épicé montent, et le crousty figure deux fois dans le top 50 France de Deliveroo. Testez une tendance sur un seul plat.
+
+## Quels plats les Français commandent-ils le plus en livraison ?
+
+En 2025, le burger est passé en tête des plats les plus commandés sur Uber Eats en France, devant la pizza et les sushis. Le kebab, premier ex aequo avec les tacos en 2024, recule à la 4e place.
+
+Voici le classement publié par Uber Eats le 16 décembre 2025, sur les commandes passées dans l’application en 2025 :
+
+| Rang | Plat |
+| --- | --- |
+| 1 | Burger |
+| 2 | Pizza |
+| 3 | Sushi |
+| 4 | Kebab |
+| 5 | Poké bowl |
+| 6 | Tacos |
+| 7 | Poulet frit |
+| 8 | Ramen |
+| 9 | Glaces et yaourts glacés |
+| 10 | Bò bún |
+| 11 | Butter chicken |
+| 12 | Pad thaï |
+
+Deliveroo publie un autre classement : celui des plats dont la popularité a le plus progressé sur l’application, le [Deliveroo 100](https://deliveroo.fr/fr/more/news-articles/deliveroo-100-2025-des-classiques-francais-font-leur-apparition-dans-le-classement-mondial-tandis-que-les-specialites-entre-deux-pains-sont-couronnees-reines-des-tendances-food-en-livraison-en-2025). En France, les lobster rolls de Homer Lobster, à Paris, arrivent premiers de l’édition 2025. En 2024, c’était [la saucisse au couteau purée de Bouillon Service](https://deliveroo.fr/fr/more/news-articles/deliveroo-devoile-les-100-plats-les-plus-tendances-sur-l-app).
+
+## Quelles tendances montent en 2026 ?
+
+Cinq tendances ressortent des bilans des deux plateformes. Attention : beaucoup de chiffres d’Uber Eats portent sur les recherches dans l’application, pas sur les ventes.
+
+### Le poulet frit et le crousty
+
+Le poulet frit occupe la 7e place du classement d’Uber Eats. Sur Deliveroo, deux crousty, ces barquettes de riz et de poulet pané, figurent dans le top 50 France 2025, aux 9e et 50e places. Sur Uber Eats, les commandes de crousty ont bondi de 323 % entre janvier 2025 et janvier 2026, selon une [dépêche de l’AFP](https://www.linfodurable.fr/le-crousty-phenomene-francais-de-la-street-food-la-sauce-tiktok-55471).
+
+Le poulet a aussi porté la Coupe du monde 2026. Selon des données de Deliveroo citées par [JDS](https://www.jds.fr/actu/livraison-a-domicile-pendant-les-matchs-les-francais-ont-commande-au-rythme-des-emotions-1685585_A), ses commandes ont progressé jusqu’à plus de 40 % pendant le tournoi. Si le sujet vous tente, lisez notre guide pour [ouvrir un crousty ou l’ajouter à votre carte](/ressources/ouvrir-crousty-livraison/).
+
+### Le flan
+
+Uber Eats présente le flan comme « la nouvelle star des desserts ». En fin d’année 2025, les recherches de flan dans l’application ont progressé de 53 %. Le nombre de restaurants, coffee-shops et boulangeries qui l’ont ajouté à leur carte a augmenté de 22 %.
+
+Dans la sélection de [Gault&Millau](https://fr.gaultmillau.com/fr/news/ou-acheter-le-meilleur-flan-patissier-a-paris-et-proche-banlieue) pour Paris et sa proche banlieue, publiée en juin 2026, la part va de 3,20 €, à Courbevoie, à 9 €. Pour un restaurant de plats chauds, c’est un dessert qui se prépare à l’avance et augmente le montant de la commande.
+
+### L’épicé
+
+Les recherches « spicy » ont progressé de 12 % sur Uber Eats en 2025. Les burgers épicés affichent une hausse de 29 %, les nouilles épicées de 21 %. Une version épicée de votre meilleure vente reste le test le moins cher.
+
+### Les viennoiseries
+
+Les recherches de viennoiseries ont progressé de 23,5 % sur Uber Eats en fin d’année 2025. Pour un restaurant ouvert le matin, c’est un créneau à regarder.
+
+### La commande en solo
+
+Sur Uber Eats, plus d’une commande sur cinq est désormais passée pour une seule personne. Un menu solo bien construit, avec un plat, une boisson et un dessert, répond à cette demande.
+
+## Quelles tendances passent vite ?
+
+Les tendances lancées par les réseaux sociaux peuvent retomber aussi vite qu’elles sont montées. Fin 2024, les recherches de tablettes de chocolat à la pistache avaient augmenté de 220 % en six mois sur Uber Eats, selon son [bilan 2024](https://www.resto-today.com/www.resto-today.com/w/pdf/communique-presse-uber-eats-devoile-les-incontournables-2025-et-le-meilleur-2024.pdf?VersionId=1736946333.679084). La même année, « Cannot Get Knafeh of It », une création du chocolatier Fix, à Dubaï, était premier du classement mondial de Deliveroo.
+
+Uber Eats tourne lui-même la page des créations hybrides : selon son bilan 2025, « après l’ère des créations hybrides (crookies, cruffins ou NYC rolls), l’icône du petit-déjeuner revient au centre de la scène ».
+
+Méfiez-vous aussi des pourcentages spectaculaires. Les recherches de produits fermentés ont progressé de 1 899 % sur Uber Eats en 2025, portées par le kombucha. Un tel chiffre part souvent d’un petit nombre de recherches : vérifiez la demande réelle dans votre zone avant d’en remplir votre carte.
+
+Hors de France, Deliveroo note que la tendance du smash burger, « déjà bien installée », se distingue en 2025, et présente le matcha comme la boisson de l’année. Ces deux constats portent sur le monde entier, pas sur la France.
+
+## Comment profiter d’une tendance sans vous tromper ?
+
+Une tendance nationale ne dit rien de votre rue. Avant de changer votre carte, vérifiez qu’elle existe chez vos clients.
+
+1. Cherchez le plat dans Uber Eats et Deliveroo avec l’adresse d’un client habituel. Comptez les restaurants qui le vendent et notez leurs prix : c’est notre méthode pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/).
+2. Testez un seul produit, sur votre carte actuelle ou sous une [marque virtuelle](/ressources/restaurant-virtuel-uber-eats-deliveroo/).
+3. Fixez son prix à partir de votre marge réelle, commission comprise, avec notre guide pour [fixer vos prix](/ressources/fixer-prix-uber-eats-deliveroo/).
+4. Donnez-vous rendez-vous dans quatre semaines : ventes, avis, temps de préparation.
+5. Retirez le produit s’il ralentit votre cuisine en plein rush.
+
+[Deliview suit les prix et les promos de votre zone](/solution/prix/) sur Uber Eats et Deliveroo, et vous montre ce qui a changé depuis la dernière analyse.
+
+## Combien pèse la livraison en France en 2026 ?
+
+Le chiffre d’affaires de la livraison de repas est estimé entre 7 et 9 milliards d’euros, selon [L’Hôtellerie Restauration](https://www.lhotellerie-restauration.fr/actualite/livraison-en-2026-les-plateformes-toujours-au-coeur-de-la-strategie) en février 2026. Le journal ne précise pas la source de cette estimation.
+
+Uber Eats dit couvrir plus de 85 % de la population et référencer 55 000 commerçants, dont 70 % d’indépendants. Selon le même article, sur 165 000 établissements recensés en France, près de 60 000 proposent la livraison, dont 35 000 via Deliveroo.
+
+Deliveroo appartient à l’américain DoorDash depuis le 2 octobre 2025, [annonce Deliveroo](https://deliveroo.fr/fr/more/news-articles/lettre-ouverte-a-la-communaute-deliveroo-tony-xu-ceo-and-co-fondateur-de-doordash).
+
+Sources : Uber Eats dévoile le meilleur de 2025 et les incontournables de 2026 (reprise du communiqué) (Uber Eats, repris par Ce que pensent les hommes, https://cequepensentleshommes.fr/news-posts/uber-eats-devoile-le-meilleur-de-2025-et-les-incontournables-de-2026/, consulté le 8 octobre 2026) ; Restauration livrée : le burger détrône le kebab et le flan s’impose pour 2026 (Stéphane Larue, https://stephanelarue.com/restauration-livree-le-burger-detrone-le-kebab-et-le-flan-simpose-pour-2026/, consulté le 8 octobre 2026) ; Uber Eats dévoile les incontournables 2025 et le meilleur de 2024 (communiqué du 15 janvier 2025) (Uber Eats, publié par Resto Today, https://www.resto-today.com/www.resto-today.com/w/pdf/communique-presse-uber-eats-devoile-les-incontournables-2025-et-le-meilleur-2024.pdf?VersionId=1736946333.679084, consulté le 8 octobre 2026) ; Deliveroo 100 2025 : les plats qui ont le plus progressé sur l’app en France (Deliveroo, https://deliveroo.fr/fr/more/news-articles/deliveroo-100-2025-des-classiques-francais-font-leur-apparition-dans-le-classement-mondial-tandis-que-les-specialites-entre-deux-pains-sont-couronnees-reines-des-tendances-food-en-livraison-en-2025, consulté le 8 octobre 2026) ; Deliveroo dévoile les 100 plats les plus tendances sur l’app (Deliveroo, https://deliveroo.fr/fr/more/news-articles/deliveroo-devoile-les-100-plats-les-plus-tendances-sur-l-app, consulté le 8 octobre 2026) ; Livraison à domicile : pendant les matchs, les Français ont commandé au rythme des émotions (JDS, https://www.jds.fr/actu/livraison-a-domicile-pendant-les-matchs-les-francais-ont-commande-au-rythme-des-emotions-1685585_A, consulté le 8 octobre 2026) ; Le crousty, phénomène français de la street food (dépêche AFP) (AFP, repris par L’Info Durable, https://www.linfodurable.fr/le-crousty-phenomene-francais-de-la-street-food-la-sauce-tiktok-55471, consulté le 9 octobre 2026) ; Où acheter le meilleur flan pâtissier à Paris et en proche banlieue (Gault&Millau, https://fr.gaultmillau.com/fr/news/ou-acheter-le-meilleur-flan-patissier-a-paris-et-proche-banlieue, consulté le 8 octobre 2026) ; Livraison en 2026 : les plateformes toujours au cœur de la stratégie (L’Hôtellerie Restauration, https://www.lhotellerie-restauration.fr/actualite/livraison-en-2026-les-plateformes-toujours-au-coeur-de-la-strategie, consulté le 8 octobre 2026) ; L’acquisition de Deliveroo par DoorDash officiellement finalisée (Deliveroo, https://deliveroo.fr/fr/more/news-articles/lettre-ouverte-a-la-communaute-deliveroo-tony-xu-ceo-and-co-fondateur-de-doordash, consulté le 8 octobre 2026)
+
 ### Gérer Uber Eats et Deliveroo en même temps : tablettes, caisse ou logiciel ?
 
 Adresse : https://www.deliview.fr/ressources/gerer-uber-eats-deliveroo-ensemble/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-08
@@ -424,78 +778,6 @@ Ce que les deux outils ne montrent pas, c’est votre place face aux restaurants
 Deliview fait ce relevé pour vous : [votre note et votre rang dans votre zone](/solution/avis/), sur Uber Eats et Deliveroo, avec les offres de vos voisins et l’écart de prix plat par plat.
 
 Sources : Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 7 octobre 2026) ; Success score (France) (Uber, https://merchants.ubereats.com/fr/en/success-score/, consulté le 7 octobre 2026) ; Top Eats (France) (Uber, https://merchants.ubereats.com/fr/en/technology/reach-customers/top-eats/, consulté le 7 octobre 2026) ; Politique de Score de Réussite Partenaire - Restaurants Partenaires (Uber, https://www.uber.com/fr/fr/legal/merchant-success-score-policy/, consulté le 6 octobre 2026) ; How the Uber and Uber Eats Apps and Websites Work (version française, modifiée le 6 juillet 2026) (Uber, https://www.uber.com/legal/fr/document/?country=france&lang=fr&name=how-the-uber-and-uber-eats-apps-and-websites-work, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Transparence des prix sur Deliveroo : Prix Vérifiés et visibilité des majorations élevées (France) (Deliveroo, https://help.deliveroo.com/fr/articles/14686799-transparence-des-prix-sur-deliveroo-prix-verifies-et-visibilite-des-majorations-elevees-france, consulté le 6 octobre 2026) ; Où puis-je voir mes notes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3215325-ou-puis-je-voir-mes-notes, consulté le 6 octobre 2026)
-
-### Augmenter ses ventes sur Uber Eats et Deliveroo : les leviers qui comptent, dans le bon ordre
-
-Adresse : https://www.deliview.fr/ressources/augmenter-ventes-uber-eats-deliveroo/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-07
-
-En bref : Commencez par ce qui vous fait perdre des commandes sans que vous le voyiez : un restaurant fermé en plein service, des commandes refusées, une note qui baisse. Travaillez ensuite votre fiche : photos, descriptions, prix au niveau de votre zone. Gardez les promos pour vos heures creuses, et mesurez chaque changement sur plusieurs semaines.
-
-## Par où commencer pour vendre plus sur Uber Eats et Deliveroo ?
-
-Par ce qui vous fait perdre des commandes sans que vous le voyiez. Une promo ou une annonce ne sert à rien si le restaurant est fermé, refuse des commandes ou affiche une note qui fait fuir.
-
-Les leviers se rangent en trois étapes. D’abord, ne plus perdre de commandes : ouverture, acceptation, note. Ensuite, mieux vous présenter : photos, descriptions, prix. Enfin, aller chercher des clients : promos, puis publicité. Chaque levier a son guide détaillé, en lien.
-
-## 1. Rester ouvert pendant tout le service
-
-Un restaurant fermé ne reçoit rien, et c’est le levier le plus souvent oublié. Uber Eats met vos commandes en pause quand vous en refusez plusieurs d’affilée ou que vous tardez à les accepter. Chez Deliveroo, une commande sans réponse au bout de 10 minutes est refusée, et votre restaurant reste fermé tant que vous ne l’ouvrez pas.
-
-Vérifiez vos horaires sur les deux plateformes, gardez la tablette branchée et regardez votre fiche à chaque début de service. Tout est détaillé dans notre article sur [le restaurant fermé en plein service](/ressources/restaurant-ferme-uber-eats-deliveroo/).
-
-## 2. Accepter vite et préparer à l’heure
-
-Les deux plateformes surveillent votre fiabilité. Chez Uber Eats, le score de réussite regarde si vos commandes sont fiables, prêtes à l’heure et justes. Chez Deliveroo, l’attente prévue pour le client compte dans le classement : un temps de préparation trop long vous fait descendre.
-
-Le soir du rush, ce sont les réglages qui comptent : mode Occupé, ruptures signalées tout de suite, une personne dédiée aux tablettes. Notre guide pour [gérer les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) les détaille.
-
-## 3. Faire monter votre note
-
-Votre note pèse partout : dans le classement de Deliveroo, dans le score de réussite d’Uber Eats, et dans la décision du client qui hésite entre deux restaurants. Les causes sont presque toujours les mêmes : un article oublié, une commande en retard, un emballage qui fuit.
-
-Répondez aux avis, surtout aux mauvais, et corrigez ce qu’ils pointent. Voir notre article sur [la note Uber Eats et Deliveroo](/ressources/ameliorer-note-uber-eats-deliveroo/).
-
-## 4. Mettre une photo et une description sur chaque plat
-
-Le client choisit avec les yeux, et Uber Eats le sait : la part de votre menu avec photos ou descriptions entre dans votre score de réussite.
-
-**Exemple réel** : dans un restaurant de burgers à Paris, analysé par Deliview le 2 octobre 2026, 8 plats sur 33 n’avaient pas de description sur Deliveroo, soit 24 %. Chez ses 9 concurrents, la part tombait à 5 %. Ce retard se rattrape sans dépenser un euro.
-
-Pour refaire vos photos avec un téléphone, en respectant les règles des deux plateformes, lisez notre guide sur [les photos de plats](/ressources/photos-plats-uber-eats-deliveroo/).
-
-## 5. Placer vos prix au niveau de votre zone
-
-Le client compare en quelques secondes. Un plat bien plus cher que chez les voisins se vend moins, et un plat trop bas vous fait perdre de la marge sur chaque commande. Uber Eats suit aussi la majoration de vos prix dans son score de réussite.
-
-Comparez le même plat, à taille égale, chez cinq à dix concurrents, puis situez-vous face au prix du milieu. La méthode est dans notre article pour [analyser les prix de vos concurrents](/ressources/analyser-prix-concurrents-livraison/), et le calcul du prix plancher dans celui pour [fixer vos prix](/ressources/fixer-prix-uber-eats-deliveroo/).
-
-## 6. Garder les promos pour vos heures creuses
-
-Chez Deliveroo, un restaurant qui « propose actuellement une promotion » remonte dans le classement. Mais une promo coûte sur chaque commande : lancée sur un service déjà plein, elle rogne votre marge sans rien vous rapporter.
-
-Repérez vos services les plus faibles, le mardi midi face aux autres midis par exemple, et ciblez-les. Chez Uber Eats, vérifiez d’abord que votre score de réussite vous laisse l’accès aux offres. Le calcul complet est dans notre article sur [les promos rentables](/ressources/promotion-uber-eats-deliveroo-rentable/).
-
-## 7. Passer à la publicité en dernier
-
-Les deux plateformes vendent de la visibilité. Uber Eats propose des campagnes d’annonces dans Uber Eats Manager. Chez Deliveroo, vous fixez un budget et un coût par vue de votre menu, retirés chaque semaine de votre facture.
-
-La publicité amène des clients sur votre fiche : si la fiche, la note ou les prix ne suivent pas, vous payez pour qu’ils repartent. Gardez-la pour la fin, et lisez avant [comment Uber Eats et Deliveroo classent les restaurants](/ressources/algorithme-classement-uber-eats-deliveroo/).
-
-## 8. Ne pas perdre ce que vous avez vendu
-
-Vendre plus ne sert à rien si l’argent repart ensuite. Un client remboursé à tort vous coûte la commande : vous avez 30 jours pour contester chez Uber Eats, et 7 jours chez Deliveroo. Voir notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
-
-Regardez aussi ce que chaque plateforme vous laisse vraiment, commission, offres et TVA comprises, avec nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
-
-## Comment savoir si un changement a marché ?
-
-Changez une chose à la fois, et comparez les mêmes services avant et après : le mardi midi à d’autres mardis midi, pas à un samedi soir. Laissez au moins deux semaines à chaque changement avant de conclure.
-
-Uber Eats Manager affiche vos ventes, votre nombre de commandes et votre panier moyen. Chez Deliveroo, vos factures hebdomadaires donnent vos ventes semaine par semaine. Pour suivre les deux au même endroit, notre article pour [gérer Uber Eats et Deliveroo ensemble](/ressources/gerer-uber-eats-deliveroo-ensemble/) compare les solutions, du tableur gratuit aux outils.
-
-Deliview suit vos ventes chaque jour, sur les deux plateformes, et vous dit où vous en êtes de [vos objectifs de ventes](/solution/objectifs/), semaine après semaine.
-
-Sources : Success score (France) (Uber, https://merchants.ubereats.com/fr/en/success-score/, consulté le 7 octobre 2026) ; How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Pourquoi les commandes sont-elles suspendues automatiquement ? (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/pourquoi-les-commandes-sont-elles-interrompues-automatiquement-?nodeId=ef70e506-60c4-45e4-b21e-0adca9efe8fe, consulté le 6 octobre 2026) ; Comment éviter de refuser des commandes ? (Deliveroo, https://help.deliveroo.com/fr/articles/3198713, consulté le 6 octobre 2026) ; Comprendre la Notification de Rappel d’Ouverture (Deliveroo, https://help.deliveroo.com/fr/articles/11002244-comprendre-la-notification-de-rappel-d-ouverture, consulté le 6 octobre 2026) ; Classement et référencement de nos partenaires (Deliveroo, https://deliveroo.fr/fr/partner-ranking, consulté le 7 octobre 2026) ; Foire aux questions sur les publicités (Deliveroo, https://help.deliveroo.com/fr/articles/4840108-foire-aux-questions-sur-les-publicites, consulté le 6 octobre 2026)
 
 ### Remboursement Uber Eats ou Deliveroo : comment contester et récupérer votre argent
 
