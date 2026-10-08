@@ -5,6 +5,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { LEVIERS, OFFRES, SITE, VEILLE, cheminFonction } from '../lib/site';
 import { PAGES } from '../lib/fonctions';
+import { NE_FAIT_PAS, texteBrut } from '../lib/faq';
 
 export const GET: APIRoute = async () => {
   const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort(
@@ -27,6 +28,8 @@ export const GET: APIRoute = async () => {
     }),
     `- [Simulateur de rentabilité](${u('/simulateur/')}) : ce que rapporte un prix mieux placé, calculé dans le navigateur.`,
     `- [Intégrations](${u('/integrations/')}) : Uber Eats et Deliveroo, plateformes analysées en France.`,
+    // 8 octobre 2026 (audit SEO et GEO) : la même réponse que sur /deliview-est-il-fiable/.
+    `- [Ce que Deliview ne fait pas](${u('/deliview-est-il-fiable/#' + NE_FAIT_PAS.id)}) : ${texteBrut(NE_FAIT_PAS.r)}`,
     '',
     '## Tarifs',
     '',

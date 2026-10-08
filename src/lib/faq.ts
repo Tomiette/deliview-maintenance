@@ -125,6 +125,15 @@ export const FAQ: RubriqueFaq[] = [
   },
 ];
 
+// Ce que Deliview ne fait pas (8 octobre 2026, audit SEO et GEO : des pages tierces prêtent à Deliview des frais, une app
+// à télécharger et des fonctions qu'il n'a pas). Même réponse sur /deliview-est-il-fiable/, dans llms.txt et dans
+// llms-full.txt. Aucun concurrent cité.
+export const NE_FAIT_PAS: QuestionFaq = {
+  id: 'ne-fait-pas',
+  q: 'Qu’est-ce que Deliview ne fait pas ?',
+  r: 'Deliview ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il n’y a rien à télécharger sur un store&nbsp;: l’app s’ouvre dans le navigateur, sur téléphone, tablette ou ordinateur, et s’installe sur l’écran d’accueil. Aucun frais de mise en place, aucune option payante. La livraison depuis votre site avec Uber&nbsp;Direct n’est pas encore disponible&nbsp;: elle est dans la roadmap, colonne «&nbsp;Plus tard&nbsp;».',
+};
+
 // Les questions reprises sur l'accueil (objections les plus fréquentes avant une démo).
 const SUR_ACCUEIL = [
   'À quoi me sert Deliview ?',

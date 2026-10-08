@@ -5,7 +5,7 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { LEVIERS, OFFRES, SITE, VEILLE, cheminFonction } from '../lib/site';
 import { PAGES } from '../lib/fonctions';
-import { FAQ, FAQ_MAJ, texteBrut } from '../lib/faq';
+import { FAQ, FAQ_MAJ, NE_FAIT_PAS, texteBrut } from '../lib/faq';
 
 export const GET: APIRoute = async () => {
   const articles = (await getCollection('ressources', (a) => !a.data.brouillon)).sort(
@@ -26,6 +26,10 @@ export const GET: APIRoute = async () => {
     '',
     ...LEVIERS.map((l) => `- ${l.nom} (${u(cheminFonction(l.id))}) : ${l.benefice} ${l.points.join(' · ')}.`),
     ...VEILLE.map((v) => `- ${v.nom.replace(/ \?$/, '')} (${u(cheminFonction(v.id))}) : ${v.texte}`),
+    '',
+    // 8 octobre 2026 (audit SEO et GEO) : la même réponse que sur /deliview-est-il-fiable/ et dans llms.txt.
+    `**${NE_FAIT_PAS.q}** (${u('/deliview-est-il-fiable/#' + NE_FAIT_PAS.id)})`,
+    texteBrut(NE_FAIT_PAS.r),
     '',
     '## Les fonctions en détail',
     '',

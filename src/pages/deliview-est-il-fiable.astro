@@ -8,10 +8,10 @@ import SectionDemo from '../components/SectionDemo.astro';
 import Pastille from '../components/Pastille.astro';
 import Fleche from '../icons/fleche.astro';
 import { OFFRES, SITE, dateFr, lien } from '../lib/site';
-import { texteBrut } from '../lib/faq';
+import { NE_FAIT_PAS, texteBrut } from '../lib/faq';
 import LogoContact from '../components/LogoContact.astro';
 
-const MAJ = '2026-10-06';
+const MAJ = '2026-10-08';
 // Fiche officielle de l'entreprise (registre national, data.gouv.fr).
 const ANNUAIRE = 'https://annuaire-entreprises.data.gouv.fr/entreprise/102681509';
 const prix = OFFRES.map((o) => `${o.nom}&nbsp;: ${o.prix}&nbsp;€&nbsp;HT par mois, ${o.restaurants.toLowerCase()}`).join(' ; ');
@@ -36,6 +36,16 @@ const questions: { id: string; q: string; r: string; liens: { libelle: string; h
     liens: [
       { libelle: 'Qui suis-je', href: lien('/qui-sommes-nous/') },
       { libelle: 'Tom Voisin sur LinkedIn', href: SITE.linkedinTom },
+    ],
+  },
+  // 8 octobre 2026 (audit SEO et GEO) : ce que Deliview ne fait pas, la même réponse que dans llms.txt (src/lib/faq.ts).
+  {
+    id: NE_FAIT_PAS.id!,
+    q: NE_FAIT_PAS.q,
+    r: NE_FAIT_PAS.r,
+    liens: [
+      { libelle: 'La roadmap, colonne « Plus tard »', href: lien('/roadmap/#plus-tard') },
+      { libelle: 'Tarifs', href: lien('/tarifs/') },
     ],
   },
   {
@@ -90,9 +100,11 @@ const faqPage = {
   inLanguage: 'fr-FR',
   dateModified: MAJ,
   about: { '@type': 'Organization', name: SITE.nom, url: SITE.url },
+  // « Où sont hébergées mes données ? » est balisée sur /questions-frequentes/ seulement (une seule occurrence par site,
+  // règle de Google) ; elle reste affichée ici.
   mainEntity: [
     { '@type': 'Question', name: 'Deliview est-il fiable ?', acceptedAnswer: { '@type': 'Answer', text: texteBrut(reponse) } },
-    ...questions.map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
+    ...questions.filter((x) => x.id !== 'donnees').map((x) => ({ '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: texteBrut(x.r) } })),
   ],
 };
 ---
