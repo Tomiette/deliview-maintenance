@@ -292,7 +292,6 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
                 {o.nom}
                 {o.recommandee && <span class="sr-only">, offre recommandée</span>}
               </h3>
-              <p class="mt-1.5 text-[15px] leading-[1.4] dv-muted md:text-[16px]">{o.restaurants}</p>
               <p class="mt-4 grow border-t border-grey-2/15 pt-4 text-[16px] leading-[1.5] md:mt-5 md:pt-5">{o.pour}.</p>
               <a
                 href={lien(`/tarifs/#${o.slug}`)}
@@ -308,14 +307,16 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
       </ul>
       <!-- 7 octobre 2026, 23 h 06 (accord de Tom) : sur l'accueil, chaque offre mène à son détail sur Tarifs (« Voir le
            détail ») ; « Commencer maintenant » reste sur Tarifs, à côté de la liste complète. Sous les offres, seule la carte
-           « Plus de 10 restaurants ? » reste (la carte « Besoin de comparer ? » faisait doublon avec les boutons). -->
+           « Plus de 10 restaurants ? » reste (la carte « Besoin de comparer ? » faisait doublon avec les boutons).
+           8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre ; la bulle devient
+           « Un groupe de restaurants ? ». -->
       <div class="mt-8 grid max-w-[880px] gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
         <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
           <div class="flex items-center gap-3">
             <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
-            <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Plus de 10&nbsp;restaurants&nbsp;?</h3>
+            <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Un groupe de restaurants&nbsp;?</h3>
           </div>
-          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre sur mesure pour tout votre groupe.</p>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre pour tout votre groupe.</p>
           <a href="#demo" class="dv-lien-fort mt-4 self-start" data-cta="accueil-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
         </div>
       </div>

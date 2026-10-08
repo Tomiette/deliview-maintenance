@@ -2350,11 +2350,10 @@
   .dv-choix-offre-carte {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    grid-template-areas: "radio nom" "radio detail";
+    grid-template-areas: "radio nom";
     align-items: center;
     column-gap: 12px;
-    row-gap: 2px;
-    min-height: 64px;
+    min-height: 56px;
     padding: 10px 16px;
     border: 1.5px solid color-mix(in srgb, var(--color-grey-2) 70%, transparent);
     border-radius: 12px;
@@ -2375,11 +2374,6 @@
     font-size: 17px;
     font-weight: 700;
     line-height: 1.25;
-  }
-  .dv-choix-offre-detail {
-    grid-area: detail;
-    font-size: 15px;
-    line-height: 1.35;
   }
   .dv-choix-offre-carte:hover {
     border-color: var(--color-grey-2);

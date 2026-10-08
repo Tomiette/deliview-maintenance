@@ -37,7 +37,7 @@ export const FAQ: RubriqueFaq[] = [
       {
         id: 'pour-qui',
         q: 'Est-ce que Deliview est fait pour mon restaurant ?',
-        r: 'Oui, si vous vendez sur Uber&nbsp;Eats, sur Deliveroo ou sur les deux, avec 1 à 10&nbsp;restaurants. Pizzerias, burgers, snacks, dark kitchens et petites chaînes. Au-delà, Tom fait une offre sur mesure.',
+        r: 'Oui, si vous vendez sur Uber&nbsp;Eats, sur Deliveroo ou sur les deux, avec un restaurant ou plusieurs. Pizzerias, burgers, snacks, dark kitchens et petites chaînes.',
       },
       {
         q: 'Sur quelles plateformes est-ce que je peux utiliser Deliview ?',

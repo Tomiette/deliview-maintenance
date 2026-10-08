@@ -579,7 +579,7 @@ export const PAGES: Record<string, PageFonction> = {
       },
       {
         q: 'J’ai plusieurs restaurants. Comment ça se passe ?',
-        r: 'Avec Pro (jusqu’à 3&nbsp;restaurants) ou Groupe (jusqu’à 10), chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.',
+        r: 'Avec Pro ou Groupe, chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.',
       },
       {
         q: 'Comment je reçois le point du lundi ?',

@@ -517,17 +517,16 @@ export const PLATEFORMES = [
   },
 ];
 
-// Les 3 abonnements, selon le nombre de restaurants. Sans engagement, mise en place offerte.
+// Les 3 abonnements. Sans engagement, mise en place offerte.
 // Benchmark (1er octobre 2026) : Otter 34/49/89 €, Fooderise 49/99 €, HubRise 35 €, Deliverect 79/119/199 € par établissement.
 // Plus aucun prix sur le site depuis le 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut
 // avoir des besoins différents ») : le prix est fixé avec Tom, avant tout paiement (CGV 8.1 et 8.2). Les prix de base
 // restent dans l'app (app/src/lib/offre.ts) et dans Stripe, pour les clients déjà abonnés.
+// Plus de nombre de restaurants par offre non plus (8 octobre 2026, 15 h 26, demande de Tom : « Enlève jusqu'à un
+// certain nombre de restaurants ») : il est fixé avec le prix. L'app garde ses limites pour le moment.
 export interface Offre {
   slug: string;
   nom: string;
-  restaurants: string;
-  // Nombre de restaurants au plus (simulateur : l'offre qui correspond au nombre saisi).
-  maxRestaurants: number;
   pour: string;
   // Page Tarifs (7 octobre 2026) : la situation du restaurateur à qui l'offre s'adresse, sous « Pour vous si ».
   pourVous: string;
@@ -558,8 +557,6 @@ export const OFFRES: Offre[] = [
   {
     slug: 'essentiel',
     nom: 'Essentiel',
-    restaurants: '1 restaurant',
-    maxRestaurants: 1,
     pour: 'Améliorez la rentabilité de votre activité livraison',
     pourVous: 'Vous voulez améliorer la rentabilité de votre activité livraison.',
     base: 'Inclus :',
@@ -572,14 +569,11 @@ export const OFFRES: Offre[] = [
       'Alerte si fermé en plein service',
       'Objectifs et point du lundi',
       '1 analyse de zone par semaine',
-      '1 restaurant',
     ],
   },
   {
     slug: 'pro',
     nom: 'Pro',
-    restaurants: 'Jusqu’à 3 restaurants',
-    maxRestaurants: 3,
     pour: 'Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison',
     pourVous: 'Vous voulez améliorer la rentabilité et devancer vos concurrents sur les plateformes de livraison.',
     recommandee: true,
@@ -593,18 +587,15 @@ export const OFFRES: Offre[] = [
       'Analyses de zone à la demande',
       'Concurrents de votre choix',
       'Assistant IA et rapport d’équipe',
-      'Jusqu’à 3 restaurants',
     ],
   },
   {
     slug: 'premium',
     nom: 'Groupe',
-    restaurants: 'Jusqu’à 10 restaurants',
-    maxRestaurants: 10,
     pour: 'Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison',
     pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
     base: 'Tout Pro, plus :',
-    inclus: ['Point mensuel avec Tom', 'Jusqu’à 10 restaurants'],
+    inclus: ['Point mensuel avec Tom'],
   },
 ];
 

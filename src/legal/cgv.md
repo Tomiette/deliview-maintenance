@@ -64,7 +64,7 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 
 5.3. Le Client peut changer d’Offre à tout moment. Le passage à une Offre supérieure prend effet immédiatement et la différence de prix est facturée au prorata de la période en cours. Le passage à une Offre inférieure prend effet à la période suivante.
 
-5.4. Au-delà de 10 Établissements, les conditions sont fixées par le Bon de commande.
+5.4. Les Établissements couverts sont ceux indiqués dans le Bon de commande ou dans le lien de paiement.
 
 ## Article 6. Commande et formation du Contrat
 
@@ -232,7 +232,6 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 |  | Essentiel | Pro | Groupe |
 | --- | --- | --- | --- |
-| Établissements couverts | 1 | Jusqu’à 3 | Jusqu’à 10 |
 | Ventes Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
 | Prix comparés à ceux des concurrents, plat par plat | Oui | Oui | Oui |
 | Promotions et notes des concurrents | Oui | Oui | Oui |

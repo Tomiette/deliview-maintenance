@@ -6,17 +6,19 @@
 // - listes qui s'additionnent : « Tout Essentiel, plus : », « Tout Pro, plus : » (Linear, Otter) ;
 // - ce qui est inclus quoi qu'il arrive, dont « aucun frais caché » (Sunday) ;
 // - le coût de ne rien faire, relié aux offres, puis le simulateur (Sunday, Zenchef : calculateur) ;
-// - offre sur mesure au-delà de 10 restaurants (Linear : « Contact sales ») ;
+// - offre pour un groupe de restaurants à part (Linear : « Contact sales ») ;
 // - tableau comparatif à en-tête collant (Linear), lisible sur téléphone sans défilement horizontal ;
 // - questions sur les objections : frais, paiement, arrêt, changement d'offre (Otter).
 // Uniquement ce que Deliview fait aujourd'hui (OFFRES dans src/lib/site.ts, annexe 1 des CGV). Aucun chiffre inventé :
 // l'exemple de prix est la vraie analyse de l'accueil (EXEMPLE_MARGHERITA), les engagements viennent des CGV (3.4, 9,
 // 10, 12.2), l'argent rapporté est la carte de l'accueil de l'app (5 octobre 2026).
 // Gardé : chaque offre mène au formulaire de départ /commencer/?offre=… (4 octobre, logique de taap.it) ; la démo reste
-// proposée sous les offres et en bas de page ; « Plus de 10 restaurants ? » dans la bulle de Tom, comme sur l'accueil.
+// proposée sous les offres et en bas de page ; « Un groupe de restaurants ? » dans la bulle de Tom, comme sur l'accueil.
 // 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut avoir des besoins différents ») : plus
 // aucun prix sur la page. À la place du prix, « Prix selon vos besoins, fixé avec Tom, avant tout paiement » (CGV 8.1
 // et 8.2) ; « Combien me coûte Deliview ? » en tête des questions ; plus de données structurées d'offres.
+// 8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre (cartes, raccourcis, comparatif,
+// questions), et « Prix selon vos besoins » seul, sans « Fixé avec Tom, avant tout paiement ».
 import Base from '../layouts/Base.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
@@ -116,9 +118,8 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
     ],
   },
   {
-    groupe: 'Vos restaurants et votre équipe',
+    groupe: 'Accès et accompagnement',
     lignes: [
-      { libelle: 'Restaurants', valeurs: ['1', 'Jusqu’à 3', 'Jusqu’à 10'] },
       { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
       { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'non', 'oui'] },
     ],
@@ -150,15 +151,15 @@ const faq = [
   },
   {
     q: 'J’ai un seul restaurant : je peux choisir Pro ?',
-    r: 'Oui. Le nombre de restaurants de chaque offre est un maximum, pas un minimum. Vous changez d’offre quand vous voulez&nbsp;: une offre supérieure s’applique tout de suite, et la différence est facturée au prorata.',
+    r: 'Oui. Pro ajoute ce que Deliview fait pour vous (promos, prix, remboursements), que vous ayez un restaurant ou plusieurs. Vous changez d’offre quand vous voulez&nbsp;: une offre supérieure s’applique tout de suite, et la différence est facturée au prorata.',
   },
   {
     q: 'Est-ce que je garde mes tablettes Uber Eats et Deliveroo ?',
     r: 'Oui. Vos tablettes restent là pour recevoir les commandes, et rien n’est à installer&nbsp;: Deliview s’ouvre dans votre navigateur.',
   },
   {
-    q: 'J’ai plus de 10 restaurants : comment je fais ?',
-    r: `Tom vous fait une offre sur mesure. Écrivez-lui à <a href="mailto:${SITE.email}">${SITE.email}</a> ou demandez une démo.`,
+    q: 'J’ai un groupe de restaurants : comment je fais ?',
+    r: `Tom vous prépare une offre pour tout votre groupe. Écrivez-lui à <a href="mailto:${SITE.email}">${SITE.email}</a> ou demandez une démo.`,
   },
   {
     q: 'Où sont hébergées mes données ?',
@@ -200,7 +201,6 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
               <li>
                 <a href={`#${o.slug}`} class={`dv-raccourci ${o.recommandee ? 'dv-raccourci-pro' : ''}`} data-cta={`tarifs-raccourci-${o.slug}`}>
                   <span class="dv-raccourci-nom">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</span>
-                  <span class="dv-raccourci-detail">{o.restaurants}</span>
                 </a>
               </li>
             ))
@@ -234,7 +234,6 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
                 {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
                 <div class="mt-5 border-t border-grey-2/15 pt-5">
                   <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
-                  <p class="dv-offre-fixe">Fixé avec Tom, avant tout paiement</p>
                 </div>
                 <a
                   href={lien(`/commencer/?offre=${o.slug}`)}
@@ -274,9 +273,9 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
         <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
           <div class="flex items-center gap-3">
             <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
-            <h2 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Plus de 10&nbsp;restaurants&nbsp;?</h2>
+            <h2 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Un groupe de restaurants&nbsp;?</h2>
           </div>
-          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre sur mesure pour tout votre groupe.</p>
+          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre pour tout votre groupe.</p>
           <a href={lien('/demo/')} class="dv-lien-fort mt-4 self-start" data-cta="tarifs-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
         </div>
         <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
@@ -443,12 +442,15 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     color: var(--color-blue);
   }
 
-  /* Raccourcis vers les offres (téléphone et tablette) : trois pastilles en relief, Pro au contour Bleu 1. */
+  /* Raccourcis vers les offres (téléphone et tablette) : trois pastilles en relief, Pro au contour Bleu 1. Le nom seul
+     depuis le 8 octobre 2026 (plus de prix ni de nombre de restaurants), centré dans 52 px. */
   .dv-raccourci {
     display: flex;
     height: 100%;
+    min-height: 52px;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 2px;
     padding: 12px 6px 13px;
     border: 1px solid var(--dv-bord);
@@ -473,12 +475,6 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     font-size: 16px;
     font-weight: 700;
     line-height: 1.25;
-  }
-  .dv-raccourci-detail {
-    font-size: 14px;
-    line-height: 1.3;
-    text-wrap: balance;
-    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
 
   /* Étiquette « Bientôt » : promis par l'offre, pas encore dans l'app (Bleu 1 à 12 %, texte Gris 2). */
@@ -511,18 +507,12 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
   }
 
-  /* À la place du prix (8 octobre 2026) : une ligne en Aspekta, puis comment il est fixé. */
+  /* À la place du prix (8 octobre 2026) : une ligne en Aspekta. */
   .dv-offre-sur-mesure {
     font-family: var(--font-accent);
     font-size: 24px;
     font-weight: 700;
     line-height: 1.2;
-  }
-  .dv-offre-fixe {
-    margin-top: 6px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
 
   /* Ce que fait chaque offre face à une perte : deux lignes sous un trait. */
