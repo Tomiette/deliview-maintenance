@@ -533,11 +533,15 @@ export const PLATEFORMES = [
 // « Pour vous si » ; des lignes courtes ; ce que Deliview faisait sans le dire est ajouté (score de la fiche Uber Eats,
 // photos et descriptions revues, rapports PDF), et pour Groupe la réponse prioritaire sur WhatsApp et les accès
 // illimités (app/src/lib/offre.ts : accès illimités en Groupe).
+// 8 octobre 2026, 17 h 47 (demande de Tom : « garde ces sous-textes pour les offres sur la page pricing ») : sous le
+// titre court, la phrase de Tom « Vous voulez… » revient sur les cartes de Tarifs (sans l'étiquette « Pour vous si »).
 export interface Offre {
   slug: string;
   nom: string;
   // Titre court sous le nom de l'offre (Tarifs, accueil, formulaire « Commencer », llms.txt).
   titre: string;
+  // Sous-texte des cartes de Tarifs : la situation du restaurateur, textes de Tom mot pour mot (7 octobre 2026, 19 h 44).
+  pourVous: string;
   recommandee?: boolean;
   // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).
   base: string;
@@ -566,6 +570,7 @@ export const OFFRES: Offre[] = [
     slug: 'essentiel',
     nom: 'Essentiel',
     titre: 'Vous voyez tout sur un seul écran',
+    pourVous: 'Vous voulez améliorer la rentabilité de votre activité livraison.',
     base: 'Inclus :',
     // Score de la fiche (écran Score Uber Eats) et photos et descriptions revues (Menu › Présentation) : dans toutes les
     // offres de l'app, ajoutés à la carte le 8 octobre 2026.
@@ -585,6 +590,7 @@ export const OFFRES: Offre[] = [
     slug: 'pro',
     nom: 'Pro',
     titre: 'Deliview agit pour vous',
+    pourVous: 'Vous voulez améliorer la rentabilité et devancer vos concurrents sur les plateformes de livraison.',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
@@ -603,6 +609,7 @@ export const OFFRES: Offre[] = [
     slug: 'premium',
     nom: 'Groupe',
     titre: 'Tom vous accompagne chaque mois',
+    pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
     base: 'Tout Pro, plus :',
     // Réponse prioritaire sur WhatsApp : promesse de service de Tom (8 octobre 2026), pas une fonction de l'app.
     inclus: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
