@@ -54,7 +54,7 @@ export const GET: APIRoute = async () => {
     // Plus aucun prix public depuis le 8 octobre 2026 (demande de Tom) : le prix est fixé avec Tom, avant tout paiement.
     '## Offres (prix et nombre de restaurants selon vos besoins, fixés avec Tom avant tout paiement ; sans engagement, mise en place offerte)',
     '',
-    ...OFFRES.map((o) => `- ${o.nom} : ${o.pour}.`),
+    ...OFFRES.map((o) => `- ${o.nom} : ${o.titre}. ${o.base} ${o.inclus.map((x) => (typeof x === 'string' ? x : x.texte)).map((x) => x.charAt(0).toLowerCase() + x.slice(1)).join(' ; ')}.`),
     '',
     `## Questions fréquentes (mises à jour le ${FAQ_MAJ}, ${u('/questions-frequentes/')})`,
     '',

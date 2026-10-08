@@ -45,6 +45,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
               <label class="dv-choix-offre-carte">
                 <input type="radio" name="offre" value={o.slug} checked={o.slug === offreParDefaut.slug} data-nom={o.nom} />
                 <span class="dv-choix-offre-nom">{o.nom}</span>
+                <span class="dv-choix-offre-detail dv-muted">{o.titre}</span>
               </label>
             ))}
           </div>

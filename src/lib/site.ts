@@ -524,12 +524,16 @@ export const PLATEFORMES = [
 // restent dans l'app (app/src/lib/offre.ts) et dans Stripe, pour les clients déjà abonnés.
 // Plus de nombre de restaurants par offre non plus (8 octobre 2026, 15 h 26, demande de Tom : « Enlève jusqu'à un
 // certain nombre de restaurants ») : il est fixé avec le prix. L'app garde ses limites pour le moment.
+// Textes des offres revus le 8 octobre 2026, 15 h 50 (demande de Tom : « ajuste le copywriting de mes offres en ayant
+// des titres simples, concis ») : un titre court par offre (vous voyez, Deliview agit, Tom vous accompagne) à la place de
+// « Pour vous si » ; des lignes courtes ; ce que Deliview faisait sans le dire est ajouté (score de la fiche Uber Eats,
+// photos et descriptions revues, rapports PDF), et pour Groupe la réponse prioritaire sur WhatsApp et les accès
+// illimités (app/src/lib/offre.ts : accès illimités en Groupe).
 export interface Offre {
   slug: string;
   nom: string;
-  pour: string;
-  // Page Tarifs (7 octobre 2026) : la situation du restaurateur à qui l'offre s'adresse, sous « Pour vous si ».
-  pourVous: string;
+  // Titre court sous le nom de l'offre (Tarifs, accueil, formulaire « Commencer », llms.txt).
+  titre: string;
   recommandee?: boolean;
   // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).
   base: string;
@@ -557,45 +561,47 @@ export const OFFRES: Offre[] = [
   {
     slug: 'essentiel',
     nom: 'Essentiel',
-    pour: 'Améliorez la rentabilité de votre activité livraison',
-    pourVous: 'Vous voulez améliorer la rentabilité de votre activité livraison.',
+    titre: 'Vous voyez tout sur un seul écran',
     base: 'Inclus :',
+    // Score de la fiche (écran Score Uber Eats) et photos et descriptions revues (Menu › Présentation) : dans toutes les
+    // offres de l'app, ajoutés à la carte le 8 octobre 2026.
     inclus: [
       'Ventes Uber Eats et Deliveroo réunies',
-      'Vos prix face aux concurrents',
-      'Promos et notes de votre zone',
+      'Score de votre fiche Uber Eats',
+      'Prix, promos et notes de vos concurrents',
+      '1 analyse de zone par semaine',
+      'Photos et descriptions revues',
       'Remboursements et dates limites',
       'Réponses IA à vos avis',
-      'Alerte si fermé en plein service',
+      'Alerte fermeture en plein service',
       'Objectifs et point du lundi',
-      '1 analyse de zone par semaine',
     ],
   },
   {
     slug: 'pro',
     nom: 'Pro',
-    pour: 'Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison',
-    pourVous: 'Vous voulez améliorer la rentabilité et devancer vos concurrents sur les plateformes de livraison.',
+    titre: 'Deliview agit pour vous',
     recommandee: true,
     base: 'Tout Essentiel, plus :',
     // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
     // Essentiel, une analyse par semaine), ajoutés à la page le 7 octobre pour qu'aucune limite ne soit cachée.
     inclus: [
-      'Promos et prix mis en ligne, après votre accord',
+      'Prix et promos appliqués, avec votre accord',
       'Remboursements contestés en un clic',
-      'Restaurant fermé relancé en un clic',
+      'Réouverture en un clic',
       'Analyses de zone à la demande',
       'Concurrents de votre choix',
-      'Assistant IA et rapport d’équipe',
+      'Assistant IA',
+      'Rapports PDF à partager',
     ],
   },
   {
     slug: 'premium',
     nom: 'Groupe',
-    pour: 'Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison',
-    pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
+    titre: 'Tom vous accompagne chaque mois',
     base: 'Tout Pro, plus :',
-    inclus: ['Point mensuel avec Tom'],
+    // Réponse prioritaire sur WhatsApp : promesse de service de Tom (8 octobre 2026), pas une fonction de l'app.
+    inclus: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
   },
 ];
 

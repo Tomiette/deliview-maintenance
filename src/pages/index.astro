@@ -292,7 +292,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
                 {o.nom}
                 {o.recommandee && <span class="sr-only">, offre recommandée</span>}
               </h3>
-              <p class="mt-4 grow border-t border-grey-2/15 pt-4 text-[16px] leading-[1.5] md:mt-5 md:pt-5">{o.pour}.</p>
+              <p class="mt-4 grow border-t border-grey-2/15 pt-4 text-[17px] font-semibold leading-[1.45] md:mt-5 md:pt-5">{o.titre}</p>
               <a
                 href={lien(`/tarifs/#${o.slug}`)}
                 class={`dv-btn mt-5 w-full md:mt-6 ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
@@ -309,7 +309,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
            détail ») ; « Commencer maintenant » reste sur Tarifs, à côté de la liste complète. Sous les offres, seule la carte
            « Plus de 10 restaurants ? » reste (la carte « Besoin de comparer ? » faisait doublon avec les boutons).
            8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre ; la bulle devient
-           « Un groupe de restaurants ? ». -->
+           « Un groupe de restaurants ? ». 15 h 50 : le titre court de chaque offre (« Vous voyez tout sur un seul écran »…). -->
       <div class="mt-8 grid max-w-[880px] gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
         <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
           <div class="flex items-center gap-3">

@@ -2,7 +2,7 @@
 // Tarifs, refaite le 7 octobre 2026 (demande de Tom : « améliore toute la page pricing… répartit les features de manière
 // simple, écrite de manière concise… le restaurateur doit se sentir concerné… reprendre la technique d'autres SaaS »).
 // Techniques reprises d'autres pages de tarifs (la structure seulement, aucun texte copié) :
-// - « pour qui » sous chaque offre, écrit comme la situation du client (Zenchef, Otter) : « Pour vous si… » ;
+// - un titre court sous chaque offre, qui dit ce qu'elle change (8 octobre 2026, à la place de « Pour vous si… ») ;
 // - listes qui s'additionnent : « Tout Essentiel, plus : », « Tout Pro, plus : » (Linear, Otter) ;
 // - ce qui est inclus quoi qu'il arrive, dont « aucun frais caché » (Sunday) ;
 // - le coût de ne rien faire, relié aux offres, puis le simulateur (Sunday, Zenchef : calculateur) ;
@@ -19,6 +19,8 @@
 // et 8.2) ; « Combien me coûte Deliview ? » en tête des questions ; plus de données structurées d'offres.
 // 8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre (cartes, raccourcis, comparatif,
 // questions), et « Prix selon vos besoins » seul, sans « Fixé avec Tom, avant tout paiement ».
+// 8 octobre 2026, 15 h 50 (demande de Tom : « des titres simples, concis ») : un titre court par offre à la place de
+// « Pour vous si », lignes plus courtes, et le comparatif avec les mêmes mots (OFFRES dans src/lib/site.ts).
 import Base from '../layouts/Base.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
@@ -98,23 +100,25 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
     groupe: 'Vos chiffres et votre zone',
     lignes: [
       { libelle: 'Ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Vos prix face aux concurrents', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Promos et notes de votre zone', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Remboursements et dates limites', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Score de votre fiche Uber Eats', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Prix, promos et notes de vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
       { libelle: 'Analyses de zone', valeurs: ['1 par semaine', 'À la demande', 'À la demande'] },
       { libelle: 'Concurrents de votre choix', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Photos et descriptions revues', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Remboursements et dates limites', valeurs: ['oui', 'oui', 'oui'] },
       { libelle: 'Réponses IA à vos avis', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Alerte si fermé en plein service', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Alerte fermeture en plein service', valeurs: ['oui', 'oui', 'oui'] },
       { libelle: 'Objectifs et point du lundi', valeurs: ['oui', 'oui', 'oui'] },
     ],
   },
   {
     groupe: 'Deliview agit pour vous',
     lignes: [
-      { libelle: 'Promos et prix mis en ligne, après votre accord', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Prix et promos appliqués, avec votre accord', valeurs: ['non', 'oui', 'oui'] },
       { libelle: 'Remboursements contestés en un clic', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Restaurant fermé relancé en un clic', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Assistant IA et rapport d’équipe', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Réouverture en un clic', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Assistant IA', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Rapports PDF à partager', valeurs: ['non', 'oui', 'oui'] },
     ],
   },
   {
@@ -122,6 +126,7 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
     lignes: [
       { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
       { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'Réponse prioritaire sur WhatsApp', valeurs: ['non', 'non', 'oui'] },
     ],
   },
 ];
@@ -229,8 +234,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
                     <h2 class="font-accent text-[26px] font-bold leading-[1.15] md:text-[28px]">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</h2>
                   </div>
                 </div>
-                <p class="dv-overline mt-6">Pour vous si</p>
-                <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[72px]">{o.pourVous}</p>
+                <p class="dv-offre-titre mt-4 lg:min-h-[54px]">{o.titre}</p>
                 {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
                 <div class="mt-5 border-t border-grey-2/15 pt-5">
                   <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
@@ -507,12 +511,19 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
   }
 
-  /* À la place du prix (8 octobre 2026) : une ligne en Aspekta. */
+  /* Titre court de l'offre (8 octobre 2026) : ce qu'elle change, juste sous son nom. */
+  .dv-offre-titre {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-wrap: balance;
+  }
+  /* À la place du prix (8 octobre 2026) : la même ligne sur les trois offres, donc plus discrète que le titre. */
   .dv-offre-sur-mesure {
-    font-family: var(--font-accent);
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
 
   /* Ce que fait chaque offre face à une perte : deux lignes sous un trait. */
