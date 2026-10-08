@@ -10,6 +10,10 @@
 // rester simple et efficace ») : chaque méga-menu a une carte bleue à gauche (Solution : l'app sur téléphone et la
 // vidéo ; Ressources : Tom et son histoire), des photos de plats pour les trois leviers et les guides, le guide complet
 // mis en avant, et les menus centrés sous la barre. Photos : public/images/menu/ (recadrées dans les images du site).
+// 8 octobre 2026, 16 h 52 (demande de Tom : « montre juste de manière simple l'app Deliview », « enlève le fondateur,
+// sois plus simple ») : la carte Solution montre l'écran d'accueil de l'app à plat et « Lire la vidéo » ouvre la vidéo
+// dans une fenêtre (VideoDialogue, sur toutes les pages) ; plus de carte Tom ni de « Qui suis-je » dans les menus (reste
+// dans le pied de page) ; Ressources en deux colonnes, trois guides présentés de la même façon.
 import Cadenas from '../icons/cadenas.astro';
 import Chevron from '../icons/chevron.astro';
 import BoutonDemo from './BoutonDemo.astro';
@@ -27,20 +31,20 @@ import { LEVIERS, MENU_RESSOURCES, NAV, SITE, VEILLE, cheminFonction, lien } fro
 const PHOTO_LEVIER: Record<string, string> = { promotions: 'promotions', fraude: 'fraude', prix: 'prix' };
 const vignette = (nom: string) => lien(`/images/menu/${nom}-128.webp`);
 const leviers = LEVIERS.map((l) => ({ href: cheminFonction(l.id), titre: l.nom, phrase: l.menu, icone: l.icone, photo: PHOTO_LEVIER[l.id] }));
-// Ressources : le guide complet en avant, deux guides avec leur photo, puis les outils et réponses en compact.
-const GUIDE_COMPLET = { href: '/ressources/augmenter-ventes-uber-eats-deliveroo/', titre: 'Augmenter vos ventes', phrase: 'Les leviers qui comptent, dans le bon ordre' };
+// Ressources : trois guides avec leur photo (le guide complet en premier), puis les outils et réponses en compact. Le blog
+// est dans le pied du menu (« Voir tous les guides »).
 const GUIDES = [
+  { href: '/ressources/augmenter-ventes-uber-eats-deliveroo/', titre: 'Augmenter vos ventes', phrase: 'Les leviers qui comptent, dans le bon ordre', photo: 'ventes' },
   { href: '/ressources/commission-uber-eats-restaurant/', titre: 'Commission Uber Eats', phrase: 'Le vrai calcul, commande par commande', photo: 'commission' },
   { href: '/ressources/ameliorer-note-uber-eats-deliveroo/', titre: 'Améliorer votre note', phrase: 'Sur Uber Eats et Deliveroo', photo: 'note' },
 ];
-const OUTILS = MENU_RESSOURCES.filter((r) => r.href !== '/qui-sommes-nous/' && r.href !== '/ressources/').map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase, icone: r.icone as NomIcone }));
+const OUTILS = MENU_RESSOURCES.filter((r) => r.href !== '/ressources/').map((r) => ({ href: r.href, titre: r.libelle, phrase: r.phrase, icone: r.icone as NomIcone }));
 const veille = VEILLE.map((v) => ({ href: cheminFonction(v.id), titre: v.nom.replace(/ \?$/, ''), phrase: v.menu, icone: v.icone }));
 // Page en cours (sans la base de l'aperçu), pour marquer l'entrée active de la navigation.
 const chemin = Astro.url.pathname.replace(import.meta.env.BASE_URL.replace(/\/$/, ''), '') || '/';
 const actif = (href: string) => chemin === href;
 const dansMenu = (menu: string) =>
   menu === 'solution' ? chemin.startsWith('/solution/') : MENU_RESSOURCES.some((r) => chemin.startsWith(r.href));
-const fondateur = lien('/images/tom-voisin.webp');
 ---
 
 <header class="dv-entete sticky top-0 z-40">
@@ -64,10 +68,10 @@ const fondateur = lien('/images/tom-voisin.webp');
                   {item.menu === 'solution' ? (
                     <div class="dv-mega" data-mega>
                       <div class="dv-mega-grille">
-                        <a href={lien('/#video-deliview')} class="dv-mega-vedette">
-                          <img class="dv-mega-telephone" src={lien('/images/ecrans/telephone-fermeture-400.webp')} alt="" width="400" height="866" loading="lazy" decoding="async" />
+                        <a href={lien('/#video-deliview')} class="dv-mega-vedette" data-video-ouvrir aria-haspopup="dialog">
+                          <img class="dv-mega-app" src={lien('/images/menu/app-512.webp')} alt="" width="512" height="320" loading="lazy" decoding="async" />
                           <span class="dv-mega-vedette-titre">Uber Eats et Deliveroo sur un seul écran</span>
-                          <span class="dv-mega-vedette-bouton"><Lecture taille={24} />Voir la vidéo</span>
+                          <span class="dv-mega-vedette-bouton"><Lecture taille={24} />Lire la vidéo</span>
                         </a>
                         <div>
                           <p class="dv-menu-titre">Gagnez en rentabilité</p>
@@ -110,23 +114,10 @@ const fondateur = lien('/images/tom-voisin.webp');
                       </p>
                     </div>
                   ) : (
-                    <div class="dv-mega" data-mega>
-                      <div class="dv-mega-grille">
-                        <a href={lien('/qui-sommes-nous/')} class="dv-mega-vedette" aria-current={actif('/qui-sommes-nous/') ? 'page' : undefined}>
-                          <img class="dv-mega-tom" src={fondateur} alt="" width="400" height="400" loading="lazy" decoding="async" />
-                          <span class="dv-mega-vedette-titre">Tom, le fondateur, fait votre mise en place</span>
-                          <span class="dv-mega-vedette-bouton">Lire son histoire</span>
-                        </a>
+                    <div class="dv-mega dv-mega-etroit" data-mega>
+                      <div class="dv-mega-grille dv-mega-grille-2">
                         <div>
                           <p class="dv-menu-titre">Guides pour restaurateurs</p>
-                          <a href={lien(GUIDE_COMPLET.href)} class="dv-mega-guide" aria-current={actif(GUIDE_COMPLET.href) ? 'page' : undefined}>
-                            <span class="dv-mega-badge">Guide complet</span>
-                            <img class="dv-mega-guide-image" src={lien('/images/menu/guide-352.webp')} alt="" width="352" height="148" loading="lazy" decoding="async" />
-                            <span class="whitespace-normal">
-                              <span class="dv-mega-lien-titre">{GUIDE_COMPLET.titre}</span>
-                              <span class="dv-mega-lien-phrase">{GUIDE_COMPLET.phrase}</span>
-                            </span>
-                          </a>
                           <ul class="mt-1 grid gap-1">
                             {GUIDES.map((x) => (
                               <li>
@@ -241,11 +232,7 @@ const fondateur = lien('/images/tom-voisin.webp');
                 return (
                   <li>
                     <a href={lien(r.href)} class="flex min-h-12 items-center gap-3 border-b border-grey-2/10 py-2 font-semibold" aria-current={actif(r.href) ? 'page' : undefined}>
-                      {r.href === '/qui-sommes-nous/' ? (
-                        <img class="dv-mobile-photo dv-mobile-photo-rond" src={fondateur} alt="" width="400" height="400" loading="lazy" decoding="async" />
-                      ) : (
-                        <Icone taille={32} />
-                      )}
+                      <Icone taille={32} />
                       {r.libelle}
                     </a>
                   </li>
@@ -330,42 +317,36 @@ const fondateur = lien('/images/tom-voisin.webp');
   }
   .dv-mega-grille {
     display: grid;
-    grid-template-columns: 236px minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-columns: 284px minmax(0, 1.1fr) minmax(0, 1fr);
     gap: 12px;
     padding: 12px;
   }
-  /* Carte vedette : aplat Bleu 1, texte blanc en grand uniquement (contraste), bouton blanc. */
+  /* Ressources : deux colonnes (guides, outils) dans un menu moins large. */
+  .dv-mega-etroit {
+    width: min(720px, calc(100vw - 32px));
+  }
+  .dv-mega-grille-2 {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+  /* Carte vedette : aplat Bleu 1, l'écran d'accueil de l'app à plat, texte blanc en grand uniquement (contraste), bouton
+     blanc qui ouvre la vidéo. */
   .dv-mega-vedette {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
-    overflow: hidden;
-    padding: 18px 18px 20px;
+    padding: 14px 14px 18px;
     border-radius: 16px;
     background: var(--color-blue);
     color: var(--color-white);
     text-decoration: none;
   }
-  .dv-mega-telephone {
-    width: 132px;
-    height: 150px;
-    margin: 4px auto 0;
-    object-fit: cover;
-    object-position: top;
-    border: 4px solid var(--color-white);
-    border-radius: 18px;
-    rotate: -4deg;
-    box-shadow: 0 8px 18px rgba(76, 76, 76, 0.18);
-  }
-  .dv-mega-tom {
-    width: 104px;
-    height: 104px;
-    margin: 4px auto 0;
-    object-fit: cover;
-    border: 4px solid var(--color-white);
-    border-radius: 50%;
-    box-shadow: 0 8px 18px rgba(76, 76, 76, 0.18);
+  .dv-mega-app {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background: var(--color-white);
   }
   .dv-mega-vedette-titre {
     font-family: var(--font-accent);
@@ -411,8 +392,7 @@ const fondateur = lien('/images/tom-voisin.webp');
     align-items: flex-start;
     padding: 10px 12px;
   }
-  .dv-mega-lien:hover,
-  .dv-mega-guide:hover {
+  .dv-mega-lien:hover {
     background: var(--color-grey);
   }
   .dv-mega-compact:hover {
@@ -434,6 +414,7 @@ const fondateur = lien('/images/tom-voisin.webp');
   .dv-mega-lien-phrase {
     display: block;
     margin-top: 2px;
+    text-wrap: pretty;
     font-size: 15px;
     font-weight: 400;
     line-height: 1.35;
@@ -444,40 +425,6 @@ const fondateur = lien('/images/tom-voisin.webp');
     border-radius: 14px;
     background: var(--color-grey);
   }
-  /* Guide complet : cadre Bleu 1 et pastille posée sur le bord (Bleu 1 à 12 %, texte Gris 2 : contraste). */
-  .dv-mega-guide {
-    position: relative;
-    display: grid;
-    grid-template-columns: 132px minmax(0, 1fr);
-    align-items: center;
-    gap: 12px;
-    margin: 14px 4px 6px;
-    padding: 14px 12px 12px;
-    border: 2px solid var(--color-blue);
-    border-radius: 14px;
-    text-decoration: none;
-  }
-  .dv-mega-badge {
-    position: absolute;
-    top: -11px;
-    left: 12px;
-    padding: 2px 10px;
-    border: 1px solid var(--color-blue);
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--color-blue) 12%, var(--color-white));
-    font-family: var(--font-accent);
-    font-size: 12px;
-    font-weight: 700;
-    line-height: 1.4;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .dv-mega-guide-image {
-    width: 132px;
-    height: auto;
-    border-radius: 8px;
-    border: 1px solid color-mix(in srgb, var(--color-grey-2) 12%, transparent);
-  }
   .dv-mega-pied {
     display: flex;
     justify-content: flex-end;
@@ -485,16 +432,13 @@ const fondateur = lien('/images/tom-voisin.webp');
     border-top: 1px solid color-mix(in srgb, var(--color-grey-2) 10%, transparent);
     font-size: 16px;
   }
-  /* Menu du téléphone : vignettes photo à la place des icônes pour les leviers et Tom. */
+  /* Menu du téléphone : vignettes photo à la place des icônes pour les leviers. */
   .dv-mobile-photo {
     width: 40px;
     height: 40px;
     flex-shrink: 0;
     border-radius: 10px;
     object-fit: cover;
-  }
-  .dv-mobile-photo-rond {
-    border-radius: 50%;
   }
   /* Bouton du menu (sous 1024 px) : trois traits fermé, croix ouvert (8 octobre 2026, audit responsive). */
   .dv-burger-ouvrir,

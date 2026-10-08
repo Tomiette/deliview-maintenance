@@ -1,8 +1,9 @@
 ---
-// Vidéo de présentation dans une fenêtre (refonte du 3 octobre 2026) : le haut de page montre l'app en relief,
-// la vidéo s'ouvre au clic sur « Voir Deliview en action » et se lance avec le son, jamais en automatique.
-// Tout lien ou bouton [data-video-ouvrir] ouvre la fenêtre. Sans JavaScript (ou sans <dialog>), ces liens mènent
-// au fichier MP4. Échap, le bouton Fermer ou un clic hors de la vidéo referment la fenêtre et mettent en pause.
+// Vidéo de présentation dans une fenêtre (refonte du 3 octobre 2026), montée sur toutes les pages par le gabarit depuis
+// le 8 octobre 2026 (demande de Tom : « quand tu cliques sur Lire la vidéo, ça ouvre la vidéo », carte du menu Solution).
+// La vidéo se lance avec le son au clic, jamais en automatique ; rien ne se télécharge tant que la fenêtre est fermée.
+// Tout lien ou bouton [data-video-ouvrir] ouvre la fenêtre. Sans JavaScript (ou sans <dialog>), ces liens mènent à la
+// vidéo du haut de l'accueil. Échap, le bouton Fermer ou un clic hors de la vidéo referment la fenêtre et mettent en pause.
 import HeroVideo from './HeroVideo.astro';
 import Plus from '../icons/plus.astro';
 ---
@@ -13,7 +14,7 @@ import Plus from '../icons/plus.astro';
       <Plus taille={24} class="rotate-45" />
       <span class="sr-only">Fermer la vidéo</span>
     </button>
-    <HeroVideo couvertureDifferee />
+    <HeroVideo couvertureDifferee ident="video-deliview-fenetre" />
   </div>
 </dialog>
 
@@ -22,12 +23,20 @@ import Plus from '../icons/plus.astro';
   if (dialogue && typeof dialogue.showModal === 'function') {
     const video = dialogue.querySelector('video');
     const lecture = dialogue.querySelector<HTMLButtonElement>('.hv-lire');
+    // Où rendre le focus à la fermeture : le lien qui a ouvert la fenêtre, ou l'entrée du menu qui le contenait
+    // (le menu se referme au clic, son lien n'est plus visible).
+    let retour: HTMLElement | null = null;
     document.querySelectorAll<HTMLElement>('[data-video-ouvrir]').forEach((b) =>
       b.addEventListener('click', (e) => {
         e.preventDefault();
+        retour = b.closest('details')?.querySelector('summary') ?? b;
         // La couverture ne se télécharge qu'à la première ouverture.
         if (video && !video.poster && video.dataset.couverture) video.poster = video.dataset.couverture;
-        dialogue.showModal();
+        // Une seule vidéo à la fois (accueil : celle du haut de page peut être en cours).
+        document.querySelectorAll('video').forEach((v) => {
+          if (v !== video) v.pause();
+        });
+        if (!dialogue.open) dialogue.showModal();
         // Même geste que le clic : la lecture démarre avec le son.
         lecture?.click();
       }),
@@ -37,6 +46,9 @@ import Plus from '../icons/plus.astro';
     dialogue.addEventListener('click', (e) => {
       if (e.target === dialogue) dialogue.close();
     });
-    dialogue.addEventListener('close', () => video?.pause());
+    dialogue.addEventListener('close', () => {
+      video?.pause();
+      retour?.focus({ preventScroll: true });
+    });
   }
 </script>

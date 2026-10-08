@@ -4,6 +4,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DemanderIA from '../components/DemanderIA.astro';
+import VideoDialogue from '../components/VideoDialogue.astro';
 import { IDS, SITE, lien } from '../lib/site';
 import aspekta400 from '../fonts/Aspekta-400.woff2?url';
 import aspekta700 from '../fonts/Aspekta-700.woff2?url';
@@ -165,6 +166,8 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
       {avecIA && <DemanderIA />}
     </main>
     <Footer barreDemo={barreDemo} />
+    <!-- Fenêtre de la vidéo, ouverte par « Lire la vidéo » du menu Solution, sur toutes les pages (8 octobre 2026). -->
+    <VideoDialogue />
     <script>
       import '../scripts/mouvement';
       import '../scripts/tableaux';

@@ -13,8 +13,12 @@ interface Props {
   class?: string;
   // Couverture chargée plus tard (vidéo dans une fenêtre fermée au chargement) : posée par le script qui l'ouvre.
   couvertureDifferee?: boolean;
+  // Identifiant de la vidéo (8 octobre 2026) : la fenêtre vidéo est sur toutes les pages, accueil compris, où la vidéo
+  // du haut de page garde « video-deliview » (lien d'ancre sans JavaScript).
+  ident?: string;
 }
-const { class: classe = '', couvertureDifferee = false } = Astro.props;
+const { class: classe = '', couvertureDifferee = false, ident = 'video-deliview' } = Astro.props;
+const legende = `${ident}-legende`;
 // Couverture en 1280 × 720 (8 octobre 2026, audit SEO : c'est l'image la plus lourde du premier écran sur téléphone ;
 // la version 1920 × 1080 reste l'image de la vidéo dans les données structurées).
 const couverture = lien('/video/deliview-video-couverture-v2-16x9-1280.webp');
@@ -37,7 +41,7 @@ const texte = [
 <div class={`hv ${classe}`}>
   <div class="hv-cadre">
     <video
-      id="video-deliview"
+      id={ident}
       class="hv-lecteur"
       controls
       playsinline
@@ -47,7 +51,7 @@ const texte = [
       poster={couvertureDifferee ? undefined : couverture}
       data-couverture={couvertureDifferee ? couverture : undefined}
       aria-label="Vidéo de présentation de Deliview, 1 minute 10, sans voix off"
-      aria-describedby="hv-legende"
+      aria-describedby={legende}
     >
       <source src={lien('/video/deliview-video-v2-16x9.webm')} type='video/webm; codecs="vp9, opus"' />
       <source src={lien('/video/deliview-video-v2-16x9.mp4')} type="video/mp4" />
@@ -61,7 +65,7 @@ const texte = [
     </button>
   </div>
   <!-- Contenu de la vidéo pour les lecteurs d'écran uniquement. -->
-  <div id="hv-legende" class="sr-only">
+  <div id={legende} class="sr-only">
     <p>Restaurants et chiffres d’exemple. Contenu de la vidéo&nbsp;:</p>
     <ol>
       {texte.map((t) => <li>{t}</li>)}

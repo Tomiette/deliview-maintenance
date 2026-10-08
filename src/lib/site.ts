@@ -493,8 +493,9 @@ export const NAV = [
 // Icônes dessinées du registre (src/lib/registre-icones.ts), affichées à côté de chaque entrée du menu.
 // 7 octobre 2026 (demande de Tom) : « Qui suis-je » en premier, « Blog » à la place de « Articles et guides », phrases
 // courtes. Les adresses ne changent pas (/qui-sommes-nous/, /ressources/).
+// 8 octobre 2026, 16 h 52 (demande de Tom : « enlève le fondateur des sous-menus ») : « Qui suis-je » sort des menus ; la
+// page reste liée par le pied de page, le bloc fondateur, la FAQ et la signature des articles.
 export const MENU_RESSOURCES = [
-  { libelle: 'Qui suis-je', phrase: 'Le fondateur et l’histoire', href: '/qui-sommes-nous/', icone: 'toque' },
   { libelle: 'Blog', phrase: 'Guides pour restaurateurs', href: '/ressources/', icone: 'ardoise' },
   // 8 octobre 2026 (méga-menus refaits) : le simulateur passe du pied du menu Solution aux outils de Ressources.
   { libelle: 'Simulateur de rentabilité', phrase: 'Ce qui vous reste chaque mois', href: '/simulateur/', icone: 'pieces' },
