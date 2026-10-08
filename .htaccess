@@ -60,6 +60,8 @@ AddType font/woff2 .woff2
   ExpiresByType image/svg+xml "access plus 7 days"
   ExpiresByType image/x-icon "access plus 7 days"
   ExpiresByType video/mp4 "access plus 7 days"
+  # Bannière animée et film de l'accueil en WebM (8 octobre 2026) : même durée que le MP4.
+  ExpiresByType video/webm "access plus 7 days"
 </IfModule>
 
 <IfModule mod_deflate.c>
