@@ -549,6 +549,9 @@ export interface Offre {
   // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).
   base: string;
   inclus: LigneOffre[];
+  // Lignes montrées sur la carte de l'accueil, prises dans `inclus` (8 octobre 2026, 22 h 56, demande de Tom : « ajuste
+  // ce module avec les infos que tu sais ») ; le reste est compté (« + 5 autres fonctions ») et détaillé sur Tarifs.
+  accueil: string[];
 }
 
 // Une ligne de la carte d'une offre ; `bientot` : promise par l'offre mais pas encore dans l'app (étiquette « Bientôt »).
@@ -588,6 +591,7 @@ export const OFFRES: Offre[] = [
       'Alerte fermeture en plein service',
       'Objectifs et point du lundi',
     ],
+    accueil: ['Ventes Uber Eats et Deliveroo réunies', 'Prix, promos et notes de vos concurrents', 'Alerte fermeture en plein service', 'Réponses IA à vos avis'],
   },
   {
     slug: 'pro',
@@ -607,6 +611,7 @@ export const OFFRES: Offre[] = [
       'Assistant IA',
       'Rapports PDF à partager',
     ],
+    accueil: ['Prix et promos appliqués, avec votre accord', 'Remboursements contestés en un clic', 'Analyses de zone à la demande', 'Assistant IA'],
   },
   {
     slug: 'premium',
@@ -616,8 +621,14 @@ export const OFFRES: Offre[] = [
     base: 'Tout Pro, plus :',
     // Réponse prioritaire sur WhatsApp : promesse de service de Tom (8 octobre 2026), pas une fonction de l'app.
     inclus: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
+    accueil: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
   },
 ];
+
+for (const o of OFFRES) {
+  const lignes = o.inclus.map((x) => (typeof x === 'string' ? x : x.texte));
+  for (const a of o.accueil) if (!lignes.includes(a)) throw new Error(`Offre ${o.nom} : « ${a} » n'est pas dans sa liste.`);
+}
 
 // Étiquette affichée pour le statut d'un pilier ou d'une fonctionnalité.
 export function libelleStatut(s: Statut | 'partiel'): string {

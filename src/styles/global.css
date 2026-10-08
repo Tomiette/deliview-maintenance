@@ -2314,13 +2314,11 @@
     .dv-offre {
       padding: 26px 28px 30px;
     }
-    .dv-offres .dv-offre-pro {
-      margin-top: 0;
-      translate: 0 -14px;
-    }
   }
-  /* Page Tarifs : cartes côte à côte à partir de 1024 px seulement. */
+  /* Cartes côte à côte à partir de 1024 px seulement, sur Tarifs comme sur l'accueil (8 octobre 2026 : avec les lignes de
+     chaque offre, à 768 px les cartes de l'accueil faisaient 224 px de large et « Voir le détail » passait sur deux lignes). */
   @media (min-width: 1024px) {
+    .dv-offres .dv-offre-pro,
     .dv-offres-page .dv-offre-pro {
       margin-top: 0;
       translate: 0 -14px;
