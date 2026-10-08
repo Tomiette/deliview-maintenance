@@ -7,8 +7,9 @@ self.addEventListener('fetch', () => {
   /* réseau seulement */
 });
 
-// Notification reçue : { titre, texte, lien } (lien relatif à l'app, ex. « #/ »). Sans contenu (fonction « notifier »,
-// 4 octobre 2026) : le point du lundi, qui ouvre l'accueil.
+// Notification reçue : { titre, texte, lien, tag, renotify } (lien relatif à l'app, ex. « #/ »). Sans contenu (fonction
+// « notifier », 4 octobre 2026) : le point du lundi, qui ouvre l'accueil. Avec contenu (8 octobre 2026) : l'alerte
+// « restaurant fermé en plein service » ; la réouverture porte le même tag et la remplace, sans sonner (renotify faux).
 const POINT_DU_LUNDI = {
   titre: 'Votre point du lundi',
   texte: 'Ouvrez Deliview pour voir quoi faire cette semaine.',
@@ -29,6 +30,7 @@ self.addEventListener('push', (e) => {
       badge: 'icones/icone-192.png',
       data: { lien: d.lien || './' },
       tag: d.tag || undefined,
+      renotify: !!(d.tag && d.renotify),
     }),
   );
 });
