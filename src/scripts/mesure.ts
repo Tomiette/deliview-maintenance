@@ -1,6 +1,9 @@
 // Mesure des visites (8 octobre 2026) : page vue à l'arrivée, temps passé et défilement en quittant la page, clics sur
 // les boutons marqués data-cta. Anonyme sans accord ; avec accord, identifiants et campagne (src/lib/suivi.ts).
+// Vitesse vécue sur la page (LCP, INP, CLS, TTFB, FCP, bibliothèque web-vitals de Google, sans envoi à Google) : envoyée
+// avec le temps passé, sans identifiant (mesure de performance, exemptée de consentement par la CNIL).
 // Rien n'est envoyé depuis l'aperçu, un serveur local, ou un navigateur qui s'est opposé à la mesure.
+import { onCLS, onFCP, onINP, onLCP, onTTFB, type Metric } from 'web-vitals';
 import { envoyer, identifiants, mesureActive, nouvelId, retenirUtm, utmAdresse, utmVisite } from '../lib/suivi';
 
 if (mesureActive()) {
@@ -38,6 +41,19 @@ if (mesureActive()) {
     if ((e as CustomEvent<string>).detail === 'oui') page(true);
   });
 
+  // Vitesse vécue : dernières valeurs connues (mises à jour à chaque changement), envoyées avec le temps passé.
+  type CleVitesse = 'lcp' | 'inp' | 'cls' | 'ttfb' | 'fcp';
+  let vitesse: Partial<Record<CleVitesse, number>> = {};
+  const retenir = (cle: CleVitesse) => (m: Metric) => {
+    if (!Number.isFinite(m.value) || m.value < 0) return;
+    vitesse[cle] = cle === 'cls' ? Math.round(m.value * 1000) / 1000 : Math.round(m.value);
+  };
+  onLCP(retenir('lcp'), { reportAllChanges: true });
+  onINP(retenir('inp'), { reportAllChanges: true });
+  onCLS(retenir('cls'), { reportAllChanges: true });
+  onFCP(retenir('fcp'));
+  onTTFB(retenir('ttfb'));
+
   // Temps passé, onglet visible seulement, et défilement le plus bas atteint : envoyés une fois en quittant la page.
   let cumul = 0;
   let depuis = document.visibilityState === 'visible' ? performance.now() : 0;
@@ -73,9 +89,12 @@ if (mesureActive()) {
       chemin,
       duree: Math.min(1800, Math.round(cumul / 1000)),
       defilement,
+      appareil,
+      ...vitesse,
       consentement: !!ids,
       ...(ids ? { ...ids, vue } : {}),
     });
+    vitesse = {};
   };
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') quitter();
