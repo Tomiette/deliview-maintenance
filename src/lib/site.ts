@@ -653,6 +653,8 @@ const FONCTION_DE_L_ARTICLE: Record<string, string | null> = {
   'tva-ventes-livraison-restaurant': null,
   // Article pilier (7 octobre 2026) : il relie tous les guides, l'encadré mène à la page Solution.
   'augmenter-ventes-uber-eats-deliveroo': null,
+  // Marque virtuelle (9 octobre 2026) : deux fois plus de comptes à suivre, l'encadré mène à la page Solution.
+  'restaurant-virtuel-uber-eats-deliveroo': null,
 };
 export function fonctionDeLArticle(id: string, theme: string): FonctionResume | null {
   const f = id in FONCTION_DE_L_ARTICLE ? FONCTION_DE_L_ARTICLE[id] : FONCTION_DU_THEME[theme] ?? null;

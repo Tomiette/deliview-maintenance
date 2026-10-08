@@ -5,7 +5,7 @@ description: "Ouverture, note, photos, prix, promos : les leviers qui font vendr
 theme: prix-et-concurrence
 enBref: "Commencez par ce qui vous fait perdre des commandes sans que vous le voyiez : un restaurant fermé en plein service, des commandes refusées, une note qui baisse. Travaillez ensuite votre fiche : photos, descriptions, prix au niveau de votre zone. Gardez les promos pour vos heures creuses, et mesurez chaque changement sur plusieurs semaines."
 publieLe: 2026-10-07
-misAJourLe: 2026-10-07
+misAJourLe: 2026-10-09
 image:
   src: "/images/ressources/augmenter-ventes-uber-eats-deliveroo"
   largeurs: [800, 1200, 1600]
@@ -73,6 +73,8 @@ Le client choisit avec les yeux, et Uber Eats le sait : la part de votre menu av
 **Exemple réel** : dans un restaurant de burgers à Paris, analysé par Deliview le 2 octobre 2026, 8 plats sur 33 n’avaient pas de description sur Deliveroo, soit 24 %. Chez ses 9 concurrents, la part tombait à 5 %. Ce retard se rattrape sans dépenser un euro.
 
 Pour refaire vos photos avec un téléphone, en respectant les règles des deux plateformes, lisez notre guide sur [les photos de plats](/ressources/photos-plats-uber-eats-deliveroo/).
+
+Pour faire évoluer la carte elle-même, regardez ce que les Français commandent en 2026 dans notre article sur [les tendances de la livraison](/ressources/tendances-restauration-livraison-2026/), puis testez un plat avant de tout changer.
 
 ## 5. Placer vos prix au niveau de votre zone
 
