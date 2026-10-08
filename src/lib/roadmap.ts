@@ -62,7 +62,7 @@ export const FAIT: { theme: string; elements: Element[] }[] = [
   {
     theme: 'Service et équipe',
     elements: [
-      { titre: 'Alerte restaurant fermé', texte: 'Vérifié toutes les 10 minutes pendant vos heures de service.' },
+      { titre: 'Alerte restaurant fermé', texte: 'Vérifié toutes les 10 minutes en service, notification sur votre téléphone.' },
       { titre: 'Relance du restaurant fermé', texte: 'Un clic, et Deliview remet votre restaurant en ligne.', offre: 'Pro' },
       { titre: 'Vos niveaux Uber Eats et Deliveroo', texte: 'Score de réussite et Programme Confiance, critère par critère.' },
       { titre: 'Les consignes pour l’équipe', texte: 'Trois points chiffrés à corriger en service, le plus urgent d’abord.' },

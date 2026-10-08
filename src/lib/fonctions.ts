@@ -341,7 +341,7 @@ export const PAGES: Record<string, PageFonction> = {
     etapes: [
       { titre: 'Il connaît vos heures de service', texte: 'Vos horaires affichés, corrigés par l’habitude : une pause que vous faites chaque après-midi n’est plus signalée une fois apprise.' },
       { titre: 'Il vérifie pendant le service', texte: 'Toutes les 10 minutes, sur Uber Eats et Deliveroo. Une fermeture est vérifiée une seconde fois avant l’alerte.' },
-      { titre: 'Il vous prévient', texte: 'Un bandeau rouge en haut de l’accueil dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».' },
+      { titre: 'Il vous prévient', texte: 'Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».' },
     ],
     regles: {
       surtitre: 'Les règles',
@@ -361,7 +361,7 @@ export const PAGES: Record<string, PageFonction> = {
     faq: [
       {
         q: 'Comment je suis prévenu ?',
-        r: 'Dans Deliview&nbsp;: un bandeau rouge en haut de l’accueil tant que la fermeture dure, et une notification dans la cloche.',
+        r: 'Sur votre téléphone, par une notification, si vous avez installé l’app Deliview et activé les alertes. Dans Deliview aussi&nbsp;: un bandeau rouge en haut de l’accueil tant que la fermeture dure, et une alerte dans la cloche.',
       },
       {
         q: 'Je ferme parfois exprès l’après-midi. Est-ce que je vais recevoir des alertes ?',
