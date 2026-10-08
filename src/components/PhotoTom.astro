@@ -5,16 +5,18 @@ import { lien } from '../lib/site';
 
 interface Props {
   legende?: string;
+  // Photo du premier écran (Qui suis-je, sur ordinateur) : chargée tout de suite (8 octobre 2026, audit SEO).
+  priorite?: boolean;
   class?: string;
 }
-const { legende = 'Tom Voisin, fondateur', class: classe = '' } = Astro.props;
+const { legende = 'Tom Voisin, fondateur', priorite = false, class: classe = '' } = Astro.props;
 ---
 
 <div class={`dv-fondateur-scene shrink-0 ${classe}`} data-apparition="">
   <figure class="dv-fondateur-3d">
     <span class="dv-fondateur-tranche" aria-hidden="true"></span>
     <div class="dv-fondateur-cadre">
-      <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="400" height="400" loading="lazy" decoding="async" />
+      <img src={lien('/images/tom-voisin.webp')} alt="Portrait de Tom Voisin, fondateur de Deliview" width="400" height="400" loading={priorite ? 'eager' : 'lazy'} decoding="async" />
     </div>
     <figcaption class="dv-fondateur-legende"><span class="dv-puce"><i></i>{legende}</span></figcaption>
   </figure>

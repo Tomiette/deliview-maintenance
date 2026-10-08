@@ -69,7 +69,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
   title="Logiciel restaurant Uber Eats et Deliveroo | Deliview"
   description={description}
   jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
-  precharger="/video/deliview-video-couverture-v2-16x9.webp"
+  precharger="/video/deliview-video-couverture-v2-16x9-1280.webp"
 >
   <!-- Haut de page : slogan, promesse de rentabilité, définition et le bouton démo, seul bouton ; à droite, la vidéo de
        présentation (demande de Tom, 4 octobre 2026), lancée au clic sur l'image. Bouton « Voir Deliview en action »
@@ -100,7 +100,16 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
       <div class="dv-relief dv-pilotes mx-auto">
         <div class="dv-pilotes-visuel dv-points-bleus">
           <span class="dv-pilotes-medaillon">
-            <img class="dv-pilotes-logo" src={lien('/images/clients/pizza-cosy.webp')} alt="" width="240" height="240" loading="lazy" decoding="async" />
+            <img
+              class="dv-pilotes-logo"
+              src={lien('/images/clients/pizza-cosy-160.webp')}
+              srcset={`${lien('/images/clients/pizza-cosy-160.webp')} 160w, ${lien('/images/clients/pizza-cosy.webp')} 240w`}
+              sizes="(min-width: 768px) 84px, 76px"
+              alt=""
+              width="160"
+              height="160"
+              decoding="async"
+            />
             <span class="dv-pilotes-coche"><Coche taille={24} /></span>
           </span>
         </div>
@@ -127,7 +136,7 @@ const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six'
         <PhotoCadre
           fichier="tablettes-cuisine"
           dossier="terrain"
-          tailles={[480, 960]}
+          tailles={[480, 720, 960]}
           largeurMax={440}
           largeur={960}
           hauteur={947}

@@ -70,8 +70,9 @@ const description =
             )}
           </div>
           <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {t.articles.map((a) => (
-              <CarteArticle article={a} />
+            {/* Les trois premières cartes sont dans le premier écran : photos chargées tout de suite (8 octobre 2026). */}
+            {t.articles.map((a, j) => (
+              <CarteArticle article={a} priorite={i === 0 && j < 3} />
             ))}
           </ul>
         </div>

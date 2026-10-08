@@ -1,6 +1,6 @@
 ---
 // Vidéo de présentation (V15, 16:9, 1 min 10, sans voix off, avec musique), dans le cadre tablette dessiné au trait,
-// en haut de l'accueil (demande de Tom, 2 octobre 2026). Seule la couverture (52 Ko) se charge avec la page ;
+// en haut de l'accueil (demande de Tom, 2 octobre 2026). Seule la couverture (21 Ko) se charge avec la page ;
 // la vidéo (5 à 7 Mo) ne se télécharge qu'au clic et se lance avec le son, jamais en automatique.
 // Toute l'image est cliquable, avec au centre le signe « lecture » dessiné. Tout bouton [data-video-lire] placé dans le
 // même bloc [data-video-zone] lance aussi la lecture ; pendant la lecture, ce bloc porte la classe « dv-video-en-lecture ».
@@ -15,7 +15,9 @@ interface Props {
   couvertureDifferee?: boolean;
 }
 const { class: classe = '', couvertureDifferee = false } = Astro.props;
-const couverture = lien('/video/deliview-video-couverture-v2-16x9.webp');
+// Couverture en 1280 × 720 (8 octobre 2026, audit SEO : c'est l'image la plus lourde du premier écran sur téléphone ;
+// la version 1920 × 1080 reste l'image de la vidéo dans les données structurées).
+const couverture = lien('/video/deliview-video-couverture-v2-16x9-1280.webp');
 
 const texte = [
   'Bon, j’ai 1 minute pour vous convaincre. Alors je vous la fais courte.',

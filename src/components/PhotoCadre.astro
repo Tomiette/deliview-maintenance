@@ -9,7 +9,7 @@ import { logoPlateforme } from '../lib/logos';
 interface Props {
   fichier: string; // nom de base dans public/images/<dossier>/
   dossier?: string; // « linkedin » par défaut (photos des posts) ; « terrain » pour les captures du terrain
-  tailles?: [number, number]; // largeurs des deux fichiers WebP (360 et 720 par défaut)
+  tailles?: number[]; // largeurs des fichiers WebP, de la plus petite à la plus grande (360 et 720 par défaut)
   largeurMax?: number; // largeur affichée au plus, en pixels (300 par défaut)
   largeur: number;
   hauteur: number;
@@ -35,7 +35,7 @@ const {
   class: classe = '',
 } = Astro.props;
 const src = (l: number) => lien(`/images/${dossier}/${fichier}-${l}.webp`);
-const [petite, grande] = tailles;
+const grande = tailles[tailles.length - 1];
 // Largeur affichée : 300 px au plus par défaut ; une capture plus large (conversation) peut aller au-delà.
 const sizes = largeurMax === 300 ? '(min-width: 768px) 300px, 72vw' : `(min-width: 768px) ${largeurMax}px, 92vw`;
 const logoUber = logoPlateforme('uber-eats');
@@ -46,7 +46,7 @@ const logoDeliveroo = logoPlateforme('deliveroo');
 <figure class="dv-photo-cadre" style={`--incl:${inclinaison}deg`}>
   <img
     src={src(grande)}
-    srcset={`${src(petite)} ${petite}w, ${src(grande)} ${grande}w`}
+    srcset={tailles.map((l) => `${src(l)} ${l}w`).join(', ')}
     sizes={sizes}
     width={largeur}
     height={hauteur}

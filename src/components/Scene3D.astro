@@ -62,6 +62,7 @@ const style = [`--ratio:${ratio}`, `--ratio-m:${ratioMobile ?? ratio}`, `--ax:${
               width={capture.largeur}
               height={capture.hauteur}
               loading={priorite ? 'eager' : 'lazy'}
+              fetchpriority={priorite ? 'high' : undefined}
               decoding="async"
             />
           </div>

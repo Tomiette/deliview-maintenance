@@ -28,6 +28,7 @@ const base = lien(fragment.src);
         width={fragment.largeur}
         height={fragment.hauteur}
         loading={priorite ? 'eager' : 'lazy'}
+        fetchpriority={priorite ? 'high' : undefined}
         decoding="async"
       />
     </div>

@@ -12,9 +12,11 @@ interface Props {
   theme?: boolean;
   // Date de mise à jour et temps de lecture.
   infos?: boolean;
+  // Carte du premier écran (premières cartes de /ressources/) : photo chargée tout de suite (8 octobre 2026, audit SEO).
+  priorite?: boolean;
 }
 
-const { article: a, niveau = 'h3', theme = false, infos = true } = Astro.props;
+const { article: a, niveau = 'h3', theme = false, infos = true, priorite = false } = Astro.props;
 const Titre = niveau;
 const photo = a.data.image;
 const base = photo ? lien(photo.src) : '';
@@ -31,7 +33,7 @@ const base = photo ? lien(photo.src) : '';
         alt=""
         width="800"
         height="450"
-        loading="lazy"
+        loading={priorite ? 'eager' : 'lazy'}
         decoding="async"
       />
     )

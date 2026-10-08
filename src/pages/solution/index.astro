@@ -87,6 +87,7 @@ const sommaire = [...LEVIERS.map((l) => ({ id: l.id, nom: l.nom, icone: l.icone 
               place={l.vitrine.page.place}
               placeMobile={l.vitrine.page.placeMobile}
               bulles={l.vitrine.page.bulles}
+              priorite={i === 0}
               class="mx-auto w-full max-w-[600px]"
               sizes={l.vitrine.appareil === 'navigateur' ? '(min-width: 1024px) 560px, 92vw' : '(min-width: 1024px) 300px, 50vw'}
             />

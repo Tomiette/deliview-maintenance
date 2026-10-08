@@ -46,6 +46,7 @@ const couchee = type === 'tablette' && capture.largeur > capture.hauteur;
         width={capture.largeur}
         height={capture.hauteur}
         loading={priorite ? 'eager' : 'lazy'}
+        fetchpriority={priorite ? 'high' : undefined}
         decoding="async"
       />
     </div>
