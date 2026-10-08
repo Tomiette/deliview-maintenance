@@ -11,7 +11,7 @@ self.addEventListener('fetch', () => {
 // 4 octobre 2026) : le point du lundi, qui ouvre l'accueil.
 const POINT_DU_LUNDI = {
   titre: 'Votre point du lundi',
-  texte: 'Vos restaurants, du plus urgent au plus tranquille : ouvrez Deliview pour voir quoi faire cette semaine.',
+  texte: 'Ouvrez Deliview pour voir quoi faire cette semaine.',
   lien: './',
   tag: 'point-du-lundi',
 };
