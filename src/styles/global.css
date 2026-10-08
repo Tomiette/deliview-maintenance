@@ -2526,80 +2526,129 @@
 }
 
 /* Premier restaurant client (accueil, 6 octobre 2026 ; refait le 7 octobre, demandes de Tom : « plus design, simple »,
-   puis sans sur-titre ni ville) : une carte en relief en deux parties. À gauche, le logo du restaurant cerclé de blanc sur
-   un fond Bleu 1 à 8 % à points, avec une coche Bleu 1 de client réel ; à droite, son nom et une phrase. Sur téléphone,
-   le logo passe au-dessus et le texte se centre. Logos des restaurants affichés avec leur accord. */
+   puis sans sur-titre ni ville) : une carte en relief en deux parties. Depuis le 8 octobre 2026 : à gauche, la devanture du
+   restaurant ; le logo cerclé de blanc à cheval sur la séparation ; à droite, son nom et une phrase. Même disposition sur
+   téléphone, en plus petit. Logo et photo affichés avec l'accord du restaurant. */
 @layer components {
   .dv-pilotes {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 148px minmax(0, 1fr);
+    align-items: stretch;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     overflow: hidden;
     border-radius: 20px;
-    text-align: center;
+    text-align: left;
   }
-  .dv-pilotes-visuel {
-    display: grid;
-    place-items: center;
-    padding: 22px 24px 24px;
-    border-bottom: 1px solid var(--dv-bord);
-  }
-  .dv-pilotes-medaillon {
+  /* Devanture (8 octobre 2026) : remplit la hauteur de la carte, cadrée sur l'enseigne. */
+  .dv-pilotes-photo {
     position: relative;
+    min-height: 112px;
+    border-right: 1px solid var(--dv-bord);
+    background: var(--color-grey);
+  }
+  .dv-pilotes-devanture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 46% 50%;
+  }
+  /* Logo à cheval sur la séparation entre la photo et le texte. */
+  .dv-pilotes-medaillon {
+    position: absolute;
+    top: 50%;
+    left: 148px;
+    z-index: 1;
     display: block;
+    transform: translate(-50%, -50%);
   }
   .dv-pilotes-logo {
     display: block;
-    width: 76px;
-    height: 76px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     box-shadow:
-      0 0 0 4px var(--color-white),
-      0 0 0 5px var(--dv-bord),
-      0 5px 0 5px var(--dv-levre);
+      0 0 0 3px var(--color-white),
+      0 0 0 4px var(--dv-bord),
+      0 4px 0 4px var(--dv-levre);
   }
   .dv-pilotes-texte {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     min-width: 0;
-    padding: 18px 22px 22px;
+    padding: 16px 18px 16px 38px;
   }
   .dv-pilotes-nom {
     font-family: var(--font-accent);
-    font-size: 24px;
+    font-size: 21px;
     font-weight: 700;
     line-height: 1.2;
   }
   .dv-pilotes-phrase {
     margin-top: 4px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.45;
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+    text-wrap: balance;
+  }
+  /* Petits téléphones (360 px) : photo un peu plus étroite, pour garder la phrase sur deux lignes. */
+  @media (max-width: 379px) {
+    .dv-pilotes {
+      grid-template-columns: 124px minmax(0, 1fr);
+    }
+    .dv-pilotes-medaillon {
+      left: 124px;
+    }
+    .dv-pilotes-logo {
+      width: 44px;
+      height: 44px;
+    }
+    .dv-pilotes-texte {
+      padding: 14px 14px 14px 34px;
+    }
   }
   @media (min-width: 640px) {
     .dv-pilotes {
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: 176px minmax(0, 1fr);
       width: fit-content;
       max-width: 100%;
-      text-align: left;
     }
-    .dv-pilotes-visuel {
-      padding: 22px 30px;
-      border-bottom: 0;
-      border-right: 1px solid var(--dv-bord);
+    .dv-pilotes-photo {
+      min-height: 128px;
+    }
+    .dv-pilotes-medaillon {
+      left: 176px;
     }
     .dv-pilotes-texte {
-      align-items: flex-start;
-      padding: 18px 36px 20px 28px;
+      padding: 20px 36px 22px 46px;
+    }
+    .dv-pilotes-nom {
+      font-size: 24px;
+    }
+    .dv-pilotes-phrase {
+      font-size: 16px;
     }
   }
   @media (min-width: 768px) {
+    .dv-pilotes {
+      grid-template-columns: 184px minmax(0, 1fr);
+    }
+    .dv-pilotes-photo {
+      min-height: 138px;
+    }
+    .dv-pilotes-medaillon {
+      left: 184px;
+    }
     .dv-pilotes-logo {
-      width: 84px;
-      height: 84px;
+      width: 56px;
+      height: 56px;
+    }
+    .dv-pilotes-texte {
+      padding: 20px 40px 22px 50px;
     }
     .dv-pilotes-nom {
       font-size: 26px;

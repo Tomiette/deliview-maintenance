@@ -4,6 +4,8 @@
 Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
+# Accès refusé par le serveur (cas rare) : la page d'erreur du site, avec ses liens, plutôt que la page brute d'Apache.
+ErrorDocument 403 /404.html
 AddDefaultCharset utf-8
 # Polices WOFF2 servies avec leur type (8 octobre 2026, audit SEO) : sans lui, la règle ExpiresByType font/woff2 (1 an)
 # ne s'appliquait pas et les polices étaient retéléchargées après 1 h.
@@ -25,6 +27,16 @@ AddType font/woff2 .woff2
   RewriteRule ^solution/carte-et-marge/?$ https://www.deliview.fr/solution/prix/ [R=301,L]
   RewriteRule ^solution/prix-et-concurrence/?$ https://www.deliview.fr/solution/prix/ [R=301,L]
   RewriteRule ^solution/reputation/?$ https://www.deliview.fr/solution/avis/ [R=301,L]
+
+  # Le blog s'appelle Ressources : /blog et /blog/<article> mènent à la bonne adresse (8 octobre 2026).
+  RewriteRule ^blog/?$ https://www.deliview.fr/ressources/ [R=301,L]
+  RewriteRule ^blog/(.+?)/?$ https://www.deliview.fr/ressources/$1/ [R=301,L]
+
+  # Dossier sans page (images, polices, vidéo…) : la page 404 du site, jamais le « Forbidden » brut d'Apache
+  # (8 octobre 2026, demande de Tom : des visiteurs voyaient « Forbidden »).
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_FILENAME}/index.html !-f
+  RewriteRule ^ - [R=404,L]
 
   # Adresse d'un dossier sans barre finale (/tarifs) : une seule redirection, vers l'adresse publique exacte
   # (la redirection automatique d'Apache ajoutait « :443 » à l'adresse, 4 octobre 2026).
