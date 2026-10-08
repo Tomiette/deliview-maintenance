@@ -10,8 +10,8 @@ import FragmentFlottant from '../../components/FragmentFlottant.astro';
 import Coche from '../../icons/coche.astro';
 import Fleche from '../../icons/fleche.astro';
 import Enveloppe from '../../icons/enveloppe.astro';
-import Toque from '../../icons/toque.astro';
-import EtiquettePrix from '../../icons/etiquette-prix.astro';
+import Cadenas from '../../icons/cadenas.astro';
+import Courbe from '../../icons/courbe.astro';
 import { FRAGMENTS, PLATEFORMES, SITE, jsonldLogiciel, lien } from '../../lib/site';
 
 export function getStaticPaths() {
@@ -22,41 +22,59 @@ const { slug } = Astro.props as { slug: string };
 const p = PLATEFORMES.find((x) => x.slug === slug)!;
 const autres = PLATEFORMES.filter((x) => x.slug !== slug);
 
-const ETAPES = [
-  { titre: 'Une démo sur votre restaurant', texte: '30 minutes avec Tom, sur vos prix et votre zone.' },
-  { titre: 'La mise en place, avec Tom', texte: 'Vous invitez Deliview sur vos plateformes, sans mot de passe. Rien à installer.' },
-  { titre: 'Vos données sur un seul écran', texte: 'Vos ventes, vos prix, votre note et vos concurrents, plat par plat.' },
-];
-const CONTENU: Record<string, { title: string; description: string; h1: string; lead: string; etapes?: { titre: string; texte: string }[]; faq: { q: string; r: string }[] }> = {
+// 8 octobre 2026 (audit SEO, quasi-doublons) : chaque page a ses propres étapes d'invitation et ses propres questions.
+// Faits repris uniquement du site (article « gérer Uber Eats et Deliveroo ensemble », pages Solution, questions
+// fréquentes) et du parcours de première connexion de l'app (doc projet « onboarding-acces », 5 octobre 2026) : l'adresse
+// à inviter est donnée dans Deliview, avec le lien vers la plateforme ; rôle Administrateur ; jamais le mot de passe.
+type Etape = { titre: string; texte: string };
+const CONTENU: Record<string, { title: string; description: string; h1: string; lead: string; etapesTitre: string; etapes: Etape[]; faq: { q: string; r: string }[] }> = {
   'uber-eats': {
-    title: 'Uber Eats : vos prix face à vos concurrents | Deliview',
+    title: 'Intégration Uber Eats pour restaurants | Deliview',
     description:
-      'Votre carte Uber Eats face aux restaurants autour de vous : prix plat par plat, notes, avis et offres. Demandez une démo.',
-    h1: 'Uber Eats : vos prix et votre note face à votre zone',
+      'Ce que Deliview fait avec votre compte Uber Eats : ventes de la veille, avis, remboursements à contester, fermetures et prix face à votre zone.',
+    h1: 'Intégration Uber Eats : ce que Deliview fait avec votre compte',
     lead: 'Chaque plat de votre carte Uber Eats face au même plat chez vos voisins. Votre note et vos offres aussi.',
-    etapes: ETAPES,
+    etapesTitre: 'Connecter votre compte Uber Eats',
+    etapes: [
+      { titre: 'Copiez l’adresse de Deliview', texte: 'À votre première connexion, Deliview vous donne l’adresse e-mail à inviter, avec un lien vers Uber Eats Manager.' },
+      { titre: 'Ajoutez-la dans Uber Eats Manager', texte: 'Comme nouvel utilisateur, avec un nom et cet e-mail. Parmi les quatre niveaux d’accès, choisissez Administrateur.' },
+      { titre: 'Vos ventes Uber Eats arrivent', texte: 'Deliview les ajoute chaque jour à 7 h. Votre mot de passe reste à vous, et vous retirez l’accès quand vous voulez.' },
+    ],
     faq: [
       {
-        q: 'Qu’est-ce que Deliview ?',
-        r: 'Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.',
+        q: 'Faut-il donner mon mot de passe Uber Eats ?',
+        r: 'Non. Vous invitez Deliview comme utilisateur dans Uber&nbsp;Eats Manager, avec le rôle Administrateur. Vous retirez cet accès quand vous voulez, depuis Uber&nbsp;Eats Manager.',
+      },
+      {
+        q: 'Combien de temps ai-je pour contester un remboursement Uber Eats ?',
+        r: 'Jusqu’à 30&nbsp;jours après la commande. Deliview liste chaque remboursement avec sa date limite et vous montre d’abord les plus pressés. Avec l’offre Pro ou Groupe, vous contestez en un clic.',
       },
       {
         q: 'Et si mon restaurant n’est que sur Uber Eats ?',
-        r: 'Deliview fonctionne aussi avec une seule plateforme. L’analyse porte alors sur Uber Eats seulement.',
+        r: 'Deliview fonctionne aussi avec une seule plateforme. L’analyse porte alors sur Uber&nbsp;Eats seulement.',
       },
     ],
   },
   deliveroo: {
-    title: 'Deliveroo : vos prix face à vos concurrents | Deliview',
+    title: 'Intégration Deliveroo pour restaurants | Deliview',
     description:
-      'Votre carte Deliveroo face aux restaurants autour de vous : prix, notes, offres, et les écarts avec votre carte Uber Eats.',
-    h1: 'Deliveroo : vos prix et votre note face à votre zone',
+      'Ce que Deliview fait avec votre compte Deliveroo : ventes de la veille, avis, remboursements à contester, fermetures et écarts de prix avec Uber Eats.',
+    h1: 'Intégration Deliveroo : ce que Deliview fait avec votre compte',
     lead: 'Les mêmes analyses que sur Uber Eats. En plus, les écarts de prix entre vos deux cartes, plat par plat.',
-    etapes: ETAPES,
+    etapesTitre: 'Connecter votre compte Deliveroo',
+    etapes: [
+      { titre: 'Copiez l’adresse de Deliview', texte: 'À votre première connexion, Deliview vous donne l’adresse e-mail à inviter, avec un lien vers le Partner Hub de Deliveroo.' },
+      { titre: 'Invitez-la dans votre équipe', texte: 'Dans le Partner Hub, invitez un membre depuis la gestion de l’équipe : cette adresse, le rôle Administrateur et vos restaurants.' },
+      { titre: 'Vos ventes Deliveroo arrivent', texte: 'Deliview les ajoute chaque jour à 7 h. Votre mot de passe reste à vous, et vous retirez l’accès quand vous voulez.' },
+    ],
     faq: [
       {
-        q: 'Qu’est-ce que Deliview ?',
-        r: 'Deliview est un logiciel indépendant qui regroupe vos plateformes de livraison.',
+        q: 'Faut-il donner mon mot de passe Deliveroo ?',
+        r: 'Non. Vous invitez Deliview comme membre de votre équipe dans le Partner Hub de Deliveroo, avec le rôle Administrateur. Vous retirez cet accès quand vous voulez, depuis le Partner Hub.',
+      },
+      {
+        q: 'Combien de temps ai-je pour contester un remboursement Deliveroo ?',
+        r: 'Jusqu’à 7&nbsp;jours après le remboursement, le délai le plus court des deux plateformes. Deliview vous montre d’abord les remboursements les plus pressés. Avec l’offre Pro ou Groupe, vous contestez en un clic.',
       },
       {
         q: 'Mes prix ne sont pas les mêmes sur Deliveroo et sur Uber Eats. Est-ce que Deliview le voit ?',
@@ -116,10 +134,10 @@ const c = CONTENU[slug];
     c.etapes && (
       <section class="dv-section bg-grey dv-points" aria-labelledby="demarrer-titre">
         <div class="dv-container">
-          <h2 id="demarrer-titre" class="dv-h2">Démarrer avec {p.nom}</h2>
+          <h2 id="demarrer-titre" class="dv-h2">{c.etapesTitre}</h2>
           <ol class="dv-etapes mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-6">
             {c.etapes.map((e, i) => {
-              const Icone = [Enveloppe, Toque, EtiquettePrix][i];
+              const Icone = [Enveloppe, Cadenas, Courbe][i];
               return (
                 <li class="dv-relief dv-etape" data-apparition="">
                   <p class="flex items-center justify-between">
@@ -139,7 +157,7 @@ const c = CONTENU[slug];
     )
   }
 
-  <Faq questions={c.faq} fond="blanc" />
+  <Faq questions={c.faq} titre={`Questions sur l’intégration ${p.nom}`} fond="blanc" />
 
   <section class="dv-section bg-grey dv-points" aria-labelledby="autres-integrations">
     <div class="dv-container">
@@ -157,10 +175,10 @@ const c = CONTENU[slug];
           ))
         }
         <li class="dv-card dv-carte-lien flex flex-col p-6 md:p-7">
-          <p class="font-accent text-[22px] font-bold">Uber Eats et Deliveroo ensemble</p>
+          <p class="font-accent text-[22px] font-bold">Uber Eats et Deliveroo côte à côte</p>
           <p class="mt-3 flex-1 dv-muted">Vos deux cartes côte à côte. Les écarts de prix, vos concurrents et votre note.</p>
           <a href={lien('/integrations/uber-eats-et-deliveroo/')} class="dv-lien-fort dv-etire mt-3 self-start">
-            Voir les deux ensemble<Fleche taille={24} />
+            Voir les deux côte à côte<Fleche taille={24} />
           </a>
         </li>
       </ul>
