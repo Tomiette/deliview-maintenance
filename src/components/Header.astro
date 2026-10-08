@@ -136,7 +136,7 @@ const dansMenu = (menu: string) =>
           <span class="dv-burger-ouvrir"><Menu taille={32} /></span>
           <span class="dv-burger-fermer"><Plus taille={32} class="rotate-45" /></span>
         </summary>
-        <div class="dv-burger-panneau fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-6 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
+        <div class="dv-burger-panneau fixed inset-x-2 top-[80px] max-h-[calc(100dvh-92px)] overflow-y-auto rounded-[18px] border border-grey-2/15 bg-white px-4 pb-0 pt-2 shadow-[0_12px_32px_rgba(76,76,76,0.12)]">
           <p class="dv-overline pt-3 pb-1">Solution</p>
           <ul>
             {
@@ -202,8 +202,9 @@ const dansMenu = (menu: string) =>
               <a href={SITE.app} class="flex min-h-12 items-center gap-2 py-2 font-semibold"><Cadenas taille={24} />Connexion</a>
             </li>
           </ul>
-          <!-- Action principale collée en bas du panneau : visible dès l'ouverture, même quand le panneau défile. -->
-          <div class="sticky bottom-0 -mx-4 -mb-6 mt-5 border-t border-grey-2/10 bg-white px-4 pb-4 pt-3">
+          <!-- Action principale collée en bas du panneau : visible dès l'ouverture, même quand le panneau défile. Le panneau n'a
+               pas de marge basse : un bloc collé s'arrête à la marge de son conteneur, et le texte défilait dessous. -->
+          <div class="sticky bottom-0 -mx-4 mt-5 border-t border-grey-2/10 bg-white px-4 pb-4 pt-3">
             <BoutonDemo href={lien('/demo/')} cta="menu-mobile" class="w-full" />
           </div>
         </div>
