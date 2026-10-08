@@ -2683,3 +2683,50 @@
     color: var(--color-grey-2);
   }
 }
+
+/* /integrations/ (sous 640 px) : le tableau ne défile plus ; chaque ligne affiche l'intitulé sur toute la largeur, puis
+   Uber Eats et Deliveroo côte à côte (même principe que le comparatif de /tarifs/). */
+@media (max-width: 639.98px) {
+  .dv-tableau-plateformes,
+  .dv-tableau-plateformes thead,
+  .dv-tableau-plateformes tbody {
+    display: block;
+  }
+  .dv-tableau-plateformes tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .dv-tableau-plateformes thead th:first-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .dv-tableau-plateformes thead th {
+    padding: 14px 8px;
+    font-size: 18px;
+  }
+  .dv-tableau-plateformes tbody th {
+    grid-column: 1 / -1;
+    padding: 14px 16px 2px;
+    font-weight: 600;
+  }
+  .dv-tableau-plateformes td {
+    padding: 6px 8px 14px;
+  }
+}
+
+/* /integrations/ entre 768 et 1023 px : la scène prend toute la largeur ; les bulles placées hors du cadre (x négatif)
+   restent à 3 % du bord au lieu d'être coupées par la section. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .dv-integrations-haut .dv-flottant {
+    left: max(var(--x), 3%);
+  }
+  .dv-integrations-haut .dv-flottant-droite {
+    left: auto;
+    right: max(var(--x), 3%);
+  }
+}

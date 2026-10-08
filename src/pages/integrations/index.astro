@@ -1,6 +1,8 @@
 ---
 // Intégrations : Uber Eats et Deliveroo, tableau de ce que Deliview montre pour chacune.
 // Refonte en relief (3 octobre 2026) : en haut, l'accueil de l'app (Uber Eats et Deliveroo côte à côte) incliné en 3D.
+// 8 octobre 2026 (audit responsive) : sous 640 px, le tableau s'empile (intitulé, puis Uber Eats et Deliveroo côte à côte,
+// global.css) ; entre 768 et 1023 px, les bulles du haut restent dans la scène.
 import Base from '../../layouts/Base.astro';
 import BoutonDemo from '../../components/BoutonDemo.astro';
 import SectionDemo from '../../components/SectionDemo.astro';
@@ -29,7 +31,7 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
 ---
 
 <Base title="Intégrations Uber Eats et Deliveroo | Deliview" description={description} ariane={[{ nom: 'Intégrations', chemin: '/integrations/' }]}>
-  <section class="overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="integrations-titre" data-haut-de-page>
+  <section class="dv-integrations-haut overflow-hidden bg-grey pb-14 pt-6 md:pb-[104px] md:pt-10" aria-labelledby="integrations-titre" data-haut-de-page>
     <div class="dv-container grid items-center gap-x-12 gap-y-10 lg:grid-cols-[1fr_1.05fr]">
       <div>
         <Pastille>Intégrations</Pastille>
@@ -84,8 +86,8 @@ const libelleEtat: Record<Etat, string> = { oui: 'Disponible', non: 'Non' };
   <section class="dv-section bg-grey dv-points" aria-labelledby="tableau-titre">
     <div class="dv-container">
       <h2 id="tableau-titre" class="dv-h2 max-w-[24ch]">Ce que vous voyez, plateforme par plateforme</h2>
-      <div class="dv-card mt-8 overflow-x-auto" tabindex="0" role="region" aria-label="Tableau des données par plateforme, défile horizontalement">
-        <table class="w-full min-w-[640px] border-collapse text-left text-[16px]">
+      <div class="dv-card mt-8 overflow-x-auto" tabindex="0" role="region" aria-label="Tableau des données par plateforme">
+        <table class="dv-tableau-plateformes w-full border-collapse text-left text-[16px] sm:min-w-[640px]">
           <caption class="sr-only">Données visibles dans Deliview pour Uber Eats et Deliveroo</caption>
           <thead class="bg-grey">
             <tr>
