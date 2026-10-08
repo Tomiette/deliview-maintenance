@@ -174,6 +174,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
           <input type="hidden" name="page_origine" value="/simulateur/" />
           <input type="hidden" name="retour" value={retour} />
           <input type="hidden" name="utm_source" /><input type="hidden" name="utm_medium" /><input type="hidden" name="utm_campaign" /><input type="hidden" name="utm_content" />
+          <input type="hidden" name="visiteur" />
 
           <p class="dv-erreur-generale mt-5 hidden rounded-[12px] border-2 border-grey-2 bg-white p-4 text-[16px] font-semibold" role="alert"></p>
 
@@ -424,6 +425,8 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
 <script>
   // @ts-nocheck : script repris tel quel, valeurs lues dans le bloc JSON ci-dessus.
+  // 8 octobre 2026 (suivi des visites) : campagne de la visite et identifiant de visite selon le choix du bandeau.
+  import { identifiants, utmVisite } from '../lib/suivi';
   const { partSousZone, hausse, tva } = JSON.parse(document.getElementById('dv-vars-simulateur')?.textContent || '{}');
   // Une question à la fois, barre de progression, retour arrière ; puis envoi des coordonnées et résultats sur place.
   const form = document.getElementById('simulateur');
@@ -581,14 +584,11 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
         `Simulation (${structure === 'dark-kitchen' ? 'dark kitchen' : 'restaurant'}, ${nbEtab} établissement${nbEtab > 1 ? 's' : ''}) : ` +
         `ventes ${euros(r.ventes)} TTC par mois, commission ${pourcent(r.commissionTaux)}, coût matière ${pourcent(r.matiereTaux)}. ` +
         `Reste ${euros(r.reste)} par mois ; prix bien placés : +${euros(r.gain)} par mois.`;
-      try {
-        const utm = JSON.parse(sessionStorage.getItem('dv_utm') || '{}');
-        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach((k) => {
-          if (utm[k]) form.elements.namedItem(k).value = utm[k];
-        });
-      } catch {
-        /* stockage indisponible */
-      }
+      const utm = utmVisite();
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach((k) => {
+        if (utm[k]) form.elements.namedItem(k).value = utm[k];
+      });
+      form.elements.namedItem('visiteur').value = identifiants()?.visiteur || '';
       suivant.disabled = true;
       suivant.textContent = 'Calcul en cours…';
       const donnees = Object.fromEntries(new FormData(form).entries());

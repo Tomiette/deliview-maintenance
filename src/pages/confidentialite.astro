@@ -1,5 +1,6 @@
 ---
 // Politique de confidentialité et cookies (RGPD) : site, formulaire de démo, app.
+// 8 octobre 2026 : mesure d'audience anonyme du site, suivi du parcours avec accord (bandeau), opposition à la mesure.
 import Base from '../layouts/Base.astro';
 import { SITE, lien } from '../lib/site';
 ---
@@ -13,8 +14,8 @@ import { SITE, lien } from '../lib/site';
   <article class="dv-section bg-white !pt-8">
     <div class="dv-container max-w-[820px] prose-dv">
       <h1 class="dv-h1">Politique de confidentialité et cookies</h1>
-      <p class="dv-muted">Mise à jour le 2&nbsp;octobre 2026.</p>
-      <p>En bref&nbsp;: le site ne dépose aucun cookie publicitaire ni de mesure d’audience. Les informations du formulaire de démo servent uniquement à vous recontacter. Elles sont hébergées dans l’Union européenne et vous pouvez demander leur suppression à tout moment.</p>
+      <p class="dv-muted">Mise à jour le 8&nbsp;octobre 2026.</p>
+      <p>En bref&nbsp;: le site compte ses visites de façon anonyme et, avec votre accord seulement, retient les pages que vous lisez. Aucun cookie publicitaire. Les informations du formulaire de démo servent uniquement à vous recontacter. Tout est hébergé dans l’Union européenne et vous pouvez demander la suppression de vos données à tout moment.</p>
 
       <h2>Responsable du traitement</h2>
       <p>DELIVIEW, société par actions simplifiée au capital de 500&nbsp;euros, 9&nbsp;rue Maurice Hubert, 61340 Berd’Huis, RCS Alençon 102&nbsp;681&nbsp;509, représentée par Tom Voisin, président. Contact pour toute question sur vos données&nbsp;: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
@@ -27,6 +28,7 @@ import { SITE, lien } from '../lib/site';
         <tbody>
           <tr><td>Prénom et nom, nom du restaurant et ville, téléphone, e-mail, nombre d’établissements</td><td>Vous rappeler, organiser la démo et vous présenter Deliview</td></tr>
           <tr><td>Page d’où part la demande, bouton cliqué, paramètres de campagne de l’adresse (utm_source, utm_medium, utm_campaign, utm_content)</td><td>Savoir quelles pages et quelles campagnes amènent des demandes</td></tr>
+          <tr><td>Avec votre accord donné dans le bandeau du site&nbsp;: les pages lues pendant vos visites, dans l’ordre, avec le temps passé, et le site ou la campagne d’où vous venez</td><td>Préparer votre démo à partir de ce qui vous intéresse</td></tr>
           <tr><td>Empreinte chiffrée de votre adresse IP, jamais l’adresse elle-même</td><td>Limiter les envois abusifs (5 par heure et par connexion). Effacée chaque nuit pour les demandes de plus d’un jour</td></tr>
           <tr><td>Étape de suivi, date de relance et notes prises pendant nos échanges</td><td>Suivre votre demande jusqu’à la démo, puis jusqu’à votre décision</td></tr>
         </tbody>
@@ -44,9 +46,29 @@ import { SITE, lien } from '../lib/site';
       </ul>
       <p>Aucune donnée n’est vendue ni louée. Firecrawl (États-Unis), utilisé par l’app pour lire les pages publiques d’Uber&nbsp;Eats et de Deliveroo, ne reçoit que les adresses de ces pages et les noms des restaurants analysés, aucune donnée sur les visiteurs ni sur les utilisateurs.</p>
 
-      <h2>Cookies et stockage dans votre navigateur</h2>
-      <p>Le site ne dépose aucun cookie. Il n’utilise ni Google Analytics, ni pixel publicitaire, ni police chargée depuis un service tiers.</p>
-      <p>Pendant votre visite, le stockage de session de votre navigateur retient la provenance de la visite (paramètres utm_ de l’adresse) et le dernier bouton «&nbsp;Demander une démo&nbsp;» cliqué. Ces informations sont envoyées avec votre demande si vous en faites une, et s’effacent à la fermeture de l’onglet.</p>
+      <h2 id="cookies">Mesure d’audience, cookies et stockage dans votre navigateur</h2>
+      <p>Le site n’utilise ni cookie publicitaire, ni Google Analytics, ni pixel publicitaire, ni police chargée depuis un service tiers. Il mesure ses visites avec son propre outil, hébergé par Supabase dans l’Union européenne (Irlande). Les statistiques ne servent qu’à Deliview et ne sont transmises à personne.</p>
+
+      <h3>Mesure anonyme, sans votre accord</h3>
+      <p>Pour chaque page vue, Deliview enregistre&nbsp;: l’adresse de la page, le nom du site d’où vous venez (par exemple linkedin.com, jamais l’adresse complète), le type d’appareil (téléphone, tablette ou ordinateur), la famille de votre navigateur et de votre système, le temps passé, jusqu’où vous avez fait défiler la page et les clics sur les boutons du site. Deliview n’enregistre ni identifiant, ni paramètre de campagne, ni adresse IP, et rien n’est gardé dans votre navigateur pour cette mesure. Ces données sont conservées 13&nbsp;mois.</p>
+      <p>Cette mesure d’audience suit les conditions de la CNIL pour se passer de consentement. Base légale&nbsp;: notre intérêt légitime à mesurer l’audience du site (article 6.1.f du RGPD). Vous pouvez vous y opposer sur ce navigateur&nbsp;:</p>
+      <p class="flex flex-wrap items-center gap-3">
+        <button type="button" class="dv-btn dv-btn-contour" data-opposition hidden>Ne plus être compté</button>
+        <span class="text-[16px]" data-opposition-etat role="status"></span>
+      </p>
+
+      <h3>Suivi de votre parcours, avec votre accord</h3>
+      <p>Si vous l’acceptez dans le bandeau du site, Deliview retient aussi les pages que vous lisez, dans l’ordre, avec le temps passé, et le site ou la campagne (paramètres utm_ de l’adresse) d’où vous venez. Si vous demandez une démo, ce parcours est rattaché à votre demande pour que Tom prépare votre appel. Votre navigateur garde pour cela&nbsp;:</p>
+      <ul>
+        <li>un identifiant aléatoire, 13&nbsp;mois au plus, jamais prolongé&nbsp;;</li>
+        <li>un identifiant de visite, la campagne de votre arrivée et le dernier bouton «&nbsp;Demander une démo&nbsp;» cliqué, effacés à la fermeture de l’onglet.</li>
+      </ul>
+      <p>Base légale&nbsp;: votre consentement (article 6.1.a du RGPD et article 82 de la loi Informatique et Libertés). Ces données sont conservées 13&nbsp;mois, ou avec votre demande de démo si vous en faites une.</p>
+      <p>Votre choix est gardé 6&nbsp;mois dans votre navigateur, puis le bandeau vous est de nouveau proposé. Vous pouvez le changer à tout moment avec «&nbsp;Gérer les cookies&nbsp;», en bas de chaque page&nbsp;: un refus efface aussitôt de votre navigateur ce qui servait au suivi.</p>
+      <p><button type="button" class="dv-btn dv-btn-contour" data-gerer-cookies>Gérer les cookies</button></p>
+
+      <h3>Si vous refusez, ou ne choisissez pas</h3>
+      <p>Sans votre accord, la campagne de votre arrivée et le dernier bouton cliqué ne sont pas gardés&nbsp;: une demande de démo indique seulement la page d’où elle part et la campagne de cette page.</p>
       <p>L’app Deliview (<a href={SITE.app}>deliview.fr/app</a>) garde votre session de connexion dans le stockage local du navigateur&nbsp;: c’est indispensable pour rester connecté.</p>
 
       <h2>L’app Deliview</h2>
@@ -65,3 +87,23 @@ import { SITE, lien } from '../lib/site';
     </div>
   </article>
 </Base>
+
+<script>
+  // Opposition à la mesure d'audience sur ce navigateur (exigée par la CNIL pour la mesure sans consentement).
+  import { oppose, opposer } from '../lib/suivi';
+
+  const bouton = document.querySelector<HTMLButtonElement>('[data-opposition]');
+  const etat = document.querySelector<HTMLElement>('[data-opposition-etat]');
+  const afficher = () => {
+    if (!bouton || !etat) return;
+    const non = oppose();
+    bouton.hidden = false;
+    bouton.textContent = non ? 'Être de nouveau compté' : 'Ne plus être compté';
+    etat.textContent = non ? 'Vos visites ne sont plus comptées sur ce navigateur.' : 'Vos visites sont comptées de façon anonyme.';
+  };
+  bouton?.addEventListener('click', () => {
+    opposer(!oppose());
+    afficher();
+  });
+  afficher();
+</script>

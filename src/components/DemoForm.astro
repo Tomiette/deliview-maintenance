@@ -117,6 +117,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     <input type="hidden" name="utm_campaign" />
     <input type="hidden" name="utm_content" />
     <input type="hidden" name="page_origine" />
+    <input type="hidden" name="visiteur" />
     <input type="hidden" name="section_cta" value={section} />
     <input type="hidden" name="retour" value={retour} />
 
@@ -158,23 +159,11 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
 <script>
   // Validation, provenance (UTM, page, bouton cliqué) et envoi sans rechargement.
-  type Champ = HTMLInputElement | HTMLSelectElement;
-  const UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+  // 8 octobre 2026 (suivi des visites) : la campagne et le bouton cliqué ne sont gardés pour la visite que si le
+  // visiteur a accepté le suivi ; avec son accord, l'identifiant de visite part avec la demande (parcours dans l'admin).
+  import { UTM, dernierBouton, identifiants, utmVisite } from '../lib/suivi';
 
-  function lireStockage(cle: string): string | null {
-    try {
-      return sessionStorage.getItem(cle);
-    } catch {
-      return null;
-    }
-  }
-  function ecrireStockage(cle: string, valeur: string) {
-    try {
-      sessionStorage.setItem(cle, valeur);
-    } catch {
-      /* stockage indisponible : on garde seulement la page en cours */
-    }
-  }
+  type Champ = HTMLInputElement | HTMLSelectElement;
 
   // Exemples des champs (8 octobre 2026, audit responsive) : sous 1280 px, la version courte (data-exemple-court), car
   // l'exemple complet était coupé dans les champs étroits (téléphone, cartes de /parrainage/ à 1024 px).
@@ -186,11 +175,8 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
   placerExemples();
   exempleCourt.addEventListener('change', placerExemples);
 
-  // UTM de la page d'arrivée, gardés le temps de la visite (pas de cookie).
+  // Paramètres de l'adresse : offre choisie (?offre=…) et parrain (?par=…).
   const params = new URLSearchParams(location.search);
-  if (UTM.some((k) => params.get(k))) {
-    ecrireStockage('dv_utm', JSON.stringify(Object.fromEntries(UTM.map((k) => [k, (params.get(k) || '').slice(0, 100)]))));
-  }
 
   function telephoneValide(v: string): boolean {
     let t = v.replace(/[\s.\-()]/g, '');
@@ -245,16 +231,12 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       libelleBouton();
     }
 
-    // Provenance : UTM de la visite, page, dernier bouton démo cliqué.
-    try {
-      const utm = JSON.parse(lireStockage('dv_utm') || '{}') as Record<string, string>;
-      UTM.forEach((k) => {
-        const h = form.elements.namedItem(k) as HTMLInputElement | null;
-        if (h && utm[k]) h.value = utm[k];
-      });
-    } catch {
-      /* valeur illisible : ignorée */
-    }
+    // Provenance : campagne de la visite, page, dernier bouton démo cliqué.
+    const utm = utmVisite();
+    UTM.forEach((k) => {
+      const h = form.elements.namedItem(k) as HTMLInputElement | null;
+      if (h && utm[k]) h.value = utm[k];
+    });
     (form.elements.namedItem('page_origine') as HTMLInputElement).value = location.pathname.slice(0, 200);
     // Lien de parrainage (?par=…) : le nom du parrain est déjà écrit.
     const parrain = form.elements.namedItem('parrain') as HTMLInputElement | null;
@@ -283,7 +265,10 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
         return;
       }
       // Dernier bouton « Demander une démo » cliqué pendant la visite, lu au moment de l'envoi.
-      sectionCta.value = (lireStockage('dv_section_cta') || sectionParDefaut).slice(0, 60);
+      sectionCta.value = (dernierBouton() || sectionParDefaut).slice(0, 60);
+      // Identifiant de visite, seulement si le visiteur a accepté le suivi.
+      const visiteur = form.elements.namedItem('visiteur') as HTMLInputElement | null;
+      if (visiteur) visiteur.value = identifiants()?.visiteur || '';
       bouton.disabled = true;
       const texte = bouton.textContent;
       bouton.textContent = 'Envoi en cours…';
