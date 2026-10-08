@@ -2730,3 +2730,25 @@
     right: max(var(--x), 3%);
   }
 }
+
+/* Tableaux des articles et des pages légales (sous 640 px) : cellules resserrées ; sous un tableau qui dépasse encore de
+   l'écran, la mention « Faites glisser le tableau pour voir la suite » (posée par src/scripts/tableaux.ts). */
+.dv-tableau-aide {
+  display: none;
+}
+@media (max-width: 639.98px) {
+  .prose-dv table {
+    font-size: 15px;
+  }
+  .prose-dv th,
+  .prose-dv td {
+    padding: 10px;
+  }
+  .dv-tableau-aide:not([hidden]) {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
+  }
+}
