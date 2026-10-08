@@ -13,6 +13,8 @@
 // Aperçu : tous les posts ; un post sans lien (date et lien « [À REMPLACER] ») se place juste avant le post daté qui
 // le suit dans la liste.
 //
+// 8 octobre 2026 (Tom : « ajoute ce post, c'est le lancement officiel ! ») : le post du lancement, le plus récent.
+//
 // Décisions de Tom (7 octobre 2026) : « la plus grosse arnaque par mon développeur » et « la santé mentale » retirés
 // (la page rassure un restaurateur qui va confier ses comptes) ; « un restaurateur près de chez moi perd 20 % de son
 // CA » validé pour le site public, extrait sans le chiffre. Photos de la classe de l'INSEEC, du burger et de l'e-mail
@@ -95,6 +97,20 @@ const POSTS: PostLinkedIn[] = [
     titre: 'Un comparateur de prix offert aux restaurateurs',
     extrait: 'J’ai créé un comparateur de prix Uber Eats et Deliveroo pour les restaurateurs et je le donne gratuitement',
     photo: { fichier: 'comparateur-de-prix', largeur: 569, hauteur: 314, alt: 'Le comparateur : « Tes prix sont-ils bien positionnés sur Uber Eats & Deliveroo ? »' },
+  },
+  {
+    // 8 octobre 2026, 18 h 25 : le lancement officiel (lien, texte et capture de la vidéo envoyés par Tom le jour même).
+    // Photo : la couverture de la vidéo du post, recadrée sans la barre de lecture de LinkedIn (le signe « lecture » au
+    // centre fait partie de la capture).
+    lien: 'https://www.linkedin.com/feed/update/urn:li:activity:7513998107743936513/',
+    titre: 'Le lancement officiel',
+    extrait: 'Ça y est. Restaurateur, Deliview est enfin prêt. Ça fait 1 an que je travaille sur le projet.',
+    photo: {
+      fichier: 'lancement-officiel',
+      largeur: 548,
+      hauteur: 258,
+      alt: 'La vidéo du lancement : « Restaurateur, la livraison, vraiment rentable ? », un restaurateur dessiné avec une pizza, entre les logos Uber Eats et Deliveroo',
+    },
   },
 ];
 
