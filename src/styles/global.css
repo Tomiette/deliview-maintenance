@@ -2752,3 +2752,43 @@
     color: color-mix(in srgb, var(--color-grey-2) 85%, transparent);
   }
 }
+
+/* Cibles tactiles de 44 px sous 1280 px, sans changer la mise en page : la zone de clic des liens du fil d'Ariane et de
+   la catégorie d'un article (pastille) est agrandie par un pseudo-élément ; les liens d'un tableau d'article gagnent
+   10 px au-dessus et au-dessous. */
+@media (max-width: 1279.98px) {
+  .dv-ariane a {
+    position: relative;
+  }
+  .dv-ariane a::after {
+    content: "";
+    position: absolute;
+    inset: -11px -6px;
+  }
+  .dv-pastille:has(> a) {
+    position: relative;
+  }
+  .dv-pastille > a::after {
+    content: "";
+    position: absolute;
+    inset: -5px 0;
+  }
+  .prose-dv td a {
+    display: inline-block;
+    padding-block: 10px;
+  }
+}
+
+/* Fil d'Ariane sous 768 px : le dernier élément (souvent le titre entier de l'article, repris par le h1 juste dessous)
+   tient sur une ligne, avec des points de suspension ; le « / » ne reste plus seul. */
+@media (max-width: 767.98px) {
+  .dv-ariane li:last-child {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+  .dv-ariane li:last-child > span[aria-current] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

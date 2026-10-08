@@ -138,7 +138,7 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <main id="contenu" class="flex-1">
       {
         ariane.length > 0 && (
-          <nav aria-label="Fil d’Ariane" class={`${fondHaut === 'gris' ? 'bg-grey' : 'bg-white'}`}>
+          <nav aria-label="Fil d’Ariane" class={`dv-ariane ${fondHaut === 'gris' ? 'bg-grey' : 'bg-white'}`}>
             <ol class="dv-container flex flex-wrap items-center gap-x-2 gap-y-1 pt-5 text-[15px] dv-muted md:pt-6">
               <li>
                 <a href={lien('/')} class="underline underline-offset-2">Accueil</a>
