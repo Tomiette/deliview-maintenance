@@ -96,11 +96,17 @@ const entete = depart ? ['Votre compte', 'Sans engagement'] : ['Bon de démo', '
     border: 1px solid var(--dv-bord);
     border-radius: 999px;
     background: var(--color-white);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.2;
     white-space: nowrap;
     color: var(--color-grey-2);
+  }
+  /* 14 px sur téléphone et tablette (8 octobre 2026, audit responsive), 12 px à partir de 768 px comme avant. */
+  @media (min-width: 768px) {
+    .dv-tom-en-ligne-pastille {
+      font-size: 12px;
+    }
   }
   .dv-tom-en-ligne-pastille i {
     width: 8px;
