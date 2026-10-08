@@ -190,13 +190,13 @@ Avec Pro (jusqu’à 3 restaurants) ou Groupe (jusqu’à 10), chaque restaurant
 Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arrive sur votre téléphone. Sur iPhone, ajoutez d’abord Deliview à l’écran d’accueil.
 
 
-## Tarifs (HT par mois, sans engagement, mise en place offerte)
+## Offres (prix selon vos restaurants et vos besoins, fixé avec Tom avant tout paiement ; sans engagement, mise en place offerte)
 
-- Essentiel : 59 €, 1 restaurant. Améliorez la rentabilité de votre activité livraison.
-- Pro : 199 €, jusqu’à 3 restaurants. Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison.
-- Groupe : 399 €, jusqu’à 10 restaurants. Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison.
+- Essentiel : 1 restaurant. Améliorez la rentabilité de votre activité livraison.
+- Pro : jusqu’à 3 restaurants. Améliorez la rentabilité et devancez vos concurrents sur les plateformes de livraison.
+- Groupe : jusqu’à 10 restaurants. Pilotez intelligemment et améliorez la rentabilité de toute votre activité livraison.
 
-## Questions fréquentes (mises à jour le 2026-10-07, https://www.deliview.fr/questions-frequentes/)
+## Questions fréquentes (mises à jour le 2026-10-08, https://www.deliview.fr/questions-frequentes/)
 
 ### Deliview en bref
 
@@ -235,7 +235,7 @@ Non. Deliview s’ouvre dans le navigateur, sur tablette, ordinateur ou téléph
 ### Prix et engagement
 
 **Combien me coûte Deliview ?**
-Trois offres, selon votre nombre de restaurants. Essentiel : 59 € HT par mois, 1 restaurant. Pro : 199 € HT par mois, jusqu’à 3 restaurants. Groupe : 399 € HT par mois, jusqu’à 10 restaurants. Le détail est sur la page Tarifs.
+Le prix dépend de vos restaurants et de vos besoins. Tom le fixe avec vous, avant tout paiement. Ce que contient chaque offre est sur la page Tarifs.
 
 **Est-ce que je m’engage sur une durée ?**
 Non. L’abonnement est mensuel et sans engagement. La mise en place est offerte.
@@ -244,7 +244,7 @@ Non. L’abonnement est mensuel et sans engagement. La mise en place est offerte
 Oui, par une démo de 30 minutes sur votre propre restaurant, avant tout paiement. Il n’y a pas d’essai gratuit en libre accès. Demander une démo.
 
 **Comment je peux ouvrir un compte ?**
-Deliview s’utilise sur abonnement. Choisissez votre offre sur la page Tarifs et cliquez sur « Commencer maintenant » : Tom vous appelle sous 3 h, crée votre compte et fait la mise en place avec vous. Vous pouvez aussi demander une démo avant de choisir.
+Deliview s’utilise sur abonnement. Choisissez votre offre sur la page Tarifs et cliquez sur « Commencer maintenant » : Tom vous appelle sous 3 h, fixe votre prix, crée votre compte et fait la mise en place avec vous. Vous pouvez aussi demander une démo avant de choisir.
 
 ### Qui est derrière Deliview
 
@@ -261,6 +261,81 @@ Dans l’Union européenne : la base de données de Deliview est hébergée en I
 Par e-mail à tom.voisin@deliview.fr, ou en demandant une démo. C’est Tom qui répond.
 
 ## Guides pour les restaurateurs
+
+### Gérer Uber Eats et Deliveroo en même temps : tablettes, caisse ou logiciel ?
+
+Adresse : https://www.deliview.fr/ressources/gerer-uber-eats-deliveroo-ensemble/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-08
+
+En bref : Il y a deux choses à réunir : les commandes et les chiffres. Pour les commandes, un connecteur comme Deliverect ou HubRise les envoie dans votre caisse et remplace les tablettes. Pour les chiffres, un outil comme Deliview réunit vos ventes, vos prix, vos avis et vos remboursements. Sans budget, les exports des deux plateformes et un tableur suffisent pour démarrer.
+
+## Pourquoi c’est si lourd de gérer Uber Eats et Deliveroo ensemble ?
+
+Parce que chaque plateforme a ses outils, et qu’aucune ne parle à l’autre. Chez Uber Eats, les commandes arrivent sur l’application Commandes, et le reste se passe dans Uber Eats Manager : ventes, paiements, menus, avis. Chez Deliveroo, c’est sa tablette, puis le Portail Partenaire.
+
+Résultat, tout se fait en double : deux menus à tenir à jour, deux ruptures à signaler, deux séries d’avis, deux factures. Même les règles diffèrent. Deliveroo vous paie chaque semaine les ventes de la semaine précédente, avec une facture à télécharger. Uber Eats verse aussi chaque semaine, avec un relevé commande par commande. Pour contester un remboursement, vous avez 30 jours chez Uber Eats et 7 jours chez Deliveroo, comme le détaille notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
+
+Avant de choisir une solution, posez-vous une question : que voulez-vous réunir ? **Les commandes**, pour ne plus courir d’une tablette à l’autre ? **Ou les chiffres**, pour savoir ce que chaque plateforme vous rapporte vraiment ? Ce ne sont pas les mêmes outils.
+
+## Solution 1 : garder les tablettes et les back-offices
+
+C’est gratuit et c’est déjà en place. Pour que ça tienne, organisez-vous :
+
+- **une personne par service** tient les deux tablettes, branchées et rangées côte à côte ;
+- **les ruptures** se signalent sur les deux plateformes en même temps ;
+- **le lundi**, un quart d’heure pour lire les ventes, les avis et les remboursements de la semaine, plateforme par plateforme.
+
+Donnez aussi accès à votre équipe sans partager votre mot de passe. Uber Eats Manager propose quatre niveaux d’accès, de la consultation des chiffres à l’administration du compte : vous ajoutez la personne avec son nom et son e-mail. Dans le Portail Partenaire de Deliveroo, vous invitez un membre depuis la gestion de l’équipe, en choisissant son rôle et ses restaurants.
+
+**La limite** : vous ne voyez jamais vos deux plateformes ensemble, et le suivi dépend de votre temps. Notre article sur [les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) donne les réglages pour les soirs chargés.
+
+## Solution 2 : un tableur avec les exports des deux plateformes
+
+Si vous voulez vos chiffres réunis sans dépenser, un tableur suffit. Uber Eats Manager vous laisse choisir un rapport (paiements, opérations ou avis), un restaurant et une période. Le Portail Partenaire de Deliveroo propose vos factures en PDF ou en CSV, sur la dernière année.
+
+Une fois par semaine, reportez sur une même ligne, pour chaque plateforme :
+
+| Colonne | Où la trouver |
+| --- | --- |
+| Ventes TTC | Rapport de paiements Uber Eats, facture Deliveroo |
+| Commission | Les deux, ligne par ligne |
+| Offres et publicité | Les deux, en déduction |
+| Remboursements | Les deux, à repérer commande par commande |
+| Montant versé | Votre relevé bancaire, pour vérifier |
+
+En un mois, vous voyez quelle plateforme vous coûte le plus cher, et sur quoi. Pour le calcul, appuyez-vous sur nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
+
+**La limite** : du temps chaque semaine, des erreurs de saisie, et rien sur vos concurrents.
+
+## Solution 3 : un connecteur qui envoie les commandes dans la caisse
+
+C’est la solution pour **ne plus avoir de tablettes**. Un connecteur reçoit les commandes d’Uber Eats et de Deliveroo et les envoie dans votre logiciel de caisse, où elles s’affichent comme vos commandes sur place.
+
+Deliverect est le plus connu. D’après sa page sur Uber Eats, il intègre les commandes dans la caisse, synchronise les menus, renvoie le statut des commandes à la plateforme et propose des statistiques de ventes. HubRise, connecteur français, relie de son côté les caisses, les plateformes de livraison et les sites de commande.
+
+**La limite** : un abonnement en plus de votre caisse, une caisse compatible, et une mise en place à prévoir. Le rôle premier de ces outils, ce sont les commandes et les menus.
+
+## Solution 4 : un outil de pilotage pour réunir les chiffres
+
+C’est la solution pour **savoir où part votre marge**, sans toucher à vos tablettes. Un outil de pilotage réunit les ventes des deux plateformes, et ce qu’elles ne montrent pas : vos prix face à ceux de votre zone, les promos de vos voisins, vos remboursements à contester.
+
+Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe. [Voir Uber Eats et Deliveroo côte à côte dans Deliview](/integrations/uber-eats-et-deliveroo/).
+
+**Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et c’est un abonnement payant, dont le prix dépend de vos restaurants.
+
+## Quelle solution choisir ?
+
+| Solution | Ce qu’elle réunit | Coût | Pour qui |
+| --- | --- | --- | --- |
+| Tablettes et back-offices | Rien, mais tout est déjà là | Gratuit | Peu de commandes, un seul restaurant |
+| Tableur et exports | Vos chiffres, à la main | Gratuit, mais du temps chaque semaine | Pour démarrer un suivi sans budget |
+| Connecteur vers la caisse | Les commandes et les menus | Abonnement en plus de la caisse | Beaucoup de commandes, caisse compatible |
+| Outil de pilotage | Vos chiffres, vos prix, vos remboursements | Abonnement mensuel | Vous voulez savoir où part votre marge |
+
+Les solutions se combinent. Un restaurant qui croule sous les commandes commence par un connecteur. Un restaurant qui vend bien mais garde peu commence par ses chiffres : un tableur d’abord, puis un outil quand le temps manque.
+
+Dans tous les cas, regardez une fois par mois ce que chaque plateforme vous rapporte, et pas seulement ce qu’elle vend. Pour voir ce que Deliview réunit, [toutes les fonctions sont sur une page](/solution/).
+
+Sources : How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Guide des commerçants : Utilisez l’application Commandes sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/, consulté le 6 octobre 2026) ; How to add or remove users in Partner Hub (Deliveroo, https://help.deliveroo.com/en/articles/13871159-how-to-add-or-remove-users-in-partner-hub, consulté le 7 octobre 2026) ; Factures et paiements (Deliveroo, https://help.deliveroo.com/fr/articles/2037435-factures-et-paiements, consulté le 6 octobre 2026) ; FAQ des partenaires (Deliveroo, https://merchants.deliveroo.com/fr-FR/faqs, consulté le 6 octobre 2026) ; Get your Uber Eats orders integrated to your POS (Deliverect, https://deliverect.com/en-ca/integrations/uber-eats, consulté le 7 octobre 2026) ; HubRise : avis, tarifs et fonctionnalités (La Fabrique du Net, https://www.lafabriquedunet.fr/logiciel/hubrise, consulté le 7 octobre 2026)
 
 ### Algorithme Uber Eats et Deliveroo : comment votre restaurant est classé dans l’application
 
@@ -522,81 +597,6 @@ Commencez par les remboursements encore contestables, puis installez la routine 
 Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Pro, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
 
 Sources : Gestion des remboursements en cas de commandes incorrectes ou incomplètes (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/gestion-des-remboursements-en-cas-de-commandes-incorrectes-ou-incompl%C3%A8tes-?nodeId=abc0c3e7-9687-4a00-a956-2c8a16cf0b7e, consulté le 6 octobre 2026) ; Comment résoudre les erreurs de commande (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/order-errors/, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; Comment gérer et contester les remboursements dans le Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/6457561-comment-gerer-et-contester-les-remboursements-dans-le-portail-partenaire, consulté le 6 octobre 2026) ; Pourquoi ce remboursement est-il à ma charge ? (Deliveroo, https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge, consulté le 6 octobre 2026) ; Politiques des partenaires : remboursement des clients et annulation des commandes (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 6 octobre 2026) ; Pourquoi mes frais de remboursement pour les produits inclus dans une formule ont-ils changé ? (Deliveroo, https://help.deliveroo.com/fr/articles/12058685-pourquoi-mes-frais-de-remboursement-pour-les-produits-inclus-dans-une-formule-ont-ils-change, consulté le 6 octobre 2026)
-
-### Gérer Uber Eats et Deliveroo en même temps : tablettes, caisse ou logiciel ?
-
-Adresse : https://www.deliview.fr/ressources/gerer-uber-eats-deliveroo-ensemble/ · Auteur : Tom Voisin · Publié le 2026-10-07, mis à jour le 2026-10-07
-
-En bref : Il y a deux choses à réunir : les commandes et les chiffres. Pour les commandes, un connecteur comme Deliverect ou HubRise les envoie dans votre caisse et remplace les tablettes. Pour les chiffres, un outil comme Deliview réunit vos ventes, vos prix, vos avis et vos remboursements. Sans budget, les exports des deux plateformes et un tableur suffisent pour démarrer.
-
-## Pourquoi c’est si lourd de gérer Uber Eats et Deliveroo ensemble ?
-
-Parce que chaque plateforme a ses outils, et qu’aucune ne parle à l’autre. Chez Uber Eats, les commandes arrivent sur l’application Commandes, et le reste se passe dans Uber Eats Manager : ventes, paiements, menus, avis. Chez Deliveroo, c’est sa tablette, puis le Portail Partenaire.
-
-Résultat, tout se fait en double : deux menus à tenir à jour, deux ruptures à signaler, deux séries d’avis, deux factures. Même les règles diffèrent. Deliveroo vous paie chaque semaine les ventes de la semaine précédente, avec une facture à télécharger. Uber Eats verse aussi chaque semaine, avec un relevé commande par commande. Pour contester un remboursement, vous avez 30 jours chez Uber Eats et 7 jours chez Deliveroo, comme le détaille notre guide pour [contester un remboursement](/ressources/contester-remboursement-uber-eats-deliveroo/).
-
-Avant de choisir une solution, posez-vous une question : que voulez-vous réunir ? **Les commandes**, pour ne plus courir d’une tablette à l’autre ? **Ou les chiffres**, pour savoir ce que chaque plateforme vous rapporte vraiment ? Ce ne sont pas les mêmes outils.
-
-## Solution 1 : garder les tablettes et les back-offices
-
-C’est gratuit et c’est déjà en place. Pour que ça tienne, organisez-vous :
-
-- **une personne par service** tient les deux tablettes, branchées et rangées côte à côte ;
-- **les ruptures** se signalent sur les deux plateformes en même temps ;
-- **le lundi**, un quart d’heure pour lire les ventes, les avis et les remboursements de la semaine, plateforme par plateforme.
-
-Donnez aussi accès à votre équipe sans partager votre mot de passe. Uber Eats Manager propose quatre niveaux d’accès, de la consultation des chiffres à l’administration du compte : vous ajoutez la personne avec son nom et son e-mail. Dans le Portail Partenaire de Deliveroo, vous invitez un membre depuis la gestion de l’équipe, en choisissant son rôle et ses restaurants.
-
-**La limite** : vous ne voyez jamais vos deux plateformes ensemble, et le suivi dépend de votre temps. Notre article sur [les tablettes en plein rush](/ressources/tablettes-uber-eats-deliveroo-rush/) donne les réglages pour les soirs chargés.
-
-## Solution 2 : un tableur avec les exports des deux plateformes
-
-Si vous voulez vos chiffres réunis sans dépenser, un tableur suffit. Uber Eats Manager vous laisse choisir un rapport (paiements, opérations ou avis), un restaurant et une période. Le Portail Partenaire de Deliveroo propose vos factures en PDF ou en CSV, sur la dernière année.
-
-Une fois par semaine, reportez sur une même ligne, pour chaque plateforme :
-
-| Colonne | Où la trouver |
-| --- | --- |
-| Ventes TTC | Rapport de paiements Uber Eats, facture Deliveroo |
-| Commission | Les deux, ligne par ligne |
-| Offres et publicité | Les deux, en déduction |
-| Remboursements | Les deux, à repérer commande par commande |
-| Montant versé | Votre relevé bancaire, pour vérifier |
-
-En un mois, vous voyez quelle plateforme vous coûte le plus cher, et sur quoi. Pour le calcul, appuyez-vous sur nos articles sur [la commission Uber Eats](/ressources/commission-uber-eats-restaurant/) et [la commission Deliveroo](/ressources/commission-deliveroo-restaurant/).
-
-**La limite** : du temps chaque semaine, des erreurs de saisie, et rien sur vos concurrents.
-
-## Solution 3 : un connecteur qui envoie les commandes dans la caisse
-
-C’est la solution pour **ne plus avoir de tablettes**. Un connecteur reçoit les commandes d’Uber Eats et de Deliveroo et les envoie dans votre logiciel de caisse, où elles s’affichent comme vos commandes sur place.
-
-Deliverect est le plus connu. D’après sa page sur Uber Eats, il intègre les commandes dans la caisse, synchronise les menus, renvoie le statut des commandes à la plateforme et propose des statistiques de ventes. HubRise, connecteur français, relie de son côté les caisses, les plateformes de livraison et les sites de commande.
-
-**La limite** : un abonnement en plus de votre caisse, une caisse compatible, et une mise en place à prévoir. Le rôle premier de ces outils, ce sont les commandes et les menus.
-
-## Solution 4 : un outil de pilotage pour réunir les chiffres
-
-C’est la solution pour **savoir où part votre marge**, sans toucher à vos tablettes. Un outil de pilotage réunit les ventes des deux plateformes, et ce qu’elles ne montrent pas : vos prix face à ceux de votre zone, les promos de vos voisins, vos remboursements à contester.
-
-Deliview fait partie de cette famille. Il ajoute vos ventes Uber Eats et Deliveroo chaque jour à 7 h, compare chacun de vos plats au même plat chez vos concurrents, liste vos remboursements avec leur date limite, prépare une réponse à chaque avis et vous prévient si votre restaurant est fermé en plein service. Vous donnez l’accès par invitation, dans Uber Eats Manager et le Portail Partenaire : jamais votre mot de passe. [Voir Uber Eats et Deliveroo côte à côte dans Deliview](/integrations/uber-eats-et-deliveroo/).
-
-**Ce que Deliview ne fait pas** : il ne reçoit pas les commandes et ne remplace ni vos tablettes ni votre caisse. Il ne couvre qu’Uber Eats et Deliveroo, et l’offre de base démarre à 59 € HT par mois.
-
-## Quelle solution choisir ?
-
-| Solution | Ce qu’elle réunit | Coût | Pour qui |
-| --- | --- | --- | --- |
-| Tablettes et back-offices | Rien, mais tout est déjà là | Gratuit | Peu de commandes, un seul restaurant |
-| Tableur et exports | Vos chiffres, à la main | Gratuit, mais du temps chaque semaine | Pour démarrer un suivi sans budget |
-| Connecteur vers la caisse | Les commandes et les menus | Abonnement en plus de la caisse | Beaucoup de commandes, caisse compatible |
-| Outil de pilotage | Vos chiffres, vos prix, vos remboursements | Abonnement mensuel | Vous voulez savoir où part votre marge |
-
-Les solutions se combinent. Un restaurant qui croule sous les commandes commence par un connecteur. Un restaurant qui vend bien mais garde peu commence par ses chiffres : un tableur d’abord, puis un outil quand le temps manque.
-
-Dans tous les cas, regardez une fois par mois ce que chaque plateforme vous rapporte, et pas seulement ce qu’elle vend. Pour voir ce que Deliview réunit, [toutes les fonctions sont sur une page](/solution/).
-
-Sources : How to manage your restaurant with Uber Eats Manager (Uber, https://merchants.ubereats.com/fr/en/resources/learning-center/uber-eats-manager/, consulté le 7 octobre 2026) ; Guide des commerçants : Utilisez l’application Commandes sur Uber Eats (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/uber-eats-orders-app/, consulté le 6 octobre 2026) ; How to add or remove users in Partner Hub (Deliveroo, https://help.deliveroo.com/en/articles/13871159-how-to-add-or-remove-users-in-partner-hub, consulté le 7 octobre 2026) ; Factures et paiements (Deliveroo, https://help.deliveroo.com/fr/articles/2037435-factures-et-paiements, consulté le 6 octobre 2026) ; FAQ des partenaires (Deliveroo, https://merchants.deliveroo.com/fr-FR/faqs, consulté le 6 octobre 2026) ; Get your Uber Eats orders integrated to your POS (Deliverect, https://deliverect.com/en-ca/integrations/uber-eats, consulté le 7 octobre 2026) ; HubRise : avis, tarifs et fonctionnalités (La Fabrique du Net, https://www.lafabriquedunet.fr/logiciel/hubrise, consulté le 7 octobre 2026)
 
 ### Photos de plats sur Uber Eats et Deliveroo : les règles, et comment les refaire au téléphone
 
