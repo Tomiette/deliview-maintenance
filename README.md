@@ -16,7 +16,7 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 
 - Coordonnées, slogan, définition, piliers, fonctionnalités, plateformes, offres : `src/lib/site.ts`. Le site ne présente que ce que Deliview fait aujourd'hui (décision de Tom, 2 octobre 2026) : pas d'étiquette « Bientôt », pas d'Uber Direct.
 - Slogan définitif : « Le partenaire des restaurants en livraison » (`SITE.slogan`) : hero, pied de page, Qui sommes-nous, données structurées
-- Offres et prix (Essentiel, Pro, Premium) : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, le hero, le simulateur et les données structurées suivent
+- Offres (Autonomie et Délégation depuis le 9 octobre 2026, identifiants « pro » et « premium ») : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, l'accueil, « Commencer » et llms.txt suivent. Plus aucun prix affiché sur le site (8 octobre 2026)
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
 - Polices : titres en Aspekta (police du logo), texte, boutons et menus en Inter
 - Direction graphique « le passe » (cahier et maquettes du 2 octobre 2026) : tickets (`Ticket.astro`, `TicketComparaison.astro`),

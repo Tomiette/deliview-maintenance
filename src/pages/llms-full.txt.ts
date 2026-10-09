@@ -35,7 +35,8 @@ export const GET: APIRoute = async () => {
     '',
     ...[...LEVIERS.map((l) => ({ id: l.id, nom: l.nom })), ...VEILLE.map((v) => ({ id: v.id, nom: v.nom.replace(/ \?$/, '') }))].flatMap(({ id, nom }) => {
       const p = PAGES[id];
-      const offre = [p.offres.toutes && `Toutes les offres : ${p.offres.toutes}`, p.offres.pro && `${p.offres.toutes ? 'En plus avec Pro et Groupe' : 'Avec Pro et Groupe'} : ${p.offres.pro}`].filter(Boolean).join(' ');
+      // Les deux offres (9 octobre 2026) : ce que chacune fait pour cette fonction.
+      const offre = `Avec Autonomie (vous décidez, Deliview applique) : ${p.offres.autonomie} Avec Délégation (Deliview s’occupe de tout) : ${p.offres.delegation}`;
       return [
         `### ${nom} (${u(cheminFonction(id))})`,
         '',
@@ -54,7 +55,7 @@ export const GET: APIRoute = async () => {
     // Plus aucun prix public depuis le 8 octobre 2026 (demande de Tom) : le prix est fixé avec Tom, avant tout paiement.
     '## Offres (prix et nombre de restaurants selon vos besoins, fixés avec Tom avant tout paiement ; sans engagement, mise en place offerte)',
     '',
-    ...OFFRES.map((o) => `- ${o.nom} : ${o.titre}. ${o.base} ${o.inclus.map((x) => (typeof x === 'string' ? x : x.texte)).map((x) => x.charAt(0).toLowerCase() + x.slice(1)).join(' ; ')}.`),
+    ...OFFRES.map((o) => `- ${o.nom} : ${o.titre}. ${o.phrase} ${o.base} ${o.inclus.map((x) => (typeof x === 'string' ? x : x.texte)).map((x) => x.charAt(0).toLowerCase() + x.slice(1)).join(' ; ')}.`),
     '',
     `## Questions fréquentes (mises à jour le ${FAQ_MAJ}, ${u('/questions-frequentes/')})`,
     '',

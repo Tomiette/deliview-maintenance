@@ -21,7 +21,8 @@ import { OFFRES, SITE, lien } from '../../lib/site';
 import { logoPlateforme } from '../../lib/logos';
 
 const PAR_MOIS = 2;
-const pro = OFFRES.find((o) => o.slug === 'pro') ?? OFFRES[0];
+// L'offre montrée sur la facture d'exemple : la recommandée (Délégation depuis le 9 octobre 2026).
+const offreExemple = OFFRES.find((o) => o.recommandee) ?? OFFRES[0];
 const logoUber = logoPlateforme('uber-eats');
 const logoDeliveroo = logoPlateforme('deliveroo');
 const description =
@@ -135,7 +136,7 @@ const pageUrl = SITE.url + '/parrainage/';
             <div class="dv-parr-facture">
               <!-- Sans montant depuis le 8 octobre 2026 (plus de prix sur le site, demande de Tom) : le mois, puis le mois offert. -->
               <p class="dv-parr-facture-tete"><span>Prochaine facture</span></p>
-              <p class="dv-parr-facture-ligne"><span>Abonnement {pro.nom}</span><span>1 mois</span></p>
+              <p class="dv-parr-facture-ligne"><span>Abonnement {offreExemple.nom}</span><span>1 mois</span></p>
               <p class="dv-parr-facture-ligne text-blue"><span>Parrainage · 2 filleuls</span><span>−1 mois</span></p>
               <p class="dv-parr-facture-total"><span>À payer</span><span>0&nbsp;€</span></p>
             </div>

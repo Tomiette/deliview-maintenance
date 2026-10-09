@@ -22,7 +22,7 @@ import Fleche from '../../icons/fleche.astro';
 import { ICONES } from '../../lib/registre-icones';
 import { PAGES, type Bloc } from '../../lib/fonctions';
 import { texteBrut } from '../../lib/faq';
-import { EXEMPLE_MARGHERITA as ex, FONCTIONS, SITE, cheminFonction, euros, exposants, jsonldLogiciel, lien, type FonctionResume } from '../../lib/site';
+import { EXEMPLE_MARGHERITA as ex, FONCTIONS, OFFRES, SITE, cheminFonction, euros, exposants, jsonldLogiciel, lien, type FonctionResume } from '../../lib/site';
 
 export function getStaticPaths() {
   return FONCTIONS.map((f) => ({ params: { slug: f.slug }, props: { f } }));
@@ -49,8 +49,16 @@ const fondFaq = fond();
 const fondArticles = articles.length ? fond() : fondFaq;
 const fondAutres = fond();
 
-// Dans quelle offre : comme la page Tarifs (Essentiel, Pro, Groupe), sans prix depuis le 8 octobre 2026.
-const offreCourte = p.offres.toutes && p.offres.pro ? 'Dans toutes les offres, et plus avec Pro' : p.offres.toutes ? 'Inclus dans toutes les offres' : 'Avec les offres Pro et Groupe';
+// Dans quelle offre : comme la page Tarifs, sans prix depuis le 8 octobre 2026. Depuis le 9 octobre 2026, deux offres
+// qui ont toutes les fonctions : la carte de chacune dit qui décide pour cette fonction (Délégation, la recommandée,
+// au contour bleu).
+const offreCourte = 'Dans les deux offres';
+const cartesOffres = OFFRES.map((o) => ({
+  nom: o.nom,
+  qui: o.slug === 'premium' ? 'Deliview s’occupe de tout' : 'Vous décidez, Deliview applique',
+  texte: o.slug === 'premium' ? p.offres.delegation : p.offres.autonomie,
+  recommandee: !!o.recommandee,
+}));
 const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
 
 const faqJsonld = {
@@ -284,29 +292,21 @@ const sizesVitrine = (appareil: string) => (appareil === 'telephone' ? '(min-wid
     <div class="dv-container">
       <Pastille>Tarifs</Pastille>
       <h2 id="offre-titre" class="dv-h2 mt-4 md:mt-5">Dans quelle offre ?</h2>
-      <ul class={`mt-8 grid gap-5 md:mt-10 md:gap-6 ${p.offres.toutes && p.offres.pro ? 'md:grid-cols-2' : 'max-w-[640px]'}`}>
+      <ul class="mt-8 grid gap-5 md:mt-10 md:grid-cols-2 md:gap-6">
         {
-          p.offres.toutes && (
-            <li class="dv-relief dv-fonction-offre">
-              <p class="dv-fonction-offre-nom">Toutes les offres</p>
-              <p class="dv-fonction-offre-qui">Essentiel, Pro et Groupe</p>
+          cartesOffres.map((c) => (
+            <li class={`dv-relief dv-fonction-offre ${c.recommandee ? 'dv-fonction-offre-pro' : ''}`}>
+              <p class="dv-fonction-offre-nom">
+                {c.nom}
+                {c.recommandee && <span class="sr-only">, offre recommandée</span>}
+              </p>
+              <p class="dv-fonction-offre-qui">{c.qui}</p>
               <p class="dv-fonction-offre-texte">
                 <Coche taille={24} />
-                <span>{p.offres.toutes}</span>
+                <span>{c.texte}</span>
               </p>
             </li>
-          )
-        }
-        {
-          p.offres.pro && (
-            <li class="dv-relief dv-fonction-offre dv-fonction-offre-pro">
-              <p class="dv-fonction-offre-nom">{p.offres.toutes ? 'En plus avec Pro et Groupe' : 'Avec Pro et Groupe'}</p>
-              <p class="dv-fonction-offre-texte">
-                <Coche taille={24} />
-                <span>{p.offres.pro}</span>
-              </p>
-            </li>
-          )
+          ))
         }
       </ul>
       <p class="mt-6 text-[16px] leading-[1.5] dv-muted md:mt-8">Sans engagement, mise en place offerte.</p>

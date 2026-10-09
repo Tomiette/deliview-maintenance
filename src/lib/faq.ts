@@ -23,7 +23,7 @@ export interface RubriqueFaq {
   questions: QuestionFaq[];
 }
 
-export const FAQ_MAJ = '2026-10-08';
+export const FAQ_MAJ = '2026-10-09';
 
 export const FAQ: RubriqueFaq[] = [
   {
@@ -59,11 +59,11 @@ export const FAQ: RubriqueFaq[] = [
       },
       {
         q: 'Combien de concurrents est-ce que je peux suivre ?',
-        r: 'Jusqu’à 20&nbsp;restaurants de votre secteur, sur Uber&nbsp;Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des concurrents de votre choix, par restaurant.',
+        r: 'Jusqu’à 20&nbsp;restaurants de votre secteur, sur Uber&nbsp;Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. 3 d’entre eux peuvent être des concurrents de votre choix, par restaurant.',
       },
       {
         q: 'Est-ce que Deliview peut changer mes prix sur les plateformes ?',
-        r: 'Oui, avec l’offre Pro ou Groupe, et seulement quand vous le décidez. Deliview propose un prix avec ses sources. Vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Même chose pour vos promotions. Rien ne change sans votre accord.',
+        r: 'Oui, et seulement comme vous l’avez décidé. Avec l’offre Autonomie, Deliview propose un prix avec ses sources&nbsp;: vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Même chose pour vos promotions. Avec l’offre Délégation, vous fixez la stratégie avec Tom chaque mois, et Deliview ajuste vos prix et vos promos sans vous demander à chaque fois.',
       },
       {
         q: 'Comment je donne accès à Deliview ?',

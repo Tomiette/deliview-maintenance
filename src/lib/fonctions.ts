@@ -2,9 +2,9 @@
 // le contenu des sept pages /solution/<slug>/, toutes sur le même gabarit (src/pages/solution/[slug].astro).
 // Règles de contenu :
 // - uniquement ce que l'app fait aujourd'hui (code de l'app et docs du projet, 3 au 7 octobre 2026) ;
-// - offres comme la page Tarifs et app/src/lib/offre.ts (Essentiel : prix proposés, zone, avis, alerte de fermeture,
-//   objectifs ; Pro et Groupe : promos conseillées et mises en ligne, prix mis en ligne, contestations, relance,
-//   assistant, concurrents choisis, analyses à la demande) ;
+// - offres comme la page Tarifs (9 octobre 2026) : toutes les fonctions dans les deux offres ; ce qui change, c'est qui
+//   décide. Autonomie : vous validez, Deliview applique. Délégation : Deliview gère selon la stratégie et les règles
+//   fixées avec vous au point mensuel ; un avis sensible (santé, hygiène, allergie) reste pour votre relecture ;
 // - délais promis : seulement ceux décidés par Tom (sous 10 min pour les prix, les promos et les contestations, sous
 //   5 min pour la relance) ; jamais « automatique » ; rien sur la façon dont les données sont obtenues ;
 // - bulles : seulement des chiffres lus sur leur capture ; « Exemple réel » : seulement des analyses réelles anonymisées.
@@ -66,8 +66,9 @@ export interface PageFonction {
   zoom?: Bloc;
   complement?: Bloc;
   regles: { surtitre: string; titre: string; reponse: string; points: string[]; sources?: Source[] };
-  // Ce que chaque offre comprend pour cette fonction ; absent : la fonction n'est pas dans ces offres.
-  offres: { toutes?: string; pro?: string };
+  // Ce que fait chaque offre pour cette fonction (9 octobre 2026) : Autonomie, vous décidez ; Délégation, Deliview gère
+  // selon la stratégie fixée avec vous.
+  offres: { autonomie: string; delegation: string };
   faq: { q: string; r: string }[];
   // Articles du blog liés (identifiants), dans l'ordre.
   articles: string[];
@@ -136,17 +137,17 @@ export const PAGES: Record<string, PageFonction> = {
       ],
     },
     offres: {
-      toutes: 'Les offres de vos concurrents, plateforme par plateforme, et ce qui change chez eux.',
-      pro: 'Les offres à lancer sur vos creux, mises en ligne après votre accord, sous 10 min, puis leur bilan.',
+      autonomie: 'Les offres à lancer sur vos creux. Vous validez, Deliview les met en ligne sous 10 min, puis fait leur bilan.',
+      delegation: 'Le plan de promos du mois, fixé avec Tom. Deliview les lance, les retire et vous montre leur bilan.',
     },
     faq: [
       {
         q: 'Est-ce que Deliview lance une promo sans mon accord ?',
-        r: 'Non. Deliview vous propose l’offre, avec son coût et son objectif. Elle ne passe en ligne que si vous la validez, avec l’offre Pro ou Groupe.',
+        r: 'Non. Avec Autonomie, Deliview vous propose l’offre, avec son coût et son objectif&nbsp;: elle ne passe en ligne que si vous la validez. Avec Délégation, Deliview lance les promos du plan fixé avec vous chaque mois.',
       },
       {
         q: 'Où intervient l’IA dans mes promos ?',
-        r: 'Dans l’assistant IA, avec l’offre Pro ou Groupe. Demandez-lui quelle promo lancer sur un creux&nbsp;: il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.',
+        r: 'Dans l’assistant IA, dans les deux offres. Demandez-lui quelle promo lancer sur un creux&nbsp;: il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.',
       },
       {
         q: 'Quelles promos est-ce que Deliview peut me proposer ?',
@@ -214,13 +215,13 @@ export const PAGES: Record<string, PageFonction> = {
       ],
     },
     offres: {
-      toutes: 'Chaque remboursement, son montant et la date limite pour le contester.',
-      pro: 'Vous contestez en un clic : Deliview envoie la contestation et suit la réponse.',
+      autonomie: 'Chaque remboursement et sa date limite. Vous contestez en un clic : Deliview envoie la contestation et suit la réponse.',
+      delegation: 'Deliview conteste pour vous les remboursements à contester, avant la date limite, et suit la réponse.',
     },
     faq: [
       {
         q: 'Est-ce que Deliview conteste sans me demander ?',
-        r: 'Non. Vous choisissez les commandes à contester. Deliview n’envoie que les contestations que vous avez validées.',
+        r: 'Avec Autonomie, non&nbsp;: vous choisissez les commandes à contester, et Deliview n’envoie que les contestations que vous avez validées. Avec Délégation, oui&nbsp;: Deliview conteste pour vous, selon les règles fixées ensemble.',
       },
       {
         q: 'Quels remboursements est-ce que je peux contester ?',
@@ -250,9 +251,9 @@ export const PAGES: Record<string, PageFonction> = {
     hero: heroLevier('prix'),
     etapesTitre: 'Comment Deliview conseille un prix',
     etapes: [
-      { titre: 'Il retient vos concurrents', texte: 'Jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité, sur Uber Eats et Deliveroo. Avec Pro ou Groupe, 3 d’entre eux peuvent être choisis par vous.' },
+      { titre: 'Il retient vos concurrents', texte: 'Jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité, sur Uber Eats et Deliveroo. 3 d’entre eux peuvent être choisis par vous.' },
       { titre: 'Il compare plat par plat', texte: 'Votre pizza 33 cm face aux pizzas 33 cm de la zone. Il calcule la médiane des prix et l’écart avec le vôtre.' },
-      { titre: 'Vous décidez du prix', texte: 'Deliview propose un prix, avec ceux de vos concurrents. Vous l’appliquez, ou Deliview le met en ligne pour vous avec Pro ou Groupe, sous 10 min.' },
+      { titre: 'Vous décidez du prix', texte: 'Deliview propose un prix, avec ceux de vos concurrents. Vous le validez, et Deliview le met en ligne sous 10 min. Avec Délégation, il suit la stratégie fixée avec vous.' },
     ],
     zoom: {
       id: 'exemple',
@@ -287,17 +288,17 @@ export const PAGES: Record<string, PageFonction> = {
       ],
     },
     offres: {
-      toutes: 'Chaque plat face à la zone, avec un prix conseillé. Jusqu’à une analyse de votre zone par semaine.',
-      pro: 'Le nouveau prix mis en ligne après votre accord, sous 10 min. Votre zone analysée à la demande, et les concurrents de votre choix.',
+      autonomie: 'Chaque plat face à sa zone, avec un prix conseillé. Vous validez, Deliview met le nouveau prix en ligne sous 10 min.',
+      delegation: 'Deliview ajuste vos prix selon la stratégie fixée avec vous chaque mois.',
     },
     faq: [
       {
         q: 'Comment je sais quels concurrents Deliview suit ?',
-        r: 'Deliview retient jusqu’à 20&nbsp;restaurants de votre secteur, choisis d’abord pour leur proximité. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des restaurants de votre choix, même plus loin.',
+        r: 'Deliview retient jusqu’à 20&nbsp;restaurants de votre secteur, choisis d’abord pour leur proximité. 3 d’entre eux peuvent être des restaurants de votre choix, même plus loin.',
       },
       {
         q: 'Est-ce que Deliview peut changer mes prix sur Uber Eats ou Deliveroo ?',
-        r: 'Oui, avec l’offre Pro ou Groupe, quand vous le décidez. Vous validez le prix dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Rien ne change sans votre accord.',
+        r: 'Oui, comme vous l’avez décidé. Avec Autonomie, vous validez chaque prix dans Deliview, et Deliview l’applique pour vous sur Uber&nbsp;Eats ou Deliveroo, sous 10&nbsp;minutes. Avec Délégation, Deliview ajuste vos prix selon la stratégie fixée avec vous chaque mois.',
       },
       {
         q: 'Mes prix en livraison sont plus chers qu’en salle. Est-ce que c’est un problème ?',
@@ -309,7 +310,7 @@ export const PAGES: Record<string, PageFonction> = {
       },
       {
         q: 'Est-ce que je vois les prix à jour ?',
-        r: 'Oui, à chaque analyse de votre zone&nbsp;: jusqu’à une par semaine avec Essentiel, à la demande avec Pro et Groupe. Vous voyez aussi ce qui a changé chez vos concurrents ces derniers jours.',
+        r: 'Oui, à chaque analyse de votre zone, que vous lancez quand vous voulez. Vous voyez aussi ce qui a changé chez vos concurrents ces derniers jours.',
       },
     ],
     articles: ['fixer-prix-uber-eats-deliveroo', 'analyser-prix-concurrents-livraison', 'commission-uber-eats-restaurant'],
@@ -323,7 +324,7 @@ export const PAGES: Record<string, PageFonction> = {
     },
     h1: 'Fermé en plein service ? Deliview vous prévient',
     lead: 'Une tablette éteinte, une pause oubliée, et votre restaurant n’apparaît plus. Deliview vérifie qu’il est ouvert toutes les 10 minutes pendant vos heures de service.',
-    points: ['Uber Eats et Deliveroo, toutes les 10 minutes pendant le service', 'Une alerte seulement pendant vos heures habituelles', 'Avec Pro, Deliview le relance sous 5 min'],
+    points: ['Uber Eats et Deliveroo, toutes les 10 minutes pendant le service', 'Une alerte seulement pendant vos heures habituelles', 'En un clic, Deliview le relance sous 5 min'],
     hero: {
       type: 'vitrine',
       appareil: 'telephone',
@@ -341,7 +342,7 @@ export const PAGES: Record<string, PageFonction> = {
     etapes: [
       { titre: 'Il connaît vos heures de service', texte: 'Vos horaires affichés, corrigés par l’habitude : une pause que vous faites chaque après-midi n’est plus signalée une fois apprise.' },
       { titre: 'Il vérifie pendant le service', texte: 'Toutes les 10 minutes, sur Uber Eats et Deliveroo. Une fermeture est vérifiée une seconde fois avant l’alerte.' },
-      { titre: 'Il vous prévient', texte: 'Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».' },
+      { titre: 'Il vous prévient', texte: 'Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Et le bouton « Relancer mon restaurant ».' },
     ],
     regles: {
       surtitre: 'Les règles',
@@ -355,8 +356,8 @@ export const PAGES: Record<string, PageFonction> = {
       ],
     },
     offres: {
-      toutes: 'Une alerte quand votre restaurant est fermé pendant vos heures de service.',
-      pro: '« Relancer mon restaurant » : Deliview le relance sous 5 min.',
+      autonomie: 'Une alerte quand votre restaurant est fermé en plein service. « Relancer mon restaurant » : Deliview le relance sous 5 min.',
+      delegation: 'Deliview relance votre restaurant pour vous, selon les règles fixées ensemble. Vous recevez quand même l’alerte.',
     },
     faq: [
       {
@@ -369,7 +370,7 @@ export const PAGES: Record<string, PageFonction> = {
       },
       {
         q: 'Que fait le bouton « Relancer mon restaurant » ?',
-        r: 'Il demande à Deliview de relancer votre restaurant sur la plateforme, sous 5&nbsp;minutes. Si la tablette est éteinte, rallumez-la aussi. Il faut l’offre Pro ou Groupe, et l’accès de Deliview à cette plateforme.',
+        r: 'Il demande à Deliview de relancer votre restaurant sur la plateforme, sous 5&nbsp;minutes. Si la tablette est éteinte, rallumez-la aussi. Il faut que Deliview ait accès à cette plateforme.',
       },
       {
         q: 'Mon restaurant n’est que sur Deliveroo. Est-ce que ça marche ?',
@@ -431,11 +432,14 @@ export const PAGES: Record<string, PageFonction> = {
         'Les plats que vos clients signalent deviennent des consignes pour l’équipe, prêtes à envoyer sur WhatsApp.',
       ],
     },
-    offres: { toutes: 'Une réponse IA pour chaque avis, votre note face à votre zone, et les consignes pour l’équipe.' },
+    offres: {
+      autonomie: 'Une réponse IA pour chaque avis, envoyée après votre accord. Votre note face à votre zone, et les consignes pour l’équipe.',
+      delegation: 'Deliview répond à vos avis pour vous, avec le ton fixé ensemble. Un avis sur la santé, l’hygiène ou une allergie reste pour vous.',
+    },
     faq: [
       {
         q: 'Est-ce que les réponses partent sans moi ?',
-        r: 'Non. Vous relisez chaque réponse avant de l’envoyer. Si vous le choisissez, les réponses aux avis 4 et 5 étoiles partent directement. Jamais celles des mauvais avis.',
+        r: 'Avec Autonomie, non&nbsp;: vous relisez chaque réponse avant de l’envoyer. Si vous le choisissez, les réponses aux avis 4 et 5 étoiles partent directement, jamais celles des mauvais avis. Avec Délégation, Deliview répond pour vous, avec le ton fixé ensemble&nbsp;; un avis qui parle de santé, d’hygiène ou d’allergie reste pour votre relecture.',
       },
       {
         q: 'Est-ce que les réponses se ressemblent ?',
@@ -500,7 +504,10 @@ export const PAGES: Record<string, PageFonction> = {
         'Comme toute IA, il peut se tromper&nbsp;: vérifiez avant d’agir. Deliview l’écrit sous la zone de question.',
       ],
     },
-    offres: { pro: 'L’assistant IA et le rapport de l’équipe en PDF.' },
+    offres: {
+      autonomie: 'L’assistant IA sur vos chiffres, et le rapport de l’équipe en PDF.',
+      delegation: 'Les mêmes, et le point mensuel avec Tom pour décider de la suite.',
+    },
     faq: [
       {
         q: 'Qu’est-ce que je peux demander à l’assistant ?',
@@ -549,7 +556,7 @@ export const PAGES: Record<string, PageFonction> = {
       icone: 'cible',
       nom: 'Sur votre téléphone',
       titre: 'Le point du lundi, dans votre poche',
-      points: ['Vos objectifs entre deux services, sur votre téléphone', 'Chaque lundi, une notification pour faire le point', 'Avec Pro et Groupe, tous vos restaurants ensemble, puis un par un'],
+      points: ['Vos objectifs entre deux services, sur votre téléphone', 'Chaque lundi, une notification pour faire le point', 'Plusieurs restaurants : tous ensemble, puis un par un'],
       visuel: {
         type: 'vitrine',
         appareil: 'telephone',
@@ -571,7 +578,10 @@ export const PAGES: Record<string, PageFonction> = {
         'Un pourcentage n’est jamais arrondi vers le haut&nbsp;: 299 commandes sur 300, c’est 99&nbsp;%.',
       ],
     },
-    offres: { toutes: 'Vos objectifs par semaine ou par mois, et le point du lundi.' },
+    offres: {
+      autonomie: 'Vos objectifs par semaine ou par mois, et le point du lundi.',
+      delegation: 'Les mêmes, avec des objectifs fixés avec Tom au point mensuel.',
+    },
     faq: [
       {
         q: 'Est-ce que je dois saisir mes ventes ?',
@@ -579,7 +589,7 @@ export const PAGES: Record<string, PageFonction> = {
       },
       {
         q: 'J’ai plusieurs restaurants. Comment ça se passe ?',
-        r: 'Avec Pro ou Groupe, chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.',
+        r: 'Chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.',
       },
       {
         q: 'Comment je reçois le point du lundi ?',

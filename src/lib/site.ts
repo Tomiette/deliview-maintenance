@@ -291,7 +291,7 @@ export interface VitrineFonction {
 
 // Ce que fait Deliview (6 octobre 2026, demande de Tom) : trois leviers de rentabilité, puis ce que Deliview surveille
 // pour vous. Repris dans l'accueil, le menu Solution, la page Solution et le pied de page. Uniquement ce que l'app fait.
-// Contestations : Uber Eats et Deliveroo depuis le 6 octobre 2026 (offre Pro).
+// Contestations : Uber Eats et Deliveroo depuis le 6 octobre 2026 (offres Autonomie et Délégation depuis le 9 octobre).
 // 7 octobre 2026 (demande de Tom : « fait leur page chacune, tu dois avoir une cohérence ») : chaque fonction a sa page,
 // /solution/<slug>/ (contenu dans src/lib/fonctions.ts), et la même capture partout où elle apparaît.
 export interface Levier {
@@ -521,36 +521,38 @@ export const PLATEFORMES = [
   },
 ];
 
-// Les 3 abonnements. Sans engagement, mise en place offerte.
+// Les 2 abonnements. Sans engagement, mise en place offerte.
 // Benchmark (1er octobre 2026) : Otter 34/49/89 €, Fooderise 49/99 €, HubRise 35 €, Deliverect 79/119/199 € par établissement.
 // Plus aucun prix sur le site depuis le 8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut
 // avoir des besoins différents ») : le prix est fixé avec Tom, avant tout paiement (CGV 8.1 et 8.2). Les prix de base
-// restent dans l'app (app/src/lib/offre.ts) et dans Stripe, pour les clients déjà abonnés.
-// Plus de nombre de restaurants par offre non plus (8 octobre 2026, 15 h 26, demande de Tom : « Enlève jusqu'à un
-// certain nombre de restaurants ») : il est fixé avec le prix. L'app garde ses limites pour le moment.
-// Textes des offres revus le 8 octobre 2026, 15 h 50 (demande de Tom : « ajuste le copywriting de mes offres en ayant
-// des titres simples, concis ») : un titre court par offre (vous voyez, Deliview agit, Tom vous accompagne) à la place de
-// « Pour vous si » ; des lignes courtes ; ce que Deliview faisait sans le dire est ajouté (score de la fiche Uber Eats,
-// photos et descriptions revues, rapports PDF), et pour Groupe la réponse prioritaire sur WhatsApp et les accès
-// illimités (app/src/lib/offre.ts : accès illimités en Groupe).
-// 8 octobre 2026, 17 h 47 puis 17 h 56 (demandes de Tom : « garde ces sous-textes pour les offres sur la page pricing »,
-// « laisse le titre des offres qu'il y avait au début, Pour vous si ») : les cartes de Tarifs reprennent « Pour vous si »
-// et la phrase de Tom « Vous voulez… », à la place du titre court.
+// restent dans l'app (app/src/lib/offre.ts) et dans Stripe, pour les clients déjà abonnés. Plus de nombre de restaurants
+// par offre non plus (8 octobre 2026, 15 h 26) : il est fixé avec le prix.
+// 9 octobre 2026, 18 h 44 (demande de Tom, après sa comparaison avec Savour, agence de gestion des plateformes sans
+// outil) : deux offres au lieu de trois, qui se distinguent par qui décide.
+// - Autonomie (identifiant « pro ») : vous gardez la main. Vous décidez dans Deliview, Deliview applique sur Uber Eats et
+//   Deliveroo. Toutes les fonctions de l'app (celles d'Essentiel et de Pro).
+// - Délégation (identifiant « premium », l'ancien Groupe) : vous déléguez tout. La stratégie se décide avec Tom au point
+//   mensuel, puis Deliview gère prix, promos, remboursements et avis sans demander, et le restaurateur voit tout. En
+//   plus : plan de promos chaque mois, point mensuel, accès illimités (choix de Tom ; plus de réponse prioritaire sur
+//   WhatsApp). Recommandée : c'est l'offre que Tom vend face aux agences.
+// Essentiel n'est plus proposée (aucun compte ne l'avait en base le 9 octobre 2026) ; l'identifiant reste dans l'app pour
+// les comptes et Stripe. Les identifiants « pro » et « premium » restent aussi (adresses /commencer/?offre=…, fonction
+// « lead », Stripe, base).
 export interface Offre {
   slug: string;
   nom: string;
-  // Titre court sous le nom de l'offre (accueil, formulaire « Commencer », llms.txt ; plus sur Tarifs depuis le
-  // 8 octobre 2026, 17 h 56).
+  // Titre court sous le nom de l'offre (accueil, formulaire « Commencer », llms.txt).
   titre: string;
-  // Cartes de Tarifs, sous « Pour vous si » : la situation du restaurateur, textes de Tom mot pour mot (7 octobre 2026,
-  // 19 h 44).
+  // Phrase sous le nom, sur les cartes de Tarifs : qui décide, qui applique (9 octobre 2026).
+  phrase: string;
+  // Cartes de Tarifs, sous « Pour vous si » : la situation du restaurateur.
   pourVous: string;
   recommandee?: boolean;
-  // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Pro, plus : »).
+  // Titre de la liste des fonctionnalités sur la carte de l'offre (« Inclus : », « Tout Autonomie, plus : »).
   base: string;
   inclus: LigneOffre[];
-  // Lignes montrées sur la carte de l'accueil, prises dans `inclus` (8 octobre 2026, 22 h 56, demande de Tom : « ajuste
-  // ce module avec les infos que tu sais ») ; le reste est compté (« + 5 autres fonctions ») et détaillé sur Tarifs.
+  // Lignes montrées sur la carte de l'accueil, prises dans `inclus` ; le reste est compté (« + 2 autres fonctions ») et
+  // détaillé sur Tarifs.
   accueil: string[];
 }
 
@@ -558,77 +560,45 @@ export interface Offre {
 export type LigneOffre = string | { texte: string; bientot: true };
 
 export const OFFRES: Offre[] = [
-  // Répartition revue le 6 octobre 2026 (demande de Tom) : Essentiel pour suivre et améliorer un restaurant ; Pro pour que
-  // Deliview agisse (promos, prix, fraude client) sur 3 restaurants ; Groupe (identifiant « premium », gardé par l'app et
-  // Stripe) pour un réseau, avec un point chaque mois avec Tom. Les limites ne sont pas encore appliquées dans l'app.
-  // Page Tarifs refaite le 7 octobre 2026 (demande de Tom : « répartit les features de manière simple, écrite de manière
-  // concise ») : mêmes fonctionnalités, en lignes courtes ; Essentiel = vous suivez tout, Pro = Deliview agit pour vous,
-  // Groupe = un point chaque mois avec Tom. `pour` reste le texte de l'accueil et de llms.txt.
-  // 7 octobre 2026, 19 h 21 (demande de Tom : « répartis correctement les features de l'app, simple, concis, pas de
-  // features bientôt ») : la répartition de l'app (app/src/lib/offre.ts), une ligne courte par fonction ; Essentiel
-  // montre aussi ses remboursements et sa limite d'analyse (1 par semaine) ; l'historique des prix, pas encore dans
-  // l'app, est retiré.
-  // 7 octobre 2026, 21 h 51 (demande de Tom) : le nombre de restaurants passe du titre de la carte Tarifs à la liste,
-  // à la place des accès (les accès restent dans le tableau comparatif).
-  // 7 octobre 2026, 19 h 44 : textes de Tom, mot pour mot (« Pour vous si » de Tarifs : « Vous voulez… » ; cartes de
-  // l'accueil et llms.txt : la même phrase à l'impératif).
-  {
-    slug: 'essentiel',
-    nom: 'Essentiel',
-    titre: 'Vous voyez tout sur un seul écran',
-    pourVous: 'Vous voulez améliorer la rentabilité de votre activité livraison.',
-    base: 'Inclus :',
-    // Score de la fiche (écran Score Uber Eats) et photos et descriptions revues (Menu › Présentation) : dans toutes les
-    // offres de l'app, ajoutés à la carte le 8 octobre 2026.
-    inclus: [
-      'Ventes Uber Eats et Deliveroo réunies',
-      'Score de votre fiche Uber Eats',
-      'Prix, promos et notes de vos concurrents',
-      '1 analyse de zone par semaine',
-      'Photos et descriptions revues',
-      'Remboursements et dates limites',
-      'Réponses IA à vos avis',
-      'Alerte fermeture en plein service',
-      'Objectifs et point du lundi',
-    ],
-    accueil: ['Ventes Uber Eats et Deliveroo réunies', 'Prix, promos et notes de vos concurrents', 'Alerte fermeture en plein service', 'Réponses IA à vos avis'],
-  },
   {
     slug: 'pro',
-    nom: 'Pro',
-    titre: 'Deliview agit pour vous',
-    pourVous: 'Vous voulez améliorer la rentabilité et devancer vos concurrents sur les plateformes de livraison.',
-    recommandee: true,
-    base: 'Tout Essentiel, plus :',
-    // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
-    // Essentiel, une analyse par semaine), ajoutés à la page le 7 octobre pour qu'aucune limite ne soit cachée.
-    // 9 octobre 2026, 1 h 03 (demande de Tom : « pour l'offre Pro précise aussi accès téléphone, mais ne mets pas
-    // délégation de plateformes ») : les actions de Deliview se valident depuis le téléphone. L'app s'ouvre sur téléphone
-    // dans toutes les offres (Tarifs, « Rien à installer »).
+    nom: 'Autonomie',
+    titre: 'Vous gardez la main',
+    phrase: 'Vous décidez dans Deliview. Deliview applique sur Uber Eats et Deliveroo.',
+    pourVous: 'Vous voulez garder la main sur vos plateformes sans ouvrir vos back-offices.',
+    base: 'Inclus :',
+    // Toutes les fonctions de l'app (app/src/lib/offre.ts, offre « pro ») ; le reste est dans le tableau comparatif.
     inclus: [
+      'Ventes Uber Eats et Deliveroo réunies',
+      'Prix, promos et notes de vos concurrents',
       'Prix et promos appliqués, avec votre accord',
       'Vous validez depuis votre téléphone',
       'Remboursements contestés en un clic',
       'Réouverture en un clic',
-      'Analyses de zone à la demande',
-      'Concurrents de votre choix',
-      'Assistant IA',
-      'Rapports PDF à partager',
+      'Réponses IA à vos avis',
+      'Alerte fermeture en plein service',
+      'Assistant IA et rapports PDF',
     ],
-    accueil: ['Prix et promos appliqués, avec votre accord', 'Vous validez depuis votre téléphone', 'Remboursements contestés en un clic', 'Assistant IA'],
+    accueil: ['Prix et promos appliqués, avec votre accord', 'Vous validez depuis votre téléphone', 'Remboursements contestés en un clic', 'Alerte fermeture en plein service'],
   },
   {
     slug: 'premium',
-    nom: 'Groupe',
-    titre: 'Tom vous accompagne chaque mois',
-    pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
-    base: 'Tout Pro, plus :',
-    // Réponse prioritaire sur WhatsApp : promesse de service de Tom (8 octobre 2026), pas une fonction de l'app.
-    // 9 octobre 2026, 1 h 03 (demande de Tom : « précise que vous déléguez vos plateformes à Deliview, mais vous avez
-    // quand même accès pour tout suivre depuis votre téléphone ») : promesse de service, comme le point mensuel. Pas
-    // encore dans l'annexe 1 des CGV (ce que Deliview fait sans demander, à écrire avec Tom).
-    inclus: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Vous suivez tout depuis votre téléphone', 'Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
-    accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Vous suivez tout depuis votre téléphone', 'Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
+    nom: 'Délégation',
+    titre: 'Vous déléguez tout',
+    phrase: 'Chaque mois, vous fixez la stratégie avec Tom. Deliview s’occupe du reste.',
+    pourVous: 'Vous n’avez pas le temps de gérer vos plateformes, mais vous voulez tout suivre.',
+    recommandee: true,
+    base: 'Tout Autonomie, plus :',
+    // Promesses de service de Tom (9 octobre 2026), écrites dans l'annexe 1 des CGV.
+    inclus: [
+      'Vous déléguez Uber Eats et Deliveroo à Deliview',
+      'Point mensuel avec Tom pour fixer la stratégie',
+      'Plan de promos préparé et lancé chaque mois',
+      'Prix, remboursements et avis gérés pour vous',
+      'Vous suivez tout depuis votre téléphone',
+      'Accès illimités pour votre équipe',
+    ],
+    accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Point mensuel avec Tom pour fixer la stratégie', 'Plan de promos préparé et lancé chaque mois', 'Vous suivez tout depuis votre téléphone'],
   },
 ];
 

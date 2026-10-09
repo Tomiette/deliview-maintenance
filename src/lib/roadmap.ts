@@ -1,12 +1,12 @@
 // Contenu validé de la roadmap publique (8 octobre 2026, 1 h 50). À intégrer tel quel dans src/pages/roadmap.astro.
-// offre: 'Pro' = Pro et Groupe (étiquette « Offre Pro »). Pas d'étiquette d'offre dans Prochainement ni Plus tard.
+// 9 octobre 2026 : plus d'étiquette « Offre Pro » ; les deux offres (Autonomie et Délégation) ont toutes les fonctions.
 // « Votre place sur les plateformes » : table classements_plateformes vérifiée en base le 8 octobre (relevés en cours),
 // carte affichée sur l'accueil de l'app (components/tableau/ClassementCarte.tsx).
 
-export const MAJ = '8 octobre 2026';
-export const INTRO = 'Ce qui est déjà dans l’app, nos prochaines priorités, et ce qui viendra plus tard. Mise à jour le 8 octobre 2026.';
+export const MAJ = '9 octobre 2026';
+export const INTRO = 'Ce qui est déjà dans l’app, nos prochaines priorités, et ce qui viendra plus tard. Mise à jour le 9 octobre 2026.';
 
-type Element = { titre: string; texte: string; offre?: 'Pro' };
+type Element = { titre: string; texte: string };
 
 export const FAIT: { theme: string; elements: Element[] }[] = [
   {
@@ -19,22 +19,22 @@ export const FAIT: { theme: string; elements: Element[] }[] = [
       { titre: 'Vos heures creuses', texte: 'Le moment de la semaine où il vous manque des commandes.' },
       { titre: 'Vos objectifs de ventes', texte: 'Un objectif par semaine ou par mois, et où vous en êtes.' },
       { titre: 'Remboursements et dates limites', texte: 'Chaque remboursement Uber Eats et Deliveroo, avec son dernier jour pour contester.' },
-      { titre: 'Contestation en un clic', texte: 'Vous contestez, Deliview l’envoie à la plateforme et suit la réponse.', offre: 'Pro' },
+      { titre: 'Contestation en un clic', texte: 'Vous contestez, Deliview l’envoie à la plateforme et suit la réponse.' },
       { titre: 'Perdu et récupéré sur 90 jours', texte: 'Le bilan de vos remboursements passés, plateforme par plateforme.' },
-      { titre: 'Ce que Deliview vous a rapporté', texte: 'Remboursements récupérés et ventes après chaque relance, en euros.', offre: 'Pro' },
+      { titre: 'Ce que Deliview vous a rapporté', texte: 'Remboursements récupérés et ventes après chaque relance, en euros.' },
     ],
   },
   {
     theme: 'Prix et concurrence',
     elements: [
       { titre: 'Vos prix face à la zone', texte: 'Chaque plat comparé aux mêmes plats chez vos concurrents proches.' },
-      { titre: 'Nouveaux prix mis en ligne', texte: 'Vous validez le prix, Deliview le change sur la plateforme.', offre: 'Pro' },
+      { titre: 'Nouveaux prix mis en ligne', texte: 'Vous validez le prix, Deliview le change sur la plateforme.' },
       { titre: 'La carte de votre zone', texte: 'Vos concurrents sur une carte, avec le prix médian de chacun.' },
       { titre: 'Votre place sur les plateformes', texte: 'Votre rang dans la liste d’Uber Eats et de Deliveroo.' },
       { titre: 'Le journal de vos concurrents', texte: 'Leurs offres, prix, plats et notes qui changent, relevés chaque jour.' },
       { titre: 'Votre note face aux voisins', texte: 'Votre note et votre rang par note, sur chaque plateforme.' },
-      { titre: 'Les concurrents de votre choix', texte: 'Trois concurrents suivis de près, choisis par vous.', offre: 'Pro' },
-      { titre: 'Analyse de zone à la demande', texte: 'Relancez l’analyse quand vous voulez. En Essentiel, une par semaine.', offre: 'Pro' },
+      { titre: 'Les concurrents de votre choix', texte: 'Trois concurrents suivis de près, choisis par vous.' },
+      { titre: 'Analyse de zone à la demande', texte: 'Relancez l’analyse de votre zone quand vous voulez.' },
       { titre: 'Alertes sur vos concurrents', texte: 'Nouvelle offre, prix ou note chez un voisin : vous êtes prévenu.' },
     ],
   },
@@ -43,10 +43,10 @@ export const FAIT: { theme: string; elements: Element[] }[] = [
     elements: [
       { titre: 'Les promos de votre zone', texte: 'Qui fait quelle offre, quel jour, et ce que permettent les plateformes.' },
       { titre: 'Vos remises mal placées', texte: 'La part de vos remises qui tombe sur des créneaux déjà pleins.' },
-      { titre: 'Promos conseillées sur vos creux', texte: 'Trois offres chiffrées d’après vos ventes et votre zone.', offre: 'Pro' },
-      { titre: 'Promos programmées et mises en ligne', texte: 'Vous planifiez, Deliview les met en ligne puis les retire.', offre: 'Pro' },
-      { titre: 'Le bilan de chaque promo', texte: 'Vos commandes pendant l’offre, face aux quatre semaines d’avant.', offre: 'Pro' },
-      { titre: 'Résultats de vos offres Uber Eats', texte: 'Ventes, commandes et nouveaux clients de chaque offre et annonce.', offre: 'Pro' },
+      { titre: 'Promos conseillées sur vos creux', texte: 'Trois offres chiffrées d’après vos ventes et votre zone.' },
+      { titre: 'Promos programmées et mises en ligne', texte: 'Vous planifiez, Deliview les met en ligne puis les retire.' },
+      { titre: 'Le bilan de chaque promo', texte: 'Vos commandes pendant l’offre, face aux quatre semaines d’avant.' },
+      { titre: 'Résultats de vos offres Uber Eats', texte: 'Ventes, commandes et nouveaux clients de chaque offre et annonce.' },
     ],
   },
   {
@@ -63,20 +63,20 @@ export const FAIT: { theme: string; elements: Element[] }[] = [
     theme: 'Service et équipe',
     elements: [
       { titre: 'Alerte restaurant fermé', texte: 'Vérifié toutes les 10 minutes en service, notification sur votre téléphone.' },
-      { titre: 'Relance du restaurant fermé', texte: 'Un clic, et Deliview remet votre restaurant en ligne.', offre: 'Pro' },
+      { titre: 'Relance du restaurant fermé', texte: 'Un clic, et Deliview remet votre restaurant en ligne.' },
       { titre: 'Vos niveaux Uber Eats et Deliveroo', texte: 'Score de réussite et Programme Confiance, critère par critère.' },
       { titre: 'Les consignes pour l’équipe', texte: 'Trois points chiffrés à corriger en service, le plus urgent d’abord.' },
       { titre: 'Plats à vérifier en cuisine', texte: 'Les plats que les clients signalent comme faux ou incomplets.' },
       { titre: 'Envoi à l’équipe sur WhatsApp', texte: 'Consignes, avis ou rapport partent au groupe de l’équipe en un clic.' },
-      { titre: 'Le rapport de la semaine', texte: 'Un PDF chiffré pour l’équipe, prêt à partager depuis le téléphone.', offre: 'Pro' },
+      { titre: 'Le rapport de la semaine', texte: 'Un PDF chiffré pour l’équipe, prêt à partager depuis le téléphone.' },
     ],
   },
   {
     theme: 'Compte et app',
     elements: [
       { titre: 'À faire, en cours, réalisé', texte: 'L’action qui rapporte le plus, puis ce que Deliview applique pour vous.' },
-      { titre: 'Assistant IA sur vos chiffres', texte: 'Posez une question : il répond avec vos chiffres et prépare l’offre.', offre: 'Pro' },
-      { titre: 'Plusieurs restaurants, un seul compte', texte: 'Passez de l’un à l’autre, le plus urgent apparaît en tête.', offre: 'Pro' },
+      { titre: 'Assistant IA sur vos chiffres', texte: 'Posez une question : il répond avec vos chiffres et prépare l’offre.' },
+      { titre: 'Plusieurs restaurants, un seul compte', texte: 'Passez de l’un à l’autre, le plus urgent apparaît en tête.' },
       { titre: 'Accès pour toute l’équipe', texte: 'Invitez gérants et équipiers : chacun ne voit que son restaurant.' },
       { titre: 'Jamais votre mot de passe', texte: 'Vous invitez Deliview sur Uber Eats et Deliveroo, rien d’autre.' },
       { titre: 'L’app à vos couleurs', texte: 'Le logo et la couleur de votre restaurant dans l’app.' },

@@ -25,6 +25,12 @@
 // si » au-dessus de la phrase, à la place du titre court (qui reste sur l'accueil, « Commencer » et llms.txt).
 // 8 octobre 2026, 15 h 50 (demande de Tom : « des titres simples, concis ») : un titre court par offre à la place de
 // « Pour vous si », lignes plus courtes, et le comparatif avec les mêmes mots (OFFRES dans src/lib/site.ts).
+// 9 octobre 2026, 18 h 44 (demande de Tom, après sa comparaison avec Savour, agence qui gère les plateformes sans outil) :
+// deux offres qui se distinguent par qui décide. Autonomie : vous décidez dans Deliview, Deliview applique. Délégation
+// (recommandée) : la stratégie se fixe avec Tom au point mensuel, puis Deliview gère, et vous voyez tout. Une phrase sous
+// le nom de chaque offre (OFFRES.phrase), « Dans les deux offres », comparatif en deux colonnes avec un bloc « Qui
+// décide », et deux questions : la différence entre les offres, le changement d'offre (CGV 5.3). Essentiel n'est plus
+// proposée.
 import Base from '../layouts/Base.astro';
 import Pastille from '../components/Pastille.astro';
 import Faq from '../components/Faq.astro';
@@ -42,20 +48,19 @@ import Telephone from '../icons/telephone.astro';
 import BoutiqueArret from '../icons/boutique-arret.astro';
 import TicketIcone from '../icons/ticket.astro';
 import LoupeZone from '../icons/loupe-zone.astro';
-import OffreEssentiel from '../icons/offre-essentiel.astro';
 import OffrePro from '../icons/offre-pro.astro';
 import OffreGroupe from '../icons/offre-groupe.astro';
 import { EXEMPLE_MARGHERITA as ex, OFFRES, SITE, dateFr, euros, jsonldLogiciel, lien } from '../lib/site';
 
-const description = 'Trois offres pour vos restaurants sur Uber Eats et Deliveroo, au prix fixé avec vous selon vos besoins. Sans engagement, mise en place offerte.';
+const description = 'Deux offres pour vos restaurants sur Uber Eats et Deliveroo : vous gardez la main, ou vous déléguez tout. Sans engagement, mise en place offerte.';
 
 // Une icône par offre, dessinée pour Deliview (7 octobre 2026, demande de Tom) : la même boutique, et ce que l'offre
-// ajoute en bleu. Essentiel : la loupe (vous voyez) ; Pro : deux boutiques et l'étincelle de l'IA (Deliview agit) ;
-// Groupe : deux boutiques et la bulle (le point chaque mois avec Tom).
-// Validées par Tom le 7 octobre 2026 (21 h 58) : en ligne partout.
-const ICONES_OFFRES: Record<string, typeof Courbe> = { essentiel: OffreEssentiel, pro: OffrePro, premium: OffreGroupe };
+// ajoute en bleu. Autonomie (ancienne icône de Pro) : deux boutiques et l'étincelle de l'IA (Deliview applique ce que
+// vous décidez) ; Délégation (ancienne icône de Groupe) : deux boutiques et la bulle (la stratégie fixée chaque mois
+// avec Tom). Validées par Tom le 7 octobre 2026 (21 h 58) : en ligne partout.
+const ICONES_OFFRES: Record<string, typeof Courbe> = { pro: OffrePro, premium: OffreGroupe };
 
-// Inclus dans toutes les offres : CGV 3.4 (mise en place), 8.2 (mise en place offerte), 10.1 et 10.2 (durée, arrêt), 12.2 (réponses) ;
+// Inclus dans les deux offres : CGV 3.4 (mise en place), 8.2 (mise en place offerte), 10.1 et 10.2 (durée, arrêt), 12.2 (réponses) ;
 // accès par invitation (mêmes mots que la page Qui sommes-nous).
 const inclusPartout = [
   { icone: Toque, titre: 'Mise en place offerte', texte: 'Tom crée votre compte avec vous et vous présente vos premiers résultats.' },
@@ -66,78 +71,80 @@ const inclusPartout = [
   { icone: Telephone, titre: 'Rien à installer', texte: 'Deliview s’ouvre dans votre navigateur, sur ordinateur comme sur téléphone. Vos tablettes restent en place.' },
 ];
 
-// Là où le restaurateur perd de l'argent, et ce que fait chaque offre. Toutes les offres repèrent ; Pro et Groupe agissent
-// (même partage que l'app depuis le 7 octobre : en Essentiel, remboursements et prix proposés restent visibles).
+// Là où le restaurateur perd de l'argent, et ce que fait chaque offre (9 octobre 2026) : les deux offres repèrent ; ce
+// qui change, c'est qui décide. Autonomie : vous décidez, en un clic. Délégation : Deliview agit selon la stratégie et
+// les règles fixées avec vous au point mensuel (CGV 13.3). La relance suit vos règles : une pause voulue n'est pas relancée.
 const releve = dateFr(new Date(ex.releve + 'T12:00:00Z')).replace(/^1er /, '1<sup>er</sup> ');
 const fuites = [
   {
     icone: BoutiqueArret,
     titre: 'Fermé en plein service',
     constat: 'Votre restaurant passe fermé sur Uber&nbsp;Eats ou Deliveroo, et personne ne le voit.',
-    toutes: 'Deliview vous prévient.',
-    pro: 'Deliview le relance en un clic.',
+    autonomie: 'Deliview vous prévient. Vous le relancez en un clic.',
+    delegation: 'Deliview le relance pour vous, selon les règles fixées ensemble.',
   },
   {
     icone: TicketIcone,
     titre: 'Un remboursement retenu',
     constat: 'Un client se plaint&nbsp;: la plateforme le rembourse et retire la somme de votre versement.',
-    toutes: 'Deliview repère vos remboursements.',
-    pro: 'Vous les contestez en un clic.',
+    autonomie: 'Deliview le repère. Vous le contestez en un clic.',
+    delegation: 'Deliview le repère et le conteste pour vous.',
   },
   {
     icone: LoupeZone,
     titre: 'Un plat sous le prix de sa zone',
     constat: `Exemple réel&nbsp;: une ${ex.plat} à ${euros(ex.votrePrix)} sur ${ex.plateforme.replace(' ', '&nbsp;')}, quand ${ex.concurrents} concurrents la vendent autour de ${euros(ex.mediane)}.`,
     source: `Relevé du ${releve}, restaurant anonymisé.`,
-    toutes: 'Deliview compare chaque plat à votre zone.',
-    pro: 'Votre nouveau prix est mis en ligne après votre accord.',
+    autonomie: 'Deliview propose un prix. Il passe en ligne après votre accord.',
+    delegation: 'Deliview ajuste le prix selon la stratégie fixée avec vous.',
   },
 ];
+const [autonomie, delegation] = OFFRES;
 
 // Case du comparatif : « oui » (coche), « non » (tiret), « bientot » (étiquette « Bientôt »), ou un texte court.
 type Case = 'oui' | 'non' | 'bientot' | string;
-// Comparatif en trois blocs, mêmes mots que les cartes des offres (OFFRES) : vos chiffres et votre zone, ce que Deliview
-// fait pour vous, vos restaurants et votre équipe. Ce qui est pareil partout (mise en place, engagement) est dans « Dans
-// toutes les offres ». Fréquence des analyses et concurrents choisis : règles de l'app (app/src/lib/offre.ts).
-const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, Case, Case] }[] }[] = [
+// Comparatif en deux colonnes (9 octobre 2026), mêmes mots que les cartes des offres (OFFRES) : ce que vous voyez (tout,
+// dans les deux offres), qui décide, l'accompagnement et l'accès. Ce qui est pareil partout (mise en place, engagement)
+// est dans « Dans les deux offres ». Analyses à la demande, concurrents choisis, accès : règles de l'app
+// (app/src/lib/offre.ts, offres « pro » et « premium »).
+const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, Case] }[] }[] = [
   {
-    groupe: 'Vos chiffres et votre zone',
+    groupe: 'Ce que vous voyez',
     lignes: [
-      { libelle: 'Ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Score de votre fiche Uber Eats', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Prix, promos et notes de vos concurrents', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Analyses de zone', valeurs: ['1 par semaine', 'À la demande', 'À la demande'] },
-      { libelle: 'Concurrents de votre choix', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Photos et descriptions revues', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Remboursements et dates limites', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Réponses IA à vos avis', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Alerte fermeture en plein service', valeurs: ['oui', 'oui', 'oui'] },
-      { libelle: 'Objectifs et point du lundi', valeurs: ['oui', 'oui', 'oui'] },
+      { libelle: 'Ventes Uber Eats et Deliveroo réunies', valeurs: ['oui', 'oui'] },
+      { libelle: 'Score de votre fiche Uber Eats', valeurs: ['oui', 'oui'] },
+      { libelle: 'Prix, promos et notes de vos concurrents', valeurs: ['oui', 'oui'] },
+      { libelle: 'Analyses de zone à la demande', valeurs: ['oui', 'oui'] },
+      { libelle: 'Concurrents de votre choix', valeurs: ['oui', 'oui'] },
+      { libelle: 'Photos et descriptions revues', valeurs: ['oui', 'oui'] },
+      { libelle: 'Remboursements et dates limites', valeurs: ['oui', 'oui'] },
+      { libelle: 'Alerte fermeture en plein service', valeurs: ['oui', 'oui'] },
+      { libelle: 'Objectifs et point du lundi', valeurs: ['oui', 'oui'] },
+      { libelle: 'Assistant IA et rapports PDF', valeurs: ['oui', 'oui'] },
     ],
   },
   {
-    groupe: 'Deliview agit pour vous',
+    groupe: 'Qui décide',
     lignes: [
-      { libelle: 'Prix et promos appliqués, avec votre accord', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Remboursements contestés en un clic', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Réouverture en un clic', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Assistant IA', valeurs: ['non', 'oui', 'oui'] },
-      { libelle: 'Rapports PDF à partager', valeurs: ['non', 'oui', 'oui'] },
+      { libelle: 'Prix et promos', valeurs: ['Vous validez', 'Gérés pour vous'] },
+      { libelle: 'Contestation des remboursements', valeurs: ['En un clic', 'Faite pour vous'] },
+      { libelle: 'Réponses IA à vos avis', valeurs: ['Vous validez', 'Faites pour vous'] },
+      { libelle: 'Relance du restaurant fermé', valeurs: ['En un clic', 'Faite pour vous'] },
     ],
   },
   {
-    groupe: 'Accès et accompagnement',
+    groupe: 'Accompagnement et accès',
     lignes: [
-      { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
-      { libelle: 'Vous déléguez Uber Eats et Deliveroo à Deliview', valeurs: ['non', 'non', 'oui'] },
-      { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'non', 'oui'] },
-      { libelle: 'Réponse prioritaire sur WhatsApp', valeurs: ['non', 'non', 'oui'] },
+      { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'oui'] },
+      { libelle: 'Plan de promos préparé chaque mois', valeurs: ['non', 'oui'] },
+      { libelle: 'Accès pour votre équipe', valeurs: ['10', 'Illimités'] },
     ],
   },
 ];
 
 // Questions sur ce qui fait hésiter avant de payer : engagement et arrêt (CGV 10.1, 10.2), frais (3.4, 8.2), moment du
-// paiement (/commencer/), moyens de paiement (9.1, 9.2), changement d'offre (5.3), tablettes, réseau, données.
+// paiement (/commencer/), moyens de paiement (9.1, 9.2), différence entre les offres (13.3), changement d'offre (5.3),
+// tablettes, réseau, données.
 const faq = [
   {
     q: 'Combien me coûte Deliview ?',
@@ -160,8 +167,12 @@ const faq = [
     r: 'Par carte bancaire ou par prélèvement SEPA, avec Stripe. La facture arrive chaque mois par e-mail.',
   },
   {
-    q: 'J’ai un seul restaurant : je peux choisir Pro ?',
-    r: 'Oui. Pro ajoute ce que Deliview fait pour vous (promos, prix, remboursements), que vous ayez un restaurant ou plusieurs. Vous changez d’offre quand vous voulez&nbsp;: une offre supérieure s’applique tout de suite, et la différence est facturée au prorata.',
+    q: 'Quelle différence entre Autonomie et Délégation ?',
+    r: 'Qui décide. Avec Autonomie, Deliview vous propose prix, promos et réponses à vos avis&nbsp;: vous validez depuis votre téléphone, et Deliview les applique sur Uber&nbsp;Eats et Deliveroo. Avec Délégation, vous fixez la stratégie avec Tom chaque mois, puis Deliview gère sans vous demander à chaque fois. Dans les deux offres, vous voyez tout dans l’app.',
+  },
+  {
+    q: 'Je peux changer d’offre ?',
+    r: 'Oui, quand vous voulez. Le passage à Délégation s’applique tout de suite, et la différence est facturée au prorata. Le retour à Autonomie se fait au début du mois d’abonnement suivant.',
   },
   {
     q: 'Est-ce que je garde mes tablettes Uber Eats et Deliveroo ?',
@@ -198,15 +209,15 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
         <Pastille>Tarifs</Pastille>
         <!-- Titre et sans les trois coches du dessous (7 octobre 2026, 15 h 14, demande de Tom). -->
         <h1 id="tarifs-titre" class="dv-h1 mx-auto mt-5 max-w-[20ch] md:mt-6 md:max-w-[27ch]">Améliorez la rentabilité de votre activité livraison</h1>
-        <!-- 8 octobre 2026, 17 h 47 (demande de Tom : « simple, concis ») : une phrase par offre, les mots des titres. -->
-        <p class="dv-lead mx-auto mt-4 max-w-[52ch] md:mt-5">
-          Avec Essentiel, vous voyez tout.<br class="max-sm:hidden" /> Avec Pro et Groupe, Deliview agit pour vous.
+        <!-- Une phrase par offre (9 octobre 2026) : qui décide, qui applique. -->
+        <p class="dv-lead mx-auto mt-4 max-w-[56ch] md:mt-5">
+          Avec {autonomie.nom}, vous décidez et Deliview applique.<br class="max-sm:hidden" /> Avec {delegation.nom}, Deliview s’occupe de tout et vous voyez tout.
         </p>
       </div>
 
-      <!-- Téléphone et tablette : les trois offres d'un coup d'œil, chacune mène à sa carte (les cartes sont empilées). -->
-      <nav class="mt-8 lg:hidden" aria-label="Aller à une offre">
-        <ul class="grid grid-cols-3 gap-2.5 sm:gap-4">
+      <!-- Téléphone et tablette : les deux offres d'un coup d'œil, chacune mène à sa carte (les cartes sont empilées). -->
+      <nav class="mx-auto mt-8 max-w-[520px] lg:hidden" aria-label="Aller à une offre">
+        <ul class="grid grid-cols-2 gap-2.5 sm:gap-4">
           {
             OFFRES.map((o) => (
               <li>
@@ -219,7 +230,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
         </ul>
       </nav>
 
-      <ul class="dv-offres-page mt-12 grid items-stretch gap-6 md:mt-14 lg:mt-20 lg:grid-cols-3">
+      <ul class="dv-offres-page mx-auto mt-12 grid max-w-[980px] items-stretch gap-6 md:mt-14 lg:mt-20 lg:grid-cols-2 lg:gap-8">
         {
           OFFRES.map((o) => {
             const Icone = ICONES_OFFRES[o.slug] ?? Courbe;
@@ -240,9 +251,11 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
                     <h2 class="font-accent text-[26px] font-bold leading-[1.15] md:text-[28px]">{o.nom}{o.recommandee && <span class="sr-only">, offre recommandée</span>}</h2>
                   </div>
                 </div>
+                {/* Qui décide, qui applique (9 octobre 2026). */}
+                <p class="dv-offre-phrase mt-4 lg:min-h-[54px]">{o.phrase}</p>
                 {/* « Pour vous si » et la phrase de Tom, comme au début (8 octobre 2026, 17 h 56, demande de Tom). */}
-                <p class="dv-overline mt-6">Pour vous si</p>
-                <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[72px]">{o.pourVous}</p>
+                <p class="dv-overline mt-5">Pour vous si</p>
+                <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[48px]">{o.pourVous}</p>
                 {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
                 <div class="mt-5 border-t border-grey-2/15 pt-5">
                   <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
@@ -304,7 +317,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
 
   <section class="dv-section bg-white" aria-labelledby="inclus-titre">
     <div class="dv-container max-w-[1100px]">
-      <h2 id="inclus-titre" class="dv-h2">Dans toutes les offres</h2>
+      <h2 id="inclus-titre" class="dv-h2">Dans les deux offres</h2>
       <ul class="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 md:gap-5 lg:grid-cols-3">
         {
           inclusPartout.map(({ icone: Icone, titre, texte }) => (
@@ -326,10 +339,10 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
   <section class="dv-section bg-grey dv-points" aria-labelledby="fuites-titre">
     <div class="dv-container max-w-[1100px]">
       <h2 id="fuites-titre" class="dv-h2 max-w-[22ch]">Là où vous perdez de l’argent sans le voir</h2>
-      <p class="dv-lead mt-3 max-w-[56ch] md:mt-4">Deliview repère ces pertes dans toutes les offres. Avec Pro et Groupe, il agit aussi.</p>
+      <p class="dv-lead mt-3 max-w-[56ch] md:mt-4">Deliview repère ces pertes dans les deux offres. Ce qui change, c’est qui décide.</p>
       <ul class="mt-8 grid gap-5 md:mt-10 md:grid-cols-3 md:gap-6">
         {
-          fuites.map(({ icone: Icone, titre, constat, source, toutes, pro }) => (
+          fuites.map(({ icone: Icone, titre, constat, source, autonomie: parVous, delegation: pourVous }) => (
             <li class="dv-relief flex flex-col p-5 md:p-7">
               <!-- Téléphone : l'icône à côté du titre (carte plus courte) ; à partir de 768 px, au-dessus (cartes étroites). -->
               <div class="flex items-center gap-3.5 md:flex-col md:items-start md:gap-5">
@@ -343,12 +356,12 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
               <div class="mt-auto pt-5">
                 <dl class="dv-fuite-offres">
                   <div>
-                    <dt>Toutes les offres</dt>
-                    <dd>{toutes}</dd>
+                    <dt>{autonomie.nom}</dt>
+                    <dd>{parVous}</dd>
                   </div>
                   <div>
-                    <dt>Pro et Groupe</dt>
-                    <dd>{pro}</dd>
+                    <dt>{delegation.nom}</dt>
+                    <dd>{pourVous}</dd>
                   </div>
                 </dl>
               </div>
@@ -358,7 +371,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
       </ul>
       <div class="mt-8 flex flex-col items-start gap-2 md:mt-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
         <p class="max-w-[62ch] text-[17px] leading-[1.55] md:text-[18px]">
-          Avec Pro et Groupe, l’accueil de l’app additionne ce que Deliview vous a rapporté&nbsp;: remboursements Uber&nbsp;Eats récupérés, ventes après une relance.
+          Dans les deux offres, l’accueil de l’app additionne ce que Deliview vous a rapporté&nbsp;: remboursements Uber&nbsp;Eats récupérés, ventes après une relance.
         </p>
         <a href={lien('/simulateur/')} class="dv-lien-fort shrink-0" data-cta="tarifs-simulateur">Calculer ce qui vous reste<Fleche taille={24} /></a>
       </div>
@@ -396,7 +409,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
             comparatif.map((g) => (
               <tbody role="rowgroup">
                 <tr role="row" class="dv-comparatif-groupe">
-                  <th scope="rowgroup" role="rowheader" colspan={4}>
+                  <th scope="rowgroup" role="rowheader" colspan={OFFRES.length + 1}>
                     {g.groupe}
                   </th>
                 </tr>
@@ -454,8 +467,8 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     color: var(--color-blue);
   }
 
-  /* Raccourcis vers les offres (téléphone et tablette) : trois pastilles en relief, Pro au contour Bleu 1. Le nom seul
-     depuis le 8 octobre 2026 (plus de prix ni de nombre de restaurants), centré dans 52 px. */
+  /* Raccourcis vers les offres (téléphone et tablette) : deux pastilles en relief, l'offre recommandée au contour Bleu 1.
+     Le nom seul depuis le 8 octobre 2026 (plus de prix ni de nombre de restaurants), centré dans 52 px. */
   .dv-raccourci {
     display: flex;
     height: 100%;
@@ -519,7 +532,15 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
   }
 
-  /* À la place du prix (8 octobre 2026) : la même ligne sur les trois offres, donc plus discrète que le titre. */
+  /* Sous le nom de l'offre (9 octobre 2026) : qui décide, qui applique. Inter 600, comme une accroche. */
+  .dv-offre-phrase {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+    text-wrap: pretty;
+  }
+
+  /* À la place du prix (8 octobre 2026) : la même ligne sur les deux offres, donc plus discrète que le titre. */
   .dv-offre-sur-mesure {
     font-size: 17px;
     font-weight: 600;
@@ -570,7 +591,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     display: none;
   }
 
-  /* Ordinateur : vrai tableau, en-tête collant sous la barre du site (Linear), colonne Pro teintée de Bleu 1 à 8 %.
+  /* Ordinateur : vrai tableau, en-tête collant sous la barre du site (Linear), colonne recommandée teintée de Bleu 1 à 8 %.
      Le cadre coupe ses coins avec overflow: clip, qui ne crée pas de zone de défilement : l'en-tête reste collant. */
   .dv-comparatif-cadre {
     border: 1px solid var(--dv-bord);
@@ -632,7 +653,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     font-weight: 400;
   }
   .dv-comparatif td {
-    width: 17%;
+    width: 24%;
     padding: 14px 12px;
     text-align: center;
   }
@@ -646,8 +667,8 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
   }
 
-  /* Téléphone : chaque ligne devient une grille de trois colonnes, l'intitulé sur toute la largeur au-dessus de ses
-     trois cases ; l'en-tête (les trois offres) reste collé en haut. Aucun défilement horizontal. */
+  /* Téléphone : chaque ligne devient une grille de deux colonnes, l'intitulé sur toute la largeur au-dessus de ses
+     deux cases ; l'en-tête (les deux offres) reste collé en haut. Aucun défilement horizontal. */
   @media (max-width: 767px) {
     .dv-comparatif,
     .dv-comparatif thead,
@@ -656,7 +677,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
     }
     .dv-comparatif tr {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .dv-comparatif thead {
       position: sticky;

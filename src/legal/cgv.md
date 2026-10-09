@@ -1,4 +1,4 @@
-Version du 8 octobre 2026.
+Version du 9 octobre 2026.
 
 DELIVIEW, société par actions simplifiée au capital de 500 euros, dont le siège est situé 9 rue Maurice Hubert, 61340 Berd’Huis, immatriculée au registre du commerce et des sociétés d’Alençon sous le numéro 102 681 509, numéro de TVA intracommunautaire FR87102681509, représentée par Tom Voisin, président (ci-après « Deliview »). Contact : tom.voisin@deliview.fr.
 
@@ -40,9 +40,11 @@ Les termes suivants, employés avec une majuscule, ont le sens indiqué ci-desso
 - passer en revue la présentation de ses plats, photos et descriptions ;
 - situer sa note et son nombre d’avis par rapport à sa zone ;
 - voir les offres promotionnelles affichées par ses concurrents et les changements survenus depuis l’Analyse précédente ;
+- suivre les ventes, les commandes, les avis et les remboursements de ses Établissements sur les Plateformes ;
+- faire appliquer par Deliview, sur les Plateformes, ses prix, ses promotions, ses réponses aux avis, ses contestations de remboursements et la réouverture de ses Établissements, selon les règles de son Offre (article 13.3) ;
 - échanger avec Deliview par la messagerie intégrée.
 
-3.2. Deliview ne se connecte pas aux comptes du Client sur les Plateformes et ne lui demande aucun identifiant. Le Service ne reçoit ni les commandes ni le chiffre d’affaires du Client. Il ne modifie aucun prix sur les Plateformes : le Client décide seul de ses prix et les modifie lui-même.
+3.2. Le Client donne à Deliview l’accès à ses comptes sur les Plateformes en l’invitant comme utilisateur depuis Uber Eats Manager et le Partner Hub de Deliveroo. Deliview ne lui demande jamais ses identifiants ni son mot de passe, et n’utilise cet accès que pour fournir le Service au Client. Avec cet accès, Deliview lit les ventes, les commandes, les avis et les remboursements des Établissements. Elle ne modifie les prix, les promotions, les réponses aux avis, les contestations et l’ouverture des Établissements que dans les conditions de l’article 13.3. Le Client peut retirer cet accès à tout moment depuis la Plateforme ; les fonctionnalités qui en dépendent cessent alors, sans que cela constitue un manquement de Deliview.
 
 3.3. Deliview fait évoluer le Service et peut en ajouter, modifier ou retirer des fonctionnalités. Si une modification supprime une fonctionnalité essentielle de l’Offre souscrite, Deliview en informe le Client au moins 30 jours à l’avance. Le Client peut alors résilier sans frais, avec effet à la date de la modification.
 
@@ -137,17 +139,22 @@ Le Client s’engage à :
 
 12.1. Deliview fournit le Service avec diligence, selon les règles de l’art. Elle est tenue d’une obligation de moyens.
 
-12.2. Deliview assure la mise en place. Elle répond aux questions du Client par la messagerie du Service, par e-mail ou par téléphone, les jours ouvrés de 9 h à 18 h.
+12.2. Deliview assure la mise en place. Elle répond aux questions du Client par la messagerie du Service, par e-mail ou par téléphone, les jours ouvrés de 9 h à 18 h. Avec l’Offre Délégation, elle tient chaque mois avec le Client le point mensuel prévu à l’article 13.3.
 
 12.3. Deliview met en œuvre les mesures de sécurité décrites dans l’accord de sous-traitance. Elle informe le Client de tout incident de sécurité affectant ses données.
 
-## Article 13. Données affichées et décisions du Client
+## Article 13. Données affichées et décisions
 
 13.1. Les Données publiques sont lues sur les Fiches à la date de chaque Analyse, indiquée dans le Service. Elles peuvent être incomplètes, changer après cette date ou varier selon l’adresse de consultation, notamment pour les frais et les délais de livraison. Chaque prix comparé renvoie à la Fiche dont il provient.
 
 13.2. Les comparaisons, statuts, prix proposés, estimations et recommandations du Service sont des aides à la décision. Ils ne constituent ni un conseil personnalisé, ni une garantie de résultat, notamment de chiffre d’affaires, de marge ou de classement sur les Plateformes. Les résultats du simulateur du site sont des estimations.
 
-13.3. Le Client décide seul de ses prix et de ses offres sur les Plateformes. Il en assure la conformité aux conditions des Plateformes et à la loi.
+13.3. Les changements faits sur les Plateformes suivent les règles de l’Offre souscrite :
+
+- avec l’Offre Autonomie, le Client valide dans le Service chaque prix, chaque promotion, chaque contestation et chaque réponse à un avis avant que Deliview ne l’applique. Il peut choisir que les réponses aux avis de 4 et 5 étoiles partent sans validation ;
+- avec l’Offre Délégation, le Client et Deliview fixent chaque mois, lors du point mensuel, la stratégie à suivre : objectifs, promotions prévues, règles de prix, de réponse aux avis, de contestation et de réouverture. Deliview l’applique ensuite sans demander l’accord du Client pour chaque changement. Le Client voit dans le Service ses prix, ses promotions, ses avis et ses remboursements. Il peut modifier ou suspendre la stratégie à tout moment, par écrit. Deliview peut lui demander son accord avant toute action qu’elle juge sensible ; un avis qui met en cause la santé, l’hygiène ou une allergie lui est toujours soumis.
+
+Le Client signale à Deliview les règles propres à ses Établissements, notamment un prix minimum, des plats exclus des promotions ou une fermeture volontaire. Il reste responsable de ses prix et de ses offres sur les Plateformes, et de leur conformité aux conditions des Plateformes et à la loi. Si un changement ne peut pas être appliqué, Deliview en informe le Client dans le Service. Deliview répond des erreurs qu’elle commet en appliquant la décision du Client ou la stratégie fixée avec lui, dans les limites de l’article 15. Elle n’est pas responsable d’un refus, d’un délai ou d’une modification imposés par une Plateforme.
 
 ## Article 14. Disponibilité et maintenance
 
@@ -230,22 +237,23 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 
 ## Annexe 1. Offres
 
-|  | Essentiel | Pro | Groupe |
-| --- | --- | --- | --- |
-| Ventes Uber Eats et Deliveroo sur un seul écran | Oui | Oui | Oui |
-| Prix comparés à ceux des concurrents, plat par plat | Oui | Oui | Oui |
-| Promotions et notes des concurrents | Oui | Oui | Oui |
-| Réponse rédigée par l’IA pour chaque avis, envoyée après validation du Client | Oui | Oui | Oui |
-| Alerte de fermeture pendant les heures d’ouverture habituelles | Oui | Oui | Oui |
-| Objectifs et point hebdomadaire | Oui | Oui | Oui |
-| Promotions et prix validés par le Client, appliqués par Deliview | Non | Oui | Oui |
-| Contestation des remboursements Uber Eats | Non | Oui | Oui |
-| Réouverture du restaurant à la demande du Client | Non | Oui | Oui |
-| Assistant et rapport | Non | Oui | Oui |
-| Utilisateurs | 2 | 10 | Sans limite fixe |
-| Point mensuel avec Deliview | Non | Non | Oui |
-| Mise en place | Offerte | Offerte | Offerte |
-| Durée minimale d’engagement | Aucune | Aucune | Aucune |
+|  | Autonomie | Délégation |
+| --- | --- | --- |
+| Ventes Uber Eats et Deliveroo sur un seul écran | Oui | Oui |
+| Prix comparés à ceux des concurrents, plat par plat | Oui | Oui |
+| Analyses à la demande et concurrents choisis par le Client | Oui | Oui |
+| Promotions et notes des concurrents | Oui | Oui |
+| Alerte de fermeture pendant les heures d’ouverture habituelles | Oui | Oui |
+| Objectifs et point hebdomadaire | Oui | Oui |
+| Assistant et rapport | Oui | Oui |
+| Prix et promotions appliqués par Deliview | Après validation du Client | Selon la stratégie mensuelle |
+| Réponses aux avis rédigées par l’IA, envoyées par Deliview | Après validation du Client | Selon la stratégie mensuelle |
+| Contestation des remboursements Uber Eats et Deliveroo | À la demande du Client | Selon la stratégie mensuelle |
+| Réouverture d’un Établissement fermé | À la demande du Client | Selon la stratégie mensuelle |
+| Point mensuel avec Deliview et plan de promotions | Non | Oui |
+| Utilisateurs | 10 | Sans limite fixe |
+| Mise en place | Offerte | Offerte |
+| Durée minimale d’engagement | Aucune | Aucune |
 
 ## Annexe 2. Formulaire de rétractation
 

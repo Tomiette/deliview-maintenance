@@ -133,4 +133,4 @@ Commencez par les remboursements encore contestables, puis installez la routine 
 3. Sur Deliveroo, ouvrez l’onglet Remboursements tous les deux ou trois jours : sept jours passent vite.
 4. Notez les plats qui reviennent souvent dans les réclamations, et revoyez leur emballage.
 
-Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Pro, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
+Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Autonomie, vous les contestez en un clic ; avec Délégation, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
