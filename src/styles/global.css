@@ -2835,3 +2835,11 @@
     text-wrap: balance;
   }
 }
+
+/* Titre de l'accueil sur deux lignes à partir de 1024 px (10 octobre 2026, demande de Tom) : « Améliorez votre
+   rentabilité » / « sur Uber Eats et Deliveroo ». Taille réduite pour que la seconde ligne tienne dans la colonne. */
+@media (min-width: 1024px) {
+  .dv-h1.dv-hero-deux-lignes {
+    font-size: min(3.5vw, 45px);
+  }
+}
