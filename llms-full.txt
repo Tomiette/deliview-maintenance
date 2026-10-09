@@ -193,8 +193,8 @@ Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arri
 ## Offres (prix et nombre de restaurants selon vos besoins, fixés avec Tom avant tout paiement ; sans engagement, mise en place offerte)
 
 - Essentiel : Vous voyez tout sur un seul écran. Inclus : ventes Uber Eats et Deliveroo réunies ; score de votre fiche Uber Eats ; prix, promos et notes de vos concurrents ; 1 analyse de zone par semaine ; photos et descriptions revues ; remboursements et dates limites ; réponses IA à vos avis ; alerte fermeture en plein service ; objectifs et point du lundi.
-- Pro : Deliview agit pour vous. Tout Essentiel, plus : prix et promos appliqués, avec votre accord ; remboursements contestés en un clic ; réouverture en un clic ; analyses de zone à la demande ; concurrents de votre choix ; assistant IA ; rapports PDF à partager.
-- Groupe : Tom vous accompagne chaque mois. Tout Pro, plus : point mensuel avec Tom ; réponse prioritaire sur WhatsApp ; accès illimités pour votre équipe.
+- Pro : Deliview agit pour vous. Tout Essentiel, plus : prix et promos appliqués, avec votre accord ; vous validez depuis votre téléphone ; remboursements contestés en un clic ; réouverture en un clic ; analyses de zone à la demande ; concurrents de votre choix ; assistant IA ; rapports PDF à partager.
+- Groupe : Tom vous accompagne chaque mois. Tout Pro, plus : vous déléguez Uber Eats et Deliveroo à Deliview ; vous suivez tout depuis votre téléphone ; point mensuel avec Tom ; réponse prioritaire sur WhatsApp ; accès illimités pour votre équipe.
 
 ## Questions fréquentes (mises à jour le 2026-10-08, https://www.deliview.fr/questions-frequentes/)
 
