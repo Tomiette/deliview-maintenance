@@ -113,7 +113,7 @@ const pageUrl = SITE.url + '/parrainage/';
               <span class="dv-parr-champ-url">deliview.fr/parrainage?par=<b class="text-blue">votre_nom</b></span>
             </div>
           </div>
-          <h3 class="dv-parr-carte-titre">{etapes[0].titre}</h3>
+          <h3 class="dv-parr-carte-titre dv-parr-etape-titre"><span class="dv-parr-etape" aria-hidden="true">1</span>{etapes[0].titre}</h3>
           <p class="dv-parr-carte-texte">{etapes[0].texte}</p>
         </li>
         <li class="dv-parr-carte">
@@ -130,7 +130,7 @@ const pageUrl = SITE.url + '/parrainage/';
             <span class="dv-parr-canal" style="top: 50%"><svg class="dv-parr-logo" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#34C759" /><path fill="#fff" d="M12 5.5c-3.87 0-7 2.53-7 5.65 0 1.8 1.04 3.4 2.66 4.43-.12.9-.52 1.9-1.36 2.72 1.6-.06 2.94-.68 3.85-1.4.6.12 1.2.18 1.85.18 3.87 0 7-2.53 7-5.65S15.87 5.5 12 5.5z" /></svg> SMS</span>
             <span class="dv-parr-canal" style="top: 78%"><svg class="dv-parr-logo" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#5282FF" /><circle cx="8.3" cy="10.2" r="2.3" fill="#fff" /><path fill="#fff" d="M4.2 18.5c0-2.3 1.84-3.9 4.1-3.9s4.1 1.6 4.1 3.9z" /><circle cx="15.9" cy="11.4" r="2" fill="#fff" fill-opacity=".8" /><path fill="#fff" fill-opacity=".8" d="M12.4 18.5c.1-1.9 1.6-3.2 3.5-3.2s3.4 1.3 3.5 3.2z" /><path fill="#fff" d="M13.2 4.6h5.6c.7 0 1.2.5 1.2 1.2v2.6c0 .7-.5 1.2-1.2 1.2h-3.1l-1.9 1.4V9.6h-.6c-.7 0-1.2-.5-1.2-1.2V5.8c0-.7.5-1.2 1.2-1.2z" /></svg> De vive voix</span>
           </div>
-          <h3 class="dv-parr-carte-titre">{etapes[1].titre}</h3>
+          <h3 class="dv-parr-carte-titre dv-parr-etape-titre"><span class="dv-parr-etape" aria-hidden="true">2</span>{etapes[1].titre}</h3>
           <p class="dv-parr-carte-texte">{etapes[1].texte}</p>
         </li>
         <li class="dv-parr-carte">
@@ -143,7 +143,7 @@ const pageUrl = SITE.url + '/parrainage/';
               <p class="dv-parr-facture-total"><span>À payer</span><span>0&nbsp;€</span></p>
             </div>
           </div>
-          <h3 class="dv-parr-carte-titre">{etapes[2].titre}</h3>
+          <h3 class="dv-parr-carte-titre dv-parr-etape-titre"><span class="dv-parr-etape" aria-hidden="true">3</span>{etapes[2].titre}</h3>
           <p class="dv-parr-carte-texte">{etapes[2].texte}</p>
         </li>
       </ol>
@@ -544,6 +544,27 @@ const pageUrl = SITE.url + '/parrainage/';
     font-size: 20px;
     font-weight: 700;
     line-height: 1.3;
+  }
+  /* Numéro de l'étape (10 octobre 2026, demande de Tom) : bulle Bleu 1, chiffre blanc en Aspekta 20 px gras. */
+  .dv-parr-etape-titre {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .dv-parr-etape {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: var(--color-blue);
+    box-shadow: 0 3px 0 color-mix(in srgb, var(--color-blue) 35%, var(--color-grey-2));
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
   }
   .dv-parr-carte-texte {
     margin-top: 8px;
