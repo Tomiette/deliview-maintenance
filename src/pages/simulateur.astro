@@ -6,6 +6,9 @@
 // Les coordonnées partent à la fonction « lead » (section « simulateur:<structure>:rappel|sans-rappel », résumé chiffré
 // dans les notes de la demande) ; Tom n'appelle que si la case de rappel est cochée. Chaque valeur proposée est un
 // exemple affiché comme tel, ou une valeur sourcée.
+// 9 octobre 2026 (demande de Tom, après un premier lead sans rappel) : seconde case, décochée, pour recevoir par e-mail
+// les plats vendus sous le prix du quartier (« :analyse » en fin de section). Sans rappel ni analyse, Tom ne contacte
+// pas le restaurateur : c'est la promesse écrite sous les cases.
 // Sans JavaScript : toutes les questions s'affichent à la suite et l'envoi passe par la fonction (page merci).
 // 8 octobre 2026 (demande de Tom : plus aucun prix sur le site) : la ligne « l'abonnement est couvert N fois » laisse
 // place à une phrase sur le prix, fixé avec Tom avant tout paiement.
@@ -159,6 +162,10 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
               <input type="checkbox" name="rappel" value="oui" checked class="mt-0.5 h-6 w-6 shrink-0 accent-blue" />
               <span>Je souhaite que Tom me rappelle pour voir mes plats vendus trop bas (démo gratuite de 30&nbsp;minutes).</span>
             </label>
+            <label class="mt-3 flex cursor-pointer items-start gap-3 text-[16px] leading-[1.45]">
+              <input type="checkbox" name="analyse" value="oui" class="mt-0.5 h-6 w-6 shrink-0 accent-blue" />
+              <span>Envoyez-moi par e-mail les plats que je vends sous le prix de mon quartier (analyse gratuite).</span>
+            </label>
             <p class="mt-4 text-[14px] leading-[1.5] dv-muted">
               Vos coordonnées et votre simulation servent uniquement à vous recontacter si vous le demandez. Détails dans notre <a href={lien('/confidentialite/')}>politique de confidentialité</a>.
             </p>
@@ -208,6 +215,9 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
 
           <div class="mt-8" data-r-rappel hidden>
             <p class="text-[17px] font-semibold leading-[1.5]">C’est noté. Tom vous appelle sous 3&nbsp;h au <span data-r="tel"></span> pour vous montrer vos plats vendus trop bas.</p>
+          </div>
+          <div class="mt-8" data-r-analyse hidden>
+            <p class="text-[17px] font-semibold leading-[1.5]"><span data-r-analyse-note>C’est noté. </span>Tom compare les prix de votre carte à ceux de votre quartier, puis vous envoie à <span data-r="email"></span> les plats que vous vendez en dessous.</p>
           </div>
           <div class="mt-8" data-r-sans-rappel hidden>
             <BoutonDemo href={lien('/demo/')} cta="simulateur-resultats" libelle="Voir mes plats vendus trop bas" class="w-full sm:w-auto" />
@@ -536,7 +546,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
     };
     const tranche = (n) => (n <= 1 ? '1' : n <= 5 ? '2-5' : n <= 10 ? '6-10' : n <= 19 ? '11-19' : '20+');
 
-    const afficherResultats = (r, rappel, tel) => {
+    const afficherResultats = (r, rappel, tel, analyse, email) => {
       const ecrire = (cle, texte) => resultats.querySelectorAll(`[data-r="${cle}"]`).forEach((x) => (x.textContent = texte));
       ecrire('reste', euros(Math.max(0, r.reste)));
       ecrire('reste-detail', euros(r.reste));
@@ -550,8 +560,16 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       ecrire('gain', '+ ' + euros(r.gain));
       ecrire('gain-an', euros(r.gain * 12));
       ecrire('tel', tel);
+      ecrire('email', email);
       resultats.querySelector('[data-r-rappel]').hidden = !rappel;
-      resultats.querySelector('[data-r-sans-rappel]').hidden = rappel;
+      const blocAnalyse = resultats.querySelector('[data-r-analyse]');
+      blocAnalyse.hidden = !analyse;
+      // Après la confirmation du rappel : collé à elle, sans second « C’est noté ».
+      blocAnalyse.classList.toggle('mt-8', !rappel);
+      blocAnalyse.classList.toggle('mt-3', rappel);
+      blocAnalyse.querySelector('[data-r-analyse-note]').hidden = rappel;
+      // Le bouton de démo seulement à qui n'a rien demandé : la liste promise par e-mail suffit sinon.
+      resultats.querySelector('[data-r-sans-rappel]').hidden = rappel || analyse;
       form.hidden = true;
       progression.hidden = true;
       categorie.hidden = true;
@@ -578,8 +596,9 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       const structure = form.elements.namedItem('structure').value;
       const nbEtab = parseInt(form.elements.namedItem('etablissements').value, 10);
       const rappel = form.elements.namedItem('rappel').checked;
+      const analyse = form.elements.namedItem('analyse').checked;
       form.elements.namedItem('points_de_vente').value = tranche(nbEtab);
-      form.elements.namedItem('section_cta').value = `simulateur:${structure}:${rappel ? 'rappel' : 'sans-rappel'}`;
+      form.elements.namedItem('section_cta').value = `simulateur:${structure}:${rappel ? 'rappel' : 'sans-rappel'}${analyse ? ':analyse' : ''}`;
       form.elements.namedItem('simulation').value =
         `Simulation (${structure === 'dark-kitchen' ? 'dark kitchen' : 'restaurant'}, ${nbEtab} établissement${nbEtab > 1 ? 's' : ''}) : ` +
         `ventes ${euros(r.ventes)} TTC par mois, commission ${pourcent(r.commissionTaux)}, coût matière ${pourcent(r.matiereTaux)}. ` +
@@ -610,7 +629,7 @@ const erreur = 'dv-erreur mt-2 hidden text-[15px] font-semibold leading-[1.4]';
       } catch {
         /* coupure réseau : les résultats s'affichent quand même */
       }
-      afficherResultats(r, rappel, String(donnees.telephone || ''));
+      afficherResultats(r, rappel, String(donnees.telephone || ''), analyse, String(donnees.email || ''));
     });
 
     montrer(0, false);
