@@ -589,16 +589,20 @@ export const OFFRES: Offre[] = [
     pourVous: 'Vous n’avez pas le temps de gérer vos plateformes, mais vous voulez tout suivre.',
     recommandee: true,
     base: 'Tout Autonomie, plus :',
-    // Promesses de service de Tom (9 octobre 2026), écrites dans l'annexe 1 des CGV.
+    // Promesses de service de Tom (9 octobre 2026), écrites dans l'annexe 1 des CGV. 22 h 19 (Tom : « dans délégation on
+    // doit avoir tout ça », les 9 services de Savour) : publicités et visibilité ajoutées, Tom sur WhatsApp 7j/7 avec une
+    // réponse le jour même. Pas repris : la gestion de la caisse et des agrégateurs (Deliverect, Zelty), choix de Tom.
     inclus: [
       'Vous déléguez Uber Eats et Deliveroo à Deliview',
       'Point mensuel avec Tom pour fixer la stratégie',
-      'Plan de promos préparé et lancé chaque mois',
+      'Promos et publicités lancées chaque mois, dans votre budget',
+      'Fiche travaillée pour remonter dans les applis',
       'Prix, remboursements et avis gérés pour vous',
+      'Tom sur WhatsApp 7j/7, réponse le jour même',
       'Vous suivez tout depuis votre téléphone',
       'Accès illimités pour votre équipe',
     ],
-    accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Point mensuel avec Tom pour fixer la stratégie', 'Plan de promos préparé et lancé chaque mois', 'Vous suivez tout depuis votre téléphone'],
+    accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Point mensuel avec Tom pour fixer la stratégie', 'Promos et publicités lancées chaque mois, dans votre budget', 'Tom sur WhatsApp 7j/7, réponse le jour même'],
   },
 ];
 

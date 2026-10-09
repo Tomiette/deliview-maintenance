@@ -139,7 +139,7 @@ Le Client s’engage à :
 
 12.1. Deliview fournit le Service avec diligence, selon les règles de l’art. Elle est tenue d’une obligation de moyens.
 
-12.2. Deliview assure la mise en place. Elle répond aux questions du Client par la messagerie du Service, par e-mail ou par téléphone, les jours ouvrés de 9 h à 18 h. Avec l’Offre Délégation, elle tient chaque mois avec le Client le point mensuel prévu à l’article 13.3.
+12.2. Deliview assure la mise en place. Elle répond aux questions du Client par la messagerie du Service, par e-mail ou par téléphone, les jours ouvrés de 9 h à 18 h. Avec l’Offre Délégation, elle tient chaque mois avec le Client le point mensuel prévu à l’article 13.3, et répond aussi sur WhatsApp tous les jours, dans la journée.
 
 12.3. Deliview met en œuvre les mesures de sécurité décrites dans l’accord de sous-traitance. Elle informe le Client de tout incident de sécurité affectant ses données.
 
@@ -152,7 +152,7 @@ Le Client s’engage à :
 13.3. Les changements faits sur les Plateformes suivent les règles de l’Offre souscrite :
 
 - avec l’Offre Autonomie, le Client valide dans le Service chaque prix, chaque promotion, chaque contestation et chaque réponse à un avis avant que Deliview ne l’applique. Il peut choisir que les réponses aux avis de 4 et 5 étoiles partent sans validation ;
-- avec l’Offre Délégation, le Client et Deliview fixent chaque mois, lors du point mensuel, la stratégie à suivre : objectifs, promotions prévues, règles de prix, de réponse aux avis, de contestation et de réouverture. Deliview l’applique ensuite sans demander l’accord du Client pour chaque changement. Le Client voit dans le Service ses prix, ses promotions, ses avis et ses remboursements. Il peut modifier ou suspendre la stratégie à tout moment, par écrit. Deliview peut lui demander son accord avant toute action qu’elle juge sensible ; un avis qui met en cause la santé, l’hygiène ou une allergie lui est toujours soumis.
+- avec l’Offre Délégation, le Client et Deliview fixent chaque mois, lors du point mensuel, la stratégie à suivre : objectifs, promotions prévues, budget des publicités sur les Plateformes, règles de prix, de réponse aux avis, de contestation et de réouverture. Les publicités sont payées par le Client à la Plateforme, dans la limite de ce budget. Deliview l’applique ensuite sans demander l’accord du Client pour chaque changement. Le Client voit dans le Service ses prix, ses promotions, ses avis et ses remboursements. Il peut modifier ou suspendre la stratégie à tout moment, par écrit. Deliview peut lui demander son accord avant toute action qu’elle juge sensible ; un avis qui met en cause la santé, l’hygiène ou une allergie lui est toujours soumis.
 
 Le Client signale à Deliview les règles propres à ses Établissements, notamment un prix minimum, des plats exclus des promotions ou une fermeture volontaire. Il reste responsable de ses prix et de ses offres sur les Plateformes, et de leur conformité aux conditions des Plateformes et à la loi. Si un changement ne peut pas être appliqué, Deliview en informe le Client dans le Service. Deliview répond des erreurs qu’elle commet en appliquant la décision du Client ou la stratégie fixée avec lui, dans les limites de l’article 15. Elle n’est pas responsable d’un refus, d’un délai ou d’une modification imposés par une Plateforme.
 
@@ -250,7 +250,10 @@ Deliview peut modifier les CGV. Elle informe le Client par e-mail au moins 30 jo
 | Réponses aux avis rédigées par l’IA, envoyées par Deliview | Après validation du Client | Selon la stratégie mensuelle |
 | Contestation des remboursements Uber Eats et Deliveroo | À la demande du Client | Selon la stratégie mensuelle |
 | Réouverture d’un Établissement fermé | À la demande du Client | Selon la stratégie mensuelle |
+| Descriptions et présentation des Fiches | Proposées au Client | Mises en ligne par Deliview |
 | Point mensuel avec Deliview et plan de promotions | Non | Oui |
+| Publicités sur les Plateformes, dans le budget fixé par le Client | Non | Oui |
+| Réponse de Deliview | Jours ouvrés, de 9 h à 18 h | Tous les jours sur WhatsApp, dans la journée |
 | Utilisateurs | 10 | Sans limite fixe |
 | Mise en place | Offerte | Offerte |
 | Durée minimale d’engagement | Aucune | Aucune |
