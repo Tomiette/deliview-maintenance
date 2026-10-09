@@ -31,13 +31,13 @@ Une stratégie de promotion intelligente, alimentée par l’IA. Deliview repèr
 
 Ce que Deliview vérifie avant de proposer une offre : Jamais un petit article offert dès un montant, comme une boisson pour 30 € de commande. Si une bonne partie de vos remises tombe sur vos meilleurs services, Deliview vous le dit, avec ce que vous économiseriez par mois. « 1 acheté = 1 offert » seulement si au moins 2 concurrents le font. Sinon, une remise sur 3 plats au plus, au niveau de la zone. Un objectif pour chaque offre. Sans hausse en deux semaines, Deliview vous conseille de l’arrêter.
 
-Toutes les offres : Les offres de vos concurrents, plateforme par plateforme, et ce qui change chez eux. En plus avec Pro et Groupe : Les offres à lancer sur vos creux, mises en ligne après votre accord, sous 10 min, puis leur bilan.
+Avec Autonomie (vous décidez, Deliview applique) : Les offres à lancer sur vos creux. Vous validez, Deliview les met en ligne sous 10 min, puis fait leur bilan. Avec Délégation (Deliview s’occupe de tout) : Le plan de promos du mois, fixé avec Tom. Deliview les lance, les retire et vous montre leur bilan.
 
 **Est-ce que Deliview lance une promo sans mon accord ?**
-Non. Deliview vous propose l’offre, avec son coût et son objectif. Elle ne passe en ligne que si vous la validez, avec l’offre Pro ou Groupe.
+Non. Avec Autonomie, Deliview vous propose l’offre, avec son coût et son objectif : elle ne passe en ligne que si vous la validez. Avec Délégation, Deliview lance les promos du plan fixé avec vous chaque mois.
 
 **Où intervient l’IA dans mes promos ?**
-Dans l’assistant IA, avec l’offre Pro ou Groupe. Demandez-lui quelle promo lancer sur un creux : il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.
+Dans l’assistant IA, dans les deux offres. Demandez-lui quelle promo lancer sur un creux : il répond avec vos chiffres et prépare l’offre programmée. Vous la vérifiez, puis vous la validez.
 
 **Quelles promos est-ce que Deliview peut me proposer ?**
 Uniquement celles qu’Uber Eats et Deliveroo permettent : une remise sur des plats, « 1 acheté = 1 offert », une remise dès un montant, une offre réservée aux nouveaux clients.
@@ -58,10 +58,10 @@ Contestez un remboursement injustifié en un clic. Un client dit qu’il manque 
 
 Chaque plateforme fixe son délai : Uber Eats : jusqu’à 30 jours après la commande. Deliveroo : jusqu’à 7 jours après le remboursement. Une photo du sac fermé, numéro de commande visible, appuie votre contestation. La plateforme décide. Deliview vous montre sa réponse, acceptée ou refusée.
 
-Toutes les offres : Chaque remboursement, son montant et la date limite pour le contester. En plus avec Pro et Groupe : Vous contestez en un clic : Deliview envoie la contestation et suit la réponse.
+Avec Autonomie (vous décidez, Deliview applique) : Chaque remboursement et sa date limite. Vous contestez en un clic : Deliview envoie la contestation et suit la réponse. Avec Délégation (Deliview s’occupe de tout) : Deliview conteste pour vous les remboursements à contester, avant la date limite, et suit la réponse.
 
 **Est-ce que Deliview conteste sans me demander ?**
-Non. Vous choisissez les commandes à contester. Deliview n’envoie que les contestations que vous avez validées.
+Avec Autonomie, non : vous choisissez les commandes à contester, et Deliview n’envoie que les contestations que vous avez validées. Avec Délégation, oui : Deliview conteste pour vous, selon les règles fixées ensemble.
 
 **Quels remboursements est-ce que je peux contester ?**
 Ceux que la plateforme a retirés de votre versement, tant que le délai court : 30 jours après la commande sur Uber Eats, 7 jours après le remboursement sur Deliveroo.
@@ -76,19 +76,19 @@ Non. Vous invitez Deliview une fois, comme utilisateur, dans Uber Eats Manager e
 
 Chaque plat au bon prix face à vos concurrents. Deliview compare vos plats au même plat chez vos concurrents, et vous dit lequel monter ou baisser.
 
-1. Il retient vos concurrents : Jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité, sur Uber Eats et Deliveroo. Avec Pro ou Groupe, 3 d’entre eux peuvent être choisis par vous.
+1. Il retient vos concurrents : Jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité, sur Uber Eats et Deliveroo. 3 d’entre eux peuvent être choisis par vous.
 2. Il compare plat par plat : Votre pizza 33 cm face aux pizzas 33 cm de la zone. Il calcule la médiane des prix et l’écart avec le vôtre.
-3. Vous décidez du prix : Deliview propose un prix, avec ceux de vos concurrents. Vous l’appliquez, ou Deliview le met en ligne pour vous avec Pro ou Groupe, sous 10 min.
+3. Vous décidez du prix : Deliview propose un prix, avec ceux de vos concurrents. Vous le validez, et Deliview le met en ligne sous 10 min. Avec Délégation, il suit la stratégie fixée avec vous.
 
 Ce que Deliview vérifie avant de conseiller un prix : Au moins 2 concurrents qui vendent le même plat pour conseiller un prix. Plus de 10 % au-dessus de la médiane : trop cher. Plus de 10 % en dessous : sous-évalué, avec un prix conseillé à mi-chemin. Chaque prix conseillé cite ses sources : les restaurants comparés et leurs prix.
 
-Toutes les offres : Chaque plat face à la zone, avec un prix conseillé. Jusqu’à une analyse de votre zone par semaine. En plus avec Pro et Groupe : Le nouveau prix mis en ligne après votre accord, sous 10 min. Votre zone analysée à la demande, et les concurrents de votre choix.
+Avec Autonomie (vous décidez, Deliview applique) : Chaque plat face à sa zone, avec un prix conseillé. Vous validez, Deliview met le nouveau prix en ligne sous 10 min. Avec Délégation (Deliview s’occupe de tout) : Deliview ajuste vos prix selon la stratégie fixée avec vous chaque mois.
 
 **Comment je sais quels concurrents Deliview suit ?**
-Deliview retient jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des restaurants de votre choix, même plus loin.
+Deliview retient jusqu’à 20 restaurants de votre secteur, choisis d’abord pour leur proximité. 3 d’entre eux peuvent être des restaurants de votre choix, même plus loin.
 
 **Est-ce que Deliview peut changer mes prix sur Uber Eats ou Deliveroo ?**
-Oui, avec l’offre Pro ou Groupe, quand vous le décidez. Vous validez le prix dans Deliview, et Deliview l’applique pour vous sur Uber Eats ou Deliveroo, sous 10 minutes. Rien ne change sans votre accord.
+Oui, comme vous l’avez décidé. Avec Autonomie, vous validez chaque prix dans Deliview, et Deliview l’applique pour vous sur Uber Eats ou Deliveroo, sous 10 minutes. Avec Délégation, Deliview ajuste vos prix selon la stratégie fixée avec vous chaque mois.
 
 **Mes prix en livraison sont plus chers qu’en salle. Est-ce que c’est un problème ?**
 Non. Deliview compare vos prix de livraison à ceux de vos voisins, sur la même plateforme.
@@ -97,7 +97,7 @@ Non. Deliview compare vos prix de livraison à ceux de vos voisins, sur la même
 Deliview ne vous propose pas de prix pour ce plat : il lui faut au moins 2 concurrents qui vendent le même.
 
 **Est-ce que je vois les prix à jour ?**
-Oui, à chaque analyse de votre zone : jusqu’à une par semaine avec Essentiel, à la demande avec Pro et Groupe. Vous voyez aussi ce qui a changé chez vos concurrents ces derniers jours.
+Oui, à chaque analyse de votre zone, que vous lancez quand vous voulez. Vous voyez aussi ce qui a changé chez vos concurrents ces derniers jours.
 
 ### Fermé en plein service (https://www.deliview.fr/solution/fermeture/)
 
@@ -105,11 +105,11 @@ Fermé en plein service ? Deliview vous prévient. Une tablette éteinte, une pa
 
 1. Il connaît vos heures de service : Vos horaires affichés, corrigés par l’habitude : une pause que vous faites chaque après-midi n’est plus signalée une fois apprise.
 2. Il vérifie pendant le service : Toutes les 10 minutes, sur Uber Eats et Deliveroo. Une fermeture est vérifiée une seconde fois avant l’alerte.
-3. Il vous prévient : Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Avec Pro, « Relancer mon restaurant ».
+3. Il vous prévient : Une notification sur votre téléphone, et un bandeau rouge sur l’accueil qui dit quoi vérifier : la tablette, ou votre statut sur la plateforme. Et le bouton « Relancer mon restaurant ».
 
 Pas d’alerte pour rien : Rien en dehors de vos heures de service habituelles. Rien dans les 20 premières ni dans les 20 dernières minutes du service. Fermé depuis plus de 24 h, pour des congés par exemple : pas d’alerte à chaque service. De nouveau ouvert : Deliview vous dit combien de temps la fermeture a duré.
 
-Toutes les offres : Une alerte quand votre restaurant est fermé pendant vos heures de service. En plus avec Pro et Groupe : « Relancer mon restaurant » : Deliview le relance sous 5 min.
+Avec Autonomie (vous décidez, Deliview applique) : Une alerte quand votre restaurant est fermé en plein service. « Relancer mon restaurant » : Deliview le relance sous 5 min. Avec Délégation (Deliview s’occupe de tout) : Deliview relance votre restaurant pour vous, selon les règles fixées ensemble. Vous recevez quand même l’alerte.
 
 **Comment je suis prévenu ?**
 Sur votre téléphone, par une notification, si vous avez installé l’app Deliview et activé les alertes. Dans Deliview aussi : un bandeau rouge en haut de l’accueil tant que la fermeture dure, et une alerte dans la cloche.
@@ -118,7 +118,7 @@ Sur votre téléphone, par une notification, si vous avez installé l’app Deli
 Non. Deliview apprend vos habitudes : une pause que vous faites souvent au même moment n’est plus signalée au bout de 2 à 3 semaines.
 
 **Que fait le bouton « Relancer mon restaurant » ?**
-Il demande à Deliview de relancer votre restaurant sur la plateforme, sous 5 minutes. Si la tablette est éteinte, rallumez-la aussi. Il faut l’offre Pro ou Groupe, et l’accès de Deliview à cette plateforme.
+Il demande à Deliview de relancer votre restaurant sur la plateforme, sous 5 minutes. Si la tablette est éteinte, rallumez-la aussi. Il faut que Deliview ait accès à cette plateforme.
 
 **Mon restaurant n’est que sur Deliveroo. Est-ce que ça marche ?**
 Oui. Les premières semaines, Deliview apprend vos horaires, sans vous alerter. Ensuite, il vous prévient pendant vos heures habituelles.
@@ -133,10 +133,10 @@ Une réponse prête pour chaque avis. Deliview réunit vos avis Uber Eats et Del
 
 Vos réponses restent les vôtres : Un avis qui parle de santé, d’hygiène ou d’allergie est gardé pour votre relecture. L’IA est réglée pour reprendre un détail de l’avis, sans copier vos réponses précédentes. Jamais de bon de réduction ajouté à une réponse. Les plats que vos clients signalent deviennent des consignes pour l’équipe, prêtes à envoyer sur WhatsApp.
 
-Toutes les offres : Une réponse IA pour chaque avis, votre note face à votre zone, et les consignes pour l’équipe.
+Avec Autonomie (vous décidez, Deliview applique) : Une réponse IA pour chaque avis, envoyée après votre accord. Votre note face à votre zone, et les consignes pour l’équipe. Avec Délégation (Deliview s’occupe de tout) : Deliview répond à vos avis pour vous, avec le ton fixé ensemble. Un avis sur la santé, l’hygiène ou une allergie reste pour vous.
 
 **Est-ce que les réponses partent sans moi ?**
-Non. Vous relisez chaque réponse avant de l’envoyer. Si vous le choisissez, les réponses aux avis 4 et 5 étoiles partent directement. Jamais celles des mauvais avis.
+Avec Autonomie, non : vous relisez chaque réponse avant de l’envoyer. Si vous le choisissez, les réponses aux avis 4 et 5 étoiles partent directement, jamais celles des mauvais avis. Avec Délégation, Deliview répond pour vous, avec le ton fixé ensemble ; un avis qui parle de santé, d’hygiène ou d’allergie reste pour votre relecture.
 
 **Est-ce que les réponses se ressemblent ?**
 L’IA est réglée pour l’éviter : chaque réponse reprend un détail de l’avis, et ne doit ressembler ni aux autres réponses du jour, ni à vos dernières réponses.
@@ -157,7 +157,7 @@ Posez vos questions, il répond avec vos chiffres. L’assistant IA connaît vos
 
 Des chiffres calculés, pas inventés : Les chiffres du rapport sont calculés par Deliview, jamais écrits par l’IA. L’assistant répond avec les données de votre restaurant et de votre zone. Il prépare une offre, mais rien n’est programmé sans votre accord. Comme toute IA, il peut se tromper : vérifiez avant d’agir. Deliview l’écrit sous la zone de question.
 
-Avec Pro et Groupe : L’assistant IA et le rapport de l’équipe en PDF.
+Avec Autonomie (vous décidez, Deliview applique) : L’assistant IA sur vos chiffres, et le rapport de l’équipe en PDF. Avec Délégation (Deliview s’occupe de tout) : Les mêmes, et le point mensuel avec Tom pour décider de la suite.
 
 **Qu’est-ce que je peux demander à l’assistant ?**
 Tout ce qui touche à vos chiffres : ce que vous avez vendu, ce que vous prennent les plateformes, vos creux, vos prix face à la zone, qui a une meilleure note que vous. Il prépare aussi le rapport de la semaine.
@@ -178,13 +178,13 @@ Vos objectifs de ventes, suivis chaque jour. Fixez vos objectifs par semaine ou 
 
 Un objectif jugé sur une période complète : Les semaines vont du lundi au dimanche, les mois sont les mois civils. Uber Eats et Deliveroo sont réunis ; les commandes annulées ou refusées ne comptent pas. Un pourcentage n’est jamais arrondi vers le haut : 299 commandes sur 300, c’est 99 %.
 
-Toutes les offres : Vos objectifs par semaine ou par mois, et le point du lundi.
+Avec Autonomie (vous décidez, Deliview applique) : Vos objectifs par semaine ou par mois, et le point du lundi. Avec Délégation (Deliview s’occupe de tout) : Les mêmes, avec des objectifs fixés avec Tom au point mensuel.
 
 **Est-ce que je dois saisir mes ventes ?**
 Non. Vos ventes Uber Eats et Deliveroo s’ajoutent chaque jour. Vous fixez seulement vos objectifs.
 
 **J’ai plusieurs restaurants. Comment ça se passe ?**
-Avec Pro ou Groupe, chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.
+Chaque restaurant a ses objectifs. Deliview les additionne pour vous montrer tous vos restaurants ensemble, puis chacun à part.
 
 **Comment je reçois le point du lundi ?**
 Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arrive sur votre téléphone. Sur iPhone, ajoutez d’abord Deliview à l’écran d’accueil.
@@ -192,11 +192,10 @@ Activez-le dans Paramètres, onglet Alertes. Chaque lundi, une notification arri
 
 ## Offres (prix et nombre de restaurants selon vos besoins, fixés avec Tom avant tout paiement ; sans engagement, mise en place offerte)
 
-- Essentiel : Vous voyez tout sur un seul écran. Inclus : ventes Uber Eats et Deliveroo réunies ; score de votre fiche Uber Eats ; prix, promos et notes de vos concurrents ; 1 analyse de zone par semaine ; photos et descriptions revues ; remboursements et dates limites ; réponses IA à vos avis ; alerte fermeture en plein service ; objectifs et point du lundi.
-- Pro : Deliview agit pour vous. Tout Essentiel, plus : prix et promos appliqués, avec votre accord ; vous validez depuis votre téléphone ; remboursements contestés en un clic ; réouverture en un clic ; analyses de zone à la demande ; concurrents de votre choix ; assistant IA ; rapports PDF à partager.
-- Groupe : Tom vous accompagne chaque mois. Tout Pro, plus : vous déléguez Uber Eats et Deliveroo à Deliview ; vous suivez tout depuis votre téléphone ; point mensuel avec Tom ; réponse prioritaire sur WhatsApp ; accès illimités pour votre équipe.
+- Autonomie : Vous gardez la main. Vous décidez dans Deliview. Deliview applique sur Uber Eats et Deliveroo. Inclus : ventes Uber Eats et Deliveroo réunies ; prix, promos et notes de vos concurrents ; prix et promos appliqués, avec votre accord ; vous validez depuis votre téléphone ; remboursements contestés en un clic ; réouverture en un clic ; réponses IA à vos avis ; alerte fermeture en plein service ; assistant IA et rapports PDF.
+- Délégation : Vous déléguez tout. Chaque mois, vous fixez la stratégie avec Tom. Deliview s’occupe du reste. Tout Autonomie, plus : vous déléguez Uber Eats et Deliveroo à Deliview ; point mensuel avec Tom pour fixer la stratégie ; plan de promos préparé et lancé chaque mois ; prix, remboursements et avis gérés pour vous ; vous suivez tout depuis votre téléphone ; accès illimités pour votre équipe.
 
-## Questions fréquentes (mises à jour le 2026-10-08, https://www.deliview.fr/questions-frequentes/)
+## Questions fréquentes (mises à jour le 2026-10-09, https://www.deliview.fr/questions-frequentes/)
 
 ### Deliview en bref
 
@@ -218,10 +217,10 @@ Non. Deliview est un logiciel indépendant qui regroupe vos plateformes de livra
 Deliview les compare plat par plat, à taille égale. Votre pizza 33 cm face aux pizzas 33 cm du quartier. Deliview calcule la médiane de la zone et l’écart avec votre prix. Sous 2 concurrents, il ne propose pas de prix.
 
 **Combien de concurrents est-ce que je peux suivre ?**
-Jusqu’à 20 restaurants de votre secteur, sur Uber Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. Avec l’offre Pro ou Groupe, 3 d’entre eux peuvent être des concurrents de votre choix, par restaurant.
+Jusqu’à 20 restaurants de votre secteur, sur Uber Eats et Deliveroo. Dans une petite ville, il peut y en avoir moins. 3 d’entre eux peuvent être des concurrents de votre choix, par restaurant.
 
 **Est-ce que Deliview peut changer mes prix sur les plateformes ?**
-Oui, avec l’offre Pro ou Groupe, et seulement quand vous le décidez. Deliview propose un prix avec ses sources. Vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber Eats ou Deliveroo, sous 10 minutes. Même chose pour vos promotions. Rien ne change sans votre accord.
+Oui, et seulement comme vous l’avez décidé. Avec l’offre Autonomie, Deliview propose un prix avec ses sources : vous le validez dans Deliview, et Deliview l’applique pour vous sur Uber Eats ou Deliveroo, sous 10 minutes. Même chose pour vos promotions. Avec l’offre Délégation, vous fixez la stratégie avec Tom chaque mois, et Deliview ajuste vos prix et vos promos sans vous demander à chaque fois.
 
 **Comment je donne accès à Deliview ?**
 Vous invitez Deliview comme utilisateur, une fois, dans Uber Eats Manager et dans le Partner Hub de Deliveroo. Jamais avec votre mot de passe. Vous retirez cet accès quand vous voulez, depuis la plateforme.
@@ -876,7 +875,7 @@ Commencez par les remboursements encore contestables, puis installez la routine 
 3. Sur Deliveroo, ouvrez l’onglet Remboursements tous les deux ou trois jours : sept jours passent vite.
 4. Notez les plats qui reviennent souvent dans les réclamations, et revoyez leur emballage.
 
-Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Pro, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
+Deliview liste vos remboursements Uber Eats et Deliveroo commande par commande, avec le montant retiré et la date limite pour contester. Avec l’offre Autonomie, vous les contestez en un clic ; avec Délégation, Deliview les conteste pour vous, avec l’accès que vous lui avez donné. Voyez ce que Deliview fait contre [la fraude client](/solution/fraude-client/).
 
 Sources : Gestion des remboursements en cas de commandes incorrectes ou incomplètes (Uber, https://help.uber.com/fr-FR/merchants-and-restaurants/article/gestion-des-remboursements-en-cas-de-commandes-incorrectes-ou-incompl%C3%A8tes-?nodeId=abc0c3e7-9687-4a00-a956-2c8a16cf0b7e, consulté le 6 octobre 2026) ; Comment résoudre les erreurs de commande (Uber, https://merchants.ubereats.com/fr/fr/resources/learning-center/order-errors/, consulté le 6 octobre 2026) ; Conditions complémentaires Uber Eats pour les Partenaires (France, applicables depuis le 1er septembre 2026) (Uber, https://www.uber.com/fr/fr/legal/uber-eats-merchant-terms-and-conditions/, consulté le 6 octobre 2026) ; Comment gérer et contester les remboursements dans le Portail Partenaire (Deliveroo, https://help.deliveroo.com/fr/articles/6457561-comment-gerer-et-contester-les-remboursements-dans-le-portail-partenaire, consulté le 6 octobre 2026) ; Pourquoi ce remboursement est-il à ma charge ? (Deliveroo, https://help.deliveroo.com/fr/articles/3293907-pourquoi-ce-remboursement-est-il-a-ma-charge, consulté le 6 octobre 2026) ; Politiques des partenaires : remboursement des clients et annulation des commandes (Deliveroo, https://merchants.deliveroo.com/fr-FR/legal/policies, consulté le 6 octobre 2026) ; Pourquoi mes frais de remboursement pour les produits inclus dans une formule ont-ils changé ? (Deliveroo, https://help.deliveroo.com/fr/articles/12058685-pourquoi-mes-frais-de-remboursement-pour-les-produits-inclus-dans-une-formule-ont-ils-change, consulté le 6 octobre 2026)
 
