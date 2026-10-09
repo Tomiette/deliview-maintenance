@@ -599,7 +599,7 @@ export const OFFRES: Offre[] = [
       'Fiche travaillée pour remonter dans les applis',
       'Prix, remboursements et avis gérés pour vous',
       'Tom sur WhatsApp 7j/7, réponse le jour même',
-      'Vous suivez tout depuis votre téléphone',
+      'Vous suivez tout depuis l’app Deliview',
       'Accès illimités pour votre équipe',
     ],
     accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Point mensuel avec Tom pour fixer la stratégie', 'Promos et publicités lancées chaque mois, dans votre budget', 'Tom sur WhatsApp 7j/7, réponse le jour même'],
