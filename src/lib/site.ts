@@ -585,7 +585,7 @@ export const OFFRES: Offre[] = [
     slug: 'premium',
     nom: 'Délégation',
     titre: 'Vous déléguez tout',
-    phrase: 'Chaque mois, vous fixez la stratégie avec Tom. Deliview s’occupe du reste.',
+    phrase: 'Chaque mois, on fixe la stratégie ensemble. Deliview s’occupe du reste.',
     pourVous: 'Vous n’avez pas le temps de gérer vos plateformes, mais vous voulez tout suivre.',
     recommandee: true,
     base: 'Tout Autonomie, plus :',
