@@ -602,8 +602,12 @@ export const OFFRES: Offre[] = [
     base: 'Tout Essentiel, plus :',
     // Analyses à la demande et concurrents choisis : réservés à Pro dans l'app depuis le 4 octobre (app/src/lib/offre.ts :
     // Essentiel, une analyse par semaine), ajoutés à la page le 7 octobre pour qu'aucune limite ne soit cachée.
+    // 9 octobre 2026, 1 h 03 (demande de Tom : « pour l'offre Pro précise aussi accès téléphone, mais ne mets pas
+    // délégation de plateformes ») : les actions de Deliview se valident depuis le téléphone. L'app s'ouvre sur téléphone
+    // dans toutes les offres (Tarifs, « Rien à installer »).
     inclus: [
       'Prix et promos appliqués, avec votre accord',
+      'Vous validez depuis votre téléphone',
       'Remboursements contestés en un clic',
       'Réouverture en un clic',
       'Analyses de zone à la demande',
@@ -611,7 +615,7 @@ export const OFFRES: Offre[] = [
       'Assistant IA',
       'Rapports PDF à partager',
     ],
-    accueil: ['Prix et promos appliqués, avec votre accord', 'Remboursements contestés en un clic', 'Analyses de zone à la demande', 'Assistant IA'],
+    accueil: ['Prix et promos appliqués, avec votre accord', 'Vous validez depuis votre téléphone', 'Remboursements contestés en un clic', 'Assistant IA'],
   },
   {
     slug: 'premium',
@@ -620,8 +624,11 @@ export const OFFRES: Offre[] = [
     pourVous: 'Vous voulez piloter intelligemment et améliorer la rentabilité de toute votre activité livraison.',
     base: 'Tout Pro, plus :',
     // Réponse prioritaire sur WhatsApp : promesse de service de Tom (8 octobre 2026), pas une fonction de l'app.
-    inclus: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
-    accueil: ['Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
+    // 9 octobre 2026, 1 h 03 (demande de Tom : « précise que vous déléguez vos plateformes à Deliview, mais vous avez
+    // quand même accès pour tout suivre depuis votre téléphone ») : promesse de service, comme le point mensuel. Pas
+    // encore dans l'annexe 1 des CGV (ce que Deliview fait sans demander, à écrire avec Tom).
+    inclus: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Vous suivez tout depuis votre téléphone', 'Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
+    accueil: ['Vous déléguez Uber Eats et Deliveroo à Deliview', 'Vous suivez tout depuis votre téléphone', 'Point mensuel avec Tom', 'Réponse prioritaire sur WhatsApp', 'Accès illimités pour votre équipe'],
   },
 ];
 

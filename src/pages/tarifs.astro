@@ -63,7 +63,7 @@ const inclusPartout = [
   { icone: EtiquettePrix, titre: 'Aucun frais caché', texte: 'Pas de frais de mise en place, pas d’option payante.' },
   { icone: Bouclier, titre: 'Jamais votre mot de passe', texte: 'Vous invitez Deliview dans Uber&nbsp;Eats et Deliveroo. Votre mot de passe reste à vous.' },
   { icone: Message, titre: 'Un humain qui répond', texte: 'Messagerie, <span class="whitespace-nowrap">e-mail</span> ou téléphone, les jours ouvrés de 9&nbsp;h à 18&nbsp;h.' },
-  { icone: Telephone, titre: 'Rien à installer', texte: 'Deliview s’ouvre dans votre navigateur. Vos tablettes restent en place.' },
+  { icone: Telephone, titre: 'Rien à installer', texte: 'Deliview s’ouvre dans votre navigateur, sur ordinateur comme sur téléphone. Vos tablettes restent en place.' },
 ];
 
 // Là où le restaurateur perd de l'argent, et ce que fait chaque offre. Toutes les offres repèrent ; Pro et Groupe agissent
@@ -129,6 +129,7 @@ const comparatif: { groupe: string; lignes: { libelle: string; valeurs: [Case, C
     groupe: 'Accès et accompagnement',
     lignes: [
       { libelle: 'Accès pour votre équipe', valeurs: ['2', '10', 'Illimités'] },
+      { libelle: 'Vous déléguez Uber Eats et Deliveroo à Deliview', valeurs: ['non', 'non', 'oui'] },
       { libelle: 'Point mensuel avec Tom', valeurs: ['non', 'non', 'oui'] },
       { libelle: 'Réponse prioritaire sur WhatsApp', valeurs: ['non', 'non', 'oui'] },
     ],
