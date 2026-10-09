@@ -564,8 +564,8 @@ export const OFFRES: Offre[] = [
     slug: 'pro',
     nom: 'Autonomie',
     titre: 'Vous gardez la main',
-    phrase: 'Vous décidez dans Deliview. Deliview applique sur Uber Eats et Deliveroo.',
-    pourVous: 'Vous voulez garder la main sur vos plateformes sans ouvrir vos back-offices.',
+    phrase: 'Vous décidez dans Deliview, et Deliview l’applique pour vous sur Uber Eats et Deliveroo.',
+    pourVous: 'Vous voulez garder la main sur vos plateformes et en optimiser les résultats.',
     base: 'Inclus :',
     // Toutes les fonctions de l'app (app/src/lib/offre.ts, offre « pro ») ; le reste est dans le tableau comparatif.
     inclus: [
@@ -586,7 +586,7 @@ export const OFFRES: Offre[] = [
     nom: 'Délégation',
     titre: 'Vous déléguez tout',
     phrase: 'Chaque mois, on fixe la stratégie ensemble. Deliview s’occupe du reste.',
-    pourVous: 'Vous n’avez pas le temps de gérer vos plateformes, mais vous voulez tout suivre.',
+    pourVous: 'Vous n’avez pas le temps de gérer vos plateformes, mais vous voulez garder un œil sur votre activité livraison.',
     recommandee: true,
     base: 'Tout Autonomie, plus :',
     // Promesses de service de Tom (9 octobre 2026), écrites dans l'annexe 1 des CGV. 22 h 19 (Tom : « dans délégation on
