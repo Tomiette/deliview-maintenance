@@ -57,8 +57,6 @@ const colonnes: { id: string; titre: string; liens: { libelle: string; href: str
     ],
   },
 ];
-// Roadmap : sur le site en ligne dès que SITE.roadmap est rempli ; avant, sur l'aperçu seulement, pour validation.
-const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap : lien(SITE.roadmap)) : import.meta.env.BASE_URL !== '/' ? '#roadmap' : '';
 ---
 
 <footer id="pied" class="bg-grey px-0 pb-6 pt-10 sm:px-3 md:px-6 md:pt-16">
@@ -71,12 +69,7 @@ const roadmap = SITE.roadmap ? (SITE.roadmap.startsWith('http') ? SITE.roadmap :
           <p class="mt-3 text-[16px]">
             <a href={`mailto:${SITE.email}`} class="dv-lien gap-2.5"><LogoContact type="email" />{SITE.email}</a>
           </p>
-          {roadmap && (
-            <div class="mt-7">
-              <p class="text-[16px] leading-[1.5]">Notre vision est publique, la&nbsp;roadmap est&nbsp;là.</p>
-              <a href={roadmap} class="dv-btn-sombre mt-3" data-cta="pied-roadmap" rel={roadmap.startsWith('http') ? 'noopener' : undefined}>Voir la roadmap</a>
-            </div>
-          )}
+          {/* Module « Voir la roadmap » retiré le 9 octobre 2026 (demande de Tom) ; la page /roadmap/ reste en ligne. */}
         </div>
         <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 lg:gap-x-12">
           {colonnes.map((c) => (

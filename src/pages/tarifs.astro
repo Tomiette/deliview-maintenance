@@ -259,10 +259,7 @@ const logiciel = jsonldLogiciel(SITE.definition, SITE.url + '/tarifs/');
                 {/* « Pour vous si » et la phrase de Tom, comme au début (8 octobre 2026, 17 h 56, demande de Tom). */}
                 <p class="dv-overline mt-5">Pour vous si</p>
                 <p class="mt-1.5 text-[16px] leading-[1.5] lg:min-h-[48px]">{o.pourVous}</p>
-                {/* Plus de prix affiché (8 octobre 2026, demande de Tom) : le prix est fixé avec Tom, avant tout paiement. */}
-                <div class="mt-5 border-t border-grey-2/15 pt-5">
-                  <p class="dv-offre-sur-mesure">Prix selon vos besoins</p>
-                </div>
+                {/* Plus de prix affiché (8 octobre 2026), ni « Prix selon vos besoins » (9 octobre 2026, demande de Tom). */}
                 <a
                   href={lien(`/commencer/?offre=${o.slug}`)}
                   class={`dv-btn mt-5 w-full ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
