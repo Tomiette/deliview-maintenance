@@ -54,7 +54,8 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    Les données (Ventes, Note, Prix, Commandes) partent des icônes Uber Eats / Deliveroo à gauche et glissent le long de
    courbes (offset-path, Web Animations) jusqu'au noyau Deliview lumineux, qui pulse ; les actions repartent vers les
    icônes à droite, dont le compteur augmente. Scène dessinée à taille fixe (1120 × 420, 360 × 640 sur téléphone)
-   et mise à l'échelle par le script. Trois étapes en dessous. Fichiers `apercu/assets/accueil-moteur.*.css|js`.
+   et mise à l'échelle par le script. Phrase de chaque étape sous son repère dans la scène (plus de cartes) ;
+   sur téléphone, liste simple sous la scène. Fichiers `apercu/assets/accueil-moteur.*.css|js`.
    Ne pas copier le bloc de Flynt (concurrent) : pas de logos de caisses.
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
 

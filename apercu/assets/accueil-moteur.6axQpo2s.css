@@ -110,3 +110,19 @@
 .dvx-zone span{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--color-grey-2);color:var(--color-white);font-size:13px;letter-spacing:0}
 [data-mise=large] .dvx-zone-c{left:560px;top:12px}
 [data-mise=etroit] .dvx-zone-c{display:none}
+
+/* Phrases des étapes sous les repères de la scène ; plus de cartes en dessous (demande de Tom). */
+.dvx-sous{position:absolute;top:44px;width:230px;margin:0;translate:-50% 0;text-align:center;font-size:14px;line-height:1.4;color:color-mix(in srgb,var(--color-grey-2) 85%,transparent)}
+.dvx-sous-c{width:300px}
+[data-mise=large] .dvx-sous-g{left:110px}
+[data-mise=large] .dvx-sous-c{left:560px}
+[data-mise=large] .dvx-sous-d{left:1010px}
+[data-mise=large] [data-app=ue-g],[data-mise=large] [data-app=ue-d]{top:156px}
+[data-mise=large] [data-app=dr-g],[data-mise=large] [data-app=dr-d]{top:316px}
+[data-mise=large] .dvx-orbe{top:226px}
+[data-mise=large] .dvx-statut{top:372px}
+[data-mise=etroit] .dvx-sous{display:none}
+/* Liste des étapes : seulement sur téléphone, en texte simple ; ailleurs, lue par les lecteurs d'écran seulement. */
+.dvx-etapes li{background:none;border:0;box-shadow:none;padding:0}
+@media (width>=700px){.dvx-etapes{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}}
+@media (width<700px){.dvx-etapes{gap:16px;margin-top:20px}}
