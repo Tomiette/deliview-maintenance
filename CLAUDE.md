@@ -42,7 +42,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 7. **« Les trois questions que vous vous posez »** (entre « Avant, après » et le bloc fondateur, qui passe sur fond
    blanc) : trois cartes, une par question du restaurateur (« Que font mes concurrents ? » = suivez vos concurrents,
    « Est-ce que les clients me voient ? » = mesurez votre visibilité, note, avis et classement par plateforme,
-   « Analysez l’efficacité de vos actions et décuplez votre rentabilité » = texte de Tom, ticket avec ce que
+   « Analysez l’efficacité de vos actions » (version sobre validée par Tom), ticket avec ce que
    chaque action a rapporté et ce qu’il reste), chacune avec une vraie photo
    (`images/ressources/`), la réponse de Deliview posée dessus avec les logos Uber Eats / Deliveroo, puis le
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
