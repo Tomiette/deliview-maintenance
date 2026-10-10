@@ -94,14 +94,28 @@
 @keyframes dvq-progres{to{scale:1 1}}
 .dvq-hors .dvq-progres{animation-play-state:paused}
 
+/* ---------- App Store et Google Play ---------- */
+.dvq-cote{display:flex;flex-direction:column;gap:24px;min-width:0}
+.dvq-stores{display:flex;flex-wrap:wrap;gap:12px;padding-left:22px}
+.dvq-store{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 20px 0 15px;border-radius:14px;background:var(--color-white);border:1px solid var(--dv-bord);box-shadow:0 4px 0 var(--dv-levre);color:var(--color-grey-2);text-decoration:none;transition:translate .2s cubic-bezier(.2,.7,.2,1),box-shadow .2s}
+.dvq-store:hover{translate:0 -2px;box-shadow:0 6px 0 var(--dv-levre)}
+.dvq-store:focus-visible{outline:2px solid var(--color-blue);outline-offset:2px}
+.dvq-store svg{width:26px;height:26px;flex-shrink:0}
+.dvq-store span{display:flex;flex-direction:column;line-height:1.15}
+.dvq-store small{font-size:12px;font-weight:600}
+.dvq-store b{font-size:18px;font-weight:800;letter-spacing:-.01em;white-space:nowrap}
+
 @media (width<1000px){
   .dvq-tete{margin-bottom:28px}
   .dvq-item{padding:16px 18px;gap:14px}
   .dvq-texte b{font-size:18px}
+  .dvq-stores{padding-left:18px}
 }
 @media (width<600px){
   .dvq-photo{margin-inline:-6px}
   .dvq-icone{width:40px;height:40px;border-radius:12px}
+  .dvq-stores{padding-left:0;justify-content:center}
+  .dvq-store{padding:0 16px 0 13px}
 }
 
 @media (prefers-reduced-motion:reduce){
