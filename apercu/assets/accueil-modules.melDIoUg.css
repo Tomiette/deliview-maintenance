@@ -83,3 +83,5 @@
 .dvm-publier svg{color:var(--color-blue)}
 .dvm-anime .dvm-joue .dvm-publier{animation:dvm-pin .4s cubic-bezier(.3,1.5,.5,1) 1.7s both}
 .dvm-photo .dvm-fond[src*="tablettes-cuisine"]{object-position:center 40%}
+.dvm-ligne-titre{margin:0;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--color-grey-2) 80%,transparent)}
+.dvm-ticket{gap:7px}
