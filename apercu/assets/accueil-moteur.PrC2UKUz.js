@@ -22,7 +22,7 @@ if (cadre) {
     [['Ventes', '291 €'], ['Note', '4,1 ★'], ['Prix', '13,50 €'], ['Commandes', '12']]
   ];
   var ACTIONS = ['Prix ajusté · +1,30 €', 'Promo du midi lancée', 'Avis répondu', 'Prix ajusté · +0,90 €', 'Restaurant relancé', 'Offre conseillée en ligne'];
-  var STATUTS = ['Analyse des prix de la zone…', 'Lecture des avis clients…', 'Repérage des heures creuses…', 'Calcul de ce qu’il vous reste…'];
+  var STATUTS = ['Analyse de vos données…', 'Analyse de votre zone…', 'Élaboration de la stratégie…'];
   var COCHE = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
   var mise = null, compte = { ue: 0, dr: 0 };
 

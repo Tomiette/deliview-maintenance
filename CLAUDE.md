@@ -47,7 +47,9 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
-8. **« Comment ça marche »** (en haut de page, juste après « Ils utilisent Deliview », fond clair bleuté, pas de
+8. **« Comment fonctionne Deliview »** (titre seul, repères 1 Vos données · 2 Deliview analyse · 3 Vos plateformes
+   dans la scène ; étape 2 = « analyse vos données et votre zone, et élabore une stratégie surpuissante grâce à la
+   puissance de la data », formulation voulue par Tom ; en haut de page, juste après « Ils utilisent Deliview », fond clair bleuté, pas de
    fond gris : demande de Tom) : « le moteur Deliview ».
    Les données (Ventes, Note, Prix, Commandes) partent des icônes Uber Eats / Deliveroo à gauche et glissent le long de
    courbes (offset-path, Web Animations) jusqu'au noyau Deliview lumineux, qui pulse ; les actions repartent vers les

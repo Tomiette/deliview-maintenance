@@ -103,3 +103,10 @@
 .dvx-etapes li{background:var(--color-white);border-color:var(--dv-bord);box-shadow:0 5px 0 var(--dv-levre)}
 .dvx-num{background:var(--color-blue);color:var(--color-white);font-size:19px}
 .dvx-etapes li>span:last-child{color:color-mix(in srgb,var(--color-grey-2) 85%,transparent)}
+
+/* Repères numérotés dans la scène, reliés aux trois étapes du dessous. */
+.dvx-tete{margin-bottom:20px}
+.dvx-zone{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--color-grey-2)}
+.dvx-zone span{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--color-grey-2);color:var(--color-white);font-size:13px;letter-spacing:0}
+[data-mise=large] .dvx-zone-c{left:560px;top:12px}
+[data-mise=etroit] .dvx-zone-c{display:none}
