@@ -107,3 +107,12 @@
 .dvm-jauge::before{content:"";position:absolute;inset:0;right:calc((1 - var(--p)) * 100%);border-radius:inherit;background:color-mix(in srgb,var(--color-blue) 30%,transparent)}
 .dvm-anime .dvm-joue .dvm-jauge i{animation:dvm-curseur 1.2s cubic-bezier(.2,.7,.2,1) .6s both}
 @keyframes dvm-curseur{from{left:100%}}
+
+/* Rentabilité : total de la semaine, effet des actions, ce qu'il reste. */
+.dvm-semaine span{font-weight:700}
+.dvm-semaine img{margin-left:2px}
+.dvm-semaine b{font-size:20px}
+.dvm-hausse-ligne{align-self:flex-start;margin:-4px 0 2px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb,var(--color-blue) 14%,transparent);font-size:12px;font-weight:800}
+.dvm-plus-v{color:var(--color-grey-2)}
+.dvm-reste .dvm-ticket{gap:5px;padding:12px 14px}
+.dvm-reste .dvm-total b{font-size:24px}
