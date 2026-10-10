@@ -33,3 +33,14 @@
 .dvp-titre{white-space:nowrap}
 @media (width<520px){.dvp-titre{gap:10px}.dvp-titre::before,.dvp-titre::after{flex-basis:32px}}
 .dvp-phrase{text-wrap:balance}
+.dvp-phrase{margin-top:4px;white-space:nowrap;text-wrap:nowrap}
+@media (width<520px){.dvp-phrase{font-size:14px}.dvp-texte{padding-right:12px}}
+@media (width<390px){.dvp-phrase{font-size:13px}}
+@media (width<520px){
+  .dvp-carte{flex-direction:column;max-width:400px}
+  .dvp-photo{flex:none;max-width:none;height:120px;min-height:0}
+  .dvp-photo img{object-position:center 30%}
+  .dvp-medaillon{left:50%;top:120px;margin:-28px 0 0 -28px;width:56px;height:56px}
+  .dvp-texte{align-items:center;text-align:center;padding:36px 12px 18px}
+  .dvp-phrase{font-size:15px}
+}
