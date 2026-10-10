@@ -133,3 +133,4 @@
 .dvx-zone-c span{margin-top:-1px}
 .dvx-etapes li{grid-template-columns:auto 1fr;align-items:center}
 .dvx-etapes .dvx-num{grid-row:auto}
+.dvx-zone span{flex:0 0 24px;width:24px;height:24px}
