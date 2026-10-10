@@ -85,3 +85,25 @@
 .dvm-photo .dvm-fond[src*="tablettes-cuisine"]{object-position:center 40%}
 .dvm-ligne-titre{margin:0;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--color-grey-2) 80%,transparent)}
 .dvm-ticket{gap:7px}
+
+/* Concurrents : fil des changements de la zone. */
+.dvm-fil{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:14px}
+.dvm-fil-titre{align-self:flex-start;margin:0 0 2px;padding:4px 10px;border-radius:999px;background:var(--color-grey-2);color:var(--color-white);font-size:12px;font-weight:700}
+.dvm-nouvelle{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:12px;background:var(--color-white);font-size:13px;line-height:1.3;box-shadow:0 12px 26px -14px color-mix(in srgb,var(--color-grey-2) 85%,transparent)}
+.dvm-nouvelle>img{width:22px!important;height:22px!important;border-radius:6px}
+.dvm-nouvelle i{display:block;font-style:normal;font-size:11px;color:color-mix(in srgb,var(--color-grey-2) 75%,transparent)}
+/* Visibilité : note, avis et rang par plateforme. */
+.dvm-visi{display:flex;flex-direction:column;justify-content:center;gap:10px;padding:14px}
+.dvm-plateforme{padding:10px 12px 12px;border-radius:14px;background:var(--color-white);box-shadow:0 12px 26px -14px color-mix(in srgb,var(--color-grey-2) 85%,transparent)}
+.dvm-pf-tete{display:flex;align-items:center;gap:7px;margin:0;font-size:13px}
+.dvm-pf-note{margin-left:auto;font-size:12px;white-space:nowrap}
+.dvm-pf-note b{font-size:14px}
+.dvm-rang{display:flex;align-items:baseline;gap:6px;margin:4px 0 6px}
+.dvm-rang b{font-family:var(--font-chiffres);font-size:26px;line-height:1;font-weight:800}
+.dvm-rang sup{font-size:.5em}
+.dvm-rang span{font-size:12px;font-weight:600}
+.dvm-jauge{position:relative;display:block;height:6px;border-radius:3px;background:color-mix(in srgb,var(--color-grey-2) 10%,transparent)}
+.dvm-jauge i{position:absolute;top:50%;left:calc(var(--p) * 100%);width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--color-blue);box-shadow:0 0 0 3px var(--color-white),0 2px 6px color-mix(in srgb,var(--color-grey-2) 40%,transparent)}
+.dvm-jauge::before{content:"";position:absolute;inset:0;right:calc((1 - var(--p)) * 100%);border-radius:inherit;background:color-mix(in srgb,var(--color-blue) 30%,transparent)}
+.dvm-anime .dvm-joue .dvm-jauge i{animation:dvm-curseur 1.2s cubic-bezier(.2,.7,.2,1) .6s both}
+@keyframes dvm-curseur{from{left:100%}}
