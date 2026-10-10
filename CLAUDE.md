@@ -40,7 +40,8 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
 7. **« Concurrents, visibilité, rentabilité : tout au même endroit »** (pastille « Dans l’app Deliview ») (entre « Avant, après » et le bloc fondateur, fond gris) : la photo de Tom d’un vrai
-   téléphone (`images/accueil/telephone-deliview-751.webp`) avec l’interface de l’app posée sur l’écran en perspective
+   téléphone, détourée (`images/accueil/telephone-deliview-detoure-751.webp`, fond transparent, contour calculé à
+   partir de l’écran + cadre + épaisseur, ombre en CSS ; même cadrage 751 × 602 que la photo d’origine), avec l’interface de l’app posée sur l’écran en perspective
    (dessinée en 390 × 844, homographie `matrix3d` calculée par le script sur les coins mesurés de l’écran
    TL 378,12.5 · TR 632.7,118.2 · BR 330.6,571.8 · BL 63,449.9 ; `clip-path` pour l’encoche et les coins). Barre
    d’onglets Concurrents / Visibilité / Rentabilité, « Compte démo » en en-tête ; à côté, la liste des trois questions

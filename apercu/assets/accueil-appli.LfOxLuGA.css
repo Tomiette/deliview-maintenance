@@ -8,9 +8,9 @@
 .dvq-grille{display:grid;gap:28px;align-items:center}
 @media (width>=1000px){.dvq-grille{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px}}
 
-/* ---------- Photo et app posée sur l'écran ---------- */
-.dvq-photo{position:relative;border-radius:28px;overflow:hidden;background:var(--color-grey-2);box-shadow:0 5px 0 var(--dv-levre),0 40px 70px -40px color-mix(in srgb,var(--color-grey-2) 70%,transparent);aspect-ratio:751/602}
-.dvq-fond{display:block;width:100%;height:100%;object-fit:cover}
+/* ---------- Téléphone détouré et app posée sur l'écran ---------- */
+.dvq-photo{position:relative;aspect-ratio:751/602}
+.dvq-fond{display:block;width:100%;height:100%;filter:drop-shadow(-14px 26px 26px color-mix(in srgb,var(--color-grey-2) 30%,transparent)) drop-shadow(-3px 6px 6px color-mix(in srgb,var(--color-grey-2) 25%,transparent))}
 .dvq-appli{position:absolute;left:0;top:0;width:390px;height:844px;transform-origin:0 0;visibility:hidden;overflow:hidden;background:var(--color-white);color:var(--color-grey-2);font-family:var(--font-sans);
   clip-path:path("M44 0H108C114 0 116 3 116 9V14C116 26 124 32 136 32H252C264 32 272 26 272 14V9C272 3 274 0 280 0H346A44 44 0 0 1 390 44V800A44 44 0 0 1 346 844H44A44 44 0 0 1 0 800V44A44 44 0 0 1 44 0Z")}
 .dvq-pret .dvq-appli{visibility:visible}
@@ -96,7 +96,6 @@
 
 @media (width<1000px){
   .dvq-tete{margin-bottom:28px}
-  .dvq-photo{border-radius:22px}
   .dvq-item{padding:16px 18px;gap:14px}
   .dvq-texte b{font-size:18px}
 }
