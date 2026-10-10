@@ -47,7 +47,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
-8. **« Comment fonctionne Deliview »** (titre seul, repères seuls, sans sous-texte : 1 Récupération des données · 2 Élabore une stratégie intelligente grâce à la
+8. **« Comment fonctionne Deliview »** (titre seul, repères seuls, sans sous-texte : 1 Récupération des données · 2 Élaboration d’une stratégie intelligente grâce à la
    puissance de la data · 3 Deliview déploie sur vos plateformes
    dans la scène ; étape 2 = « analyse vos données et votre zone, et élabore une stratégie intelligente grâce à la
    puissance de la data », formulation voulue par Tom ; en haut de page, juste après « Ils utilisent Deliview », fond clair bleuté, pas de
