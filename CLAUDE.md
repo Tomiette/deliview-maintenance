@@ -39,13 +39,13 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 5. **« Ils utilisent Deliview »** : bandeau centré sous le hero, carte Pizza Cosy (devanture, logo en médaillon,
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
-7. **« Concurrents, visibilité, rentabilité : tout au même endroit »** (pastille « Dans l’app Deliview ») (entre « Avant, après » et le bloc fondateur, fond gris) : la photo de Tom d’un vrai
+7. **« Votre activité livraison depuis votre poche »** (pastille « App Deliview », chapô « On centralise toutes vos données Uber Eats et Deliveroo dans l’application. ») (entre « Avant, après » et le bloc fondateur, fond gris) : la photo de Tom d’un vrai
    téléphone, détourée (`images/accueil/telephone-deliview-detoure-751.webp`, fond transparent, contour calculé à
    partir de l’écran + cadre + épaisseur, ombre en CSS ; même cadrage 751 × 602 que la photo d’origine), avec l’interface de l’app posée sur l’écran en perspective
    (dessinée en 390 × 844, homographie `matrix3d` calculée par le script sur les coins mesurés de l’écran
    TL 378,12.5 · TR 632.7,118.2 · BR 330.6,571.8 · BL 63,449.9 ; `clip-path` pour l’encoche et les coins). Barre
-   d’onglets Concurrents / Visibilité / Rentabilité, « Compte démo » en en-tête ; à côté, la liste des trois questions
-   (« Que font mes concurrents ? », « Est-ce que les clients me voient ? », « Analysez l’efficacité de vos actions »)
+   d’onglets Concurrents / Visibilité / Rentabilité / Alertes (Alertes : notification Deliview qui descend du haut de l’écran, « Deliveroo : restaurant fermé, votre tablette ne répond plus depuis 19 h 42 », bouton « Relancer mon restaurant » ; mêmes heures que « La solution »), « Compte démo » en en-tête ; à côté, la liste des trois questions
+   (« Que font mes concurrents ? », « Est-ce que les clients me voient ? », « Analysez l’efficacité de vos actions », « Mon restaurant est-il bien ouvert ? »)
    qui s’allume avec l’onglet (barre de progression, défilement auto quand visible, arrêt au clic). Concurrents
    anonymisés, chiffres du compte de démo. Sous la liste : logos Apple et Android seuls, sans texte (demande de Tom). L’app n’est PAS sur l’App Store ni Google Play (app web à ajouter à l’écran d’accueil) : jamais de badge de store tant que Tom n’a pas de vraie fiche. Fichiers `apercu/assets/accueil-appli.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre

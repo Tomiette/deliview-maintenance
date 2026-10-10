@@ -53,7 +53,8 @@ if (bloc) {
     appli.setAttribute('data-onglet', i);
     boutons.forEach(function (b) { b.setAttribute('aria-pressed', String(+b.getAttribute('data-choix') === i)); });
     if (auto && doigt) {
-      doigt.style.left = (81 + 114 * i) + 'px';
+      var o = onglets[i];
+      doigt.style.left = (o.offsetParent.offsetLeft + o.offsetLeft + o.offsetWidth / 2) + 'px';
       appli.classList.remove('dvq-touche'); void appli.offsetWidth; appli.classList.add('dvq-touche');
     }
   };
@@ -68,6 +69,7 @@ if (bloc) {
 
   // Le défilement suit la barre de progression de l'élément actif : quand elle est pleine, onglet suivant.
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    appli.classList.add('dvq-anime');
     bloc.addEventListener('animationend', function (e) {
       if (arrete || e.animationName !== 'dvq-progres') return;
       choisir((actif + 1) % boutons.length, true);
