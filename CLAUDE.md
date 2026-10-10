@@ -64,6 +64,12 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
 9. **Bloc fondateur « Qui est derrière » retiré de l'accueil** (décision de Tom ; il reste sur /qui-sommes-nous/). La FAQ
    suit directement le bloc de l'app : même fond gris, `style="padding-top:0"` sur `#questions` pour éviter un double vide.
+10. **Section démo `#demo` refaite** : titre « Voyez Deliview sur votre propre restaurant », chapô « Une démo de 30 minutes
+   avec Tom, avant tout paiement. » (faits de la FAQ). Un seul bloc gris à points : à gauche Tom (photo, « Fondateur de
+   Deliview », « En ligne »), frise « Ce qui se passe ensuite » en 3 étapes, e-mail ; à droite le bon de démo. Le formulaire
+   (`div.dv-form`, champs, champs cachés, script `DemoForm…js`) est repris **à l'identique** : ne jamais changer ses `id`,
+   `name` ni les paragraphes `-erreur`. Sur téléphone, le formulaire passe en premier. Fichier `apercu/assets/accueil-demo.*.css`.
+   En test, bloquer `**/functions/v1/lead` dans Playwright : un envoi réel crée une vraie demande chez Tom.
 
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
 Avant / Après joue quand même une transition courte). Tom a ce réglage activé sur son ordinateur : s'il dit qu'une
