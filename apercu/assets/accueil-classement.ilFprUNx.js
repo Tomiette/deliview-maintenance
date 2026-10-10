@@ -16,8 +16,8 @@ if (scene) {
   };
   var annoncer = function (etat) {
     annonce.textContent = etat === 'apres'
-      ? 'Après : Pizza Cosy apparaît en 1re position.'
-      : 'Avant : Pizza Cosy apparaît en 6e position.';
+      ? 'Après : Pizza Démo apparaît en 1re position.'
+      : 'Avant : Pizza Démo apparaît en 6e position.';
   };
   var vider = function () { minuteurs.forEach(clearTimeout); minuteurs = []; };
   var boucle = function () {
