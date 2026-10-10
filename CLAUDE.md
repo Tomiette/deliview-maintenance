@@ -36,6 +36,11 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    « Prix ajustés à la zone ». Pas de mention sous le bloc (décision de Tom). Fichiers
    `apercu/assets/accueil-classement.*.css|js`.
 
+5. **« Ils utilisent Deliview »** : bandeau centré sous le hero, carte Pizza Cosy (devanture, logo en médaillon,
+   « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
+   a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
+6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
+
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
 Avant / Après joue quand même une transition courte). Tom a ce réglage activé sur son ordinateur : s'il dit qu'une
 animation « ne bouge pas » ou « saute », vérifie d'abord ça.
