@@ -39,8 +39,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 5. **« Ils utilisent Deliview »** : bandeau centré sous le hero, carte Pizza Cosy (devanture, logo en médaillon,
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
-7. **« Concurrents, visibilité, rentabilité : tout au même endroit »** (pastille « Dans l’app Deliview ») (entre « Avant, après » et le bloc fondateur, qui passe sur fond
-   blanc) : trois cartes, une par question du restaurateur (« Que font mes concurrents ? » = suivez vos concurrents,
+7. **« Concurrents, visibilité, rentabilité : tout au même endroit »** (pastille « Dans l’app Deliview ») (entre « Avant, après » et le bloc fondateur, sur fond blanc) : trois cartes, une par question du restaurateur (« Que font mes concurrents ? » = suivez vos concurrents,
    « Est-ce que les clients me voient ? » = mesurez votre visibilité, note, avis et classement par plateforme,
    « Analysez l’efficacité de vos actions » (version sobre validée par Tom), ticket avec ce que
    chaque action a rapporté et ce qu’il reste), chacune avec une vraie photo
@@ -48,7 +47,8 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
-8. **« Comment ça marche »** (après le bloc 7, avant le fondateur) : scène sombre (Grey 2) « le moteur Deliview ».
+8. **« Comment ça marche »** (en haut de page, juste après « Ils utilisent Deliview », fond clair bleuté, pas de
+   fond gris : demande de Tom) : « le moteur Deliview ».
    Les données (Ventes, Note, Prix, Commandes) partent des icônes Uber Eats / Deliveroo à gauche et glissent le long de
    courbes (offset-path, Web Animations) jusqu'au noyau Deliview lumineux, qui pulse ; les actions repartent vers les
    icônes à droite, dont le compteur augmente. Scène dessinée à taille fixe (1120 × 420, 360 × 640 sur téléphone)
