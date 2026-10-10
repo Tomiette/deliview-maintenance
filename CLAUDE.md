@@ -13,16 +13,32 @@ Tu travailles avec Tom, fondateur de Deliview. Tutoie-le, va droit au but, pas d
 
 ## ⚠️ À régler en premier : l'aperçu a été modifié dans le compilé, pas dans la source
 
-Le 10 octobre 2026, ces changements ont été faits **directement dans `main/apercu/`** (PR #1, #2, #3) :
+Le 10 octobre 2026, ces changements ont été faits **directement dans `main/apercu/`** (PR #1 à #3, #5 à #8).
+État validé par Tom, à reprendre tel quel (`apercu/index.html` + fichiers ci-dessous) :
 
-1. Nouveau haut de l'accueil, depuis le design de Tom : hero « Plus de rentabilité sur Uber Eats et Deliveroo »,
-   « Vous n'avez pas le temps » + « Votre rentabilité part à 3 endroits », « La solution » (choix Je confie /
-   Je garde la main, Tout est inclus). Fichiers : `apercu/assets/accueil-design.*.css|js`, `apercu/images/accueil/`.
+1. **Haut de l'accueil** (design de Tom) : hero « Plus de rentabilité sur Uber Eats et Deliveroo » (boutons
+   « Demander une démo » + « Voir nos deux formules » vers `#formules`, Pizza Cosy, écran incliné, « Voir la vidéo »
+   qui ouvre la fenêtre vidéo existante), puis « Vous n'avez pas le temps » + « Votre rentabilité part à 3 endroits ».
+   Fichiers : `apercu/assets/accueil-design.*.css|js`, images `apercu/images/accueil/`. Ce CSS contient encore les
+   styles de l'ancienne « La solution » (`.dva-pilier`, `.dva-inclus`, `.dva-choix`…) : inutilisés, ne pas les reporter.
 2. **Figtree remplace Aspekta (et Inter) sur tout le site** : décision de Tom. Police auto-hébergée
    `apercu/assets/Figtree-latin*.woff2` (variable 300-900), variables `--font-sans`, `--font-accent`,
    `--font-chiffres` dans `apercu/assets/Base.*.css`, licence `apercu/fonts/Figtree-OFL.txt`, crédits des mentions légales.
-3. Bloc « Avant, après » (remplace l'exemple Margherita) : téléphone animé où « Pizza Démo » (compte de démonstration,
-   chiffres fictifs) remonte de la 6e à la 1re place. Fichiers `apercu/assets/accueil-classement.*.css|js`.
+3. **« La solution »** (4e version, la bonne) : quatre onglets de pertes réelles (remboursement retenu, prix sous la
+   zone, fermé en plein service, aucune offre en ligne) ; pour chacune l'alerte « Repéré par Deliview », une fourche
+   et deux voies, Autonomie (« Vous décidez », le curseur clique) et Délégation (« On s'en occupe », recommandée,
+   Tom), même résultat. Phrases des voies = page Tarifs, chiffres = compte de démonstration. Défilement auto quand
+   visible, arrêt au clic. Section `#solution`, conteneur `#formules`. Fichiers `apercu/assets/accueil-flux.*.css|js`.
+4. **« Avant, après »** (remplace l'exemple Margherita) : téléphone où « Pizza Démo » remonte de la 6e à la 1re
+   place, animation continue calculée image par image (une progression p de 0 à 1, chaque restaurant glisse quand
+   il est dépassé, compteur 6 → 1), sélecteur Avant / Après mis en avant avec pastille glissante, pause, lien
+   « Voir sur mon restaurant » vers `#demo`. Actions affichées : « Menu optimisé », « Offre lancée au bon moment »,
+   « Prix ajustés à la zone ». Pas de mention sous le bloc (décision de Tom). Fichiers
+   `apercu/assets/accueil-classement.*.css|js`.
+
+Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
+Avant / Après joue quand même une transition courte). Tom a ce réglage activé sur son ordinateur : s'il dit qu'une
+animation « ne bouge pas » ou « saute », vérifie d'abord ça.
 
 **Le prochain build depuis `site-source` écrasera tout ça.** Avant toute autre modif de l'aperçu, reporte ces
 changements dans `site-source` (composants Astro, `src/styles/global.css` pour Figtree, `src/fonts/`), en reprenant
@@ -62,5 +78,6 @@ Le site public (racine de `main`) est encore l'ancienne version en Aspekta : il 
 
 - Reporter le travail ci-dessus dans `site-source` (priorité, voir plus haut).
 - Restyler la suite de l'accueil (fondateur, tarifs, FAQ, démo) dans l'esprit du nouveau haut de page.
+- Passer le site public au nouveau design quand Tom valide l'aperçu (build final depuis `site-source`, jamais en copiant `apercu/`).
 - Passer l'app (`apercu/app/`) en Figtree si Tom le confirme.
 - Mettre à jour la compétence `deliview-web-design` (police Figtree).
