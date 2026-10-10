@@ -1,0 +1,114 @@
+/* Accueil (aperçu validé par Tom le 10 octobre 2026) : « Avant, après », un restaurant qui remonte dans le classement
+   d'une appli de livraison (components/accueil/AccueilClassement.astro).
+   Repris d'accueil-classement.css (aperçu fait à la main), sans changer une valeur ni l'ordre des règles. Retirés : les
+   règles mortes (.dvc-cta, .dvc-note, .dvc-x : plus dans le HTML ni posées par le script) et les déclarations toujours
+   écrasées : la retouche « sélecteur mis en avant » (.dvc-commandes, .dvc-choix, .dvc-choix button, bouton enfoncé,
+   .dvc-pause) est fusionnée dans les règles de base, avec ses valeurs. Boutons Avant / Après : background-color:transparent
+   au lieu de background:transparent (la minification réécrit ce raccourci en « background:0 0 », ce qui changeait
+   background-position calculé ; même rendu).
+   Animation en CSS, pilotée par scripts/accueil/classement.ts : data-etat (avant / apres) et data-etape (0 à 3) sur la
+   scène ; avec le script (classe dvc-js), les translations des rangs sont posées image par image.
+   Se sert de commun.css (.dva, .dva-bleu, .dva-chiffre), importé avant ce fichier. Charte : 5 couleurs et leurs
+   transparences, Figtree. */
+
+.dvc-grille{display:grid;row-gap:48px;align-items:center}
+@media (width>=1024px){.dvc-grille{grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:64px}}
+.dvc-texte{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.dvc-texte .dv-h2,.dvc-texte .dv-lead{margin:0}
+.dvc-texte .dv-h2{max-width:18ch}
+/* Sélecteur Avant / Après mis en avant (demande de Tom) et bouton pause. */
+.dvc-commandes{display:flex;align-items:center;gap:12px;margin-top:8px}
+.dvc-choix{display:inline-flex;gap:6px;padding:6px;border-radius:999px;background:var(--color-grey);border:1px solid var(--dv-bord);box-shadow:0 10px 24px -14px color-mix(in srgb,var(--color-grey-2) 40%,transparent)}
+.dvc-choix button{min-height:52px;padding:0 30px;border:0;border-radius:999px;background-color:transparent;color:var(--color-grey-2);font:inherit;font-size:19px;font-weight:700;cursor:pointer;transition:background-color .25s,color .25s,box-shadow .25s}
+.dvc-choix button:hover{background:color-mix(in srgb,var(--color-blue) 10%,transparent)}
+.dvc-choix button[aria-pressed=true]{background:var(--color-white);box-shadow:0 4px 12px color-mix(in srgb,var(--color-grey-2) 18%,transparent)}
+.dvc-choix button[data-classement-voir=apres][aria-pressed=true]{background:var(--color-blue);color:var(--color-white);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--color-blue) 70%,transparent)}
+.dvc-pause{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:50%;border:1px solid var(--dv-bord);background:var(--color-white);color:var(--color-grey-2);cursor:pointer}
+.dvc-pause:hover{background:var(--color-grey)}
+.dvc-pause .dvc-ic-lire,.dvc-pause[aria-pressed=true] .dvc-ic-pause{display:none}
+.dvc-pause[aria-pressed=true] .dvc-ic-lire{display:block}
+
+/* Scène */
+.dvc-scene{--rang:68px;position:relative;display:flex;flex-direction:column;align-items:center;padding:24px 0 8px}
+@media (width>=640px){.dvc-scene{padding:24px 0 40px}}
+.dvc-forme{position:absolute;inset:8% 4% 10%;border-radius:32px;background-color:color-mix(in srgb,var(--color-blue) 8%,transparent);background-image:var(--dv-points);background-size:24px 24px;rotate:-3deg}
+.dvc-telephone{position:relative;z-index:1;width:290px;max-width:78vw;padding:10px;border-radius:44px;background:var(--color-grey-2);box-shadow:0 40px 70px -30px color-mix(in srgb,var(--color-grey-2) 55%,transparent)}
+.dvc-ecran{position:relative;overflow:hidden;border-radius:34px;background:var(--color-white);padding:12px 14px 0;height:560px}
+.dvc-statut{display:flex;justify-content:space-between;align-items:center;padding:0 8px;font-size:13px;font-weight:700}
+.dvc-statut-icones{display:inline-flex;gap:4px}
+.dvc-statut-icones i{width:14px;height:8px;border-radius:2px;background:var(--color-grey-2)}
+.dvc-statut-icones i:first-child{width:10px;opacity:.6}
+.dvc-barre{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 14px}
+.dvc-barre-icones{display:inline-flex;gap:12px}
+.dvc-squelette{display:block;height:10px;border-radius:5px;background:color-mix(in srgb,var(--color-grey-2) 10%,transparent)}
+.dvc-titre{margin:0 0 10px;font-size:18px;font-weight:800;letter-spacing:-.01em}
+.dvc-liste{position:relative;height:calc(var(--rang) * 6);margin:0;padding:0;list-style:none}
+.dvc-rang{position:absolute;left:0;right:0;top:0;height:calc(var(--rang) - 8px);display:flex;align-items:center;gap:12px;padding:0 6px;border-radius:14px;transform:translateY(calc(var(--a) * var(--rang)));transition:transform 1.3s cubic-bezier(.65,0,.25,1),background-color .4s,box-shadow .4s}
+[data-etat=apres] .dvc-rang{transform:translateY(calc(var(--b) * var(--rang)))}
+.dvc-vignette{position:relative;width:52px;height:52px;flex-shrink:0;border-radius:12px;background:color-mix(in srgb,var(--color-grey-2) 10%,transparent);overflow:hidden}
+.dvc-vignette img{display:block;width:100%;height:100%;object-fit:cover;transition:filter .6s}
+.dvc-lignes{display:flex;flex-direction:column;gap:8px;flex:1;min-width:0}
+/* Après .dvc-squelette : la 2e ligne grise est plus fine. */
+.dvc-fin{height:8px}
+.dvc-cosy{z-index:2;background:var(--color-white);box-shadow:0 0 0 1.5px color-mix(in srgb,var(--color-blue) 0%,transparent)}
+.dvc-cosy .dvc-lignes{gap:2px;line-height:1.25}
+.dvc-cosy .dvc-lignes b{font-size:15px}
+.dvc-cosy .dvc-lignes span{font-size:13px;color:color-mix(in srgb,var(--color-grey-2) 80%,transparent)}
+.dvc-coeur{color:var(--color-grey-2);display:inline-flex}
+/* Avant : photo terne. Les actions la réveillent, l'arrivée en tête l'encadre. */
+[data-etape="0"] .dvc-cosy img{filter:saturate(.35) brightness(.92)}
+[data-etat=avant] .dvc-cosy{box-shadow:0 0 0 1.5px var(--dv-bord)}
+[data-etat=apres] .dvc-cosy{box-shadow:0 0 0 2px var(--color-blue),0 16px 30px -14px color-mix(in srgb,var(--color-blue) 60%,transparent)}
+.dvc-offre{position:absolute;left:3px;right:3px;bottom:3px;padding:2px 3px;border-radius:5px;background:var(--color-grey-2);color:var(--color-white);font-size:8px;font-weight:800;line-height:1.15;text-align:center;opacity:0;translate:0 6px;transition:opacity .4s,translate .4s}
+[data-etape="2"] .dvc-offre,[data-etape="3"] .dvc-offre,[data-etat=apres] .dvc-offre{opacity:1;translate:0 0}
+
+/* Compteur « Position » (6e, puis 1re). */
+.dvc-position{position:absolute;z-index:2;top:40px;right:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 16px;border-radius:18px;background:var(--color-white);border:1px solid var(--dv-bord);box-shadow:var(--dv-ombre-flottante)}
+@media (width>=1024px){.dvc-position{right:-8px}}
+.dvc-position>span{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.dvc-position b{position:relative;display:grid;font-size:32px;line-height:1.05}
+.dvc-position b>span{grid-area:1/1;text-align:center;transition:opacity .4s,translate .4s}
+.dvc-pos-apres{opacity:0;translate:0 12px;color:var(--color-blue)}
+[data-etat=apres] .dvc-pos-avant{opacity:0;translate:0 -12px}
+[data-etat=apres] .dvc-pos-apres{opacity:1;translate:0 0}
+.dvc-position sup{font-size:.45em}
+
+/* Carte « Deliview s'en occupe » : les actions s'allument une à une (data-etape 1 à 3). */
+.dvc-actions{position:relative;z-index:3;width:244px;margin:-56px auto 0;padding:14px;border-radius:18px;background:var(--color-white);border:1px solid var(--dv-bord);box-shadow:0 24px 44px -20px color-mix(in srgb,var(--color-grey-2) 45%,transparent)}
+@media (width>=640px){.dvc-actions{position:absolute;margin:0;left:0;top:38%}}
+@media (width>=1024px){.dvc-actions{left:-28px}}
+.dvc-actions-titre{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:13px;font-weight:800}
+.dvc-actions-titre img{width:22px;height:22px;border-radius:50%;background:var(--color-blue);padding:3px}
+.dvc-actions ul{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.dvc-actions li{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:10px;background:var(--color-grey);font-size:13px;font-weight:600;opacity:.45;transition:opacity .35s,background-color .35s}
+.dvc-actions li i{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;flex-shrink:0;border:1.5px solid var(--dv-bord);color:transparent;transition:background-color .35s,border-color .35s,color .35s,scale .35s}
+[data-etape="1"] [data-action="1"],[data-etape="2"] [data-action="1"],[data-etape="2"] [data-action="2"],[data-etape="3"] .dvc-actions li{opacity:1;background:color-mix(in srgb,var(--color-blue) 10%,transparent)}
+[data-etape="1"] [data-action="1"] i,[data-etape="2"] [data-action="1"] i,[data-etape="2"] [data-action="2"] i,[data-etape="3"] .dvc-actions li i{background:var(--color-blue);border-color:var(--color-blue);color:var(--color-white)}
+
+@media (prefers-reduced-motion:reduce){.dvc-rang,.dvc-offre,.dvc-position b>span,.dvc-actions li,.dvc-actions li i,.dvc-vignette img{transition:none}}
+
+/* Lien « Voir sur mon restaurant » vers la démo. */
+.dvc-lien{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--color-blue);font-size:19px;font-weight:700;text-decoration:none}
+.dvc-lien:hover{color:var(--color-blue-2);text-decoration:underline;text-underline-offset:4px}
+.dvc-lien svg{transition:translate .2s}
+.dvc-lien:hover svg{translate:4px 0}
+
+/* Animation continue pilotée par le script (classe dvc-js) : les transformations sont posées image par image. */
+.dvc-js .dvc-rang{transition:background-color .4s,box-shadow .4s;will-change:transform}
+.dvc-js .dvc-liste,.dvc-js .dvc-actions,.dvc-js .dvc-position{transition:opacity .35s ease}
+.dvc-fondu .dvc-liste,.dvc-fondu .dvc-actions,.dvc-fondu .dvc-position{opacity:0}
+.dvc-js [data-etape] .dvc-actions li i{transition:background-color .3s,border-color .3s,color .3s,scale .3s cubic-bezier(.3,1.6,.5,1)}
+[data-etape="1"] [data-action="1"] i,[data-etape="2"] [data-action="2"] i,[data-etape="3"] [data-action="3"] i{scale:1.12}
+.dvc-pos-n{display:block;text-align:center;transition:color .3s}
+.dvc-pos-premier{color:var(--color-blue)}
+.dvc-tic{animation:dvc-tic .32s cubic-bezier(.3,1.5,.5,1)}
+@keyframes dvc-tic{from{translate:0 -8px;opacity:.3}to{translate:0 0;opacity:1}}
+
+/* Sélecteur Avant / Après : une pastille qui glisse d'un choix à l'autre (posée par le script, classe dvc-choix-js). */
+.dvc-choix.dvc-choix-js{position:relative}
+.dvc-choix-curseur{position:absolute;left:0;top:6px;bottom:6px;border-radius:999px;background:var(--color-white);box-shadow:0 4px 12px color-mix(in srgb,var(--color-grey-2) 18%,transparent);transition:transform .5s cubic-bezier(.65,0,.35,1),width .5s cubic-bezier(.65,0,.35,1),background-color .5s,box-shadow .5s}
+.dvc-choix-js[data-choix=apres] .dvc-choix-curseur{background:var(--color-blue);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--color-blue) 70%,transparent)}
+.dvc-choix.dvc-choix-js button,.dvc-choix.dvc-choix-js button[aria-pressed]{position:relative;z-index:1;background-color:transparent;box-shadow:none;transition:color .5s}
+.dvc-choix.dvc-choix-js button[data-classement-voir=apres][aria-pressed=true]{color:var(--color-white)}
+.dvc-choix.dvc-choix-js button[aria-pressed=false]:hover{color:var(--color-blue)}
+@media (prefers-reduced-motion:reduce){.dvc-choix-curseur{transition-duration:.25s}.dvc-tic{animation:none}}

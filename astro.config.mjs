@@ -106,7 +106,13 @@ export default defineConfig({
   compressHTML: true,
   markdown: { processor: satteri({ hastPlugins: [liens, tableaux, entetesVides] }) },
   integrations: [typographie, htaccessApercu],
-  vite: { plugins: [tailwindcss()] },
+  // Scripts des sections de l'accueil (src/components/accueil/) : toujours en fichier externe dans assets/ (règle du
+  // dépôt de publication : JS nouveau = fichier externe), même sous 4 Ko. Sinon Astro les mettrait en ligne et ajouterait
+  // leur empreinte à la CSP de toutes les pages. Tout le reste garde le seuil par défaut de Vite (4 Ko).
+  vite: {
+    plugins: [tailwindcss()],
+    build: { assetsInlineLimit: (fichier) => (/(^|\/)Accueil[A-Z][A-Za-z]*\.astro_astro_type_script/.test(fichier) ? false : undefined) },
+  },
   // Politique de sécurité des contenus (6 octobre 2026, audit de sécurité) : une balise par page, avec l'empreinte de
   // chaque script et style écrit dans la page (Astro les calcule). Rien d'autre que le site lui-même, sauf le
   // formulaire de démo envoyé à la fonction « lead » de Supabase. Le cadrage par d'autres sites reste interdit par

@@ -18,6 +18,11 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Slogan définitif : « Le partenaire des restaurants en livraison » (`SITE.slogan`) : hero, pied de page, Qui sommes-nous, données structurées
 - Offres (Autonomie et Délégation depuis le 9 octobre 2026, identifiants « pro » et « premium ») : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, l'accueil, « Commencer » et llms.txt suivent. Plus aucun prix affiché sur le site (8 octobre 2026)
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
+- Accueil (aperçu validé par Tom le 10 octobre 2026) : une section par composant dans `src/components/accueil/` (ordre dans
+  `src/pages/index.astro`), son CSS dans `src/styles/accueil/` (socle commun : `commun.css`), importé dans le frontmatter du
+  composant, jamais en `<style>` scopé ; son script dans `src/scripts/accueil/`, toujours sorti en fichier externe
+  (`assetsInlineLimit` dans `astro.config.mjs`) ; textes et chiffres du compte de démonstration dans `src/lib/accueil-*.ts`.
+  Les heures « 19 h 42 » et « 22 h 50 » sont dans `accueil-solution.ts` et `accueil-appli.ts` : à changer ensemble
 - Polices : Figtree partout, texte, titres, boutons, menus et chiffres (décision de Tom du 10 octobre 2026, à la place d'Aspekta
   et d'Inter). Police variable 300 à 900 auto-hébergée : `src/fonts/Figtree-latin.woff2` (préchargée dans `Base.astro`) et
   `Figtree-latin-ext.woff2`, `@font-face` et variables `--font-sans`, `--font-accent`, `--font-chiffres` dans `src/styles/global.css`,

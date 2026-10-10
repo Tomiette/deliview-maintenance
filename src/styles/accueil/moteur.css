@@ -1,0 +1,104 @@
+/* Accueil (aperçu validé par Tom le 10 octobre 2026) : « Comment fonctionne Deliview », le moteur Deliview.
+   Version claire, en haut de page (demande de Tom) : fond blanc teinté de bleu, textes et traits en Grey 2. Les données
+   partent d'Uber Eats et Deliveroo, glissent jusqu'au noyau Deliview, les actions repartent vers les plateformes. La
+   scène est dessinée à taille fixe (1120 × 420, ou 360 × 640 sous 700 px) puis mise à l'échelle par
+   scripts/accueil/moteur.ts, qui pose data-mise, --k, --w et --h, trace les courbes et crée les pastilles.
+   Repris d'accueil-moteur.css (aperçu fait à la main), même rendu :
+   - la « scène sombre » d'origine, toujours surchargée par la version claire et les retouches, est fusionnée : ne
+     restent que les déclarations qui s'appliquent ;
+   - retirés : .dvx-souligne, .dvx-sous* (phrases sous les repères, plus dans la page) et .dvx-etapes li>span:last-child
+     (ne visait rien), ainsi que grid-row:span 2 de .dvx-num, toujours ramené à auto ;
+   - .dvx-etapes li : plus de déclaration de fond. background:none ne faisait que remettre la valeur de départ, et la
+     minification le réécrit en « background:0 0 » (position calculée différente de l'aperçu, sans effet visible).
+   .dva-bleu (mot « Deliview » du titre) vient de commun.css. Charte : 5 couleurs et leurs transparences, Figtree. Toute
+   animation passe par .dv-mouvement et .dvx-joue (scène visible) ; en mouvement réduit, le script pose une image fixe. */
+
+.dvx{background-color:color-mix(in srgb,var(--color-blue) 5%,var(--color-white));background-image:var(--dv-points);background-size:24px 24px;color:var(--color-grey-2);overflow:hidden}
+.dvx-tete{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;max-width:760px;margin:0 auto 44px}
+@media (width<700px){.dvx-tete{margin-bottom:28px}}
+.dvx-tete .dv-h2{margin:0;color:var(--color-grey-2)}
+
+/* Cadre mis à l'échelle */
+.dvx-cadre{position:relative;height:calc(var(--h,420px) * var(--k,1));margin-inline:auto;max-width:1160px}
+.dvx-scene{position:absolute;left:50%;top:0;width:var(--w,1120px);height:var(--h,420px);translate:-50% 0;scale:var(--k,1);transform-origin:50% 0}
+.dvx-chemins{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.dvx-chemins .dvx-rail{fill:none;stroke:color-mix(in srgb,var(--color-grey-2) 28%,transparent);stroke-width:1.5;stroke-dasharray:3 7;stroke-linecap:round}
+.dvx-chemins .dvx-lueur{fill:none;stroke:var(--color-blue);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:46 420;filter:drop-shadow(0 0 4px color-mix(in srgb,var(--color-blue) 60%,transparent))}
+.dv-mouvement .dvx-joue .dvx-lueur{animation:dvx-lueur 2.4s linear infinite}
+.dv-mouvement .dvx-joue .dvx-lueur:nth-of-type(4n){animation-delay:-1.2s}
+@keyframes dvx-lueur{from{stroke-dashoffset:466}to{stroke-dashoffset:0}}
+
+/* Repères numérotés dans la scène, en casse normale pour être lus d'un coup d'œil (.dvx-zone-c après .dvx-zone). */
+.dvx-zone{position:absolute;display:inline-flex;align-items:center;gap:8px;margin:0;font-size:15px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--color-grey-2);translate:-50% 0;white-space:nowrap}
+.dvx-zone span{display:inline-flex;flex:0 0 24px;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--color-grey-2);color:var(--color-white);font-size:13px;letter-spacing:0}
+.dvx-zone-c{max-width:330px;white-space:normal;text-align:center;line-height:1.35;align-items:flex-start}
+.dvx-zone-c span{margin-top:-1px}
+
+/* Icônes des plateformes */
+.dvx-app{position:absolute;display:flex;flex-direction:column;align-items:center;gap:8px;translate:-50% -50%}
+.dvx-app img{display:block;width:84px;height:84px;border-radius:24px;box-shadow:0 0 0 6px var(--color-white),0 18px 40px -16px color-mix(in srgb,var(--color-grey-2) 55%,transparent)}
+.dvx-app b{font-size:13px;font-weight:700;color:var(--color-grey-2)}
+.dvx-badge{position:absolute;top:-8px;right:-8px;min-width:26px;height:26px;padding:0 7px;border-radius:999px;background:var(--color-grey-2);color:var(--color-white);font-style:normal;font-size:13px;font-weight:800;line-height:26px;text-align:center;box-shadow:0 0 0 3px var(--color-white),0 6px 14px color-mix(in srgb,var(--color-grey-2) 35%,transparent);scale:0}
+.dvx-badge.dvx-vu{scale:1}
+.dvx-badge.dvx-tic{animation:dvx-tic .45s cubic-bezier(.3,1.8,.5,1)}
+@keyframes dvx-tic{0%{scale:.6}60%{scale:1.25}100%{scale:1}}
+
+/* Noyau Deliview */
+.dvx-orbe{position:absolute;width:180px;height:180px;translate:-50% -50%}
+.dvx-halo{position:absolute;inset:-70px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--color-blue) 30%,transparent) 0,color-mix(in srgb,var(--color-blue) 8%,transparent) 42%,transparent 68%)}
+.dvx-anneau{position:absolute;border-radius:50%}
+.dvx-anneau-1{inset:0;border:1.5px dashed color-mix(in srgb,var(--color-grey-2) 25%,transparent)}
+.dvx-anneau-2{inset:-22px;border:1px solid color-mix(in srgb,var(--color-blue) 40%,transparent);border-top-color:var(--color-blue);border-right-color:transparent}
+.dv-mouvement .dvx-joue .dvx-anneau-1{animation:dvx-tourne 26s linear infinite}
+.dv-mouvement .dvx-joue .dvx-anneau-2{animation:dvx-tourne 7s linear infinite reverse}
+@keyframes dvx-tourne{to{rotate:360deg}}
+.dvx-coeur{position:absolute;inset:26px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--color-blue-2),var(--color-blue) 70%);box-shadow:0 0 0 8px color-mix(in srgb,var(--color-blue) 16%,transparent),0 20px 50px -10px color-mix(in srgb,var(--color-blue) 70%,transparent);transition:scale .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s}
+.dvx-coeur img{width:62px;height:auto}
+.dvx-coeur.dvx-pouls{scale:1.07;box-shadow:0 0 0 14px color-mix(in srgb,var(--color-blue) 22%,transparent),0 20px 60px -6px var(--color-blue)}
+.dvx-statut{position:absolute;display:flex;align-items:center;gap:8px;margin:0;padding:7px 14px;border-radius:999px;background:var(--color-white);border:1px solid var(--dv-bord);box-shadow:0 8px 20px -12px color-mix(in srgb,var(--color-grey-2) 45%,transparent);font-size:13px;font-weight:600;white-space:nowrap;translate:-50% 0}
+.dvx-statut i{width:8px;height:8px;border-radius:50%;background:var(--color-blue);box-shadow:0 0 6px var(--color-blue)}
+.dv-mouvement .dvx-joue .dvx-statut i{animation:dvx-clign 1.2s ease-in-out infinite}
+@keyframes dvx-clign{50%{opacity:.25}}
+.dvx-statut span{transition:opacity .3s}
+
+/* Pastilles qui voyagent (créées par le script) */
+.dvx-pas{position:absolute;left:0;top:0;offset-rotate:0deg;offset-anchor:50% 50%;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap;pointer-events:none}
+.dvx-donnee{background:var(--color-white);border:1px solid var(--dv-bord);color:var(--color-grey-2);box-shadow:0 10px 22px -10px color-mix(in srgb,var(--color-grey-2) 45%,transparent)}
+.dvx-donnee em{font-style:normal;font-weight:600;color:color-mix(in srgb,var(--color-grey-2) 75%,transparent)}
+.dvx-action{background:var(--color-white);color:var(--color-grey-2);box-shadow:0 0 0 2px var(--color-blue),0 10px 24px -8px color-mix(in srgb,var(--color-blue) 60%,transparent)}
+.dvx-action svg{flex-shrink:0;width:16px;height:16px;padding:3px;border-radius:50%;background:var(--color-blue);color:var(--color-white)}
+
+/* Disposition large (1120 × 420) */
+[data-mise=large] .dvx-zone-g{left:110px;top:12px}
+[data-mise=large] .dvx-zone-c{left:560px;top:12px}
+[data-mise=large] .dvx-zone-d{left:1010px;top:12px}
+[data-mise=large] [data-app=ue-g]{left:110px;top:156px}
+[data-mise=large] [data-app=dr-g]{left:110px;top:316px}
+[data-mise=large] [data-app=ue-d]{left:1010px;top:156px}
+[data-mise=large] [data-app=dr-d]{left:1010px;top:316px}
+[data-mise=large] .dvx-orbe{left:560px;top:226px}
+[data-mise=large] .dvx-statut{left:560px;top:372px}
+/* Disposition étroite (360 × 640) : pas de repère central, pas de nom sous les icônes, pas de statut. */
+[data-mise=etroit] .dvx-zone-g{left:180px;top:0}
+[data-mise=etroit] .dvx-zone-c{display:none}
+[data-mise=etroit] .dvx-zone-d{left:180px;top:620px}
+[data-mise=etroit] .dvx-app img{width:68px;height:68px;border-radius:20px}
+[data-mise=etroit] [data-app=ue-g]{left:105px;top:76px}
+[data-mise=etroit] [data-app=dr-g]{left:255px;top:76px}
+[data-mise=etroit] [data-app=ue-d]{left:105px;top:560px}
+[data-mise=etroit] [data-app=dr-d]{left:255px;top:560px}
+[data-mise=etroit] .dvx-orbe{left:180px;top:318px;width:150px;height:150px}
+[data-mise=etroit] .dvx-coeur{inset:20px}
+[data-mise=etroit] .dvx-coeur img{width:50px}
+[data-mise=etroit] .dvx-statut{display:none}
+[data-mise=etroit] .dvx-app b{display:none}
+
+/* Les trois temps : sur téléphone, en texte simple sous la scène ; à partir de 700 px, lus par les lecteurs d'écran
+   seulement (les repères de la scène sont aria-hidden). */
+.dvx-etapes{display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:x}
+@media (width>=760px){.dvx-etapes{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}}
+@media (width>=700px){.dvx-etapes{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+@media (width<700px){.dvx-etapes{gap:16px;margin-top:20px}}
+.dvx-etapes li{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;padding:0;border-radius:18px;border:0;box-shadow:none}
+.dvx-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--color-blue);color:var(--color-white);font-size:19px;font-weight:800}
+.dvx-etapes b{font-size:18px;line-height:1.3}

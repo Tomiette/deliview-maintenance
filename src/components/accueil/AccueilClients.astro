@@ -1,0 +1,45 @@
+---
+// Accueil (aperçu validé par Tom le 10 octobre 2026) : bandeau « Ils utilisent Deliview », centré sous le hero.
+// Pizza Cosy, premier restaurant client : sa vraie devanture à gauche, son logo en médaillon à cheval sur la
+// séparation, le nom et « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone.
+// La ligne Pizza Cosy a quitté la colonne du hero. Logo, photo et phrase affichés avec l'accord du restaurant
+// (confirmé par Tom le 6 octobre 2026) : rien d'autre (ni avis, ni chiffre).
+// Arrivée : data-apparition (scripts/mouvement.ts) fait glisser la carte ; la photo se pose et un reflet passe une
+// fois (clients.css). Pas de script propre à la section.
+// HTML repris tel quel de l'aperçu : ne pas changer les classes ni la mise en page (pas d'espace autour des <img>).
+import { lien } from '../../lib/site';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/clients.css';
+---
+
+<section class="dvp" aria-labelledby="clients-titre">
+  <div class="dv-container">
+    <h2 id="clients-titre" class="dvp-titre">Ils utilisent Deliview</h2>
+    <figure class="dvp-carte" data-apparition="">
+      <div class="dvp-photo"><img
+          src={lien('/images/clients/pizza-cosy-devanture-300.webp')}
+          srcset={`${lien('/images/clients/pizza-cosy-devanture-200.webp')} 200w, ${lien('/images/clients/pizza-cosy-devanture-300.webp')} 300w`}
+          sizes="200px"
+          alt="Devanture du restaurant Pizza Cosy à Lyon, son enseigne lumineuse au-dessus de l’entrée"
+          width="300"
+          height="225"
+          loading="lazy"
+          decoding="async"
+        /></div>
+      <span class="dvp-medaillon"><img
+          src={lien('/images/clients/pizza-cosy-160.webp')}
+          srcset={`${lien('/images/clients/pizza-cosy-160.webp')} 160w, ${lien('/images/clients/pizza-cosy.webp')} 240w`}
+          sizes="60px"
+          alt="Logo Pizza Cosy"
+          width="160"
+          height="160"
+          loading="lazy"
+          decoding="async"
+        /></span>
+      <figcaption class="dvp-texte">
+        <p class="dvp-nom">Pizza Cosy</p>
+        <p class="dvp-phrase">Nous fait confiance depuis le premier jour.</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,72 @@
+---
+// Accueil, « Avant, après » (aperçu validé par Tom le 10 octobre 2026 ; remplace l'exemple Margherita). Un téléphone
+// montre le classement d'une appli de livraison : « Pizza Démo » remonte de la 6e à la 1re place pendant que Deliview
+// optimise le menu, lance une offre au bon moment et ajuste les prix à la zone (lib/accueil-classement.ts). Restaurant
+// de démonstration, concurrents sans nom.
+// Sélecteur Avant / Après mis en avant (demande de Tom), bouton pause, lien « Voir sur mon restaurant » vers #demo.
+// Pas de mention sous le bloc (décision de Tom).
+// scripts/accueil/classement.ts anime le tout image par image à partir d'une seule progression (chaque restaurant
+// glisse quand Pizza Démo le dépasse, compteur 6 → 1), en boucle quand la scène est visible ; un clic l'arrête. Si le
+// visiteur réduit les animations : pas de boucle, l'état « Après » s'affiche, un clic joue une transition courte.
+// Sans script, data-etat et data-etape suffisent au CSS (état « Avant »).
+// HTML repris tel quel de l'aperçu fait à la main : classes, ids, data-*, aria-*, style="" et textes inchangés. Les
+// espaces entre balises comptent (la compression d'Astro les ramène à une seule) : ne pas en ajouter dans les lignes
+// écrites d'un seul tenant (boutons, statut, rangs, actions).
+// CSS : commun.css (.dva, .dva-bleu, .dva-chiffre) puis classement.css, importés ici et jamais dans un <style> scopé
+// (data-astro-cid changerait le HTML).
+import { lien } from '../../lib/site';
+import { ACTIONS_CLASSEMENT, CONCURRENTS_CLASSEMENT, RESTAURANT_CLASSEMENT as demo } from '../../lib/accueil-classement';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/classement.css';
+
+// Pizza Démo part sous les concurrents (--a) et finit en tête (--b = 0) ; chacun d'eux descend d'une place.
+const placeDemo = CONCURRENTS_CLASSEMENT.length;
+---
+
+<section class="dva dvc dv-section bg-white overflow-x-clip" aria-labelledby="exemple-titre">
+  <div class="dv-container dvc-grille">
+    <div class="dvc-texte">
+      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Résultat</p>
+      <h2 id="exemple-titre" class="dv-h2">Avant, après&nbsp;: votre restaurant remonte en <span class="dva-bleu">tête de liste</span></h2>
+      <p class="dv-lead">Sur Uber&nbsp;Eats et Deliveroo, l’ordre d’affichage décide de vos ventes. Deliview soigne vos menus, lance vos offres au bon moment et ajuste vos prix&nbsp;: votre fiche remonte, et les clients la voient en premier.</p>
+      <div class="dvc-commandes">
+        <div class="dvc-choix" role="group" aria-label="Voir le classement">
+          <button type="button" data-classement-voir="avant" aria-pressed="true">Avant</button>
+          <button type="button" data-classement-voir="apres" aria-pressed="false">Après</button>
+        </div>
+        <button type="button" class="dvc-pause" data-classement-pause aria-pressed="false"><svg class="dvc-ic-pause" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg><svg class="dvc-ic-lire" aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20 7 4"></polygon></svg><span class="sr-only">Mettre l’animation en pause</span></button>
+      </div>
+      <a href="#demo" class="dvc-lien" data-cta="exemple-mon-restaurant">Voir sur mon restaurant<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+    </div>
+    <div class="dvc-scene" data-classement data-etat="avant" data-etape="0">
+      <p class="sr-only" aria-live="polite" data-classement-annonce>Avant&nbsp;: Pizza Démo apparaît en 6<sup>e</sup> position.</p>
+      <span class="dvc-forme" aria-hidden="true"></span>
+      <div class="dvc-telephone" aria-hidden="true">
+        <div class="dvc-ecran">
+          <div class="dvc-statut"><span>9:41</span><span class="dvc-statut-icones"><i></i><i></i><i></i></span></div>
+          <div class="dvc-barre"><span class="dvc-squelette" style="width:42%"></span><span class="dvc-barre-icones"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.6" y2="16.6"></line></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg></span></div>
+          <p class="dvc-titre">Pizzas près de vous</p>
+          <ol class="dvc-liste">
+            {CONCURRENTS_CLASSEMENT.map((c, i) => (
+              <>{i > 0 && ' '}<li class="dvc-rang" style={`--a:${i};--b:${i + 1}`}><span class="dvc-vignette"></span><span class="dvc-lignes"><span class="dvc-squelette" style={`width:${c.nom}`}></span><span class="dvc-squelette dvc-fin" style={`width:${c.detail}`}></span></span></li></>
+            ))}
+            <li class="dvc-rang dvc-cosy" style={`--a:${placeDemo};--b:0`}><span class="dvc-vignette"><img src={lien(demo.photo)} alt="" width="110" height="110" loading="lazy" decoding="async" /><span class="dvc-offre">{demo.offre}</span></span><span class="dvc-lignes"><b>{demo.nom}</b><span>{demo.detail}</span></span><span class="dvc-coeur"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.8 1-1.1a5.5 5.5 0 0 0 0-7.5z"></path></svg></span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="dvc-position" aria-hidden="true"><span>Position</span><b class="dva-chiffre"><span class="dvc-pos-avant">6<sup>e</sup></span><span class="dvc-pos-apres">1<sup>re</sup></span></b></div>
+      <div class="dvc-actions" aria-hidden="true">
+        <p class="dvc-actions-titre"><img src={lien('/images/accueil/symbole-deliview-128.webp')} alt="" width="128" height="116" loading="lazy" />Deliview s’en occupe</p>
+        <ul>
+          {ACTIONS_CLASSEMENT.map((action, i) => (
+            <>{i > 0 && ' '}<li data-action={String(i + 1)}><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></i>{action}</li></>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/accueil/classement';
+</script>

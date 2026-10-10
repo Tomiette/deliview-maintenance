@@ -1,0 +1,96 @@
+---
+// Accueil (aperçu validé par Tom le 10 octobre 2026, design de Tom) : « Vous n’avez pas le temps », puis
+// « Votre rentabilité part à 3 endroits ». Remplace l’ancien « Le quotidien » (tablettes et 3 constats).
+// À gauche le constat (Uber Eats Manager d’un côté, Deliveroo Partner Hub de l’autre) ; à droite les deux vraies
+// interfaces, en captures inclinées qui se redressent au survol. Dessous, le « Résultat » et 3 cartes à scène
+// (annonces et offres, remboursements, prix), puis « Voir la solution » vers #solution (section suivante).
+// Les scènes des cartes sont décoratives (aria-hidden) : le titre et le texte de chaque carte portent le sens.
+// Exemples illustratifs (burger, tiramisu, Margherita du voisin), jamais présentés comme les chiffres d’un client.
+// HTML repris tel quel de l’aperçu fait à la main : classes, ids, aria-*, style="" et textes inchangés, et pas
+// d’espace autour des <img> des légendes et des scènes (la mise en page en dépend).
+// CSS : commun.css (jetons --dva-*, .dva-chiffre, .dva-bleu) puis quotidien.css, importés ici et jamais dans un
+// <style> scopé (data-astro-cid changerait le HTML). Pas de script : la flèche qui rebondit passe par .dv-mouvement.
+import { lien } from '../../lib/site';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/quotidien.css';
+
+const img = (nom: string) => lien(`/images/accueil/${nom}`);
+---
+
+<section class="dva dva-quotidien dv-section dv-points overflow-x-clip" aria-labelledby="quotidien-titre">
+  <div class="dv-container">
+    <div class="dva-quotidien-grille">
+      <div class="dva-quotidien-texte">
+        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Votre quotidien</p>
+        <h2 id="quotidien-titre" class="dv-h2">Vous n’avez <span class="dva-bleu">pas le temps</span></h2>
+        <p class="dv-lead">Uber&nbsp;Eats Manager d’un côté, Deliveroo Partner Hub de l’autre. Après le service, impossible de tout faire&nbsp;: ajuster les annonces, les offres, contester les remboursements, surveiller les prix et répondre aux avis.</p>
+      </div>
+      <div class="dva-captures">
+        <figure class="dva-capture dva-capture-dr">
+          <img
+            src={img('deliveroo-partner-hub-800.webp')}
+            srcset={`${img('deliveroo-partner-hub-800.webp')} 800w, ${img('deliveroo-partner-hub-1360.webp')} 1360w`}
+            sizes="(min-width: 1024px) 470px, 84vw"
+            alt="Tableau de bord Deliveroo Partner Hub : ventes et performance du restaurant"
+            width="800"
+            height="444"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption><img src={img('logo-deliveroo-96.webp')} alt="" width="96" height="96" loading="lazy" />Deliveroo Partner Hub</figcaption>
+        </figure>
+        <figure class="dva-capture dva-capture-ue">
+          <img
+            src={img('uber-eats-manager-510.webp')}
+            alt="Liste des commandes dans Uber Eats Manager"
+            width="510"
+            height="352"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption><img src={img('logo-uber-eats-96.webp')} alt="" width="96" height="96" loading="lazy" />Uber&nbsp;Eats Manager</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="dva-resultat">
+      <div class="dva-resultat-tete">
+        <h3 class="dva-resultat-titre"><span class="dv-overline dv-pastille">Résultat</span><span>Votre rentabilité part à</span><span class="dva-trois">3</span><span>endroits</span></h3>
+        <span class="dva-resultat-ligne" aria-hidden="true"></span>
+        <span class="dva-resultat-fleche" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></span>
+      </div>
+      <ul class="dva-cartes">
+        <li class="dva-carte">
+          <div class="dva-scene" aria-hidden="true">
+            <div class="dva-ticket dva-ticket-sombre"><img src={img('burger-120.webp')} alt="" width="120" height="83" loading="lazy" /><div class="dva-ticket-texte"><span class="dva-etiquette">PUBLICITÉ</span><span class="dva-ticket-titre">Votre burger en tête de liste</span></div></div>
+            <div class="dva-ticket"><img src={img('burger-120.webp')} alt="" width="120" height="83" loading="lazy" /><div class="dva-ticket-texte"><span class="dva-etiquette">PROMO</span><div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px"><span class="dva-ticket-titre">Hamburger 2,90&nbsp;€</span><span class="dva-badge-sombre">1 acheté, 1 offert</span></div></div></div>
+          </div>
+          <h3>Annonces et offres</h3>
+          <p>Vous les lancez, puis vous n’avez plus le temps de les suivre&nbsp;: impossible de savoir si elles vous rapportent ou si elles vous coûtent.</p>
+        </li>
+        <li class="dva-carte">
+          <div class="dva-scene" aria-hidden="true">
+            <div class="dva-reclamation">
+              <div class="dva-reclamation-tete"><span><img src={img('logo-deliveroo-96.webp')} alt="" width="96" height="96" loading="lazy" />Réclamation client</span><span class="dva-etiquette">Remboursé</span></div>
+              <q>Il manquait le tiramisu.</q>
+              <div class="dva-reclamation-pied"><span>Déduit de votre versement</span><span class="dva-chiffre">−6,50&nbsp;€</span></div>
+            </div>
+          </div>
+          <h3>Remboursements</h3>
+          <p>Le client dit qu’il manque un plat. Pourtant, vous êtes sûr de l’avoir mis dans le sac. La plateforme le rembourse quand même, et c’est vous qui payez…</p>
+        </li>
+        <li class="dva-carte">
+          <div class="dva-scene" aria-hidden="true">
+            <div class="dva-prix-titre"><img src={img('logo-uber-eats-96.webp')} alt="" width="96" height="96" loading="lazy" />Sur Uber&nbsp;Eats</div>
+            <div class="dva-prix"><img src={img('pizza-110.webp')} alt="" width="110" height="110" loading="lazy" /><span class="dva-prix-nom"><b>Votre voisin</b><span>Pizza Margherita</span></span><span class="dva-chiffre">14,00&nbsp;€</span></div>
+            <div class="dva-prix dva-prix-vous"><img src={img('pizza-110.webp')} alt="" width="110" height="110" loading="lazy" /><span class="dva-prix-nom"><b>Vous</b><span>Pizza Margherita</span></span><span class="dva-conseil">13&nbsp;€ conseillé</span><span class="dva-chiffre">11,00&nbsp;€</span></div>
+          </div>
+          <h3>Prix</h3>
+          <p>Votre voisin vend la même pizza 14&nbsp;€. Vous, 11&nbsp;€. En passant à 13&nbsp;€, vous restez moins cher que lui et gagnez 2&nbsp;€ de plus par commande.</p>
+        </li>
+      </ul>
+      <div class="dva-suite">
+        <a href="#solution" class="dv-btn dv-btn-contour">Voir la solution<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
