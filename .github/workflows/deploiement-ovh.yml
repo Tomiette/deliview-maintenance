@@ -68,9 +68,9 @@ jobs:
           set ftp:ssl-protect-data yes
           set net:max-retries 3
           set net:timeout 30
-          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --exclude-glob *.html ./ $DOSSIER/
-          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --include-glob *.html ./ $DOSSIER/
-          mirror --reverse --delete --only-missing --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ ./ $DOSSIER/
+          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --exclude ^CLAUDE\.md$ --exclude-glob *.html ./ $DOSSIER/
+          mirror --reverse --overwrite --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --exclude ^CLAUDE\.md$ --include-glob *.html ./ $DOSSIER/
+          mirror --reverse --delete --only-missing --parallel=4 --verbose=1 --exclude ^\.git/ --exclude-glob .git* --exclude ^\.github/ --exclude ^CNAME$ --exclude ^CLAUDE\.md$ ./ $DOSSIER/
           quit
           FIN
 
