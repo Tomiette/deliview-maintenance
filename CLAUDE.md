@@ -47,7 +47,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    d’onglets Concurrents / Visibilité / Rentabilité, « Compte démo » en en-tête ; à côté, la liste des trois questions
    (« Que font mes concurrents ? », « Est-ce que les clients me voient ? », « Analysez l’efficacité de vos actions »)
    qui s’allume avec l’onglet (barre de progression, défilement auto quand visible, arrêt au clic). Concurrents
-   anonymisés, chiffres du compte de démo. Sous la liste : logos Apple et Android, « Sur iPhone et Android : Deliview s’ajoute à l’écran d’accueil, sans passer par un store ». L’app n’est PAS sur l’App Store ni Google Play (app web à ajouter à l’écran d’accueil) : jamais de badge de store tant que Tom n’a pas de vraie fiche. Fichiers `apercu/assets/accueil-appli.*.css|js`. Tom veut des blocs qui
+   anonymisés, chiffres du compte de démo. Sous la liste : logos Apple et Android seuls, sans texte (demande de Tom). L’app n’est PAS sur l’App Store ni Google Play (app web à ajouter à l’écran d’accueil) : jamais de badge de store tant que Tom n’a pas de vraie fiche. Fichiers `apercu/assets/accueil-appli.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
 8. **« Comment fonctionne Deliview »** (titre seul, repères seuls, sans sous-texte : 1 Récupération des données · 2 Élaboration d’une stratégie intelligente grâce à la
@@ -97,7 +97,10 @@ Le site public (racine de `main`) est encore l'ancienne version en Aspekta : il 
   Extraire les images, reconstruire en vrai HTML responsive avec les classes du site (`dv-container`, `dv-section`,
   `dv-pastille`, `dv-cta`, `dv-btn-contour`, `dv-bande-bleue`, `dv-points`), jamais copier le positionnement absolu du canevas.
 - Git : travailler sur une branche `claude/…`, PR vers `main`, fusion quand Tom le demande. Une PR fusionnée ne se
-  réutilise pas : repartir de `origin/main`.
+  réutilise pas : repartir de `origin/main`. Piège vu deux fois (PR #12, #20) : la fusion « squash » n'a pris que
+  les premiers commits poussés. Avant de fusionner, vérifier que la tête de la PR (`pull_request_read`, `head.sha`)
+  est bien le dernier commit poussé ; après, `git diff --stat origin/main <dernier commit>` doit être vide (le tester
+  vraiment, ne pas l'afficher sans condition), sinon reporter l'arbre manquant par une nouvelle PR.
 - Réseau : `deliview.fr` et `*.deliview.fr` sont autorisés dans l'environnement cloud.
 - Ne lance jamais `pkill -f` avec un motif présent dans ta propre commande (ça tue le shell).
 
