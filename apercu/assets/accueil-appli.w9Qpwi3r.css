@@ -24,7 +24,7 @@
 
 .dvq-ecrans{position:relative;height:610px}
 .dvq-ecran{position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;padding:6px 22px 0;opacity:0;visibility:hidden;transition:opacity .45s,translate .45s cubic-bezier(.2,.7,.2,1),visibility 0s .45s;translate:24px 0}
-.dvq-appli[data-onglet="0"] [data-ecran="0"],.dvq-appli[data-onglet="1"] [data-ecran="1"],.dvq-appli[data-onglet="2"] [data-ecran="2"]{opacity:1;visibility:visible;translate:0 0;transition:opacity .45s .1s,translate .55s .1s cubic-bezier(.2,.7,.2,1),visibility 0s}
+.dvq-appli[data-onglet="0"] [data-ecran="0"],.dvq-appli[data-onglet="1"] [data-ecran="1"],.dvq-appli[data-onglet="2"] [data-ecran="2"],.dvq-appli[data-onglet="3"] [data-ecran="3"]{opacity:1;visibility:visible;translate:0 0;transition:opacity .45s .1s,translate .55s .1s cubic-bezier(.2,.7,.2,1),visibility 0s}
 .dvq-titre-ecran{margin:0;font-family:var(--font-accent);font-size:40px;line-height:1.05;font-weight:800;letter-spacing:-.02em}
 .dvq-sous-ecran{margin:-6px 0 6px;font-size:19px;color:color-mix(in srgb,var(--color-grey-2) 75%,transparent)}
 .dvq-carte{border-radius:24px;background:var(--color-grey);padding:18px}
@@ -62,13 +62,41 @@
 .dvq-reste{display:flex;align-items:baseline;justify-content:space-between;padding:6px 6px 0;font-size:20px;font-weight:700}
 .dvq-reste b{font-family:var(--font-chiffres);font-size:38px;font-weight:800}
 
+/* Alertes (le contenu commence sous la notification) */
+.dvq-ecran[data-ecran="3"]{padding-top:72px}
+.dvq-etat{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:22px;background:var(--color-grey);font-size:20px}
+.dvq-etat img,.dvq-etat-ferme p img{width:44px;height:44px;border-radius:12px;flex-shrink:0}
+.dvq-etat span{display:flex;flex-direction:column;gap:2px;line-height:1.2}
+.dvq-etat b{font-weight:800}
+.dvq-etat i{font-style:normal;font-size:17px;font-weight:600;color:color-mix(in srgb,var(--color-grey-2) 75%,transparent)}
+.dvq-etat em{margin-left:auto;flex-shrink:0}
+.dvq-ouvert{width:16px;height:16px;border-radius:50%;background:var(--color-blue);box-shadow:0 0 0 6px color-mix(in srgb,var(--color-blue) 18%,transparent)}
+.dvq-etat-ferme{flex-direction:column;align-items:stretch;gap:12px;background:color-mix(in srgb,var(--color-blue) 10%,var(--color-white));box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--color-blue) 40%,transparent)}
+.dvq-etat-ferme p{display:flex;align-items:center;gap:14px;margin:0}
+.dvq-etat-ferme i{color:var(--color-grey-2);font-weight:800}
+.dvq-etat-ferme .dvq-explique{display:block;font-size:18px;line-height:1.35}
+.dvq-relancer{align-self:stretch;padding:14px;border-radius:16px;background:var(--color-white);box-shadow:inset 0 0 0 2px var(--color-blue);color:var(--color-blue);font-size:19px;font-weight:800;text-align:center}
+
+/* Notification qui descend du haut de l'écran sur l'onglet Alertes */
+.dvq-notif{position:absolute;z-index:2;left:12px;right:12px;top:44px;display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:28px;background:var(--color-white);box-shadow:0 0 0 1px var(--dv-bord),0 24px 40px -16px color-mix(in srgb,var(--color-grey-2) 55%,transparent);font-size:18px;line-height:1.3;translate:0 -180px;opacity:0;transition:translate .35s cubic-bezier(.4,0,1,1),opacity .2s .15s}
+.dvq-notif img{width:46px;height:46px;border-radius:12px;flex-shrink:0}
+.dvq-notif>span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.dvq-notif-tete{display:flex;justify-content:space-between;gap:8px;font-size:15px;color:color-mix(in srgb,var(--color-grey-2) 75%,transparent)}
+.dvq-notif-tete b{font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.dvq-notif-tete i{font-style:normal}
+.dvq-notif>span>b{font-size:19px;font-weight:800}
+.dvq-appli[data-onglet="3"] .dvq-notif{translate:0 0;opacity:1;transition:translate .6s .5s cubic-bezier(.3,1.35,.5,1),opacity .2s .5s}
+.dvq-appli[data-onglet="3"].dvq-anime .dvq-notif{animation:dvq-vibre .5s 1.15s both}
+@keyframes dvq-vibre{0%,100%{rotate:0deg}20%{rotate:-1.2deg}40%{rotate:1.2deg}60%{rotate:-.8deg}80%{rotate:.6deg}}
+
 /* Barre d'onglets */
-.dvq-barre{position:absolute;left:16px;right:16px;bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);padding:8px;border-radius:30px;background:var(--color-white);box-shadow:0 0 0 1px var(--dv-bord),0 16px 30px -18px color-mix(in srgb,var(--color-grey-2) 60%,transparent)}
-.dvq-curseur-onglet{position:absolute;top:8px;bottom:8px;left:8px;width:calc((100% - 16px)/3);border-radius:22px;background:color-mix(in srgb,var(--color-blue) 12%,var(--color-white));translate:calc(var(--o,0)*100%) 0;transition:translate .5s cubic-bezier(.3,1.2,.4,1)}
+.dvq-barre{position:absolute;left:12px;right:12px;bottom:22px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px;border-radius:30px;background:var(--color-white);box-shadow:0 0 0 1px var(--dv-bord),0 16px 30px -18px color-mix(in srgb,var(--color-grey-2) 60%,transparent)}
+.dvq-curseur-onglet{position:absolute;top:6px;bottom:6px;left:6px;width:calc((100% - 12px)/4);border-radius:22px;background:color-mix(in srgb,var(--color-blue) 12%,var(--color-white));translate:calc(var(--o,0)*100%) 0;transition:translate .5s cubic-bezier(.3,1.2,.4,1)}
 .dvq-appli[data-onglet="1"] .dvq-curseur-onglet{--o:1}
 .dvq-appli[data-onglet="2"] .dvq-curseur-onglet{--o:2}
-.dvq-onglet{position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 0 10px;font-size:16px;font-weight:700;color:color-mix(in srgb,var(--color-grey-2) 70%,transparent);transition:color .3s}
-.dvq-appli[data-onglet="0"] [data-onglet="0"],.dvq-appli[data-onglet="1"] [data-onglet="1"],.dvq-appli[data-onglet="2"] [data-onglet="2"]{color:var(--color-blue)}
+.dvq-appli[data-onglet="3"] .dvq-curseur-onglet{--o:3}
+.dvq-onglet{position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 0 10px;font-size:14px;font-weight:700;letter-spacing:-.01em;color:color-mix(in srgb,var(--color-grey-2) 70%,transparent);transition:color .3s}
+.dvq-appli[data-onglet="0"] [data-onglet="0"],.dvq-appli[data-onglet="1"] [data-onglet="1"],.dvq-appli[data-onglet="2"] [data-onglet="2"],.dvq-appli[data-onglet="3"] [data-onglet="3"]{color:var(--color-blue)}
 
 /* Doigt qui touche l'onglet suivant (seulement quand ça défile tout seul) */
 .dvq-doigt{position:absolute;left:0;bottom:46px;width:46px;height:46px;margin-left:-23px;border-radius:50%;background:color-mix(in srgb,var(--color-blue) 30%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--color-white) 90%,transparent);opacity:0;pointer-events:none}
