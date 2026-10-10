@@ -11,8 +11,8 @@ if (cadre) {
   var badges = { ue: cadre.querySelector('[data-app=ue-d] .dvx-badge'), dr: cadre.querySelector('[data-app=dr-d] .dvx-badge') };
   var MISES = {
     large: { w: 1120, h: 420,
-      entrees: ['M164 136 C 300 136 330 200 452 200', 'M164 300 C 300 300 330 200 452 200'],
-      sorties: ['M668 200 C 790 200 820 136 956 136', 'M668 200 C 790 200 820 300 956 300'] },
+      entrees: ['M164 156 C 300 156 330 226 452 226', 'M164 316 C 300 316 330 226 452 226'],
+      sorties: ['M668 226 C 790 226 820 156 956 156', 'M668 226 C 790 226 820 316 956 316'] },
     etroit: { w: 360, h: 640,
       entrees: ['M105 122 C 105 200 180 180 180 236', 'M255 122 C 255 200 180 180 180 236'],
       sorties: ['M180 400 C 180 460 105 440 105 512', 'M180 400 C 180 460 255 440 255 512'] }
@@ -22,7 +22,7 @@ if (cadre) {
     [['Ventes', '291 €'], ['Note', '4,1 ★'], ['Prix', '13,50 €'], ['Commandes', '12']]
   ];
   var ACTIONS = ['Prix ajusté · +1,30 €', 'Promo du midi lancée', 'Avis répondu', 'Prix ajusté · +0,90 €', 'Restaurant relancé', 'Offre conseillée en ligne'];
-  var STATUTS = ['Analyse des prix de la zone…', 'Lecture des avis clients…', 'Repérage des heures creuses…', 'Calcul de ce qu’il vous reste…'];
+  var STATUTS = ['Analyse de vos données…', 'Analyse de votre zone…', 'Élaboration de la stratégie…'];
   var COCHE = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
   var mise = null, compte = { ue: 0, dr: 0 };
 
