@@ -1,0 +1,74 @@
+/* Accueil de l'aperçu : « Vos prix, vos avis, vos ventes ». Trois modules de l'app (Votre zone, Avis, Mes ventes),
+   recréés en HTML et animés une fois à l'arrivée (rejoués au survol). L'état final est l'état par défaut ; les
+   animations ne jouent que sous .dvm-anime (posée par accueil-modules.js). */
+
+.dvm-tete{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;max-width:820px;margin:0 auto 36px}
+.dvm-tete .dv-h2,.dvm-tete .dv-lead{margin:0}
+.dvm-grille{display:grid;gap:20px;margin:0;padding:0;list-style:none}
+@media (width>=960px){.dvm-grille{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (width<960px){
+  .dvm-grille{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:4px 16px 16px;scrollbar-width:none}
+  .dvm-grille::-webkit-scrollbar{display:none}
+  .dvm-carte{flex:0 0 min(86%,380px);scroll-snap-align:center}
+}
+.dvm-carte{display:flex;flex-direction:column;gap:12px;padding:22px 20px;border-radius:24px;background:var(--color-white);border:1px solid var(--dv-bord);box-shadow:0 5px 0 var(--dv-levre);transition:translate .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.dvm-carte:hover{translate:0 -4px;box-shadow:0 5px 0 var(--dv-levre),0 30px 50px -30px color-mix(in srgb,var(--color-grey-2) 40%,transparent)}
+.dvm-nom{display:flex;align-items:center;gap:8px;margin:0;font-size:14px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.dvm-icone{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:color-mix(in srgb,var(--color-blue) 12%,transparent);color:var(--color-blue)}
+.dvm-titre{margin:0;font-family:var(--font-accent);font-size:21px;line-height:1.25;font-weight:800;letter-spacing:-.01em}
+.dvm-visuel{position:relative;height:210px;border-radius:16px;background:var(--color-grey);overflow:hidden}
+
+/* Votre zone : carte stylisée, rayon de 3 km, prix des voisins. */
+.dvm-carte-zone{background-color:color-mix(in srgb,var(--color-grey-2) 6%,var(--color-white));background-image:linear-gradient(30deg,transparent 47%,color-mix(in srgb,var(--color-white) 90%,transparent) 47% 53%,transparent 53%),linear-gradient(120deg,transparent 46%,color-mix(in srgb,var(--color-white) 90%,transparent) 46% 54%,transparent 54%),linear-gradient(75deg,transparent 48%,color-mix(in srgb,var(--color-white) 70%,transparent) 48% 52%,transparent 52%);background-size:120px 90px,160px 110px,90px 140px}
+.dvm-rayon{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-85px 0 0 -85px;border-radius:50%;border:2px dashed color-mix(in srgb,var(--color-blue) 70%,transparent);background:color-mix(in srgb,var(--color-blue) 10%,transparent)}
+.dvm-vous{position:absolute;z-index:2;left:50%;top:50%;translate:-50% -50%;padding:7px 12px;border-radius:999px;background:var(--color-grey-2);color:var(--color-white);font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 10px 20px -10px color-mix(in srgb,var(--color-grey-2) 70%,transparent)}
+.dvm-pin{position:absolute;translate:-50% -50%;padding:4px 9px;border-radius:999px;background:var(--color-white);border:1px solid var(--dv-bord);font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 6px 14px -8px color-mix(in srgb,var(--color-grey-2) 50%,transparent)}
+.dvm-plus{border-color:color-mix(in srgb,var(--color-blue) 50%,transparent)}
+.dvm-plus::first-letter{color:var(--color-blue)}
+
+/* Avis : note, étoiles, répartition, ce qu'il faut dire à l'équipe. */
+.dvm-avis{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-content:center;padding:18px}
+.dvm-note{display:flex;flex-direction:column;gap:2px}
+.dvm-note b{font-size:40px;line-height:1}
+.dvm-etoiles{position:relative;width:80px;height:14px;background:linear-gradient(90deg,color-mix(in srgb,var(--color-grey-2) 20%,transparent) 0 0);-webkit-mask:var(--etoiles) 0 0/16px 14px repeat-x;mask:var(--etoiles) 0 0/16px 14px repeat-x;--etoiles:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 14'%3E%3Cpath d='M7 0l2 4.3 4.6.6-3.4 3.2.9 4.6L7 10.4 2.9 12.7l.9-4.6L.4 4.9 5 4.3z'/%3E%3C/svg%3E")}
+.dvm-etoiles i{position:absolute;inset:0;width:calc(var(--n) * 100%);background:var(--color-blue)}
+.dvm-nb{font-size:12px;font-weight:600}
+.dvm-barres{display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none;align-self:center}
+.dvm-barres li{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}
+.dvm-barres i{position:relative;flex:1;height:6px;border-radius:3px;background:color-mix(in srgb,var(--color-grey-2) 10%,transparent);overflow:hidden}
+.dvm-barres i::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--color-blue);transform-origin:left;scale:var(--v) 1}
+.dvm-equipe{grid-column:1/-1;display:flex;flex-direction:column;margin-top:8px;padding:9px 12px;border-radius:12px;background:var(--color-white);border:1px solid var(--dv-bord);font-size:13px}
+.dvm-equipe span{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:color-mix(in srgb,var(--color-grey-2) 80%,transparent)}
+
+/* Mes ventes : total, hausse, barres de la semaine contre la semaine d'avant. */
+.dvm-ventes{display:flex;flex-direction:column;padding:16px 18px 12px}
+.dvm-total{display:flex;align-items:center;gap:10px}
+.dvm-total b{font-size:34px;line-height:1.05;letter-spacing:-.02em}
+.dvm-hausse{padding:3px 8px;border-radius:8px;background:color-mix(in srgb,var(--color-blue) 14%,transparent);font-size:13px;font-weight:800}
+.dvm-sous{margin-top:2px;font-size:12px;font-weight:600}
+.dvm-jours{flex:1;display:flex;align-items:flex-end;gap:12px;margin:10px 0 0;padding:0;list-style:none}
+.dvm-jours li{position:relative;flex:1;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:3px;padding-bottom:18px}
+.dvm-jours i{display:block;width:40%;height:calc(var(--v) * 100%);border-radius:5px 5px 2px 2px;background:var(--color-blue);transform-origin:bottom}
+.dvm-jours i.dvm-avant{background:color-mix(in srgb,var(--color-grey-2) 14%,transparent)}
+.dvm-jours span{position:absolute;bottom:0;font-size:11px;font-weight:700}
+
+.dvm-resultat{display:flex;align-items:flex-start;gap:10px;margin:2px 0 0;font-size:15px;line-height:1.45}
+.dvm-coche{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;margin-top:1px;border-radius:50%;background:var(--color-blue);color:var(--color-white)}
+.dvm-note-demo{margin:16px 0 0;text-align:center;font-size:13px;color:color-mix(in srgb,var(--color-grey-2) 80%,transparent)}
+
+/* ---------- Animations ---------- */
+.dvm-anime .dvm-joue .dvm-a{animation:dvm-entre .5s cubic-bezier(.2,.7,.2,1) var(--t,0s) both}
+@keyframes dvm-entre{from{opacity:0;translate:var(--tx,0) calc(var(--ty,0px) + 10px);scale:.9}to{opacity:1;scale:1}}
+.dvm-pin.dvm-a,.dvm-vous.dvm-a{--tx:-50%;--ty:-50%}
+.dvm-anime .dvm-joue .dvm-pin.dvm-a,.dvm-anime .dvm-joue .dvm-vous.dvm-a{animation-name:dvm-pin}
+@keyframes dvm-pin{from{opacity:0;scale:.5}to{opacity:1;scale:1}}
+.dvm-anime .dvm-joue .dvm-rayon{animation:dvm-rayon .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes dvm-rayon{from{scale:.2;opacity:0}to{scale:1;opacity:1}}
+.dvm-anime .dvm-joue .dvm-barres i::after{animation:dvm-barre .7s cubic-bezier(.2,.7,.2,1) var(--t,0s) both}
+@keyframes dvm-barre{from{scale:0 1}}
+.dvm-anime .dvm-joue .dvm-etoiles i{animation:dvm-etoiles 1s cubic-bezier(.2,.7,.2,1) .1s both}
+@keyframes dvm-etoiles{from{width:0}}
+.dvm-anime .dvm-joue .dvm-jours i:not(.dvm-avant){animation:dvm-jour .7s cubic-bezier(.2,.7,.2,1) var(--t,0s) both}
+.dvm-anime .dvm-joue .dvm-jours i.dvm-avant{animation:dvm-jour .5s ease-out .1s both}
+@keyframes dvm-jour{from{scale:1 0}}
+@media (prefers-reduced-motion:reduce){.dvm-carte{transition:none}.dvm-carte:hover{translate:none}}
