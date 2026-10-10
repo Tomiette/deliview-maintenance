@@ -10,14 +10,15 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObse
     el.textContent = txt + (el.getAttribute('data-suffixe') || '');
   };
   var compter = function (el) {
-    var fin = parseFloat(el.getAttribute('data-compte')), debut = 0, duree = 1100;
+    var fin = parseFloat(el.getAttribute('data-compte')), debut = 0, duree = 1100, delai = +(el.getAttribute('data-delai') || 0);
+    ecrire(el, 0);
     var pas = function (t) {
       if (!debut) debut = t;
       var k = Math.min(1, (t - debut) / duree), e = 1 - Math.pow(1 - k, 3);
       ecrire(el, fin * e);
       if (k < 1) requestAnimationFrame(pas);
     };
-    requestAnimationFrame(pas);
+    setTimeout(function () { requestAnimationFrame(pas); }, delai);
   };
   var jouer = function (carte) {
     if (carte._fin && Date.now() < carte._fin) return;
