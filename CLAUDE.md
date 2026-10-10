@@ -39,6 +39,10 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 5. **« Ils utilisent Deliview »** : bandeau centré sous le hero, carte Pizza Cosy (devanture, logo en médaillon,
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
+7. **« Vos prix, vos avis, vos ventes »** (entre « Avant, après » et le bloc fondateur, qui passe sur fond blanc) :
+   trois cartes recréées en HTML depuis les modules de l'app (Votre zone, Avis, Mes ventes), animées une fois à
+   l'arrivée (chiffres qui montent, barres, prix des voisins), chacune avec son résultat. Concurrents anonymisés.
+   Fichiers `apercu/assets/accueil-modules.*.css|js`.
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
 
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
