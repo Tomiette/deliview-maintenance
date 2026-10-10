@@ -1,9 +1,9 @@
 /* Accueil de l'aperçu : hero, « Vous n'avez pas le temps », « 3 endroits » et « La solution » (design du 10 octobre 2026).
-   Couleurs et police de la charte uniquement : Blue 1, Blue 2, Grey, White, Grey 2 (et leurs transparences), Aspekta,
-   Inter pour les montants. Fichier externe : la CSP de l'aperçu refuse les styles en ligne non déclarés. */
+   Couleurs et police de la charte uniquement : Blue 1, Blue 2, Grey, White, Grey 2 (et leurs transparences), Figtree partout (décision de Tom du
+   10 octobre 2026). Fichier externe : la CSP de l'aperçu refuse les styles en ligne non déclarés. */
 
 .dva{--dva-bord:var(--dv-bord);--dva-trait:color-mix(in srgb,var(--color-grey-2) 10%,transparent);--dva-trait-fort:color-mix(in srgb,var(--color-grey-2) 22%,transparent);--dva-ombre:0 1px 2px color-mix(in srgb,var(--color-grey-2) 6%,transparent),0 28px 56px -22px color-mix(in srgb,var(--color-grey-2) 30%,transparent);--dva-ombre-petite:0 10px 22px -14px color-mix(in srgb,var(--color-grey-2) 40%,transparent);--dva-bleu-12:color-mix(in srgb,var(--color-blue) 12%,transparent);color:var(--color-grey-2)}
-.dva-chiffre{font-family:Inter,var(--font-sans);font-weight:700;font-variant-numeric:tabular-nums}
+.dva-chiffre{font-family:var(--font-chiffres);font-weight:800;font-variant-numeric:tabular-nums}
 
 /* ---------- Hero ---------- */
 .dva-hero{background:var(--color-white);padding-block:40px 64px;overflow:hidden}
