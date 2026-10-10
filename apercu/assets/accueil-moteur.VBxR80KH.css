@@ -126,3 +126,10 @@
 .dvx-etapes li{background:none;border:0;box-shadow:none;padding:0}
 @media (width>=700px){.dvx-etapes{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0}}
 @media (width<700px){.dvx-etapes{gap:16px;margin-top:20px}}
+
+/* Repères seuls, sans sous-texte, en casse normale pour être lus d'un coup d'œil. */
+.dvx-zone{text-transform:none;letter-spacing:0;font-size:15px;font-weight:700;color:var(--color-grey-2)}
+.dvx-zone-c{max-width:330px;white-space:normal;text-align:center;line-height:1.35;align-items:flex-start}
+.dvx-zone-c span{margin-top:-1px}
+.dvx-etapes li{grid-template-columns:auto 1fr;align-items:center}
+.dvx-etapes .dvx-num{grid-row:auto}
