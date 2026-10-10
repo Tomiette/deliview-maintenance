@@ -48,10 +48,12 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
-8. **« Comment ça marche »** (après le bloc 7, avant le fondateur repassé sur fond gris) : trois étapes, données des
-   plateformes (Uber Eats, Deliveroo) → Deliview analyse et élabore la stratégie → déploiement sur les canaux, reliées
-   par des points qui circulent. Fichiers `apercu/assets/accueil-fonctionne.*.css|js`. Ne pas copier le bloc de Flynt
-   (concurrent) : pas de logos de caisses, Deliview ne se branche que sur Uber Eats et Deliveroo.
+8. **« Comment ça marche »** (après le bloc 7, avant le fondateur) : scène sombre (Grey 2) « le moteur Deliview ».
+   Les données (Ventes, Note, Prix, Commandes) partent des icônes Uber Eats / Deliveroo à gauche et glissent le long de
+   courbes (offset-path, Web Animations) jusqu'au noyau Deliview lumineux, qui pulse ; les actions repartent vers les
+   icônes à droite, dont le compteur augmente. Scène dessinée à taille fixe (1120 × 420, 360 × 640 sur téléphone)
+   et mise à l'échelle par le script. Trois étapes en dessous. Fichiers `apercu/assets/accueil-moteur.*.css|js`.
+   Ne pas copier le bloc de Flynt (concurrent) : pas de logos de caisses.
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
 
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
