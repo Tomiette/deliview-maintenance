@@ -134,3 +134,5 @@
 .dvx-etapes li{grid-template-columns:auto 1fr;align-items:center}
 .dvx-etapes .dvx-num{grid-row:auto}
 .dvx-zone span{flex:0 0 24px;width:24px;height:24px}
+.dvx-tete{margin-bottom:44px}
+@media (width<700px){.dvx-tete{margin-bottom:28px}}
