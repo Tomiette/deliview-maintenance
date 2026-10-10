@@ -65,6 +65,10 @@ quand le secret `BREVO_API_KEY` est réglé sur la fonction. L'empreinte IP est 
 
 ## Publication (en ligne à la racine de www.deliview.fr depuis le 1er octobre 2026)
 
+> ⚠️ Depuis le 10 octobre 2026, la source contient le nouvel accueil et la police Figtree, validés **pour l'aperçu seulement**.
+> La racine publique correspond encore au commit `848b21f` de cette branche. Ne publiez pas `npm run build` à la racine
+> tant que Tom n'a pas validé l'aperçu ; pour republier l'ancienne version, buildez depuis `848b21f`.
+
 1. `npm run build` sans SITE_BASE, puis copier le contenu de `dist/` à la racine du dépôt de publication
    (Tomiette/deliview-maintenance, branche `main`) en gardant `app/`, `analyse/`, `apercu/` et `CNAME`.
 2. Aperçu non indexé : `SITE_BASE=/apercu/ npm run build`, puis remplacer le contenu du dossier `apercu/` du dépôt
