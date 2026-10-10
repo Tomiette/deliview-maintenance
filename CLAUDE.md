@@ -47,7 +47,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    d’onglets Concurrents / Visibilité / Rentabilité, « Compte démo » en en-tête ; à côté, la liste des trois questions
    (« Que font mes concurrents ? », « Est-ce que les clients me voient ? », « Analysez l’efficacité de vos actions »)
    qui s’allume avec l’onglet (barre de progression, défilement auto quand visible, arrêt au clic). Concurrents
-   anonymisés, chiffres du compte de démo. Fichiers `apercu/assets/accueil-appli.*.css|js`. Tom veut des blocs qui
+   anonymisés, chiffres du compte de démo. Sous la liste : logos Apple et Android, « Sur iPhone et Android : Deliview s’ajoute à l’écran d’accueil, sans passer par un store ». L’app n’est PAS sur l’App Store ni Google Play (app web à ajouter à l’écran d’accueil) : jamais de badge de store tant que Tom n’a pas de vraie fiche. Fichiers `apercu/assets/accueil-appli.*.css|js`. Tom veut des blocs qui
    parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
    sur le type de cuisine (pas que de la pizza).
 8. **« Comment fonctionne Deliview »** (titre seul, repères seuls, sans sous-texte : 1 Récupération des données · 2 Élaboration d’une stratégie intelligente grâce à la
