@@ -116,3 +116,8 @@
 .dvm-plus-v{color:var(--color-grey-2)}
 .dvm-reste .dvm-ticket{gap:5px;padding:12px 14px}
 .dvm-reste .dvm-total b{font-size:24px}
+
+/* Fond des visuels : aplat bleu très léger à points, halo blanc au centre (plus de photo). */
+.dvm-photo{height:240px;background-color:color-mix(in srgb,var(--color-blue) 9%,var(--color-white));background-image:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--color-white) 85%,transparent) 0,transparent 62%),var(--dv-points);background-size:100% 100%,24px 24px;border-bottom:1px solid var(--dv-bord)}
+.dvm-photo::after{content:none}
+.dvm-corps{padding-bottom:24px}
