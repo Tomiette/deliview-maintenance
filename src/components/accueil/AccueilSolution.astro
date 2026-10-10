@@ -1,0 +1,76 @@
+---
+// Accueil, « La solution » (aperçu validé par Tom le 10 octobre 2026, 4e version). Quatre onglets de pertes réelles
+// (remboursement retenu, prix sous la zone, fermé en plein service, aucune offre en ligne). Pour chacune : l'alerte
+// « Repéré par Deliview », une fourche, puis deux voies qui mènent au même résultat : Autonomie (« Vous décidez », le
+// curseur clique) et Délégation (« On s'en occupe », recommandée, Tom). Phrases des voies = page Tarifs, chiffres =
+// compte de démonstration (lib/accueil-solution.ts, un onglet et un panneau par cas).
+// La section porte #solution (visé par « Voir la solution » de la section précédente) et le bloc #formules (visé par
+// « Voir nos deux formules » du hero). Les onglets pilotent les panneaux par data-cas / data-cas-panneau et
+// aria-controls="dvf-cas-N" : scripts/accueil/solution.ts les fait défiler quand le bloc est visible (7 s par cas),
+// s'arrête au premier clic, et ne fait rien défiler si le visiteur réduit les animations (état final affiché).
+// HTML repris tel quel de l'aperçu fait à la main : classes, ids, data-*, aria-*, style="" et textes inchangés. Les
+// espaces entre balises comptent (la compression d'Astro les ramène à une seule) : ne pas en ajouter dans les lignes
+// écrites d'un seul tenant (en-tête des voies, boutons, bulle).
+// CSS : commun.css (jetons --dva-*, @keyframes dva-pouls du point « Repéré ») puis solution.css, importés ici et jamais
+// dans un <style> scopé (data-astro-cid changerait le HTML).
+import { lien } from '../../lib/site';
+import { CAS_SOLUTION, PLATEFORMES_SOLUTION } from '../../lib/accueil-solution';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/solution.css';
+
+const tom = lien('/images/tom-voisin.webp');
+---
+
+<section id="solution" class="dva dvf-section dv-bande-bleue" aria-labelledby="solution-titre">
+  <div class="dv-container">
+    <div class="dvf-fond">
+      <div class="dvf-tete">
+        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>La solution</p>
+        <h2 id="solution-titre" class="dv-h2">Confiez-nous vos plateformes,<br class="max-sm:hidden" /> ou gardez la main avec Deliview</h2>
+        <p class="dv-lead">Deliview repère l’argent que vous perdez sur Uber&nbsp;Eats et Deliveroo. Ensuite, c’est vous qui choisissez&nbsp;: vous décidez, ou on s’en occupe.</p>
+      </div>
+      <div id="formules" class="dvf" data-flux>
+        <div class="dvf-onglets" role="group" aria-label="Choisir une situation">
+          {CAS_SOLUTION.map((c, i) => (
+            <>{i > 0 && ' '}<button type="button" class="dvf-onglet" data-cas={String(i)} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls={`dvf-cas-${i}`}><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={c.icone}></svg><span>{c.onglet}</span><i class="dvf-progres" aria-hidden="true"></i></button></>
+          ))}
+        </div>
+        <div class="dvf-scene">
+          {CAS_SOLUTION.map((c, i) => (
+            <>{i > 0 && ' '}<div id={`dvf-cas-${i}`} class="dvf-cas" data-cas-panneau={String(i)} hidden={i !== 0}>
+              <div class="dvf-alerte dvf-a" style="--t:0s">
+                <p class="dvf-repere"><i aria-hidden="true"></i>Repéré par Deliview</p>
+                <p class="dvf-plateforme"><img src={lien(PLATEFORMES_SOLUTION[c.plateforme].logo)} alt="" width="96" height="96" loading="lazy" /><Fragment set:html={PLATEFORMES_SOLUTION[c.plateforme].nom} /></p>
+                <h3 class="dvf-alerte-titre" set:html={c.titre}></h3>
+                <p class="dvf-meta" set:html={c.meta}></p>
+                <p class="dvf-texte" set:html={c.texte}></p>
+              </div>
+              <svg class="dvf-fourche" aria-hidden="true" viewBox="0 0 64 100" preserveAspectRatio="none"><path d="M0 50 C 32 50 32 24 64 24" vector-effect="non-scaling-stroke"></path><path d="M0 50 C 32 50 32 76 64 76" vector-effect="non-scaling-stroke"></path></svg>
+              <p class="dvf-qui" aria-hidden="true">Ensuite, qui agit&nbsp;?</p>
+              <div class="dvf-voies">
+                <div class="dvf-voie dvf-a" style="--t:.35s">
+                  <div class="dvf-voie-tete"><span class="dvf-voie-nom">Autonomie</span><span class="dvf-voie-sous">Vous décidez</span><span class="dvf-resultat"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><Fragment set:html={c.resultat} /></span></div>
+                  <div class="dvf-ui" aria-hidden="true"><span class="dvf-bouton"><span class="dvf-av" set:html={c.bouton}></span><span class="dvf-ap"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><Fragment set:html={c.boutonFait} /></span></span><svg class="dvf-curseur" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="var(--color-grey-2)" stroke="var(--color-white)" stroke-width="1.5" stroke-linejoin="round"></path></svg></div>
+                  <p class="dvf-phrase" set:html={c.phraseAutonomie}></p>
+                </div>
+                <div class="dvf-voie dvf-voie-dele dvf-a" style="--t:.5s">
+                  <div class="dvf-voie-tete"><span class="dvf-voie-nom">Délégation</span><span class="dvf-voie-sous">On s’en occupe</span><span class="dvf-reco">Recommandée</span><span class="dvf-resultat"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><Fragment set:html={c.resultat} /></span></div>
+                  <div class="dvf-ui" aria-hidden="true"><img class="dvf-tom" src={tom} alt="" width="400" height="400" loading="lazy" /><span class="dvf-bulle"><span class="dvf-av dvf-points"><i></i><i></i><i></i></span><span class="dvf-ap"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><Fragment set:html={c.bulle} /></span></span></div>
+                  <p class="dvf-phrase" set:html={c.phraseDelegation}></p>
+                </div>
+              </div>
+            </div></>
+          ))}
+        </div>
+      </div>
+      <div class="dvf-pied">
+        <a href="#demo" class="dv-cta dv-cta-seul" data-cta="accueil-solution"><span class="dv-cta-texte">Demander une démo</span></a>
+        <a class="dvf-lien" href={lien('/tarifs/')}>Comparer les deux offres<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/accueil/solution';
+</script>

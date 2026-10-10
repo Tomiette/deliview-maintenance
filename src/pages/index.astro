@@ -1,53 +1,37 @@
 ---
-// Accueil, refonte en relief (3 octobre 2026) : même histoire et mêmes textes que la direction « le passe »
-// (maquettes validées le 2 octobre 2026), mise en scène en 3D : vraies captures de l'app dans des tablettes inclinées,
-// cartes flottantes qui reprennent les chiffres de ces captures, boutons et cartes en relief.
-// Votre quotidien (plusieurs tablettes, des chiffres éparpillés), une seule tablette, vos chiffres face à votre zone
-// (ticket Margherita), quelqu'un de réel pour vous accompagner, puis tarifs, questions et bon de démo.
-// Captures : compte d'essai, analyse réelle d'un restaurant de burgers à Paris (2 octobre 2026), noms anonymisés
-// (« Burger Démo », « Concurrent A, B… », boissons de marque renommées), aucune vente affichée.
+// Accueil (aperçu validé par Tom le 10 octobre 2026), repris du site compilé de l'aperçu, fait à la main, sans rien
+// changer de visible. Ordre de la page :
+// 1. haut de page : « Plus de rentabilité sur Uber Eats et Deliveroo », écran incliné, « Voir la vidéo » (AccueilHero) ;
+// 2. « Ils utilisent Deliview » : Pizza Cosy (AccueilClients) ;
+// 3. « Comment fonctionne Deliview » : le moteur (AccueilMoteur) ;
+// 4. « Vous n’avez pas le temps » puis « Votre rentabilité part à 3 endroits » (AccueilQuotidien) ;
+// 5. « La solution » : quatre pertes réelles, deux voies, Autonomie et Délégation (AccueilSolution, #solution, #formules) ;
+// 6. « Avant, après » : Pizza Démo remonte de la 6e à la 1re place (AccueilClassement) ;
+// 7. « Votre activité livraison depuis votre poche » : l'app sur un vrai téléphone (AccueilAppli) ;
+// 8. questions (même fond gris que l'app, collée à elle) ;
+// 9. démo (AccueilDemo, #demo).
+// Section Tarifs retirée de l'accueil (décision de Tom) : les offres restent sur la page /tarifs/. Bloc fondateur retiré.
+// Chiffres affichés : compte de démonstration (Pizza Démo). Pizza Cosy : logo, devanture et « Nous fait confiance depuis
+// le premier jour. » seulement, avec l'accord du restaurant.
+// Chaque section importe son CSS (src/styles/accueil/) et son script (src/scripts/accueil/) : jamais de <style> scopé,
+// jamais de <script is:inline> (CSP).
 import Base from '../layouts/Base.astro';
-import BoutonDemo from '../components/BoutonDemo.astro';
-import Scene3D from '../components/Scene3D.astro';
-import Flottant from '../components/Flottant.astro';
-import PhotoCadre from '../components/PhotoCadre.astro';
-import CarteLevier from '../components/CarteLevier.astro';
-import TicketComparaison from '../components/TicketComparaison.astro';
-import HeroVideo from '../components/HeroVideo.astro';
-import BlocFondateur from '../components/BlocFondateur.astro';
+import AccueilHero from '../components/accueil/AccueilHero.astro';
+import AccueilClients from '../components/accueil/AccueilClients.astro';
+import AccueilMoteur from '../components/accueil/AccueilMoteur.astro';
+import AccueilQuotidien from '../components/accueil/AccueilQuotidien.astro';
+import AccueilSolution from '../components/accueil/AccueilSolution.astro';
+import AccueilClassement from '../components/accueil/AccueilClassement.astro';
+import AccueilAppli from '../components/accueil/AccueilAppli.astro';
+import AccueilDemo from '../components/accueil/AccueilDemo.astro';
 import Faq from '../components/Faq.astro';
-import SectionDemo from '../components/SectionDemo.astro';
-import EtiquettePrix from '../icons/etiquette-prix.astro';
-import Bouclier from '../icons/bouclier.astro';
-import LoupeZone from '../icons/loupe-zone.astro';
-import Fleche from '../icons/fleche.astro';
-import Coche from '../icons/coche.astro';
 import { FAQ_ACCUEIL } from '../lib/faq';
-import { ICONES } from '../lib/registre-icones';
-import { DEMO, EXEMPLE_MARGHERITA as ex, LEVIERS, OFFRES, SITE, VEILLE, cheminFonction, euros, jsonldLogiciel, lien, type CaptureApp } from '../lib/site';
-
-// Le quotidien : trois constats du terrain (textes de Tom, 6 octobre 2026 : promo, fraude client, prix).
-const constats = [
-  { icone: EtiquettePrix, titre: 'Une promo qui mange votre marge', texte: 'Elle tourne pendant les heures où vous êtes déjà plein. Elle ne vous fait rien gagner, mais vous la payez sur chaque commande.' },
-  { icone: Bouclier, titre: 'La fraude client, à vos frais', texte: 'Un client dit qu’il manque un plat. Il était dans le sac. La plateforme le rembourse quand même et retire la somme de votre versement.' },
-  { icone: LoupeZone, titre: 'Des prix non adaptés à la livraison', texte: 'Votre concurrent direct vend la même pizza plus cher, et vous ne le voyez pas. Vous perdez de la marge sur chaque commande.' },
-];
-
-// La bascule : l'accueil de l'app (compte de démonstration « Pizza Démo », 6 octobre 2026, demande de Tom). Refaite le
-// 7 octobre sur l'app du jour (l'ancienne montrait une contestation « demandée il y a 37 h », contraire à « sous 10 min »).
-const captureAccueil: CaptureApp = {
-  src: '/images/accueil-app',
-  largeurs: [800, 1200, 1600],
-  largeur: 1600,
-  hauteur: 1000,
-  alt: `Accueil de Deliview : 961 € de ventes du jour, dont 670 € sur Uber Eats et 291 € sur Deliveroo, les ventes au fil de la journée, puis À faire : récupérez 86,40 € retirés par Uber Eats ; en cours, un prix validé que Deliview applique sous 10 min. ${DEMO}`,
-};
-// Ce que fait Deliview (6 octobre 2026, demande de Tom) : les trois leviers (LEVIERS) avec une vraie carte de l'app
-// chacun, puis ce que Deliview surveille pour vous (VEILLE). Uniquement des fonctions en ligne dans l'app.
+import { SITE, jsonldLogiciel } from '../lib/site';
 
 const description = 'Deliview centralise vos chiffres Uber Eats et Deliveroo : promos, fraude client et prix, pour une livraison plus rentable. Sans engagement.';
 
 // Le film Deliview (V29, 55 s, voix de PADG), en ligne depuis le 8 octobre 2026 à la place de la V15 (1 min 10).
+// Il s'ouvre dans la fenêtre vidéo du site (« Voir la vidéo » du haut de page, « Lire la vidéo » du menu).
 const video = {
   '@context': 'https://schema.org',
   '@type': 'VideoObject',
@@ -61,303 +45,16 @@ const video = {
   height: 1080,
   inLanguage: 'fr-FR',
 };
-
-const sousLaZone = euros(ex.mediane - ex.votrePrix, 0);
-const nombreEnLettres = ['Zéro', 'Un', 'Deux', 'Trois', 'Quatre', 'Cinq', 'Six', 'Sept', 'Huit', 'Neuf', 'Dix'][ex.concurrents] ?? String(ex.concurrents);
 ---
 
-<Base
-  title="Logiciel restaurant Uber Eats et Deliveroo | Deliview"
-  description={description}
-  jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}
-  precharger="/video/deliview-banniere-1280.webp"
->
-  <!-- Haut de page : slogan, promesse de rentabilité, définition et le bouton démo, seul bouton ; à droite, la vidéo de
-       présentation (demande de Tom, 4 octobre 2026), lancée au clic sur l'image. Bouton « Voir Deliview en action »
-       retiré le 4 octobre 2026 (demande de Tom). Depuis le 8 octobre 2026 : le film de 55 s, et la bannière animée en
-       boucle à la place de l'image fixe tant qu'on ne lance pas le film (demande de Tom). -->
-  <section class="dv-hero" aria-labelledby="hero-titre" data-haut-de-page data-video-zone>
-    <div class="dv-container dv-hero-grille">
-      <div class="dv-hero-texte">
-        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>{SITE.slogan}</p>
-        <h1 id="hero-titre" class="dv-h1 dv-hero-deux-lignes mt-5 md:mt-6"><span class="lg:whitespace-nowrap">Améliorez votre <span class="text-blue">rentabilité</span></span><br class="max-lg:hidden" /> <span class="lg:whitespace-nowrap">sur Uber&nbsp;Eats et Deliveroo</span></h1>
-        <p class="dv-lead mt-4 max-w-[46ch] md:mt-6">Confiez-nous la gestion de vos plateformes de livraison, ou gérez-les vous-même depuis Deliview.</p>
-        <div class="dv-hero-boutons">
-          <BoutonDemo href="#demo" cta="hero" principal />
-        </div>
-      </div>
-      <div class="dv-hero-visuel">
-        <span class="dv-hero-forme" aria-hidden="true"></span>
-        <HeroVideo class="dv-hero-video" banniere />
-      </div>
-    </div>
-  </section>
-
-  <!-- Premier restaurant client (6 octobre 2026, demandes de Tom ; refait le 7 octobre à 11 h, « plus design, simple »,
-       puis sans sur-titre ni ville à 11 h 03 ; coche bleue retirée le 8 octobre 2026). Depuis le 8 octobre 2026 à 10 h 40
-       (demande de Tom : « la photo de la devanture, pas trop grosse, pour montrer que Pizza Cosy utilise Deliview depuis le
-       premier jour ») : la devanture à gauche, le logo à cheval sur la séparation, le nom et la phrase à droite. Photo
-       recadrée sur l'enseigne et l'entrée (sans la fenêtre de l'étage). Logo, photo et phrase affichés avec l'accord du
-       restaurant (confirmé par Tom le 6 octobre, 12 h 20 ; photo envoyée par Tom le 8 octobre). -->
-  <section class="bg-white pb-10 md:pb-14">
-    <div class="dv-container">
-      <div class="dv-relief dv-pilotes mx-auto">
-        <div class="dv-pilotes-photo">
-          <img
-            class="dv-pilotes-devanture"
-            src={lien('/images/clients/pizza-cosy-devanture-300.webp')}
-            srcset={`${lien('/images/clients/pizza-cosy-devanture-200.webp')} 200w, ${lien('/images/clients/pizza-cosy-devanture-300.webp')} 300w`}
-            sizes="(min-width: 768px) 184px, (min-width: 640px) 176px, (min-width: 380px) 148px, 124px"
-            alt="Devanture du restaurant Pizza Cosy à Lyon, son enseigne lumineuse au-dessus de l’entrée"
-            width="300"
-            height="225"
-            decoding="async"
-          />
-        </div>
-        <span class="dv-pilotes-medaillon" aria-hidden="true">
-          <img
-            class="dv-pilotes-logo"
-            src={lien('/images/clients/pizza-cosy-160.webp')}
-            srcset={`${lien('/images/clients/pizza-cosy-160.webp')} 160w, ${lien('/images/clients/pizza-cosy.webp')} 240w`}
-            sizes="(min-width: 768px) 56px, 48px"
-            alt=""
-            width="160"
-            height="160"
-            decoding="async"
-          />
-        </span>
-        <div class="dv-pilotes-texte">
-          <p class="dv-pilotes-nom">Pizza Cosy</p>
-          <p class="dv-pilotes-phrase">Utilise Deliview depuis le premier jour.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Le quotidien : la vraie photo des tablettes d'un restaurateur (7 octobre 2026, demande de Tom : « c'est plus
-       authentique » que les appareils dessinés). Depuis 18 h 29 : la photo originale envoyée par Tom, sans la croix rouge
-       du post LinkedIn, recadrée presque carrée sans le haut du mur ; noms et numéros des commandes floutés sur la
-       tablette de gauche. Puis trois constats dans leurs cartes. -->
-  <section class="dv-section bg-grey dv-points overflow-x-clip" aria-labelledby="quotidien-titre">
-    <div class="dv-container dv-quotidien">
-      <div class="dv-quotidien-intro">
-        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Le quotidien</p>
-        <h2 id="quotidien-titre" class="dv-h2 mt-4 max-w-[16ch] md:mt-5">Plusieurs tablettes. Des chiffres éparpillés partout.</h2>
-        <p class="dv-lead mt-3.5 max-w-[46ch] md:mt-5">Le rapport de vos ventes livraison arrive. Vous avez des commandes, et pourtant, la rentabilité n’est pas au <span class="whitespace-nowrap">rendez-vous…</span></p>
-      </div>
-      <div class="dv-quotidien-dessin flex justify-center">
-        <PhotoCadre
-          fichier="tablettes-cuisine"
-          dossier="terrain"
-          tailles={[480, 720, 960]}
-          largeurMax={440}
-          largeur={960}
-          hauteur={947}
-          alt="Deux tablettes de commandes et deux terminaux Deliveroo côte à côte sur le plan de travail d’une cuisine"
-          legende="Restaurant Crousty Vice, Caen"
-          inclinaison={2}
-        />
-      </div>
-      <ul class="dv-quotidien-bons grid gap-5 md:grid-cols-3 md:gap-6">
-        {
-          constats.map((c, i) => (
-            <li class="dv-relief dv-constat" data-apparition="">
-              <p class="flex items-center justify-between">
-                <span class="dv-tuile">
-                  <c.icone taille={32} />
-                </span>
-                <span class="font-accent text-[15px] font-semibold leading-none tracking-[0.08em] dv-muted" aria-hidden="true">
-                  0{i + 1}
-                </span>
-              </p>
-              <h3 class="mt-5 font-accent text-[20px] font-bold leading-[1.25] [text-wrap:balance] md:mt-6 md:text-[23px]">{c.titre}</h3>
-              <p class="mt-2 text-[16px] leading-[1.5] dv-muted md:mt-2.5 md:text-[17px] md:leading-[1.55]">{c.texte}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- La bascule : le seul aplat Bleu 1 de la page. L'accueil de l'app : ce que Deliview vous a rapporté, et À faire. -->
-  <section class="dv-section dv-bande-bleue" aria-labelledby="bascule-titre">
-    <div class="dv-container dv-bascule">
-      <div class="dv-bascule-texte">
-        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>La bascule</p>
-        <h2 id="bascule-titre" class="mt-4 font-accent text-[36px] font-bold leading-[1.08] tracking-[-0.015em] md:mt-5 md:text-[44px]">Toutes vos données livraison centralisées</h2>
-        <p class="dv-bascule-lead mt-4 md:mt-6">Un prix mal placé, une promo au mauvais moment, un remboursement à contester, un restaurant fermé en plein service&nbsp;: Deliview le repère. Vous validez, il l’applique.</p>
-      </div>
-      <div class="dv-bascule-tablette">
-        <Scene3D capture={captureAccueil} sens="gauche" fond="bleu" ratio={1.18} ratioMobile={1.05} appareil={{ x: 6, y: 14, largeur: 88 }} sizes="(min-width: 1200px) 640px, (min-width: 1024px) 54vw, 92vw">
-          <Flottant x={2} y={2} xm={0} ym={2} z={10} duree={6.2}><span class="dv-puce dv-puce-forte"><i></i>Uber&nbsp;Eats et Deliveroo, côte à côte</span></Flottant>
-          <!-- Étiquettes du PDF validé par Tom (6 octobre 2026). « 86,40 € » près de sa carte À faire, en bas à gauche ;
-               « Votre creux » à droite, au niveau du graphique, sans cacher la carte En cours. -->
-          <Flottant x={-4} y={72} xm={-2} ym={70} z={15} duree={6.8} delai={-2}>
-            <div class="dv-bulle">
-              <p class="dv-bulle-chiffre">86,40&nbsp;€</p>
-              <p class="dv-bulle-texte">à contester</p>
-            </div>
-          </Flottant>
-          <Flottant x={-3} y={44} xm={0} ym={76} droite z={12} duree={7.2} delai={-4} bureau>
-            <div class="dv-bulle">
-              <p class="dv-bulle-sur">Votre creux</p>
-              <p class="dv-bulle-titre">le mardi midi</p>
-            </div>
-          </Flottant>
-        </Scene3D>
-      </div>
-    </div>
-  </section>
-
-  <!-- Fonctionnalités (refaites le 6 octobre 2026, demande de Tom : claires, simples, sans trop de texte) : les trois
-       leviers de rentabilité, chacun avec son ticket (l'essentiel en un coup d'œil, chiffres des vraies captures),
-       puis ce que Deliview surveille pour vous, une ligne chacun. Depuis le 7 octobre 2026, chaque carte mène à la page
-       de sa fonction. -->
-  <section class="dv-section bg-grey dv-points" aria-labelledby="fonctions-titre">
-    <div class="dv-container">
-      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Ce que fait Deliview</p>
-      <h2 id="fonctions-titre" class="dv-h2 mt-4 max-w-[22ch] md:mt-5">Plus de rentabilité sur votre activité livraison</h2>
-      <p class="dv-lead mt-3.5 max-w-[52ch] md:mt-5">Chaque action est chiffrée, restaurant par restaurant. Vous savez ce qu’elle vous rapporte avant de la lancer.</p>
-      <ul class="mt-8 grid gap-6 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
-        {LEVIERS.map((l) => <CarteLevier levier={l} href={cheminFonction(l.id)} />)}
-      </ul>
-      <h3 class="mt-12 font-accent text-[21px] font-bold leading-[1.25] md:mt-16 md:text-[24px]">Et Deliview surveille le reste</h3>
-      <ul class="mt-5 grid gap-4 sm:grid-cols-2 md:mt-6 lg:grid-cols-4">
-        {
-          VEILLE.map((v) => {
-            const Icone = ICONES[v.icone];
-            return (
-              <li class="dv-relief dv-relief-lien dv-veille">
-                <span class="dv-tuile dv-tuile-petite">
-                  <Icone taille={24} />
-                </span>
-                <div class="min-w-0">
-                  <h4 class="font-accent text-[18px] font-bold leading-[1.3]">
-                    <a href={lien(cheminFonction(v.id))} class="dv-pilier-lien">{v.nom}</a>
-                  </h4>
-                  <p class="mt-1 text-[16px] leading-[1.45] dv-muted">{v.phrase}</p>
-                </div>
-              </li>
-            );
-          })
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- Exemple réel : le ticket Margherita (vraie analyse, restaurant anonymisé) flotte au-dessus de son plateau. -->
-  <section class="dv-section bg-white overflow-x-clip" aria-labelledby="exemple-titre">
-    <div class="dv-container dv-exemple">
-      <div class="dv-exemple-intro">
-        <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Exemple réel</p>
-        <h2 id="exemple-titre" class="dv-h2 mt-4 max-w-[18ch] md:mt-5">Une Margherita {sousLaZone} sous le prix de sa zone</h2>
-        <p class="dv-lead mt-3.5 max-w-[48ch] md:mt-5">
-          Une pizzeria sur Uber&nbsp;Eats vendait sa Margherita {euros(ex.votrePrix)}. {nombreEnLettres} concurrents la vendent autour de {euros(ex.mediane)}. Deliview propose {euros(ex.prixPropose)}&nbsp;: toujours moins cher que les voisins, et {euros(ex.gainPour100, 0)} de ventes en plus pour 100&nbsp;pizzas.
-        </p>
-      </div>
-      <div class="dv-exemple-plateau" data-apparition="">
-        <span class="dv-exemple-sol" aria-hidden="true"></span>
-        <span class="dv-exemple-ombre" aria-hidden="true"></span>
-        <div class="dv-exemple-ticket">
-          <div class="dv-flotte">
-            <TicketComparaison exemple={ex} />
-          </div>
-        </div>
-        <p class="dv-exemple-annotation max-w-full"><span class="dv-puce dv-puce-bleue">{sousLaZone} sous la zone, sur chaque pizza</span></p>
-      </div>
-      <div class="dv-exemple-suite">
-        <a href={lien('/simulateur/')} class="dv-btn dv-btn-contour w-full sm:w-auto" data-cta="exemple-simulateur">Calculer pour mon restaurant</a>
-      </div>
-    </div>
-  </section>
-
-  <BlocFondateur />
-
-  <!-- Tarifs en bref : les offres en relief, la recommandée mise en avant ; chaque offre mène au formulaire de départ
-       (4 octobre 2026, logique de taap.it, choix de Tom), le détail reste sur la page Tarifs.
-       8 octobre 2026 (demande de Tom : « Enlève les prix car chaque restaurateur peut avoir des besoins différents ») :
-       plus de prix sur les cartes ; Tom fixe le prix avec chaque restaurateur, avant tout paiement.
-       8 octobre 2026, 22 h 56 (demande de Tom : « ajuste ce module avec les infos que tu sais ») : chaque carte montre ce
-       que contient l'offre (lignes clés de OFFRES, le reste compté) ; cartes côte à côte à partir de 1024 px, comme sur
-       Tarifs. 23 h 13 (Tom : « le titre parle pas de prix ») : « Un prix fixe, sans engagement » devient « Trois offres,
-       sans engagement », et « Tom l'adapte » (le prix) devient « Tom adapte votre offre ».
-       9 octobre 2026, 18 h 44 (demande de Tom) : deux offres, Autonomie et Délégation (recommandée), « Deux offres, sans
-       engagement » ; deux cartes côte à côte, sur 980 px au plus. -->
-  <section class="dv-section bg-white" aria-labelledby="tarifs-titre">
-    <div class="dv-container">
-      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>Tarifs</p>
-      <h2 id="tarifs-titre" class="dv-h2 mt-4 max-w-[24ch] md:mt-5">Deux offres, sans engagement</h2>
-      <p class="dv-lead mt-3 md:mt-4">Vous gardez la main, ou vous déléguez tout. Tom adapte votre offre à vos restaurants. Mise en place offerte.</p>
-      <ul class="dv-offres mt-8 grid max-w-[980px] items-stretch gap-5 md:mt-10 md:gap-6 lg:mt-[72px] lg:grid-cols-2 lg:gap-8">
-        {
-          OFFRES.map((o) => (
-            <li class={`dv-relief dv-offre flex flex-col ${o.recommandee ? 'dv-offre-pro' : ''}`}>
-              {o.recommandee && (
-                <p class="dv-offre-bandeau" aria-hidden="true">
-                  Recommandé
-                </p>
-              )}
-              <h3 class="font-accent text-[22px] font-bold leading-[1.2] md:text-[24px]">
-                {o.nom}
-                {o.recommandee && <span class="sr-only">, offre recommandée</span>}
-              </h3>
-              <p class="mt-4 text-pretty border-t border-grey-2/15 pt-4 text-[17px] font-semibold leading-[1.45] md:mt-5 md:pt-5">{o.titre}</p>
-              {/* Ce que contient l'offre (8 octobre 2026, 22 h 56, demande de Tom) : les lignes clés, le reste sur Tarifs. */}
-              <div class="mt-4 grow">
-                <p class="text-[15px] font-bold leading-[1.4]">{o.base}</p>
-                <ul class="dv-offre-liste mt-2.5 grid gap-2 text-[16px] leading-[1.45]">
-                  {o.accueil.map((x) => (
-                    <li class="flex gap-2.5">
-                      <Coche taille={24} />
-                      <span class="text-pretty">{x}</span>
-                    </li>
-                  ))}
-                </ul>
-                {o.inclus.length > o.accueil.length && (
-                  <p class="dv-muted mt-2.5 pl-[34px] text-[15px] leading-[1.4]">
-                    + {o.inclus.length - o.accueil.length} autre{o.inclus.length - o.accueil.length > 1 ? 's' : ''} fonction{o.inclus.length - o.accueil.length > 1 ? 's' : ''}
-                  </p>
-                )}
-              </div>
-              <a
-                href={lien(`/tarifs/#${o.slug}`)}
-                class={`dv-btn mt-5 w-full md:mt-6 ${o.recommandee ? 'dv-btn-plein' : 'dv-btn-contour'}`}
-                data-cta={`accueil-tarifs-${o.slug}`}
-                {...(o.recommandee ? { 'data-cta-principal': '' } : {})}
-              >
-                Voir le détail<span class="sr-only"> de l’offre {o.nom}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-      <!-- 7 octobre 2026, 23 h 06 (accord de Tom) : sur l'accueil, chaque offre mène à son détail sur Tarifs (« Voir le
-           détail ») ; « Commencer maintenant » reste sur Tarifs, à côté de la liste complète. Sous les offres, seule la carte
-           « Plus de 10 restaurants ? » reste (la carte « Besoin de comparer ? » faisait doublon avec les boutons).
-           8 octobre 2026, 15 h 26 (demande de Tom) : plus de nombre de restaurants par offre ; la bulle devient
-           « Un groupe de restaurants ? ». 15 h 50 : le titre court de chaque offre (« Vous voyez tout sur un seul écran »…). -->
-      <div class="mt-8 grid max-w-[880px] gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
-        <div class="flex flex-col rounded-[16px] border border-[color-mix(in_srgb,var(--color-grey-2)_15%,transparent)] bg-white p-5 md:p-6">
-          <div class="flex items-center gap-3">
-            <img class="dv-bulle-groupe-tom" src={lien('/images/tom-voisin.webp')} alt="" width="400" height="400" loading="lazy" decoding="async" />
-            <h3 class="font-accent text-[20px] font-bold leading-[1.25] md:text-[22px]">Un groupe de restaurants&nbsp;?</h3>
-          </div>
-          <p class="mt-3 flex-1 text-[16px] leading-[1.5] md:text-[17px]">Tom vous prépare une offre pour tout votre groupe.</p>
-          <a href="#demo" class="dv-lien-fort mt-4 self-start" data-cta="accueil-plus-de-10">Parler à Tom<Fleche taille={24} /></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" />
-
-  <SectionDemo section="accueil-formulaire" />
-
+<Base title="Logiciel restaurant Uber Eats et Deliveroo | Deliview" description={description} jsonld={[jsonldLogiciel(SITE.definition, SITE.url + '/'), video]}>
+  <AccueilHero />
+  <AccueilClients />
+  <AccueilMoteur />
+  <AccueilQuotidien />
+  <AccueilSolution />
+  <AccueilClassement />
+  <AccueilAppli />
+  <Faq questions={FAQ_ACCUEIL} titre="Ce qu’on demande à Tom avant une démo" id="questions" collee />
+  <AccueilDemo />
 </Base>
-
-<style>
-  /* Coches Bleu 1 dans les offres, comme sur la page Tarifs. */
-  .dv-offre-liste :global(svg) {
-    color: var(--color-blue);
-  }
-</style>

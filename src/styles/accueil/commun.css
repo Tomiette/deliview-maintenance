@@ -1,0 +1,30 @@
+/* Accueil (aperçu validé par Tom le 10 octobre 2026) : socle commun aux sections de l'accueil.
+   Règles reprises telles quelles d'accueil-design.css (aperçu fait à la main), sans changer une valeur.
+   Ce fichier ne contient que ce qui sert à plusieurs sections, ou à tout l'accueil :
+   - .dva : jetons --dva-* et couleur du texte (sections hero, quotidien, solution, classement, appli) ;
+   - .dva-chiffre (hero, quotidien, classement) et .dva-bleu (moteur, quotidien, classement, appli) ;
+   - mot clé du grand titre : .dva-marque et .dva-surligne (surlignage qui se pose une fois) ;
+   - apparition à l'arrivée : .dva-apparait et .dva-apparait-2 ;
+   - @keyframes dva-pouls (point de « Repéré par Deliview » dans La solution).
+   Charte : 5 couleurs et leurs transparences, Figtree. Toute animation passe par .dv-mouvement, posée seulement si le
+   visiteur n'a pas réduit les animations : sans elle, l'état final s'affiche.
+   À importer en premier dans le frontmatter de chaque composant de l'accueil qui s'en sert, avant son propre CSS :
+   import '../../styles/accueil/commun.css'; (Vite ne l'inclut qu'une fois). Jamais dans un <style> scopé. */
+
+.dva{--dva-bord:var(--dv-bord);--dva-trait:color-mix(in srgb,var(--color-grey-2) 10%,transparent);--dva-trait-fort:color-mix(in srgb,var(--color-grey-2) 22%,transparent);--dva-ombre:0 1px 2px color-mix(in srgb,var(--color-grey-2) 6%,transparent),0 28px 56px -22px color-mix(in srgb,var(--color-grey-2) 30%,transparent);--dva-ombre-petite:0 10px 22px -14px color-mix(in srgb,var(--color-grey-2) 40%,transparent);--dva-bleu-12:color-mix(in srgb,var(--color-blue) 12%,transparent);color:var(--color-grey-2)}
+.dva-chiffre{font-family:var(--font-chiffres);font-weight:800;font-variant-numeric:tabular-nums}
+.dva-bleu{color:var(--color-blue)}
+
+/* Mot clé du grand titre : en bleu, souligné d'un aplat Blue 1 à 18 % qui s'étend une fois à l'arrivée. */
+.dva-marque{color:var(--color-blue)}
+.dva-surligne{background-image:linear-gradient(color-mix(in srgb,var(--color-blue) 18%,transparent),color-mix(in srgb,var(--color-blue) 18%,transparent));background-repeat:no-repeat;background-position:0 90%;background-size:100% 30%}
+.dv-mouvement .dva-surligne{background-size:0% 30%;animation:dva-surligne 1s .7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes dva-surligne{to{background-size:100% 30%}}
+
+/* Apparition à l'arrivée (texte puis visuel). */
+.dv-mouvement .dva-apparait{animation:dva-monte .9s cubic-bezier(.2,.7,.2,1) both}
+.dv-mouvement .dva-apparait-2{animation:dva-monte .9s cubic-bezier(.2,.7,.2,1) .15s both}
+@keyframes dva-monte{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+
+/* Pulsation d'un point bleu (utilisée par La solution : .dvf-repere i). */
+@keyframes dva-pouls{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--color-blue) 55%,transparent)}100%{box-shadow:0 0 0 12px color-mix(in srgb,var(--color-blue) 0%,transparent)}}

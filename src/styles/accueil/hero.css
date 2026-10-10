@@ -1,0 +1,74 @@
+/* Accueil (aperçu validé par Tom le 10 octobre 2026) : haut de page (hero).
+   Titre, chapô et deux boutons à gauche ; à droite, un écran de l'app dessiné en HTML, incliné en 3D (il suit le
+   pointeur, voir scripts/accueil/hero.ts), avec le lien « Voir la vidéo » (fenêtre vidéo existante) et la carte
+   flottante « 86,40 € à récupérer ».
+   Règles reprises telles quelles d'accueil-design.css et d'accueil-clients.css (aperçu fait à la main), sans changer une
+   valeur. Les jetons --dva-*, .dva-chiffre, .dva-marque, .dva-surligne et les apparitions viennent de commun.css,
+   importé avant ce fichier. Charte : 5 couleurs et leurs transparences, Figtree. Toute animation passe par
+   .dv-mouvement ; en mouvement réduit, l'écran garde son inclinaison de repos et rien ne flotte. */
+
+.dva-hero{background:var(--color-white);padding-block:40px 64px;overflow:hidden}
+@media (width>=768px){.dva-hero{padding-block:80px 104px}}
+/* Bandeau « Ils utilisent Deliview » juste dessous : marge du bas réduite (venait d'accueil-clients.css). À garder après
+   les deux règles ci-dessus : 40px en haut et en bas sur téléphone, 80px en haut et 56px en bas à partir de 768px. */
+.dva-hero{padding-bottom:40px}
+@media (width>=768px){.dva-hero{padding-bottom:56px}}
+.dva-hero-grille{display:grid;row-gap:48px;align-items:center}
+@media (width>=1024px){.dva-hero-grille{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:56px}}
+.dva-hero-texte{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.dva-hero .dv-h1{margin:0;font-size:36px}
+@media (width>=768px){.dva-hero .dv-h1{font-size:52px}}
+.dva-hero .dv-lead{margin:0;max-width:56ch}
+.dva-hero-boutons{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:4px}
+.dva-hero-boutons .dv-btn-contour{border-radius:999px;min-height:60px;padding-inline:24px}
+.dva-fleche svg{transition:translate .2s}
+.dva-fleche:hover svg{translate:4px 0}
+
+/* Visuel : rond Blue 2 en fond, écran incliné, lien vidéo et carte flottante. */
+.dva-hero-visuel{position:relative;padding:44px 0 32px;perspective:1400px}
+@media (width>=640px){.dva-hero-visuel{padding:44px 20px 40px}}
+.dva-hero-forme{position:absolute;z-index:0;width:440px;max-width:90%;aspect-ratio:1;border-radius:50%;background:color-mix(in srgb,var(--color-blue-2) 12%,transparent);right:-30px;top:50%;translate:0 -50%}
+.dva-ecran{position:relative;z-index:1;background:var(--color-white);border:1px solid var(--dva-bord);border-radius:20px;box-shadow:var(--dva-ombre);overflow:hidden;transform:rotateX(var(--rx,4deg)) rotateY(var(--ry,-8deg));transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.dva-ecran-barre{height:34px;background:var(--color-grey);border-bottom:1px solid var(--dva-bord);display:flex;align-items:center;gap:6px;padding:0 14px}
+.dva-ecran-barre span{width:9px;height:9px;border-radius:50%;background:var(--dva-trait-fort)}
+.dva-ecran-corps{display:flex;min-height:300px}
+@media (width>=640px){.dva-ecran-corps{min-height:330px}}
+.dva-ecran-menu{width:112px;flex-shrink:0;background:var(--color-grey);border-right:1px solid var(--dva-bord);padding:16px 12px;display:flex;flex-direction:column;gap:12px}
+@media (width>=640px){.dva-ecran-menu{width:128px;padding:16px 14px}}
+.dva-ecran-menu img{display:block;height:18px;width:auto;max-width:100%;margin-bottom:6px}
+.dva-ecran-ligne{display:flex;align-items:center;gap:8px}
+.dva-ecran-ligne i{width:10px;height:10px;border-radius:3px;background:var(--dva-trait);flex-shrink:0}
+.dva-ecran-ligne b{height:6px;border-radius:3px;background:var(--dva-trait)}
+.dva-ecran-ligne.dva-actif i{background:color-mix(in srgb,var(--color-blue) 30%,transparent)}
+.dva-ecran-ligne.dva-actif b{background:color-mix(in srgb,var(--color-blue) 25%,transparent)}
+.dva-ecran-contenu{flex:1 1 auto;min-width:0;padding:18px 16px 72px;display:flex;flex-direction:column;gap:14px}
+@media (width>=640px){.dva-ecran-contenu{padding:18px 20px 72px}}
+.dva-ecran-titre{font-size:15px;font-weight:700;line-height:1.2}
+/* .dva-trait-bleu après .dva-trait (même élément, même spécificité : c'est lui qui donne le bleu). */
+.dva-trait{display:block;height:6px;border-radius:3px;background:var(--dva-trait)}
+.dva-trait-bleu{background:color-mix(in srgb,var(--color-blue) 25%,transparent)}
+.dva-ecran-bloc{border:1px solid var(--dva-bord);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.dva-ecran-pilules{display:flex;gap:6px;align-items:center}
+.dva-ecran-pilules span:not(.dva-trait){height:14px;width:54px;border-radius:999px;background:var(--dva-trait)}
+.dva-ecran-rang{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--color-grey)}
+.dva-ecran-rang i{width:8px;height:8px;border-radius:50%;background:var(--dva-trait-fort);flex-shrink:0}
+.dva-ecran-rang i.dva-point-bleu{background:var(--color-blue)}
+.dva-ecran-tuiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.dva-ecran-tuiles div{border:1px solid var(--dva-bord);border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.dva-ecran-tuiles b{display:block;height:9px;width:45%;border-radius:3px;background:var(--dva-trait-fort)}
+/* « Voir la vidéo » : ouvre la fenêtre vidéo du site (data-video-ouvrir, VideoDialogue). */
+.dva-ecran-video{position:absolute;left:124px;bottom:16px;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:6px 16px 6px 6px;border:0;border-radius:999px;background:var(--color-grey-2);color:var(--color-white);font:inherit;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;transition:scale .2s}
+@media (width>=640px){.dva-ecran-video{left:148px}}
+.dva-ecran-video:hover{scale:1.05;text-decoration:none}
+.dva-ecran-video>span:first-child{width:32px;height:32px;border-radius:50%;background:var(--color-white);color:var(--color-grey-2);display:flex;align-items:center;justify-content:center}
+/* Carte flottante « 86,40 € à récupérer » (compte de démonstration). */
+.dva-recup{position:absolute;z-index:2;top:8px;left:0;display:flex;align-items:center;gap:12px;padding:10px 16px 10px 10px;border-radius:16px;background:var(--color-white);border:1px solid var(--dva-bord);box-shadow:0 16px 36px -12px color-mix(in srgb,var(--color-grey-2) 30%,transparent)}
+.dva-recup img{width:36px;height:36px;border-radius:10px;display:block;flex-shrink:0}
+.dva-recup-montant{font-size:20px;letter-spacing:-.02em}
+.dva-recup-texte{font-size:15px;font-weight:600}
+
+/* Mouvements : seulement si le visiteur accepte les animations. */
+.dv-mouvement .dva-recup{animation:dva-flotte 5s ease-in-out infinite}
+@keyframes dva-flotte{0%,100%{translate:0 0}50%{translate:0 -10px}}
+/* À garder en dernier : annule les transitions déclarées plus haut. */
+@media (prefers-reduced-motion:reduce){.dva-ecran,.dva-ecran-video,.dva-fleche svg{transition:none}}

@@ -1,0 +1,76 @@
+---
+// Accueil, « Votre activité livraison depuis votre poche » (pastille « App Deliview », aperçu validé par Tom le 10 octobre
+// 2026), entre « Avant, après » et la FAQ, sur fond gris à points.
+// À gauche, la photo de Tom d'un vrai téléphone, détourée (images/accueil/telephone-deliview-detoure-751.webp, fond
+// transparent, 751 × 602, ombre en CSS). L'interface de l'app est dessinée en 390 × 844 et posée sur l'écran en
+// perspective : scripts/accueil/appli.ts calcule l'homographie (matrix3d) sur les coins mesurés de l'écran, le
+// clip-path de styles/accueil/appli.css découpe l'encoche et les coins. Barre d'onglets Concurrents, Visibilité,
+// Rentabilité et Alertes ; sur Alertes, une notification Deliview descend du haut de l'écran.
+// À droite, les quatre questions du restaurateur (lib/accueil-appli.ts) : l'élément choisi s'allume avec son onglet
+// (barre de progression, défilement auto quand le bloc est visible, arrêt au clic). Dessous, logos Apple et Android
+// seuls, sans texte (demande de Tom). L'app n'est sur aucun store (app web à ajouter à l'écran d'accueil) : jamais de
+// badge App Store ou Google Play tant que Tom n'a pas de vraie fiche.
+// Chiffres du compte de démonstration, concurrents anonymisés.
+// HTML repris tel quel de l'aperçu fait à la main : classes, ids, data-*, aria-*, style="" et textes inchangés. Les
+// espaces entre balises comptent (la compression d'Astro ramène chaque suite d'espaces et de retours à la ligne à une
+// seule espace) : ne pas en ajouter dans les lignes écrites d'un seul tenant, ni entre une balise et une boucle.
+// CSS : commun.css (.dva, .dva-bleu) puis appli.css, importés ici et jamais dans un <style> scopé (data-astro-cid
+// changerait le HTML).
+import { lien } from '../../lib/site';
+import { ALERTE_APPLI, CONCURRENTS_APPLI, MODULES_APPLI, PLATEFORMES_APPLI, RENTABILITE_APPLI, VISIBILITE_APPLI } from '../../lib/accueil-appli';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/appli.css';
+
+const [concurrents, visibilite, rentabilite, alertes] = MODULES_APPLI;
+const ouvert = PLATEFORMES_APPLI[ALERTE_APPLI.ouvert];
+const ferme = PLATEFORMES_APPLI[ALERTE_APPLI.ferme];
+const coche = '<polyline points="20 6 9 17 4 12"></polyline>';
+---
+
+<section class="dva dvq dv-section bg-grey dv-points" aria-labelledby="modules-titre">
+  <div class="dv-container">
+    <div class="dvq-tete">
+      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>App Deliview</p>
+      <h2 id="modules-titre" class="dv-h2">Votre activité livraison <span class="dva-bleu">depuis votre poche</span></h2>
+      <p class="dv-lead">On centralise toutes vos données Uber&nbsp;Eats et Deliveroo dans l’application.</p>
+    </div>
+    <div class="dvq-grille" data-appli>
+      <div class="dvq-photo">
+        <img class="dvq-fond" src={lien('/images/accueil/telephone-deliview-detoure-751.webp')} alt="L’app Deliview ouverte sur un téléphone : onglets Concurrents, Visibilité, Rentabilité et Alertes" width="751" height="602" loading="lazy" decoding="async" />
+        <div class="dvq-appli" data-onglet="0" aria-hidden="true">
+          <div class="dvq-statut"><span>9:41</span><i></i></div>
+          <div class="dvq-entete"><img src={lien('/images/logo-deliview.svg')} alt="" width="1618" height="311" /><span>Compte démo</span></div>
+          <div class="dvq-ecrans"><div class="dvq-ecran" data-ecran="0"><p class="dvq-titre-ecran">{concurrents.nom}</p><p class="dvq-sous-ecran">{concurrents.sousTitre}</p>{CONCURRENTS_APPLI.map((c) => (
+            <>{' '}<div class={c.neuf ? 'dvq-ligne dvq-ligne-neuf' : 'dvq-ligne'}><img src={lien(PLATEFORMES_APPLI[c.plateforme].logo)} alt="" width="96" height="96" /><span><b>{c.nom}</b> <Fragment set:html={c.changement} /><i set:html={c.quand}></i></span></div></>
+          ))}</div>
+          <div class="dvq-ecran" data-ecran="1"><p class="dvq-titre-ecran">{visibilite.nom}</p><p class="dvq-sous-ecran">{visibilite.sousTitre}</p>{VISIBILITE_APPLI.map((v) => (
+            <>{' '}<div class="dvq-pf"><p><img src={lien(PLATEFORMES_APPLI[v.plateforme].logo)} alt="" width="96" height="96" /><b set:html={PLATEFORMES_APPLI[v.plateforme].nom}></b><span set:html={v.note}></span></p><p class="dvq-rang"><b>{v.rang}<sup>e</sup></b>sur {v.sur}</p><span class="dvq-jauge" style={`--p:${v.jauge}`}><i></i></span></div></>
+          ))}</div>
+          <div class="dvq-ecran" data-ecran="2"><p class="dvq-titre-ecran">{rentabilite.nom}</p><p class="dvq-sous-ecran">{rentabilite.sousTitre}</p>
+          <div class="dvq-total"><span><img src={lien(PLATEFORMES_APPLI['uber-eats'].logo)} alt="" width="96" height="96" /><img src={lien(PLATEFORMES_APPLI.deliveroo.logo)} alt="" width="96" height="96" />Vos ventes</span><p><b set:html={RENTABILITE_APPLI.ventes}></b><em set:html={RENTABILITE_APPLI.evolution}></em></p></div>
+          <p class="dvq-sous-titre">Ce que vos actions ont rapporté</p>{RENTABILITE_APPLI.actions.map((a) => (
+            <>{' '}<div class="dvq-action"><span class="dvq-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" set:html={coche}></svg></span>{a.texte}<b set:html={a.gain}></b></div></>
+          ))}
+          <div class="dvq-reste"><span>Il vous reste</span><b set:html={RENTABILITE_APPLI.reste}></b></div></div>
+          <div class="dvq-ecran" data-ecran="3"><p class="dvq-titre-ecran">{alertes.nom}</p><p class="dvq-sous-ecran">{alertes.sousTitre}</p>
+          <div class="dvq-etat"><img src={lien(ouvert.logo)} alt="" width="96" height="96" /><span><b set:html={ouvert.nom}></b><i>Ouvert</i></span><em class="dvq-ouvert"></em></div>
+          <div class="dvq-etat dvq-etat-ferme"><p><img src={lien(ferme.logo)} alt="" width="96" height="96" /><span><b set:html={ferme.nom}></b><i>Fermé depuis <Fragment set:html={ALERTE_APPLI.depuis} /></i></span></p><p class="dvq-explique">Votre tablette ne répond plus. D’habitude, vous êtes ouvert jusqu’à <Fragment set:html={ALERTE_APPLI.habituellement} />.</p><span class="dvq-relancer">Relancer mon restaurant</span></div></div></div>
+          <div class="dvq-barre"><span class="dvq-curseur-onglet"></span>{MODULES_APPLI.map((m, i) => (
+            <span class="dvq-onglet" data-onglet={String(i)}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={m.icone}></svg>{m.nom}</span>
+          ))}</div>
+          <div class="dvq-notif"><img src={lien('/images/accueil/icone-app-180.png')} alt="" width="180" height="180" /><span><span class="dvq-notif-tete"><b>Deliview</b><i>maintenant</i></span><b><Fragment set:html={ferme.nom} />&nbsp;: restaurant fermé</b>Votre tablette ne répond plus depuis <Fragment set:html={ALERTE_APPLI.depuis} />.</span></div>
+          <span class="dvq-doigt"></span>
+          <span class="dvq-reflet"></span>
+        </div>
+      </div>
+      <div class="dvq-cote"><ul class="dvq-liste">{MODULES_APPLI.map((m, i) => (
+        <li><button type="button" class="dvq-item" data-choix={String(i)} aria-pressed={i === 0 ? 'true' : 'false'}><span class="dvq-icone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={m.icone}></svg></span><span class="dvq-texte"><span class="dvq-nom">{m.nom}</span><b set:html={m.question}></b><span class="dvq-desc"><span set:html={m.description}></span></span></span><i class="dvq-progres" aria-hidden="true"></i></button></li>
+      ))}</ul>
+        <div class="dvq-dispo"><span class="dvq-logos" aria-hidden="true"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"></path></svg></i><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zM3.5 8C2.67 8 2 8.67 2 9.5v7c0 .83.67 1.5 1.5 1.5S5 17.33 5 16.5v-7C5 8.67 4.33 8 3.5 8zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"></path></svg></i></span><span class="sr-only">Sur iPhone et Android</span></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/accueil/appli';
+</script>

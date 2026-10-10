@@ -1,0 +1,63 @@
+---
+// Accueil (aperçu validé par Tom le 10 octobre 2026) : « Comment fonctionne Deliview », le moteur Deliview.
+// Juste après « Ils utilisent Deliview », fond clair bleuté (pas de fond gris, demande de Tom). Titre seul, puis une
+// scène : les données (ventes, note, prix, commandes) partent des icônes Uber Eats et Deliveroo à gauche, glissent le
+// long de courbes jusqu'au noyau Deliview, qui pulse ; les actions repartent vers les icônes de droite, dont le compteur
+// augmente. Trois repères numérotés dans la scène, sans sous-texte (le HTML fait foi) ; sur téléphone, la même liste en
+// texte simple sous la scène (ailleurs, lue seulement par les lecteurs d'écran).
+// La scène est dessinée à taille fixe (1120 × 420, 360 × 640 sous 700 px) et mise à l'échelle par
+// scripts/accueil/moteur.ts, qui trace aussi les courbes et crée les pastilles. En mouvement réduit : image fixe.
+// Les chiffres des pastilles (scripts/accueil/moteur.ts) sont des exemples, sans mention « Compte de démonstration »
+// dans l'aperçu validé : point laissé à Tom. Pas de logos de caisses (ne pas copier le bloc de Flynt, concurrent).
+// HTML repris tel quel de l'aperçu fait à la main (classes, data-*, aria-* et textes inchangés, pas d'espace autour des
+// <img> ni des <span> des repères). CSS : commun.css (.dva-bleu) puis moteur.css, importés ici et jamais dans un
+// <style> scopé (data-astro-cid changerait le HTML).
+import { lien } from '../../lib/site';
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/moteur.css';
+
+// Les trois temps, repris dans la scène (repères) et dans la liste du dessous.
+const ETAPES = [
+  'Récupération des données',
+  'Élaboration d’une stratégie intelligente grâce à la puissance de la data',
+  'Deliview déploie sur vos plateformes',
+];
+const uberEats = lien('/images/accueil/logo-uber-eats-96.webp');
+const deliveroo = lien('/images/accueil/logo-deliveroo-96.webp');
+---
+
+<section class="dvx dv-section" aria-labelledby="fonctionne-titre">
+  <div class="dv-container">
+    <div class="dvx-tete">
+      <h2 id="fonctionne-titre" class="dv-h2">Comment fonctionne <span class="dva-bleu">Deliview</span></h2>
+    </div>
+    <div class="dvx-cadre" data-moteur aria-hidden="true">
+      <div class="dvx-scene">
+        <svg class="dvx-chemins" xmlns="http://www.w3.org/2000/svg"></svg>
+        <p class="dvx-zone dvx-zone-g"><span>1</span>{ETAPES[0]}</p>
+        <p class="dvx-zone dvx-zone-c"><span>2</span>{ETAPES[1]}</p>
+        <p class="dvx-zone dvx-zone-d"><span>3</span>{ETAPES[2]}</p>
+        <span class="dvx-app" data-app="ue-g"><img src={uberEats} alt="" width="96" height="96"><b>Uber&nbsp;Eats</b></span>
+        <span class="dvx-app" data-app="dr-g"><img src={deliveroo} alt="" width="96" height="96"><b>Deliveroo</b></span>
+        <span class="dvx-app" data-app="ue-d"><img src={uberEats} alt="" width="96" height="96"><b>Uber&nbsp;Eats</b><i class="dvx-badge"></i></span>
+        <span class="dvx-app" data-app="dr-d"><img src={deliveroo} alt="" width="96" height="96"><b>Deliveroo</b><i class="dvx-badge"></i></span>
+        <div class="dvx-orbe">
+          <span class="dvx-halo"></span>
+          <span class="dvx-anneau dvx-anneau-1"></span>
+          <span class="dvx-anneau dvx-anneau-2"></span>
+          <span class="dvx-coeur"><img src={lien('/images/accueil/symbole-deliview-128.webp')} alt="" width="128" height="116"></span>
+        </div>
+        <p class="dvx-statut"><i></i><span>Analyse de vos données…</span></p>
+      </div>
+    </div>
+    <ol class="dvx-etapes">
+      <li><span class="dvx-num">1</span><b>{ETAPES[0]}</b></li>
+      <li><span class="dvx-num">2</span><b>{ETAPES[1]}</b></li>
+      <li><span class="dvx-num">3</span><b>{ETAPES[2]}</b></li>
+    </ol>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/accueil/moteur';
+</script>

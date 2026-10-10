@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import { satteri } from '@astrojs/markdown-satteri';
 import tailwindcss from '@tailwindcss/vite';
 import { fileURLToPath } from 'node:url';
+import { copyFileSync } from 'node:fs';
 import { typoDossier } from './scripts/typo-html.mjs';
 
 const base = process.env.SITE_BASE || '/';
@@ -78,6 +79,24 @@ const typographie = {
   },
 };
 
+// .htaccess de l'aperçu (10 octobre 2026) : sous /apercu/, celui de la racine (public/.htaccess) renverrait les erreurs
+// vers la 404 du site public et les redirections hors de l’aperçu. Le build sous /apercu/ le remplace donc par
+// src/serveur/htaccess-apercu (404 de l'aperçu, redirections qui gardent /apercu/).
+const htaccessApercu = {
+  name: 'deliview-htaccess-apercu',
+  hooks: {
+    'astro:build:done': ({ dir, logger }) => {
+      if (!prefixe) return;
+      if (prefixe !== '/apercu') {
+        logger.warn(`.htaccess de la racine gardé : le gabarit de l’aperçu ne vaut que pour /apercu/ (base ${base})`);
+        return;
+      }
+      copyFileSync(new URL('./src/serveur/htaccess-apercu', import.meta.url), new URL('.htaccess', dir));
+      logger.info('.htaccess de l’aperçu écrit (src/serveur/htaccess-apercu)');
+    },
+  },
+};
+
 export default defineConfig({
   site: 'https://www.deliview.fr',
   base,
@@ -86,8 +105,14 @@ export default defineConfig({
   build: { format: 'directory', assets: 'assets' },
   compressHTML: true,
   markdown: { processor: satteri({ hastPlugins: [liens, tableaux, entetesVides] }) },
-  integrations: [typographie],
-  vite: { plugins: [tailwindcss()] },
+  integrations: [typographie, htaccessApercu],
+  // Scripts des sections de l'accueil (src/components/accueil/) : toujours en fichier externe dans assets/ (règle du
+  // dépôt de publication : JS nouveau = fichier externe), même sous 4 Ko. Sinon Astro les mettrait en ligne et ajouterait
+  // leur empreinte à la CSP de toutes les pages. Tout le reste garde le seuil par défaut de Vite (4 Ko).
+  vite: {
+    plugins: [tailwindcss()],
+    build: { assetsInlineLimit: (fichier) => (/(^|\/)Accueil[A-Z][A-Za-z]*\.astro_astro_type_script/.test(fichier) ? false : undefined) },
+  },
   // Politique de sécurité des contenus (6 octobre 2026, audit de sécurité) : une balise par page, avec l'empreinte de
   // chaque script et style écrit dans la page (Astro les calcule). Rien d'autre que le site lui-même, sauf le
   // formulaire de démo envoyé à la fonction « lead » de Supabase. Le cadrage par d'autres sites reste interdit par

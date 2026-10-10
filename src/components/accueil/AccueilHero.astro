@@ -1,0 +1,68 @@
+---
+// Accueil, haut de page (aperçu validé par Tom le 10 octobre 2026, design de Tom) : « Plus de rentabilité sur Uber Eats
+// et Deliveroo », le bouton démo (seul bouton plein) et « Voir nos deux formules » vers #formules (La solution).
+// À droite, un écran de l'app dessiné en HTML (compte de démonstration « Pizza Démo »), incliné en 3D et qui suit le
+// pointeur, avec « Voir la vidéo » : ce lien ouvre la fenêtre vidéo du site (data-video-ouvrir, VideoDialogue du
+// gabarit) et, sans JavaScript, mène à l'ancre #video-deliview. Cet id est aussi visé par « Lire la vidéo » du menu :
+// le garder sur le visuel.
+// HTML repris tel quel de l'aperçu fait à la main (classes, ids, data-*, aria-*, style="" et textes inchangés).
+// CSS : commun.css (jetons --dva-*, .dva-chiffre, .dva-marque, .dva-surligne, apparitions) puis hero.css, importés ici
+// et jamais dans un <style> scopé (data-astro-cid changerait le HTML).
+import '../../styles/accueil/commun.css';
+import '../../styles/accueil/hero.css';
+import { SITE, lien } from '../../lib/site';
+---
+
+<section class="dva dva-hero" aria-labelledby="hero-titre" data-haut-de-page>
+  <div class="dv-container dva-hero-grille">
+    <div class="dva-hero-texte dva-apparait">
+      <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true"></span>{SITE.slogan}</p>
+      <h1 id="hero-titre" class="dv-h1">Plus de <span class="dva-marque dva-surligne">rentabilité</span> sur<br class="max-sm:hidden" /> Uber&nbsp;Eats et Deliveroo</h1>
+      <p class="dv-lead">Deliview est le partenaire rentabilité des restaurants en livraison. Confiez-nous la gestion de vos plateformes et suivez tout depuis l’application, ou pilotez vous-même avec un outil surpuissant qui optimise vos résultats.</p>
+      <div class="dva-hero-boutons">
+        <a href="#demo" class="dv-cta dv-cta-seul" data-cta="hero" data-cta-principal>
+          <span class="dv-cta-texte">Demander une démo</span>
+        </a>
+        <a href="#formules" class="dv-btn dv-btn-contour dva-fleche"><span>Voir nos deux formules</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+    </div>
+    <div id="video-deliview" class="dva-hero-visuel dva-apparait-2">
+      <span class="dva-hero-forme" aria-hidden="true"></span>
+      <div class="dva-ecran" data-ecran-incline>
+        <div class="dva-ecran-barre" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="dva-ecran-corps" aria-hidden="true">
+          <div class="dva-ecran-menu">
+            <img src={lien('/images/logo-deliview.svg')} alt="" width="1618" height="311" />
+            <div class="dva-ecran-ligne dva-actif"><i></i><b style="width:60%"></b></div>
+            <div class="dva-ecran-ligne"><i></i><b style="width:70%"></b></div>
+            <div class="dva-ecran-ligne"><i></i><b style="width:50%"></b></div>
+            <div class="dva-ecran-ligne"><i></i><b style="width:65%"></b></div>
+            <div class="dva-ecran-ligne"><i></i><b style="width:45%"></b></div>
+            <div class="dva-ecran-ligne"><i></i><b style="width:55%"></b></div>
+          </div>
+          <div class="dva-ecran-contenu">
+            <div style="display:flex;flex-direction:column;gap:6px"><span class="dva-ecran-titre">Pizza Démo</span><span class="dva-trait" style="width:40%"></span></div>
+            <div class="dva-ecran-bloc"><span class="dva-trait" style="width:35%"></span><div class="dva-ecran-pilules"><span class="dva-trait" style="width:30%"></span><span></span><span></span></div></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div class="dva-ecran-rang"><i class="dva-point-bleu"></i><span class="dva-trait" style="flex:1"></span><span class="dva-trait dva-trait-bleu" style="width:40px"></span></div>
+              <div class="dva-ecran-rang"><i></i><span class="dva-trait" style="flex:1"></span><span class="dva-trait" style="width:40px"></span></div>
+            </div>
+            <div class="dva-ecran-tuiles"><div><span class="dva-trait" style="width:60%;height:5px"></span><b></b></div><div><span class="dva-trait" style="width:60%;height:5px"></span><b></b></div><div><span class="dva-trait" style="width:60%;height:5px"></span><b></b></div></div>
+          </div>
+        </div>
+        <a href={lien('/#video-deliview')} class="dva-ecran-video" data-video-ouvrir aria-haspopup="dialog">
+          <span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></span>
+          <span>Voir la vidéo</span>
+        </a>
+      </div>
+      <div class="dva-recup" aria-hidden="true">
+        <img src={lien('/images/accueil/logo-uber-eats-96.webp')} alt="" width="96" height="96" />
+        <span class="dva-chiffre dva-recup-montant">86,40&nbsp;€</span><span class="dva-recup-texte">à récupérer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/accueil/hero';
+</script>
