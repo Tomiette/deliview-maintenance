@@ -120,7 +120,7 @@ function suivrePointeur() {
 if (!calme) suivrePointeur();
 
 if (!calme && 'IntersectionObserver' in window) {
-  // Les longueurs se mesurent avec les polices définitives (Aspekta) ; au plus 1,5 s d'attente.
+  // Les longueurs se mesurent avec les polices définitives (Figtree) ; au plus 1,5 s d'attente.
   const polices = document.fonts ? Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]) : Promise.resolve();
   polices.then(demarrer);
 }

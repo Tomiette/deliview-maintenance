@@ -14,11 +14,13 @@ interface Props {
   lien?: { href: string; libelle: string };
   fond?: 'gris' | 'blanc';
   premiereOuverte?: boolean;
+  // Collée à la section précédente, sur le même fond (accueil, 10 octobre 2026) : pas de marge en haut.
+  collee?: boolean;
 }
-const { titre = 'Questions fréquentes', surtitre = 'Questions', questions, id = 'faq', lien, fond = 'gris', premiereOuverte = true } = Astro.props;
+const { titre = 'Questions fréquentes', surtitre = 'Questions', questions, id = 'faq', lien, fond = 'gris', premiereOuverte = true, collee = false } = Astro.props;
 ---
 
-<section id={id} class={`dv-section dv-faq ${fond === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} aria-labelledby={`${id}-titre`}>
+<section id={id} class={`dv-section dv-faq ${fond === 'gris' ? 'bg-grey dv-points' : 'bg-white'}`} style={collee ? 'padding-top:0' : undefined} aria-labelledby={`${id}-titre`}>
   <div class="dv-container max-w-[860px]">
     {surtitre && <p class="dv-overline dv-pastille"><span class="dv-pastille-point" aria-hidden="true" />{surtitre}</p>}
     <h2 id={`${id}-titre`} class={`dv-h2 ${surtitre ? 'mt-4 md:mt-5' : ''}`}>{titre}</h2>

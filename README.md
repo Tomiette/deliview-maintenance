@@ -18,7 +18,11 @@ python3 scripts/verifier.py /       # balises, liens, images, typographie, mots 
 - Slogan définitif : « Le partenaire des restaurants en livraison » (`SITE.slogan`) : hero, pied de page, Qui sommes-nous, données structurées
 - Offres (Autonomie et Délégation depuis le 9 octobre 2026, identifiants « pro » et « premium ») : `OFFRES` dans `src/lib/site.ts` ; la page Tarifs, l'accueil, « Commencer » et llms.txt suivent. Plus aucun prix affiché sur le site (8 octobre 2026)
 - Pages : `src/pages/` ; composants : `src/components/` ; charte (5 couleurs, polices) : `src/styles/global.css`
-- Polices : titres en Aspekta (police du logo), texte, boutons et menus en Inter
+- Polices : Figtree partout, texte, titres, boutons, menus et chiffres (décision de Tom du 10 octobre 2026, à la place d'Aspekta
+  et d'Inter). Police variable 300 à 900 auto-hébergée : `src/fonts/Figtree-latin.woff2` (préchargée dans `Base.astro`) et
+  `Figtree-latin-ext.woff2`, `@font-face` et variables `--font-sans`, `--font-accent`, `--font-chiffres` dans `src/styles/global.css`,
+  licence `public/fonts/Figtree-OFL.txt` (citée dans les mentions légales). `Aspekta-OFL.txt` et `Inter-OFL.txt` restent dans
+  `public/fonts/` : l'app (`/app/`) embarque encore ces deux polices
 - Direction graphique « le passe » (cahier et maquettes du 2 octobre 2026) : tickets (`Ticket.astro`, `TicketComparaison.astro`),
   marqueur (`Marqueur.astro`, tracé une fois à l'apparition par `src/scripts/mouvement.ts`, visible sans JavaScript),
   cadre tablette (`CadreTablette.astro`), cadre téléphone (`CadreTelephone.astro`, en attente d'une vraie capture sur téléphone),
@@ -58,7 +62,9 @@ quand le secret `BREVO_API_KEY` est réglé sur la fonction. L'empreinte IP est 
 
 1. `npm run build` sans SITE_BASE, puis copier le contenu de `dist/` à la racine du dépôt de publication
    (Tomiette/deliview-maintenance, branche `main`) en gardant `app/`, `analyse/`, `apercu/` et `CNAME`.
-2. Aperçu non indexé : `SITE_BASE=/apercu/ npm run build`, puis remplacer le dossier `apercu/` du dépôt.
+2. Aperçu non indexé : `SITE_BASE=/apercu/ npm run build`, puis remplacer le contenu du dossier `apercu/` du dépôt
+   en gardant `apercu/app/` (l'app). Le build écrit lui-même le `.htaccess` propre à l'aperçu (404 et redirections
+   sous /apercu/, gabarit `src/serveur/htaccess-apercu`).
 3. CGV, CGU et accord de sous-traitance : textes dans `src/legal/*.md` (version 1 du 2 octobre 2026, issue du doc
    « Conditions de Deliview »), pages /cgv/, /conditions-utilisation/ et /accord-sous-traitance/. À faire relire par un avocat ;
    toute nouvelle version change la date et se publie 30 jours avant d'entrer en vigueur pour les clients (CGV article 22).

@@ -7,8 +7,8 @@ import DemanderIA from '../components/DemanderIA.astro';
 import VideoDialogue from '../components/VideoDialogue.astro';
 import Consentement from '../components/Consentement.astro';
 import { IDS, SITE, lien } from '../lib/site';
-import aspekta400 from '../fonts/Aspekta-400.woff2?url';
-import aspekta700 from '../fonts/Aspekta-700.woff2?url';
+// Figtree (10 octobre 2026) : seul le découpage latin est préchargé, le latin étendu ne sert qu'à de rares caractères.
+import figtree from '../fonts/Figtree-latin.woff2?url';
 
 interface Props {
   title: string;
@@ -113,8 +113,7 @@ const donnees = [organisation, siteWeb, ...(fil ? [fil] : []), ...jsonld];
     <link rel="icon" type="image/svg+xml" href={lien('/favicon.svg')} />
     <link rel="icon" type="image/png" sizes="192x192" href={lien('/favicon-192.png')} />
     <link rel="apple-touch-icon" href={lien('/apple-touch-icon.png')} />
-    <link rel="preload" href={aspekta400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={aspekta700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={figtree} as="font" type="font/woff2" crossorigin />
     {typeof precharger === 'string' && <link rel="preload" as="image" href={lien(precharger)} fetchpriority="high" />}
     {precharger && typeof precharger === 'object' && <link rel="preload" as="image" imagesrcset={precharger.srcset} imagesizes={precharger.sizes} media={precharger.media} fetchpriority="high" />}
     <meta property="og:type" content={ogType} />
