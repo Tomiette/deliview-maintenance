@@ -1,0 +1,78 @@
+/* Accueil de l'aperçu : « La solution » compacte. Trois bénéfices à gauche (seul l'actif déroule sa phrase, barre de
+   progression), un écran animé à droite. Piloté par accueil-solution.js. */
+
+.dvs.dva-solution-carte{gap:28px;padding:40px 16px 36px}
+@media (width>=768px){.dvs.dva-solution-carte{gap:32px;padding:48px 32px 44px}}
+.dvs .dva-solution-tete{gap:14px}
+
+.dvs-offre{width:100%;display:grid;gap:20px;align-items:center}
+.dvs-offre[hidden]{display:none}
+@media (width>=900px){.dvs-offre{grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:40px}}
+
+.dvs-liste{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.dvs-item{position:relative;display:flex;align-items:flex-start;gap:14px;width:100%;padding:14px 16px;border:1px solid transparent;border-radius:16px;background:transparent;color:var(--color-grey-2);font:inherit;text-align:left;cursor:pointer;overflow:hidden;transition:background-color .3s,border-color .3s,box-shadow .3s}
+.dvs-item:hover{background:var(--color-grey)}
+.dvs-item[aria-pressed=true]{background:var(--color-white);border-color:var(--dv-bord);box-shadow:0 14px 30px -18px color-mix(in srgb,var(--color-grey-2) 45%,transparent)}
+.dvs-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--color-grey);font-size:14px;font-weight:800;transition:background-color .3s,color .3s}
+.dvs-item[aria-pressed=true] .dvs-num{background:var(--color-blue);color:var(--color-white)}
+.dvs-item-texte{display:flex;flex-direction:column;min-width:0;padding-top:3px}
+.dvs-item-texte b{font-size:17px;line-height:1.3}
+@media (width>=768px){.dvs-item-texte b{font-size:18px}}
+.dvs-detail{display:block;max-height:0;overflow:hidden;font-size:15px;line-height:1.5;opacity:0;transition:max-height .45s ease,opacity .3s,margin .45s}
+.dvs-item[aria-pressed=true] .dvs-detail{max-height:7em;opacity:1;margin-top:4px}
+.dvs-progres{position:absolute;left:16px;right:16px;bottom:0;height:3px;border-radius:3px;background:color-mix(in srgb,var(--color-blue) 15%,transparent);opacity:0}
+.dvs-progres::after{content:"";position:absolute;inset:0;border-radius:inherit;background:var(--color-blue);transform-origin:left;scale:0 1}
+.dvs-auto .dvs-item[aria-pressed=true] .dvs-progres{opacity:1}
+.dvs-auto .dvs-item[aria-pressed=true] .dvs-progres::after{animation:dvs-progres var(--duree,5s) linear forwards}
+@keyframes dvs-progres{to{scale:1 1}}
+
+/* Écran */
+.dvs-ecran{position:relative;height:300px;border-radius:24px;background:var(--color-grey);background-image:var(--dv-points);background-size:24px 24px;overflow:hidden}
+@media (width>=768px){.dvs-ecran{height:320px}}
+.dvs-scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:opacity .45s,visibility 0s .45s}
+.dvs-scene.dvs-active{opacity:1;visibility:visible;transition:opacity .45s}
+.dvs-hub{padding:0;color:var(--color-blue)}
+.dvs-hub .dva-noeud img{width:44px}
+.dvs-pile{width:100%;max-width:340px;display:flex;flex-direction:column;gap:10px}
+.dvs .dva-liste{max-width:320px}
+
+/* Entrées échelonnées quand la scène devient active. */
+.dv-mouvement .dvs-scene.dvs-active .dvs-anim{animation:dvs-entre .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0) * .28s)}
+@keyframes dvs-entre{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+.dv-mouvement .dvs-scene.dvs-active .dvs-pop{animation:dvs-pop .45s cubic-bezier(.3,1.4,.5,1) both;animation-delay:calc(.2s + var(--i,0) * .18s)}
+@keyframes dvs-pop{from{opacity:0;scale:.6}to{opacity:1;scale:1}}
+.dv-mouvement .dvs-scene.dvs-active .dvs-traits line{stroke-dasharray:100;animation:dvs-trait .7s ease-out both}
+@keyframes dvs-trait{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+
+/* « Je garde la main » : l'interrupteur s'allume, puis « Tout valider » coche les lignes. */
+.dvs-interrupteur i{background:var(--dv-bord);transition:background-color .3s .9s}
+.dvs-interrupteur i::after{right:auto;left:2px;transition:left .3s .9s}
+.dvs-active .dvs-interrupteur i{background:var(--color-blue)}
+.dvs-active .dvs-interrupteur i::after{left:14px}
+.dvs-etat{display:grid;font-size:12px}
+.dvs-etat>span{grid-area:1/1;transition:opacity .3s 2s}
+.dvs-etat-apres{opacity:0}
+.dvs-active .dvs-etat-avant{opacity:0}
+.dvs-active .dvs-etat-apres{opacity:1}
+.dvs-valider{transition:scale .15s 1.75s,background-color .2s 1.75s}
+.dv-mouvement .dvs-active .dvs-valider{animation:dvs-entre .55s cubic-bezier(.2,.7,.2,1) both,dvs-clic .3s 1.7s ease-in-out}
+@keyframes dvs-clic{50%{scale:.92}}
+
+/* Inclus : une ligne de pastilles. */
+.dvs-inclus{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0;padding:0;list-style:none}
+.dvs-inclus[hidden]{display:none}
+.dvs-inclus li{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;background:var(--color-grey);font-size:14px;font-weight:600}
+.dvs-inclus li:not(:first-child)::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--color-blue)}
+.dvs-inclus li:first-child{background:transparent;padding-inline:4px}
+
+@media (prefers-reduced-motion:reduce){.dvs-item,.dvs-num,.dvs-detail,.dvs-scene,.dvs-interrupteur i,.dvs-interrupteur i::after,.dvs-etat>span,.dvs-valider{transition:none}}
+
+/* Petits écrans : pastilles « inclus » en une phrase compacte, écran moins haut. */
+@media (width<640px){
+  .dvs-ecran{height:260px}
+  .dvs-scene{padding:16px}
+  .dvs-inclus{display:block;text-align:center;line-height:1.7}
+  .dvs-inclus li{display:inline;padding:0;background:none;font-size:14px}
+  .dvs-inclus li:first-child{display:block;padding:0}
+  .dvs-inclus li:not(:first-child)::before{display:inline-block;margin:0 6px 2px 4px;vertical-align:middle}
+}
