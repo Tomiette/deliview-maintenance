@@ -74,3 +74,15 @@
 [data-etape="1"] [data-action="1"] i,[data-etape="2"] [data-action="1"] i,[data-etape="2"] [data-action="2"] i,[data-etape="3"] .dvc-actions li i{background:var(--color-blue);border-color:var(--color-blue);color:var(--color-white)}
 
 @media (prefers-reduced-motion:reduce){.dvc-rang,.dvc-offre,.dvc-position b>span,.dvc-actions li,.dvc-actions li i,.dvc-vignette img{transition:none}}
+
+/* Sélecteur Avant / Après mis en avant (demande de Tom), lien « Voir sur mon restaurant » vers la démo. */
+.dvc-commandes{gap:12px;margin-top:8px}
+.dvc-choix{gap:6px;padding:6px;box-shadow:0 10px 24px -14px color-mix(in srgb,var(--color-grey-2) 40%,transparent)}
+.dvc-choix button{min-height:52px;padding:0 30px;font-size:19px}
+.dvc-choix button[aria-pressed=true]{box-shadow:0 4px 12px color-mix(in srgb,var(--color-grey-2) 18%,transparent)}
+.dvc-choix button[data-classement-voir=apres][aria-pressed=true]{background:var(--color-blue);color:var(--color-white);box-shadow:0 8px 18px -8px color-mix(in srgb,var(--color-blue) 70%,transparent)}
+.dvc-pause{width:52px;height:52px}
+.dvc-lien{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--color-blue);font-size:19px;font-weight:700;text-decoration:none}
+.dvc-lien:hover{color:var(--color-blue-2);text-decoration:underline;text-underline-offset:4px}
+.dvc-lien svg{transition:translate .2s}
+.dvc-lien:hover svg{translate:4px 0}
