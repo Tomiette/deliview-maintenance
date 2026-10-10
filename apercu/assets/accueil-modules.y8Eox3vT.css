@@ -65,3 +65,21 @@
 .dvm-anime .dvm-joue .dvm-vous{animation:dvm-pin .5s cubic-bezier(.3,1.5,.5,1) .3s both,dvm-onde 2s ease-out 1s 2}
 @keyframes dvm-onde{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--color-blue) 55%,transparent),0 14px 30px -12px color-mix(in srgb,var(--color-grey-2) 80%,transparent)}100%{box-shadow:0 0 0 22px color-mix(in srgb,var(--color-blue) 0%,transparent),0 14px 30px -12px color-mix(in srgb,var(--color-grey-2) 80%,transparent)}}
 @media (prefers-reduced-motion:reduce){.dvm-carte{transition:none}.dvm-carte:hover{translate:none}}
+
+/* Carte Avis : l'avis du client, puis la réponse prête de Deliview. */
+.dvm-avis{justify-content:center;gap:10px;padding:14px}
+.dvm-avis-carte,.dvm-reponse-carte{border-radius:16px;background:var(--color-white);box-shadow:0 14px 30px -14px color-mix(in srgb,var(--color-grey-2) 85%,transparent)}
+.dvm-avis-carte{align-self:flex-start;width:86%;padding:10px 12px}
+.dvm-avis-tete{display:flex;align-items:center;gap:8px}
+.dvm-avis-tete>img{margin-left:auto}
+.dvm-initiale{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--color-grey);font-size:13px;font-weight:800}
+.dvm-avis-qui{display:flex;flex-direction:column;line-height:1.1}
+.dvm-avis-qui b{font-size:13px}
+.dvm-avis-texte{margin:6px 0 0;font-size:14px;line-height:1.35}
+.dvm-reponse-carte{align-self:flex-end;width:86%;padding:10px 12px;border:2px solid var(--color-blue)}
+.dvm-reponse-tete{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--color-grey-2)}
+.dvm-reponse-carte p{margin:4px 0 6px;font-size:13px;line-height:1.35}
+.dvm-publier{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;background:color-mix(in srgb,var(--color-blue) 12%,transparent);font-size:12px;font-weight:700}
+.dvm-publier svg{color:var(--color-blue)}
+.dvm-anime .dvm-joue .dvm-publier{animation:dvm-pin .4s cubic-bezier(.3,1.5,.5,1) 1.7s both}
+.dvm-photo .dvm-fond[src*="tablettes-cuisine"]{object-position:center 40%}

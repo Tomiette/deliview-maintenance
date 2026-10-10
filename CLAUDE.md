@@ -40,11 +40,12 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
 7. **« Les trois questions que vous vous posez »** (entre « Avant, après » et le bloc fondateur, qui passe sur fond
-   blanc) : trois cartes, une par question du restaurateur (« Ma pizza est-elle au bon prix ? », « Pourquoi mes
+   blanc) : trois cartes, une par question du restaurateur (« Mon plat est-il au bon prix ? », « Pourquoi mes
    clients mettent 3 étoiles ? », « Combien il me reste vraiment ? »), chacune avec une vraie photo
    (`images/ressources/`), la réponse de Deliview posée dessus avec les logos Uber Eats / Deliveroo, puis le
    résultat. Concurrents anonymisés. Fichiers `apercu/assets/accueil-modules.*.css|js`. Tom veut des blocs qui
-   parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites.
+   parlent au restaurateur : vraies photos, logos, situations concrètes, pas des interfaces abstraites. Rester neutre
+   sur le type de cuisine (pas que de la pizza).
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
 
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
