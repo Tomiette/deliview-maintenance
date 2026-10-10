@@ -39,7 +39,7 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
 5. **« Ils utilisent Deliview »** : bandeau centré sous le hero, carte Pizza Cosy (devanture, logo en médaillon,
    « Nous fait confiance depuis le premier jour. » sur une ligne ; carte verticale sur téléphone). La ligne Pizza Cosy
    a quitté la colonne du hero. Fichier `apercu/assets/accueil-clients.*.css`.
-7. **« Votre activité livraison depuis votre poche »** (pastille « App Deliview », chapô « On centralise toutes vos données Uber Eats et Deliveroo dans l’application. ») (entre « Avant, après » et le bloc fondateur, fond gris) : la photo de Tom d’un vrai
+7. **« Votre activité livraison depuis votre poche »** (pastille « App Deliview », chapô « On centralise toutes vos données Uber Eats et Deliveroo dans l’application. ») (entre « Avant, après » et la FAQ, fond gris) : la photo de Tom d’un vrai
    téléphone, détourée (`images/accueil/telephone-deliview-detoure-751.webp`, fond transparent, contour calculé à
    partir de l’écran + cadre + épaisseur, ombre en CSS ; même cadrage 751 × 602 que la photo d’origine), avec l’interface de l’app posée sur l’écran en perspective
    (dessinée en 390 × 844, homographie `matrix3d` calculée par le script sur les coins mesurés de l’écran
@@ -62,6 +62,8 @@ Le 10 octobre 2026, ces changements ont été faits **directement dans `main/ape
    sur téléphone, liste simple sous la scène. Fichiers `apercu/assets/accueil-moteur.*.css|js`.
    Ne pas copier le bloc de Flynt (concurrent) : pas de logos de caisses.
 6. **Section Tarifs retirée de l'accueil** (décision de Tom) : les offres restent sur la page /tarifs/.
+9. **Bloc fondateur « Qui est derrière » retiré de l'accueil** (décision de Tom ; il reste sur /qui-sommes-nous/). La FAQ
+   suit directement le bloc de l'app : même fond gris, `style="padding-top:0"` sur `#questions` pour éviter un double vide.
 
 Animations : toutes respectent `prefers-reduced-motion` (pas de lecture auto ; état final affiché ; un clic sur
 Avant / Après joue quand même une transition courte). Tom a ce réglage activé sur son ordinateur : s'il dit qu'une
@@ -107,7 +109,7 @@ Le site public (racine de `main`) est encore l'ancienne version en Aspekta : il 
 ## Ce que Tom a en tête ensuite
 
 - Reporter le travail ci-dessus dans `site-source` (priorité, voir plus haut).
-- Restyler la suite de l'accueil (fondateur, tarifs, FAQ, démo) dans l'esprit du nouveau haut de page.
+- Restyler la suite de l'accueil (FAQ, démo) dans l'esprit du nouveau haut de page.
 - Passer le site public au nouveau design quand Tom valide l'aperçu (build final depuis `site-source`, jamais en copiant `apercu/`).
 - Passer l'app (`apercu/app/`) en Figtree si Tom le confirme.
 - Mettre à jour la compétence `deliview-web-design` (police Figtree).
